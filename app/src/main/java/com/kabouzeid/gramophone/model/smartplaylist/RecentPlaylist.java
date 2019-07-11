@@ -4,28 +4,26 @@ import android.content.Context;
 import android.os.Parcel;
 import androidx.annotation.NonNull;
 
-import com.kabouzeid.gramophone.loader.TopAndRecentlyPlayedTracksLoader;
+import com.kabouzeid.gramophone.loader.RecentLoader;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.provider.HistoryStore;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.util.PreferenceUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
  */
-public class HistoryPlaylist extends AbsSmartPlaylist {
+public class RecentPlaylist extends AbsSmartPlaylist {
 
-    public HistoryPlaylist(@NonNull Context context) {
+    public RecentPlaylist(@NonNull Context context) {
         super(context.getString(R.string.history), R.drawable.ic_access_time_white_24dp);
     }
 
     @NonNull
     @Override
     public List<Song> getSongs(@NonNull Context context) {
-        return TopAndRecentlyPlayedTracksLoader.getRecentlyPlayedTracks(context);
+        return RecentLoader.getRecent(context);
     }
 
     @Override
@@ -39,17 +37,17 @@ public class HistoryPlaylist extends AbsSmartPlaylist {
         return 0;
     }
 
-    protected HistoryPlaylist(Parcel in) {
+    protected RecentPlaylist(Parcel in) {
         super(in);
     }
 
-    public static final Creator<HistoryPlaylist> CREATOR = new Creator<HistoryPlaylist>() {
-        public HistoryPlaylist createFromParcel(Parcel source) {
-            return new HistoryPlaylist(source);
+    public static final Creator<RecentPlaylist> CREATOR = new Creator<RecentPlaylist>() {
+        public RecentPlaylist createFromParcel(Parcel source) {
+            return new RecentPlaylist(source);
         }
 
-        public HistoryPlaylist[] newArray(int size) {
-            return new HistoryPlaylist[size];
+        public RecentPlaylist[] newArray(int size) {
+            return new RecentPlaylist[size];
         }
     };
 }

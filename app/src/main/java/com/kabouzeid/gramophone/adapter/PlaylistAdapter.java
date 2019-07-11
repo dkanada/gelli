@@ -30,7 +30,7 @@ import com.kabouzeid.gramophone.model.AbsCustomPlaylist;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.model.smartplaylist.AbsSmartPlaylist;
-import com.kabouzeid.gramophone.model.smartplaylist.LastAddedPlaylist;
+import com.kabouzeid.gramophone.model.smartplaylist.LatestPlaylist;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.kabouzeid.gramophone.util.PlaylistsUtil;
@@ -242,7 +242,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                     final Playlist playlist = dataSet.get(getAdapterPosition());
                     final PopupMenu popupMenu = new PopupMenu(activity, view);
                     popupMenu.inflate(getItemViewType() == SMART_PLAYLIST ? R.menu.menu_item_smart_playlist : R.menu.menu_item_playlist);
-                    if (playlist instanceof LastAddedPlaylist) {
+                    if (playlist instanceof LatestPlaylist) {
                         popupMenu.getMenu().findItem(R.id.action_clear_playlist).setVisible(false);
                     }
                     popupMenu.setOnMenuItemClickListener(item -> {

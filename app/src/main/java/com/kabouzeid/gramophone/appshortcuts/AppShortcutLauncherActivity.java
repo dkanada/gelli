@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.kabouzeid.gramophone.appshortcuts.shortcuttype.LastAddedShortcutType;
-import com.kabouzeid.gramophone.appshortcuts.shortcuttype.ShuffleAllShortcutType;
-import com.kabouzeid.gramophone.appshortcuts.shortcuttype.TopTracksShortcutType;
+import com.kabouzeid.gramophone.appshortcuts.shortcuttype.LatestShortcutType;
+import com.kabouzeid.gramophone.appshortcuts.shortcuttype.ShuffleShortcutType;
+import com.kabouzeid.gramophone.appshortcuts.shortcuttype.FrequentShortcutType;
 import com.kabouzeid.gramophone.model.Playlist;
-import com.kabouzeid.gramophone.model.smartplaylist.LastAddedPlaylist;
-import com.kabouzeid.gramophone.model.smartplaylist.MyTopTracksPlaylist;
-import com.kabouzeid.gramophone.model.smartplaylist.ShuffleAllPlaylist;
+import com.kabouzeid.gramophone.model.smartplaylist.LatestPlaylist;
+import com.kabouzeid.gramophone.model.smartplaylist.FrequentPlaylist;
+import com.kabouzeid.gramophone.model.smartplaylist.ShufflePlaylist;
 import com.kabouzeid.gramophone.service.MusicService;
 
 /**
@@ -20,9 +20,9 @@ import com.kabouzeid.gramophone.service.MusicService;
 public class AppShortcutLauncherActivity extends Activity {
     public static final String KEY_SHORTCUT_TYPE = "com.kabouzeid.gramophone.appshortcuts.ShortcutType";
 
-    public static final int SHORTCUT_TYPE_SHUFFLE_ALL = 0;
-    public static final int SHORTCUT_TYPE_TOP_TRACKS = 1;
-    public static final int SHORTCUT_TYPE_LAST_ADDED = 2;
+    public static final int SHORTCUT_TYPE_SHUFFLE = 0;
+    public static final int SHORTCUT_TYPE_FREQUENT = 1;
+    public static final int SHORTCUT_TYPE_LATEST = 2;
     public static final int SHORTCUT_TYPE_NONE = 3;
 
     @Override
@@ -39,20 +39,20 @@ public class AppShortcutLauncherActivity extends Activity {
         }
 
         switch (shortcutType) {
-            case SHORTCUT_TYPE_SHUFFLE_ALL:
+            case SHORTCUT_TYPE_SHUFFLE:
                 startServiceWithPlaylist(MusicService.SHUFFLE_MODE_SHUFFLE,
-                        new ShuffleAllPlaylist(getApplicationContext()));
-                DynamicShortcutManager.reportShortcutUsed(this, ShuffleAllShortcutType.getId());
+                        new ShufflePlaylist(getApplicationContext()));
+                DynamicShortcutManager.reportShortcutUsed(this, ShuffleShortcutType.getId());
                 break;
-            case SHORTCUT_TYPE_TOP_TRACKS:
+            case SHORTCUT_TYPE_FREQUENT:
                 startServiceWithPlaylist(MusicService.SHUFFLE_MODE_NONE,
-                        new MyTopTracksPlaylist(getApplicationContext()));
-                DynamicShortcutManager.reportShortcutUsed(this, TopTracksShortcutType.getId());
+                        new FrequentPlaylist(getApplicationContext()));
+                DynamicShortcutManager.reportShortcutUsed(this, FrequentShortcutType.getId());
                 break;
-            case SHORTCUT_TYPE_LAST_ADDED:
+            case SHORTCUT_TYPE_LATEST:
                 startServiceWithPlaylist(MusicService.SHUFFLE_MODE_NONE,
-                        new LastAddedPlaylist(getApplicationContext()));
-                DynamicShortcutManager.reportShortcutUsed(this, LastAddedShortcutType.getId());
+                        new LatestPlaylist(getApplicationContext()));
+                DynamicShortcutManager.reportShortcutUsed(this, LatestShortcutType.getId());
                 break;
         }
 

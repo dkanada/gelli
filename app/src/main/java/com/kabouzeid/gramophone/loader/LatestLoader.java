@@ -8,17 +8,16 @@ import androidx.annotation.NonNull;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class LastAddedLoader {
+public class LatestLoader {
 
     @NonNull
-    public static List<Song> getLastAddedSongs(@NonNull Context context) {
-        return SongLoader.getSongs(makeLastAddedCursor(context));
+    public static List<Song> getLatest(@NonNull Context context) {
+        return SongLoader.getSongs(makeLatestCursor(context));
     }
 
-    public static Cursor makeLastAddedCursor(@NonNull final Context context) {
+    public static Cursor makeLatestCursor(@NonNull final Context context) {
         long cutoff = PreferenceUtil.getInstance(context).getLastAddedCutoff();
 
         return SongLoader.makeSongCursor(

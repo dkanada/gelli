@@ -19,49 +19,23 @@ package com.kabouzeid.gramophone.loader;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.BaseColumns;
-import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.provider.HistoryStore;
 import com.kabouzeid.gramophone.provider.SongPlayCountStore;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TopAndRecentlyPlayedTracksLoader {
-    public static final int NUMBER_OF_TOP_TRACKS = 100;
-
+public class FrequentLoader {
     @NonNull
-    public static List<Song> getRecentlyPlayedTracks(@NonNull Context context) {
-        return SongLoader.getSongs(makeRecentTracksCursorAndClearUpDatabase(context));
-    }
-
-    @NonNull
-    public static List<Song> getTopTracks(@NonNull Context context) {
-        return SongLoader.getSongs(makeTopTracksCursorAndClearUpDatabase(context));
+    public static List<Song> getFrequent(@NonNull Context context) {
+        return SongLoader.getSongs(makeFrequentCursorAndClearUpDatabase(context));
     }
 
     @Nullable
-    public static Cursor makeRecentTracksCursorAndClearUpDatabase(@NonNull final Context context) {
-        SortedLongCursor retCursor = makeRecentTracksCursorImpl(context);
-
-        // clean up the databases with any ids not found
-        if (retCursor != null) {
-            List<Long> missingIds = retCursor.getMissingIds();
-            if (missingIds != null && missingIds.size() > 0) {
-                for (long id : missingIds) {
-                    HistoryStore.getInstance(context).removeSongId(id);
-                }
-            }
-        }
-        return retCursor;
-    }
-
-    @Nullable
-    public static Cursor makeTopTracksCursorAndClearUpDatabase(@NonNull final Context context) {
-        SortedLongCursor retCursor = makeTopTracksCursorImpl(context);
+    public static Cursor makeFrequentCursorAndClearUpDatabase(@NonNull final Context context) {
+        SortedLongCursor retCursor = makeFrequentCursorImpl(context);
 
         // clean up the databases with any ids not found
         if (retCursor != null) {
@@ -76,24 +50,9 @@ public class TopAndRecentlyPlayedTracksLoader {
     }
 
     @Nullable
-    private static SortedLongCursor makeRecentTracksCursorImpl(@NonNull final Context context) {
+    private static SortedLongCursor makeFrequentCursorImpl(@NonNull final Context context) {
         // first get the top results ids from the internal database
-        Cursor songs = HistoryStore.getInstance(context).queryRecentIds();
-
-        try {
-            return makeSortedCursor(context, songs,
-                    songs.getColumnIndex(HistoryStore.RecentStoreColumns.ID));
-        } finally {
-            if (songs != null) {
-                songs.close();
-            }
-        }
-    }
-
-    @Nullable
-    private static SortedLongCursor makeTopTracksCursorImpl(@NonNull final Context context) {
-        // first get the top results ids from the internal database
-        Cursor songs = SongPlayCountStore.getInstance(context).getTopPlayedResults(NUMBER_OF_TOP_TRACKS);
+        Cursor songs = SongPlayCountStore.getInstance(context).getTopPlayedResults(100);
 
         try {
             return makeSortedCursor(context, songs,

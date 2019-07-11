@@ -14,9 +14,9 @@ import com.kabouzeid.gramophone.interfaces.LoaderIds;
 import com.kabouzeid.gramophone.loader.PlaylistLoader;
 import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
 import com.kabouzeid.gramophone.model.Playlist;
-import com.kabouzeid.gramophone.model.smartplaylist.HistoryPlaylist;
-import com.kabouzeid.gramophone.model.smartplaylist.LastAddedPlaylist;
-import com.kabouzeid.gramophone.model.smartplaylist.MyTopTracksPlaylist;
+import com.kabouzeid.gramophone.model.smartplaylist.RecentPlaylist;
+import com.kabouzeid.gramophone.model.smartplaylist.LatestPlaylist;
+import com.kabouzeid.gramophone.model.smartplaylist.FrequentPlaylist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,9 +80,9 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
         private static List<Playlist> getAllPlaylists(Context context) {
             List<Playlist> playlists = new ArrayList<>();
 
-            playlists.add(new LastAddedPlaylist(context));
-            playlists.add(new HistoryPlaylist(context));
-            playlists.add(new MyTopTracksPlaylist(context));
+            playlists.add(new LatestPlaylist(context));
+            playlists.add(new RecentPlaylist(context));
+            playlists.add(new FrequentPlaylist(context));
 
             playlists.addAll(PlaylistLoader.getAllPlaylists(context));
 

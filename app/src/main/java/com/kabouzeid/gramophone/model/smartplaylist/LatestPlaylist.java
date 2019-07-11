@@ -4,27 +4,25 @@ import android.content.Context;
 import android.os.Parcel;
 import androidx.annotation.NonNull;
 
-import com.kabouzeid.gramophone.loader.LastAddedLoader;
+import com.kabouzeid.gramophone.loader.LatestLoader;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.util.PreferenceUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
  */
-public class LastAddedPlaylist extends AbsSmartPlaylist {
+public class LatestPlaylist extends AbsSmartPlaylist {
 
-    public LastAddedPlaylist(@NonNull Context context) {
+    public LatestPlaylist(@NonNull Context context) {
         super(context.getString(R.string.last_added), R.drawable.ic_library_add_white_24dp);
     }
 
     @NonNull
     @Override
     public List<Song> getSongs(@NonNull Context context) {
-        return LastAddedLoader.getLastAddedSongs(context);
+        return LatestLoader.getLatest(context);
     }
 
     @Override
@@ -37,17 +35,17 @@ public class LastAddedPlaylist extends AbsSmartPlaylist {
         return 0;
     }
 
-    protected LastAddedPlaylist(Parcel in) {
+    protected LatestPlaylist(Parcel in) {
         super(in);
     }
 
-    public static final Creator<LastAddedPlaylist> CREATOR = new Creator<LastAddedPlaylist>() {
-        public LastAddedPlaylist createFromParcel(Parcel source) {
-            return new LastAddedPlaylist(source);
+    public static final Creator<LatestPlaylist> CREATOR = new Creator<LatestPlaylist>() {
+        public LatestPlaylist createFromParcel(Parcel source) {
+            return new LatestPlaylist(source);
         }
 
-        public LastAddedPlaylist[] newArray(int size) {
-            return new LastAddedPlaylist[size];
+        public LatestPlaylist[] newArray(int size) {
+            return new LatestPlaylist[size];
         }
     };
 }

@@ -5,26 +5,25 @@ import android.os.Parcel;
 import androidx.annotation.NonNull;
 
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.loader.TopAndRecentlyPlayedTracksLoader;
+import com.kabouzeid.gramophone.loader.FrequentLoader;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.provider.SongPlayCountStore;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
  */
-public class MyTopTracksPlaylist extends AbsSmartPlaylist {
+public class FrequentPlaylist extends AbsSmartPlaylist {
 
-    public MyTopTracksPlaylist(@NonNull Context context) {
+    public FrequentPlaylist(@NonNull Context context) {
         super(context.getString(R.string.my_top_tracks), R.drawable.ic_trending_up_white_24dp);
     }
 
     @NonNull
     @Override
     public List<Song> getSongs(@NonNull Context context) {
-        return TopAndRecentlyPlayedTracksLoader.getTopTracks(context);
+        return FrequentLoader.getFrequent(context);
     }
 
     @Override
@@ -38,17 +37,17 @@ public class MyTopTracksPlaylist extends AbsSmartPlaylist {
         return 0;
     }
 
-    protected MyTopTracksPlaylist(Parcel in) {
+    protected FrequentPlaylist(Parcel in) {
         super(in);
     }
 
-    public static final Creator<MyTopTracksPlaylist> CREATOR = new Creator<MyTopTracksPlaylist>() {
-        public MyTopTracksPlaylist createFromParcel(Parcel source) {
-            return new MyTopTracksPlaylist(source);
+    public static final Creator<FrequentPlaylist> CREATOR = new Creator<FrequentPlaylist>() {
+        public FrequentPlaylist createFromParcel(Parcel source) {
+            return new FrequentPlaylist(source);
         }
 
-        public MyTopTracksPlaylist[] newArray(int size) {
-            return new MyTopTracksPlaylist[size];
+        public FrequentPlaylist[] newArray(int size) {
+            return new FrequentPlaylist[size];
         }
     };
 }

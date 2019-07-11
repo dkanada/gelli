@@ -8,12 +8,11 @@ import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.loader.SongLoader;
 import com.kabouzeid.gramophone.model.Song;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ShuffleAllPlaylist extends AbsSmartPlaylist {
+public class ShufflePlaylist extends AbsSmartPlaylist {
 
-    public ShuffleAllPlaylist(@NonNull Context context) {
+    public ShufflePlaylist(@NonNull Context context) {
         super(context.getString(R.string.action_shuffle_all), R.drawable.ic_shuffle_white_24dp);
     }
 
@@ -33,17 +32,17 @@ public class ShuffleAllPlaylist extends AbsSmartPlaylist {
         return 0;
     }
 
-    protected ShuffleAllPlaylist(Parcel in) {
+    protected ShufflePlaylist(Parcel in) {
         super(in);
     }
 
-    public static final Creator<ShuffleAllPlaylist> CREATOR = new Creator<ShuffleAllPlaylist>() {
-        public ShuffleAllPlaylist createFromParcel(Parcel source) {
-            return new ShuffleAllPlaylist(source);
+    public static final Creator<ShufflePlaylist> CREATOR = new Creator<ShufflePlaylist>() {
+        public ShufflePlaylist createFromParcel(Parcel source) {
+            return new ShufflePlaylist(source);
         }
 
-        public ShuffleAllPlaylist[] newArray(int size) {
-            return new ShuffleAllPlaylist[size];
+        public ShufflePlaylist[] newArray(int size) {
+            return new ShufflePlaylist[size];
         }
     };
 }
