@@ -34,10 +34,6 @@
     <string name="songs">Utwory</string>
     <string name="playlists">Listy odtwarzania</string>
     <string name="unplayable_file">Utw\u00f3r nie mo\u017ce zosta\u0107 odegrany</string>
-    <string name="biography_unavailable">Nie znaleziono biografii tego wykonawcy.</string>
-    <string name="wiki_unavailable">Nie znaleziono informacji o tym albumie</string>
-    <string name="biography">Biografia</string>
-    <string name="wiki">Wikipedia</string>
     <string name="audio_focus_denied">Nie można teraz odtworzyć dźwięku</string>
     <string name="album">Album</string>
     <string name="artist">Wykonawca</string>

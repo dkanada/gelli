@@ -34,10 +34,6 @@
     <string name="songs">Melodii</string>
     <string name="playlists">Liste de redare</string>
     <string name="unplayable_file">Nu se poate reda.</string>
-    <string name="biography_unavailable">Nu a putut fi g\u0103sit\u0103 o \u00eenregistrare biografic\u0103 pentru acest artist.</string>
-    <string name="wiki_unavailable">Nu s-a putut g\u0103si o \u00eenregistrare wiki pentru acest album.</string>
-    <string name="biography">Biografie</string>
-    <string name="wiki">Wiki</string>
     <string name="audio_focus_denied">Focus audio respins.</string>
     <string name="album">Album</string>
     <string name="artist">Artist</string>

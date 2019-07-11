@@ -34,10 +34,6 @@
     <string name="songs">Titres</string>
     <string name="playlists">Playlists</string>
     <string name="unplayable_file">Impossible de lire ce titre.</string>
-    <string name="biography_unavailable">Impossible de trouver la biographie de l\'artiste.</string>
-    <string name="wiki_unavailable">Impossible de trouver une entr\u00e9e wiki pour cet album.</string>
-    <string name="biography">Biographie</string>
-    <string name="wiki">Wiki</string>
     <string name="audio_focus_denied">Accès à l\'Audio Focus refusé.</string>
     <string name="album">Album</string>
     <string name="artist">Artiste</string>

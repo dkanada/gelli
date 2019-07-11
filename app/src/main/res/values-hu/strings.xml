@@ -34,10 +34,6 @@
     <string name="songs">Dalok</string>
     <string name="playlists">Lejátszási listák</string>
     <string name="unplayable_file">Nem lehet lej\u00e1tszani ezt a dalt.</string>
-    <string name="biography_unavailable">Az el\u0151ad\u00f3 \u00e9letrajza nem tal\u00e1lhat\u00f3.</string>
-    <string name="wiki_unavailable">Az album wiki oldala nem tal\u00e1lhat\u00f3,</string>
-    <string name="biography">Életrajz</string>
-    <string name="wiki">Wiki</string>
     <string name="audio_focus_denied">Audiofókusz megtagadva.</string>
     <string name="album">Album</string>
     <string name="artist">Előadó</string>

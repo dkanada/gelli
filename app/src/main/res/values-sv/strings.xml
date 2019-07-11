@@ -29,8 +29,6 @@
     <string name="songs">Låtar</string>
     <string name="playlists">Spellistor</string>
     <string name="unplayable_file">Ett problem uppstod vid spelningen av denna l\u00e5t.</string>
-    <string name="biography_unavailable">Kunde inte hitta biografin f\u00f6r den h\u00e4r artisten.</string>
-    <string name="biography">Biografi</string>
     <string name="audio_focus_denied">Kunde inte hitta ljudfokus</string>
     <string name="album">Album</string>
     <string name="artist">Artist</string>

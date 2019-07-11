@@ -34,10 +34,6 @@
     <string name="songs">Kappaleet</string>
     <string name="playlists">Soittolistat</string>
     <string name="unplayable_file">Virhe toistettaessa kappaletta.</string>
-    <string name="biography_unavailable">El\u00e4m\u00e4nkertaa ei l\u00f6ytynyt t\u00e4lle artistille.</string>
-    <string name="wiki_unavailable">Ei l\u00f6ytynyt wikist\u00e4 kohtaa t\u00e4lle albumille.</string>
-    <string name="biography">Elämänkerta</string>
-    <string name="wiki">Wiki</string>
     <string name="audio_focus_denied">Ääntä ei voitu toistaa.</string>
     <string name="album">Albumi</string>
     <string name="artist">Artisti</string>

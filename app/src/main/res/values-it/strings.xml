@@ -34,10 +34,6 @@
     <string name="songs">Brani</string>
     <string name="playlists">Playlist</string>
     <string name="unplayable_file">Impossibile riprodurre questo brano.</string>
-    <string name="biography_unavailable">Impossibile trovare una biografia corrispondente a questo artista.</string>
-    <string name="wiki_unavailable">Impossibile trovare una voce wiki per questo album.</string>
-    <string name="biography">Biografia</string>
-    <string name="wiki">Wiki</string>
     <string name="audio_focus_denied">Focus audio negato.</string>
     <string name="album">Album</string>
     <string name="artist">Artista</string>

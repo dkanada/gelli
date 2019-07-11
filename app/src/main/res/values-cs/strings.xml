@@ -34,10 +34,6 @@
     <string name="songs">Skladby</string>
     <string name="playlists">Playlisty</string>
     <string name="unplayable_file">Omlouv\u00e1me se, p\u0159i pokusu p\u0159ehr\u00e1t tuto skladbu do\u0161lo k chyb\u011b</string>
-    <string name="biography_unavailable">Omlouv\u00e1me se, k tomuto interpretovi nem\u016f\u017eeme sehnat dopl\u0148uj\u00edc\u00ed informace.</string>
-    <string name="wiki_unavailable">Omlouv\u00e1me se, k tomuto albu nem\u016f\u017eeme sehnat dopl\u0148uj\u00edc\u00ed informace.</string>
-    <string name="biography">Biografie</string>
-    <string name="wiki">Wiki</string>
     <string name="audio_focus_denied">Nebylo možné získat ohnisko zvuku.</string>
     <string name="album">Album</string>
     <string name="artist">Interpret</string>

@@ -30,8 +30,6 @@
     <string name="songs">Músicas</string>
     <string name="playlists">Listas de reprodução</string>
     <string name="unplayable_file">Ocorreu um erro ao tentar reproduzir esta faixa.</string>
-    <string name="biography_unavailable">N\u00e3o foi poss\u00edvel encontrar a biografia deste artista.</string>
-    <string name="biography">Biografia</string>
     <string name="audio_focus_denied">Foco de áudio negado.</string>
     <string name="album">Álbum</string>
     <string name="artist">Artista</string>

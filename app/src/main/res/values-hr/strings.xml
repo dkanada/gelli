@@ -34,10 +34,6 @@
     <string name="songs">Pjesme</string>
     <string name="playlists">Popisi naslova</string>
     <string name="unplayable_file">Nije mogu\u0107e reproducirati ovu pjesmu.</string>
-    <string name="biography_unavailable">Nije mogu\u0107e prona\u0107i biografiju za ovog izvo\u0111a\u010da.</string>
-    <string name="wiki_unavailable">Nije mogu\u0107e prona\u0107i wiki unos za ovaj album.</string>
-    <string name="biography">Biografija</string>
-    <string name="wiki">Wiki</string>
     <string name="audio_focus_denied">Zvučni fokus je odbijen.</string>
     <string name="album">Album</string>
     <string name="artist">Izvođač</string>

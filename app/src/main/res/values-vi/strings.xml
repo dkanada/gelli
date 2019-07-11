@@ -33,10 +33,6 @@
     <string name="songs">Bài hát</string>
     <string name="playlists">Danh sách nhạc</string>
     <string name="unplayable_file">Kh\u00f4ng th\u1ec3 ph\u00e1t b\u00e0i h\u00e1t n\u00e0y.</string>
-    <string name="biography_unavailable">Kh\u00f4ng t\u00ecm th\u1ea5y m\u1ee5c nh\u1eadp ti\u1ec3u s\u1eed c\u1ee7a ngh\u1ec7 s\u0129.</string>
-    <string name="wiki_unavailable">Kh\u00f4ng t\u00ecm th\u1ea5y m\u1ee5c wiki cho album n\u00e0y.</string>
-    <string name="biography">Tiểu sử</string>
-    <string name="wiki">Wiki</string>
     <string name="audio_focus_denied">Âm thanh trọng tâm bị từ chối.</string>
     <string name="album">Album</string>
     <string name="artist">Nghệ sĩ</string>

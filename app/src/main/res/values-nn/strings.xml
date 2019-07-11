@@ -14,8 +14,6 @@
     <string name="songs">Songar</string>
     <string name="playlists">Spelelister</string>
     <string name="unplayable_file">Orsak - ein feil oppstod medan spelaren pr\u00f8vde \u00e5 spele denne songen</string>
-    <string name="biography_unavailable">Orsak, vi fann ingen passande biografi for denne artisten.</string>
-    <string name="biography">Biografi</string>
     <string name="audio_focus_denied">We were not able to gain audio focus.</string>
     <string name="album">Album</string>
     <string name="artist">Artist</string>

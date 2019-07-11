@@ -34,10 +34,6 @@
     <string name="songs">Nummers</string>
     <string name="playlists">Afspeellijsten</string>
     <string name="unplayable_file">Kan dit nummer niet afspelen.</string>
-    <string name="biography_unavailable">Kan geen biografie vinden voor deze artiest.</string>
-    <string name="wiki_unavailable">Kan geen wiki-entry vinden voor dit album.</string>
-    <string name="biography">Biografie</string>
-    <string name="wiki">Wiki</string>
     <string name="audio_focus_denied">Audiofocus geweigerd.</string>
     <string name="album">Album</string>
     <string name="artist">Artiest</string>

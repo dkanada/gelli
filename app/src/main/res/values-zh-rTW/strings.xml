@@ -35,10 +35,6 @@
     <string name="songs">歌曲</string>
     <string name="playlists">播放清單</string>
     <string name="unplayable_file">\u7121\u6cd5\u64ad\u653e\u9019\u9996\u6b4c\u3002</string>
-    <string name="biography_unavailable">\u7121\u6cd5\u627e\u5230\u9019\u4f4d\u6b4c\u624b\u7684\u500b\u4eba\u7c21\u4ecb\u3002</string>
-    <string name="wiki_unavailable">\u627e\u4e0d\u5230\u6b64\u5c08\u8f2f\u7684\u767e\u79d1\u8cc7\u6599</string>
-    <string name="biography">個人簡介</string>
-    <string name="wiki">百科</string>
     <string name="audio_focus_denied">無法獲得音訊焦點。</string>
     <string name="album">專輯</string>
     <string name="artist">演出者</string>
