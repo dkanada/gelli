@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Hozzáadás a lejátszási sorhoz</string>
     <string name="action_remove_from_playing_queue">Eltávolítás a lejátszási sorból</string>
     <string name="action_add_to_playlist">Hozzáadás a lejátszási listához...</string>
-    <string name="action_tag_editor">Címkeszerkesztő</string>
     <string name="action_delete_from_device">Törlés az eszközről</string>
     <string name="action_details">Részletek</string>
     <string name="action_rename">Átnevezés</string>
@@ -42,8 +41,6 @@
     <string name="year">Év</string>
     <string name="track_hint">"Dal sorszáma az albumban"</string>
     <string name="lyrics">Dalszöveg</string>
-    <string name="album_or_artist_empty">A cím vagy az előadó üres.</string>
-    <string name="saving_changes">Változások mentése</string>
     <string name="label_details">Részletek</string>
     <string name="label_file_name">Fájlnév</string>
     <string name="label_file_path">Útvonal</string>
@@ -140,7 +137,6 @@
     <string name="accent_color">Másodlagos szín</string>
     <string name="primary_color_desc">Az elsődleges szín, alapértelmezetten indigó.</string>
     <string name="accent_color_desc">A másodlagos szín, alapértelmezetten rózsaszín.</string>
-    <string name="update_image">Kép frissítése</string>
     <string name="playlist_empty_text">Üres lejátszási lista</string>
     <string name="no_playlists">Nincsenek lejátszási listák</string>
     <string name="no_albums">Nincsenek albumok</string>
@@ -161,16 +157,12 @@
     <string name="pref_summary_audio_ducking">Beérkező értesítéskor a lejátszás hangereje lecsökken, majd az értesítés végén visszaáll az eredeti hangerőre.</string>
     <string name="pref_summary_synchronized_lyrics_show">Jelenleg csak az LRC formátumban szinkronizált szövegeket támogatják. Beágyazott vagy külön fájlként.</string>
     <string name="pref_summary_remember_last_tab">Menjen az utolsó megnyitott fülre az indításkor</string>
-    <string name="could_not_download_album_cover">"Nem siker\u00fclt let\u00f6lteni a megfelel\u0151 albumbor\u00edt\u00f3t."</string>
     <string name="search_hint">Keresés a könyvtárban...</string>
     <string name="favorites">Kedvencek</string>
     <string name="last_added">Legfrissebb dalok</string>
     <string name="history">Előzmények</string>
     <string name="my_top_tracks">Toplista</string>
-    <string name="remove_cover">Borító eltávolítása</string>
-    <string name="download_from_last_fm">Letöltés a Last.fm-ről</string>
     <string name="pick_from_local_storage">Kiválasztás az eszközről</string>
-    <string name="web_search">Internetes keresés</string>
     <string name="action_sleep_timer">Elalvás időzítő</string>
     <string name="action_set">Beállítás</string>
     <string name="cancel_current_timer">Az aktuális időzítő törlése</string>

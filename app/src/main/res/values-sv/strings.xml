@@ -18,7 +18,6 @@
     <string name="action_add_to_playing_queue">Lägg till i uppspelningskön</string>
     <string name="action_remove_from_playing_queue">Ta bort från uppspelningskön</string>
     <string name="action_add_to_playlist">Lägg till i spellista</string>
-    <string name="action_tag_editor">Tagredigerare</string>
     <string name="action_delete_from_device">Radera från enhet</string>
     <string name="action_details">Detaljer</string>
     <string name="action_rename">Byt namn</string>
@@ -36,8 +35,6 @@
     <string name="album_artist">Albumartist</string>
     <string name="year">År</string>
     <string name="track_hint">"Spår"</string>
-    <string name="album_or_artist_empty">Textfältet för titel eller artist är tomt.</string>
-    <string name="saving_changes">Sparar ändringar ...</string>
     <string name="label_details">Detaljer</string>
     <string name="label_file_name">Filnamn</string>
     <string name="label_file_path">Sökväg</string>
@@ -78,7 +75,6 @@ Vill du radera <b>%1$d</b> låtar?
     <string name="delete_action">Radera</string>
     <string name="rename_action">Döp om</string>
     <string name="primary_color">Grundfärg</string>
-    <string name="update_image">Uppdatera bild</string>
     <string name="playlist_empty_text">Spellistan är tom</string>
     <string name="no_playlists">Inga spellistor</string>
     <string name="song">Låt</string>

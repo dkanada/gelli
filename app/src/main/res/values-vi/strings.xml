@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Thêm vào danh sách phát</string>
     <string name="action_remove_from_playing_queue">Xóa khỏi hàng đợi phât</string>
     <string name="action_add_to_playlist">Thêm vào danh sách nhạc...</string>
-    <string name="action_tag_editor">Chỉnh sửa thẻ</string>
     <string name="action_delete_from_device">Xóa từ thiết bị</string>
     <string name="action_details">Chi tiết</string>
     <string name="action_rename">Đổi tên</string>
@@ -41,8 +40,6 @@
     <string name="year">Năm</string>
     <string name="track_hint">"Số thứ tự (ghi 2 nếu là bài thứ 2 hoặc ghi 3004 nếu là CD 3, bài thứ 4)"</string>
     <string name="lyrics">Lời bài hát</string>
-    <string name="album_or_artist_empty">Tiêu đề hoặc nghệ sĩ rỗng.</string>
-    <string name="saving_changes">Đang lưu thay đổi</string>
     <string name="label_details">Chi tiết</string>
     <string name="label_file_name">Tên tập tin</string>
     <string name="label_file_path">Đường dẫn tập tin</string>
@@ -134,7 +131,6 @@
     <string name="accent_color">Màu phụ</string>
     <string name="primary_color_desc">Màu sắc chính, mặc định là màu chàm.</string>
     <string name="accent_color_desc">Màu sắc chủ đề, mặc định là màu hồng.</string>
-    <string name="update_image">Cập nhật hình ảnh</string>
     <string name="playlist_empty_text">Danh sách nhạc trống</string>
     <string name="no_playlists">Không có danh sách nhạc</string>
     <string name="no_albums">Không có album</string>
@@ -153,16 +149,12 @@
     <string name="pref_summary_colored_app_shortcuts">Màu sắc chủ đạo của biểu tượng ứng dụng.</string>
     <string name="pref_summary_audio_ducking">Thông báo, điều hướng, vv.</string>
     <string name="pref_summary_synchronized_lyrics_show">Hiện tại chỉ được đồng bộ lời bài hát ở định dạng LRC. Nhúng hoặc là một tập tin riêng biệt.</string>
-    <string name="could_not_download_album_cover">"Kh\u00f4ng th\u1ec3 t\u1ea3i v\u1ec1 b\u00eca album ph\u00f9 h\u1ee3p."</string>
     <string name="search_hint">Tìm kiếm thư viện của bạn...</string>
     <string name="favorites">Yêu thích</string>
     <string name="last_added">Được thêm sau cùng</string>
     <string name="history">Lịch sử</string>
     <string name="my_top_tracks">Bài hát hàng đầu</string>
-    <string name="remove_cover">Di chuyển bìa</string>
-    <string name="download_from_last_fm">Tải về từ Last.fm</string>
     <string name="pick_from_local_storage">Chọn từ bộ nhớ máy</string>
-    <string name="web_search">Tìm kiếm trên Web</string>
     <string name="action_sleep_timer">Hẹn giờ ngủ</string>
     <string name="action_set">Đặt</string>
     <string name="cancel_current_timer">Hủy hẹn giờ hiện tại</string>

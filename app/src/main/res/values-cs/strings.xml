@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Přidat do fronty</string>
     <string name="action_remove_from_playing_queue">Odebrat z fronty</string>
     <string name="action_add_to_playlist">Přidat do playlistu...</string>
-    <string name="action_tag_editor">Editor Tagů</string>
     <string name="action_delete_from_device">Smazat ze zařízení</string>
     <string name="action_details">Podrobné informace o skladbě</string>
     <string name="action_rename">Přejmenovat</string>
@@ -42,8 +41,6 @@
     <string name="year">Rok</string>
     <string name="track_hint">"Stopa (2 pro stopu 2; 3004 pro stopu 4 na CD3)"</string>
     <string name="lyrics">Text</string>
-    <string name="album_or_artist_empty">Název alba nebo interpreta je prázdný.</string>
-    <string name="saving_changes">Ukládání změn</string>
     <string name="label_details">Podrobnosti</string>
     <string name="label_file_name">Název souboru</string>
     <string name="label_file_path">Umístění souboru</string>
@@ -140,7 +137,6 @@
     <string name="accent_color">Vedlejší barva</string>
     <string name="primary_color_desc">Hlavní barva motivu (výchozí: modrá).</string>
     <string name="accent_color_desc">Vedlejší barva motivu (výchozí: růžová).</string>
-    <string name="update_image">Změnit obrázek</string>
     <string name="playlist_empty_text">Tento playlist je prázdný</string>
     <string name="no_playlists">Žádný playlist</string>
     <string name="no_albums">Žádná alba</string>
@@ -161,16 +157,12 @@
     <string name="pref_summary_audio_ducking">Oznámení, navigace atd.</string>
     <string name="pref_summary_synchronized_lyrics_show">V současné době jsou podporovány pouze synchronizované texty ve formátu LRC. Buď vestavěný nebo jako samostatný soubor.</string>
     <string name="pref_summary_remember_last_tab">Přejděte na poslední otevřenou kartu při spuštění</string>
-    <string name="could_not_download_album_cover">"Nelze st\u00e1hnout odpov\u00eddaj\u00edc\u00ed obal alba."</string>
     <string name="search_hint">Vyhledat zvukové soubory...</string>
     <string name="favorites">Oblíbené</string>
     <string name="last_added">Naposledy přidáno</string>
     <string name="history">Historie</string>
     <string name="my_top_tracks">"Moje nejposlouchanější skladby "</string>
-    <string name="remove_cover">Odstranit obal</string>
-    <string name="download_from_last_fm">Stáhnout z Last.fm</string>
     <string name="pick_from_local_storage">Vybrat z místního úložiště</string>
-    <string name="web_search">Najít na webu</string>
     <string name="action_sleep_timer">Určit ukončení přehrávání</string>
     <string name="action_set">Nastavit</string>
     <string name="cancel_current_timer">Zrušit ukončení přehrávání</string>

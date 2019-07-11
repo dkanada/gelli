@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Dodaj do kolejki odtwarzania</string>
     <string name="action_remove_from_playing_queue">Usuń z kolejki odtwarzania</string>
     <string name="action_add_to_playlist">Dodaj do listy odtwarzania...</string>
-    <string name="action_tag_editor">Edytor tagów</string>
     <string name="action_delete_from_device">Usuń z urządzenia</string>
     <string name="action_details">Szczegóły</string>
     <string name="action_rename">Zmień nazwę</string>
@@ -42,8 +41,6 @@
     <string name="year">Rok</string>
     <string name="track_hint">"Numer utworu (2 dla utworu 2 lub 3004 dla CD3 utworu 4)"</string>
     <string name="lyrics">Tekst</string>
-    <string name="album_or_artist_empty">Pole tytułu lub artysty jest puste</string>
-    <string name="saving_changes">Zapisywanie zmian...</string>
     <string name="label_details">Szczegóły</string>
     <string name="label_file_name">Nazwa pliku</string>
     <string name="label_file_path">Ścieżka pliku</string>
@@ -140,7 +137,6 @@
     <string name="accent_color">Kolor dodatków</string>
     <string name="primary_color_desc">Główny kolor motywu, domyślnie indygo</string>
     <string name="accent_color_desc">Kolor akcentów motywu, domyślnie różowy</string>
-    <string name="update_image">Zmiana obrazu</string>
     <string name="playlist_empty_text">Lista odtwarzania jest pusta</string>
     <string name="no_playlists">Brak list odtwarzania</string>
     <string name="no_albums">Brak albumów</string>
@@ -161,16 +157,12 @@
     <string name="pref_summary_audio_ducking">Notyfikacje, nawigacja, itp.</string>
     <string name="pref_summary_synchronized_lyrics_show">Obecnie wspierane są tylko napisy w formacie LRC oraz te osadzone w osobnym pliku.</string>
     <string name="pref_summary_remember_last_tab">Idź do ostatniej otwartej zakładki przy starcie</string>
-    <string name="could_not_download_album_cover">"Nie uda\u0142o si\u0119 pobra\u0107 pasuj\u0105cej ok\u0142adki albumu"</string>
     <string name="search_hint">Szukaj w bibliotece...</string>
     <string name="favorites">Ulubione</string>
     <string name="last_added">Ostatnio dodane</string>
     <string name="history">Historia odtwarzania</string>
     <string name="my_top_tracks">Moja Top Lista</string>
-    <string name="remove_cover">Usuń okładkę</string>
-    <string name="download_from_last_fm">Pobierz z last.fm</string>
     <string name="pick_from_local_storage">Wybierz z pamięci lokalnej</string>
-    <string name="web_search">Wyszukaj w sieci</string>
     <string name="action_sleep_timer">Wyłącznik czasowy</string>
     <string name="action_set">Ustaw</string>
     <string name="cancel_current_timer">Anuluj wyłącznik</string>

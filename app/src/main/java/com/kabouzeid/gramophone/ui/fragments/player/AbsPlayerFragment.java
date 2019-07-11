@@ -16,8 +16,6 @@ import com.kabouzeid.gramophone.dialogs.SongShareDialog;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.PaletteColorHolder;
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.ui.activities.tageditor.AbsTagEditorActivity;
-import com.kabouzeid.gramophone.ui.activities.tageditor.SongTagEditorActivity;
 import com.kabouzeid.gramophone.ui.fragments.AbsMusicServiceFragment;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
@@ -67,11 +65,6 @@ public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implemen
                 return true;
             case R.id.action_save_playing_queue:
                 CreatePlaylistDialog.create(MusicPlayerRemote.getPlayingQueue()).show(getActivity().getSupportFragmentManager(), "ADD_TO_PLAYLIST");
-                return true;
-            case R.id.action_tag_editor:
-                Intent intent = new Intent(getActivity(), SongTagEditorActivity.class);
-                intent.putExtra(AbsTagEditorActivity.EXTRA_ID, song.id);
-                startActivity(intent);
                 return true;
             case R.id.action_details:
                 SongDetailDialog.create(song).show(getFragmentManager(), "SONG_DETAIL");

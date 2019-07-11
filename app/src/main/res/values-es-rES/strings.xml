@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Añadir a cola de reproducción</string>
     <string name="action_remove_from_playing_queue">Eliminar de la cola de reproducción</string>
     <string name="action_add_to_playlist">Añadir a la lista de reproducción...</string>
-    <string name="action_tag_editor">Editor de información</string>
     <string name="action_delete_from_device">Eliminar del dispositivo</string>
     <string name="action_details">Detalles</string>
     <string name="action_rename">Renombrar</string>
@@ -42,8 +41,6 @@
     <string name="year">Año</string>
     <string name="track_hint">"Pista (2 para pista 2 o 3004 para CD3 pista 4)"</string>
     <string name="lyrics">Letras</string>
-    <string name="album_or_artist_empty">El título o artista está vacío</string>
-    <string name="saving_changes">Guardando cambios...</string>
     <string name="label_details">Detalles</string>
     <string name="label_file_name">Nombre del archivo</string>
     <string name="label_file_path">Ubicación del archivo</string>
@@ -143,7 +140,6 @@
     <string name="accent_color">Color secundario</string>
     <string name="primary_color_desc">El color principal, índigo por defecto</string>
     <string name="accent_color_desc">El color de énfasis por defecto es rosa.</string>
-    <string name="update_image">Actualizar imagen</string>
     <string name="playlist_empty_text">Lista de reproducción vacía</string>
     <string name="no_playlists">No hay listas de reproducción</string>
     <string name="no_albums">No hay álbumes</string>
@@ -165,16 +161,12 @@
     <string name="pref_summary_synchronized_lyrics_show">Actualmente sólo se admiten las letras sincronizadas en formato LRC. Tanto si están embebidas como si están en un archivo aparte.</string>
     <string name="pref_summary_remember_last_tab">Ir a la última pestaña abierta en el lanzamiento</string>
     <string name="pref_summary_remember_shuffle">Modo aleatorio estará activado cuando se seleccione una nueva lista de canciones</string>
-    <string name="could_not_download_album_cover">"No se puede descargar una car\u00e1tula de \u00e1lbum que coincida."</string>
     <string name="search_hint">Buscar en la biblioteca...</string>
     <string name="favorites">Favoritos</string>
     <string name="last_added">Último agregado</string>
     <string name="history">Historial de reproducción</string>
     <string name="my_top_tracks">Canciones más reproducidas</string>
-    <string name="remove_cover">Eliminar carátula</string>
-    <string name="download_from_last_fm">Descargar desde Last.fm</string>
     <string name="pick_from_local_storage">Seleccionar de almacenamiento interno</string>
-    <string name="web_search">Buscar en Internet</string>
     <string name="action_sleep_timer">Temporizador de apagado</string>
     <string name="action_set">Fijar</string>
     <string name="cancel_current_timer">Cancelar temporizador actual</string>

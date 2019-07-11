@@ -18,7 +18,6 @@
     <string name="action_add_to_playing_queue">Adicionar à fila de reprodução</string>
     <string name="action_remove_from_playing_queue">Remover da fila de reprodução</string>
     <string name="action_add_to_playlist">Adicionar à lista de reprodução...</string>
-    <string name="action_tag_editor">Editor de etiquetas</string>
     <string name="action_delete_from_device">Eliminar do dispositivo</string>
     <string name="action_details">Detalhes</string>
     <string name="action_rename">Mudar nome</string>
@@ -37,8 +36,6 @@
     <string name="album_artist">Artista do álbum</string>
     <string name="year">Ano</string>
     <string name="track_hint">"Faixa (2 para faixa 2 ou 3004 para CD3 faixa 4)"</string>
-    <string name="album_or_artist_empty">O título do álbum ou o artista está vazio.</string>
-    <string name="saving_changes">A gravar alterações</string>
     <string name="label_details">Detalhes</string>
     <string name="label_file_name">Nome do ficheiro</string>
     <string name="label_file_path">Local do ficheiro</string>
@@ -116,7 +113,6 @@
     <string name="accent_color">Cor de realce</string>
     <string name="primary_color_desc">Cor de tema primária, predefine para anil.</string>
     <string name="accent_color_desc">Cor de tema de realce, predefine para cor-de-rosa.</string>
-    <string name="update_image">Atualizar imagem</string>
     <string name="playlist_empty_text">Lista de reprodução vazia</string>
     <string name="no_playlists">Sem listas de reprodução</string>
     <string name="no_albums">Sem álbuns</string>
@@ -132,16 +128,12 @@
     <string name="pref_summary_ignore_media_store_artwork">Pode aumentar a qualidade da capa do album, mas aumenta o tempo de carregamento. Ative isto somente se tiver problemas com capas de baixa resolução.</string>
     <string name="pref_summary_colored_navigation_bar">Colorir a barra de navegação na cor primária.</string>
     <string name="pref_summary_audio_ducking">Notificações, navegação etc.</string>
-    <string name="could_not_download_album_cover">"N\u00e3o foi encontrada uma capa para este \u00e1lbum."</string>
     <string name="search_hint">Procurar na biblioteca...</string>
     <string name="favorites">Favoritos</string>
     <string name="last_added">Últimas adições</string>
     <string name="history">Histórico</string>
     <string name="my_top_tracks">As minhas faixas favoritas</string>
-    <string name="remove_cover">Remover capa</string>
-    <string name="download_from_last_fm">Descarregar do Last.fm</string>
     <string name="pick_from_local_storage">Escolher do armazenamento local</string>
-    <string name="web_search">Procura web</string>
     <string name="action_sleep_timer">Temporizador para dormir</string>
     <string name="action_set">Definir</string>
     <string name="cancel_current_timer">Cancelar temporizador atual</string>

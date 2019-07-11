@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Tambahkan ke antrean putar</string>
     <string name="action_remove_from_playing_queue">Hapus dari antrian</string>
     <string name="action_add_to_playlist">Tambahkan ke daftar putar...</string>
-    <string name="action_tag_editor">Ubah label</string>
     <string name="action_delete_from_device">Hapus dari perangkat</string>
     <string name="action_details">Rincian</string>
     <string name="action_rename">Ganti Nama</string>
@@ -42,8 +41,6 @@
     <string name="year">Tahun</string>
     <string name="track_hint">"Trek (2 untuk trek ke-2 atau 3004 untuk CD3 trek ke-4)"</string>
     <string name="lyrics">Lirik</string>
-    <string name="album_or_artist_empty">Judul atau artis kosong.</string>
-    <string name="saving_changes">Menyimpan perubahan</string>
     <string name="label_details">Rincian</string>
     <string name="label_file_name">Nama berkas</string>
     <string name="label_file_path">Lokasi berkas</string>
@@ -143,7 +140,6 @@
     <string name="accent_color">Warna aksen</string>
     <string name="primary_color_desc">Warna tema utama, distandarkan ke biru tua.</string>
     <string name="accent_color_desc">Warna aksen tema, distandarkan ke merah muda.</string>
-    <string name="update_image">Perbaharui gambar</string>
     <string name="playlist_empty_text">Daftar putar kosong</string>
     <string name="no_playlists">Tidak ada daftar putar</string>
     <string name="no_albums">Tidak ada album</string>
@@ -165,16 +161,12 @@
     <string name="pref_summary_synchronized_lyrics_show">Saat ini hanya mendukung lirik dalam format LRC yang disinkronkan. Antara tertanam atau sebagai file terpisah.</string>
     <string name="pref_summary_remember_last_tab">Pergi ke tab yang terakhir saat aplikasi dibuka</string>
     <string name="pref_summary_remember_shuffle">Mode putar acak akan tetap aktif saat memilih daftar lagu baru</string>
-    <string name="could_not_download_album_cover">"Tidak dapat mengunduh sampul album yang cocok."</string>
     <string name="search_hint">Mencari pustaka Anda...</string>
     <string name="favorites">Favorit</string>
     <string name="last_added">Terakhir ditambahkan</string>
     <string name="history">Diputar baru-baru ini</string>
     <string name="my_top_tracks">Sering Diputar</string>
-    <string name="remove_cover">Hapus sampul</string>
-    <string name="download_from_last_fm">Unduh dari Last.fm</string>
     <string name="pick_from_local_storage">Ambil dari penyimpanan lokal</string>
-    <string name="web_search">Pencarian web</string>
     <string name="action_sleep_timer">Pewaktu tidur</string>
     <string name="action_set">Atur</string>
     <string name="cancel_current_timer">Batalkan pewaktu yang sekarang</string>

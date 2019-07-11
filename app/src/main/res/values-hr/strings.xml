@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Dodaj u red čekanja</string>
     <string name="action_remove_from_playing_queue">Ukloni iz reda čekanja</string>
     <string name="action_add_to_playlist">Dodaj na popis naslova...</string>
-    <string name="action_tag_editor">Uređivač oznaka</string>
     <string name="action_delete_from_device">Izbriši s uređaja</string>
     <string name="action_details">Detalji</string>
     <string name="action_rename">Preimenuj</string>
@@ -42,8 +41,6 @@
     <string name="year">Godina</string>
     <string name="track_hint">"Redni broj (2 za pjesmu broj 2 ili 3004 za CD3 pjesmu broj 4)"</string>
     <string name="lyrics">Stihovi</string>
-    <string name="album_or_artist_empty">Polje za naziv ili izvođača je prazno.</string>
-    <string name="saving_changes">Spremanje promjena</string>
     <string name="label_details">Detalji</string>
     <string name="label_file_name">Naziv datoteke</string>
     <string name="label_file_path">Odredište datoteke</string>
@@ -140,7 +137,6 @@
     <string name="accent_color">Naglašena boja</string>
     <string name="primary_color_desc">Primarna boja teme, zadana je indigo plava.</string>
     <string name="accent_color_desc">Naglašena boja teme, zadana je roza.</string>
-    <string name="update_image">Ažuriraj sliku</string>
     <string name="playlist_empty_text">Prazan popis naslova</string>
     <string name="no_playlists">Nema popisa naslova</string>
     <string name="no_albums">Nema albuma</string>
@@ -161,16 +157,12 @@
     <string name="pref_summary_audio_ducking">Obavijesti, navigacija itd.</string>
     <string name="pref_summary_synchronized_lyrics_show">Trenutno su samo sinkronizirani stihovi u LRC formatu podržani. Ili ugrađeni ili u zasebnoj datoteci.</string>
     <string name="pref_summary_remember_last_tab">Pri pokretanju otvori zadnje otvorenu karticu</string>
-    <string name="could_not_download_album_cover">"Nije mogu\u0107e preuzeti odgovaraju\u0107i omot albuma."</string>
     <string name="search_hint">Pretražite svoju biblioteku...</string>
     <string name="favorites">Favoriti</string>
     <string name="last_added">Posljednje dodano</string>
     <string name="history">Povijest</string>
     <string name="my_top_tracks">Najslušanije</string>
-    <string name="remove_cover">Ukloni omot</string>
-    <string name="download_from_last_fm">Skini s lokacije Last.fm</string>
     <string name="pick_from_local_storage">Odaberi s pohrane uređaja</string>
-    <string name="web_search">Web pretraga</string>
     <string name="action_sleep_timer">Tajmer za spavanje</string>
     <string name="action_set">Postavi</string>
     <string name="cancel_current_timer">Otkaži trenutni tajmer</string>

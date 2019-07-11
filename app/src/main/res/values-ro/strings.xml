@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Adaugă la lista de redare</string>
     <string name="action_remove_from_playing_queue">Șterge din lista de redare</string>
     <string name="action_add_to_playlist">Adăugaţi în lista de redare...</string>
-    <string name="action_tag_editor">Editor etichete</string>
     <string name="action_delete_from_device">Ștergeți de pe dispozitiv</string>
     <string name="action_details">Detalii</string>
     <string name="action_rename">Redenumire</string>
@@ -42,8 +41,6 @@
     <string name="year">An</string>
     <string name="track_hint">"Număr (2 pentru melodia a 2-a sau 3004 pentru CD3 melodia a 4-a)"</string>
     <string name="lyrics">Versuri</string>
-    <string name="album_or_artist_empty">Titlul sau artistul lipseste.</string>
-    <string name="saving_changes">Se salvează schimbările</string>
     <string name="label_details">Detalii</string>
     <string name="label_file_name">Nume fișier</string>
     <string name="label_file_path">Cale fișier</string>
@@ -140,7 +137,6 @@
     <string name="accent_color">Culoare de accent</string>
     <string name="primary_color_desc">Culoarea primară temei, originalul este indigo.</string>
     <string name="accent_color_desc">Culoarea de accent a temei, originalul este roz.</string>
-    <string name="update_image">Actualizare imagine</string>
     <string name="playlist_empty_text">Listă goală</string>
     <string name="no_playlists">Nu sunt liste de redare</string>
     <string name="no_albums">Nu sunt albume</string>
@@ -161,16 +157,12 @@
     <string name="pref_summary_audio_ducking">Notificări, navigație etc.</string>
     <string name="pref_summary_synchronized_lyrics_show">În prezent sunt acceptate numai versurile sincronizate în format LRC. Fie încorporate, fie ca fişier separat.</string>
     <string name="pref_summary_remember_last_tab">Accesați ultima filă deschisă la lansare</string>
-    <string name="could_not_download_album_cover">"Nu s-a putut desc\u0103rca o copert\u0103 de album corespunz\u0103toare."</string>
     <string name="search_hint">Căutați în bibliotecă.</string>
     <string name="favorites">Favorite</string>
     <string name="last_added">Ultimele adăugate</string>
     <string name="history">Istoric</string>
     <string name="my_top_tracks">Melodiile mele favorite</string>
-    <string name="remove_cover">Ștergeți coperta</string>
-    <string name="download_from_last_fm">Descărcați de la Last.fm</string>
     <string name="pick_from_local_storage">Alegeți din stocarea locală</string>
-    <string name="web_search">Căutare pe Web</string>
     <string name="action_sleep_timer">Cronometru pentru somn</string>
     <string name="action_set">Setează</string>
     <string name="cancel_current_timer">Anulează timer curent.</string>

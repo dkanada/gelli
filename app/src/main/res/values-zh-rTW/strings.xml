@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">加入播放佇列</string>
     <string name="action_remove_from_playing_queue">從播放佇列中移除</string>
     <string name="action_add_to_playlist">加入播放清單...</string>
-    <string name="action_tag_editor">編輯音樂資訊</string>
     <string name="action_delete_from_device">刪除</string>
     <string name="action_details">詳細資訊</string>
     <string name="action_rename">"重新命名
@@ -43,8 +42,6 @@
     <string name="year">年代</string>
     <string name="track_hint">"音軌（用2表示第2首歌或3004表示CD3的第4首歌）"</string>
     <string name="lyrics">歌詞</string>
-    <string name="album_or_artist_empty">專輯名稱或演出者欄是空的</string>
-    <string name="saving_changes">正在儲存變更…</string>
     <string name="label_details">詳細資訊</string>
     <string name="label_file_name">檔案名稱</string>
     <string name="label_file_path">檔案路徑</string>
@@ -144,7 +141,6 @@
     <string name="accent_color">重點色調</string>
     <string name="primary_color_desc">主色調，預設為靛青色。</string>
     <string name="accent_color_desc">重點色調，預設為粉紅色。</string>
-    <string name="update_image">更新圖片</string>
     <string name="playlist_empty_text">播放清單是空的</string>
     <string name="no_playlists">沒有播放清單</string>
     <string name="no_albums">沒有專輯</string>
@@ -166,16 +162,12 @@
     <string name="pref_summary_synchronized_lyrics_show">目前僅支援 LRC 格式歌詞。內嵌或外掛皆可。</string>
     <string name="pref_summary_remember_last_tab">開啟時顯示最後使用的頁面</string>
     <string name="pref_summary_remember_shuffle">當選擇新歌曲列表時維持隨機播放模式</string>
-    <string name="could_not_download_album_cover">"\u7121\u6cd5\u4e0b\u8f09\u5408\u9069\u7684\u5c08\u8f2f\u5c01\u9762\u3002"</string>
     <string name="search_hint">搜尋音樂庫…</string>
     <string name="favorites">最愛</string>
     <string name="last_added">最後新增</string>
     <string name="history">最近播放</string>
     <string name="my_top_tracks">我的最佳單曲</string>
-    <string name="remove_cover">移除封面</string>
-    <string name="download_from_last_fm">從 Last.fm 下載</string>
     <string name="pick_from_local_storage">從手機裡選擇（SD卡或記憶體）</string>
-    <string name="web_search">網路搜尋</string>
     <string name="action_sleep_timer">睡眠定時器</string>
     <string name="action_set">設定</string>
     <string name="cancel_current_timer">取消目前的計時器</string>

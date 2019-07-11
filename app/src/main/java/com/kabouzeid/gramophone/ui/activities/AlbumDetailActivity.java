@@ -1,7 +1,6 @@
 package com.kabouzeid.gramophone.ui.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -39,8 +38,6 @@ import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
 import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
-import com.kabouzeid.gramophone.ui.activities.tageditor.AbsTagEditorActivity;
-import com.kabouzeid.gramophone.ui.activities.tageditor.AlbumTagEditorActivity;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.kabouzeid.gramophone.util.PhonographColorUtil;
@@ -52,7 +49,6 @@ import butterknife.ButterKnife;
 
 public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder, LoaderManager.LoaderCallbacks<Album> {
 
-    private static final int TAG_EDITOR_REQUEST = 2001;
     private static final int LOADER_ID = LoaderIds.ALBUM_DETAIL_ACTIVITY;
 
     public static final String EXTRA_ALBUM_ID = "extra_album_id";
@@ -252,25 +248,11 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
             case android.R.id.home:
                 super.onBackPressed();
                 return true;
-            case R.id.action_tag_editor:
-                Intent intent = new Intent(this, AlbumTagEditorActivity.class);
-                intent.putExtra(AbsTagEditorActivity.EXTRA_ID, getAlbum().getId());
-                startActivityForResult(intent, TAG_EDITOR_REQUEST);
-                return true;
             case R.id.action_go_to_artist:
                 NavigationUtil.goToArtist(this, getAlbum().getArtistId());
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == TAG_EDITOR_REQUEST) {
-            reload();
-            setResult(RESULT_OK);
-        }
     }
 
     @NonNull

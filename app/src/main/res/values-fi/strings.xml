@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Lisää toistojonoon</string>
     <string name="action_remove_from_playing_queue">Poista toistojonosta</string>
     <string name="action_add_to_playlist">Lisää soittolistaan...</string>
-    <string name="action_tag_editor">Tagieditori</string>
     <string name="action_delete_from_device">Poista laitteesta</string>
     <string name="action_details">Yksityiskohdat</string>
     <string name="action_rename">Nimeä uudelleen</string>
@@ -42,8 +41,6 @@
     <string name="year">Vuosi</string>
     <string name="track_hint">"Raita"</string>
     <string name="lyrics">Sanoitukset</string>
-    <string name="album_or_artist_empty">Nimi- tai artistikenttä on tyhjä.</string>
-    <string name="saving_changes">Tallennetaan muutokset</string>
     <string name="label_details">Yksityiskohdat</string>
     <string name="label_file_name">Tiedostonimi</string>
     <string name="label_file_path">Tiedostopolku</string>
@@ -143,7 +140,6 @@
     <string name="accent_color">Aksenttiväri</string>
     <string name="primary_color_desc">Ensisijainen teemaväri, oletuksena indigo.</string>
     <string name="accent_color_desc">Aksentti teemaväri, oletuksena pinkki.</string>
-    <string name="update_image">Päivitä kuva</string>
     <string name="playlist_empty_text">Tyhjä soittolista</string>
     <string name="no_playlists">Ei soittolistoja</string>
     <string name="no_albums">Ei albumeja</string>
@@ -165,16 +161,12 @@
     <string name="pref_summary_synchronized_lyrics_show">Nykyiseltään sovellus tukee vain LRC-muodossa olevia sanoituksia, joko sulautettuna tai erillisinä tiedostoina.</string>
     <string name="pref_summary_remember_last_tab">Palauttaa käynnistyessään viimeksi avoinna olleen välilehden.</string>
     <string name="pref_summary_remember_shuffle">Sekoitus-tila pysyy päällä, kun valitset uuden listan kappaleita</string>
-    <string name="could_not_download_album_cover">"Ei voitu ladata albumia vastaavaa albumin kantta."</string>
     <string name="search_hint">Etsi kirjastostasi...</string>
     <string name="favorites">Suosikit</string>
     <string name="last_added">Viimeksi lisätyt</string>
     <string name="history">Viimeksi toistettu</string>
     <string name="my_top_tracks">Eniten kuunnellut</string>
-    <string name="remove_cover">Poista kansi</string>
-    <string name="download_from_last_fm">Lataa Last.fm-sivustolta</string>
     <string name="pick_from_local_storage">Valitse paikallisesta muistista</string>
-    <string name="web_search">Web-haku</string>
     <string name="action_sleep_timer">Ajastin</string>
     <string name="action_set">Aseta</string>
     <string name="cancel_current_timer">Peru tämänhetkinen ajastin</string>

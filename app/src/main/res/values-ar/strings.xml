@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">إضافة إلى قائمة الانتظار</string>
     <string name="action_remove_from_playing_queue">إزالة من قائمة الانتظار</string>
     <string name="action_add_to_playlist">إضافة إلى قائمة التشغيل...</string>
-    <string name="action_tag_editor">محرر الوسوم</string>
     <string name="action_delete_from_device">حذف من الجهاز</string>
     <string name="action_details">التفاصيل</string>
     <string name="action_rename">إعادة التسمية</string>
@@ -42,8 +41,6 @@
     <string name="year">السنة</string>
     <string name="track_hint">"المقطع (2 للمقطع 2 أو 3004 لـCD3 للمقطع 4)"</string>
     <string name="lyrics">كلمات الأغاني</string>
-    <string name="album_or_artist_empty">حقل العنوان أو الفنان فارغ.</string>
-    <string name="saving_changes">جار حفظ التغييرات</string>
     <string name="label_details">التفاصيل</string>
     <string name="label_file_name">اسم الملف</string>
     <string name="label_file_path">مسار الملف</string>
@@ -140,7 +137,6 @@
     <string name="accent_color">اللون الثانوي</string>
     <string name="primary_color_desc">لون التنسيق الأساسي، الافتراضي هو الأزرق النيلي.</string>
     <string name="accent_color_desc">لون التنسيق الثانوي، الافتراضي هو الزهري.</string>
-    <string name="update_image">تحديث الصورة</string>
     <string name="playlist_empty_text">قائمة تشغيل فارغة</string>
     <string name="no_playlists">لا توجد قوائم تشغيل</string>
     <string name="no_albums">لا توجد ألبومات</string>
@@ -161,16 +157,12 @@
     <string name="pref_summary_audio_ducking">الإشعارات، التنقل، إلخ.</string>
     <string name="pref_summary_synchronized_lyrics_show">حالياً كلمات الأغاني المتزامنة بصيغة LRC هي المدعومة فقط. سواء كانت مدمجة أو كملف منفصل.</string>
     <string name="pref_summary_remember_last_tab">الذهاب إلى آخر لسان مفتوح عند التشغيل</string>
-    <string name="could_not_download_album_cover">"\u0644\u0645 \u064a\u062a\u0645 \u0627\u0644\u062a\u0645\u0643\u0646 \u0645\u0646 \u062a\u062d\u0645\u064a\u0644 \u063a\u0644\u0627\u0641 \u0623\u0644\u0628\u0648\u0645 \u0645\u0637\u0627\u0628\u0642."</string>
     <string name="search_hint">البحث في مكتبتك...</string>
     <string name="favorites">المفضلة</string>
     <string name="last_added">المضافة مؤخراً</string>
     <string name="history">السجل</string>
     <string name="my_top_tracks">أفضل الأغاني</string>
-    <string name="remove_cover">إزالة الغلاف</string>
-    <string name="download_from_last_fm">التحميل من Last.fm</string>
     <string name="pick_from_local_storage">اختيار من التخزين الداخلي</string>
-    <string name="web_search">البحث في الويب</string>
     <string name="action_sleep_timer">مؤقت النوم</string>
     <string name="action_set">ضبط</string>
     <string name="cancel_current_timer">إلغاء المؤقت الحالي</string>

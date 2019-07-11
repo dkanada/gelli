@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Add to playing queue</string>
     <string name="action_remove_from_playing_queue">Remove from playing queue</string>
     <string name="action_add_to_playlist">Add to playlist…</string>
-    <string name="action_tag_editor">Tag editor</string>
     <string name="action_delete_from_device">Delete from device</string>
     <string name="action_details">Details</string>
     <string name="action_rename">Rename</string>
@@ -42,8 +41,6 @@
     <string name="year">Year</string>
     <string name="track_hint">"Track (2 for track 2 or 3004 for CD3 track 4)"</string>
     <string name="lyrics">Lyrics</string>
-    <string name="album_or_artist_empty">The title or artist is empty.</string>
-    <string name="saving_changes">Saving changes</string>
     <string name="label_details">Details</string>
     <string name="label_file_name">File name</string>
     <string name="label_file_path">File path</string>
@@ -143,7 +140,6 @@
     <string name="accent_color">Accent color</string>
     <string name="primary_color_desc">The primary theme color, defaults to indigo.</string>
     <string name="accent_color_desc">The accent theme color, defaults to pink.</string>
-    <string name="update_image">Update image</string>
     <string name="playlist_empty_text">Empty playlist</string>
     <string name="no_playlists">No playlists</string>
     <string name="no_albums">No albums</string>
@@ -165,16 +161,12 @@
     <string name="pref_summary_synchronized_lyrics_show">Currently only synchronized lyrics in LRC format are supported. Either embedded or as a separate file.</string>
     <string name="pref_summary_remember_last_tab">Go to the last opened tab on launch</string>
     <string name="pref_summary_remember_shuffle">Shuffle mode will stay on when selecting a new list of songs</string>
-    <string name="could_not_download_album_cover">"Couldn\u2019t download a matching album cover."</string>
     <string name="search_hint">Search your library…</string>
     <string name="favorites">Favorites</string>
     <string name="last_added">Last added</string>
     <string name="history">Recently played</string>
     <string name="my_top_tracks">My top tracks</string>
-    <string name="remove_cover">Remove cover</string>
-    <string name="download_from_last_fm">Download from Last.fm</string>
     <string name="pick_from_local_storage">Pick from local storage</string>
-    <string name="web_search">Web search</string>
     <string name="action_sleep_timer">Sleep timer</string>
     <string name="action_set">Set</string>
     <string name="cancel_current_timer">Cancel current timer</string>

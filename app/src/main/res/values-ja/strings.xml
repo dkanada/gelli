@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">再生キューに追加</string>
     <string name="action_remove_from_playing_queue">再生キューから除去</string>
     <string name="action_add_to_playlist">プレイリストに追加…</string>
-    <string name="action_tag_editor">タグの編集</string>
     <string name="action_delete_from_device">端末から削除</string>
     <string name="action_details">詳細情報</string>
     <string name="action_rename">名前の変更</string>
@@ -42,8 +41,6 @@
     <string name="year">年</string>
     <string name="track_hint">"トラック (例: '2'ならトラック2, '3004'ならCD3のトラック4)"</string>
     <string name="lyrics">歌詞</string>
-    <string name="album_or_artist_empty">アルバム名またはアルバムアーティストの欄が空白です</string>
-    <string name="saving_changes">変更を保存しています</string>
     <string name="label_details">詳細情報</string>
     <string name="label_file_name">ファイル名</string>
     <string name="label_file_path">パス</string>
@@ -140,7 +137,6 @@
     <string name="accent_color">アクセントカラー</string>
     <string name="primary_color_desc">ツールバーなどの色を設定します。(デフォルトではインディゴ)</string>
     <string name="accent_color_desc">コントロールキーやシークバーなどの色を設定します。(デフォルトではピンク)</string>
-    <string name="update_image">アルバムアートを更新</string>
     <string name="playlist_empty_text">空のプレイリスト</string>
     <string name="no_playlists">プレイリストなし</string>
     <string name="no_albums">アルバムなし</string>
@@ -161,16 +157,12 @@
     <string name="pref_summary_audio_ducking">通知やナビなどです。</string>
     <string name="pref_summary_synchronized_lyrics_show">現時点では LRC 形式の同期歌詞のみに対応しています。埋め込みと別ファイルのどちらにも対応しています。</string>
     <string name="pref_summary_remember_last_tab">アプリ起動時に最後に開いていたタブを開く</string>
-    <string name="could_not_download_album_cover">"\u6700\u9069\u306a\u30a2\u30eb\u30d0\u30e0\u30a2\u30fc\u30c8\u304c\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f"</string>
     <string name="search_hint">ライブラリ内を検索…</string>
     <string name="favorites">お気に入り</string>
     <string name="last_added">最近追加された曲</string>
     <string name="history">履歴</string>
     <string name="my_top_tracks">よく聞く曲</string>
-    <string name="remove_cover">アルバムアートを除去</string>
-    <string name="download_from_last_fm">Last.fmからダウンロード</string>
     <string name="pick_from_local_storage">ローカルストレージから選択</string>
-    <string name="web_search">ウェブで検索</string>
     <string name="action_sleep_timer">スリープタイマー</string>
     <string name="action_set">セット</string>
     <string name="cancel_current_timer">スリープタイマーを解除</string>

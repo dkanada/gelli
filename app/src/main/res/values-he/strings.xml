@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">הוספה לתור ההשמעה</string>
     <string name="action_remove_from_playing_queue">הסרה מתור ההשמעה</string>
     <string name="action_add_to_playlist">הוסף לרשימת השמעה...</string>
-    <string name="action_tag_editor">עריכת תווית</string>
     <string name="action_delete_from_device">מחק מהמכשיר</string>
     <string name="action_details">פרטים</string>
     <string name="action_rename">שנה שם</string>
@@ -42,8 +41,6 @@
     <string name="year">שנה</string>
     <string name="track_hint">"שיר (2 בשביל שיר 2 או 3004 בשביל דיסק 3 שיר 4)"</string>
     <string name="lyrics">מילים</string>
-    <string name="album_or_artist_empty">הכותרת או האמן ריקים.</string>
-    <string name="saving_changes">שומר שינויים</string>
     <string name="label_details">פרטים</string>
     <string name="label_file_name">שם הקובץ</string>
     <string name="label_file_path">מיקום הקובץ</string>
@@ -140,7 +137,6 @@
     <string name="accent_color">צבע הדגשה</string>
     <string name="primary_color_desc">צבע הנושא העיקרי, ברירת המחדל הוא אינדיגו.</string>
     <string name="accent_color_desc">צבע ההדגשה של ערכת הנושא, ברירת המחדל הוא ורוד.</string>
-    <string name="update_image">עדכון תמונה</string>
     <string name="playlist_empty_text">רשימת השמעה ריקה</string>
     <string name="no_playlists">אין רשימות השמעה</string>
     <string name="no_albums">אין אלבומים</string>
@@ -161,16 +157,12 @@
     <string name="pref_summary_audio_ducking">התראות, ניווט וכו\'</string>
     <string name="pref_summary_synchronized_lyrics_show">כרגע מסכרן מילות שירים רק בפורמט LRC.  מילות שרים מוטבעות או בקובץ נפרד.</string>
     <string name="pref_summary_remember_last_tab">עבור לכרטיסייה האחרונה שהייתה פתוחה בהפעלה</string>
-    <string name="could_not_download_album_cover">"\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05d4\u05d5\u05e8\u05d9\u05d3 \u05ea\u05de\u05d5\u05e0\u05ea \u05d0\u05dc\u05d1\u05d5\u05dd \u05de\u05ea\u05d0\u05d9\u05de\u05d4."</string>
     <string name="search_hint">חפש בספרייה שלך...</string>
     <string name="favorites">מועדפים</string>
     <string name="last_added">נוספו לאחרונה</string>
     <string name="history">היסטוריה</string>
     <string name="my_top_tracks">השירים המובילים שלי</string>
-    <string name="remove_cover">הסרת עטיפה</string>
-    <string name="download_from_last_fm">הורדה מ-Last.fm</string>
     <string name="pick_from_local_storage">בחר מאחסון מקומי</string>
-    <string name="web_search">חיפוש באינטרנט</string>
     <string name="action_sleep_timer">טיימר לשינה</string>
     <string name="action_set">קבע</string>
     <string name="cancel_current_timer">בטל טיימר נוכחי</string>

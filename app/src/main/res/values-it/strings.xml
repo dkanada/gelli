@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Aggiungi alla coda di riproduzione</string>
     <string name="action_remove_from_playing_queue">Rimuovi dalla coda di riproduzione</string>
     <string name="action_add_to_playlist">Aggiungi alla playlist...</string>
-    <string name="action_tag_editor">Modifica tag</string>
     <string name="action_delete_from_device">Elimina dal dispositivo</string>
     <string name="action_details">Dettagli</string>
     <string name="action_rename">Rinomina</string>
@@ -42,8 +41,6 @@
     <string name="year">Anno</string>
     <string name="track_hint">"Traccia (2 per traccia 2, o 3004 per CD3 traccia 4)"</string>
     <string name="lyrics">Testi</string>
-    <string name="album_or_artist_empty">Il titolo o l\'artista sono vuoti.</string>
-    <string name="saving_changes">Salvando le modifiche</string>
     <string name="label_details">Dettagli</string>
     <string name="label_file_name">Nome file</string>
     <string name="label_file_path">Percorso file</string>
@@ -143,7 +140,6 @@
     <string name="accent_color">Colore secondario</string>
     <string name="primary_color_desc">Colore principale, predefinito impostato su indaco.</string>
     <string name="accent_color_desc">Colore secondario, predefinito impostato su rosa</string>
-    <string name="update_image">Aggiorna immagine</string>
     <string name="playlist_empty_text">Playlist vuota</string>
     <string name="no_playlists">Nessuna playlist</string>
     <string name="no_albums">Nessun album</string>
@@ -165,16 +161,12 @@
     <string name="pref_summary_synchronized_lyrics_show">Attualmente solo i testi sincronizzati in formato LRC sono supportati. Sia integrati o come file separati.</string>
     <string name="pref_summary_remember_last_tab">All\'avvio vai all\'ultima scheda aperta</string>
     <string name="pref_summary_remember_shuffle">La modalità casuale rimarrà attiva quando si seleziona un nuovo elenco di brani</string>
-    <string name="could_not_download_album_cover">"Impossibile scaricare una copertina adatta."</string>
     <string name="search_hint">Cercando nella tua libreria...</string>
     <string name="favorites">Preferiti</string>
     <string name="last_added">Aggiunti di recente</string>
     <string name="history">Ascoltati di recente</string>
     <string name="my_top_tracks">Brani preferiti</string>
-    <string name="remove_cover">Rimuovi copertina</string>
-    <string name="download_from_last_fm">Scarica da Last.fm</string>
     <string name="pick_from_local_storage">Scegli dai tuoi file.</string>
-    <string name="web_search">Cerca sul web</string>
     <string name="action_sleep_timer">Timer di spegnimento</string>
     <string name="action_set">Imposta</string>
     <string name="cancel_current_timer">Annulla questo timer</string>

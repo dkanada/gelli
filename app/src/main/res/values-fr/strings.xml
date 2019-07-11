@@ -21,7 +21,6 @@
     <string name="action_add_to_playing_queue">Ajouter à la liste de lecture</string>
     <string name="action_remove_from_playing_queue">Retirer de la liste de lecture</string>
     <string name="action_add_to_playlist">Ajouter à la playlist...</string>
-    <string name="action_tag_editor">Éditeur d\'informations</string>
     <string name="action_delete_from_device">Supprimer de l\'appareil</string>
     <string name="action_details">Détails</string>
     <string name="action_rename">Renommer</string>
@@ -42,8 +41,6 @@
     <string name="year">Année</string>
     <string name="track_hint">"Piste (2 pour piste 2 ou 3004 pour CD3 piste 4)"</string>
     <string name="lyrics">Paroles</string>
-    <string name="album_or_artist_empty">Le champ \"titre\" ou \"artiste\" est vide.</string>
-    <string name="saving_changes">Sauvegarde des modifications</string>
     <string name="label_details">Détails</string>
     <string name="label_file_name">Nom du fichier</string>
     <string name="label_file_path">Chemin du fichier</string>
@@ -140,7 +137,6 @@
     <string name="accent_color">Couleur secondaire</string>
     <string name="primary_color_desc">La couleur principale du thème (indigo par défaut)</string>
     <string name="accent_color_desc">La couleur secondaire du thème (rose par défaut)</string>
-    <string name="update_image">Actualiser l\'image</string>
     <string name="playlist_empty_text">Liste de lecture vide</string>
     <string name="no_playlists">Aucune playlist</string>
     <string name="no_albums">Aucun album</string>
@@ -161,16 +157,12 @@
     <string name="pref_summary_audio_ducking">Notifications, navigation, etc.</string>
     <string name="pref_summary_synchronized_lyrics_show">Pour le moment seul les paroles synchronisées en format LRC sont supportées. Aussi bien en fichier intégré ou en fichier séparé.</string>
     <string name="pref_summary_remember_last_tab">Aller à la dernière catégorie ouverte lors du lancement</string>
-    <string name="could_not_download_album_cover">"Impossible de t\u00e9l\u00e9charger la pochette correspondant \u00e0 l'album."</string>
     <string name="search_hint">Recherche dans votre bibliothèque...</string>
     <string name="favorites">Favoris</string>
     <string name="last_added">Derniers ajouts</string>
     <string name="history">Titres écoutés récemment</string>
     <string name="my_top_tracks">Mes meilleurs titres</string>
-    <string name="remove_cover">Supprimer la pochette</string>
-    <string name="download_from_last_fm">Télécharger depuis Last.fm</string>
     <string name="pick_from_local_storage">Sélectionner depuis le stockage</string>
-    <string name="web_search">Recherche internet</string>
     <string name="action_sleep_timer">Minuteur sommeil</string>
     <string name="action_set">Définir</string>
     <string name="cancel_current_timer">Annuler le minuteur actuel</string>
