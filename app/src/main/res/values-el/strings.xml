@@ -165,8 +165,6 @@
     <string name="new_playlist_title">Νέα λίστα αναπαραγωγής</string>
     <string name="colored_footers">Χρωματιστά υποσέλιδα</string>
     <string name="special_thanks_to">Ιδιαίτερες ευχαριστίες προς</string>
-    <string name="changelog">Κατάλογος αλλαγών</string>
-    <string name="licenses">Άδειες</string>
     <string name="permissions_denied">Άρνηση χορήγησης δικαιωμάτων.</string>
     <string name="permission_external_storage_denied">Άρνηση χορήγησης δικαιώματος πρόσβασης σε εξωτερικά μέσα αποθήκευσης.</string>
     <string name="support_development">Υποστηρίξτε την ανάπτυξη της εφαρμογής</string>
@@ -191,7 +189,6 @@
     <string name="loading_products">Φόρτωση προϊόντων...</string>
     <string name="up_next">Επόμενο</string>
     <string name="pref_title_now_playing_screen_appearance">Εμφάνιση</string>
-    <string name="intro_label">Εισαγωγή</string>
     <string name="welcome_to_phonograph">"Καλώς ήρθατε στο Phonograph, ένα όμορφο και ελαφρύ πρόγραμμα αναπαραγωγής μουσικής για το Android.  "</string>
     <string name="open_playing_queue_instruction">Σύρετε την κάρτα στην οθόνη \"παίζει τώρα\" μέχρι να αποκαλυφθεί ολόκληρη η σειρά τραγουδιών.</string>
     <string name="rearrange_playing_queue_instruction">Κάντε αναδιάταξη της σειράς τραγουδιών  σύροντας ένα τραγούδι από τον αριθμό του.</string>

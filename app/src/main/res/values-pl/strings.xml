@@ -172,8 +172,6 @@
     <string name="new_playlist_title">Nowa lista odtwarzania</string>
     <string name="colored_footers">Kolorowe stopki</string>
     <string name="special_thanks_to">Specjalne podziękowania dla</string>
-    <string name="changelog">Lista zmian</string>
-    <string name="licenses">Licencje</string>
     <string name="permissions_denied">Odmówiono zezwolenia</string>
     <string name="permission_external_storage_denied">Pozwolenie na dostęp do pamięci zewnętrznej odrzucone</string>
     <string name="support_development">Wspomóż rozwój</string>
@@ -184,7 +182,6 @@
     <string name="author">O autorze</string>
     <string name="write_an_email">Napisz maila</string>
     <string name="follow_on_twitter">Śledź na Twitterze</string>
-    <string name="fork_on_github">Aplikacja na GitHub\'ie</string>
     <string name="visit_website">Odwiedź stronę</string>
     <string name="report_bugs">Zgłoś błędy</string>
     <string name="report_bugs_summary">Zgłaszaj błędy lub propozycje nowych funkcji</string>
@@ -202,7 +199,6 @@
     <string name="loading_products">Ładowanie produktów...</string>
     <string name="up_next">Za chwilę zagra</string>
     <string name="pref_title_now_playing_screen_appearance">Wygląd</string>
-    <string name="intro_label">Wprowadzenie</string>
     <string name="welcome_to_phonograph">"Witaj w Phonograph, pięknym i lekkim odtwarzaczu muzyki na Androida "</string>
     <string name="open_playing_queue_instruction">Przesuń kartę na ekranie Obecnie Grane w górę, aby odsłonić pełną kolejkę odtwarzania</string>
     <string name="rearrange_playing_queue_instruction">Zmień kolejność odtwarzania, przeciągając numer utworu w górę lub w dół kolejki</string>

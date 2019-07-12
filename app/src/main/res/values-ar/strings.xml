@@ -172,8 +172,6 @@
     <string name="new_playlist_title">قائمة تشغيل جديدة</string>
     <string name="colored_footers">هوامش ملونة</string>
     <string name="special_thanks_to">شكر خاص إلى</string>
-    <string name="changelog">سجل التغييرات</string>
-    <string name="licenses">التراخيص</string>
     <string name="permissions_denied">تم رفض الصلاحيات.</string>
     <string name="permission_external_storage_denied">تم رفض صلاحية الوصول إلى الذاكرة الخارجية.</string>
     <string name="support_development">دعم التطوير</string>
@@ -184,7 +182,6 @@
     <string name="author">المؤلف</string>
     <string name="write_an_email">كتابة بريد إلكتروني</string>
     <string name="follow_on_twitter">متابعة على تويتر</string>
-    <string name="fork_on_github">Fork على GitHub</string>
     <string name="visit_website">زيارة الموقع</string>
     <string name="report_bugs">الإبلاغ عن مشاكل</string>
     <string name="report_bugs_summary">الإبلاغ عن مشاكل أو طلب ميزات جديدة.</string>
@@ -202,7 +199,6 @@
     <string name="loading_products">جار تحميل المنتجات...</string>
     <string name="up_next">التالي</string>
     <string name="pref_title_now_playing_screen_appearance">المظهر</string>
-    <string name="intro_label">المقدمة</string>
     <string name="welcome_to_phonograph">"مرحباً بك في Phonograph، مشغل موسيقى جميل وخفيف للأندرويد. "</string>
     <string name="open_playing_queue_instruction">اسحب البطاقة في شاشة \"يتم تشغيله الآن\" لإظهار قائمة التشغيل بالكامل.</string>
     <string name="rearrange_playing_queue_instruction">إعادة ترتيب قائمة التشغيل عبر سحب الأغاني من أرقامها.</string>

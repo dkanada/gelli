@@ -106,10 +106,6 @@
             android:name=".ui.activities.AboutActivity"
             android:label="@string/action_about" />
         <activity
-            android:name=".ui.activities.intro.AppIntroActivity"
-            android:label="@string/intro_label"
-            android:theme="@style/Theme.Intro" />
-        <activity
             android:name=".ui.activities.bugreport.BugReportActivity"
             android:label="@string/report_an_issue" />
         <activity

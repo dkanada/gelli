@@ -172,8 +172,6 @@
     <string name="new_playlist_title">Nieuwe afspeellijst</string>
     <string name="colored_footers">Gekleurde voetkaders</string>
     <string name="special_thanks_to">Speciale dank aan</string>
-    <string name="changelog">Wijzigingen</string>
-    <string name="licenses">Licensies</string>
     <string name="permissions_denied">Machtiging geweigerd.</string>
     <string name="permission_external_storage_denied">Toegang tot externe opslag geweigerd.</string>
     <string name="support_development">Ondersteun ontwikkeling</string>
@@ -184,7 +182,6 @@
     <string name="author">Auteur</string>
     <string name="write_an_email">Schrijf een email</string>
     <string name="follow_on_twitter">Volgen op Twitter</string>
-    <string name="fork_on_github">Fork op GitHub</string>
     <string name="visit_website">Bezoek website</string>
     <string name="report_bugs">Rapporteer bugs</string>
     <string name="report_bugs_summary">Rapporteer bugs of verzoek nieuwe functies.</string>
@@ -202,7 +199,6 @@
     <string name="loading_products">Producten laden…</string>
     <string name="up_next">Als volgende</string>
     <string name="pref_title_now_playing_screen_appearance">Uiterlijk</string>
-    <string name="intro_label">Introductie</string>
     <string name="welcome_to_phonograph">"Welkom bij Phonograph, een mooie en lichte muziekspeler voor Android."</string>
     <string name="open_playing_queue_instruction">Veeg de kaart in het afspeelscherm om de afspeelwachtrij te weergeven.</string>
     <string name="rearrange_playing_queue_instruction">Rangschik de afspeelwachtrij door de afspeelnummers te verslepen.</string>

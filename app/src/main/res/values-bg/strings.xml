@@ -150,8 +150,6 @@
     <string name="new_playlist_title">Нов плейлист</string>
     <string name="colored_footers">Оцветени кутийки за имената</string>
     <string name="special_thanks_to">Специални благодарности към</string>
-    <string name="changelog">Последни промени</string>
-    <string name="licenses">Лицензи</string>
     <string name="permissions_denied">Достъпът е отказан.</string>
     <string name="permission_external_storage_denied">Достъпът до външното място за съхранение е отказан.</string>
     <string name="support_development">Подкрепете развитието</string>
@@ -176,7 +174,6 @@
     <string name="loading_products">Зареждане...</string>
     <string name="up_next">Следващи песни</string>
     <string name="pref_title_now_playing_screen_appearance">Изглед</string>
-    <string name="intro_label">Въеведение</string>
     <string name="welcome_to_phonograph">"Добре дошли във Phonograph, красив и лек музикален плеър за Андроид. "</string>
     <string name="open_playing_queue_instruction">Плъзнете картата в екранът на текущо възпроизвеждащата се песен, за видите списъкът с песни.</string>
     <string name="rearrange_playing_queue_instruction">Разместете списъкът с текущо възпроизвеждащи се песни, като хванете тракът за неговият номер.</string>

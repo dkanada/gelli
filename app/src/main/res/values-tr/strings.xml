@@ -172,8 +172,6 @@
     <string name="new_playlist_title">Yeni çalma listesi</string>
     <string name="colored_footers">Renkli alt bilgiler</string>
     <string name="special_thanks_to">Özel teşekkür</string>
-    <string name="changelog">Değişiklikler</string>
-    <string name="licenses">Lisanslar</string>
     <string name="permissions_denied">İzinler reddedildi.</string>
     <string name="permission_external_storage_denied">Harici depolamaya erişim izin reddedildi.</string>
     <string name="support_development">Geliştirmeyi destekleyin</string>
@@ -184,7 +182,6 @@
     <string name="author">Yapımcı</string>
     <string name="write_an_email">Bir e-posta yazın</string>
     <string name="follow_on_twitter">Twitter\'da takip et</string>
-    <string name="fork_on_github">GitHub\'a bağlanın</string>
     <string name="visit_website">Web sitesini ziyaret edin</string>
     <string name="report_bugs">Hataları raporlayın</string>
     <string name="report_bugs_summary">Hataları raporlayın ya da yeni özellikler talep edin.</string>
@@ -202,7 +199,6 @@
     <string name="loading_products">İçerik yükleniyor...</string>
     <string name="up_next">Sırada olanlar</string>
     <string name="pref_title_now_playing_screen_appearance">Görünüm</string>
-    <string name="intro_label">Tanıtım</string>
     <string name="welcome_to_phonograph">"Phonograph'a Hoşgeldiniz, Android için muhteşem bir müzik çalar. "</string>
     <string name="open_playing_queue_instruction">Şuan çalınıyor ekranı kartını yukarı kaydırmak çalma sırasının tamamını ortaya çıkarır.</string>
     <string name="rearrange_playing_queue_instruction">Çalma sırasını yeniden düzenlemek için şarkının parça numarasını kaydırın</string>

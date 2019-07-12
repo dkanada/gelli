@@ -176,8 +176,6 @@
     <string name="new_playlist_title">Новый плейлист</string>
     <string name="colored_footers">Окрашенные нижние колонтитулы</string>
     <string name="special_thanks_to">Особая благодарность</string>
-    <string name="changelog">Список изменений</string>
-    <string name="licenses">Лицензии</string>
     <string name="permissions_denied">В разрешениях отказано.</string>
     <string name="permission_external_storage_denied">В разрешении на доступ к внешнему хранилищу отказано.</string>
     <string name="support_development">Поддержать разработку</string>
@@ -188,7 +186,6 @@
     <string name="author">Автор</string>
     <string name="write_an_email">Написать на электронную почту</string>
     <string name="follow_on_twitter">Следить в Twitter</string>
-    <string name="fork_on_github">Ветвление на GitHub</string>
     <string name="visit_website">Посетить сайт</string>
     <string name="report_bugs">Отправить отчёт об ошибке</string>
     <string name="report_bugs_summary">Сообщить об ошибках или предложить новые функции.</string>
@@ -206,7 +203,6 @@
     <string name="loading_products">Загрузка продуктов...</string>
     <string name="up_next">Далее</string>
     <string name="pref_title_now_playing_screen_appearance">Вид экрана воспроизведения</string>
-    <string name="intro_label">Вступление</string>
     <string name="welcome_to_phonograph">"Добро пожаловать в Phonograph, красивый и лёгкий плеер для Android"</string>
     <string name="open_playing_queue_instruction">Проведите по карточке на экране воспроизведения, чтобы просмотреть очередь</string>
     <string name="rearrange_playing_queue_instruction">Редактируйте очередь воспроизведения, перетаскивая песни за их номер</string>

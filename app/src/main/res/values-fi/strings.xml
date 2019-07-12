@@ -176,8 +176,6 @@
     <string name="new_playlist_title">Uusi soittolista</string>
     <string name="colored_footers">Värilliset alatunnisteet</string>
     <string name="special_thanks_to">Erikoiskiitokset</string>
-    <string name="changelog">Muutosloki</string>
-    <string name="licenses">Lisenssit</string>
     <string name="permissions_denied">Sinulla ei ole oikeuksia tähän.</string>
     <string name="permission_external_storage_denied">Oikeus päästä muistikortille evätty.</string>
     <string name="support_development">Tue kehitystä</string>
@@ -188,7 +186,6 @@
     <string name="author">Luoja</string>
     <string name="write_an_email">Kirjoita sähköpostia</string>
     <string name="follow_on_twitter">Seuraa Twitterissä</string>
-    <string name="fork_on_github">Forkkaa GitHubissa</string>
     <string name="visit_website">Vieraile verkkosivulla</string>
     <string name="report_bugs">Raportoi bugeja</string>
     <string name="report_bugs_summary">Raportoi bugeja tai ehdota uusia ominaisuuksia.</string>
@@ -206,7 +203,6 @@
     <string name="loading_products">Ladataan tuotteita...</string>
     <string name="up_next">Seuraavaksi</string>
     <string name="pref_title_now_playing_screen_appearance">Ulkonäkö</string>
-    <string name="intro_label">Esittely</string>
     <string name="welcome_to_phonograph">"Tervetuloa Phonographiin, kauniiseen ja kevyeen musiikkisoittimeen Androidille. "</string>
     <string name="open_playing_queue_instruction">Vedä korttia Toistetaan parhaillaan -ikkunassa ylös, nähdäksesi koko toistojonon.</string>
     <string name="rearrange_playing_queue_instruction">Järjestä toistojonoa vetämällä kappaletta sen raitanumerosta.</string>

@@ -176,8 +176,6 @@
     <string name="new_playlist_title">Daftar putar baru</string>
     <string name="colored_footers">Bawahan berwarna</string>
     <string name="special_thanks_to">Terima kasih khusus kepada</string>
-    <string name="changelog">Perubahan</string>
-    <string name="licenses">Lisensi</string>
     <string name="permissions_denied">Izin ditolak</string>
     <string name="permission_external_storage_denied">Izin untuk akses ke memori eksternal ditolak.</string>
     <string name="support_development">Dukung pengembangan</string>
@@ -188,7 +186,6 @@
     <string name="author">Penulis</string>
     <string name="write_an_email">Tulis pesan elektronik</string>
     <string name="follow_on_twitter">Ikuti di Twitter</string>
-    <string name="fork_on_github">Salin di Github</string>
     <string name="visit_website">Kunjungi situs</string>
     <string name="report_bugs">Laporkan masalah</string>
     <string name="report_bugs_summary">Laporkan masalah atau sarankan fitur baru</string>
@@ -206,7 +203,6 @@
     <string name="loading_products">Memuat produk...</string>
     <string name="up_next">Berikutnya</string>
     <string name="pref_title_now_playing_screen_appearance">Tampilan</string>
-    <string name="intro_label">Pengenalan</string>
     <string name="welcome_to_phonograph">"Selamat datang di Phonograph, sebuah pemutar musik yang indah dan ringan untuk Android. "</string>
     <string name="open_playing_queue_instruction">Geser ke atas pada kartu di layar yang sedang memutar untuk memperlihatkan dengan lengkap antrean yang sedang diputar.</string>
     <string name="rearrange_playing_queue_instruction">Atur ulang antrean yang sedang diputar dengan menyeret lagu dari nomor urut.</string>

@@ -13,19 +13,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.afollestad.materialdialogs.internal.ThemeSingleton;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.dialogs.ChangelogDialog;
 import com.kabouzeid.gramophone.dialogs.DonationsDialog;
 import com.kabouzeid.gramophone.ui.activities.base.AbsBaseActivity;
 import com.kabouzeid.gramophone.ui.activities.bugreport.BugReportActivity;
-import com.kabouzeid.gramophone.ui.activities.intro.AppIntroActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.psdev.licensesdialog.LicensesDialog;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
@@ -61,18 +57,12 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     Toolbar toolbar;
     @BindView(R.id.app_version)
     TextView appVersion;
-    @BindView(R.id.changelog)
-    LinearLayout changelog;
-    @BindView(R.id.intro)
-    LinearLayout intro;
-    @BindView(R.id.licenses)
-    LinearLayout licenses;
+    @BindView(R.id.app_source)
+    LinearLayout appSource;
     @BindView(R.id.write_an_email)
     LinearLayout writeAnEmail;
     @BindView(R.id.follow_on_twitter)
     LinearLayout followOnTwitter;
-    @BindView(R.id.fork_on_github)
-    LinearLayout forkOnGitHub;
     @BindView(R.id.visit_website)
     LinearLayout visitWebsite;
     @BindView(R.id.report_bugs)
@@ -127,7 +117,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     private void setUpToolbar() {
         toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
         setSupportActionBar(toolbar);
-        //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -136,11 +125,8 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     }
 
     private void setUpOnClickListeners() {
-        changelog.setOnClickListener(this);
-        intro.setOnClickListener(this);
-        licenses.setOnClickListener(this);
         followOnTwitter.setOnClickListener(this);
-        forkOnGitHub.setOnClickListener(this);
+        appSource.setOnClickListener(this);
         visitWebsite.setOnClickListener(this);
         reportBugs.setOnClickListener(this);
         writeAnEmail.setOnClickListener(this);
@@ -174,20 +160,14 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        return "Unkown";
+        return "Unknown";
     }
 
     @Override
     public void onClick(View v) {
-        if (v == changelog) {
-            ChangelogDialog.create().show(getSupportFragmentManager(), "CHANGELOG_DIALOG");
-        } else if (v == licenses) {
-            showLicenseDialog();
-        } else if (v == intro) {
-            startActivity(new Intent(this, AppIntroActivity.class));
-        } else if (v == followOnTwitter) {
+        if (v == followOnTwitter) {
             openUrl(TWITTER);
-        } else if (v == forkOnGitHub) {
+        } else if (v == appSource) {
             openUrl(GITHUB);
         } else if (v == visitWebsite) {
             openUrl(WEBSITE);
@@ -237,19 +217,5 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
         i.setData(Uri.parse(url));
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
-    }
-
-    private void showLicenseDialog() {
-        new LicensesDialog.Builder(this)
-                .setNotices(R.raw.notices)
-                .setTitle(R.string.licenses)
-                .setNoticesCssStyle(getString(R.string.license_dialog_style)
-                        .replace("{bg-color}", ThemeSingleton.get().darkTheme ? "424242" : "ffffff")
-                        .replace("{text-color}", ThemeSingleton.get().darkTheme ? "ffffff" : "000000")
-                        .replace("{license-bg-color}", ThemeSingleton.get().darkTheme ? "535353" : "eeeeee")
-                )
-                .setIncludeOwnLicense(true)
-                .build()
-                .show();
     }
 }

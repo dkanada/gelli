@@ -2,8 +2,6 @@ package com.kabouzeid.gramophone.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,7 +27,6 @@ import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
 import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.dialogs.ChangelogDialog;
 import com.kabouzeid.gramophone.dialogs.ScanMediaFolderChooserDialog;
 import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
@@ -40,7 +37,6 @@ import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.service.MusicService;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
-import com.kabouzeid.gramophone.ui.activities.intro.AppIntroActivity;
 import com.kabouzeid.gramophone.ui.fragments.mainactivity.folders.FoldersFragment;
 import com.kabouzeid.gramophone.ui.fragments.mainactivity.library.LibraryFragment;
 import com.kabouzeid.gramophone.util.MusicUtil;
@@ -57,7 +53,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AbsSlidingMusicPanelActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
-    public static final int APP_INTRO_REQUEST = 100;
+    public static final int INTRO_REQUEST = 100;
     public static final int PURCHASE_REQUEST = 101;
 
     private static final int LIBRARY = 0;
@@ -83,7 +79,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
         ButterKnife.bind(this);
 
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-            navigationView.setFitsSystemWindows(false); // for header to go below statusbar
+            navigationView.setFitsSystemWindows(false);
         }
 
         setUpDrawerLayout();
@@ -92,10 +88,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             setMusicChooser(PreferenceUtil.getInstance(this).getLastMusicChooser());
         } else {
             restoreCurrentFragment();
-        }
-
-        if (!checkShowIntro()) {
-            showChangelog();
         }
     }
 
@@ -131,7 +123,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == APP_INTRO_REQUEST) {
+        if (requestCode == INTRO_REQUEST) {
             blockRequestPermissions = false;
             if (!hasPermissions()) {
                 requestPermissions();
@@ -318,8 +310,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
         }
     }
 
-    private long parseIdFromIntent(@NonNull Intent intent, String longKey,
-                                   String stringKey) {
+    private long parseIdFromIntent(@NonNull Intent intent, String longKey, String stringKey) {
         long id = intent.getLongExtra(longKey, -1);
         if (id < 0) {
             String idString = intent.getStringExtra(stringKey);
@@ -344,29 +335,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     public void onPanelCollapsed(View view) {
         super.onPanelCollapsed(view);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-    }
-
-    private boolean checkShowIntro() {
-        if (!PreferenceUtil.getInstance(this).introShown()) {
-            PreferenceUtil.getInstance(this).setIntroShown();
-            ChangelogDialog.setChangelogRead(this);
-            blockRequestPermissions = true;
-            new Handler().postDelayed(() -> startActivityForResult(new Intent(MainActivity.this, AppIntroActivity.class), APP_INTRO_REQUEST), 50);
-            return true;
-        }
-        return false;
-    }
-
-    private void showChangelog() {
-        try {
-            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            int currentVersion = pInfo.versionCode;
-            if (currentVersion != PreferenceUtil.getInstance(this).getLastChangelogVersion()) {
-                ChangelogDialog.create().show(getSupportFragmentManager(), "CHANGE_LOG_DIALOG");
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     public interface MainActivityFragmentCallbacks {

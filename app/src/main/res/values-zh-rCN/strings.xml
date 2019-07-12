@@ -174,8 +174,6 @@
     <string name="new_playlist_title">新建播放列表</string>
     <string name="colored_footers">着色页脚</string>
     <string name="special_thanks_to">特别鸣谢</string>
-    <string name="changelog">更新日志</string>
-    <string name="licenses">许可信息</string>
     <string name="permissions_denied">未能获取权限。</string>
     <string name="permission_external_storage_denied">访问外部存储权限被拒绝。</string>
     <string name="support_development">支持开发者</string>
@@ -186,7 +184,6 @@
     <string name="author">作者</string>
     <string name="write_an_email">撰写邮件</string>
     <string name="follow_on_twitter">在 Twitter 上关注</string>
-    <string name="fork_on_github">创建 GitHub 分支</string>
     <string name="visit_website">访问网站</string>
     <string name="report_bugs">提交 bug</string>
     <string name="report_bugs_summary">提交 bug 或申请添加新功能</string>
@@ -204,7 +201,6 @@
     <string name="loading_products">加载产品中…</string>
     <string name="up_next">即将播放</string>
     <string name="pref_title_now_playing_screen_appearance">外观</string>
-    <string name="intro_label">介绍页</string>
     <string name="welcome_to_phonograph">"欢迎使用 Phonohraph ，这是一款精致且简洁的 Android 音乐播放器。 "</string>
     <string name="open_playing_queue_instruction">上滑正在播放界面内的卡片即可展开播放队列。</string>
     <string name="rearrange_playing_queue_instruction">通过拖动歌曲名前面的序列号来调整播放队列的顺序。</string>

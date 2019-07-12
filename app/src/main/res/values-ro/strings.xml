@@ -172,8 +172,6 @@
     <string name="new_playlist_title">Listă de redare nouă</string>
     <string name="colored_footers">Subsoluri colorate</string>
     <string name="special_thanks_to">Mulțumiri speciale</string>
-    <string name="changelog">Jurnal modificări</string>
-    <string name="licenses">Licenţe</string>
     <string name="permissions_denied">Permisiune refuzată.</string>
     <string name="permission_external_storage_denied">Permisiunea de a accesa stocarea externă a fost respinsă.</string>
     <string name="support_development">Susţineţi dezvoltarea</string>
@@ -184,7 +182,6 @@
     <string name="author">Autor</string>
     <string name="write_an_email">Scrieţi un e-mail</string>
     <string name="follow_on_twitter">Urmăriţi pe Twitter</string>
-    <string name="fork_on_github">Fork pe GitHub</string>
     <string name="visit_website">Vizitati site-ul web</string>
     <string name="report_bugs">Raportaţi probleme</string>
     <string name="report_bugs_summary">Raportați probleme sau solicitați noi funcții.</string>
@@ -202,7 +199,6 @@
     <string name="loading_products">Încărcare produse...</string>
     <string name="up_next">Urmează</string>
     <string name="pref_title_now_playing_screen_appearance">Aspect</string>
-    <string name="intro_label">Introducere</string>
     <string name="welcome_to_phonograph">"Bine ați venit la Phonograph, un player muzical frumos și ușor pentru Android. "</string>
     <string name="open_playing_queue_instruction">Glisați cardul în ecranul de redare acum pentru a afișa coada de redare completă.</string>
     <string name="rearrange_playing_queue_instruction">Rearanjați coada de redare prin glisarea unei melodii de la numărul piesei sale.</string>

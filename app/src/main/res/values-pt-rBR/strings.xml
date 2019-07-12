@@ -176,8 +176,6 @@
     <string name="new_playlist_title">Nova playlist</string>
     <string name="colored_footers">Rodapés coloridos</string>
     <string name="special_thanks_to">Agradecimentos especiais para</string>
-    <string name="changelog">Novidades</string>
-    <string name="licenses">Licenças</string>
     <string name="permissions_denied">Permissões negadas.</string>
     <string name="permission_external_storage_denied">Permissão para acessar armazenamento externo negado.</string>
     <string name="support_development">Apoiar o desenvolvimento</string>
@@ -188,7 +186,6 @@
     <string name="author">Autor</string>
     <string name="write_an_email">Escreva um email</string>
     <string name="follow_on_twitter">Seguir no Twitter</string>
-    <string name="fork_on_github">Fazer um Fork no GitHub</string>
     <string name="visit_website">Visitar site</string>
     <string name="report_bugs">Reportar bugs</string>
     <string name="report_bugs_summary">Reportar bugs ou pedir por novas funções.</string>
@@ -206,7 +203,6 @@
     <string name="loading_products">Carregando produtos...</string>
     <string name="up_next">Próximo</string>
     <string name="pref_title_now_playing_screen_appearance">Aparência</string>
-    <string name="intro_label">Introdução</string>
     <string name="welcome_to_phonograph">"Seja bem-vindo ao Phonograph, um lindo e leve player de música para Android. "</string>
     <string name="open_playing_queue_instruction">Arraste para cima o card da tela de reprodução para mostrar a lista de reprodução completa.</string>
     <string name="rearrange_playing_queue_instruction">Mude as músicas de lugar na fila pressionando-as e arrastando-as de seu número de faixa.</string>

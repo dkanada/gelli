@@ -10,7 +10,6 @@ import com.anjlab.android.iab.v3.TransactionDetails;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.gramophone.appshortcuts.DynamicShortcutManager;
 
-
 /**
  * @author Karim Abou Zeid (kabouzeid)
  */
@@ -36,12 +35,12 @@ public class App extends Application {
                     .commit();
         }
 
-        // Set up dynamic shortcuts
+        // dynamic shortcuts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             new DynamicShortcutManager(this).initDynamicShortcuts();
         }
 
-        // automatically restores purchases
+        // automatically restore purchases
         billingProcessor = new BillingProcessor(this, App.GOOGLE_PLAY_LICENSE_KEY, new BillingProcessor.IBillingHandler() {
             @Override
             public void onProductPurchased(@NonNull String productId, TransactionDetails details) {
@@ -49,7 +48,6 @@ public class App extends Application {
 
             @Override
             public void onPurchaseHistoryRestored() {
-//                Toast.makeText(App.this, R.string.restored_previous_purchase_please_restart, Toast.LENGTH_LONG).show();
             }
 
             @Override
