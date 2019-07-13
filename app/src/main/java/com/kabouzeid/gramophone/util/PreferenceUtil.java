@@ -74,9 +74,6 @@ public final class PreferenceUtil {
 
     public static final String IGNORE_MEDIA_STORE_ARTWORK = "ignore_media_store_artwork";
 
-    public static final String LAST_CHANGELOG_VERSION = "last_changelog_version";
-    public static final String INTRO_SHOWN = "intro_shown";
-
     public static final String AUTO_DOWNLOAD_IMAGES_POLICY = "auto_download_images_policy";
 
     public static final String START_DIRECTORY = "start_directory";
@@ -447,24 +444,6 @@ public final class PreferenceUtil {
 
     public final boolean artistColoredFooters() {
         return mPreferences.getBoolean(ARTIST_COLORED_FOOTERS, true);
-    }
-
-    public void setLastChangeLogVersion(int version) {
-        mPreferences.edit().putInt(LAST_CHANGELOG_VERSION, version).apply();
-    }
-
-    public final int getLastChangelogVersion() {
-        return mPreferences.getInt(LAST_CHANGELOG_VERSION, -1);
-    }
-
-    @SuppressLint("CommitPrefEdits")
-    public void setIntroShown() {
-        // don't use apply here
-        mPreferences.edit().putBoolean(INTRO_SHOWN, true).commit();
-    }
-
-    public final boolean introShown() {
-        return mPreferences.getBoolean(INTRO_SHOWN, false);
     }
 
     public final boolean rememberShuffle() {

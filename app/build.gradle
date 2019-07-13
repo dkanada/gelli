@@ -6,7 +6,7 @@ android {
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 28
 
         versionCode 175
@@ -82,4 +82,7 @@ dependencies {
     implementation 'org.eclipse.mylyn.github:org.eclipse.egit.github.core:2.1.5'
 
     implementation 'com.github.AdrienPoupa:jaudiotagger:2.2.3'
+
+    implementation project(':apiclient')
+    implementation project(':library')
 }

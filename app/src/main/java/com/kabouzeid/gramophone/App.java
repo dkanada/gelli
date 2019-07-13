@@ -1,6 +1,7 @@
 package com.kabouzeid.gramophone;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,17 @@ import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.gramophone.appshortcuts.DynamicShortcutManager;
+
+import org.jellyfin.apiclient.interaction.AndroidConnectionManager;
+import org.jellyfin.apiclient.interaction.AndroidDevice;
+import org.jellyfin.apiclient.interaction.ApiClient;
+import org.jellyfin.apiclient.interaction.ApiEventListener;
+import org.jellyfin.apiclient.interaction.connectionmanager.ConnectionManager;
+import org.jellyfin.apiclient.interaction.device.IDevice;
+import org.jellyfin.apiclient.interaction.http.IAsyncHttpClient;
+import org.jellyfin.apiclient.model.logging.ILogger;
+import org.jellyfin.apiclient.model.serialization.IJsonSerializer;
+import org.jellyfin.apiclient.model.session.ClientCapabilities;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
@@ -19,6 +31,7 @@ public class App extends Application {
     public static final String PRO_VERSION_PRODUCT_ID = "pro_version";
 
     private static App app;
+    private static ApiClient apiClient;
 
     private BillingProcessor billingProcessor;
 
@@ -62,6 +75,25 @@ public class App extends Application {
 
     public static boolean isProVersion() {
         return BuildConfig.DEBUG || app.billingProcessor.isPurchased(PRO_VERSION_PRODUCT_ID);
+    }
+
+    public static ConnectionManager getConnectionManager(Context context, IJsonSerializer jsonSerializer, ILogger logger, IAsyncHttpClient httpClient) {
+        String appName = context.getString(R.string.app_name);
+        String appVersion = BuildConfig.VERSION_NAME;
+
+        IDevice device = new AndroidDevice(context);
+        ClientCapabilities capabilities = new ClientCapabilities();
+        ApiEventListener eventListener = new ApiEventListener();
+
+        return new AndroidConnectionManager(context, jsonSerializer, logger, httpClient, appName, appVersion, device, capabilities, eventListener);
+    }
+
+    public static ApiClient getApiClient() {
+        return apiClient;
+    }
+
+    public static void setApiClient(ApiClient client) {
+        apiClient = client;
     }
 
     public static App getInstance() {
