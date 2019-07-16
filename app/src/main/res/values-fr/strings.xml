@@ -89,7 +89,6 @@
     <string name="action_show_lyrics">Afficher les paroles</string>
     <string name="light_theme_name">Clair</string>
     <string name="dark_theme_name">Sombre</string>
-    <string name="black_theme_name">Noir (AMOLED)</string>
     <string name="always">Toujours</string>
     <string name="only_on_wifi">Wi-Fi uniquement</string>
     <string name="never">Jamais</string>
@@ -121,7 +120,6 @@
     <string name="pref_title_last_added_interval">Intervalle de la playlist \"Derniers ajouts\"</string>
     <string name="pref_title_synchronized_lyrics_show">Afficher les paroles synchronisées</string>
     <string name="pref_title_remember_last_tab">Se souvenir de la dernière fenêtre</string>
-    <string name="no_equalizer">Impossible de trouver d\'égalisateur.</string>
     <string name="no_audio_ID">"Faire jouer un titre d'abord, puis réessayer."</string>
     <string name="delete_action">Supprimer</string>
     <string name="clear_action">Effacer</string>

@@ -13,7 +13,7 @@
     <string name="aachen_germany" translatable="false">Aachen, Germany</string>
 
     <string name="google_plus" translatable="false">Google Plus</string>
-    <string name="git_hub" translatable="false">GitHub</string>
+    <string name="github" translatable="false">GitHub</string>
     <string name="twitter" translatable="false">Twitter</string>
 
     <string name="card" translatable="false">Card</string>
@@ -27,19 +27,5 @@
         <item>donation_5</item>
         <item>donation_6</item>
     </string-array>
-
-    <string name="license_dialog_style" translatable="false">
-        body {
-            background-color: #{bg-color};
-            color: #{text-color};
-            font-family: sans-serif;
-            overflow-wrap: break-word;
-        }
-        pre {
-            background-color: #{license-bg-color};
-            padding: 1em;
-            white-space: pre-wrap;
-        }
-    </string>
 
 </resources>

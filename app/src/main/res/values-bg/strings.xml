@@ -85,7 +85,6 @@
     <string name="action_show_lyrics">Покажи текст</string>
     <string name="light_theme_name">Светъл изглед</string>
     <string name="dark_theme_name">Тъмен изглед</string>
-    <string name="black_theme_name">Черен изглед (AMOLED дисплеи)</string>
     <string name="always">Винаги</string>
     <string name="only_on_wifi">Само чрез Wi-Fi</string>
     <string name="never">Никога</string>
@@ -104,7 +103,6 @@
     <string name="pref_title_ignore_media_store_artwork">Игнорирай вградените обложки</string>
     <string name="pref_title_gapless_playback">Непрекъснато звучене</string>
     <string name="pref_title_audio_ducking">Намалявай звукът при известия</string>
-    <string name="no_equalizer">Еквилайзерът не бе намерен.</string>
     <string name="no_audio_ID">"Първо пусни песен, тогава пробвай отново"</string>
     <string name="delete_action">Изтрий</string>
     <string name="clear_action">Изчисти</string>

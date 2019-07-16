@@ -89,7 +89,6 @@
     <string name="action_show_lyrics">歌詞を表示</string>
     <string name="light_theme_name">ライト</string>
     <string name="dark_theme_name">ダーク</string>
-    <string name="black_theme_name">ブラック (AMOLED)</string>
     <string name="always">いつでも</string>
     <string name="only_on_wifi">Wi-Fi 接続時のみ</string>
     <string name="never">しない</string>
@@ -121,7 +120,6 @@
     <string name="pref_title_last_added_interval">最近追加された曲に含まれる期間</string>
     <string name="pref_title_synchronized_lyrics_show">同期された歌詞を表示</string>
     <string name="pref_title_remember_last_tab">最後のタブの記憶</string>
-    <string name="no_equalizer">イコライザーがインストールされていません</string>
     <string name="no_audio_ID">"何か曲を再生してもう一度お試しください"</string>
     <string name="delete_action">削除</string>
     <string name="clear_action">消去</string>

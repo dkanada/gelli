@@ -81,7 +81,6 @@
     <string name="action_show_lyrics">Mostrar letra</string>
     <string name="light_theme_name">Claro</string>
     <string name="dark_theme_name">Escuro</string>
-    <string name="black_theme_name">Preto (AMOLED)</string>
     <string name="always">Sempre</string>
     <string name="only_on_wifi">Apenas com Wi-Fi</string>
     <string name="never">Nunca</string>
@@ -98,7 +97,6 @@
     <string name="pref_title_colored_notification">Notificação colorida</string>
     <string name="pref_title_ignore_media_store_artwork">Ignorar capas Media Store</string>
     <string name="pref_title_gapless_playback">Reprodução contínua</string>
-    <string name="no_equalizer">Nenhum equalizador encontrado.</string>
     <string name="no_audio_ID">"Reproduza uma faixa primeiro, e tente outra vez."</string>
     <string name="delete_action">Eliminar</string>
     <string name="clear_action">Limpar</string>

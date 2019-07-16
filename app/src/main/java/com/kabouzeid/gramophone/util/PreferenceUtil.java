@@ -177,7 +177,7 @@ public final class PreferenceUtil {
     }
 
     public final boolean classicNotification() {
-        return mPreferences.getBoolean(CLASSIC_NOTIFICATION, false);
+        return mPreferences.getBoolean(CLASSIC_NOTIFICATION, true);
     }
 
     public void setColoredNotification(final boolean value) {
@@ -203,7 +203,7 @@ public final class PreferenceUtil {
     }
 
     public final boolean gaplessPlayback() {
-        return mPreferences.getBoolean(GAPLESS_PLAYBACK, false);
+        return mPreferences.getBoolean(GAPLESS_PLAYBACK, true);
     }
 
     public final boolean audioDucking() {
@@ -215,7 +215,7 @@ public final class PreferenceUtil {
     }
 
     public final boolean blurredAlbumArt() {
-        return mPreferences.getBoolean(BLURRED_ALBUM_ART, false);
+        return mPreferences.getBoolean(BLURRED_ALBUM_ART, true);
     }
 
     public final boolean ignoreMediaStoreArtwork() {

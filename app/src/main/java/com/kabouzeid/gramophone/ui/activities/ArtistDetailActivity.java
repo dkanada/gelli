@@ -262,9 +262,6 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
             case R.id.action_sleep_timer:
                 new SleepTimerDialog().show(getSupportFragmentManager(), "SET_SLEEP_TIMER");
                 return true;
-            case R.id.action_equalizer:
-                NavigationUtil.openEqualizer(this);
-                return true;
             case R.id.action_shuffle_artist:
                 MusicPlayerRemote.openAndShuffleQueue(songs, true);
                 return true;

@@ -90,7 +90,6 @@
     <string name="action_show_lyrics">Mostrar letras</string>
     <string name="light_theme_name">Claro</string>
     <string name="dark_theme_name">Oscuro</string>
-    <string name="black_theme_name">Negro (AMOLED)</string>
     <string name="always">Siempre</string>
     <string name="only_on_wifi">Solo en Wi-Fi</string>
     <string name="never">Nunca</string>
@@ -124,7 +123,6 @@
     <string name="pref_title_synchronized_lyrics_show">Mostrar letras sincronizadas</string>
     <string name="pref_title_remember_last_tab">Recordar la última pestaña</string>
     <string name="pref_title_remember_shuffle">Recordar aleatorio</string>
-    <string name="no_equalizer">No se encontró ningún ecualizador</string>
     <string name="no_audio_ID">"Reproduce una canción primero, luego intentalo otra vez."</string>
     <string name="delete_action">Borrar</string>
     <string name="clear_action">Limpiar</string>

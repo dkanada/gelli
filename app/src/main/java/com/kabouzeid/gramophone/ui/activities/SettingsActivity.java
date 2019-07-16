@@ -300,24 +300,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 });
             }
 
-            final Preference equalizer = findPreference("equalizer");
-            if (!hasEqualizer()) {
-                equalizer.setEnabled(false);
-                equalizer.setSummary(getResources().getString(R.string.no_equalizer));
-            }
-            equalizer.setOnPreferenceClickListener(preference -> {
-                NavigationUtil.openEqualizer(getActivity());
-                return true;
-            });
-
             updateNowPlayingScreenSummary();
-        }
-
-        private boolean hasEqualizer() {
-            final Intent effects = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL);
-            PackageManager pm = getActivity().getPackageManager();
-            ResolveInfo ri = pm.resolveActivity(effects, 0);
-            return ri != null;
         }
 
         @Override

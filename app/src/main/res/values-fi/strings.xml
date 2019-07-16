@@ -90,7 +90,6 @@
     <string name="action_show_lyrics">Näytä lyriikat</string>
     <string name="light_theme_name">Vaalea</string>
     <string name="dark_theme_name">Tumma</string>
-    <string name="black_theme_name">Musta (AMOLED)</string>
     <string name="always">Aina</string>
     <string name="only_on_wifi">Vain Wi-Fi-yhteydellä</string>
     <string name="never">Ei koskaan</string>
@@ -124,7 +123,6 @@
     <string name="pref_title_synchronized_lyrics_show">Näytä synkronoidut sanoitukset</string>
     <string name="pref_title_remember_last_tab">Muista viimeisin välilehti</string>
     <string name="pref_title_remember_shuffle">Muista sekoitus</string>
-    <string name="no_equalizer">Taajuuskorjainta ei löytynyt.</string>
     <string name="no_audio_ID">"Toista jokin kappale ensin, koita sitten uudelleen."</string>
     <string name="delete_action">Poista</string>
     <string name="clear_action">Tyhjennä</string>

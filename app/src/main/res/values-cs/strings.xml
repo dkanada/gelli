@@ -89,7 +89,6 @@
     <string name="action_show_lyrics">Zobrazit text</string>
     <string name="light_theme_name">Světlý</string>
     <string name="dark_theme_name">Tmavý</string>
-    <string name="black_theme_name">Černý (AMOLED)</string>
     <string name="always">Vždy</string>
     <string name="only_on_wifi">Jenom na Wi-Fi</string>
     <string name="never">Nikdy</string>
@@ -121,7 +120,6 @@
     <string name="pref_title_last_added_interval">Poslední přidaný interval playlistu</string>
     <string name="pref_title_synchronized_lyrics_show">Zobrazit synchronizovaný text</string>
     <string name="pref_title_remember_last_tab">Pamatovat poslední kartu</string>
-    <string name="no_equalizer">"Nenalezen žádný ekvalizér. "</string>
     <string name="no_audio_ID">"Nejdříve přehrajte píseň, poté zkuste znovu. "</string>
     <string name="delete_action">Smazat</string>
     <string name="clear_action">Vyčistit</string>

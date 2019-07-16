@@ -90,7 +90,6 @@
     <string name="action_show_lyrics">Показать текст песни</string>
     <string name="light_theme_name">Светлая</string>
     <string name="dark_theme_name">Тёмная</string>
-    <string name="black_theme_name">Чёрная (для AMOLED-экранов)</string>
     <string name="always">Всегда</string>
     <string name="only_on_wifi">Только по Wi-Fi</string>
     <string name="never">Никогда</string>
@@ -124,7 +123,6 @@
     <string name="pref_title_synchronized_lyrics_show">Показать синхронизированные тексты</string>
     <string name="pref_title_remember_last_tab">Запомнить последнюю вкладку</string>
     <string name="pref_title_remember_shuffle">Запомнить перемешивание</string>
-    <string name="no_equalizer">Эквалайзер не найден.</string>
     <string name="no_audio_ID">"Сначала воспроизведите песню, а затем попробуйте снова."</string>
     <string name="delete_action">Удалить</string>
     <string name="clear_action">Очистить</string>

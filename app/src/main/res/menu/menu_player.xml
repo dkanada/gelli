@@ -25,10 +25,4 @@
         android:orderInCategory="1"
         android:title="@string/action_sleep_timer"
         app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_equalizer"
-        android:orderInCategory="99"
-        android:title="@string/equalizer"
-        app:showAsAction="never" />
 </menu>

@@ -89,7 +89,6 @@
     <string name="action_show_lyrics">Şarkı sözlerini göster</string>
     <string name="light_theme_name">Açık</string>
     <string name="dark_theme_name">Koyu</string>
-    <string name="black_theme_name">Siyah (AMOLED)</string>
     <string name="always">Her zaman</string>
     <string name="only_on_wifi">Yalnızca Wİ-Fİ</string>
     <string name="never">Asla</string>
@@ -121,7 +120,6 @@
     <string name="pref_title_last_added_interval">Son eklenen çalma listesi süresi</string>
     <string name="pref_title_synchronized_lyrics_show">Senkronize şarkı sözlerini göster</string>
     <string name="pref_title_remember_last_tab">Son sekmeyi hatırla</string>
-    <string name="no_equalizer">Ekolayzer bulunamadı.</string>
     <string name="no_audio_ID">"ilk şarkıyı çalın, daha sonra tekrar deneyin."</string>
     <string name="delete_action">Sil</string>
     <string name="clear_action">Temizle</string>

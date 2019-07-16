@@ -90,7 +90,6 @@
     <string name="action_show_lyrics">Tampilkan lirik</string>
     <string name="light_theme_name">Terang</string>
     <string name="dark_theme_name">Gelap</string>
-    <string name="black_theme_name">Hitam (AMOLED)</string>
     <string name="always">Selalu</string>
     <string name="only_on_wifi">Hanya pada Wi-Fi</string>
     <string name="never">Tidak pernah</string>
@@ -124,7 +123,6 @@
     <string name="pref_title_synchronized_lyrics_show">Tampilkan lirik yang tersinkronisasi</string>
     <string name="pref_title_remember_last_tab">Ingat tab terakhir</string>
     <string name="pref_title_remember_shuffle">Ingat putar acak</string>
-    <string name="no_equalizer">Tidak ada ekualiser yang ditemukan.</string>
     <string name="no_audio_ID">"Silahkan mainkan sebuah lagu dan coba lagi. "</string>
     <string name="delete_action">Hapus</string>
     <string name="clear_action">Kosongkan</string>

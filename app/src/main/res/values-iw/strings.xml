@@ -89,7 +89,6 @@
     <string name="action_show_lyrics">הצג מילים</string>
     <string name="light_theme_name">בהיר</string>
     <string name="dark_theme_name">כהה</string>
-    <string name="black_theme_name">שחור (AMOLED)</string>
     <string name="always">תמיד</string>
     <string name="only_on_wifi">רק עם WI-FI</string>
     <string name="never">אף פעם</string>
@@ -121,7 +120,6 @@
     <string name="pref_title_last_added_interval">הפסקת רשימת השמעה אחרונה שהוספה</string>
     <string name="pref_title_synchronized_lyrics_show">הראה מילות שיר מסוכרנות</string>
     <string name="pref_title_remember_last_tab">זכור את הכרטיסיה האחרונה</string>
-    <string name="no_equalizer">אקוולייזר לא נמצא</string>
     <string name="no_audio_ID">"נגן/י שיר ואז נסה/י שנית."</string>
     <string name="delete_action">מחיקה</string>
     <string name="clear_action">ניקוי</string>

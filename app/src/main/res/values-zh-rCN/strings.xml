@@ -90,7 +90,6 @@
     <string name="action_show_lyrics">显示歌词</string>
     <string name="light_theme_name">浅色</string>
     <string name="dark_theme_name">暗色</string>
-    <string name="black_theme_name">黑色（AMOLED）</string>
     <string name="always">总是</string>
     <string name="only_on_wifi">仅在 WiFi 下</string>
     <string name="never">从不</string>
@@ -123,7 +122,6 @@
     <string name="pref_title_last_added_interval">最近添加播放列表间隔</string>
     <string name="pref_title_synchronized_lyrics_show">显示同步歌词</string>
     <string name="pref_title_remember_last_tab">记住最后打开页面</string>
-    <string name="no_equalizer">没有找到均衡器。</string>
     <string name="no_audio_ID">"请在播放歌曲后再次尝试此操作。"</string>
     <string name="delete_action">删除</string>
     <string name="clear_action">清空</string>

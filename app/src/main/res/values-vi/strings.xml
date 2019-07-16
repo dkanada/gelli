@@ -86,7 +86,6 @@
     <string name="action_show_lyrics">Hiện lời bài hát</string>
     <string name="light_theme_name">Sáng</string>
     <string name="dark_theme_name">Tối</string>
-    <string name="black_theme_name">Đen (AMOLED)</string>
     <string name="always">Luôn luôn</string>
     <string name="only_on_wifi">Chỉ dùng Wi-Fi</string>
     <string name="never">Không bao giờ</string>
@@ -116,7 +115,6 @@
     <string name="pref_title_audio_ducking">Giảm âm lượng khi mất tập trung</string>
     <string name="pref_title_last_added_interval">Thời gian danh sách nhạc được thêm vào sau cùng</string>
     <string name="pref_title_synchronized_lyrics_show">Hiển thị lời bài hát được đồng bộ</string>
-    <string name="no_equalizer">Không có bộ lọc âm thanh nào.</string>
     <string name="no_audio_ID">"Phát một bài hát đầu tiên, sau đó thử lại."</string>
     <string name="delete_action">Xóa</string>
     <string name="clear_action">Dọn</string>

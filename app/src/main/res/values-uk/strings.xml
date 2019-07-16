@@ -88,7 +88,6 @@
     <string name="action_show_lyrics">Показати текст</string>
     <string name="light_theme_name">Світла</string>
     <string name="dark_theme_name">Темна</string>
-    <string name="black_theme_name">Чорна (AMOLED)</string>
     <string name="always">Завжди</string>
     <string name="only_on_wifi">Тільки через Wi-Fi</string>
     <string name="never">Ніколи</string>
@@ -120,7 +119,6 @@
     <string name="pref_title_last_added_interval">Інтервал останнього доданого списку відтворення</string>
     <string name="pref_title_synchronized_lyrics_show">Показати синхронізований текст пісні</string>
     <string name="pref_title_remember_last_tab">Запам‘ятати останню вкладку</string>
-    <string name="no_equalizer">Еквалайзер не знайдено.</string>
     <string name="no_audio_ID">"Спочатку відтворіть пісню, потім спробуйте ще раз."</string>
     <string name="delete_action">Видалити</string>
     <string name="clear_action">Очистити</string>

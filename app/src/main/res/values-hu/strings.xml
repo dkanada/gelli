@@ -89,7 +89,6 @@
     <string name="action_show_lyrics">Dalszöveg</string>
     <string name="light_theme_name">Világos</string>
     <string name="dark_theme_name">Sötét</string>
-    <string name="black_theme_name">Fekete</string>
     <string name="always">Mindig</string>
     <string name="only_on_wifi">Csak WIFI-n keresztül</string>
     <string name="never">Soha</string>
@@ -121,7 +120,6 @@
     <string name="pref_title_last_added_interval">Utoljára hozzáadott lejátszási lista intervallum</string>
     <string name="pref_title_synchronized_lyrics_show">Szinkronizált dalszöveg</string>
     <string name="pref_title_remember_last_tab">Emlékezz az utolsó fülre</string>
-    <string name="no_equalizer">Nem található hangszínszabályzó.</string>
     <string name="no_audio_ID">"Először játsszon le egy dalt, majd próbálja újra."</string>
     <string name="delete_action">Törlés</string>
     <string name="clear_action">Kiürítés</string>

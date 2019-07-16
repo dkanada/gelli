@@ -89,7 +89,6 @@
     <string name="action_show_lyrics">Prikaži stihove</string>
     <string name="light_theme_name">Svijetla</string>
     <string name="dark_theme_name">Tamna</string>
-    <string name="black_theme_name">Crna (AMOLED)</string>
     <string name="always">Uvijek</string>
     <string name="only_on_wifi">Samo na Wifi-ju</string>
     <string name="never">Nikad</string>
@@ -121,7 +120,6 @@
     <string name="pref_title_last_added_interval">Interval nedavnog popisa</string>
     <string name="pref_title_synchronized_lyrics_show">Prikaži sinkronizirane stihove</string>
     <string name="pref_title_remember_last_tab">Zapamti zadnju karticu</string>
-    <string name="no_equalizer">Ekvalizator nije pronađen.</string>
     <string name="no_audio_ID">"Reproducirajte nešto i pokušajte opet."</string>
     <string name="delete_action">Izbriši</string>
     <string name="clear_action">Očisti</string>
