@@ -170,7 +170,6 @@
     <string name="permissions_denied">Permisos denegados.</string>
     <string name="permission_external_storage_denied">Permiso para acceder al almacenamiento externo denegado.</string>
     <string name="support_development">Apoyar el desarrollo</string>
-    <string name="buy_pro">Comprar Phonograph Pro</string>
     <string name="thank_you">¡Gracias!</string>
     <string name="restored_previous_purchase_please_restart">Compra previa restaurada. Por favor reinicie la aplicación para hacer uso de todas las características.</string>
     <string name="version">Versión</string>

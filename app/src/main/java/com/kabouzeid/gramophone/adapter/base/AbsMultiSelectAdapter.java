@@ -18,18 +18,19 @@ import java.util.List;
  * @author Karim Abou Zeid (kabouzeid)
  */
 public abstract class AbsMultiSelectAdapter<VH extends RecyclerView.ViewHolder, I> extends RecyclerView.Adapter<VH> implements MaterialCab.Callback {
-    @Nullable
+    private final Context context;
     private final CabHolder cabHolder;
+    private int menuRes;
+
     private MaterialCab cab;
     private List<I> checked;
-    private int menuRes;
-    private final Context context;
 
     public AbsMultiSelectAdapter(Context context, @Nullable CabHolder cabHolder, @MenuRes int menuRes) {
-        this.cabHolder = cabHolder;
-        checked = new ArrayList<>();
-        this.menuRes = menuRes;
         this.context = context;
+        this.cabHolder = cabHolder;
+        this.menuRes = menuRes;
+
+        this.checked = new ArrayList<>();
     }
 
     protected void setMultiSelectMenuRes(@MenuRes int menuRes) {

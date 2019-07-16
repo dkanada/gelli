@@ -174,7 +174,6 @@
     <string name="permissions_denied">Berechtigungen verweigert.</string>
     <string name="permission_external_storage_denied">Die Berechtigung für den Zugriff auf den externen Speicher wurde verweigert.</string>
     <string name="support_development">Unterstütze die Entwicklung</string>
-    <string name="buy_pro">Phonograph Pro kaufen</string>
     <string name="thank_you">Vielen Dank!</string>
     <string name="restored_previous_purchase_please_restart">Vorheriger Kauf wiederhergestellt. Bitte starte die App neu, um alle Features nutzen zu können.</string>
     <string name="version">Version</string>

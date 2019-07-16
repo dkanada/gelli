@@ -53,7 +53,7 @@ public class PurchaseActivity extends AbsBaseActivity implements BillingProcesso
         setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getString(R.string.buy_pro));
+        getSupportActionBar().setTitle(getString(R.string.app_name));
 
         restoreButton.setEnabled(false);
         purchaseButton.setEnabled(false);

@@ -170,7 +170,6 @@
     <string name="permissions_denied">הרשאות נדחו.</string>
     <string name="permission_external_storage_denied">הרשאה לגישה לאחסון החיצוני נדחתה.</string>
     <string name="support_development">תמיכה בפיתוח</string>
-    <string name="buy_pro">קנה את Phonograph Pro</string>
     <string name="thank_you">תודה לכם!</string>
     <string name="restored_previous_purchase_please_restart">רכישה קודמת שוחזרה. אנא הפעל מחדש את האפליקציה כדי שתוכל להשתמש באפשרויות החדשות.</string>
     <string name="version">גרסה</string>

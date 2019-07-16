@@ -170,7 +170,6 @@
     <string name="permissions_denied">İzinler reddedildi.</string>
     <string name="permission_external_storage_denied">Harici depolamaya erişim izin reddedildi.</string>
     <string name="support_development">Geliştirmeyi destekleyin</string>
-    <string name="buy_pro">Phonograph Pro\'yu Satın Alın</string>
     <string name="thank_you">Teşekkürler!</string>
     <string name="restored_previous_purchase_please_restart">Önceki satın alma geri yüklendi. Tüm özellikleri kullanabilmek için lütfen uygulamayı tekrar başlatın.</string>
     <string name="version">Sürüm</string>

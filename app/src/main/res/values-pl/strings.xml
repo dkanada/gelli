@@ -170,7 +170,6 @@
     <string name="permissions_denied">Odmówiono zezwolenia</string>
     <string name="permission_external_storage_denied">Pozwolenie na dostęp do pamięci zewnętrznej odrzucone</string>
     <string name="support_development">Wspomóż rozwój</string>
-    <string name="buy_pro">Kup wersję Pro</string>
     <string name="thank_you">Dziękuję!</string>
     <string name="restored_previous_purchase_please_restart">Przywrócono poprzedni zakup. Zrestartuj aplikację aby użyć wszystkich funkcji.</string>
     <string name="version">Wersja</string>

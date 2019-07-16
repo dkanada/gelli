@@ -174,7 +174,6 @@
     <string name="permissions_denied">В разрешениях отказано.</string>
     <string name="permission_external_storage_denied">В разрешении на доступ к внешнему хранилищу отказано.</string>
     <string name="support_development">Поддержать разработку</string>
-    <string name="buy_pro">Купить Phonograph Pro</string>
     <string name="thank_you">Спасибо!</string>
     <string name="restored_previous_purchase_please_restart">Восстановлена предыдущая покупка. Пожалуйста, перезагрузите приложение, чтобы использовать все функции.</string>
     <string name="version">Версия</string>

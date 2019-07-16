@@ -170,7 +170,6 @@
     <string name="permissions_denied">Jogosultságok megtagadva.</string>
     <string name="permission_external_storage_denied">Hozzáférés megtagadva a külső tárhelyhez.</string>
     <string name="support_development">Fejlesztés támogatás</string>
-    <string name="buy_pro">Vásárolja med a  Phonograph Pro(t)</string>
     <string name="thank_you">Köszönöm!</string>
     <string name="restored_previous_purchase_please_restart">Az előző vásárlás helyreállítása. Kérjük, indítsa újra az alkalmazást az összes funkció használatához.</string>
     <string name="version">Verzió</string>

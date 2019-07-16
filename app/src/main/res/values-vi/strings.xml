@@ -162,7 +162,6 @@
     <string name="permissions_denied">Quyền hạn bị từ chối.</string>
     <string name="permission_external_storage_denied">Quyền truy cập lưu trữ bên ngoài bị từ chối.</string>
     <string name="support_development">Hỗ trợ phát triển</string>
-    <string name="buy_pro">Mua Phonograph Pro</string>
     <string name="thank_you">Cảm ơn!</string>
     <string name="restored_previous_purchase_please_restart">Khôi phục mua trước đó. Vui lòng khởi động lại ứng dụng để sử dụng tất cả các tính năng.</string>
     <string name="version">Phiên bản</string>

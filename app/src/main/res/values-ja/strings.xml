@@ -170,7 +170,6 @@
     <string name="permissions_denied">権限が拒否されました</string>
     <string name="permission_external_storage_denied">内部ストレージへのアクセス権限が拒否されました</string>
     <string name="support_development">開発を支援</string>
-    <string name="buy_pro">Phonograph Proを購入する</string>
     <string name="thank_you">ありがとう！</string>
     <string name="restored_previous_purchase_please_restart">過去の購入を復元しました。すべての機能を使用するには、アプリを再起動してください。</string>
     <string name="version">バージョン</string>

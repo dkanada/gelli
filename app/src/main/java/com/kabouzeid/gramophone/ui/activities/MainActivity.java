@@ -2,17 +2,14 @@ package com.kabouzeid.gramophone.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.navigation.NavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.drawerlayout.widget.DrawerLayout;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,24 +21,15 @@ import com.bumptech.glide.Glide;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
-import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
-import com.kabouzeid.gramophone.helper.SearchQueryHelper;
-import com.kabouzeid.gramophone.loader.AlbumLoader;
-import com.kabouzeid.gramophone.loader.ArtistLoader;
-import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.service.MusicService;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.kabouzeid.gramophone.ui.fragments.mainactivity.library.LibraryFragment;
 import com.kabouzeid.gramophone.util.MusicUtil;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -102,16 +90,12 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
         NavigationViewUtil.setItemIconColors(navigationView, ATHUtil.resolveColor(this, R.attr.iconColor, ThemeStore.textColorSecondary(this)), accentColor);
         NavigationViewUtil.setItemTextColors(navigationView, ThemeStore.textColorPrimary(this), accentColor);
 
-        checkSetUpPro();
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             drawerLayout.closeDrawers();
             switch (menuItem.getItemId()) {
                 case R.id.nav_library:
                     navigationView.setCheckedItem(R.id.nav_library);
                     setCurrentFragment(LibraryFragment.newInstance());
-                    break;
-                case R.id.buy_pro:
-                    new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, PurchaseActivity.class)), 200);
                     break;
                 case R.id.nav_settings:
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, SettingsActivity.class)), 200);
@@ -122,16 +106,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             }
             return true;
         });
-    }
-
-    private void checkSetUpPro() {
-        if (App.isProVersion()) {
-            setUpPro();
-        }
-    }
-
-    private void setUpPro() {
-        navigationView.getMenu().removeGroup(R.id.navigation_drawer_menu_category_buy_pro);
     }
 
     private void setUpDrawerLayout() {
@@ -174,7 +148,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     public void onServiceConnected() {
         super.onServiceConnected();
         updateNavigationDrawerHeader();
-        handlePlaybackIntent(getIntent());
     }
 
     @Override
@@ -197,71 +170,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             return true;
         }
         return super.handleBackPress() || (currentFragment != null && currentFragment.handleBackPress());
-    }
-
-    private void handlePlaybackIntent(@Nullable Intent intent) {
-        if (intent == null) {
-            return;
-        }
-
-        Uri uri = intent.getData();
-        String mimeType = intent.getType();
-        boolean handled = false;
-
-        if (intent.getAction() != null && intent.getAction().equals(MediaStore.INTENT_ACTION_MEDIA_PLAY_FROM_SEARCH)) {
-            final List<Song> songs = SearchQueryHelper.getSongs(this, intent.getExtras());
-            if (MusicPlayerRemote.getShuffleMode() == MusicService.SHUFFLE_MODE_SHUFFLE) {
-                MusicPlayerRemote.openAndShuffleQueue(songs, true);
-            } else {
-                MusicPlayerRemote.openQueue(songs, 0, true);
-            }
-            handled = true;
-        }
-
-        if (uri != null && uri.toString().length() > 0) {
-            MusicPlayerRemote.playFromUri(uri);
-            handled = true;
-        } else if (MediaStore.Audio.Playlists.CONTENT_TYPE.equals(mimeType)) {
-            final int id = (int) parseIdFromIntent(intent, "playlistId", "playlist");
-            if (id >= 0) {
-                int position = intent.getIntExtra("position", 0);
-                List<Song> songs = new ArrayList<>(PlaylistSongLoader.getPlaylistSongList(this, id));
-                MusicPlayerRemote.openQueue(songs, position, true);
-                handled = true;
-            }
-        } else if (MediaStore.Audio.Albums.CONTENT_TYPE.equals(mimeType)) {
-            final int id = (int) parseIdFromIntent(intent, "albumId", "album");
-            if (id >= 0) {
-                int position = intent.getIntExtra("position", 0);
-                MusicPlayerRemote.openQueue(AlbumLoader.getAlbum(this, id).songs, position, true);
-                handled = true;
-            }
-        } else if (MediaStore.Audio.Artists.CONTENT_TYPE.equals(mimeType)) {
-            final int id = (int) parseIdFromIntent(intent, "artistId", "artist");
-            if (id >= 0) {
-                int position = intent.getIntExtra("position", 0);
-                MusicPlayerRemote.openQueue(ArtistLoader.getArtist(this, id).getSongs(), position, true);
-                handled = true;
-            }
-        }
-        if (handled) {
-            setIntent(new Intent());
-        }
-    }
-
-    private long parseIdFromIntent(@NonNull Intent intent, String longKey, String stringKey) {
-        long id = intent.getLongExtra(longKey, -1);
-        if (id < 0) {
-            String idString = intent.getStringExtra(stringKey);
-            if (idString != null) {
-                try {
-                    id = Long.parseLong(idString);
-                } catch (NumberFormatException e) {
-                    Log.e(TAG, e.getMessage());
-                }
-            }
-        }
-        return id;
     }
 
     @Override

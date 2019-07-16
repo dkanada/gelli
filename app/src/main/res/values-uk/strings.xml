@@ -169,7 +169,6 @@
     <string name="permissions_denied">У доступі відмовлено.</string>
     <string name="permission_external_storage_denied">Дозвіл на доступ до зовнішньої пам\'яті відмовлено.</string>
     <string name="support_development">Підтримати розробника</string>
-    <string name="buy_pro">Придбайте Phonograph Pro</string>
     <string name="thank_you">Щиро дякую!</string>
     <string name="restored_previous_purchase_please_restart">Відновлено попередню покупку. Перезапустіть додаток, щоб скористатися всіма функціями.</string>
     <string name="version">Версія</string>

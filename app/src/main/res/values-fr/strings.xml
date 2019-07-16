@@ -170,7 +170,6 @@
     <string name="permissions_denied">Autorisation refusée.</string>
     <string name="permission_external_storage_denied">Accès au stockage externe refusé.</string>
     <string name="support_development">Faire un don</string>
-    <string name="buy_pro">Achetez Phonograph Pro</string>
     <string name="thank_you">Merci !</string>
     <string name="restored_previous_purchase_please_restart">Achats précédents restaurés. Veuillez redémarrer l\'application pour débloquer toutes les fonctionnalités</string>
     <string name="version">Version</string>

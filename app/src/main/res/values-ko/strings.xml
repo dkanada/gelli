@@ -172,7 +172,6 @@
     <string name="permissions_denied">권한이 거부되었습니다.</string>
     <string name="permission_external_storage_denied">외부 저장소 접근 권한이 거부되었습니다.</string>
     <string name="support_development">개발 지원</string>
-    <string name="buy_pro">프로 구매하기</string>
     <string name="thank_you">감사합니다!</string>
     <string name="restored_previous_purchase_please_restart">구매를 복원했습니다. 모든 기능을 사용하시려면 앱을 다시 시작해 주세요.</string>
     <string name="version">버전</string>

@@ -170,7 +170,6 @@
     <string name="permissions_denied">"Oprávnění zamítnuta. "</string>
     <string name="permission_external_storage_denied">"Přístup k otevření externího úložiště zamítnut. "</string>
     <string name="support_development">Podpořte vývoj</string>
-    <string name="buy_pro">Zakoupit Phonograph Pro</string>
     <string name="thank_you">"Díky! "</string>
     <string name="restored_previous_purchase_please_restart">Předchozí nákup byl obnoven. Restartujte aplikaci pro využití všech funkcí.</string>
     <string name="version">Verze</string>

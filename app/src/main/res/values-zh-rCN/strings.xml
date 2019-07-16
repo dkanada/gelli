@@ -172,7 +172,6 @@
     <string name="permissions_denied">未能获取权限。</string>
     <string name="permission_external_storage_denied">访问外部存储权限被拒绝。</string>
     <string name="support_development">支持开发者</string>
-    <string name="buy_pro">购买 Phonograph Pro</string>
     <string name="thank_you">非常感谢您！</string>
     <string name="restored_previous_purchase_please_restart">已恢复购买状态。请重启应用以使用所有功能。</string>
     <string name="version">版本</string>
