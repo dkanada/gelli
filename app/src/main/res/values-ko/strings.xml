@@ -25,8 +25,6 @@
     <string name="action_details">세부 정보</string>
     <string name="action_rename">이름 변경</string>
     <string name="action_delete">삭제</string>
-    <string name="action_scan">미디어 스캔</string>
-    <string name="action_set_as_start_directory">시작 디렉토리로 설정</string>
     <string name="albums">앨범</string>
     <string name="artists">아티스트</string>
     <string name="genres">장르</string>
@@ -88,7 +86,6 @@
     <string name="action_shuffle_playlist">재생 목록 랜덤 재생</string>
     <string name="action_clear_playing_queue">재생 대기열 비우기</string>
     <string name="action_save_playing_queue">재생 대기열 저장</string>
-    <string name="action_go_to_start_directory">시작 디렉토리로 가기</string>
     <string name="action_show_lyrics">가사 보기</string>
     <string name="light_theme_name">밝은 테마</string>
     <string name="dark_theme_name">어두운 테마</string>
@@ -205,18 +202,10 @@
     <string name="open_playing_queue_instruction">재생 중 화면 하단의 카드를 쓸어올려 재생 대기열을 표시할 수 있습니다.</string>
     <string name="rearrange_playing_queue_instruction">재생 대기열의 순서를 변경하려면 곡 번호를 잡고 드래그하세요.</string>
     <string name="library">보관함</string>
-    <string name="folders">폴더</string>
     <string name="saved_playlist_to">재생 목록을 %s 로 저장했습니다.</string>
     <string name="failed_to_save_playlist">재생 목록을 저장하는 과정에서 오류가 발생했습니다. (%s)</string>
     <string name="saved_x_playlists_to_x">%1$d 재생목록을 %2$s에 저장함.</string>
     <string name="saved_x_playlists_to_x_failed_to_save_x">%1$d 재생목록을 %2$s에 저장함 / %3$d 저장 실패</string>
-    <string name="not_listed_in_media_store"><![CDATA[미디어 스토어에서 <b>%s</b> 을(를) 찾을 수 없습니다.]]></string>
-    <string name="some_files_are_not_listed_in_the_media_store">몇몇 파일은 미디어 리스트에 기록되지 않습니다.</string>
-    <string name="nothing_to_scan">스캔할 내용이 없습니다.</string>
-    <string name="scanned_files">%2$d 개 중 %1$d 개 파일 스캔</string>
-    <string name="could_not_scan_files">%d 개 파일을 스캔하지 못했습니다.</string>
-    <string name="listing_files">파일 나열 중</string>
-    <string name="new_start_directory">%s 이(가) 새 시작 디렉토리로 설정되었습니다.</string>
     <string name="app_widget_big_name">Phonograph - 대형</string>
     <string name="app_widget_classic_name">Phonograph - 클래식</string>
     <string name="app_widget_small_name">Phonograph - 소형</string>
@@ -253,7 +242,6 @@
     <string name="only_the_first_5_colors_available">무료 버전에서는 첫 5개의 색상만 선택 가능합니다.</string>
     <string name="black_theme_is_a_pro_feature">검정 테마는 프로 기능입니다.</string>
     <string name="sleep_timer_is_a_pro_feature">수면 타이머는 프로 기능입니다.</string>
-    <string name="folder_view_is_a_pro_feature">폴더 보기는 프로 기능입니다.</string>
     <string name="restoring_purchase">구매 내역을 복원하는 중…</string>
     <string name="could_not_restore_purchase">구매 내역을 복원하지 못했습니다.</string>
     <string name="purchase">구매하기</string>
@@ -273,8 +261,6 @@
     <string name="library_categories">라이브러리 카테고리</string>
     <string name="pref_summary_library_categories">라이브러리 카테고리의 표시 여부 및 배열 순서를 조정합니다.</string>
     <string name="you_have_to_select_at_least_one_category">적어도 하나의 카테고리는 선택해야 합니다.</string>
-    <string name="action_scan_directory">디렉토리 스캔하기</string>
-    <string name="scan_media">미디어 스캔</string>
     <string name="action_sort_order">순서 정렬하기</string>
     <string name="sort_order_a_z">오름차순</string>
     <string name="sort_order_z_a">내림차순</string>

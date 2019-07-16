@@ -26,8 +26,6 @@
     <string name="action_details">Details</string>
     <string name="action_rename">Rename</string>
     <string name="action_delete">Delete</string>
-    <string name="action_scan">Scan</string>
-    <string name="action_set_as_start_directory">Set as start directory</string>
     <string name="albums">Albums</string>
     <string name="artists">Artists</string>
     <string name="genres">Genres</string>
@@ -90,7 +88,6 @@
     <string name="action_shuffle_playlist">Shuffle playlist</string>
     <string name="action_clear_playing_queue">Clear playing queue</string>
     <string name="action_save_playing_queue">Save playing queue</string>
-    <string name="action_go_to_start_directory">Go to start directory</string>
     <string name="action_show_lyrics">Show lyrics</string>
     <string name="light_theme_name">Light</string>
     <string name="dark_theme_name">Dark</string>
@@ -217,18 +214,10 @@
     <string name="open_playing_queue_instruction">Swipe the card in the now playing screen up to reveal the full playing queue.</string>
     <string name="rearrange_playing_queue_instruction">Rearrange the playing queue by dragging a song from its track number.</string>
     <string name="library">Library</string>
-    <string name="folders">Folders</string>
     <string name="saved_playlist_to">Saved playlist to %s.</string>
     <string name="failed_to_save_playlist">Failed to save playlist (%s).</string>
     <string name="saved_x_playlists_to_x">Saved %1$d playlists to %2$s.</string>
     <string name="saved_x_playlists_to_x_failed_to_save_x">Saved %1$d playlists to %2$s, failed to save %3$d.</string>
-    <string name="not_listed_in_media_store"><![CDATA[<b>%s</b> is not listed in the media store.]]></string>
-    <string name="some_files_are_not_listed_in_the_media_store">Some files are not listed in the media store.</string>
-    <string name="nothing_to_scan">Nothing to scan.</string>
-    <string name="scanned_files">Scanned %1$d of %2$d files.</string>
-    <string name="could_not_scan_files">Could not scan %d files.</string>
-    <string name="listing_files">Listing files</string>
-    <string name="new_start_directory">%s is the new start directory.</string>
     <string name="app_widget_big_name">Phonograph - Big</string>
     <string name="app_widget_classic_name">Phonograph - Classic</string>
     <string name="app_widget_small_name">Phonograph - Small</string>
@@ -266,7 +255,6 @@
     <string name="only_the_first_5_colors_available">Only the first 5 colors are available in the free version.</string>
     <string name="black_theme_is_a_pro_feature">The black theme is Phonograph Pro feature.</string>
     <string name="sleep_timer_is_a_pro_feature">Sleep timer is a Phonograph Pro feature</string>
-    <string name="folder_view_is_a_pro_feature">Folder view is a Phonograph Pro feature.</string>
     <string name="restoring_purchase">Restoring purchase…</string>
     <string name="could_not_restore_purchase">Could not restore purchase.</string>
     <string name="purchase">Purchase</string>
@@ -286,8 +274,6 @@
     <string name="library_categories">Library categories</string>
     <string name="pref_summary_library_categories">Configure visibility and order of library categories.</string>
     <string name="you_have_to_select_at_least_one_category">You have to select at least one category.</string>
-    <string name="action_scan_directory">Scan directory</string>
-    <string name="scan_media">Scan media</string>
     <string name="action_sort_order">Sort order</string>
     <string name="sort_order_a_z">Ascending</string>
     <string name="sort_order_z_a">Descending</string>

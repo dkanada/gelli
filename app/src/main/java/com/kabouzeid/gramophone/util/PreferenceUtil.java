@@ -16,7 +16,6 @@ import com.google.gson.reflect.TypeToken;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.helper.SortOrder;
 import com.kabouzeid.gramophone.model.CategoryInfo;
-import com.kabouzeid.gramophone.ui.fragments.mainactivity.folders.FoldersFragment;
 import com.kabouzeid.gramophone.ui.fragments.player.NowPlayingScreen;
 
 import java.io.File;
@@ -28,7 +27,6 @@ public final class PreferenceUtil {
     public static final String GENERAL_THEME = "general_theme";
     public static final String REMEMBER_LAST_TAB = "remember_last_tab";
     public static final String LAST_PAGE = "last_start_page";
-    public static final String LAST_MUSIC_CHOOSER = "last_music_chooser";
     public static final String NOW_PLAYING_SCREEN_ID = "now_playing_screen_id";
 
     public static final String ARTIST_SORT_ORDER = "artist_sort_order";
@@ -75,8 +73,6 @@ public final class PreferenceUtil {
     public static final String IGNORE_MEDIA_STORE_ARTWORK = "ignore_media_store_artwork";
 
     public static final String AUTO_DOWNLOAD_IMAGES_POLICY = "auto_download_images_policy";
-
-    public static final String START_DIRECTORY = "start_directory";
 
     public static final String SYNCHRONIZED_LYRICS_SHOW = "synchronized_lyrics_show";
 
@@ -159,16 +155,6 @@ public final class PreferenceUtil {
 
     public final int getLastPage() {
         return mPreferences.getInt(LAST_PAGE, 0);
-    }
-
-    public void setLastMusicChooser(final int value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(LAST_MUSIC_CHOOSER, value);
-        editor.apply();
-    }
-
-    public final int getLastMusicChooser() {
-        return mPreferences.getInt(LAST_MUSIC_CHOOSER, 0);
     }
 
     public final NowPlayingScreen getNowPlayingScreen() {
@@ -452,16 +438,6 @@ public final class PreferenceUtil {
 
     public final String autoDownloadImagesPolicy() {
         return mPreferences.getString(AUTO_DOWNLOAD_IMAGES_POLICY, "only_wifi");
-    }
-
-    public final File getStartDirectory() {
-        return new File(mPreferences.getString(START_DIRECTORY, FoldersFragment.getDefaultStartDirectory().getPath()));
-    }
-
-    public void setStartDirectory(File file) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(START_DIRECTORY, FileUtil.safeGetCanonicalPath(file));
-        editor.apply();
     }
 
     public final boolean synchronizedLyricsShow() {

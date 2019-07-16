@@ -50,7 +50,7 @@ public class SplashActivity extends AbsBaseActivity {
             connectionManager.Connect(credentialProvider.GetCredentials().getServers().get(0), new Response<ConnectionResult>() {
                 @Override
                 public void onResponse(ConnectionResult result) {
-                    if (result.getState() != ConnectionState.SignedIn) return;
+                    //if (result.getState() != ConnectionState.SignedIn) return;
                     App.setApiClient(result.getApiClient());
                     context.startActivity(new Intent(context, MainActivity.class));
                 }

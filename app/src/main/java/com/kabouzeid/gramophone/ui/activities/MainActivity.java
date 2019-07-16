@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -27,7 +26,6 @@ import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
 import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.dialogs.ScanMediaFolderChooserDialog;
 import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.helper.SearchQueryHelper;
@@ -37,10 +35,8 @@ import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.service.MusicService;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
-import com.kabouzeid.gramophone.ui.fragments.mainactivity.folders.FoldersFragment;
 import com.kabouzeid.gramophone.ui.fragments.mainactivity.library.LibraryFragment;
 import com.kabouzeid.gramophone.util.MusicUtil;
-import com.kabouzeid.gramophone.util.PreferenceUtil;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
@@ -51,11 +47,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AbsSlidingMusicPanelActivity {
-
     public static final String TAG = MainActivity.class.getSimpleName();
-
-    private static final int LIBRARY = 0;
-    private static final int FOLDERS = 1;
 
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
@@ -81,28 +73,9 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
         setUpDrawerLayout();
 
         if (savedInstanceState == null) {
-            setMusicChooser(PreferenceUtil.getInstance(this).getLastMusicChooser());
+            setCurrentFragment(LibraryFragment.newInstance());
         } else {
             restoreCurrentFragment();
-        }
-    }
-
-    private void setMusicChooser(int key) {
-        if (!App.isProVersion() && key == FOLDERS) {
-            Toast.makeText(this, R.string.folder_view_is_a_pro_feature, Toast.LENGTH_LONG).show();
-            key = LIBRARY;
-        }
-
-        PreferenceUtil.getInstance(this).setLastMusicChooser(key);
-        switch (key) {
-            case LIBRARY:
-                navigationView.setCheckedItem(R.id.nav_library);
-                setCurrentFragment(LibraryFragment.newInstance());
-                break;
-            case FOLDERS:
-                navigationView.setCheckedItem(R.id.nav_folders);
-                setCurrentFragment(FoldersFragment.newInstance(this));
-                break;
         }
     }
 
@@ -134,19 +107,11 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             drawerLayout.closeDrawers();
             switch (menuItem.getItemId()) {
                 case R.id.nav_library:
-                    new Handler().postDelayed(() -> setMusicChooser(LIBRARY), 200);
-                    break;
-                case R.id.nav_folders:
-                    new Handler().postDelayed(() -> setMusicChooser(FOLDERS), 200);
+                    navigationView.setCheckedItem(R.id.nav_library);
+                    setCurrentFragment(LibraryFragment.newInstance());
                     break;
                 case R.id.buy_pro:
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, PurchaseActivity.class)), 200);
-                    break;
-                case R.id.action_scan:
-                    new Handler().postDelayed(() -> {
-                        ScanMediaFolderChooserDialog dialog = ScanMediaFolderChooserDialog.create();
-                        dialog.show(getSupportFragmentManager(), "SCAN_MEDIA_FOLDER_CHOOSER");
-                    }, 200);
                     break;
                 case R.id.nav_settings:
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, SettingsActivity.class)), 200);

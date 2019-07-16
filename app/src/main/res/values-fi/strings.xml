@@ -25,8 +25,6 @@
     <string name="action_details">Yksityiskohdat</string>
     <string name="action_rename">Nimeä uudelleen</string>
     <string name="action_delete">Poista</string>
-    <string name="action_scan">Skannaa</string>
-    <string name="action_set_as_start_directory">Aseta aloituskansioksi</string>
     <string name="albums">Albumit</string>
     <string name="artists">Artistit</string>
     <string name="genres">Tyylilajit</string>
@@ -89,7 +87,6 @@
     <string name="action_shuffle_playlist">Sekoita soittolistat</string>
     <string name="action_clear_playing_queue">Tyhjennä toistojono</string>
     <string name="action_save_playing_queue">Tallenna toistojono</string>
-    <string name="action_go_to_start_directory">Mene aloituskansioon</string>
     <string name="action_show_lyrics">Näytä lyriikat</string>
     <string name="light_theme_name">Vaalea</string>
     <string name="dark_theme_name">Tumma</string>
@@ -207,18 +204,10 @@
     <string name="open_playing_queue_instruction">Vedä korttia Toistetaan parhaillaan -ikkunassa ylös, nähdäksesi koko toistojonon.</string>
     <string name="rearrange_playing_queue_instruction">Järjestä toistojonoa vetämällä kappaletta sen raitanumerosta.</string>
     <string name="library">Kirjasto</string>
-    <string name="folders">Kansiot</string>
     <string name="saved_playlist_to">Soittolista tallennettu paikkaan %s.</string>
     <string name="failed_to_save_playlist">Soittolistan tallentaminen epäonnistui (%s).</string>
     <string name="saved_x_playlists_to_x">Tallennettiin soittolistat %1$d paikkaan %2$s.</string>
     <string name="saved_x_playlists_to_x_failed_to_save_x">Tallennettiin soittolistat %1$d paikkaan %2$s, %3$d tallentaminen epäonnistui.</string>
-    <string name="not_listed_in_media_store"><![CDATA[Kohdetta <b>%s</b> ei ole listattu Media Storessa.]]></string>
-    <string name="some_files_are_not_listed_in_the_media_store">Jotkin tiedostot eivät ole listattuna Media Storessa.</string>
-    <string name="nothing_to_scan">Ei mitään skannattavaa.</string>
-    <string name="scanned_files">Skannattiin %1$d %2$d tiedostosta.</string>
-    <string name="could_not_scan_files">Ei voitu skannata %d tiedostoa.</string>
-    <string name="listing_files">Listataan tiedostoja</string>
-    <string name="new_start_directory">%s on uusi aloituskansio.</string>
     <string name="app_widget_big_name">Phonograph - Iso</string>
     <string name="app_widget_classic_name">Phonograph - Klassikko</string>
     <string name="app_widget_small_name">Phonograph - Pieni</string>
@@ -255,7 +244,6 @@
     <string name="only_the_first_5_colors_available">Sovelluksen ilmaisversio on rajoitettu 5 ensimmäiseen värivaihtoehtoon.</string>
     <string name="black_theme_is_a_pro_feature">Musta teema on Phonograph Pro:n ominaisuus.</string>
     <string name="sleep_timer_is_a_pro_feature">Herätyskello on Phonograph Pro:n ominaisuus.</string>
-    <string name="folder_view_is_a_pro_feature">Kansionäkymä on Phonograph Pro:n ominaisuus.</string>
     <string name="restoring_purchase">Palautetaan ostoa...</string>
     <string name="could_not_restore_purchase">Ei voitu palauttaa ostoa.</string>
     <string name="purchase">Osta</string>
@@ -275,8 +263,6 @@
     <string name="library_categories">Kirjaston välilehdet</string>
     <string name="pref_summary_library_categories">Määrittele kirjaston välilehtien näkyvyyttä ja järjestystä.</string>
     <string name="you_have_to_select_at_least_one_category">Sinun täytyy valita vähintään yksi kategoria.</string>
-    <string name="action_scan_directory">Skannaa kansio</string>
-    <string name="scan_media">Skannaa media</string>
     <string name="action_sort_order">Lajittelu järjestys</string>
     <string name="sort_order_a_z">Nouseva</string>
     <string name="sort_order_z_a">Laskeva</string>

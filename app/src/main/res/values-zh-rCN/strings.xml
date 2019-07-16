@@ -25,8 +25,6 @@
     <string name="action_details">详情</string>
     <string name="action_rename">重命名</string>
     <string name="action_delete">删除</string>
-    <string name="action_scan">扫描</string>
-    <string name="action_set_as_start_directory">设为起始目录</string>
     <string name="albums">专辑</string>
     <string name="artists">艺术家</string>
     <string name="genres">流派</string>
@@ -89,7 +87,6 @@
     <string name="action_shuffle_playlist">随机播放此播放列表</string>
     <string name="action_clear_playing_queue">清空播放队列</string>
     <string name="action_save_playing_queue">保存播放队列</string>
-    <string name="action_go_to_start_directory">跳转至起始目录</string>
     <string name="action_show_lyrics">显示歌词</string>
     <string name="light_theme_name">浅色</string>
     <string name="dark_theme_name">暗色</string>
@@ -205,18 +202,10 @@
     <string name="open_playing_queue_instruction">上滑正在播放界面内的卡片即可展开播放队列。</string>
     <string name="rearrange_playing_queue_instruction">通过拖动歌曲名前面的序列号来调整播放队列的顺序。</string>
     <string name="library">媒体库</string>
-    <string name="folders">文件夹</string>
     <string name="saved_playlist_to">已保存播放列表到 %s。</string>
     <string name="failed_to_save_playlist">保存播放列表（%s）失败。</string>
     <string name="saved_x_playlists_to_x">已保存 %1$d 播放列表到 %2$s。</string>
     <string name="saved_x_playlists_to_x_failed_to_save_x">已保存 %1$d 播放列表到 %2$s，保存 %3$d 失败。</string>
-    <string name="not_listed_in_media_store"><![CDATA[<b>%s</b> 没有列在媒体储存中。]]></string>
-    <string name="some_files_are_not_listed_in_the_media_store">部分文件未在媒体储存中列出</string>
-    <string name="nothing_to_scan">没有可扫描的对象。</string>
-    <string name="scanned_files">已扫描 %1$d/%2$d 个文件。</string>
-    <string name="could_not_scan_files">%d 个文件无法扫描。</string>
-    <string name="listing_files">正在列举文件</string>
-    <string name="new_start_directory">%s 是新的初始目录。</string>
     <string name="app_widget_big_name">Phonograph - 大尺寸</string>
     <string name="app_widget_classic_name">Phonograph - 经典</string>
     <string name="app_widget_small_name">Phonograph - 小尺寸</string>
@@ -253,7 +242,6 @@
     <string name="only_the_first_5_colors_available">免费版仅能使用前 5 个主题色。</string>
     <string name="black_theme_is_a_pro_feature">黑色主题仅适用于 Phonograph Pro。</string>
     <string name="sleep_timer_is_a_pro_feature">睡眠计时器仅适用于 Phonograph Pro。</string>
-    <string name="folder_view_is_a_pro_feature">文件夹视图仅适用于 Phonograph Pro。</string>
     <string name="restoring_purchase">正在恢复购买状态...</string>
     <string name="could_not_restore_purchase">无法恢复购买状态</string>
     <string name="purchase">购买</string>
@@ -273,8 +261,6 @@
     <string name="library_categories">媒体库类别</string>
     <string name="pref_summary_library_categories">配置媒体库类别可见性和顺序。</string>
     <string name="you_have_to_select_at_least_one_category">您必需选择至少一个类别。</string>
-    <string name="action_scan_directory">扫描音乐</string>
-    <string name="scan_media">扫描音乐</string>
     <string name="action_sort_order">排序方式</string>
     <string name="sort_order_a_z">按首字符（正序）</string>
     <string name="sort_order_z_a">按首字符（倒序）</string>

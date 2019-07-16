@@ -25,8 +25,6 @@
     <string name="action_details">Rincian</string>
     <string name="action_rename">Ganti Nama</string>
     <string name="action_delete">Hapus</string>
-    <string name="action_scan">Pindai</string>
-    <string name="action_set_as_start_directory">Atur sebagai direktori awal</string>
     <string name="albums">Album-album</string>
     <string name="artists">Artis</string>
     <string name="genres">Aliran</string>
@@ -89,7 +87,6 @@
     <string name="action_shuffle_playlist">Putar daftar putar secara acak</string>
     <string name="action_clear_playing_queue">Kosongkan antrean yang sedang diputar</string>
     <string name="action_save_playing_queue">Menyimpan antrian yang diputar</string>
-    <string name="action_go_to_start_directory">Ke direktori awal</string>
     <string name="action_show_lyrics">Tampilkan lirik</string>
     <string name="light_theme_name">Terang</string>
     <string name="dark_theme_name">Gelap</string>
@@ -207,18 +204,10 @@
     <string name="open_playing_queue_instruction">Geser ke atas pada kartu di layar yang sedang memutar untuk memperlihatkan dengan lengkap antrean yang sedang diputar.</string>
     <string name="rearrange_playing_queue_instruction">Atur ulang antrean yang sedang diputar dengan menyeret lagu dari nomor urut.</string>
     <string name="library">Pustaka</string>
-    <string name="folders">Map-map</string>
     <string name="saved_playlist_to">Daftar putar tersimpan ke %s.</string>
     <string name="failed_to_save_playlist">Gagal untuk menyimpan daftar putar (%s).</string>
     <string name="saved_x_playlists_to_x">%1$d daftar putar disimpan ke %2$s.</string>
     <string name="saved_x_playlists_to_x_failed_to_save_x">%1$d daftar putar disimpan ke %2$s, gagal menyimpan %3$d.</string>
-    <string name="not_listed_in_media_store"><![CDATA[<b>%s</b> tidak tercatat di toko media.]]></string>
-    <string name="some_files_are_not_listed_in_the_media_store">Beberapa berkas tidak tercatat di media penyimpanan.</string>
-    <string name="nothing_to_scan">Tidak ada untuk di pindai.</string>
-    <string name="scanned_files">%1$d dari %2$d berkas terpindai.</string>
-    <string name="could_not_scan_files">Tidak dapat memindai %d berkas.</string>
-    <string name="listing_files">Mencatat berkas-berkas</string>
-    <string name="new_start_directory">%s adalah direktori awal yang baru.</string>
     <string name="app_widget_big_name">Phonograph - Besar</string>
     <string name="app_widget_classic_name">Phonograph - Klasik</string>
     <string name="app_widget_small_name">Phonograph - Kecil</string>
@@ -255,7 +244,6 @@
     <string name="only_the_first_5_colors_available">Hanya 5 warna pertama yang tersedia untuk versi gratis.</string>
     <string name="black_theme_is_a_pro_feature">Tema gelap adalah fitur Phonograph Pro.</string>
     <string name="sleep_timer_is_a_pro_feature">Pengatur waktu tidur adalah fitur Phonograph Pro</string>
-    <string name="folder_view_is_a_pro_feature">Tampilan folder adalah fitur Phonograph Pro.</string>
     <string name="restoring_purchase">Memulihkan pembelian...</string>
     <string name="could_not_restore_purchase">Tidak dapat memulihkan pembelian.</string>
     <string name="purchase">Pembelian</string>
@@ -275,8 +263,6 @@
     <string name="library_categories">Kategori perpustakaan</string>
     <string name="pref_summary_library_categories">Konfigurasi visibilitas dan urutan kategori perpustakaan.</string>
     <string name="you_have_to_select_at_least_one_category">Anda harus memilih setidaknya satu kategori</string>
-    <string name="action_scan_directory">Pindai direktori</string>
-    <string name="scan_media">Pindai media</string>
     <string name="action_sort_order">Tata urutan</string>
     <string name="sort_order_a_z">Naik</string>
     <string name="sort_order_z_a">Turun</string>

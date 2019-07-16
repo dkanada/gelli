@@ -25,8 +25,6 @@
     <string name="action_details">Detalles</string>
     <string name="action_rename">Renombrar</string>
     <string name="action_delete">Borrar</string>
-    <string name="action_scan">Escanear</string>
-    <string name="action_set_as_start_directory">Establecer como directorio de inicio</string>
     <string name="albums">Álbumes</string>
     <string name="artists">Artistas</string>
     <string name="genres">Géneros</string>
@@ -88,7 +86,6 @@
     <string name="action_shuffle_playlist">Reproducción aleatoria de la lista de reproducción</string>
     <string name="action_clear_playing_queue">Limpiar cola de reproducción</string>
     <string name="action_save_playing_queue">Guardar cola de reproducción</string>
-    <string name="action_go_to_start_directory">Ir al directorio de inicio</string>
     <string name="action_show_lyrics">Mostrar letra</string>
     <string name="light_theme_name">Claro</string>
     <string name="dark_theme_name">Oscuro</string>
@@ -203,17 +200,9 @@
     <string name="open_playing_queue_instruction">Desliza la tarjeta en la pantalla de Reproducción Actual para desplegar la cola de reproducción completa.</string>
     <string name="rearrange_playing_queue_instruction">Reorganiza la cola de reproducción arrastrando una canción desde su número de pista.</string>
     <string name="library">Biblioteca</string>
-    <string name="folders">Carpetas</string>
     <string name="saved_playlist_to">Lista de reproducción guardada en %s.</string>
     <string name="failed_to_save_playlist">No se pudo guardar lista de reproducción (%s).</string>
     <string name="saved_x_playlists_to_x">%1$d de %2$s listas de reproducción guardadas.</string>
-    <string name="not_listed_in_media_store"><![CDATA[<b>%s</b> no se encuentra listado en los medios almacenados.]]></string>
-    <string name="some_files_are_not_listed_in_the_media_store">Algunos archivos no se encuentran listados en los medios almacenados.</string>
-    <string name="nothing_to_scan">Nada para escanear.</string>
-    <string name="scanned_files">%1$d de %2$d archivos escaneados.</string>
-    <string name="could_not_scan_files">No se pudieron escanear los archivos %d.</string>
-    <string name="listing_files">Listado de archivos</string>
-    <string name="new_start_directory">%s es el nuevo directorio de inicio.</string>
     <string name="app_widget_big_name">Phonograph - Grande</string>
     <string name="app_widget_classic_name">Phonograph - Clásico</string>
     <string name="app_widget_small_name">Phonograph - Pequeño</string>
@@ -250,7 +239,6 @@
     <string name="only_the_first_5_colors_available">Solo los primeros 5 colores están disponibles en la versión gratuita.</string>
     <string name="black_theme_is_a_pro_feature">El tema negro es una función de Phonograph Pro.</string>
     <string name="sleep_timer_is_a_pro_feature">El temporizador de apagado es una función de Phonograph Pro</string>
-    <string name="folder_view_is_a_pro_feature">La vista de carpetas es una función de Phonograph Pro.</string>
     <string name="restoring_purchase">Restaurando compra...</string>
     <string name="could_not_restore_purchase">No se pudo restaurar la compra.</string>
     <string name="purchase">Comprar</string>
@@ -270,8 +258,6 @@
     <string name="library_categories">Categorías de la biblioteca</string>
     <string name="pref_summary_library_categories">Configurar la vista y orden de las categorías de la biblioteca.</string>
     <string name="you_have_to_select_at_least_one_category">Tienes que seleccionar al menos una categoría.</string>
-    <string name="action_scan_directory">Escanear directorio</string>
-    <string name="scan_media">Escanear medios</string>
     <string name="action_sort_order">Ordenar por</string>
     <string name="sort_order_a_z">Ascendente</string>
     <string name="sort_order_z_a">Descendente</string>

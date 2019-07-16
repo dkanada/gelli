@@ -22,8 +22,6 @@
     <string name="action_details">Detalhes</string>
     <string name="action_rename">Mudar nome</string>
     <string name="action_delete">Apagar</string>
-    <string name="action_scan">Verificar</string>
-    <string name="action_set_as_start_directory">Definir como diretoria principal</string>
     <string name="albums">Álbuns</string>
     <string name="artists">Artistas</string>
     <string name="songs">Músicas</string>
@@ -80,7 +78,6 @@
     <string name="action_shuffle_artist">Embaralhar Artista</string>
     <string name="action_shuffle_playlist">Embaralhar lista de reprodução</string>
     <string name="action_clear_playing_queue">Limpar fila de reprodução</string>
-    <string name="action_go_to_start_directory">Ir para diretoria principal</string>
     <string name="action_show_lyrics">Mostrar letra</string>
     <string name="light_theme_name">Claro</string>
     <string name="dark_theme_name">Escuro</string>
@@ -171,13 +168,8 @@
     <string name="open_playing_queue_instruction">Deslize o cartão no ecrã de \"a reproduzir\" para cima para mostrar a fila de reprodução completa.</string>
     <string name="rearrange_playing_queue_instruction">Reorganizar a fila de reprodução arrastando a música desde o seu número</string>
     <string name="library">Biblioteca</string>
-    <string name="folders">Pastas</string>
     <string name="saved_playlist_to">Lista de reprodução %s salva.</string>
     <string name="failed_to_save_playlist">Erro a salvar a lista de reprodução (%s).</string>
-    <string name="nothing_to_scan">Nada para verificar.</string>
-    <string name="scanned_files">Verificados %1$d de %2$d ficheiros.</string>
-    <string name="could_not_scan_files">Não é possível verificar %d ficheiros.</string>
-    <string name="new_start_directory">%s é a nova diretoria principal</string>
     <string name="app_widget_big_name">Phonograph - Grande</string>
     <string name="app_widget_classic_name">Phonograph - Clássico</string>
     <string name="app_widget_small_name">Phonograph - Pequeno</string>
