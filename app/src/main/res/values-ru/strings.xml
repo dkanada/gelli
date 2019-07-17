@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Перейти к альбому</string>
     <string name="label_playing_queue">Очередь воспроизведения</string>
     <string name="no_results">Нет результатов</string>
-    <string name="updating">Обновление...</string>
     <string name="added_title_to_playing_queue">"Композиция добавлена в очередь воспроизведения."</string>
     <string name="added_x_titles_to_playing_queue">%1$d композиций добавлено в очередь воспроизведения</string>
     <string name="action_remove_from_playlist">Удалить из плейлиста</string>
@@ -161,7 +160,6 @@
     <string name="last_added">Последние добавленные</string>
     <string name="history">Недавно воспроизведённые</string>
     <string name="my_top_tracks">Мои популярные треки</string>
-    <string name="pick_from_local_storage">Выбрать из локального хранилища</string>
     <string name="action_sleep_timer">Таймер сна</string>
     <string name="action_set">Установить</string>
     <string name="cancel_current_timer">Отменить текущий таймер</string>
@@ -247,8 +245,6 @@
     <string name="eugene_cheung_summary">За его вклад в исходный код.</string>
     <string name="adrian_summary">За создание дизайна показа альбомов.</string>
     <string name="add_action">Добавить</string>
-    <string name="reset_artist_image">Сбросить картинку исполнителя</string>
-    <string name="set_artist_image">Установить картинку исполнителя</string>
     <string name="library_categories">Категории библиотеки</string>
     <string name="pref_summary_library_categories">Настройте видимость и порядок категорий библиотеки.</string>
     <string name="you_have_to_select_at_least_one_category">Вы должны выбрать хотя бы одну категорию.</string>

@@ -52,7 +52,6 @@
     <string name="action_go_to_album">打開專輯</string>
     <string name="label_playing_queue">待播佇列</string>
     <string name="no_results">沒有搜尋結果</string>
-    <string name="updating">更新中…</string>
     <string name="added_title_to_playing_queue">"已將 1 首歌加到播放佇列"</string>
     <string name="added_x_titles_to_playing_queue">已將 %1$d 首歌加到播放佇列。</string>
     <string name="action_remove_from_playlist">從播放清單中移除</string>
@@ -162,7 +161,6 @@
     <string name="last_added">最後新增</string>
     <string name="history">最近播放</string>
     <string name="my_top_tracks">我的最佳單曲</string>
-    <string name="pick_from_local_storage">從手機裡選擇（SD卡或記憶體）</string>
     <string name="action_sleep_timer">睡眠定時器</string>
     <string name="action_set">設定</string>
     <string name="cancel_current_timer">取消目前的計時器</string>
@@ -248,8 +246,6 @@
     <string name="eugene_cheung_summary">原始碼貢獻者</string>
     <string name="adrian_summary">創建專輯頁面</string>
     <string name="add_action">新增</string>
-    <string name="reset_artist_image">重設歌手圖片</string>
-    <string name="set_artist_image">設定歌手圖片</string>
     <string name="library_categories">音樂庫類別</string>
     <string name="pref_summary_library_categories">調整音樂庫類別的顯示與排序</string>
     <string name="you_have_to_select_at_least_one_category">你至少要選擇 1 個類別</string>

@@ -51,7 +51,6 @@
     <string name="action_go_to_album">앨범으로 가기</string>
     <string name="label_playing_queue">재생 대기열</string>
     <string name="no_results">결과 없음</string>
-    <string name="updating">업데이트 중...</string>
     <string name="added_title_to_playing_queue">"재생 대기열에 1개의 노래를 추가했습니다."</string>
     <string name="added_x_titles_to_playing_queue">재생 대기열에 %1$d개의 노래를 추가했습니다.</string>
     <string name="action_remove_from_playlist">재생 목록에서 제거</string>
@@ -159,7 +158,6 @@
     <string name="last_added">최근 추가됨</string>
     <string name="history">재생 기록</string>
     <string name="my_top_tracks">많이 재생한 트랙</string>
-    <string name="pick_from_local_storage">내부 저장소에서 선택</string>
     <string name="action_sleep_timer">수면 타이머</string>
     <string name="action_set">설정</string>
     <string name="cancel_current_timer">현재 타이머 취소</string>
@@ -245,8 +243,6 @@
     <string name="eugene_cheung_summary">소스 코드에 대한 기여</string>
     <string name="adrian_summary">앨범 페이지 디자인 제작</string>
     <string name="add_action">추가</string>
-    <string name="reset_artist_image">아티스트 이미지 초기화</string>
-    <string name="set_artist_image">아티스트 이미지 설정</string>
     <string name="library_categories">라이브러리 카테고리</string>
     <string name="pref_summary_library_categories">라이브러리 카테고리의 표시 여부 및 배열 순서를 조정합니다.</string>
     <string name="you_have_to_select_at_least_one_category">적어도 하나의 카테고리는 선택해야 합니다.</string>

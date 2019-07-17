@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Ga naar album</string>
     <string name="label_playing_queue">Afspeelwachtrij</string>
     <string name="no_results">Geen resultaten</string>
-    <string name="updating">Bijwerken…</string>
     <string name="added_title_to_playing_queue">"1 titel toegevoegd aan de afspeelwachtrij."</string>
     <string name="added_x_titles_to_playing_queue">%1$d titels toegevoegd aan de afspeelwachtrij.</string>
     <string name="action_remove_from_playlist">Verwijderen uit afspeellijst</string>
@@ -157,7 +156,6 @@
     <string name="last_added">Laatst toegevoegd</string>
     <string name="history">Geschiedenis</string>
     <string name="my_top_tracks">Mijn top nummers</string>
-    <string name="pick_from_local_storage">Kies uit lokale opslag</string>
     <string name="action_sleep_timer">Slaaptimer</string>
     <string name="action_set">Zet</string>
     <string name="cancel_current_timer">Annuleer huidige timer</string>
@@ -243,8 +241,6 @@
     <string name="eugene_cheung_summary">Voor zijn bijdragen aan de broncode.</string>
     <string name="adrian_summary">Om het albumpagina-uiterlijk te maken.</string>
     <string name="add_action">Toevoegen</string>
-    <string name="reset_artist_image">Artiest afbeelding resetten</string>
-    <string name="set_artist_image">Artiest afbeelding instellen</string>
     <string name="library_categories">Bibliotheek categorieën</string>
     <string name="pref_summary_library_categories">Configureer de zichtbaarheid en volgorde van categorieën</string>
     <string name="you_have_to_select_at_least_one_category">Je moet tenminste één categorie selecteren.</string>

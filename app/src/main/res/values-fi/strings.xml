@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Näytä albumi</string>
     <string name="label_playing_queue">Toistojono</string>
     <string name="no_results">Ei hakutuloksia</string>
-    <string name="updating">Päivitetään...</string>
     <string name="added_title_to_playing_queue">"Kappale lisätty toistojonoon."</string>
     <string name="added_x_titles_to_playing_queue">%1$d kappaletta lisättiin toistojonoon</string>
     <string name="action_remove_from_playlist">Poista soittolistasta</string>
@@ -161,7 +160,6 @@
     <string name="last_added">Viimeksi lisätyt</string>
     <string name="history">Viimeksi toistettu</string>
     <string name="my_top_tracks">Eniten kuunnellut</string>
-    <string name="pick_from_local_storage">Valitse paikallisesta muistista</string>
     <string name="action_sleep_timer">Ajastin</string>
     <string name="action_set">Aseta</string>
     <string name="cancel_current_timer">Peru tämänhetkinen ajastin</string>
@@ -247,8 +245,6 @@
     <string name="eugene_cheung_summary">Työpanoksesta sovelluksen lähdekoodin parissa.</string>
     <string name="adrian_summary">Albumisivun ulkonäöstä.</string>
     <string name="add_action">Lisää</string>
-    <string name="reset_artist_image">Nollaa artistin kuva</string>
-    <string name="set_artist_image">Aseta artistin kuva</string>
     <string name="library_categories">Kirjaston välilehdet</string>
     <string name="pref_summary_library_categories">Määrittele kirjaston välilehtien näkyvyyttä ja järjestystä.</string>
     <string name="you_have_to_select_at_least_one_category">Sinun täytyy valita vähintään yksi kategoria.</string>

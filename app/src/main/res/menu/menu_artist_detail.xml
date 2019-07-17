@@ -25,16 +25,6 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_set_artist_image"
-        android:title="@string/set_artist_image"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/action_reset_artist_image"
-        android:title="@string/reset_artist_image"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/action_colored_footers"
         android:checkable="true"
         android:title="@string/colored_footers"

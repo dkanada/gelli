@@ -112,7 +112,7 @@ public class PlayingNotificationImpl extends PlayingNotification {
                                     notificationLayoutBig.setImageViewResource(R.id.image, R.drawable.default_album_art);
                                 }
 
-                                if (!PreferenceUtil.getInstance(service).coloredNotification()) {
+                                if (!PreferenceUtil.getInstance(service).getColoredNotification()) {
                                     bgColor = Color.WHITE;
                                 }
                                 setBackgroundColor(bgColor);

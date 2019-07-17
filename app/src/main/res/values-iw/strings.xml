@@ -51,7 +51,6 @@
     <string name="action_go_to_album">מעבר לאלבום</string>
     <string name="label_playing_queue">מנגן תור השמעה</string>
     <string name="no_results">אין תוצאות</string>
-    <string name="updating">מעדכן...</string>
     <string name="added_title_to_playing_queue">"נוסף שיר אחד לתור "</string>
     <string name="added_x_titles_to_playing_queue">נוספו %1$d שירים לתור</string>
     <string name="action_remove_from_playlist">הסר מרשימת ההשמעה</string>
@@ -157,7 +156,6 @@
     <string name="last_added">נוספו לאחרונה</string>
     <string name="history">היסטוריה</string>
     <string name="my_top_tracks">השירים המובילים שלי</string>
-    <string name="pick_from_local_storage">בחר מאחסון מקומי</string>
     <string name="action_sleep_timer">טיימר לשינה</string>
     <string name="action_set">קבע</string>
     <string name="cancel_current_timer">בטל טיימר נוכחי</string>
@@ -243,8 +241,6 @@
     <string name="eugene_cheung_summary">על התרומה שלו לקוד המקור.</string>
     <string name="adrian_summary">על יצירת העיצוב של מסך האלבום.</string>
     <string name="add_action">הוסף</string>
-    <string name="reset_artist_image">אפס תמונת אמן</string>
-    <string name="set_artist_image">הגדר תמונת אמן</string>
     <string name="library_categories">קטגוריות הספרייה</string>
     <string name="pref_summary_library_categories">הגדר את הנראות והסדר של הקטגוריות בספרייה.</string>
     <string name="you_have_to_select_at_least_one_category">עליך לבחור לפחות קטגוריה אחת.</string>

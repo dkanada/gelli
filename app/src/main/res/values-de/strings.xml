@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Gehe zum Album</string>
     <string name="label_playing_queue">Warteschlange</string>
     <string name="no_results">Keine Ergebnisse</string>
-    <string name="updating">Aktualisiere…</string>
     <string name="added_title_to_playing_queue">"1 Titel wurde der Warteschlange hinzugefügt."</string>
     <string name="added_x_titles_to_playing_queue">%1$d Titel wurden der Warteschlange hinzugefügt.</string>
     <string name="action_remove_from_playlist">Aus Wiedergabeliste entfernen</string>
@@ -161,7 +160,6 @@
     <string name="last_added">Zuletzt hinzugefügt</string>
     <string name="history">Verlauf</string>
     <string name="my_top_tracks">Meine Lieblingstitel</string>
-    <string name="pick_from_local_storage">Aus lokalem Speicher wählen</string>
     <string name="action_sleep_timer">Einschlaf Timer</string>
     <string name="action_set">Setze</string>
     <string name="cancel_current_timer">Aktuellen Timer abbrechen</string>
@@ -247,8 +245,6 @@
     <string name="eugene_cheung_summary">Für seinen Beitrag zum Quellcode.</string>
     <string name="adrian_summary">Für die Erstellung des Designs der Album-Seite.</string>
     <string name="add_action">Hinzufügen</string>
-    <string name="reset_artist_image">Künstler-Bild zurücksetzen</string>
-    <string name="set_artist_image">Künstler-Bild festlegen</string>
     <string name="library_categories">Bibliothekskategorien</string>
     <string name="pref_summary_library_categories">Anzeige und Anordnung der einzelnen Kategorien festlegen.</string>
     <string name="you_have_to_select_at_least_one_category">Mindestens eine Kategorie muss ausgewählt sein.</string>

@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Idi na album</string>
     <string name="label_playing_queue">Red čekanja</string>
     <string name="no_results">Nema rezultata</string>
-    <string name="updating">Ažuriranje...</string>
     <string name="added_title_to_playing_queue">"1 pjesma je dodana u red čekanja."</string>
     <string name="added_x_titles_to_playing_queue">Dodano je %1$d pjesama u red čekanja.</string>
     <string name="action_remove_from_playlist">Ukloni s popisa naslova</string>
@@ -157,7 +156,6 @@
     <string name="last_added">Posljednje dodano</string>
     <string name="history">Povijest</string>
     <string name="my_top_tracks">Najslušanije</string>
-    <string name="pick_from_local_storage">Odaberi s pohrane uređaja</string>
     <string name="action_sleep_timer">Tajmer za spavanje</string>
     <string name="action_set">Postavi</string>
     <string name="cancel_current_timer">Otkaži trenutni tajmer</string>
@@ -243,8 +241,6 @@
     <string name="eugene_cheung_summary">Za njegov doprinos izvornom kodu.</string>
     <string name="adrian_summary">Za stvaranje dizajna stranice albuma.</string>
     <string name="add_action">Dodaj</string>
-    <string name="reset_artist_image">Resetiraj slike izvođača</string>
-    <string name="set_artist_image">Postavi sliku izvođača</string>
     <string name="library_categories">Kategorije biblioteke</string>
     <string name="pref_summary_library_categories">Prilagodite vidljivost i poredak kategorija biblioteke</string>
     <string name="you_have_to_select_at_least_one_category">Morate odabrati barem jednu kategoriju</string>

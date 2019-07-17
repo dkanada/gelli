@@ -51,7 +51,6 @@
     <string name="action_go_to_album">الذهاب إلى الألبوم</string>
     <string name="label_playing_queue">قائمة التشغيل</string>
     <string name="no_results">لا توجد نتائج</string>
-    <string name="updating">جار التحديث...</string>
     <string name="added_title_to_playing_queue">"تمت إضافة عنوان واحد إلى قائمة التشغيل."</string>
     <string name="added_x_titles_to_playing_queue">تمت إضافة %1$d عناوين إلى قائمة التشغيل.</string>
     <string name="action_remove_from_playlist">إزالة من قائمة التشغيل</string>
@@ -157,7 +156,6 @@
     <string name="last_added">المضافة مؤخراً</string>
     <string name="history">السجل</string>
     <string name="my_top_tracks">أفضل الأغاني</string>
-    <string name="pick_from_local_storage">اختيار من التخزين الداخلي</string>
     <string name="action_sleep_timer">مؤقت النوم</string>
     <string name="action_set">ضبط</string>
     <string name="cancel_current_timer">إلغاء المؤقت الحالي</string>
@@ -243,8 +241,6 @@
     <string name="eugene_cheung_summary">من أجل مساهماته في الكود المصدري.</string>
     <string name="adrian_summary">من أجل إنشاءه تصميم صفحة الألبومات.</string>
     <string name="add_action">إضافة</string>
-    <string name="reset_artist_image">إعادة تعيين صورة الفنان</string>
-    <string name="set_artist_image">تعيين صورة الفنان</string>
     <string name="library_categories">أقسام المكتبة</string>
     <string name="pref_summary_library_categories">تخصيص رؤية وترتيب أقسام المكتبة.</string>
     <string name="you_have_to_select_at_least_one_category">عليك أن تختار قسماً واحداً على الأقل.</string>

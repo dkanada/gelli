@@ -50,7 +50,6 @@
     <string name="action_go_to_album">Go to album</string>
     <string name="label_playing_queue">Playing queue</string>
     <string name="no_results">No results</string>
-    <string name="updating">Updating…</string>
     <string name="added_title_to_playing_queue">"Added 1 title to the playing queue."</string>
     <string name="added_x_titles_to_playing_queue">Added %1$d titles to the playing queue.</string>
     <string name="action_remove_from_playlist">Remove from playlist</string>
@@ -150,7 +149,6 @@
     <string name="last_added">Last added</string>
     <string name="history">History</string>
     <string name="my_top_tracks">My top tracks</string>
-    <string name="pick_from_local_storage">Pick from local storage</string>
     <string name="action_sleep_timer">Sleep timer</string>
     <string name="action_set">Set</string>
     <string name="cancel_current_timer">Cancel current timer</string>
@@ -233,6 +231,4 @@
     <string name="no_purchase_found">No purchase found.</string>
     <string name="eugene_cheung_summary">For his contributions to the source code.</string>
     <string name="add_action">Add</string>
-    <string name="reset_artist_image">Reset artist image</string>
-    <string name="set_artist_image">Set artist image</string>
 </resources>

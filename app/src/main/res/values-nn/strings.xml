@@ -32,7 +32,6 @@
     <string name="action_go_to_album">Gå til album</string>
     <string name="label_playing_queue">Songkø</string>
     <string name="no_results">Ingen resultat</string>
-    <string name="updating">Oppdaterer...</string>
     <string name="added_title_to_playing_queue">"La 1 tittel til songkøen."</string>
     <string name="added_x_titles_to_playing_queue">La %1$d titlar til songkøen.</string>
     <string name="created_playlist_x">Oppretta speleliste %1$s</string>

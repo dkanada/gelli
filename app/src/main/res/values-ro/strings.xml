@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Accesaţi albumul</string>
     <string name="label_playing_queue">Lista de redare</string>
     <string name="no_results">Niciun rezultat</string>
-    <string name="updating">Actualizare...</string>
     <string name="added_title_to_playing_queue">"Melodie adăugată în lista de redare."</string>
     <string name="added_x_titles_to_playing_queue">%1$d melodii adăugate în lista de redare.</string>
     <string name="action_remove_from_playlist">Ștergeți din lista de redare.</string>
@@ -157,7 +156,6 @@
     <string name="last_added">Ultimele adăugate</string>
     <string name="history">Istoric</string>
     <string name="my_top_tracks">Melodiile mele favorite</string>
-    <string name="pick_from_local_storage">Alegeți din stocarea locală</string>
     <string name="action_sleep_timer">Cronometru pentru somn</string>
     <string name="action_set">Setează</string>
     <string name="cancel_current_timer">Anulează timer curent.</string>
@@ -243,8 +241,6 @@
     <string name="eugene_cheung_summary">Pentru contribuțiile sale la codul sursă.</string>
     <string name="adrian_summary">Pentru crearea designului paginii albume</string>
     <string name="add_action">Adăugare</string>
-    <string name="reset_artist_image">Resetați imaginea artistului</string>
-    <string name="set_artist_image">Setați imaginea artistului</string>
     <string name="library_categories">Categorii</string>
     <string name="pref_summary_library_categories">Configurați vizibilitatea și ordinea categoriilor din bibliotecă.</string>
     <string name="you_have_to_select_at_least_one_category">Trebuie să selectați cel puțin o categorie.</string>

@@ -18,7 +18,6 @@ import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.util.MusicUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

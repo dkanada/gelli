@@ -26,7 +26,6 @@ import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.ArtistSignatureUtil;
-import com.kabouzeid.gramophone.util.CustomArtistImageUtil;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
@@ -35,12 +34,11 @@ public class ArtistGlideRequest {
 
     private static final DiskCacheStrategy DEFAULT_DISK_CACHE_STRATEGY = DiskCacheStrategy.ALL;
     private static final int DEFAULT_ERROR_IMAGE = R.drawable.default_artist_image;
-    public static final int DEFAULT_ANIMATION = android.R.anim.fade_in;
+    private static final int DEFAULT_ANIMATION = android.R.anim.fade_in;
 
     public static class Builder {
         final RequestManager requestManager;
         final Artist artist;
-        boolean noCustomImage;
 
         public static Builder from(@NonNull RequestManager requestManager, Artist artist) {
             return new Builder(requestManager, artist);
@@ -59,14 +57,9 @@ public class ArtistGlideRequest {
             return new BitmapBuilder(this);
         }
 
-        public Builder noCustomImage(boolean noCustomImage) {
-            this.noCustomImage = noCustomImage;
-            return this;
-        }
-
         public DrawableRequestBuilder<GlideDrawable> build() {
             //noinspection unchecked
-            return createBaseRequest(requestManager, artist, noCustomImage)
+            return createBaseRequest(requestManager, artist)
                     .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
                     .error(DEFAULT_ERROR_IMAGE)
                     .animate(DEFAULT_ANIMATION)
@@ -85,7 +78,7 @@ public class ArtistGlideRequest {
 
         public BitmapRequestBuilder<?, Bitmap> build() {
             //noinspection unchecked
-            return createBaseRequest(builder.requestManager, builder.artist, builder.noCustomImage)
+            return createBaseRequest(builder.requestManager, builder.artist)
                     .asBitmap()
                     .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
                     .error(DEFAULT_ERROR_IMAGE)
@@ -107,7 +100,7 @@ public class ArtistGlideRequest {
 
         public BitmapRequestBuilder<?, BitmapPaletteWrapper> build() {
             //noinspection unchecked
-            return createBaseRequest(builder.requestManager, builder.artist, builder.noCustomImage)
+            return createBaseRequest(builder.requestManager, builder.artist)
                     .asBitmap()
                     .transcode(new BitmapPaletteTranscoder(context), BitmapPaletteWrapper.class)
                     .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
@@ -119,18 +112,13 @@ public class ArtistGlideRequest {
         }
     }
 
-    public static DrawableTypeRequest createBaseRequest(RequestManager requestManager, Artist artist, boolean noCustomImage) {
-        boolean hasCustomImage = CustomArtistImageUtil.getInstance(App.getInstance()).hasCustomArtistImage(artist);
-        if (noCustomImage || !hasCustomImage) {
-            final List<AlbumCover> songs = new ArrayList<>();
-            for (final Album album : artist.albums) {
-                final Song song = album.safeGetFirstSong();
-                songs.add(new AlbumCover(album.getYear(), song.data));
-            }
-            return requestManager.load(new ArtistImage(artist.getName(), songs));
-        } else {
-            return requestManager.load(CustomArtistImageUtil.getFile(artist));
+    public static DrawableTypeRequest createBaseRequest(RequestManager requestManager, Artist artist) {
+        final List<AlbumCover> songs = new ArrayList<>();
+        for (final Album album : artist.albums) {
+            final Song song = album.safeGetFirstSong();
+            songs.add(new AlbumCover(album.getYear(), song.data));
         }
+        return requestManager.load(new ArtistImage(artist.getName(), songs));
     }
 
     private static Key createSignature(Artist artist) {

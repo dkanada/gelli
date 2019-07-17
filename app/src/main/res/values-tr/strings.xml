@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Albüme git</string>
     <string name="label_playing_queue">Çalma sırası</string>
     <string name="no_results">Sonuç bulunamadı</string>
-    <string name="updating">Güncelleniyor...</string>
     <string name="added_title_to_playing_queue">"Çalma sırasına 1 başlık eklendi."</string>
     <string name="added_x_titles_to_playing_queue">Çalma sırasına %1$d başlık eklendi.</string>
     <string name="action_remove_from_playlist">Çalma listesinden kaldır</string>
@@ -157,7 +156,6 @@
     <string name="last_added">Son eklenen</string>
     <string name="history">Geçmiş</string>
     <string name="my_top_tracks">En iyi parçalarım</string>
-    <string name="pick_from_local_storage">Dahili hafızadan al</string>
     <string name="action_sleep_timer">Uyku zamanlayıcı</string>
     <string name="action_set">Ayarla</string>
     <string name="cancel_current_timer">Şu anki zamanlayıcıyı iptal et</string>
@@ -243,8 +241,6 @@
     <string name="eugene_cheung_summary">Kaynak koda yaptığı katkılardan dolayı.</string>
     <string name="adrian_summary">Albüm sayfası tasarımı oluşturmak için.</string>
     <string name="add_action">Ekle</string>
-    <string name="reset_artist_image">Sanatçı resmini sıfırla</string>
-    <string name="set_artist_image">Sanatçı resmi ayarla</string>
     <string name="library_categories">Kitaplık kategorileri</string>
     <string name="pref_summary_library_categories">Kitaplık kategorilerinin görünürlüğünü ve sırasını yapılandırma.</string>
     <string name="you_have_to_select_at_least_one_category">En az bir kategori seçmeniz gerekiyor.</string>

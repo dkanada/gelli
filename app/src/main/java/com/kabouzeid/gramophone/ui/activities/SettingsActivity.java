@@ -32,8 +32,6 @@ import com.kabouzeid.gramophone.preferences.NowPlayingScreenPreferenceDialog;
 import com.kabouzeid.gramophone.ui.activities.base.AbsBaseActivity;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 
-import java.util.Arrays;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -232,7 +230,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 classicNotification.setVisible(false);
             } else {
-                classicNotification.setChecked(PreferenceUtil.getInstance(getActivity()).classicNotification());
+                classicNotification.setChecked(PreferenceUtil.getInstance(getActivity()).getClassicNotification());
                 classicNotification.setOnPreferenceChangeListener((preference, newValue) -> {
                     // Save preference
                     PreferenceUtil.getInstance(getActivity()).setClassicNotification((Boolean) newValue);
@@ -242,9 +240,9 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
 
             final TwoStatePreference coloredNotification = (TwoStatePreference) findPreference("colored_notification");
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                coloredNotification.setEnabled(PreferenceUtil.getInstance(getActivity()).classicNotification());
+                coloredNotification.setEnabled(PreferenceUtil.getInstance(getActivity()).getClassicNotification());
             } else {
-                coloredNotification.setChecked(PreferenceUtil.getInstance(getActivity()).coloredNotification());
+                coloredNotification.setChecked(PreferenceUtil.getInstance(getActivity()).getColoredNotification());
                 coloredNotification.setOnPreferenceChangeListener((preference, newValue) -> {
                     // Save preference
                     PreferenceUtil.getInstance(getActivity()).setColoredNotification((Boolean) newValue);
@@ -256,7 +254,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
                 colorAppShortcuts.setVisible(false);
             } else {
-                colorAppShortcuts.setChecked(PreferenceUtil.getInstance(getActivity()).coloredAppShortcuts());
+                colorAppShortcuts.setChecked(PreferenceUtil.getInstance(getActivity()).getColoredAppShortcuts());
                 colorAppShortcuts.setOnPreferenceChangeListener((preference, newValue) -> {
                     // Save preference
                     PreferenceUtil.getInstance(getActivity()).setColoredAppShortcuts((Boolean) newValue);

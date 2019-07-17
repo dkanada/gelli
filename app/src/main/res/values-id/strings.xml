@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Pergi ke album</string>
     <string name="label_playing_queue">Antrean putar</string>
     <string name="no_results">Tidak ditemukan</string>
-    <string name="updating">Memperbaharui</string>
     <string name="added_title_to_playing_queue">"1 lagu ditambahkan ke antrean putar"</string>
     <string name="added_x_titles_to_playing_queue">Telah menambah %1$d lagu ke antrean putar</string>
     <string name="action_remove_from_playlist">Hapus dari daftar putar</string>
@@ -161,7 +160,6 @@
     <string name="last_added">Terakhir ditambahkan</string>
     <string name="history">Diputar baru-baru ini</string>
     <string name="my_top_tracks">Sering Diputar</string>
-    <string name="pick_from_local_storage">Ambil dari penyimpanan lokal</string>
     <string name="action_sleep_timer">Pewaktu tidur</string>
     <string name="action_set">Atur</string>
     <string name="cancel_current_timer">Batalkan pewaktu yang sekarang</string>
@@ -247,8 +245,6 @@
     <string name="eugene_cheung_summary">Untuk kontribusinya terhadap kode sumber.</string>
     <string name="adrian_summary">Untuk membuat halaman desain album.</string>
     <string name="add_action">Tambah</string>
-    <string name="reset_artist_image">Atur ulang gambar artist</string>
-    <string name="set_artist_image">Pasang gambar artis</string>
     <string name="library_categories">Kategori perpustakaan</string>
     <string name="pref_summary_library_categories">Konfigurasi visibilitas dan urutan kategori perpustakaan.</string>
     <string name="you_have_to_select_at_least_one_category">Anda harus memilih setidaknya satu kategori</string>

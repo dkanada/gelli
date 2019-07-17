@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Przejdź do albumu</string>
     <string name="label_playing_queue">Kolejka odtwarzania</string>
     <string name="no_results">Brak wyników</string>
-    <string name="updating">Aktualizowanie...</string>
     <string name="added_title_to_playing_queue">"Dodano 1 tytuł do kolejki odtwarzania"</string>
     <string name="added_x_titles_to_playing_queue">Dodano %1$d tytuły do kolejki odtwarzania</string>
     <string name="action_remove_from_playlist">Usuń z listy odtwarzania</string>
@@ -157,7 +156,6 @@
     <string name="last_added">Ostatnio dodane</string>
     <string name="history">Historia odtwarzania</string>
     <string name="my_top_tracks">Moja Top Lista</string>
-    <string name="pick_from_local_storage">Wybierz z pamięci lokalnej</string>
     <string name="action_sleep_timer">Wyłącznik czasowy</string>
     <string name="action_set">Ustaw</string>
     <string name="cancel_current_timer">Anuluj wyłącznik</string>
@@ -243,8 +241,6 @@
     <string name="eugene_cheung_summary">Za jego wkład w kod źródłowy.</string>
     <string name="adrian_summary">Za stworzenie design\'u strony albumu</string>
     <string name="add_action">Dodaj</string>
-    <string name="reset_artist_image">Wyczyść obraz artysty</string>
-    <string name="set_artist_image">Zaktualizuj zdjęcie wykonawcy</string>
     <string name="library_categories">Kategorie biblioteki</string>
     <string name="pref_summary_library_categories">Ustawia widoczność i kolejność kategorii biblioteki</string>
     <string name="you_have_to_select_at_least_one_category">Musisz wybrać co najmniej jedną kategorię</string>

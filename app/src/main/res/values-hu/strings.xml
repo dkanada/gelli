@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Ugrás az albumhoz</string>
     <string name="label_playing_queue">Lejátszási sor</string>
     <string name="no_results">Nincs találat</string>
-    <string name="updating">Frissítés...</string>
     <string name="added_title_to_playing_queue">"1 dal hozzáadva a lejátszási sorhoz."</string>
     <string name="added_x_titles_to_playing_queue">%1$d dal hozzáadva a lejátszási sorhoz.</string>
     <string name="action_remove_from_playlist">Eltávolítás a lejátszási listából</string>
@@ -157,7 +156,6 @@
     <string name="last_added">Legfrissebb dalok</string>
     <string name="history">Előzmények</string>
     <string name="my_top_tracks">Toplista</string>
-    <string name="pick_from_local_storage">Kiválasztás az eszközről</string>
     <string name="action_sleep_timer">Elalvás időzítő</string>
     <string name="action_set">Beállítás</string>
     <string name="cancel_current_timer">Az aktuális időzítő törlése</string>
@@ -243,8 +241,6 @@
     <string name="eugene_cheung_summary">A forráskódhoz való hozzájárulásáért.</string>
     <string name="adrian_summary">Az album oldalának kialakításához.</string>
     <string name="add_action">Hozzáadás</string>
-    <string name="reset_artist_image">Előadó képének visszaállítása</string>
-    <string name="set_artist_image">Előadó képének beállítása</string>
     <string name="library_categories">Könyvtár kategóriák</string>
     <string name="pref_summary_library_categories">Könyvtár kategóriák láthatóságának és sorrendjének beállítása.</string>
     <string name="you_have_to_select_at_least_one_category">Legalább egy kategóriát ki kell választania.</string>

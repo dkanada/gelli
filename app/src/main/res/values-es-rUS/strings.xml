@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Ir al álbum</string>
     <string name="label_playing_queue">Cola de reproducción</string>
     <string name="no_results">Sin resultados</string>
-    <string name="updating">Actualizando...</string>
     <string name="added_title_to_playing_queue">"1 canción añadida a la cola de reproducción."</string>
     <string name="added_x_titles_to_playing_queue">%1$d canciones añadidas a la cola de reproducción.</string>
     <string name="action_remove_from_playlist">Eliminar de la lista de reproducción</string>
@@ -157,7 +156,6 @@
     <string name="last_added">Agregadas recientemente</string>
     <string name="history">Historial</string>
     <string name="my_top_tracks">Más reproducidas</string>
-    <string name="pick_from_local_storage">Seleccionar del almacenamiento interno</string>
     <string name="action_sleep_timer">Temporizador de apagado</string>
     <string name="action_set">Fijar</string>
     <string name="cancel_current_timer">Cancelar temporizador actual</string>
@@ -242,8 +240,6 @@
     <string name="eugene_cheung_summary">Por sus contribuciones al código fuente.</string>
     <string name="adrian_summary">Por crear el diseño para la ventana del álbum.</string>
     <string name="add_action">Agregar</string>
-    <string name="reset_artist_image">Reiniciar imagen de Artista</string>
-    <string name="set_artist_image">Establecer imagen de Artista</string>
     <string name="library_categories">Categorías de la biblioteca</string>
     <string name="pref_summary_library_categories">Configurar la vista y orden de las categorías de la biblioteca.</string>
     <string name="you_have_to_select_at_least_one_category">Tienes que seleccionar al menos una categoría.</string>

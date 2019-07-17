@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.loader.app.LoaderManager;
@@ -45,16 +45,13 @@ import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
 import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
-import com.kabouzeid.gramophone.util.CustomArtistImageUtil;
 import com.kabouzeid.gramophone.util.MusicUtil;
-import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.kabouzeid.gramophone.util.PhonographColorUtil;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 
 public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder, LoaderManager.LoaderCallbacks<Artist> {
 
     private static final int LOADER_ID = LoaderIds.ARTIST_DETAIL_ACTIVITY;
-    private static final int REQUEST_CODE_SELECT_IMAGE = 1000;
 
     public static final String EXTRA_ARTIST_ID = "extra_artist_id";
 
@@ -201,17 +198,8 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case REQUEST_CODE_SELECT_IMAGE:
-                if (resultCode == RESULT_OK) {
-                    CustomArtistImageUtil.getInstance(this).setCustomArtistImage(artist, data.getData());
-                }
-                break;
-            default:
-                if (resultCode == RESULT_OK) {
-                    reload();
-                }
-                break;
+        if (resultCode == RESULT_OK) {
+            reload();
         }
     }
 
@@ -276,15 +264,6 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
                 return true;
             case android.R.id.home:
                 super.onBackPressed();
-                return true;
-            case R.id.action_set_artist_image:
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, getString(R.string.pick_from_local_storage)), REQUEST_CODE_SELECT_IMAGE);
-                return true;
-            case R.id.action_reset_artist_image:
-                Toast.makeText(ArtistDetailActivity.this, getResources().getString(R.string.updating), Toast.LENGTH_SHORT).show();
-                CustomArtistImageUtil.getInstance(ArtistDetailActivity.this).resetCustomArtistImage(artist);
                 return true;
             case R.id.action_colored_footers:
                 item.setChecked(!item.isChecked());

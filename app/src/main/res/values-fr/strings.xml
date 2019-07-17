@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Voir l\'album</string>
     <string name="label_playing_queue">File de lecture</string>
     <string name="no_results">Aucun résultat</string>
-    <string name="updating">Actualisation…</string>
     <string name="added_title_to_playing_queue">"1 titre ajouté à la file de lecture."</string>
     <string name="added_x_titles_to_playing_queue">%1$d titres ajoutés à la file de lecture.</string>
     <string name="action_remove_from_playlist">Retirer de la liste de lecture</string>
@@ -157,7 +156,6 @@
     <string name="last_added">Derniers ajouts</string>
     <string name="history">Titres écoutés récemment</string>
     <string name="my_top_tracks">Mes meilleurs titres</string>
-    <string name="pick_from_local_storage">Sélectionner depuis le stockage</string>
     <string name="action_sleep_timer">Minuteur sommeil</string>
     <string name="action_set">Définir</string>
     <string name="cancel_current_timer">Annuler le minuteur actuel</string>
@@ -242,8 +240,6 @@
     <string name="eugene_cheung_summary">Pour ses contributions au code source</string>
     <string name="adrian_summary">Pour créer le design de la page d\'album.</string>
     <string name="add_action">Ajouter</string>
-    <string name="reset_artist_image">Réinitialiser l\'image de l\'artiste</string>
-    <string name="set_artist_image">Actualiser l\'image de l\'artiste</string>
     <string name="library_categories">Catégories de la bibliothèque</string>
     <string name="pref_summary_library_categories">Configurer la visibilité et l\'ordre des catégories.</string>
     <string name="you_have_to_select_at_least_one_category">Vous devez sélectionner au moins une catégorie.</string>

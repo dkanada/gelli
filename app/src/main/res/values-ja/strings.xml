@@ -51,7 +51,6 @@
     <string name="action_go_to_album">アルバムを表示</string>
     <string name="label_playing_queue">再生キュー</string>
     <string name="no_results">該当なし</string>
-    <string name="updating">更新中...</string>
     <string name="added_title_to_playing_queue">"曲を再生キューに追加しました"</string>
     <string name="added_x_titles_to_playing_queue">%1$d曲を再生キューに追加しました</string>
     <string name="action_remove_from_playlist">プレイリストから除去</string>
@@ -157,7 +156,6 @@
     <string name="last_added">最近追加された曲</string>
     <string name="history">履歴</string>
     <string name="my_top_tracks">よく聞く曲</string>
-    <string name="pick_from_local_storage">ローカルストレージから選択</string>
     <string name="action_sleep_timer">スリープタイマー</string>
     <string name="action_set">セット</string>
     <string name="cancel_current_timer">スリープタイマーを解除</string>
@@ -243,8 +241,6 @@
     <string name="eugene_cheung_summary">ソースコードへの貢献。</string>
     <string name="adrian_summary">Por criar o design da página de álbuns.</string>
     <string name="add_action">追加</string>
-    <string name="reset_artist_image">アーティスト画像をリセット</string>
-    <string name="set_artist_image">アーティスト画像をセット</string>
     <string name="library_categories">ライブラリのカテゴリ</string>
     <string name="pref_summary_library_categories">ライブラリに表示するカテゴリとその順番を設定します。</string>
     <string name="you_have_to_select_at_least_one_category">最低でも1つのカテゴリを選択を選択してください</string>

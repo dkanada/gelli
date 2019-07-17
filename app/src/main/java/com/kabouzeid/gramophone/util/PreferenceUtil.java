@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
 
 import com.google.gson.Gson;
@@ -18,7 +17,6 @@ import com.kabouzeid.gramophone.helper.SortOrder;
 import com.kabouzeid.gramophone.model.CategoryInfo;
 import com.kabouzeid.gramophone.ui.fragments.player.NowPlayingScreen;
 
-import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +74,6 @@ public final class PreferenceUtil {
 
     public static final String SYNCHRONIZED_LYRICS_SHOW = "synchronized_lyrics_show";
 
-    public static final String INITIALIZED_BLACKLIST = "initialized_blacklist";
-
     public static final String LIBRARY_CATEGORIES = "library_categories";
 
     private static final String REMEMBER_SHUFFLE = "remember_shuffle";
@@ -86,11 +82,11 @@ public final class PreferenceUtil {
 
     private final SharedPreferences mPreferences;
 
-    private PreferenceUtil(@NonNull final Context context) {
+    private PreferenceUtil(final Context context) {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
-    public static PreferenceUtil getInstance(@NonNull final Context context) {
+    public static PreferenceUtil getInstance(final Context context) {
         if (sInstance == null) {
             sInstance = new PreferenceUtil(context.getApplicationContext());
         }
@@ -133,13 +129,13 @@ public final class PreferenceUtil {
     @StyleRes
     public static int getThemeResFromPrefValue(String themePrefValue) {
         switch (themePrefValue) {
-            case "dark":
-                return R.style.Theme_Phonograph;
+            case "light":
+                return R.style.Theme_Phonograph_Light;
             case "black":
                 return R.style.Theme_Phonograph_Black;
-            case "light":
+            case "dark":
             default:
-                return R.style.Theme_Phonograph_Light;
+                return R.style.Theme_Phonograph;
         }
     }
 
@@ -172,12 +168,8 @@ public final class PreferenceUtil {
         editor.commit();
     }
 
-    public final boolean coloredNotification() {
+    public final boolean getColoredNotification() {
         return mPreferences.getBoolean(COLORED_NOTIFICATION, true);
-    }
-
-    public final boolean classicNotification() {
-        return mPreferences.getBoolean(CLASSIC_NOTIFICATION, true);
     }
 
     public void setColoredNotification(final boolean value) {
@@ -186,20 +178,24 @@ public final class PreferenceUtil {
         editor.apply();
     }
 
+    public final boolean getClassicNotification() {
+        return mPreferences.getBoolean(CLASSIC_NOTIFICATION, true);
+    }
+
     public void setClassicNotification(final boolean value) {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putBoolean(CLASSIC_NOTIFICATION, value);
         editor.apply();
     }
 
+    public final boolean getColoredAppShortcuts() {
+        return mPreferences.getBoolean(COLORED_APP_SHORTCUTS, true);
+    }
+
     public void setColoredAppShortcuts(final boolean value) {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putBoolean(COLORED_APP_SHORTCUTS, value);
         editor.apply();
-    }
-
-    public final boolean coloredAppShortcuts() {
-        return mPreferences.getBoolean(COLORED_APP_SHORTCUTS, true);
     }
 
     public final boolean gaplessPlayback() {
@@ -442,16 +438,6 @@ public final class PreferenceUtil {
 
     public final boolean synchronizedLyricsShow() {
         return mPreferences.getBoolean(SYNCHRONIZED_LYRICS_SHOW, true);
-    }
-
-    public void setInitializedBlacklist() {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(INITIALIZED_BLACKLIST, true);
-        editor.apply();
-    }
-
-    public final boolean initializedBlacklist() {
-        return mPreferences.getBoolean(INITIALIZED_BLACKLIST, false);
     }
 
     public void setLibraryCategoryInfos(List<CategoryInfo> categories) {

@@ -50,7 +50,6 @@
     <string name="action_go_to_album">Đi đến album</string>
     <string name="label_playing_queue">Hàng đợi phát</string>
     <string name="no_results">Không có kết quả</string>
-    <string name="updating">Đang cập nhật...</string>
     <string name="added_title_to_playing_queue">"Đã thêm 1 bài vào hàng đợi phát."</string>
     <string name="added_x_titles_to_playing_queue">Đã thêm %1$d bài vào hàng đợi phát.</string>
     <string name="action_remove_from_playlist">Xóa khỏi danh sách nhạc</string>
@@ -149,7 +148,6 @@
     <string name="last_added">Được thêm sau cùng</string>
     <string name="history">Lịch sử</string>
     <string name="my_top_tracks">Bài hát hàng đầu</string>
-    <string name="pick_from_local_storage">Chọn từ bộ nhớ máy</string>
     <string name="action_sleep_timer">Hẹn giờ ngủ</string>
     <string name="action_set">Đặt</string>
     <string name="cancel_current_timer">Hủy hẹn giờ hiện tại</string>

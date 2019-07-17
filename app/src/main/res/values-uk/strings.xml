@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Перейти до альбому</string>
     <string name="label_playing_queue">Черга відтворення</string>
     <string name="no_results">Немає результатів</string>
-    <string name="updating">Оновлення...</string>
     <string name="added_title_to_playing_queue">"Додано 1 композицію до черги відтворення."</string>
     <string name="added_x_titles_to_playing_queue">Додано %1$d композицій до черги відтворення</string>
     <string name="action_remove_from_playlist">Видалити зі списку відтворення</string>
@@ -156,7 +155,6 @@
     <string name="last_added">Останні додані</string>
     <string name="history">Історія</string>
     <string name="my_top_tracks">Мої популярні треки</string>
-    <string name="pick_from_local_storage">Вибрати з локального сховища</string>
     <string name="action_sleep_timer">Таймер сну</string>
     <string name="action_set">Встановити</string>
     <string name="cancel_current_timer">Скасувати встановленний таймер</string>
@@ -219,8 +217,6 @@
     <string name="bug_report_failed">Не вдалося надіслати звіт</string>
     <string name="bug_report_failed_wrong_credentials">Неправильне ім’я користувача або пароль</string>
     <string name="bug_report_failed_invalid_token">Недійсний токен доступу. Зв’яжіться з розробником додатка.</string>
-    <string name="reset_artist_image">Скинути зображення виконавця</string>
-    <string name="set_artist_image">Встановити зображення виконавця</string>
     <string name="library_categories">Категорії бібліотеки</string>
     <string name="pref_summary_library_categories">Налаштувати видимість та порядок категорій бібліотеки.</string>
     <string name="you_have_to_select_at_least_one_category">Виберіть принаймні одну категорію.</string>

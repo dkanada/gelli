@@ -46,7 +46,6 @@
     <string name="action_go_to_album">Gå till album</string>
     <string name="label_playing_queue">Spelarkö</string>
     <string name="no_results">Inga resultat</string>
-    <string name="updating">Uppdaterar ...</string>
     <string name="added_title_to_playing_queue">"Lagt till 1 titel till spellistan."</string>
     <string name="created_playlist_x">Spellista %1$s skapad</string>
     <string name="delete_playlist_x"><![CDATA[

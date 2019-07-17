@@ -51,7 +51,6 @@
     <string name="action_go_to_album">查看专辑</string>
     <string name="label_playing_queue">播放队列</string>
     <string name="no_results">没有找到结果</string>
-    <string name="updating">正在更新…</string>
     <string name="added_title_to_playing_queue">"此歌曲已加入播放队列。"</string>
     <string name="added_x_titles_to_playing_queue">%1$d 首歌曲已加入播放队列。</string>
     <string name="action_remove_from_playlist">从播放列表中移除</string>
@@ -159,7 +158,6 @@
     <string name="last_added">最近添加</string>
     <string name="history">播放历史</string>
     <string name="my_top_tracks">最喜爱的歌曲</string>
-    <string name="pick_from_local_storage">从本地储存中选取</string>
     <string name="action_sleep_timer">睡眠定时器</string>
     <string name="action_set">设置</string>
     <string name="cancel_current_timer">取消当前定时器</string>
@@ -245,8 +243,6 @@
     <string name="eugene_cheung_summary">因他对源代码的贡献。</string>
     <string name="adrian_summary">以新增专辑封面设计。</string>
     <string name="add_action">添加</string>
-    <string name="reset_artist_image">重置艺术家图片</string>
-    <string name="set_artist_image">设置艺术家图片</string>
     <string name="library_categories">媒体库类别</string>
     <string name="pref_summary_library_categories">配置媒体库类别可见性和顺序。</string>
     <string name="you_have_to_select_at_least_one_category">您必需选择至少一个类别。</string>

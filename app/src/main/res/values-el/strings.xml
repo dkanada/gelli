@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Πήγαινε στο άλμπουμ</string>
     <string name="label_playing_queue">Ουρά αναπαραγωγής</string>
     <string name="no_results">Κανένα αποτέλεσμα</string>
-    <string name="updating">Γίνεται ανανέωση...</string>
     <string name="added_title_to_playing_queue">"Προστέθηκε ένας τίτλος στην ουρά αναπαραγωγής"</string>
     <string name="added_x_titles_to_playing_queue">"Προστέθηκαν %1$d τίτλοι στην ουρά αναπαραγωγής "</string>
     <string name="action_remove_from_playlist">Αφαίρεση από την λίστα</string>
@@ -150,7 +149,6 @@
     <string name="last_added">Προστέθηκαν τελευταία</string>
     <string name="history">Ιστορικό</string>
     <string name="my_top_tracks">Τα κορυφαία κομμάτια μου</string>
-    <string name="pick_from_local_storage">Επιλέξτε από την μνήμη της συσκευής</string>
     <string name="action_sleep_timer">Χρονοδιακόπτης ύπνου</string>
     <string name="action_set">Ορίστε</string>
     <string name="cancel_current_timer">Ακύρωση τρέχοντος χρονοδιακόπτη</string>

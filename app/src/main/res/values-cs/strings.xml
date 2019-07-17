@@ -51,7 +51,6 @@
     <string name="action_go_to_album">Přejít do alba</string>
     <string name="label_playing_queue">Fronta</string>
     <string name="no_results">Žádné výsledky</string>
-    <string name="updating">Aktualizace...</string>
     <string name="added_title_to_playing_queue">"Přidána 1 skladba do fronty."</string>
     <string name="added_x_titles_to_playing_queue">Přidáno %1$d skladeb do fronty.</string>
     <string name="action_remove_from_playlist">Odstranit z playlistu</string>
@@ -157,7 +156,6 @@
     <string name="last_added">Naposledy přidáno</string>
     <string name="history">Historie</string>
     <string name="my_top_tracks">"Moje nejposlouchanější skladby "</string>
-    <string name="pick_from_local_storage">Vybrat z místního úložiště</string>
     <string name="action_sleep_timer">Určit ukončení přehrávání</string>
     <string name="action_set">Nastavit</string>
     <string name="cancel_current_timer">Zrušit ukončení přehrávání</string>
@@ -243,8 +241,6 @@
     <string name="eugene_cheung_summary">Pro příspěvky ke zdrojovému kódu.</string>
     <string name="adrian_summary">Pro vytvoření návrhu stránky alba.</string>
     <string name="add_action">Přidat</string>
-    <string name="reset_artist_image">Obnovit obrázek interpreta</string>
-    <string name="set_artist_image">Nastavit obrázek interpreta</string>
     <string name="library_categories">Kategorie knihovny</string>
     <string name="pref_summary_library_categories">Nastavit viditelnost a pořadí kategorií knihoven.</string>
     <string name="you_have_to_select_at_least_one_category">Musíte zvolit alespoň jednu kategorii.</string>
