@@ -1,4 +1,4 @@
-package com.kabouzeid.gramophone.appwidgets;
+package com.kabouzeid.gramophone.widgets;
 
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -18,7 +18,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.appwidgets.base.BaseAppWidget;
+import com.kabouzeid.gramophone.widgets.base.BaseAppWidget;
 import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.service.MusicService;

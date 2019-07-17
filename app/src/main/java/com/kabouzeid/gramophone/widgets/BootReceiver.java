@@ -1,4 +1,4 @@
-package com.kabouzeid.gramophone.appwidgets;
+package com.kabouzeid.gramophone.widgets;
 
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;

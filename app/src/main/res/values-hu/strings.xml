@@ -233,7 +233,6 @@
     <string name="playlist_is_empty">A lejátszási lista üres</string>
     <string name="playing_notification_description">A lejátszási értesítés lejátszási / szüneteltetési intézkedéseket tartalmaz.</string>
     <string name="playing_notification_name">Értesítés lejátszása</string>
-    <string name="only_the_first_5_colors_available">Csak az első 5 szín áll rendelkezésre az ingyenes verzióban.</string>
     <string name="black_theme_is_a_pro_feature">A fekete téma a Phonograph Pro funkcióban van.</string>
     <string name="sleep_timer_is_a_pro_feature">Az elalvásidőzitő a Phonograph Pro funkcióban van.</string>
     <string name="restoring_purchase">A vásárlás visszaállítása...</string>

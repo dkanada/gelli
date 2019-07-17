@@ -1,4 +1,4 @@
-package com.kabouzeid.gramophone.appshortcuts;
+package com.kabouzeid.gramophone.shortcuts;
 
 import android.content.Context;
 import android.graphics.drawable.AdaptiveIconDrawable;

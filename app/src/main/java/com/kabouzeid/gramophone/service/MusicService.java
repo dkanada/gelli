@@ -40,10 +40,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.appwidgets.AppWidgetBig;
-import com.kabouzeid.gramophone.appwidgets.AppWidgetCard;
-import com.kabouzeid.gramophone.appwidgets.AppWidgetClassic;
-import com.kabouzeid.gramophone.appwidgets.AppWidgetSmall;
+import com.kabouzeid.gramophone.widgets.AppWidgetBig;
+import com.kabouzeid.gramophone.widgets.AppWidgetCard;
+import com.kabouzeid.gramophone.widgets.AppWidgetClassic;
+import com.kabouzeid.gramophone.widgets.AppWidgetSmall;
 import com.kabouzeid.gramophone.glide.BlurTransformation;
 import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.helper.ShuffleHelper;
@@ -53,7 +53,7 @@ import com.kabouzeid.gramophone.model.AbsCustomPlaylist;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.provider.HistoryStore;
-import com.kabouzeid.gramophone.provider.MusicPlaybackQueueStore;
+import com.kabouzeid.gramophone.provider.QueueStore;
 import com.kabouzeid.gramophone.provider.SongPlayCountStore;
 import com.kabouzeid.gramophone.service.notification.PlayingNotification;
 import com.kabouzeid.gramophone.service.notification.PlayingNotificationImpl;
@@ -395,7 +395,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private void saveQueuesImpl() {
-        MusicPlaybackQueueStore.getInstance(this).saveQueues(playingQueue, originalPlayingQueue);
+        QueueStore.getInstance(this).saveQueues(playingQueue, originalPlayingQueue);
     }
 
     private void savePosition() {
@@ -429,8 +429,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private synchronized void restoreQueuesAndPositionIfNecessary() {
         if (!queuesRestored && playingQueue.isEmpty()) {
-            List<Song> restoredQueue = MusicPlaybackQueueStore.getInstance(this).getSavedPlayingQueue();
-            List<Song> restoredOriginalQueue = MusicPlaybackQueueStore.getInstance(this).getSavedOriginalPlayingQueue();
+            List<Song> restoredQueue = QueueStore.getInstance(this).getSavedPlayingQueue();
+            List<Song> restoredOriginalQueue = QueueStore.getInstance(this).getSavedOriginalPlayingQueue();
             int restoredPosition = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_POSITION, -1);
             int restoredPositionInTrack = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_POSITION_IN_TRACK, -1);
 

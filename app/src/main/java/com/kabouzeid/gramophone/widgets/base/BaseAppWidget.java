@@ -1,4 +1,4 @@
-package com.kabouzeid.gramophone.appwidgets.base;
+package com.kabouzeid.gramophone.widgets.base;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;

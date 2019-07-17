@@ -235,7 +235,6 @@
     <string name="playlist_is_empty">재생 목록이 비어 있습니다.</string>
     <string name="playing_notification_description">재생 알림을 통해 재생/일시 정지 등을 제어할 수 있습니다.</string>
     <string name="playing_notification_name">재생 알림</string>
-    <string name="only_the_first_5_colors_available">무료 버전에서는 첫 5개의 색상만 선택 가능합니다.</string>
     <string name="black_theme_is_a_pro_feature">검정 테마는 프로 기능입니다.</string>
     <string name="sleep_timer_is_a_pro_feature">수면 타이머는 프로 기능입니다.</string>
     <string name="restoring_purchase">구매 내역을 복원하는 중…</string>

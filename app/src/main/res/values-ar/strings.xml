@@ -233,7 +233,6 @@
     <string name="playlist_is_empty">قائمة التشغيل فارغة</string>
     <string name="playing_notification_description">إشعار التشغيل يوفر أزرار تحكم للتشغيل/الإيقاف المؤقت إلخ.</string>
     <string name="playing_notification_name">إشعار التشغيل</string>
-    <string name="only_the_first_5_colors_available">فقط أول 5 ألوان هي المتوفرة في النسخة المجانية.</string>
     <string name="black_theme_is_a_pro_feature">التنسيق الأسود هي ميزة في Phonograph Pro.</string>
     <string name="sleep_timer_is_a_pro_feature">مؤقت النوم هي ميزة في Phonograph Pro</string>
     <string name="restoring_purchase">جار استعادة عملية الشراء...</string>

@@ -1,4 +1,4 @@
-package com.kabouzeid.gramophone.appshortcuts.shortcuttype;
+package com.kabouzeid.gramophone.shortcuts.shortcuttype;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.kabouzeid.gramophone.appshortcuts.AppShortcutLauncherActivity;
+import com.kabouzeid.gramophone.shortcuts.AppShortcutLauncherActivity;
 
 /**
  * @author Adrian Campos
@@ -15,7 +15,7 @@ import com.kabouzeid.gramophone.appshortcuts.AppShortcutLauncherActivity;
 @TargetApi(Build.VERSION_CODES.N_MR1)
 public abstract class BaseShortcutType {
 
-    static final String ID_PREFIX = "com.kabouzeid.gramophone.appshortcuts.id.";
+    static final String ID_PREFIX = "com.kabouzeid.gramophone.shortcuts.id.";
 
     Context context;
 

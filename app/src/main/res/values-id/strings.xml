@@ -237,7 +237,6 @@
     <string name="playlist_is_empty">Daftar putar kosong</string>
     <string name="playing_notification_description">Notifikasi bermain memberi tindakan untuk putar/jeda, dll.</string>
     <string name="playing_notification_name">Notifikasi bermain</string>
-    <string name="only_the_first_5_colors_available">Hanya 5 warna pertama yang tersedia untuk versi gratis.</string>
     <string name="black_theme_is_a_pro_feature">Tema gelap adalah fitur Phonograph Pro.</string>
     <string name="sleep_timer_is_a_pro_feature">Pengatur waktu tidur adalah fitur Phonograph Pro</string>
     <string name="restoring_purchase">Memulihkan pembelian...</string>

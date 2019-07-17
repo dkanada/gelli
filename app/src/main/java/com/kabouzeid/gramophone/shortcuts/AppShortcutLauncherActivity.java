@@ -1,12 +1,12 @@
-package com.kabouzeid.gramophone.appshortcuts;
+package com.kabouzeid.gramophone.shortcuts;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.kabouzeid.gramophone.appshortcuts.shortcuttype.LatestShortcutType;
-import com.kabouzeid.gramophone.appshortcuts.shortcuttype.ShuffleShortcutType;
-import com.kabouzeid.gramophone.appshortcuts.shortcuttype.FrequentShortcutType;
+import com.kabouzeid.gramophone.shortcuts.shortcuttype.LatestShortcutType;
+import com.kabouzeid.gramophone.shortcuts.shortcuttype.ShuffleShortcutType;
+import com.kabouzeid.gramophone.shortcuts.shortcuttype.FrequentShortcutType;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.smartplaylist.LatestPlaylist;
 import com.kabouzeid.gramophone.model.smartplaylist.FrequentPlaylist;
@@ -18,7 +18,7 @@ import com.kabouzeid.gramophone.service.MusicService;
  */
 
 public class AppShortcutLauncherActivity extends Activity {
-    public static final String KEY_SHORTCUT_TYPE = "com.kabouzeid.gramophone.appshortcuts.ShortcutType";
+    public static final String KEY_SHORTCUT_TYPE = "com.kabouzeid.gramophone.shortcuts.ShortcutType";
 
     public static final int SHORTCUT_TYPE_SHUFFLE = 0;
     public static final int SHORTCUT_TYPE_FREQUENT = 1;

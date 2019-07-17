@@ -24,8 +24,7 @@ import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceFragment
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.appshortcuts.DynamicShortcutManager;
-import com.kabouzeid.gramophone.misc.NonProAllowedColors;
+import com.kabouzeid.gramophone.shortcuts.DynamicShortcutManager;
 import com.kabouzeid.gramophone.preferences.LibraryPreference;
 import com.kabouzeid.gramophone.preferences.LibraryPreferenceDialog;
 import com.kabouzeid.gramophone.preferences.NowPlayingScreenPreference;
@@ -71,32 +70,10 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
     public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int selectedColor) {
         switch (dialog.getTitle()) {
             case R.string.primary_color:
-                if (!App.isProVersion()) {
-                    Arrays.sort(NonProAllowedColors.PRIMARY_COLORS);
-                    if (Arrays.binarySearch(NonProAllowedColors.PRIMARY_COLORS, selectedColor) < 0) {
-                        // color wasn't found
-                        Toast.makeText(this, R.string.only_the_first_5_colors_available, Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(this, PurchaseActivity.class));
-                        return;
-                    }
-                }
-                ThemeStore.editTheme(this)
-                        .primaryColor(selectedColor)
-                        .commit();
+                ThemeStore.editTheme(this).primaryColor(selectedColor).commit();
                 break;
             case R.string.accent_color:
-                if (!App.isProVersion()) {
-                    Arrays.sort(NonProAllowedColors.ACCENT_COLORS);
-                    if (Arrays.binarySearch(NonProAllowedColors.ACCENT_COLORS, selectedColor) < 0) {
-                        // color wasn't found
-                        Toast.makeText(this, R.string.only_the_first_5_colors_available, Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(this, PurchaseActivity.class));
-                        return;
-                    }
-                }
-                ThemeStore.editTheme(this)
-                        .accentColor(selectedColor)
-                        .commit();
+                ThemeStore.editTheme(this).accentColor(selectedColor).commit();
                 break;
         }
 

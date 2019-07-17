@@ -237,7 +237,6 @@
     <string name="playlist_is_empty">Soittolista on tyhjä</string>
     <string name="playing_notification_description">Toistoilmoitus sisältää nappeja musiikin toistolle/pysäyttämiselle jne.</string>
     <string name="playing_notification_name">Toistoilmoitus</string>
-    <string name="only_the_first_5_colors_available">Sovelluksen ilmaisversio on rajoitettu 5 ensimmäiseen värivaihtoehtoon.</string>
     <string name="black_theme_is_a_pro_feature">Musta teema on Phonograph Pro:n ominaisuus.</string>
     <string name="sleep_timer_is_a_pro_feature">Herätyskello on Phonograph Pro:n ominaisuus.</string>
     <string name="restoring_purchase">Palautetaan ostoa...</string>

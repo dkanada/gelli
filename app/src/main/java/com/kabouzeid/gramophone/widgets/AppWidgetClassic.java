@@ -1,4 +1,4 @@
-package com.kabouzeid.gramophone.appwidgets;
+package com.kabouzeid.gramophone.widgets;
 
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -18,7 +18,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.appwidgets.base.BaseAppWidget;
+import com.kabouzeid.gramophone.widgets.base.BaseAppWidget;
 import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.glide.palette.BitmapPaletteWrapper;
 import com.kabouzeid.gramophone.model.Song;
@@ -26,17 +26,17 @@ import com.kabouzeid.gramophone.service.MusicService;
 import com.kabouzeid.gramophone.ui.activities.MainActivity;
 import com.kabouzeid.gramophone.util.ImageUtil;
 
-public class AppWidgetCard extends BaseAppWidget {
-    public static final String NAME = "app_widget_card";
+public class AppWidgetClassic extends BaseAppWidget {
+    public static final String NAME = "app_widget_classic";
 
-    private static AppWidgetCard mInstance;
+    private static AppWidgetClassic mInstance;
     private static int imageSize = 0;
     private static float cardRadius = 0f;
     private Target<BitmapPaletteWrapper> target; // for cancellation
 
-    public static synchronized AppWidgetCard getInstance() {
+    public static synchronized AppWidgetClassic getInstance() {
         if (mInstance == null) {
-            mInstance = new AppWidgetCard();
+            mInstance = new AppWidgetClassic();
         }
         return mInstance;
     }
@@ -46,7 +46,7 @@ public class AppWidgetCard extends BaseAppWidget {
      * default click and hide actions if service not running.
      */
     protected void defaultAppWidget(final Context context, final int[] appWidgetIds) {
-        final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_card);
+        final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_classic);
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);
         appWidgetView.setImageViewResource(R.id.image, R.drawable.default_album_art);
@@ -62,7 +62,7 @@ public class AppWidgetCard extends BaseAppWidget {
      * Update all active widget instances by pushing changes
      */
     public void performUpdate(final MusicService service, final int[] appWidgetIds) {
-        final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(), R.layout.app_widget_card);
+        final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(), R.layout.app_widget_classic);
 
         final boolean isPlaying = service.isPlaying();
         final Song song = service.getCurrentSong();
@@ -76,44 +76,37 @@ public class AppWidgetCard extends BaseAppWidget {
             appWidgetView.setTextViewText(R.id.text, getSongArtistAndAlbum(song));
         }
 
-        // Set correct drawable for pause state
-        int playPauseRes = isPlaying ? R.drawable.ic_pause_white_24dp : R.drawable.ic_play_arrow_white_24dp;
-        appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, playPauseRes, MaterialValueHelper.getSecondaryTextColor(service, true))));
-
-        // Set prev/next button drawables
-        appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_next_white_24dp, MaterialValueHelper.getSecondaryTextColor(service, true))));
-        appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_previous_white_24dp, MaterialValueHelper.getSecondaryTextColor(service, true))));
-
         // Link actions buttons to intents
         linkButtons(service, appWidgetView);
 
         if (imageSize == 0)
-            imageSize = service.getResources().getDimensionPixelSize(R.dimen.app_widget_card_image_size);
+            imageSize = service.getResources().getDimensionPixelSize(R.dimen.app_widget_classic_image_size);
         if (cardRadius == 0f)
             cardRadius = service.getResources().getDimension(R.dimen.app_widget_card_radius);
 
         // Load the album cover async and push the update on completion
+        final Context appContext = service.getApplicationContext();
         service.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (target != null) {
                     Glide.clear(target);
                 }
-                target = SongGlideRequest.Builder.from(Glide.with(service), song)
-                        .checkIgnoreMediaStore(service)
+                target = SongGlideRequest.Builder.from(Glide.with(appContext), song)
+                        .checkIgnoreMediaStore(appContext)
                         .generatePalette(service).build()
                         .centerCrop()
                         .into(new SimpleTarget<BitmapPaletteWrapper>(imageSize, imageSize) {
                             @Override
                             public void onResourceReady(BitmapPaletteWrapper resource, GlideAnimation<? super BitmapPaletteWrapper> glideAnimation) {
                                 Palette palette = resource.getPalette();
-                                update(resource.getBitmap(), palette.getVibrantColor(palette.getMutedColor(MaterialValueHelper.getSecondaryTextColor(service, true))));
+                                update(resource.getBitmap(), palette.getVibrantColor(palette.getMutedColor(MaterialValueHelper.getSecondaryTextColor(appContext, true))));
                             }
 
                             @Override
                             public void onLoadFailed(Exception e, Drawable errorDrawable) {
                                 super.onLoadFailed(e, errorDrawable);
-                                update(null, MaterialValueHelper.getSecondaryTextColor(service, true));
+                                update(null, MaterialValueHelper.getSecondaryTextColor(appContext, true));
                             }
 
                             private void update(@Nullable Bitmap bitmap, int color) {
@@ -129,7 +122,7 @@ public class AppWidgetCard extends BaseAppWidget {
                                 final Bitmap roundedBitmap = createRoundedBitmap(image, imageSize, imageSize, cardRadius, 0, cardRadius, 0);
                                 appWidgetView.setImageViewBitmap(R.id.image, roundedBitmap);
 
-                                pushUpdate(service, appWidgetIds, appWidgetView);
+                                pushUpdate(appContext, appWidgetIds, appWidgetView);
                             }
                         });
             }

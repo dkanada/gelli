@@ -233,7 +233,6 @@
     <string name="playlist_is_empty">Popis naslova je prazan</string>
     <string name="playing_notification_description">Obavijest reprodukcije pruža radnje za reprodukciju/pauzu itd.</string>
     <string name="playing_notification_name">Obavijest reprodukcije</string>
-    <string name="only_the_first_5_colors_available">Samo je prvih 5 boja dostupno u besplatnoj verziji.</string>
     <string name="black_theme_is_a_pro_feature">Crna tema je Phonograph Pro značajka.</string>
     <string name="sleep_timer_is_a_pro_feature">Tajmer za spavanje je Phonograph Pro značajka.</string>
     <string name="restoring_purchase">Vraćanje kupnje...</string>

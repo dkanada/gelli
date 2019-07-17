@@ -233,7 +233,6 @@
     <string name="playlist_is_empty">רשימת ההשמעה ריקה</string>
     <string name="playing_notification_description">התראת הניגון מספקת פעולות הפעלה/השהייה וכו\'.</string>
     <string name="playing_notification_name">התראת ניגון</string>
-    <string name="only_the_first_5_colors_available">רק 5 הצבעים הראשונים זמינים בגרסה החינמית.</string>
     <string name="black_theme_is_a_pro_feature">ערכת הנושא השחורה היא אפשרות הזמינה ב-Phonograph Pro בלבד.</string>
     <string name="sleep_timer_is_a_pro_feature">טיימר לשינה הוא אפשרות הזמינה ב-Phonograph Pro בלבד.</string>
     <string name="restoring_purchase">משחזר רכישה...</string>

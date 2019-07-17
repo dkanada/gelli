@@ -233,7 +233,6 @@
     <string name="playlist_is_empty">Playlist je prázdný</string>
     <string name="playing_notification_description">Oznámení o přehrávání obsahuje akce pro přehrávání/pauzu atd.</string>
     <string name="playing_notification_name">Oznámení o přehrávání</string>
-    <string name="only_the_first_5_colors_available">Ve verzi zdarma je dostupných pouze prvních 5 barev.</string>
     <string name="black_theme_is_a_pro_feature">Černý motiv je funkce Phonograph Pro.</string>
     <string name="sleep_timer_is_a_pro_feature">Časovač vypnutí je funkce Phonograph Pro.</string>
     <string name="restoring_purchase">Obnovení nákupu...</string>

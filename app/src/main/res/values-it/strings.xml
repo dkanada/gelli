@@ -238,7 +238,6 @@
     <string name="playlist_is_empty">La playlist è vuota</string>
     <string name="playing_notification_description">La notifica di riproduzione offre azioni per play/pausa ecc.</string>
     <string name="playing_notification_name">Notifica di riproduzione</string>
-    <string name="only_the_first_5_colors_available">Solo i primi cinque colori sono disponibili nella versione gratuita.</string>
     <string name="black_theme_is_a_pro_feature">Il tema scuro è una funzionalità di Phonograph Pro.</string>
     <string name="sleep_timer_is_a_pro_feature">Il timer di spegnimento è una funzionalità di Phonograph Pro.</string>
     <string name="restoring_purchase">Ripristinando l\'acquisto...</string>

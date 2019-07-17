@@ -237,7 +237,6 @@
     <string name="playlist_is_empty">Die Wiedergabeliste ist leer</string>
     <string name="playing_notification_description">Die Benachrichtigung zur Steuerung von Play/Pause etc.</string>
     <string name="playing_notification_name">Wiedergabe-Benachrichtigung</string>
-    <string name="only_the_first_5_colors_available">Nur die ersten 5 Farben sind in der kostenlosen Version verfügbar.</string>
     <string name="black_theme_is_a_pro_feature">Das schwarze Theme ist ein Phonograph Pro-Feature</string>
     <string name="sleep_timer_is_a_pro_feature">Der Einschlaf-Timer ist ein Phonograph Pro-Feature</string>
     <string name="restoring_purchase">Stelle Kauf wieder her...</string>

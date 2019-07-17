@@ -28,7 +28,6 @@ import androidx.annotation.Nullable;
 import com.kabouzeid.gramophone.loader.SongLoader;
 import com.kabouzeid.gramophone.model.Song;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,9 +35,9 @@ import java.util.List;
  *         <p/>
  *         This keeps track of the music playback and history state of the playback service
  */
-public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
+public class QueueStore extends SQLiteOpenHelper {
     @Nullable
-    private static MusicPlaybackQueueStore sInstance = null;
+    private static QueueStore sInstance = null;
     public static final String DATABASE_NAME = "music_playback_state.db";
     public static final String PLAYING_QUEUE_TABLE_NAME = "playing_queue";
     public static final String ORIGINAL_PLAYING_QUEUE_TABLE_NAME = "original_playing_queue";
@@ -49,7 +48,7 @@ public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
      *
      * @param context The {@link Context} to use
      */
-    public MusicPlaybackQueueStore(final Context context) {
+    public QueueStore(final Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
 
@@ -123,9 +122,9 @@ public class MusicPlaybackQueueStore extends SQLiteOpenHelper {
      * @return A new instance of this class.
      */
     @NonNull
-    public static synchronized MusicPlaybackQueueStore getInstance(@NonNull final Context context) {
+    public static synchronized QueueStore getInstance(@NonNull final Context context) {
         if (sInstance == null) {
-            sInstance = new MusicPlaybackQueueStore(context.getApplicationContext());
+            sInstance = new QueueStore(context.getApplicationContext());
         }
         return sInstance;
     }

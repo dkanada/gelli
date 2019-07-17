@@ -1,4 +1,4 @@
-package com.kabouzeid.gramophone.appshortcuts;
+package com.kabouzeid.gramophone.shortcuts;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
-import com.kabouzeid.gramophone.appshortcuts.shortcuttype.LatestShortcutType;
-import com.kabouzeid.gramophone.appshortcuts.shortcuttype.ShuffleShortcutType;
-import com.kabouzeid.gramophone.appshortcuts.shortcuttype.FrequentShortcutType;
+import com.kabouzeid.gramophone.shortcuts.shortcuttype.LatestShortcutType;
+import com.kabouzeid.gramophone.shortcuts.shortcuttype.ShuffleShortcutType;
+import com.kabouzeid.gramophone.shortcuts.shortcuttype.FrequentShortcutType;
 
 import java.util.Arrays;
 import java.util.List;

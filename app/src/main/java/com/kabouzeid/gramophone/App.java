@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.kabouzeid.appthemehelper.ThemeStore;
-import com.kabouzeid.gramophone.appshortcuts.DynamicShortcutManager;
+import com.kabouzeid.gramophone.shortcuts.DynamicShortcutManager;
 
 import org.jellyfin.apiclient.interaction.AndroidConnectionManager;
 import org.jellyfin.apiclient.interaction.AndroidDevice;

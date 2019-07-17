@@ -61,7 +61,7 @@
             android:name=".ui.activities.bugreport.BugReportActivity"
             android:label="@string/report_an_issue" />
         <activity
-            android:name=".appshortcuts.AppShortcutLauncherActivity"
+            android:name=".shortcuts.AppShortcutLauncherActivity"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name=".ui.activities.PurchaseActivity" />
@@ -90,14 +90,14 @@
             android:value="GlideModule" />
 
         <!-- Widgets -->
-        <receiver android:name=".appwidgets.BootReceiver">
+        <receiver android:name=".widgets.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".appwidgets.AppWidgetBig"
+            android:name=".widgets.AppWidgetBig"
             android:exported="false"
             android:label="@string/app_widget_big_name">
             <intent-filter>
@@ -109,7 +109,7 @@
                 android:resource="@xml/app_widget_big_info" />
         </receiver>
         <receiver
-            android:name=".appwidgets.AppWidgetClassic"
+            android:name=".widgets.AppWidgetClassic"
             android:exported="false"
             android:label="@string/app_widget_classic_name">
             <intent-filter>
@@ -121,7 +121,7 @@
                 android:resource="@xml/app_widget_classic_info" />
         </receiver>
         <receiver
-            android:name=".appwidgets.AppWidgetSmall"
+            android:name=".widgets.AppWidgetSmall"
             android:exported="false"
             android:label="@string/app_widget_small_name">
             <intent-filter>
@@ -133,7 +133,7 @@
                 android:resource="@xml/app_widget_small_info" />
         </receiver>
         <receiver
-            android:name=".appwidgets.AppWidgetCard"
+            android:name=".widgets.AppWidgetCard"
             android:exported="false"
             android:label="@string/app_widget_card_name">
             <intent-filter>

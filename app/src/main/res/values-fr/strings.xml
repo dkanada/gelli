@@ -232,7 +232,6 @@
     <string name="playlist_is_empty">La liste de lecture est vide</string>
     <string name="playing_notification_description">La notification de lecture fournit des actions pour la lecture/pause etc.</string>
     <string name="playing_notification_name">Notification de lecture</string>
-    <string name="only_the_first_5_colors_available">Seules les 5 premières couleurs sont disponibles dans la version gratuite.</string>
     <string name="black_theme_is_a_pro_feature">Le thème noir est une fonctionnalité Phonograph Pro</string>
     <string name="sleep_timer_is_a_pro_feature">Le minuteur de sommeil est une fonctionnalité Phonograph Pro</string>
     <string name="restoring_purchase">Restauration des achats...</string>

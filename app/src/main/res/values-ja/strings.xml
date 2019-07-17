@@ -233,7 +233,6 @@
     <string name="playlist_is_empty">プレイリストは空です</string>
     <string name="playing_notification_description">再生の通知は再生/一時停止などを提供します。</string>
     <string name="playing_notification_name">再生中の通知</string>
-    <string name="only_the_first_5_colors_available">無料版では5色のみ利用可能です。</string>
     <string name="black_theme_is_a_pro_feature">黒テーマはPhonograph Proの機能です。</string>
     <string name="sleep_timer_is_a_pro_feature">スリープ タイマーはPhonograph Proの機能です。</string>
     <string name="restoring_purchase">購入を復元中…</string>

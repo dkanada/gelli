@@ -237,7 +237,6 @@
     <string name="playlist_is_empty">Плейлист пуст</string>
     <string name="playing_notification_description">С помощью уведомления о воспроизведении можно воспроизводить/ставить на паузу и т.д.</string>
     <string name="playing_notification_name">Уведомление о воспроизведении</string>
-    <string name="only_the_first_5_colors_available">Только первые 5 цветов доступны в бесплатной версии.</string>
     <string name="black_theme_is_a_pro_feature">Чёрная тема это функция Phonograph Pro.</string>
     <string name="sleep_timer_is_a_pro_feature">Таймер сна это функция Phonograph Pro.</string>
     <string name="restoring_purchase">Восстановление покупки...</string>

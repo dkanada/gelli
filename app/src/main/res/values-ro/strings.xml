@@ -233,7 +233,6 @@
     <string name="playlist_is_empty">Listă de redare goală</string>
     <string name="playing_notification_description">Notificarea de redare oferă acțiuni de redare/pauză etc.</string>
     <string name="playing_notification_name">Notificare de redare</string>
-    <string name="only_the_first_5_colors_available">Numai primele 5 culori sunt disponibile în versiunea gratuită.</string>
     <string name="black_theme_is_a_pro_feature">Tema întunecată este disponibilă doar în versiunea Phonograph Pro.</string>
     <string name="sleep_timer_is_a_pro_feature">Temporizatorul este disponibil doar în versiunea Phonograph Pro</string>
     <string name="restoring_purchase">Se restabilește achiziția...</string>

@@ -233,7 +233,6 @@
     <string name="playlist_is_empty">Çalma listesi boş</string>
     <string name="playing_notification_description">Çalma bildirimi, başlat/duraklat vb. işlemleri sağlar</string>
     <string name="playing_notification_name">Çalma bildirimi</string>
-    <string name="only_the_first_5_colors_available">Ücretsiz sürümde sadece ilk 5 renk mevcuttur.</string>
     <string name="black_theme_is_a_pro_feature">Siyah tema, Phonograph Pro özelliğidir.</string>
     <string name="sleep_timer_is_a_pro_feature">Uyku zamanlayıcı bir Phonograph Pro özelliğidir.</string>
     <string name="restoring_purchase">Satın alma geri yükleniyor...</string>
