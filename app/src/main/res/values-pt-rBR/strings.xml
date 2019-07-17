@@ -173,7 +173,6 @@
     <string name="permission_external_storage_denied">Permissão para acessar armazenamento externo negado.</string>
     <string name="support_development">Apoiar o desenvolvimento</string>
     <string name="thank_you">Obrigado!</string>
-    <string name="restored_previous_purchase_please_restart">Restituídas compras anteriores. Por favor, reinicie o aplicativo pra usufruir dos novos recursos.</string>
     <string name="version">Versão</string>
     <string name="author">Autor</string>
     <string name="write_an_email">Escreva um email</string>
@@ -235,13 +234,6 @@
     <string name="playlist_is_empty">A playlist está vazia</string>
     <string name="playing_notification_description">A notificação de reprodução fornece opções de pausar/continuar etc.</string>
     <string name="playing_notification_name">Notificação de reprodução</string>
-    <string name="black_theme_is_a_pro_feature">O tema escuro é um recurso da versão Pro do Phonograph.</string>
-    <string name="sleep_timer_is_a_pro_feature">Temporizador de soneca é um recurso da versão Pro do Phonograph</string>
-    <string name="restoring_purchase">Restituindo compra...</string>
-    <string name="could_not_restore_purchase">Não foi possível restituir a compra.</string>
-    <string name="purchase">Comprar</string>
-    <string name="restore">Restituir</string>
-    <string name="no_purchase_found">Nenhuma compra feita.</string>
     <string name="eugene_cheung_summary">Pela sua contribuição com o código-fonte.</string>
     <string name="adrian_summary">Por criar o design da página de álbuns.</string>
     <string name="add_action">Adicionar</string>

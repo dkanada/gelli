@@ -173,7 +173,6 @@
     <string name="permission_external_storage_denied">Permiso para acceder al almacenamiento externo denegado.</string>
     <string name="support_development">Apoyar desarrollo</string>
     <string name="thank_you">¡Gracias!</string>
-    <string name="restored_previous_purchase_please_restart">Restablecida la última compra. Por favor, reinicie la aplicación para utilizar todas las características.</string>
     <string name="version">Versión</string>
     <string name="author">Autor</string>
     <string name="write_an_email">Escribir un email</string>
@@ -235,13 +234,6 @@
     <string name="playlist_is_empty">Lista de reproducción vacía</string>
     <string name="playing_notification_description">La notificación de reproducción muestra acciones para reproducir/pausar etc.</string>
     <string name="playing_notification_name">Notificación de reproducción</string>
-    <string name="black_theme_is_a_pro_feature">El tema negro es una característica de Phonograph Pro.</string>
-    <string name="sleep_timer_is_a_pro_feature">El temporizador de sueño es una característica de Phonograph Pro.</string>
-    <string name="restoring_purchase">Restableciendo la compra...</string>
-    <string name="could_not_restore_purchase">No se pudo restablecer la compra</string>
-    <string name="purchase">Comprar</string>
-    <string name="restore">Restablecer</string>
-    <string name="no_purchase_found">No purchase found.</string>
     <string name="eugene_cheung_summary">Por sus contribuciones al código fuente</string>
     <string name="adrian_summary">Para crear el diseño de la página del álbum.</string>
     <string name="add_action">Añadir</string>

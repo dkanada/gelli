@@ -169,7 +169,6 @@
     <string name="permission_external_storage_denied">تم رفض صلاحية الوصول إلى الذاكرة الخارجية.</string>
     <string name="support_development">دعم التطوير</string>
     <string name="thank_you">شكراً لك!</string>
-    <string name="restored_previous_purchase_please_restart">تمت استعادة عملية الشراء السابقة. يرجى إعادة تشغيل التطبيق للاستفادة من جميع المميزات.</string>
     <string name="version">الإصدار</string>
     <string name="author">المؤلف</string>
     <string name="write_an_email">كتابة بريد إلكتروني</string>
@@ -231,13 +230,6 @@
     <string name="playlist_is_empty">قائمة التشغيل فارغة</string>
     <string name="playing_notification_description">إشعار التشغيل يوفر أزرار تحكم للتشغيل/الإيقاف المؤقت إلخ.</string>
     <string name="playing_notification_name">إشعار التشغيل</string>
-    <string name="black_theme_is_a_pro_feature">التنسيق الأسود هي ميزة في Phonograph Pro.</string>
-    <string name="sleep_timer_is_a_pro_feature">مؤقت النوم هي ميزة في Phonograph Pro</string>
-    <string name="restoring_purchase">جار استعادة عملية الشراء...</string>
-    <string name="could_not_restore_purchase">لم يتم التمكن من استعادة عملية الشراء.</string>
-    <string name="purchase">شراء</string>
-    <string name="restore">استعادة</string>
-    <string name="no_purchase_found">لم يتم العثور على عملية شراء.</string>
     <string name="eugene_cheung_summary">من أجل مساهماته في الكود المصدري.</string>
     <string name="adrian_summary">من أجل إنشاءه تصميم صفحة الألبومات.</string>
     <string name="add_action">إضافة</string>

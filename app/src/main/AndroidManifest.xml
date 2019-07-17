@@ -64,7 +64,6 @@
             android:name=".shortcuts.AppShortcutLauncherActivity"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".ui.activities.PurchaseActivity" />
 
         <service
             android:name=".service.MusicService"

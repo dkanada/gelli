@@ -161,7 +161,6 @@
     <string name="permission_external_storage_denied">Quyền truy cập lưu trữ bên ngoài bị từ chối.</string>
     <string name="support_development">Hỗ trợ phát triển</string>
     <string name="thank_you">Cảm ơn!</string>
-    <string name="restored_previous_purchase_please_restart">Khôi phục mua trước đó. Vui lòng khởi động lại ứng dụng để sử dụng tất cả các tính năng.</string>
     <string name="version">Phiên bản</string>
     <string name="author">Tác giả</string>
     <string name="write_an_email">Viết email</string>
@@ -221,13 +220,6 @@
     <string name="playlist_is_empty">Danh sách nhạc trống</string>
     <string name="playing_notification_description">Thông báo đang phát cung cấp các hành động để phát / tạm dừng vv.</string>
     <string name="playing_notification_name">Thông báo đang phát</string>
-    <string name="black_theme_is_a_pro_feature">Chủ đề màu đen là tính năng của Phonograph Pro.</string>
-    <string name="sleep_timer_is_a_pro_feature">Hẹn giờ ngủ là một tính năng của Phonograph Pro</string>
-    <string name="restoring_purchase">Đang khôi phục mua hàng...</string>
-    <string name="could_not_restore_purchase">Không thể khôi phục mua hàng.</string>
-    <string name="purchase">Mua hàng</string>
-    <string name="restore">Khôi phục</string>
-    <string name="no_purchase_found">Không tìm thấy hàng mua.</string>
     <string name="eugene_cheung_summary">Đối với đóng góp cho mã nguồn.</string>
     <string name="add_action">Thêm</string>
 </resources>

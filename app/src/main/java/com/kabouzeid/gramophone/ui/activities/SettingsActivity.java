@@ -159,16 +159,9 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             setSummary(generalTheme);
             generalTheme.setOnPreferenceChangeListener((preference, o) -> {
                 String themeName = (String) o;
-                if (themeName.equals("black") && !App.isProVersion()) {
-                    Toast.makeText(getActivity(), R.string.black_theme_is_a_pro_feature, Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getContext(), PurchaseActivity.class));
-                    return false;
-                }
-
                 setSummary(generalTheme, o);
 
                 ThemeStore.markChanged(getActivity());
-
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                     // Set the new theme so that updateAppShortcuts can pull it
                     getActivity().setTheme(PreferenceUtil.getThemeResFromPrefValue(themeName));

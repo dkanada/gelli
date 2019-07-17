@@ -33,8 +33,6 @@ public class App extends Application {
     private static App app;
     private static ApiClient apiClient;
 
-    private BillingProcessor billingProcessor;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -42,39 +40,13 @@ public class App extends Application {
 
         // default theme
         if (!ThemeStore.isConfigured(this, 1)) {
-            ThemeStore.editTheme(this)
-                    .primaryColorRes(R.color.md_indigo_500)
-                    .accentColorRes(R.color.md_pink_A400)
-                    .commit();
+            ThemeStore.editTheme(this).primaryColorRes(R.color.md_indigo_500).accentColorRes(R.color.md_pink_A400).commit();
         }
 
         // dynamic shortcuts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             new DynamicShortcutManager(this).initDynamicShortcuts();
         }
-
-        // automatically restore purchases
-        billingProcessor = new BillingProcessor(this, App.GOOGLE_PLAY_LICENSE_KEY, new BillingProcessor.IBillingHandler() {
-            @Override
-            public void onProductPurchased(@NonNull String productId, TransactionDetails details) {
-            }
-
-            @Override
-            public void onPurchaseHistoryRestored() {
-            }
-
-            @Override
-            public void onBillingError(int errorCode, Throwable error) {
-            }
-
-            @Override
-            public void onBillingInitialized() {
-            }
-        });
-    }
-
-    public static boolean isProVersion() {
-        return BuildConfig.DEBUG || app.billingProcessor.isPurchased(PRO_VERSION_PRODUCT_ID);
     }
 
     public static ConnectionManager getConnectionManager(Context context, IJsonSerializer jsonSerializer, ILogger logger, IAsyncHttpClient httpClient) {
@@ -98,11 +70,5 @@ public class App extends Application {
 
     public static App getInstance() {
         return app;
-    }
-
-    @Override
-    public void onTerminate() {
-        super.onTerminate();
-        billingProcessor.release();
     }
 }

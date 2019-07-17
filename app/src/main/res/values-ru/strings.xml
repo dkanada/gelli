@@ -173,7 +173,6 @@
     <string name="permission_external_storage_denied">В разрешении на доступ к внешнему хранилищу отказано.</string>
     <string name="support_development">Поддержать разработку</string>
     <string name="thank_you">Спасибо!</string>
-    <string name="restored_previous_purchase_please_restart">Восстановлена предыдущая покупка. Пожалуйста, перезагрузите приложение, чтобы использовать все функции.</string>
     <string name="version">Версия</string>
     <string name="author">Автор</string>
     <string name="write_an_email">Написать на электронную почту</string>
@@ -235,13 +234,6 @@
     <string name="playlist_is_empty">Плейлист пуст</string>
     <string name="playing_notification_description">С помощью уведомления о воспроизведении можно воспроизводить/ставить на паузу и т.д.</string>
     <string name="playing_notification_name">Уведомление о воспроизведении</string>
-    <string name="black_theme_is_a_pro_feature">Чёрная тема это функция Phonograph Pro.</string>
-    <string name="sleep_timer_is_a_pro_feature">Таймер сна это функция Phonograph Pro.</string>
-    <string name="restoring_purchase">Восстановление покупки...</string>
-    <string name="could_not_restore_purchase">Невозможно восстановить покупку.</string>
-    <string name="purchase">Покупка</string>
-    <string name="restore">Восстановление</string>
-    <string name="no_purchase_found">Покупка не найдена.</string>
     <string name="eugene_cheung_summary">За его вклад в исходный код.</string>
     <string name="adrian_summary">За создание дизайна показа альбомов.</string>
     <string name="add_action">Добавить</string>

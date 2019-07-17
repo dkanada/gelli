@@ -169,7 +169,6 @@
     <string name="permission_external_storage_denied">Toegang tot externe opslag geweigerd.</string>
     <string name="support_development">Ondersteun ontwikkeling</string>
     <string name="thank_you">Dankjewel!</string>
-    <string name="restored_previous_purchase_please_restart">Verleden aankoop hersteld. Gelieve de app te herstarten om alle functies te benutten.</string>
     <string name="version">Versie</string>
     <string name="author">Auteur</string>
     <string name="write_an_email">Schrijf een email</string>
@@ -231,13 +230,6 @@
     <string name="playlist_is_empty">Afspeellijst is leeg</string>
     <string name="playing_notification_description">De afspeelmelding biedt acties voor afspelen/pauzeren etc.</string>
     <string name="playing_notification_name">Afspeelmelding</string>
-    <string name="black_theme_is_a_pro_feature">Het zwarte thema is een Phonograph Pro functie.</string>
-    <string name="sleep_timer_is_a_pro_feature">Slaaptimer is een Phonograph Pro functie.</string>
-    <string name="restoring_purchase">Aankoop herstellen…</string>
-    <string name="could_not_restore_purchase">Kan aankoop niet herstellen.</string>
-    <string name="purchase">Koop</string>
-    <string name="restore">Herstel</string>
-    <string name="no_purchase_found">Geen aankoop gevonden.</string>
     <string name="eugene_cheung_summary">Voor zijn bijdragen aan de broncode.</string>
     <string name="adrian_summary">Om het albumpagina-uiterlijk te maken.</string>
     <string name="add_action">Toevoegen</string>

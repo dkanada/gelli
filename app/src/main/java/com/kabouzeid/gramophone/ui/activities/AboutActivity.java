@@ -156,7 +156,7 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
 
     private static String getCurrentVersionName(@NonNull final Context context) {
         try {
-            return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName + (App.isProVersion() ? " Pro" : "");
+            return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -184,11 +184,7 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
         } else if (v == rateOnGooglePlay) {
             openUrl(RATE_ON_GOOGLE_PLAY);
         } else if (v == donate) {
-            if (App.isProVersion()) {
-                DonationsDialog.create().show(getSupportFragmentManager(), "DONATION_DIALOG");
-            } else {
-                startActivity(new Intent(this, PurchaseActivity.class));
-            }
+            DonationsDialog.create().show(getSupportFragmentManager(), "DONATION_DIALOG");
         } else if (v == aidanFollestadGooglePlus) {
             openUrl(AIDAN_FOLLESTAD_GOOGLE_PLUS);
         } else if (v == aidanFollestadGitHub) {

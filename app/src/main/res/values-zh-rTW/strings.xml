@@ -174,7 +174,6 @@
     <string name="permission_external_storage_denied">無法取得存取外部儲存空間的權限。</string>
     <string name="support_development">支援開發</string>
     <string name="thank_you">感謝您！</string>
-    <string name="restored_previous_purchase_please_restart">恢復購買成功。請重啟應用以使用完整功能。</string>
     <string name="version">版本</string>
     <string name="author">作者</string>
     <string name="write_an_email">寫 email 給我們</string>
@@ -236,13 +235,6 @@
     <string name="playlist_is_empty">播放清單是空的</string>
     <string name="playing_notification_description">播放中通知提供了播放/暫停等操作</string>
     <string name="playing_notification_name">播放中通知</string>
-    <string name="black_theme_is_a_pro_feature">黑色主題僅供 Phonograph Pro 使用</string>
-    <string name="sleep_timer_is_a_pro_feature">睡眠定時器僅供 Phonograph Pro 使用</string>
-    <string name="restoring_purchase">恢復購買中...</string>
-    <string name="could_not_restore_purchase">恢復購買失敗</string>
-    <string name="purchase">購買</string>
-    <string name="restore">恢復</string>
-    <string name="no_purchase_found">找不到購買紀錄</string>
     <string name="eugene_cheung_summary">原始碼貢獻者</string>
     <string name="adrian_summary">創建專輯頁面</string>
     <string name="add_action">新增</string>
