@@ -197,7 +197,6 @@
     <string name="loading_products">Ladataan tuotteita...</string>
     <string name="up_next">Seuraavaksi</string>
     <string name="pref_title_now_playing_screen_appearance">Ulkonäkö</string>
-    <string name="welcome_to_phonograph">"Tervetuloa Phonographiin, kauniiseen ja kevyeen musiikkisoittimeen Androidille. "</string>
     <string name="open_playing_queue_instruction">Vedä korttia Toistetaan parhaillaan -ikkunassa ylös, nähdäksesi koko toistojonon.</string>
     <string name="rearrange_playing_queue_instruction">Järjestä toistojonoa vetämällä kappaletta sen raitanumerosta.</string>
     <string name="library">Kirjasto</string>
@@ -249,12 +248,6 @@
     <string name="eugene_cheung_summary">Työpanoksesta sovelluksen lähdekoodin parissa.</string>
     <string name="adrian_summary">Albumisivun ulkonäöstä.</string>
     <string name="add_action">Lisää</string>
-    <string name="blacklist">Estolista</string>
-    <string name="remove_from_blacklist">Poista estolistalta</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[Haluatko poistaa kohteen <b>%1$s</b> estolistalta?]]></string>
-    <string name="clear_blacklist">Tyhjennä estolista</string>
-    <string name="do_you_want_to_clear_the_blacklist">Haluatko tyhjentää estolistan?</string>
-    <string name="pref_summary_blacklist">Estolistalla olevien kansioiden sisältö piilotetaan kirjastostasi.</string>
     <string name="reset_artist_image">Nollaa artistin kuva</string>
     <string name="set_artist_image">Aseta artistin kuva</string>
     <string name="library_categories">Kirjaston välilehdet</string>

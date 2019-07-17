@@ -193,7 +193,6 @@
     <string name="loading_products">Producten laden…</string>
     <string name="up_next">Als volgende</string>
     <string name="pref_title_now_playing_screen_appearance">Uiterlijk</string>
-    <string name="welcome_to_phonograph">"Welkom bij Phonograph, een mooie en lichte muziekspeler voor Android."</string>
     <string name="open_playing_queue_instruction">Veeg de kaart in het afspeelscherm om de afspeelwachtrij te weergeven.</string>
     <string name="rearrange_playing_queue_instruction">Rangschik de afspeelwachtrij door de afspeelnummers te verslepen.</string>
     <string name="library">Bibliotheek</string>
@@ -245,12 +244,6 @@
     <string name="eugene_cheung_summary">Voor zijn bijdragen aan de broncode.</string>
     <string name="adrian_summary">Om het albumpagina-uiterlijk te maken.</string>
     <string name="add_action">Toevoegen</string>
-    <string name="blacklist">Zwarte lijst</string>
-    <string name="remove_from_blacklist">Verwijderen van zwarte lijst</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[Wil je <b>%1$s</b> verwijderen van de zwarte lijst?]]></string>
-    <string name="clear_blacklist">Zwarte lijst legen</string>
-    <string name="do_you_want_to_clear_the_blacklist">Wil je de zwarte lijst legen?</string>
-    <string name="pref_summary_blacklist">De inhoud van mappen op de zwarte lijst worden verborgen van je bibliotheek.</string>
     <string name="reset_artist_image">Artiest afbeelding resetten</string>
     <string name="set_artist_image">Artiest afbeelding instellen</string>
     <string name="library_categories">Bibliotheek categorieën</string>

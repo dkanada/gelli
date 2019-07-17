@@ -197,7 +197,6 @@
     <string name="loading_products">Cargando productos...</string>
     <string name="up_next">A continuación</string>
     <string name="pref_title_now_playing_screen_appearance">Apariencia</string>
-    <string name="welcome_to_phonograph">"Bienvenido a Phonograph, un bonito y ligero reproductor de música para Android."</string>
     <string name="open_playing_queue_instruction">Desliza la carta hacia arriba en la pantalla de ahora reproduciendo para desvelar completamente la cola de reproducción.</string>
     <string name="rearrange_playing_queue_instruction">Reordena la cola de reproducción arrastrando la canción desde su número de pista.</string>
     <string name="library">Biblioteca</string>
@@ -249,13 +248,6 @@
     <string name="eugene_cheung_summary">Por sus contribuciones al código fuente</string>
     <string name="adrian_summary">Para crear el diseño de la página del álbum.</string>
     <string name="add_action">Añadir</string>
-    <string name="blacklist">Lista Negra</string>
-    <string name="remove_from_blacklist">Remover de la lista negra</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[¿Quieres remover <b>%1$s</b> de la lista negra?]]></string>
-    <string name="clear_blacklist">Vaciar lista negra</string>
-    <string name="do_you_want_to_clear_the_blacklist">¿Quieres eliminar la lista negra?</string>
-    <string name="pref_summary_blacklist">"
-El contenido de las carpetas de la lista negra está oculto en tu biblioteca"</string>
     <string name="reset_artist_image">Resetear la imagen del artista</string>
     <string name="set_artist_image">Establecer la imagen del artista</string>
     <string name="library_categories">Categorías de la biblioteca</string>

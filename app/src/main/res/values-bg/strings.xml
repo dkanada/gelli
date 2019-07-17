@@ -169,7 +169,6 @@
     <string name="loading_products">Зареждане...</string>
     <string name="up_next">Следващи песни</string>
     <string name="pref_title_now_playing_screen_appearance">Изглед</string>
-    <string name="welcome_to_phonograph">"Добре дошли във Phonograph, красив и лек музикален плеър за Андроид. "</string>
     <string name="open_playing_queue_instruction">Плъзнете картата в екранът на текущо възпроизвеждащата се песен, за видите списъкът с песни.</string>
     <string name="rearrange_playing_queue_instruction">Разместете списъкът с текущо възпроизвеждащи се песни, като хванете тракът за неговият номер.</string>
     <string name="library">Библиотека</string>

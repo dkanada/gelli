@@ -193,7 +193,6 @@
     <string name="loading_products">Termékek betöltése...</string>
     <string name="up_next">Lejátszási sor</string>
     <string name="pref_title_now_playing_screen_appearance">Megjelenés</string>
-    <string name="welcome_to_phonograph">"Üdvözlöm! A Phonograph egy szép és kis méretű zenelejátszó Androidra. "</string>
     <string name="open_playing_queue_instruction">Húzza fel a kártyát a most játszott képernyőn, hogy megnyissa a lejátszási sort.</string>
     <string name="rearrange_playing_queue_instruction">A lejátszási sort átrendezheti, ha a dalokat a sorszámuknál megfogva húzni kezdi.</string>
     <string name="library">Könyvtár</string>
@@ -245,12 +244,6 @@
     <string name="eugene_cheung_summary">A forráskódhoz való hozzájárulásáért.</string>
     <string name="adrian_summary">Az album oldalának kialakításához.</string>
     <string name="add_action">Hozzáadás</string>
-    <string name="blacklist">Tiltólista</string>
-    <string name="remove_from_blacklist">Eltávolítás a tiltólistáról</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[Biztosan el szeretné távolítani <b>%1$s</b>-t a tiltólistáról?]]></string>
-    <string name="clear_blacklist">Tiltólista törlése</string>
-    <string name="do_you_want_to_clear_the_blacklist">Biztosan törölni szeretné a tiltólistát?</string>
-    <string name="pref_summary_blacklist">A tiltólistán lévő mappák tartalma nem szerepel a könyvtárban.</string>
     <string name="reset_artist_image">Előadó képének visszaállítása</string>
     <string name="set_artist_image">Előadó képének beállítása</string>
     <string name="library_categories">Könyvtár kategóriák</string>

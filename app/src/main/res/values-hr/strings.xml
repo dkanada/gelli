@@ -193,7 +193,6 @@
     <string name="loading_products">Učitavanje artikala...</string>
     <string name="up_next">Sljedeće na redu</string>
     <string name="pref_title_now_playing_screen_appearance">Izgled</string>
-    <string name="welcome_to_phonograph">"Dobrodošli u Phonograph, prekrasan i lagan glazbeni player za Android. "</string>
     <string name="open_playing_queue_instruction">Povucite karticu na zaslonu za reprodukciju kako bi otvorili cijeli red čekanja.</string>
     <string name="rearrange_playing_queue_instruction">Preuredite red čekanja povlačenjem pjesme za njen broj.</string>
     <string name="library">Biblioteka</string>
@@ -245,12 +244,6 @@
     <string name="eugene_cheung_summary">Za njegov doprinos izvornom kodu.</string>
     <string name="adrian_summary">Za stvaranje dizajna stranice albuma.</string>
     <string name="add_action">Dodaj</string>
-    <string name="blacklist">Crni popis</string>
-    <string name="remove_from_blacklist">Ukloni sa crnog popisa</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[Želite li ukloniti<b>%1$s</b> sa crnog popisa?]]></string>
-    <string name="clear_blacklist">Očisti crni popis</string>
-    <string name="do_you_want_to_clear_the_blacklist">Želite li očistiti crni popis?</string>
-    <string name="pref_summary_blacklist">Sadržaj mapa crnog popisa je skriven iz vaše biblioteke.</string>
     <string name="reset_artist_image">Resetiraj slike izvođača</string>
     <string name="set_artist_image">Postavi sliku izvođača</string>
     <string name="library_categories">Kategorije biblioteke</string>

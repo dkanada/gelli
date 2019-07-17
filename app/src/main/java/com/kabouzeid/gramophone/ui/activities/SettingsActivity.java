@@ -2,9 +2,6 @@ package com.kabouzeid.gramophone.ui.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.media.audiofx.AudioEffect;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.ColorInt;
@@ -29,14 +26,11 @@ import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.appshortcuts.DynamicShortcutManager;
 import com.kabouzeid.gramophone.misc.NonProAllowedColors;
-import com.kabouzeid.gramophone.preferences.BlacklistPreference;
-import com.kabouzeid.gramophone.preferences.BlacklistPreferenceDialog;
 import com.kabouzeid.gramophone.preferences.LibraryPreference;
 import com.kabouzeid.gramophone.preferences.LibraryPreferenceDialog;
 import com.kabouzeid.gramophone.preferences.NowPlayingScreenPreference;
 import com.kabouzeid.gramophone.preferences.NowPlayingScreenPreferenceDialog;
 import com.kabouzeid.gramophone.ui.activities.base.AbsBaseActivity;
-import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 
 import java.util.Arrays;
@@ -158,7 +152,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             addPreferencesFromResource(R.xml.pref_lockscreen);
             addPreferencesFromResource(R.xml.pref_audio);
             addPreferencesFromResource(R.xml.pref_playlists);
-            addPreferencesFromResource(R.xml.pref_blacklist);
         }
 
         @Nullable
@@ -166,8 +159,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         public DialogFragment onCreatePreferenceDialog(Preference preference) {
             if (preference instanceof NowPlayingScreenPreference) {
                 return NowPlayingScreenPreferenceDialog.newInstance();
-            } else if (preference instanceof BlacklistPreference) {
-                return BlacklistPreferenceDialog.newInstance();
             } else if (preference instanceof LibraryPreference) {
                 return LibraryPreferenceDialog.newInstance();
             }

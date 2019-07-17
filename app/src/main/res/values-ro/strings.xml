@@ -193,7 +193,6 @@
     <string name="loading_products">Încărcare produse...</string>
     <string name="up_next">Urmează</string>
     <string name="pref_title_now_playing_screen_appearance">Aspect</string>
-    <string name="welcome_to_phonograph">"Bine ați venit la Phonograph, un player muzical frumos și ușor pentru Android. "</string>
     <string name="open_playing_queue_instruction">Glisați cardul în ecranul de redare acum pentru a afișa coada de redare completă.</string>
     <string name="rearrange_playing_queue_instruction">Rearanjați coada de redare prin glisarea unei melodii de la numărul piesei sale.</string>
     <string name="library">Bibliotecă</string>
@@ -245,12 +244,6 @@
     <string name="eugene_cheung_summary">Pentru contribuțiile sale la codul sursă.</string>
     <string name="adrian_summary">Pentru crearea designului paginii albume</string>
     <string name="add_action">Adăugare</string>
-    <string name="blacklist">Listă neagră</string>
-    <string name="remove_from_blacklist">Eliminați din lista neagră</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[Doriți să eliminați <b>%1$s</b> din lista neagră?]]></string>
-    <string name="clear_blacklist">Ștergeţi lista neagră</string>
-    <string name="do_you_want_to_clear_the_blacklist">Doriți să ștergeți lista neagră?</string>
-    <string name="pref_summary_blacklist">Conținutul dosarelor din lista neagră este ascuns în bibliotecă.</string>
     <string name="reset_artist_image">Resetați imaginea artistului</string>
     <string name="set_artist_image">Setați imaginea artistului</string>
     <string name="library_categories">Categorii</string>

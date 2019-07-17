@@ -193,7 +193,6 @@
     <string name="loading_products">"Načítání výrobků... "</string>
     <string name="up_next">"Další "</string>
     <string name="pref_title_now_playing_screen_appearance">Vzhled</string>
-    <string name="welcome_to_phonograph">"Vítejte ve Phonographu, krásném a lehkém přehrávači pro Android. "</string>
     <string name="open_playing_queue_instruction">"Potáhněte kartu v obrazovce Právě přehrávané nahoru pro zobrazení celé fronty přehrávání. "</string>
     <string name="rearrange_playing_queue_instruction">"Změňte pořadí fronty přetažením skladby za její číslo. "</string>
     <string name="library">"Knihovna "</string>
@@ -245,12 +244,6 @@
     <string name="eugene_cheung_summary">Pro příspěvky ke zdrojovému kódu.</string>
     <string name="adrian_summary">Pro vytvoření návrhu stránky alba.</string>
     <string name="add_action">Přidat</string>
-    <string name="blacklist">Blacklist</string>
-    <string name="remove_from_blacklist">Odstranit z blacklistu</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[Chcete odstranit <b>%1$s</b> z blacklistu?]]></string>
-    <string name="clear_blacklist">Vyčistit blacklist</string>
-    <string name="do_you_want_to_clear_the_blacklist">Chcete vyčistit blacklist?</string>
-    <string name="pref_summary_blacklist">Obsah složek na blacklistu se nezobrazuje v hudební knihovně.</string>
     <string name="reset_artist_image">Obnovit obrázek interpreta</string>
     <string name="set_artist_image">Nastavit obrázek interpreta</string>
     <string name="library_categories">Kategorie knihovny</string>

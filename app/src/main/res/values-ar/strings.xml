@@ -193,7 +193,6 @@
     <string name="loading_products">جار تحميل المنتجات...</string>
     <string name="up_next">التالي</string>
     <string name="pref_title_now_playing_screen_appearance">المظهر</string>
-    <string name="welcome_to_phonograph">"مرحباً بك في Phonograph، مشغل موسيقى جميل وخفيف للأندرويد. "</string>
     <string name="open_playing_queue_instruction">اسحب البطاقة في شاشة \"يتم تشغيله الآن\" لإظهار قائمة التشغيل بالكامل.</string>
     <string name="rearrange_playing_queue_instruction">إعادة ترتيب قائمة التشغيل عبر سحب الأغاني من أرقامها.</string>
     <string name="library">المكتبة</string>
@@ -245,12 +244,6 @@
     <string name="eugene_cheung_summary">من أجل مساهماته في الكود المصدري.</string>
     <string name="adrian_summary">من أجل إنشاءه تصميم صفحة الألبومات.</string>
     <string name="add_action">إضافة</string>
-    <string name="blacklist">القائمة السوداء</string>
-    <string name="remove_from_blacklist">إزالة من القائمة السوداء</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[هل تريد إزالة <b>%1$s</b> من القائمة السوداء؟]]></string>
-    <string name="clear_blacklist">مسح القائمة السوداء</string>
-    <string name="do_you_want_to_clear_the_blacklist">هل تريد مسح القائمة السوداء؟</string>
-    <string name="pref_summary_blacklist">سيتم إخفاء محتوى المجلدات التي في القائمة السوداء من مكتبتك.</string>
     <string name="reset_artist_image">إعادة تعيين صورة الفنان</string>
     <string name="set_artist_image">تعيين صورة الفنان</string>
     <string name="library_categories">أقسام المكتبة</string>

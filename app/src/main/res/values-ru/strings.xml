@@ -197,7 +197,6 @@
     <string name="loading_products">Загрузка продуктов...</string>
     <string name="up_next">Далее</string>
     <string name="pref_title_now_playing_screen_appearance">Вид экрана воспроизведения</string>
-    <string name="welcome_to_phonograph">"Добро пожаловать в Phonograph, красивый и лёгкий плеер для Android"</string>
     <string name="open_playing_queue_instruction">Проведите по карточке на экране воспроизведения, чтобы просмотреть очередь</string>
     <string name="rearrange_playing_queue_instruction">Редактируйте очередь воспроизведения, перетаскивая песни за их номер</string>
     <string name="library">"Библиотека "</string>
@@ -249,12 +248,6 @@
     <string name="eugene_cheung_summary">За его вклад в исходный код.</string>
     <string name="adrian_summary">За создание дизайна показа альбомов.</string>
     <string name="add_action">Добавить</string>
-    <string name="blacklist">Чёрный список</string>
-    <string name="remove_from_blacklist">Убрать из чёрного списка</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[Убрать <b>%1$s</b> из чёрного списка?]]></string>
-    <string name="clear_blacklist">Очистить чёрный список</string>
-    <string name="do_you_want_to_clear_the_blacklist">Вы хотите очистить чёрный список?</string>
-    <string name="pref_summary_blacklist">Занесённые в чёрный список папки скрыты из вашей библиотеки.</string>
     <string name="reset_artist_image">Сбросить картинку исполнителя</string>
     <string name="set_artist_image">Установить картинку исполнителя</string>
     <string name="library_categories">Категории библиотеки</string>

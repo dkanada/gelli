@@ -184,7 +184,6 @@
     <string name="loading_products">Φόρτωση προϊόντων...</string>
     <string name="up_next">Επόμενο</string>
     <string name="pref_title_now_playing_screen_appearance">Εμφάνιση</string>
-    <string name="welcome_to_phonograph">"Καλώς ήρθατε στο Phonograph, ένα όμορφο και ελαφρύ πρόγραμμα αναπαραγωγής μουσικής για το Android.  "</string>
     <string name="open_playing_queue_instruction">Σύρετε την κάρτα στην οθόνη \"παίζει τώρα\" μέχρι να αποκαλυφθεί ολόκληρη η σειρά τραγουδιών.</string>
     <string name="rearrange_playing_queue_instruction">Κάντε αναδιάταξη της σειράς τραγουδιών  σύροντας ένα τραγούδι από τον αριθμό του.</string>
     <string name="library">Βιβλιοθήκη</string>

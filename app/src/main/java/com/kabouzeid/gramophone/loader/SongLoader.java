@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.provider.BlacklistStore;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 
 import java.util.ArrayList;
@@ -110,37 +109,11 @@ public class SongLoader {
             selection = BASE_SELECTION;
         }
 
-        // Blacklist
-        List<String> paths = BlacklistStore.getInstance(context).getPaths();
-        if (!paths.isEmpty()) {
-            selection = generateBlacklistSelection(selection, paths.size());
-            selectionValues = addBlacklistSelectionValues(selectionValues, paths);
-        }
-
         try {
             return context.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
                     BASE_PROJECTION, selection, selectionValues, sortOrder);
         } catch (SecurityException e) {
             return null;
         }
-    }
-
-    private static String generateBlacklistSelection(String selection, int pathCount) {
-        String newSelection = selection != null && !selection.trim().equals("") ? selection + " AND " : "";
-        newSelection += AudioColumns.DATA + " NOT LIKE ?";
-        for (int i = 0; i < pathCount - 1; i++) {
-            newSelection += " AND " + AudioColumns.DATA + " NOT LIKE ?";
-        }
-        return newSelection;
-    }
-
-    private static String[] addBlacklistSelectionValues(String[] selectionValues, List<String> paths) {
-        if (selectionValues == null) selectionValues = new String[0];
-        String[] newSelectionValues = new String[selectionValues.length + paths.size()];
-        System.arraycopy(selectionValues, 0, newSelectionValues, 0, selectionValues.length);
-        for (int i = selectionValues.length; i < newSelectionValues.length; i++) {
-            newSelectionValues[i] = paths.get(i - selectionValues.length) + "%";
-        }
-        return newSelectionValues;
     }
 }

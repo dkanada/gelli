@@ -195,7 +195,6 @@
     <string name="loading_products">상품 불러오는 중...</string>
     <string name="up_next">다음 곡</string>
     <string name="pref_title_now_playing_screen_appearance">스타일</string>
-    <string name="welcome_to_phonograph">"Android를 위한 아름답고 가벼운 음악 플레이어인 Phonograph에 오신 것을 환영합니다."</string>
     <string name="open_playing_queue_instruction">재생 중 화면 하단의 카드를 쓸어올려 재생 대기열을 표시할 수 있습니다.</string>
     <string name="rearrange_playing_queue_instruction">재생 대기열의 순서를 변경하려면 곡 번호를 잡고 드래그하세요.</string>
     <string name="library">보관함</string>
@@ -247,12 +246,6 @@
     <string name="eugene_cheung_summary">소스 코드에 대한 기여</string>
     <string name="adrian_summary">앨범 페이지 디자인 제작</string>
     <string name="add_action">추가</string>
-    <string name="blacklist">제외할 목록</string>
-    <string name="remove_from_blacklist">제외 목록에서 제거</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[<b>%1$s</b> 을(를) 제외 목록에서 제거하시겠습니까?]]></string>
-    <string name="clear_blacklist">제외 목록 비우기</string>
-    <string name="do_you_want_to_clear_the_blacklist">제외 목록을 비우시겠습니까?</string>
-    <string name="pref_summary_blacklist">제외 목록에 추가된 폴더의 내용은 보관함에 표시되지 않습니다.</string>
     <string name="reset_artist_image">아티스트 이미지 초기화</string>
     <string name="set_artist_image">아티스트 이미지 설정</string>
     <string name="library_categories">라이브러리 카테고리</string>

@@ -193,7 +193,6 @@
     <string name="loading_products">Chargement des produits…</string>
     <string name="up_next">Suivant</string>
     <string name="pref_title_now_playing_screen_appearance">Apparence</string>
-    <string name="welcome_to_phonograph">"Bienvenue sur Phonograph, un lecteur de musique beau et léger pour Android. "</string>
     <string name="open_playing_queue_instruction">Vous pouvez glisser la carte dans l\'écran de lecture en cours pour afficher la file de lecture complète.</string>
     <string name="rearrange_playing_queue_instruction">Vous pouvez réorganiser la file de lecture en faisant glisser une chanson à partir de son numéro de piste.</string>
     <string name="library">Bibliothèque</string>
@@ -244,12 +243,6 @@
     <string name="eugene_cheung_summary">Pour ses contributions au code source</string>
     <string name="adrian_summary">Pour créer le design de la page d\'album.</string>
     <string name="add_action">Ajouter</string>
-    <string name="blacklist">Liste noire</string>
-    <string name="remove_from_blacklist">Retirer de la liste noire</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[Voulez-vous retirer <b>%1$s</b> de la liste noire ?]]></string>
-    <string name="clear_blacklist">Vider la liste noire</string>
-    <string name="do_you_want_to_clear_the_blacklist">Voulez-vous vider la liste noire ?</string>
-    <string name="pref_summary_blacklist">Le contenu des fichiers sur la liste noire n\'apparaît pas dans votre bibliothèque</string>
     <string name="reset_artist_image">Réinitialiser l\'image de l\'artiste</string>
     <string name="set_artist_image">Actualiser l\'image de l\'artiste</string>
     <string name="library_categories">Catégories de la bibliothèque</string>

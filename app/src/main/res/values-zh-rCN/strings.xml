@@ -195,7 +195,6 @@
     <string name="loading_products">加载产品中…</string>
     <string name="up_next">即将播放</string>
     <string name="pref_title_now_playing_screen_appearance">外观</string>
-    <string name="welcome_to_phonograph">"欢迎使用 Phonohraph ，这是一款精致且简洁的 Android 音乐播放器。 "</string>
     <string name="open_playing_queue_instruction">上滑正在播放界面内的卡片即可展开播放队列。</string>
     <string name="rearrange_playing_queue_instruction">通过拖动歌曲名前面的序列号来调整播放队列的顺序。</string>
     <string name="library">媒体库</string>
@@ -247,12 +246,6 @@
     <string name="eugene_cheung_summary">因他对源代码的贡献。</string>
     <string name="adrian_summary">以新增专辑封面设计。</string>
     <string name="add_action">添加</string>
-    <string name="blacklist">黑名单</string>
-    <string name="remove_from_blacklist">从黑名单中移除</string>
-    <string name="do_you_want_to_remove_from_the_blacklist"><![CDATA[您想从黑名单中移除 <b>%1$s</b> ？]]></string>
-    <string name="clear_blacklist">清除黑名单</string>
-    <string name="do_you_want_to_clear_the_blacklist">您想清除黑名单？</string>
-    <string name="pref_summary_blacklist">黑名单中文件夹将在媒体库中隐藏。</string>
     <string name="reset_artist_image">重置艺术家图片</string>
     <string name="set_artist_image">设置艺术家图片</string>
     <string name="library_categories">媒体库类别</string>
