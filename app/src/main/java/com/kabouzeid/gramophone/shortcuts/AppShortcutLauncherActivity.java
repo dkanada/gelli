@@ -8,9 +8,9 @@ import com.kabouzeid.gramophone.shortcuts.shortcuttype.LatestShortcutType;
 import com.kabouzeid.gramophone.shortcuts.shortcuttype.ShuffleShortcutType;
 import com.kabouzeid.gramophone.shortcuts.shortcuttype.FrequentShortcutType;
 import com.kabouzeid.gramophone.model.Playlist;
-import com.kabouzeid.gramophone.model.smartplaylist.LatestPlaylist;
-import com.kabouzeid.gramophone.model.smartplaylist.FrequentPlaylist;
-import com.kabouzeid.gramophone.model.smartplaylist.ShufflePlaylist;
+import com.kabouzeid.gramophone.model.playlist.LatestPlaylist;
+import com.kabouzeid.gramophone.model.playlist.FrequentPlaylist;
+import com.kabouzeid.gramophone.model.playlist.ShufflePlaylist;
 import com.kabouzeid.gramophone.service.MusicService;
 
 /**

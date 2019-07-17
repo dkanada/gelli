@@ -1,4 +1,4 @@
-package com.kabouzeid.gramophone.model.smartplaylist;
+package com.kabouzeid.gramophone.model.playlist;
 
 import android.content.Context;
 import android.os.Parcel;

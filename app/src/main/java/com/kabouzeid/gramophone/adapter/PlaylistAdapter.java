@@ -26,11 +26,10 @@ import com.kabouzeid.gramophone.helper.menu.SongsMenuHelper;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
 import com.kabouzeid.gramophone.misc.WeakContextAsyncTask;
-import com.kabouzeid.gramophone.model.AbsCustomPlaylist;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.model.smartplaylist.AbsSmartPlaylist;
-import com.kabouzeid.gramophone.model.smartplaylist.LatestPlaylist;
+import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
+import com.kabouzeid.gramophone.model.playlist.LatestPlaylist;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.kabouzeid.gramophone.util.PlaylistsUtil;
@@ -207,8 +206,8 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
     private List<Song> getSongList(@NonNull List<Playlist> playlists) {
         final List<Song> songs = new ArrayList<>();
         for (Playlist playlist : playlists) {
-            if (playlist instanceof AbsCustomPlaylist) {
-                songs.addAll(((AbsCustomPlaylist) playlist).getSongs(activity));
+            if (playlist instanceof AbsSmartPlaylist) {
+                songs.addAll(((AbsSmartPlaylist) playlist).getSongs(activity));
             } else {
                 songs.addAll(PlaylistSongLoader.getPlaylistSongList(activity, playlist.id));
             }

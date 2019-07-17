@@ -1,4 +1,4 @@
-package com.kabouzeid.gramophone.model.smartplaylist;
+package com.kabouzeid.gramophone.model.playlist;
 
 import android.content.Context;
 import android.os.Parcel;
@@ -6,12 +6,15 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.Nullable;
 
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.model.AbsCustomPlaylist;
+import com.kabouzeid.gramophone.model.Playlist;
+import com.kabouzeid.gramophone.model.Song;
+
+import java.util.List;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
  */
-public abstract class AbsSmartPlaylist extends AbsCustomPlaylist {
+public abstract class AbsSmartPlaylist extends Playlist {
     @DrawableRes
     public final int iconRes;
 
@@ -26,6 +29,8 @@ public abstract class AbsSmartPlaylist extends AbsCustomPlaylist {
     }
 
     public abstract void clear(Context context);
+
+    public abstract List<Song> getSongs(Context context);
 
     @Override
     public int hashCode() {

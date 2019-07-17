@@ -14,9 +14,9 @@ import com.kabouzeid.gramophone.interfaces.LoaderIds;
 import com.kabouzeid.gramophone.loader.PlaylistLoader;
 import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
 import com.kabouzeid.gramophone.model.Playlist;
-import com.kabouzeid.gramophone.model.smartplaylist.RecentPlaylist;
-import com.kabouzeid.gramophone.model.smartplaylist.LatestPlaylist;
-import com.kabouzeid.gramophone.model.smartplaylist.FrequentPlaylist;
+import com.kabouzeid.gramophone.model.playlist.RecentPlaylist;
+import com.kabouzeid.gramophone.model.playlist.LatestPlaylist;
+import com.kabouzeid.gramophone.model.playlist.FrequentPlaylist;
 
 import java.util.ArrayList;
 import java.util.List;

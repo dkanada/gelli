@@ -3,15 +3,14 @@ package com.kabouzeid.gramophone.helper;
 import android.content.Context;
 
 import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
-import com.kabouzeid.gramophone.model.AbsCustomPlaylist;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
+import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class M3UWriter implements M3UConstants {
@@ -22,8 +21,8 @@ public class M3UWriter implements M3UConstants {
         File file = new File(dir, playlist.name.concat("." + EXTENSION));
 
         List<? extends Song> songs;
-        if (playlist instanceof AbsCustomPlaylist) {
-            songs = ((AbsCustomPlaylist) playlist).getSongs(context);
+        if (playlist instanceof AbsSmartPlaylist) {
+            songs = ((AbsSmartPlaylist) playlist).getSongs(context);
         } else {
             songs = PlaylistSongLoader.getPlaylistSongList(context, playlist.id);
         }

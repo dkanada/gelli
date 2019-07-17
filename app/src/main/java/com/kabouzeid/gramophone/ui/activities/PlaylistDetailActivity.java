@@ -31,9 +31,9 @@ import com.kabouzeid.gramophone.interfaces.LoaderIds;
 import com.kabouzeid.gramophone.loader.PlaylistLoader;
 import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
 import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
-import com.kabouzeid.gramophone.model.AbsCustomPlaylist;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
+import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.kabouzeid.gramophone.util.PhonographColorUtil;
 import com.kabouzeid.gramophone.util.PlaylistsUtil;
@@ -95,7 +95,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
     private void setUpRecyclerView() {
         ViewUtil.setUpFastScrollRecyclerViewColor(this, ((FastScrollRecyclerView) recyclerView), ThemeStore.accentColor(this));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        if (playlist instanceof AbsCustomPlaylist) {
+        if (playlist instanceof AbsSmartPlaylist) {
             adapter = new PlaylistSongAdapter(this, new ArrayList<>(), R.layout.item_list, false, this);
             recyclerView.setAdapter(adapter);
         } else {
@@ -140,7 +140,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(playlist instanceof AbsCustomPlaylist ? R.menu.menu_smart_playlist_detail : R.menu.menu_playlist_detail, menu);
+        getMenuInflater().inflate(playlist instanceof AbsSmartPlaylist ? R.menu.menu_smart_playlist_detail : R.menu.menu_playlist_detail, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -183,7 +183,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
     public void onMediaStoreChanged() {
         super.onMediaStoreChanged();
 
-        if (!(playlist instanceof AbsCustomPlaylist)) {
+        if (!(playlist instanceof AbsSmartPlaylist)) {
             // Playlist deleted
             if (!PlaylistsUtil.doesPlaylistExist(this, playlist.id)) {
                 finish();
@@ -264,8 +264,8 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
 
         @Override
         public List<Song> loadInBackground() {
-            if (playlist instanceof AbsCustomPlaylist) {
-                return ((AbsCustomPlaylist) playlist).getSongs(getContext());
+            if (playlist instanceof AbsSmartPlaylist) {
+                return ((AbsSmartPlaylist) playlist).getSongs(getContext());
             } else {
                 //noinspection unchecked
                 return (List) PlaylistSongLoader.getPlaylistSongList(getContext(), playlist.id);

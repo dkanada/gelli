@@ -8,7 +8,7 @@ import android.text.Html;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.model.smartplaylist.AbsSmartPlaylist;
+import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)

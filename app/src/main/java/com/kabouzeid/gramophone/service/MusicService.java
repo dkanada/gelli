@@ -40,6 +40,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.kabouzeid.gramophone.R;
+import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
 import com.kabouzeid.gramophone.widgets.AppWidgetBig;
 import com.kabouzeid.gramophone.widgets.AppWidgetCard;
 import com.kabouzeid.gramophone.widgets.AppWidgetClassic;
@@ -49,7 +50,6 @@ import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.helper.ShuffleHelper;
 import com.kabouzeid.gramophone.helper.StopWatch;
 import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
-import com.kabouzeid.gramophone.model.AbsCustomPlaylist;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.provider.HistoryStore;
@@ -307,8 +307,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         int shuffleMode = intent.getIntExtra(INTENT_EXTRA_SHUFFLE_MODE, getShuffleMode());
                         if (playlist != null) {
                             List<Song> playlistSongs;
-                            if (playlist instanceof AbsCustomPlaylist) {
-                                playlistSongs = ((AbsCustomPlaylist) playlist).getSongs(getApplicationContext());
+                            if (playlist instanceof AbsSmartPlaylist) {
+                                playlistSongs = ((AbsSmartPlaylist) playlist).getSongs(getApplicationContext());
                             } else {
                                 //noinspection unchecked
                                 playlistSongs = (List) PlaylistSongLoader.getPlaylistSongList(getApplicationContext(), playlist.id);
