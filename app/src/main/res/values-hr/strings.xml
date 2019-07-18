@@ -38,7 +38,6 @@
     <string name="album_artist">Izvođač albuma</string>
     <string name="year">Godina</string>
     <string name="track_hint">"Redni broj (2 za pjesmu broj 2 ili 3004 za CD3 pjesmu broj 4)"</string>
-    <string name="lyrics">Stihovi</string>
     <string name="label_details">Detalji</string>
     <string name="label_file_name">Naziv datoteke</string>
     <string name="label_file_path">Odredište datoteke</string>
@@ -85,7 +84,6 @@
     <string name="action_shuffle_playlist">Izmiješaj popis naslova</string>
     <string name="action_clear_playing_queue">Očisti red čekanja</string>
     <string name="action_save_playing_queue">Spremi red čekanja</string>
-    <string name="action_show_lyrics">Prikaži stihove</string>
     <string name="light_theme_name">Svijetla</string>
     <string name="dark_theme_name">Tamna</string>
     <string name="always">Uvijek</string>
@@ -117,7 +115,6 @@
     <string name="pref_title_gapless_playback">Reprodukcija bez prekida</string>
     <string name="pref_title_audio_ducking">Smanji glasn. prilikom drugih zvukova</string>
     <string name="pref_title_last_added_interval">Interval nedavnog popisa</string>
-    <string name="pref_title_synchronized_lyrics_show">Prikaži sinkronizirane stihove</string>
     <string name="pref_title_remember_last_tab">Zapamti zadnju karticu</string>
     <string name="no_audio_ID">"Reproducirajte nešto i pokušajte opet."</string>
     <string name="delete_action">Izbriši</string>
@@ -149,7 +146,6 @@
     <string name="pref_summary_colored_navigation_bar">Boja navigacijsku traku primarnom bojom.</string>
     <string name="pref_summary_colored_app_shortcuts">Boja prečace aplikacije u primarnu boju.</string>
     <string name="pref_summary_audio_ducking">Obavijesti, navigacija itd.</string>
-    <string name="pref_summary_synchronized_lyrics_show">Trenutno su samo sinkronizirani stihovi u LRC formatu podržani. Ili ugrađeni ili u zasebnoj datoteci.</string>
     <string name="pref_summary_remember_last_tab">Pri pokretanju otvori zadnje otvorenu karticu</string>
     <string name="search_hint">Pretražite svoju biblioteku...</string>
     <string name="favorites">Favoriti</string>

@@ -10,7 +10,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
-import android.provider.Settings;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
@@ -27,17 +27,11 @@ import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Genre;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.model.lyrics.AbsSynchronizedLyrics;
-
-import org.jaudiotagger.audio.AudioFileIO;
-import org.jaudiotagger.tag.FieldKey;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.regex.Pattern;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
@@ -322,57 +316,5 @@ public class MusicUtil {
         }
         if (musicMediaTitle.isEmpty()) return "";
         return String.valueOf(musicMediaTitle.charAt(0)).toUpperCase();
-    }
-
-    @Nullable
-    public static String getLyrics(Song song) {
-        String lyrics = null;
-
-        File file = new File(song.data);
-
-        try {
-            lyrics = AudioFileIO.read(file).getTagOrCreateDefault().getFirst(FieldKey.LYRICS);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (lyrics == null || lyrics.trim().isEmpty() || !AbsSynchronizedLyrics.isSynchronized(lyrics)) {
-            File dir = file.getAbsoluteFile().getParentFile();
-
-            if (dir != null && dir.exists() && dir.isDirectory()) {
-                String format = ".*%s.*\\.(lrc|txt)";
-                String filename = Pattern.quote(FileUtil.stripExtension(file.getName()));
-                String songtitle = Pattern.quote(song.title);
-
-                final List<Pattern> patterns = new ArrayList<>();
-                patterns.add(Pattern.compile(String.format(format, filename), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE));
-                patterns.add(Pattern.compile(String.format(format, songtitle), Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE));
-
-                File[] files = dir.listFiles(f -> {
-                    for (Pattern pattern : patterns) {
-                        if (pattern.matcher(f.getName()).matches()) return true;
-                    }
-                    return false;
-                });
-
-                if (files != null && files.length > 0) {
-                    for (File f : files) {
-                        try {
-                            String newLyrics = FileUtil.read(f);
-                            if (newLyrics != null && !newLyrics.trim().isEmpty()) {
-                                if (AbsSynchronizedLyrics.isSynchronized(newLyrics)) {
-                                    return newLyrics;
-                                }
-                                lyrics = newLyrics;
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }
-
-        return lyrics;
     }
 }

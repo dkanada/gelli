@@ -39,7 +39,6 @@
     <string name="album_artist">專輯演出者</string>
     <string name="year">年代</string>
     <string name="track_hint">"音軌（用2表示第2首歌或3004表示CD3的第4首歌）"</string>
-    <string name="lyrics">歌詞</string>
     <string name="label_details">詳細資訊</string>
     <string name="label_file_name">檔案名稱</string>
     <string name="label_file_path">檔案路徑</string>
@@ -87,7 +86,6 @@
     <string name="action_shuffle_playlist">隨機播放清單</string>
     <string name="action_clear_playing_queue">清空播放佇列</string>
     <string name="action_save_playing_queue">保存播放佇列</string>
-    <string name="action_show_lyrics">顯示歌詞</string>
     <string name="light_theme_name">明亮</string>
     <string name="dark_theme_name">暗沉</string>
     <string name="always">永遠</string>
@@ -120,7 +118,6 @@
     <string name="pref_title_gapless_playback">無縫播放</string>
     <string name="pref_title_audio_ducking">在焦點音訊響起時降低音量</string>
     <string name="pref_title_last_added_interval">最後新增列表的時間範圍</string>
-    <string name="pref_title_synchronized_lyrics_show">同步顯示歌詞</string>
     <string name="pref_title_remember_last_tab">記住最後開啟的頁面</string>
     <string name="pref_title_remember_shuffle">記住隨機播放</string>
     <string name="no_audio_ID">"請先播放一首歌後再重試一遍。"</string>
@@ -153,7 +150,6 @@
     <string name="pref_summary_colored_navigation_bar">將專輯封面的主色調設為導航列的顏色。</string>
     <string name="pref_summary_colored_app_shortcuts">將主色調設為應用快捷方式的顏色</string>
     <string name="pref_summary_audio_ducking">通知鈴聲、導航語音等。</string>
-    <string name="pref_summary_synchronized_lyrics_show">目前僅支援 LRC 格式歌詞。內嵌或外掛皆可。</string>
     <string name="pref_summary_remember_last_tab">開啟時顯示最後使用的頁面</string>
     <string name="pref_summary_remember_shuffle">當選擇新歌曲列表時維持隨機播放模式</string>
     <string name="search_hint">搜尋音樂庫…</string>

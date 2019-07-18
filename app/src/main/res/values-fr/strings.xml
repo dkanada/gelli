@@ -38,7 +38,6 @@
     <string name="album_artist">Artiste de l\'album</string>
     <string name="year">Année</string>
     <string name="track_hint">"Piste (2 pour piste 2 ou 3004 pour CD3 piste 4)"</string>
-    <string name="lyrics">Paroles</string>
     <string name="label_details">Détails</string>
     <string name="label_file_name">Nom du fichier</string>
     <string name="label_file_path">Chemin du fichier</string>
@@ -85,7 +84,6 @@
     <string name="action_shuffle_playlist">Lecture aléatoire</string>
     <string name="action_clear_playing_queue">Effacer la file de lecture</string>
     <string name="action_save_playing_queue">Sauvegarder la file de lecture</string>
-    <string name="action_show_lyrics">Afficher les paroles</string>
     <string name="light_theme_name">Clair</string>
     <string name="dark_theme_name">Sombre</string>
     <string name="always">Toujours</string>
@@ -117,7 +115,6 @@
     <string name="pref_title_gapless_playback">Lecture sans coupure</string>
     <string name="pref_title_audio_ducking">Réduire le volume lorse que le focus est interrompu</string>
     <string name="pref_title_last_added_interval">Intervalle de la playlist \"Derniers ajouts\"</string>
-    <string name="pref_title_synchronized_lyrics_show">Afficher les paroles synchronisées</string>
     <string name="pref_title_remember_last_tab">Se souvenir de la dernière fenêtre</string>
     <string name="no_audio_ID">"Faire jouer un titre d'abord, puis réessayer."</string>
     <string name="delete_action">Supprimer</string>
@@ -149,7 +146,6 @@
     <string name="pref_summary_colored_navigation_bar">Colore la barre de navigation en fonction de la couleur principale.</string>
     <string name="pref_summary_colored_app_shortcuts">Colore les raccourcis de l\'application selon la couleur primaire.</string>
     <string name="pref_summary_audio_ducking">Notifications, navigation, etc.</string>
-    <string name="pref_summary_synchronized_lyrics_show">Pour le moment seul les paroles synchronisées en format LRC sont supportées. Aussi bien en fichier intégré ou en fichier séparé.</string>
     <string name="pref_summary_remember_last_tab">Aller à la dernière catégorie ouverte lors du lancement</string>
     <string name="search_hint">Recherche dans votre bibliothèque...</string>
     <string name="favorites">Favoris</string>

@@ -38,7 +38,6 @@
     <string name="album_artist">앨범 아티스트</string>
     <string name="year">연도</string>
     <string name="track_hint">"트랙 (트랙 2는 2, CD 3의 트랙 4는 3004로 입력)"</string>
-    <string name="lyrics">가사</string>
     <string name="label_details">세부 정보</string>
     <string name="label_file_name">파일 이름</string>
     <string name="label_file_path">파일 경로</string>
@@ -85,7 +84,6 @@
     <string name="action_shuffle_playlist">재생 목록 랜덤 재생</string>
     <string name="action_clear_playing_queue">재생 대기열 비우기</string>
     <string name="action_save_playing_queue">재생 대기열 저장</string>
-    <string name="action_show_lyrics">가사 보기</string>
     <string name="light_theme_name">밝은 테마</string>
     <string name="dark_theme_name">어두운 테마</string>
     <string name="always">항상</string>
@@ -117,7 +115,6 @@
     <string name="pref_title_gapless_playback">갭리스 재생</string>
     <string name="pref_title_audio_ducking">포커스 상실 시 볼륨 감소하기</string>
     <string name="pref_title_last_added_interval">최근 추가된 재생 목록 간격</string>
-    <string name="pref_title_synchronized_lyrics_show">동기화된 가사 보기</string>
     <string name="pref_title_remember_last_tab">마지막 탭 기억</string>
     <string name="no_audio_ID">"먼저 노래를 재생한 후 다시 시도해 주세요."</string>
     <string name="delete_action">삭제</string>
@@ -151,7 +148,6 @@
     <string name="pref_summary_colored_navigation_bar">하단바가 색깔을 주 색상으로 색칠합니다.</string>
     <string name="pref_summary_colored_app_shortcuts">주 색상으로 앱 바로가기 색칠</string>
     <string name="pref_summary_audio_ducking">알림 소리, 버튼음 등</string>
-    <string name="pref_summary_synchronized_lyrics_show">현재는 임베딩 또는 별개로 저장된 LRC 형식의 동기화된 자막 파일만 지원합니다.</string>
     <string name="pref_summary_remember_last_tab">마지막으로 연 탭으로 시작</string>
     <string name="search_hint">저장소 검색...</string>
     <string name="favorites">즐겨찾기</string>

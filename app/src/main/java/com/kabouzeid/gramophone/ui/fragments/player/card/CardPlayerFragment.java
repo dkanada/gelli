@@ -17,9 +17,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
-import android.text.TextUtils;
+
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -40,12 +39,10 @@ import com.kabouzeid.appthemehelper.util.ToolbarContentTintHelper;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.adapter.base.MediaEntryViewHolder;
 import com.kabouzeid.gramophone.adapter.song.PlayingQueueAdapter;
-import com.kabouzeid.gramophone.dialogs.LyricsDialog;
 import com.kabouzeid.gramophone.dialogs.SongShareDialog;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.helper.menu.SongMenuHelper;
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.model.lyrics.Lyrics;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.kabouzeid.gramophone.ui.fragments.player.AbsPlayerFragment;
 import com.kabouzeid.gramophone.ui.fragments.player.PlayerAlbumCoverFragment;
@@ -93,9 +90,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     private RecyclerViewDragDropManager recyclerViewDragDropManager;
 
     private AsyncTask updateIsFavoriteTask;
-    private AsyncTask updateLyricsAsyncTask;
-
-    private Lyrics lyrics;
 
     private Impl impl;
 
@@ -183,7 +177,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         updateQueue();
         updateCurrentSong();
         updateIsFavorite();
-        updateLyrics();
     }
 
     @Override
@@ -191,7 +184,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         updateCurrentSong();
         updateIsFavorite();
         updateQueuePosition();
-        updateLyrics();
     }
 
     @Override
@@ -237,17 +229,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         toolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
         toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());
         toolbar.setOnMenuItemClickListener(this);
-    }
-
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_show_lyrics:
-                if (lyrics != null)
-                    LyricsDialog.create(lyrics).show(getFragmentManager(), "LYRICS");
-                return true;
-        }
-        return super.onMenuItemClick(item);
     }
 
     private void setUpRecyclerView() {
@@ -301,56 +282,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
                 }
             }
         }.execute(MusicPlayerRemote.getCurrentSong());
-    }
-
-    private void updateLyrics() {
-        if (updateLyricsAsyncTask != null) updateLyricsAsyncTask.cancel(false);
-        final Song song = MusicPlayerRemote.getCurrentSong();
-        updateLyricsAsyncTask = new AsyncTask<Void, Void, Lyrics>() {
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                lyrics = null;
-                playerAlbumCoverFragment.setLyrics(null);
-                toolbar.getMenu().removeItem(R.id.action_show_lyrics);
-            }
-
-            @Override
-            protected Lyrics doInBackground(Void... params) {
-                String data = MusicUtil.getLyrics(song);
-                if (TextUtils.isEmpty(data)) {
-                    return null;
-                }
-                return Lyrics.parse(song, data);
-            }
-
-            @Override
-            protected void onPostExecute(Lyrics l) {
-                lyrics = l;
-                playerAlbumCoverFragment.setLyrics(lyrics);
-                if (lyrics == null) {
-                    if (toolbar != null) {
-                        toolbar.getMenu().removeItem(R.id.action_show_lyrics);
-                    }
-                } else {
-                    Activity activity = getActivity();
-                    if (toolbar != null && activity != null)
-                        if (toolbar.getMenu().findItem(R.id.action_show_lyrics) == null) {
-                            int color = ToolbarContentTintHelper.toolbarContentColor(activity, Color.TRANSPARENT);
-                            Drawable drawable = ImageUtil.getTintedVectorDrawable(activity, R.drawable.ic_comment_text_outline_white_24dp, color);
-                            toolbar.getMenu()
-                                    .add(Menu.NONE, R.id.action_show_lyrics, Menu.NONE, R.string.action_show_lyrics)
-                                    .setIcon(drawable)
-                                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-                        }
-                }
-            }
-
-            @Override
-            protected void onCancelled(Lyrics s) {
-                onPostExecute(null);
-            }
-        }.execute();
     }
 
     @Override

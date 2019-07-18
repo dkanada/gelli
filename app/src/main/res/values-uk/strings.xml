@@ -38,7 +38,6 @@
     <string name="album_artist">Альбом виконавця</string>
     <string name="year">Рік</string>
     <string name="track_hint">"Доріжка (2 для доріжки 2 або 3004 для CD3 доріжки 4)"</string>
-    <string name="lyrics">Текст пісні</string>
     <string name="label_details">Подробиці</string>
     <string name="label_file_name">Назва файлу</string>
     <string name="label_file_path">Шлях до файлу</string>
@@ -84,7 +83,6 @@
     <string name="action_shuffle_playlist">Перемішати список відтворення</string>
     <string name="action_clear_playing_queue">Очистити чергу відтворення</string>
     <string name="action_save_playing_queue">Зберегти чергу відтворення</string>
-    <string name="action_show_lyrics">Показати текст</string>
     <string name="light_theme_name">Світла</string>
     <string name="dark_theme_name">Темна</string>
     <string name="always">Завжди</string>
@@ -116,7 +114,6 @@
     <string name="pref_title_gapless_playback">Безперервне відтворення</string>
     <string name="pref_title_audio_ducking">Зменшити гучнiсть при отриманнi повiдомлення</string>
     <string name="pref_title_last_added_interval">Інтервал останнього доданого списку відтворення</string>
-    <string name="pref_title_synchronized_lyrics_show">Показати синхронізований текст пісні</string>
     <string name="pref_title_remember_last_tab">Запам‘ятати останню вкладку</string>
     <string name="no_audio_ID">"Спочатку відтворіть пісню, потім спробуйте ще раз."</string>
     <string name="delete_action">Видалити</string>
@@ -148,7 +145,6 @@
     <string name="pref_summary_colored_navigation_bar">Фарбує панель навігації у переважний колір.</string>
     <string name="pref_summary_colored_app_shortcuts">Фарбує ярлики додатків у переважний колір.</string>
     <string name="pref_summary_audio_ducking">Повiдомлення, навiгацiя, т.д.</string>
-    <string name="pref_summary_synchronized_lyrics_show">Наразі підтримується тільки синхронізований текст у форматі LCR як вбудований або окремий файл.</string>
     <string name="pref_summary_remember_last_tab">Перейдіть до останньої відкритої вкладки, щоб запустити</string>
     <string name="search_hint">Пошук бібліотеки...</string>
     <string name="favorites">Улюблені</string>

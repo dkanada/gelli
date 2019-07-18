@@ -38,7 +38,6 @@
     <string name="album_artist">Artistul albumului</string>
     <string name="year">An</string>
     <string name="track_hint">"Număr (2 pentru melodia a 2-a sau 3004 pentru CD3 melodia a 4-a)"</string>
-    <string name="lyrics">Versuri</string>
     <string name="label_details">Detalii</string>
     <string name="label_file_name">Nume fișier</string>
     <string name="label_file_path">Cale fișier</string>
@@ -85,7 +84,6 @@
     <string name="action_shuffle_playlist">Amestecare listă de redare</string>
     <string name="action_clear_playing_queue">Golește lista de redare</string>
     <string name="action_save_playing_queue">Salvați lista de redare</string>
-    <string name="action_show_lyrics">Arată versuri</string>
     <string name="light_theme_name">Light (Alb)</string>
     <string name="dark_theme_name">Dark (Negru)</string>
     <string name="always">Mereu</string>
@@ -117,7 +115,6 @@
     <string name="pref_title_gapless_playback">Redare fără întreruperi</string>
     <string name="pref_title_audio_ducking">Se reduce volumul la pierderea focalizării</string>
     <string name="pref_title_last_added_interval">Ultimul interval al listei de redare adăugate</string>
-    <string name="pref_title_synchronized_lyrics_show">Afişare versuri sincronizate</string>
     <string name="pref_title_remember_last_tab">Rețineți ultima filă</string>
     <string name="no_audio_ID">"Redă o melodie mai întâi, apoi încearcă din nou."</string>
     <string name="delete_action">Șterge</string>
@@ -149,7 +146,6 @@
     <string name="pref_summary_colored_navigation_bar">Colorare bară de navigare în culoarea primară.</string>
     <string name="pref_summary_colored_app_shortcuts">Colorarea comenzilor rapide ale aplicației în culoarea primară.</string>
     <string name="pref_summary_audio_ducking">Notificări, navigație etc.</string>
-    <string name="pref_summary_synchronized_lyrics_show">În prezent sunt acceptate numai versurile sincronizate în format LRC. Fie încorporate, fie ca fişier separat.</string>
     <string name="pref_summary_remember_last_tab">Accesați ultima filă deschisă la lansare</string>
     <string name="search_hint">Căutați în bibliotecă.</string>
     <string name="favorites">Favorite</string>

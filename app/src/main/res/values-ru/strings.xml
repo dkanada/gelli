@@ -38,7 +38,6 @@
     <string name="album_artist">Альбом исполнителя</string>
     <string name="year">Год</string>
     <string name="track_hint">"Трек (2 для трека 2 или 3004 для трека 4 CD3)"</string>
-    <string name="lyrics">Текст песни</string>
     <string name="label_details">Подробнее</string>
     <string name="label_file_name">Имя файла</string>
     <string name="label_file_path">Расположение</string>
@@ -86,7 +85,6 @@
     <string name="action_shuffle_playlist">Перемешать плейлист</string>
     <string name="action_clear_playing_queue">"Очистить очередь воспроизведения "</string>
     <string name="action_save_playing_queue">Сохранить очередь воспроизведения</string>
-    <string name="action_show_lyrics">Показать текст песни</string>
     <string name="light_theme_name">Светлая</string>
     <string name="dark_theme_name">Тёмная</string>
     <string name="always">Всегда</string>
@@ -119,7 +117,6 @@
     <string name="pref_title_gapless_playback">Воспроизведение без пауз</string>
     <string name="pref_title_audio_ducking">Уменьшить громкость при уведомлениях</string>
     <string name="pref_title_last_added_interval">Интервал последнего добавленного плейлиста</string>
-    <string name="pref_title_synchronized_lyrics_show">Показать синхронизированные тексты</string>
     <string name="pref_title_remember_last_tab">Запомнить последнюю вкладку</string>
     <string name="pref_title_remember_shuffle">Запомнить перемешивание</string>
     <string name="no_audio_ID">"Сначала воспроизведите песню, а затем попробуйте снова."</string>
@@ -152,7 +149,6 @@
     <string name="pref_summary_colored_navigation_bar">Окрашивает панель навигации в основной цвет.</string>
     <string name="pref_summary_colored_app_shortcuts">Окрашивает шорткаты в основной цвет.</string>
     <string name="pref_summary_audio_ducking">Уведомления, навигация, т.д.</string>
-    <string name="pref_summary_synchronized_lyrics_show">В настоящее время поддерживаются только синхронизированные тексты в формате LRC. Либо встроенные, либо как отдельный файл.</string>
     <string name="pref_summary_remember_last_tab">Перейти на последнюю открытую вкладку при запуске</string>
     <string name="pref_summary_remember_shuffle">Режим перемешивания останется включенным при выборе нового списка песен</string>
     <string name="search_hint">Поиск в библиотеке...</string>

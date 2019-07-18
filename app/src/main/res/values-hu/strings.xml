@@ -38,7 +38,6 @@
     <string name="album_artist">Album előadó</string>
     <string name="year">Év</string>
     <string name="track_hint">"Dal sorszáma az albumban"</string>
-    <string name="lyrics">Dalszöveg</string>
     <string name="label_details">Részletek</string>
     <string name="label_file_name">Fájlnév</string>
     <string name="label_file_path">Útvonal</string>
@@ -85,7 +84,6 @@
     <string name="action_shuffle_playlist">Lejátszási lista keverése</string>
     <string name="action_clear_playing_queue">Lejátszási lista törlése</string>
     <string name="action_save_playing_queue">Mentés a lejátszási sorba</string>
-    <string name="action_show_lyrics">Dalszöveg</string>
     <string name="light_theme_name">Világos</string>
     <string name="dark_theme_name">Sötét</string>
     <string name="always">Mindig</string>
@@ -117,7 +115,6 @@
     <string name="pref_title_gapless_playback">Áttűnéses lejátszás</string>
     <string name="pref_title_audio_ducking">Hangerő csökkentése</string>
     <string name="pref_title_last_added_interval">Utoljára hozzáadott lejátszási lista intervallum</string>
-    <string name="pref_title_synchronized_lyrics_show">Szinkronizált dalszöveg</string>
     <string name="pref_title_remember_last_tab">Emlékezz az utolsó fülre</string>
     <string name="no_audio_ID">"Először játsszon le egy dalt, majd próbálja újra."</string>
     <string name="delete_action">Törlés</string>
@@ -149,7 +146,6 @@
     <string name="pref_summary_colored_navigation_bar">Navigációs sáv színezése az alapértelmezett színnel.</string>
     <string name="pref_summary_colored_app_shortcuts">Az alkalmazás hivatkozások színezése az elsődleges szín szerint.</string>
     <string name="pref_summary_audio_ducking">Beérkező értesítéskor a lejátszás hangereje lecsökken, majd az értesítés végén visszaáll az eredeti hangerőre.</string>
-    <string name="pref_summary_synchronized_lyrics_show">Jelenleg csak az LRC formátumban szinkronizált szövegeket támogatják. Beágyazott vagy külön fájlként.</string>
     <string name="pref_summary_remember_last_tab">Menjen az utolsó megnyitott fülre az indításkor</string>
     <string name="search_hint">Keresés a könyvtárban...</string>
     <string name="favorites">Kedvencek</string>

@@ -38,7 +38,6 @@
     <string name="album_artist">فنان الألبوم</string>
     <string name="year">السنة</string>
     <string name="track_hint">"المقطع (2 للمقطع 2 أو 3004 لـCD3 للمقطع 4)"</string>
-    <string name="lyrics">كلمات الأغاني</string>
     <string name="label_details">التفاصيل</string>
     <string name="label_file_name">اسم الملف</string>
     <string name="label_file_path">مسار الملف</string>
@@ -85,7 +84,6 @@
     <string name="action_shuffle_playlist">خلط قائمة التشغيل</string>
     <string name="action_clear_playing_queue">مسح قائمة التشغيل</string>
     <string name="action_save_playing_queue">حفظ قائمة التشغيل</string>
-    <string name="action_show_lyrics">عرض كلمات الأغاني</string>
     <string name="light_theme_name">فاتح</string>
     <string name="dark_theme_name">غامق</string>
     <string name="always">دائماً</string>
@@ -117,7 +115,6 @@
     <string name="pref_title_gapless_playback">تشغيل بدون فواصل</string>
     <string name="pref_title_audio_ducking">خفض الصوت عند فقدان التركيز</string>
     <string name="pref_title_last_added_interval">فترة قائمة تشغيل المضافة مؤخراً</string>
-    <string name="pref_title_synchronized_lyrics_show">عرض كلمات الأغاني المتزامنة</string>
     <string name="pref_title_remember_last_tab">تذكر آخر لسان</string>
     <string name="no_audio_ID">"شغل أغنية أولاً، ثم حاول مرة أخرى."</string>
     <string name="delete_action">حذف</string>
@@ -149,7 +146,6 @@
     <string name="pref_summary_colored_navigation_bar">تلوين شريط التنقل باللون الأساسي.</string>
     <string name="pref_summary_colored_app_shortcuts">تلوين اختصارات التطبيق باللون الأساسي.</string>
     <string name="pref_summary_audio_ducking">الإشعارات، التنقل، إلخ.</string>
-    <string name="pref_summary_synchronized_lyrics_show">حالياً كلمات الأغاني المتزامنة بصيغة LRC هي المدعومة فقط. سواء كانت مدمجة أو كملف منفصل.</string>
     <string name="pref_summary_remember_last_tab">الذهاب إلى آخر لسان مفتوح عند التشغيل</string>
     <string name="search_hint">البحث في مكتبتك...</string>
     <string name="favorites">المفضلة</string>

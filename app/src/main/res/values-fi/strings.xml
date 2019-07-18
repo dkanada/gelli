@@ -38,7 +38,6 @@
     <string name="album_artist">Albumin artisti</string>
     <string name="year">Vuosi</string>
     <string name="track_hint">"Raita"</string>
-    <string name="lyrics">Sanoitukset</string>
     <string name="label_details">Yksityiskohdat</string>
     <string name="label_file_name">Tiedostonimi</string>
     <string name="label_file_path">Tiedostopolku</string>
@@ -86,7 +85,6 @@
     <string name="action_shuffle_playlist">Sekoita soittolistat</string>
     <string name="action_clear_playing_queue">Tyhjennä toistojono</string>
     <string name="action_save_playing_queue">Tallenna toistojono</string>
-    <string name="action_show_lyrics">Näytä lyriikat</string>
     <string name="light_theme_name">Vaalea</string>
     <string name="dark_theme_name">Tumma</string>
     <string name="always">Aina</string>
@@ -119,7 +117,6 @@
     <string name="pref_title_gapless_playback">Tauoton toisto</string>
     <string name="pref_title_audio_ducking">Hiljennä ääntä, kun kohdistus menetetään</string>
     <string name="pref_title_last_added_interval">Viimeksi lisätyt -soittolistan aikaväli</string>
-    <string name="pref_title_synchronized_lyrics_show">Näytä synkronoidut sanoitukset</string>
     <string name="pref_title_remember_last_tab">Muista viimeisin välilehti</string>
     <string name="pref_title_remember_shuffle">Muista sekoitus</string>
     <string name="no_audio_ID">"Toista jokin kappale ensin, koita sitten uudelleen."</string>
@@ -152,7 +149,6 @@
     <string name="pref_summary_colored_navigation_bar">Värittää navigaatiopalkin päävärillä.</string>
     <string name="pref_summary_colored_app_shortcuts">Värittää sovelluksen pikavalinnat päävärillä.</string>
     <string name="pref_summary_audio_ducking">Ilmoitukset, liikkuminen jne.</string>
-    <string name="pref_summary_synchronized_lyrics_show">Nykyiseltään sovellus tukee vain LRC-muodossa olevia sanoituksia, joko sulautettuna tai erillisinä tiedostoina.</string>
     <string name="pref_summary_remember_last_tab">Palauttaa käynnistyessään viimeksi avoinna olleen välilehden.</string>
     <string name="pref_summary_remember_shuffle">Sekoitus-tila pysyy päällä, kun valitset uuden listan kappaleita</string>
     <string name="search_hint">Etsi kirjastostasi...</string>

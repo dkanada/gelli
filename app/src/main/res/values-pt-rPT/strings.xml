@@ -77,7 +77,6 @@
     <string name="action_shuffle_artist">Embaralhar Artista</string>
     <string name="action_shuffle_playlist">Embaralhar lista de reprodução</string>
     <string name="action_clear_playing_queue">Limpar fila de reprodução</string>
-    <string name="action_show_lyrics">Mostrar letra</string>
     <string name="light_theme_name">Claro</string>
     <string name="dark_theme_name">Escuro</string>
     <string name="always">Sempre</string>

@@ -38,7 +38,6 @@
     <string name="album_artist">Albüm sanatçısı</string>
     <string name="year">Yıl</string>
     <string name="track_hint">"Parça (2. parça için 2 ya da CD3 4. parça için 3004)"</string>
-    <string name="lyrics">Şarkı sözleri</string>
     <string name="label_details">Ayrıntılar</string>
     <string name="label_file_name">Dosya adı</string>
     <string name="label_file_path">Dosya yolu</string>
@@ -85,7 +84,6 @@
     <string name="action_shuffle_playlist">Çalma listesini karıştır</string>
     <string name="action_clear_playing_queue">Çalma sırasını temizle</string>
     <string name="action_save_playing_queue">Çalma sırasını kaydet</string>
-    <string name="action_show_lyrics">Şarkı sözlerini göster</string>
     <string name="light_theme_name">Açık</string>
     <string name="dark_theme_name">Koyu</string>
     <string name="always">Her zaman</string>
@@ -117,7 +115,6 @@
     <string name="pref_title_gapless_playback">Aralıksız çalma</string>
     <string name="pref_title_audio_ducking">Odak kaybına neden olacak sesi azalt</string>
     <string name="pref_title_last_added_interval">Son eklenen çalma listesi süresi</string>
-    <string name="pref_title_synchronized_lyrics_show">Senkronize şarkı sözlerini göster</string>
     <string name="pref_title_remember_last_tab">Son sekmeyi hatırla</string>
     <string name="no_audio_ID">"ilk şarkıyı çalın, daha sonra tekrar deneyin."</string>
     <string name="delete_action">Sil</string>
@@ -149,7 +146,6 @@
     <string name="pref_summary_colored_navigation_bar">Gezinme çubuğunu ana renk ile renklendir.</string>
     <string name="pref_summary_colored_app_shortcuts">Uygulama kısayollarını ana renk ile renklendir.</string>
     <string name="pref_summary_audio_ducking">Bildirimler, gezinme vb.</string>
-    <string name="pref_summary_synchronized_lyrics_show">Şu anda yalnızca LRC formatında senkronize edilmiş sözler desteklenmektedir. Gömülü veya ayrı bir dosya olarak.</string>
     <string name="pref_summary_remember_last_tab">Başlatıldığında son açılan sekmeye git</string>
     <string name="search_hint">Kitaplığınız taranıyor...</string>
     <string name="favorites">Favoriler</string>

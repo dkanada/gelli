@@ -38,7 +38,6 @@
     <string name="album_artist">Artista do álbum</string>
     <string name="year">Ano</string>
     <string name="track_hint">"Música (2 para a música 2 ou 3004 para a música 4 do CD3)"</string>
-    <string name="lyrics">Letra</string>
     <string name="label_details">Detalhes</string>
     <string name="label_file_name">Nome do arquivo</string>
     <string name="label_file_path">Endereço do arquivo</string>
@@ -86,7 +85,6 @@
     <string name="action_shuffle_playlist">Misturar playlist</string>
     <string name="action_clear_playing_queue">Limpar fila de reprodução</string>
     <string name="action_save_playing_queue">Salvar fila de reprodução</string>
-    <string name="action_show_lyrics">Mostrar letras</string>
     <string name="light_theme_name">Claro</string>
     <string name="dark_theme_name">Escuro</string>
     <string name="always">Sempre</string>
@@ -119,7 +117,6 @@
     <string name="pref_title_gapless_playback">Reprodução contínua</string>
     <string name="pref_title_audio_ducking">Reduzir o volume de perda de foco</string>
     <string name="pref_title_last_added_interval">Intervalo de adição das playlists mais recentes</string>
-    <string name="pref_title_synchronized_lyrics_show">Exibir letras sincronizadas</string>
     <string name="pref_title_remember_last_tab">Lembrar última aba</string>
     <string name="pref_title_remember_shuffle">Memorizar aleatorização</string>
     <string name="no_audio_ID">"Sem identificação de áudio, reproduza algo e tente novamente."</string>
@@ -152,7 +149,6 @@
     <string name="pref_summary_colored_navigation_bar">Cores da barra de navegação na cor primária.</string>
     <string name="pref_summary_colored_app_shortcuts">Colore os atalhos do app com a cor primária.</string>
     <string name="pref_summary_audio_ducking">Notificações, navegação, etc.</string>
-    <string name="pref_summary_synchronized_lyrics_show">Atualmente damos suporte apenas a letras de música no formato LRC. Tanto as encorporadas quanto as anexadas por um arquivo separado.</string>
     <string name="pref_summary_remember_last_tab">Ir para a última aba aberta ao iniciar</string>
     <string name="pref_summary_remember_shuffle">Modo aleatório continuará ativo quando uma nova lista de músicas for selecionada</string>
     <string name="search_hint">Pesquisar na sua biblioteca...</string>

@@ -38,7 +38,6 @@
     <string name="album_artist">Interpret alba</string>
     <string name="year">Rok</string>
     <string name="track_hint">"Stopa (2 pro stopu 2; 3004 pro stopu 4 na CD3)"</string>
-    <string name="lyrics">Text</string>
     <string name="label_details">Podrobnosti</string>
     <string name="label_file_name">Název souboru</string>
     <string name="label_file_path">Umístění souboru</string>
@@ -85,7 +84,6 @@
     <string name="action_shuffle_playlist">Přehrát playlist náhodně</string>
     <string name="action_clear_playing_queue">Vyčistit frontu přehrávání</string>
     <string name="action_save_playing_queue">Uložit frontu přehrávání</string>
-    <string name="action_show_lyrics">Zobrazit text</string>
     <string name="light_theme_name">Světlý</string>
     <string name="dark_theme_name">Tmavý</string>
     <string name="always">Vždy</string>
@@ -117,7 +115,6 @@
     <string name="pref_title_gapless_playback">Přehrávání bez mezer</string>
     <string name="pref_title_audio_ducking">Snížit hlasitost při ztrátě priority zvuku</string>
     <string name="pref_title_last_added_interval">Poslední přidaný interval playlistu</string>
-    <string name="pref_title_synchronized_lyrics_show">Zobrazit synchronizovaný text</string>
     <string name="pref_title_remember_last_tab">Pamatovat poslední kartu</string>
     <string name="no_audio_ID">"Nejdříve přehrajte píseň, poté zkuste znovu. "</string>
     <string name="delete_action">Smazat</string>
@@ -149,7 +146,6 @@
     <string name="pref_summary_colored_navigation_bar">Barvy navigačního panelu v primární barvě</string>
     <string name="pref_summary_colored_app_shortcuts">Zbarví zkratky aplikace primární barvou</string>
     <string name="pref_summary_audio_ducking">Oznámení, navigace atd.</string>
-    <string name="pref_summary_synchronized_lyrics_show">V současné době jsou podporovány pouze synchronizované texty ve formátu LRC. Buď vestavěný nebo jako samostatný soubor.</string>
     <string name="pref_summary_remember_last_tab">Přejděte na poslední otevřenou kartu při spuštění</string>
     <string name="search_hint">Vyhledat zvukové soubory...</string>
     <string name="favorites">Oblíbené</string>

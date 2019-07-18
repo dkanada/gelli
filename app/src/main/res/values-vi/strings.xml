@@ -37,7 +37,6 @@
     <string name="album_artist">Album của nghệ sĩ</string>
     <string name="year">Năm</string>
     <string name="track_hint">"Số thứ tự (ghi 2 nếu là bài thứ 2 hoặc ghi 3004 nếu là CD 3, bài thứ 4)"</string>
-    <string name="lyrics">Lời bài hát</string>
     <string name="label_details">Chi tiết</string>
     <string name="label_file_name">Tên tập tin</string>
     <string name="label_file_path">Đường dẫn tập tin</string>
@@ -82,7 +81,6 @@
     <string name="action_shuffle_playlist">Trộn danh sách nhạc</string>
     <string name="action_clear_playing_queue">Dọn hàng đợi phát</string>
     <string name="action_save_playing_queue">Lưu hàng đợi phát</string>
-    <string name="action_show_lyrics">Hiện lời bài hát</string>
     <string name="light_theme_name">Sáng</string>
     <string name="dark_theme_name">Tối</string>
     <string name="always">Luôn luôn</string>
@@ -113,7 +111,6 @@
     <string name="pref_title_gapless_playback">Phát lại quãng lặng</string>
     <string name="pref_title_audio_ducking">Giảm âm lượng khi mất tập trung</string>
     <string name="pref_title_last_added_interval">Thời gian danh sách nhạc được thêm vào sau cùng</string>
-    <string name="pref_title_synchronized_lyrics_show">Hiển thị lời bài hát được đồng bộ</string>
     <string name="no_audio_ID">"Phát một bài hát đầu tiên, sau đó thử lại."</string>
     <string name="delete_action">Xóa</string>
     <string name="clear_action">Dọn</string>
@@ -142,7 +139,6 @@
     <string name="pref_summary_colored_navigation_bar">Màu sắc thanh điều hướng trong các màu cơ bản.</string>
     <string name="pref_summary_colored_app_shortcuts">Màu sắc chủ đạo của biểu tượng ứng dụng.</string>
     <string name="pref_summary_audio_ducking">Thông báo, điều hướng, vv.</string>
-    <string name="pref_summary_synchronized_lyrics_show">Hiện tại chỉ được đồng bộ lời bài hát ở định dạng LRC. Nhúng hoặc là một tập tin riêng biệt.</string>
     <string name="search_hint">Tìm kiếm thư viện của bạn...</string>
     <string name="favorites">Yêu thích</string>
     <string name="last_added">Được thêm sau cùng</string>

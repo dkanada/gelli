@@ -37,7 +37,6 @@
     <string name="album_artist">Изпълнител</string>
     <string name="year">Година</string>
     <string name="track_hint">"Трак (2 за трак 2 или 3004 за CD3 трак 4)"</string>
-    <string name="lyrics">Текст на песента</string>
     <string name="label_details">Детайли</string>
     <string name="label_file_name">Име на файл</string>
     <string name="label_file_path">Местоположение на файла</string>
@@ -81,7 +80,6 @@
     <string name="action_shuffle_artist">Разбъркай артист</string>
     <string name="action_shuffle_playlist">Разбъркай този плейлист</string>
     <string name="action_clear_playing_queue">Изчисти списъкът с възпроизвеждащи се песни</string>
-    <string name="action_show_lyrics">Покажи текст</string>
     <string name="light_theme_name">Светъл изглед</string>
     <string name="dark_theme_name">Тъмен изглед</string>
     <string name="always">Винаги</string>
