@@ -19,31 +19,25 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.data.DataFetcher;
 import com.kabouzeid.gramophone.glide.audiocover.AudioFileCoverUtils;
 import com.kabouzeid.gramophone.util.ImageUtil;
-import com.kabouzeid.gramophone.util.PreferenceUtil;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
  */
 public class ArtistImageFetcher implements DataFetcher<InputStream> {
 
-    private final ArtistImage model;
-
+    private ArtistImage model;
     private InputStream stream;
 
-    private boolean ignoreMediaStore;
-
-    public ArtistImageFetcher(final ArtistImage model, boolean ignoreMediaStore) {
+    public ArtistImageFetcher(final ArtistImage model) {
         this.model = model;
-        this.ignoreMediaStore = ignoreMediaStore;
     }
 
     @Override
     public String getId() {
         Log.d("MOSAIC", "get id for" + model.artistName);
-        // never return NULL here!
         // this id is used to determine whether the image is already cached
         // we use the artist name as well as the album years + file paths
-        return model.toIdString() + "ignoremediastore:" + ignoreMediaStore;
+        return model.toIdString();
     }
 
     @Override
@@ -65,18 +59,7 @@ public class ArtistImageFetcher implements DataFetcher<InputStream> {
 
         try {
             for (final AlbumCover cover : albumCovers) {
-                byte[] picture = null;
-                if (!ignoreMediaStore) {
-                    retriever.setDataSource(cover.getFilePath());
-                    picture = retriever.getEmbeddedPicture();
-                }
-                final InputStream stream;
-                if (picture != null) {
-                    stream = new ByteArrayInputStream(picture);
-                } else {
-                    stream = AudioFileCoverUtils.fallback(cover.getFilePath());
-                }
-
+                InputStream stream = AudioFileCoverUtils.fallback(cover.getFilePath());
                 if (stream != null) {
                     images.put(stream, cover.getYear());
                 }
@@ -120,14 +103,11 @@ public class ArtistImageFetcher implements DataFetcher<InputStream> {
                 final ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG, 0, bos);
                 result = new ByteArrayInputStream(bos.toByteArray());
-
             } else if (nbImages > 0) {
                 // we return the last cover album of the artist
                 Map.Entry<InputStream, Integer> maxEntryYear = null;
-
                 for (final Map.Entry<InputStream, Integer> entry : images.entrySet()) {
-                    if (maxEntryYear == null || entry.getValue()
-                            .compareTo(maxEntryYear.getValue()) > 0) {
+                    if (maxEntryYear == null || entry.getValue().compareTo(maxEntryYear.getValue()) > 0) {
                         maxEntryYear = entry;
                     }
                 }
@@ -135,12 +115,8 @@ public class ArtistImageFetcher implements DataFetcher<InputStream> {
                 if (maxEntryYear != null) {
                     result = maxEntryYear.getKey();
                 } else {
-                    result = images.entrySet()
-                            .iterator()
-                            .next()
-                            .getKey();
+                    result = images.entrySet().iterator().next().getKey();
                 }
-
             }
         } finally {
             retriever.release();
@@ -151,7 +127,6 @@ public class ArtistImageFetcher implements DataFetcher<InputStream> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
         return result;
     }

@@ -112,7 +112,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         setDrawUnderStatusbar();
         ButterKnife.bind(this);
 
-        usePalette = PreferenceUtil.getInstance(this).albumArtistColoredFooters();
+        usePalette = PreferenceUtil.getInstance(this).getAlbumArtistColoredFooters();
 
         initViews();
         setUpObservableListViewParams();

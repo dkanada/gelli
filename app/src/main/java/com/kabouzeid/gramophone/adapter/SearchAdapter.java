@@ -74,7 +74,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 holder.title.setText(album.getTitle());
                 holder.text.setText(MusicUtil.getAlbumInfoString(activity, album));
                 SongGlideRequest.Builder.from(Glide.with(activity), album.safeGetFirstSong())
-                        .checkIgnoreMediaStore(activity).build()
+                        .build()
                         .into(holder.image);
                 break;
             case ARTIST:

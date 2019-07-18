@@ -59,9 +59,7 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
         return o;
     }
 
-    /**
-     * Only the latest passed {@link AlbumCoverFragment.ColorReceiver} is guaranteed to receive a response
-     */
+    // only the latest ColorReceiver is guaranteed a response
     public void receiveColor(AlbumCoverFragment.ColorReceiver colorReceiver, int position) {
         AlbumCoverFragment fragment = (AlbumCoverFragment) getFragment(position);
         if (fragment != null) {
@@ -74,7 +72,7 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
         }
     }
 
-    public static class AlbumCoverFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class AlbumCoverFragment extends Fragment {
         private static final String SONG_ARG = "song";
 
         private Unbinder unbinder;
@@ -112,24 +110,18 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
         @Override
         public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            forceSquareAlbumCover(false);
-            // TODO
-//            forceSquareAlbumCover(PreferenceUtil.getInstance(getContext()).forceSquareAlbumCover());
-            PreferenceUtil.getInstance(getActivity()).registerOnSharedPreferenceChangedListener(this);
             loadAlbumCover();
         }
 
         @Override
         public void onDestroyView() {
             super.onDestroyView();
-            PreferenceUtil.getInstance(getActivity()).unregisterOnSharedPreferenceChangedListener(this);
             unbinder.unbind();
             colorReceiver = null;
         }
 
         private void loadAlbumCover() {
-            SongGlideRequest.Builder.from(Glide.with(this), song)
-                    .checkIgnoreMediaStore(getActivity())
+            SongGlideRequest.Builder.from(Glide.with(getContext()), song)
                     .generatePalette(getActivity()).build()
                     .into(new CustomPaletteTarget(albumCover) {
                         @Override
@@ -137,20 +129,6 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
                             setColor(color);
                         }
                     });
-        }
-
-        @Override
-        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            switch (key) {
-                case PreferenceUtil.FORCE_SQUARE_ALBUM_COVER:
-                    // TODO
-//                    forceSquareAlbumCover(PreferenceUtil.getInstance(getActivity()).forceSquareAlbumCover());
-                    break;
-            }
-        }
-
-        public void forceSquareAlbumCover(boolean forceSquareAlbumCover) {
-            albumCover.setScaleType(forceSquareAlbumCover ? ImageView.ScaleType.FIT_CENTER : ImageView.ScaleType.CENTER_CROP);
         }
 
         private void setColor(int color) {

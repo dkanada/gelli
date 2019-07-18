@@ -1,6 +1,5 @@
 package com.kabouzeid.gramophone.ui.activities;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,14 +14,12 @@ import androidx.preference.TwoStatePreference;
 import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEColorPreference;
 import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceFragmentCompat;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.shortcuts.DynamicShortcutManager;
 import com.kabouzeid.gramophone.preferences.LibraryPreference;
@@ -123,7 +120,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             addPreferencesFromResource(R.xml.pref_colors);
             addPreferencesFromResource(R.xml.pref_notification);
             addPreferencesFromResource(R.xml.pref_now_playing_screen);
-            addPreferencesFromResource(R.xml.pref_images);
             addPreferencesFromResource(R.xml.pref_lockscreen);
             addPreferencesFromResource(R.xml.pref_audio);
             addPreferencesFromResource(R.xml.pref_playlists);
@@ -169,13 +165,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 }
 
                 getActivity().recreate();
-                return true;
-            });
-
-            final Preference autoDownloadImagesPolicy = findPreference("auto_download_images_policy");
-            setSummary(autoDownloadImagesPolicy);
-            autoDownloadImagesPolicy.setOnPreferenceChangeListener((preference, o) -> {
-                setSummary(autoDownloadImagesPolicy, o);
                 return true;
             });
 
@@ -265,7 +254,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             switch (key) {
-                case PreferenceUtil.NOW_PLAYING_SCREEN_ID:
+                case PreferenceUtil.NOW_PLAYING_SCREEN:
                     updateNowPlayingScreenSummary();
                     break;
                 case PreferenceUtil.CLASSIC_NOTIFICATION:

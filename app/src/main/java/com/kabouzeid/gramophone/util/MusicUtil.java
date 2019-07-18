@@ -37,13 +37,6 @@ import java.util.Locale;
  * @author Karim Abou Zeid (kabouzeid)
  */
 public class MusicUtil {
-
-    public static Uri getMediaStoreAlbumCoverUri(int albumId) {
-        final Uri sArtworkUri = Uri.parse("content://media/external/audio/albumart");
-
-        return ContentUris.withAppendedId(sArtworkUri, albumId);
-    }
-
     public static Uri getSongFileUri(int songId) {
         return ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, songId);
     }

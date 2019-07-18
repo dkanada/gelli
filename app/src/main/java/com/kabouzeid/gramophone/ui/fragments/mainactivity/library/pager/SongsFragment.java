@@ -114,7 +114,7 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
 
     @Override
     public boolean loadUsePalette() {
-        return PreferenceUtil.getInstance(getActivity()).songColoredFooters();
+        return PreferenceUtil.getInstance(getActivity()).getSongColoredFooters();
     }
 
     @Override

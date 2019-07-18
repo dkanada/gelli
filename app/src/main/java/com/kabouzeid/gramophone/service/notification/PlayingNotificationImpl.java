@@ -89,7 +89,6 @@ public class PlayingNotificationImpl extends PlayingNotification {
                     Glide.clear(target);
                 }
                 target = SongGlideRequest.Builder.from(Glide.with(service), song)
-                        .checkIgnoreMediaStore(service)
                         .generatePalette(service).build()
                         .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
                             @Override

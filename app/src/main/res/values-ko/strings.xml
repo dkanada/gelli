@@ -76,9 +76,6 @@
     <string name="action_shuffle_playlist">재생 목록 랜덤 재생</string>
     <string name="light_theme_name">밝은 테마</string>
     <string name="dark_theme_name">어두운 테마</string>
-    <string name="always">항상</string>
-    <string name="only_on_wifi">Wi-Fi 환경에서만</string>
-    <string name="never">사용 안 함</string>
     <string name="today">오늘</string>
     <string name="this_week">이번 주</string>
     <string name="this_month">이번 달</string>
@@ -90,23 +87,19 @@
     <string name="pref_title_general_theme">전체 테마</string>
     <string name="pref_header_audio">오디오</string>
     <string name="pref_header_library">보관함</string>
-    <string name="pref_header_images">이미지</string>
     <string name="pref_header_lockscreen">잠금 화면</string>
     <string name="pref_header_playlists">재생목록</string>
     <string name="pref_header_notification">알림</string>
     <string name="pref_title_navigation_bar">내비게이션 바 색상 틴트</string>
     <string name="pref_title_app_shortcuts">앱 바로가기 색칠</string>
     <string name="pref_title_album_art_on_lockscreen">앨범 커버 보이기</string>
-    <string name="pref_title_auto_download_metadata">메타데이터 자동 다운로드</string>
     <string name="pref_title_blurred_album_art">앨범 커버 블러 효과</string>
     <string name="pref_title_colored_notification">알림 색상 틴트</string>
     <string name="pref_title_classic_notification">클래식 알림 디자인</string>
-    <string name="pref_title_ignore_media_store_artwork">미디어 스토어 앨범 커버 무시</string>
     <string name="pref_title_gapless_playback">갭리스 재생</string>
     <string name="pref_title_audio_ducking">포커스 상실 시 볼륨 감소하기</string>
     <string name="pref_title_last_added_interval">최근 추가된 재생 목록 간격</string>
     <string name="pref_title_remember_last_tab">마지막 탭 기억</string>
-    <string name="no_audio_ID">"먼저 노래를 재생한 후 다시 시도해 주세요."</string>
     <string name="delete_action">삭제</string>
     <string name="clear_action">비우기</string>
     <string name="remove_action">제거</string>
@@ -132,9 +125,6 @@
     <string name="pref_summary_classic_notification">클래식 알림 디자인 사용</string>
     <string name="pref_summary_colored_notification">"\uc54c\ub9bc \ucee8\ud2b8\ub864\uc744 \uc568\ubc94 \uc544\ud2b8\uc758 \uc8fc \uc0c9\uc0c1\uc73c\ub85c \uce60\ud569\ub2c8\ub2e4."</string>
     <string name="pref_summary_gapless_playback">"일부 기기에서 곡 전환 관련 문제가 발생할 수 있습니다."</string>
-    <string name="pref_summary_ignore_media_store_artwork">앨범 아트 이미지의 질이 높아지지만 로딩 시간이
-길어질 수 있습니다. 저화질 앨범 아트를 원하지
- 않으실 경우에만 이 기능을 사용하십시오.</string>
     <string name="pref_summary_colored_navigation_bar">하단바가 색깔을 주 색상으로 색칠합니다.</string>
     <string name="pref_summary_colored_app_shortcuts">주 색상으로 앱 바로가기 색칠</string>
     <string name="pref_summary_audio_ducking">알림 소리, 버튼음 등</string>

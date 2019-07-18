@@ -101,12 +101,12 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
         if (PreferenceUtil.LIBRARY_CATEGORIES.equals(key)) {
             Fragment current = getCurrentFragment();
-            pagerAdapter.setCategoryInfos(PreferenceUtil.getInstance(getActivity()).getLibraryCategoryInfos());
+            pagerAdapter.setCategoryInfos(PreferenceUtil.getInstance(getActivity()).getLibraryCategories());
             pager.setOffscreenPageLimit(pagerAdapter.getCount() - 1);
             int position = pagerAdapter.getItemPosition(current);
             if (position < 0) position = 0;
             pager.setCurrentItem(position);
-            PreferenceUtil.getInstance(getContext()).setLastPage(position);
+            PreferenceUtil.getInstance(getContext()).setLastTab(position);
 
             updateTabVisibility();
         }
@@ -137,8 +137,8 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
 
         updateTabVisibility();
 
-        if (PreferenceUtil.getInstance(getContext()).rememberLastTab()) {
-            pager.setCurrentItem(PreferenceUtil.getInstance(getContext()).getLastPage());
+        if (PreferenceUtil.getInstance(getContext()).getRememberLastTab()) {
+            pager.setCurrentItem(PreferenceUtil.getInstance(getContext()).getLastTab());
         }
         pager.addOnPageChangeListener(this);
     }
@@ -443,7 +443,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
 
     @Override
     public void onPageSelected(int position) {
-        PreferenceUtil.getInstance(getActivity()).setLastPage(position);
+        PreferenceUtil.getInstance(getActivity()).setLastTab(position);
     }
 
     @Override

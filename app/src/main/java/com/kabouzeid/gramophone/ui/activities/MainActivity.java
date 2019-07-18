@@ -128,7 +128,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             ((TextView) navigationDrawerHeader.findViewById(R.id.title)).setText(song.title);
             ((TextView) navigationDrawerHeader.findViewById(R.id.text)).setText(MusicUtil.getSongInfoString(song));
             SongGlideRequest.Builder.from(Glide.with(this), song)
-                    .checkIgnoreMediaStore(this).build()
+                    .build()
                     .into(((ImageView) navigationDrawerHeader.findViewById(R.id.image)));
         } else {
             if (navigationDrawerHeader != null) {

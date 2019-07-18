@@ -72,7 +72,7 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
 
     @Override
     public boolean loadUsePalette() {
-        return PreferenceUtil.getInstance(getActivity()).albumColoredFooters();
+        return PreferenceUtil.getInstance(getActivity()).getAlbumColoredFooters();
     }
 
     @Override
