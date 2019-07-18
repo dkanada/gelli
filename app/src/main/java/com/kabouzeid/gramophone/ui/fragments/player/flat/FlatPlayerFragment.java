@@ -445,7 +445,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
-                        case R.id.action_remove_from_playing_queue:
+                        case R.id.action_remove_from_queue:
                             MusicPlayerRemote.removeFromQueue(MusicPlayerRemote.getPosition());
                             return true;
                         case R.id.action_share:

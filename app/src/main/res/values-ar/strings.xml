@@ -18,9 +18,6 @@
     <string name="action_play_pause">تشغيل/إيقاف مؤقت</string>
     <string name="action_previous">السابق</string>
     <string name="action_next">التالي</string>
-    <string name="action_add_to_playing_queue">إضافة إلى قائمة الانتظار</string>
-    <string name="action_remove_from_playing_queue">إزالة من قائمة الانتظار</string>
-    <string name="action_add_to_playlist">إضافة إلى قائمة التشغيل...</string>
     <string name="action_delete_from_device">حذف من الجهاز</string>
     <string name="action_details">التفاصيل</string>
     <string name="action_rename">إعادة التسمية</string>
@@ -37,7 +34,6 @@
     <string name="genre">النوع</string>
     <string name="album_artist">فنان الألبوم</string>
     <string name="year">السنة</string>
-    <string name="track_hint">"المقطع (2 للمقطع 2 أو 3004 لـCD3 للمقطع 4)"</string>
     <string name="label_details">التفاصيل</string>
     <string name="label_file_name">اسم الملف</string>
     <string name="label_file_path">مسار الملف</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">معدل الترميز</string>
     <string name="action_go_to_artist">الذهاب إلى الفنان</string>
     <string name="action_go_to_album">الذهاب إلى الألبوم</string>
-    <string name="label_playing_queue">قائمة التشغيل</string>
     <string name="no_results">لا توجد نتائج</string>
-    <string name="added_title_to_playing_queue">"تمت إضافة عنوان واحد إلى قائمة التشغيل."</string>
-    <string name="added_x_titles_to_playing_queue">تمت إضافة %1$d عناوين إلى قائمة التشغيل.</string>
     <string name="action_remove_from_playlist">إزالة من قائمة التشغيل</string>
     <string name="action_grid_size">حجم الشبكة</string>
     <string name="action_grid_size_land">حجم الشبكة (في الوضع الأفقي)</string>
@@ -77,13 +70,10 @@
     <string name="clear_playlist_title">مسح قائمة التشغيل</string>
     <string name="save_playlist_title">حفظ كملف</string>
     <string name="save_playlists_title">حفظ كملفات</string>
-    <string name="add_playlist_title">"إضافة إلى قائمة التشغيل"</string>
     <string name="action_shuffle_all">خلط الكل</string>
     <string name="action_shuffle_album">خلط الألبوم</string>
     <string name="action_shuffle_artist">خلط الفنان</string>
     <string name="action_shuffle_playlist">خلط قائمة التشغيل</string>
-    <string name="action_clear_playing_queue">مسح قائمة التشغيل</string>
-    <string name="action_save_playing_queue">حفظ قائمة التشغيل</string>
     <string name="light_theme_name">فاتح</string>
     <string name="dark_theme_name">غامق</string>
     <string name="always">دائماً</string>
@@ -147,7 +137,6 @@
     <string name="pref_summary_colored_app_shortcuts">تلوين اختصارات التطبيق باللون الأساسي.</string>
     <string name="pref_summary_audio_ducking">الإشعارات، التنقل، إلخ.</string>
     <string name="pref_summary_remember_last_tab">الذهاب إلى آخر لسان مفتوح عند التشغيل</string>
-    <string name="search_hint">البحث في مكتبتك...</string>
     <string name="favorites">المفضلة</string>
     <string name="last_added">المضافة مؤخراً</string>
     <string name="history">السجل</string>
@@ -157,8 +146,6 @@
     <string name="cancel_current_timer">إلغاء المؤقت الحالي</string>
     <string name="sleep_timer_canceled">تم إلقاء مؤقت النوم</string>
     <string name="sleep_timer_set">تم ضبط مؤقت النوم لـ%d دقائق من الآن.</string>
-    <string name="action_new_playlist">قائمة تشغيل جديدة...</string>
-    <string name="new_playlist_title">قائمة تشغيل جديدة</string>
     <string name="colored_footers">هوامش ملونة</string>
     <string name="special_thanks_to">شكر خاص إلى</string>
     <string name="permissions_denied">تم رفض الصلاحيات.</string>
@@ -186,8 +173,6 @@
     <string name="loading_products">جار تحميل المنتجات...</string>
     <string name="up_next">التالي</string>
     <string name="pref_title_now_playing_screen_appearance">المظهر</string>
-    <string name="open_playing_queue_instruction">اسحب البطاقة في شاشة \"يتم تشغيله الآن\" لإظهار قائمة التشغيل بالكامل.</string>
-    <string name="rearrange_playing_queue_instruction">إعادة ترتيب قائمة التشغيل عبر سحب الأغاني من أرقامها.</string>
     <string name="library">المكتبة</string>
     <string name="saved_playlist_to">تم حفظ قائمة التشغيل إلى %s.</string>
     <string name="failed_to_save_playlist">فشل حفظ قائمة التشغيل (%s).</string>

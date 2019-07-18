@@ -9,7 +9,6 @@ import com.kabouzeid.gramophone.dialogs.DeleteSongsDialog;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.model.Song;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +20,7 @@ public class SongsMenuHelper {
             case R.id.action_play_next:
                 MusicPlayerRemote.playNext(songs);
                 return true;
-            case R.id.action_add_to_current_playing:
+            case R.id.action_add_to_queue:
                 MusicPlayerRemote.enqueue(songs);
                 return true;
             case R.id.action_add_to_playlist:

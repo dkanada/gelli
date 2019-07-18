@@ -18,9 +18,6 @@
     <string name="action_play_pause">Play/Pause</string>
     <string name="action_previous">Vorheriger</string>
     <string name="action_next">Nächster</string>
-    <string name="action_add_to_playing_queue">Zur Warteschlange hinzufügen</string>
-    <string name="action_remove_from_playing_queue">Von Warteschlange entfernen</string>
-    <string name="action_add_to_playlist">Zu Wiedergabeliste hinzufügen…</string>
     <string name="action_delete_from_device">Von Gerät löschen</string>
     <string name="action_details">Details</string>
     <string name="action_rename">Umbenennen</string>
@@ -37,7 +34,6 @@
     <string name="genre">Genre</string>
     <string name="album_artist">Album Interpret</string>
     <string name="year">Jahr</string>
-    <string name="track_hint">"Track (2 für Track 2 oder 3004 für CD 3 Track 4)"</string>
     <string name="label_details">Details</string>
     <string name="label_file_name">Dateiname</string>
     <string name="label_file_path">Dateipfad</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Samplingrate</string>
     <string name="action_go_to_artist">Gehe zu Interpret</string>
     <string name="action_go_to_album">Gehe zum Album</string>
-    <string name="label_playing_queue">Warteschlange</string>
     <string name="no_results">Keine Ergebnisse</string>
-    <string name="added_title_to_playing_queue">"1 Titel wurde der Warteschlange hinzugefügt."</string>
-    <string name="added_x_titles_to_playing_queue">%1$d Titel wurden der Warteschlange hinzugefügt.</string>
     <string name="action_remove_from_playlist">Aus Wiedergabeliste entfernen</string>
     <string name="action_grid_size">Rastergröße</string>
     <string name="action_grid_size_land">Rastergröße (Querformat)</string>
@@ -77,14 +70,11 @@
     <string name="clear_playlist_title">Wiedergabeliste leeren</string>
     <string name="save_playlist_title">Als Datei speichern</string>
     <string name="save_playlists_title">Als Dateien speichern</string>
-    <string name="add_playlist_title">"Zu Wiedergabeliste hinzufügen"</string>
     <string name="select_all_title">Alles auswählen</string>
     <string name="action_shuffle_all">Zufällige Wiedergabe</string>
     <string name="action_shuffle_album">Album zufällig wiedergeben</string>
     <string name="action_shuffle_artist">Interpret zufällig wiedergeben</string>
     <string name="action_shuffle_playlist">Wiedergabeliste zufällig wiedergeben</string>
-    <string name="action_clear_playing_queue">Warteschlange leeren</string>
-    <string name="action_save_playing_queue">Warteschlange speichern</string>
     <string name="light_theme_name">Hell</string>
     <string name="dark_theme_name">Dunkel</string>
     <string name="always">Immer</string>
@@ -151,7 +141,6 @@
     <string name="pref_summary_audio_ducking">Benachrichtigungen, Navigation etc.</string>
     <string name="pref_summary_remember_last_tab">Zuletzt geöffneten Tab beim Start anzeigen</string>
     <string name="pref_summary_remember_shuffle">Shuffle bleibt aktiviert, wenn neue Songs ausgewählt werden</string>
-    <string name="search_hint">Durchsuche deine Mediathek</string>
     <string name="favorites">Favoriten</string>
     <string name="last_added">Zuletzt hinzugefügt</string>
     <string name="history">Verlauf</string>
@@ -161,8 +150,6 @@
     <string name="cancel_current_timer">Aktuellen Timer abbrechen</string>
     <string name="sleep_timer_canceled">Der Einschlaf Timer wurde abgebrochen.</string>
     <string name="sleep_timer_set">Der Schlaf Timer geht ab jetzt %d Minuten lang.</string>
-    <string name="action_new_playlist">Neue Wiedergabeliste…</string>
-    <string name="new_playlist_title">Neue Wiedergabeliste</string>
     <string name="colored_footers">Farbige Balken</string>
     <string name="special_thanks_to">Besonderes Dankeschön an</string>
     <string name="permissions_denied">Berechtigungen verweigert.</string>
@@ -190,8 +177,6 @@
     <string name="loading_products">Produkte werden geladen...</string>
     <string name="up_next">Als nächstes</string>
     <string name="pref_title_now_playing_screen_appearance">Aussehen</string>
-    <string name="open_playing_queue_instruction">Ziehe die Karte in der aktuellen Wiedergabe hoch, um die komplette Warteschlange anzeigen zu lassen.</string>
-    <string name="rearrange_playing_queue_instruction">Ziehe die Titelnummer eines Titels nach oben oder unten, um die Warteschlange neu anzuordnen.</string>
     <string name="library">Bibliothek</string>
     <string name="saved_playlist_to">Playlist wurde in %s gespeichert.</string>
     <string name="failed_to_save_playlist">Speichern der Playlist fehlgeschlagen (%s).</string>

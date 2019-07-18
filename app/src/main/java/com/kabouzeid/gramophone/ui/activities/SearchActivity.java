@@ -101,7 +101,7 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
 
         final MenuItem searchItem = menu.findItem(R.id.search);
         searchView = (SearchView) searchItem.getActionView();
-        searchView.setQueryHint(getString(R.string.search_hint));
+        searchView.setQueryHint(getString(R.string.action_search));
         searchView.setMaxWidth(Integer.MAX_VALUE);
 
         searchItem.expandActionView();

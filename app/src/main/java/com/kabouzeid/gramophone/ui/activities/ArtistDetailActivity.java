@@ -256,7 +256,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
             case R.id.action_play_next:
                 MusicPlayerRemote.playNext(songs);
                 return true;
-            case R.id.action_add_to_current_playing:
+            case R.id.action_add_to_queue:
                 MusicPlayerRemote.enqueue(songs);
                 return true;
             case R.id.action_add_to_playlist:

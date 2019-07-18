@@ -49,7 +49,7 @@ public class CreatePlaylistDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new MaterialDialog.Builder(getActivity())
-                .title(R.string.new_playlist_title)
+                .title(R.string.action_new_playlist)
                 .positiveText(R.string.create_action)
                 .negativeText(android.R.string.cancel)
                 .inputType(InputType.TYPE_CLASS_TEXT |

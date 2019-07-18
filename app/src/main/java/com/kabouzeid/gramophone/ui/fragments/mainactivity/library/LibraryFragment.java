@@ -186,7 +186,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         if (pager == null) return;
         inflater.inflate(R.menu.menu_main, menu);
         if (isPlaylistPage()) {
-            menu.add(0, R.id.action_new_playlist, 0, R.string.new_playlist_title);
+            menu.add(0, R.id.action_new_playlist, 0, R.string.action_new_playlist);
         }
         Fragment currentFragment = getCurrentFragment();
         if (currentFragment instanceof AbsLibraryPagerRecyclerViewCustomGridSizeFragment && currentFragment.isAdded()) {

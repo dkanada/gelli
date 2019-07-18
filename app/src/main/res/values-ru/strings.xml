@@ -18,9 +18,6 @@
     <string name="action_play_pause">Воспроизведение/Пауза</string>
     <string name="action_previous">Предыдущий</string>
     <string name="action_next">Следующий</string>
-    <string name="action_add_to_playing_queue">Добавить в очередь воспроизведения</string>
-    <string name="action_remove_from_playing_queue">Удалить из очереди воспроизведения</string>
-    <string name="action_add_to_playlist">Добавить в плейлист...</string>
     <string name="action_delete_from_device">Удалить с устройства</string>
     <string name="action_details">Подробнее</string>
     <string name="action_rename">Переименовать</string>
@@ -37,7 +34,6 @@
     <string name="genre">Жанр</string>
     <string name="album_artist">Альбом исполнителя</string>
     <string name="year">Год</string>
-    <string name="track_hint">"Трек (2 для трека 2 или 3004 для трека 4 CD3)"</string>
     <string name="label_details">Подробнее</string>
     <string name="label_file_name">Имя файла</string>
     <string name="label_file_path">Расположение</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Частота</string>
     <string name="action_go_to_artist">Перейти к исполнителю</string>
     <string name="action_go_to_album">Перейти к альбому</string>
-    <string name="label_playing_queue">Очередь воспроизведения</string>
     <string name="no_results">Нет результатов</string>
-    <string name="added_title_to_playing_queue">"Композиция добавлена в очередь воспроизведения."</string>
-    <string name="added_x_titles_to_playing_queue">%1$d композиций добавлено в очередь воспроизведения</string>
     <string name="action_remove_from_playlist">Удалить из плейлиста</string>
     <string name="action_grid_size">Размер сетки</string>
     <string name="action_grid_size_land">Размер сетки (ландшафт)</string>
@@ -77,14 +70,11 @@
     <string name="clear_playlist_title">Очистить плейлист</string>
     <string name="save_playlist_title">Сохранить как файл</string>
     <string name="save_playlists_title">Сохранить как файлы</string>
-    <string name="add_playlist_title">"Добавить в плейлист"</string>
     <string name="select_all_title">Выбрать все</string>
     <string name="action_shuffle_all">Перемешать всё</string>
     <string name="action_shuffle_album">Перемешать альбом</string>
     <string name="action_shuffle_artist">Перемешать исполнителя</string>
     <string name="action_shuffle_playlist">Перемешать плейлист</string>
-    <string name="action_clear_playing_queue">"Очистить очередь воспроизведения "</string>
-    <string name="action_save_playing_queue">Сохранить очередь воспроизведения</string>
     <string name="light_theme_name">Светлая</string>
     <string name="dark_theme_name">Тёмная</string>
     <string name="always">Всегда</string>
@@ -151,7 +141,6 @@
     <string name="pref_summary_audio_ducking">Уведомления, навигация, т.д.</string>
     <string name="pref_summary_remember_last_tab">Перейти на последнюю открытую вкладку при запуске</string>
     <string name="pref_summary_remember_shuffle">Режим перемешивания останется включенным при выборе нового списка песен</string>
-    <string name="search_hint">Поиск в библиотеке...</string>
     <string name="favorites">Избранное</string>
     <string name="last_added">Последние добавленные</string>
     <string name="history">Недавно воспроизведённые</string>
@@ -161,8 +150,6 @@
     <string name="cancel_current_timer">Отменить текущий таймер</string>
     <string name="sleep_timer_canceled">Таймер сна отменен.</string>
     <string name="sleep_timer_set">Таймер сна установлен на %d минут(ы) с текущего момента</string>
-    <string name="action_new_playlist">Новый плейлист...</string>
-    <string name="new_playlist_title">Новый плейлист</string>
     <string name="colored_footers">Окрашенные нижние колонтитулы</string>
     <string name="special_thanks_to">Особая благодарность</string>
     <string name="permissions_denied">В разрешениях отказано.</string>
@@ -190,8 +177,6 @@
     <string name="loading_products">Загрузка продуктов...</string>
     <string name="up_next">Далее</string>
     <string name="pref_title_now_playing_screen_appearance">Вид экрана воспроизведения</string>
-    <string name="open_playing_queue_instruction">Проведите по карточке на экране воспроизведения, чтобы просмотреть очередь</string>
-    <string name="rearrange_playing_queue_instruction">Редактируйте очередь воспроизведения, перетаскивая песни за их номер</string>
     <string name="library">"Библиотека "</string>
     <string name="saved_playlist_to">"Плейлист сохранён в %s "</string>
     <string name="failed_to_save_playlist">Не удалось сохранить плейлист (%s).</string>

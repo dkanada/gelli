@@ -18,9 +18,6 @@
     <string name="action_play_pause">Putar/Jeda</string>
     <string name="action_previous">Sebelumnya</string>
     <string name="action_next">Selanjutnya</string>
-    <string name="action_add_to_playing_queue">Tambahkan ke antrean putar</string>
-    <string name="action_remove_from_playing_queue">Hapus dari antrian</string>
-    <string name="action_add_to_playlist">Tambahkan ke daftar putar...</string>
     <string name="action_delete_from_device">Hapus dari perangkat</string>
     <string name="action_details">Rincian</string>
     <string name="action_rename">Ganti Nama</string>
@@ -37,7 +34,6 @@
     <string name="genre">Aliran</string>
     <string name="album_artist">Artis album</string>
     <string name="year">Tahun</string>
-    <string name="track_hint">"Trek (2 untuk trek ke-2 atau 3004 untuk CD3 trek ke-4)"</string>
     <string name="label_details">Rincian</string>
     <string name="label_file_name">Nama berkas</string>
     <string name="label_file_path">Lokasi berkas</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Batas frekuensi</string>
     <string name="action_go_to_artist">Pergi ke artis</string>
     <string name="action_go_to_album">Pergi ke album</string>
-    <string name="label_playing_queue">Antrean putar</string>
     <string name="no_results">Tidak ditemukan</string>
-    <string name="added_title_to_playing_queue">"1 lagu ditambahkan ke antrean putar"</string>
-    <string name="added_x_titles_to_playing_queue">Telah menambah %1$d lagu ke antrean putar</string>
     <string name="action_remove_from_playlist">Hapus dari daftar putar</string>
     <string name="action_grid_size">Ukuran kisi</string>
     <string name="action_grid_size_land">Ukuran kisi (lanskap)</string>
@@ -77,14 +70,11 @@
     <string name="clear_playlist_title">Kosongkan daftar putar</string>
     <string name="save_playlist_title">Simpan sebagai berkas</string>
     <string name="save_playlists_title">Simpan sebagai berkas</string>
-    <string name="add_playlist_title">"Tambahkan ke daftar putar"</string>
     <string name="select_all_title">Pilih semua</string>
     <string name="action_shuffle_all">Acak semua</string>
     <string name="action_shuffle_album">Putar album secara acak</string>
     <string name="action_shuffle_artist">Putar artis secara acak</string>
     <string name="action_shuffle_playlist">Putar daftar putar secara acak</string>
-    <string name="action_clear_playing_queue">Kosongkan antrean yang sedang diputar</string>
-    <string name="action_save_playing_queue">Menyimpan antrian yang diputar</string>
     <string name="light_theme_name">Terang</string>
     <string name="dark_theme_name">Gelap</string>
     <string name="always">Selalu</string>
@@ -151,7 +141,6 @@
     <string name="pref_summary_audio_ducking">Pemberitahuan, navigasi dll.</string>
     <string name="pref_summary_remember_last_tab">Pergi ke tab yang terakhir saat aplikasi dibuka</string>
     <string name="pref_summary_remember_shuffle">Mode putar acak akan tetap aktif saat memilih daftar lagu baru</string>
-    <string name="search_hint">Mencari pustaka Anda...</string>
     <string name="favorites">Favorit</string>
     <string name="last_added">Terakhir ditambahkan</string>
     <string name="history">Diputar baru-baru ini</string>
@@ -161,8 +150,6 @@
     <string name="cancel_current_timer">Batalkan pewaktu yang sekarang</string>
     <string name="sleep_timer_canceled">"Pewaktu tidur dibatalkan. "</string>
     <string name="sleep_timer_set">"Pewaktu tidur diatur selama %d menit dari sekarang. "</string>
-    <string name="action_new_playlist">Daftar putar baru...</string>
-    <string name="new_playlist_title">Daftar putar baru</string>
     <string name="colored_footers">Bawahan berwarna</string>
     <string name="special_thanks_to">Terima kasih khusus kepada</string>
     <string name="permissions_denied">Izin ditolak</string>
@@ -190,8 +177,6 @@
     <string name="loading_products">Memuat produk...</string>
     <string name="up_next">Berikutnya</string>
     <string name="pref_title_now_playing_screen_appearance">Tampilan</string>
-    <string name="open_playing_queue_instruction">Geser ke atas pada kartu di layar yang sedang memutar untuk memperlihatkan dengan lengkap antrean yang sedang diputar.</string>
-    <string name="rearrange_playing_queue_instruction">Atur ulang antrean yang sedang diputar dengan menyeret lagu dari nomor urut.</string>
     <string name="library">Pustaka</string>
     <string name="saved_playlist_to">Daftar putar tersimpan ke %s.</string>
     <string name="failed_to_save_playlist">Gagal untuk menyimpan daftar putar (%s).</string>

@@ -18,9 +18,6 @@
     <string name="action_play_pause">Redă/Pauză</string>
     <string name="action_previous">Anterior</string>
     <string name="action_next">Următor</string>
-    <string name="action_add_to_playing_queue">Adaugă la lista de redare</string>
-    <string name="action_remove_from_playing_queue">Șterge din lista de redare</string>
-    <string name="action_add_to_playlist">Adăugaţi în lista de redare...</string>
     <string name="action_delete_from_device">Ștergeți de pe dispozitiv</string>
     <string name="action_details">Detalii</string>
     <string name="action_rename">Redenumire</string>
@@ -37,7 +34,6 @@
     <string name="genre">Gen</string>
     <string name="album_artist">Artistul albumului</string>
     <string name="year">An</string>
-    <string name="track_hint">"Număr (2 pentru melodia a 2-a sau 3004 pentru CD3 melodia a 4-a)"</string>
     <string name="label_details">Detalii</string>
     <string name="label_file_name">Nume fișier</string>
     <string name="label_file_path">Cale fișier</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Rată de sampling</string>
     <string name="action_go_to_artist">Accesaţi artistul</string>
     <string name="action_go_to_album">Accesaţi albumul</string>
-    <string name="label_playing_queue">Lista de redare</string>
     <string name="no_results">Niciun rezultat</string>
-    <string name="added_title_to_playing_queue">"Melodie adăugată în lista de redare."</string>
-    <string name="added_x_titles_to_playing_queue">%1$d melodii adăugate în lista de redare.</string>
     <string name="action_remove_from_playlist">Ștergeți din lista de redare.</string>
     <string name="action_grid_size">Mărimea grilei</string>
     <string name="action_grid_size_land">Dimensiunea grilei (peisaj)</string>
@@ -77,13 +70,10 @@
     <string name="clear_playlist_title">Ştergeţi lista de redare</string>
     <string name="save_playlist_title">Salveaza ca fișier</string>
     <string name="save_playlists_title">Salvează ca fișiere</string>
-    <string name="add_playlist_title">"Adăugaţi la lista de redare"</string>
     <string name="action_shuffle_all">Amestecare tot</string>
     <string name="action_shuffle_album">Amestecare album</string>
     <string name="action_shuffle_artist">Amestecare artist</string>
     <string name="action_shuffle_playlist">Amestecare listă de redare</string>
-    <string name="action_clear_playing_queue">Golește lista de redare</string>
-    <string name="action_save_playing_queue">Salvați lista de redare</string>
     <string name="light_theme_name">Light (Alb)</string>
     <string name="dark_theme_name">Dark (Negru)</string>
     <string name="always">Mereu</string>
@@ -147,7 +137,6 @@
     <string name="pref_summary_colored_app_shortcuts">Colorarea comenzilor rapide ale aplicației în culoarea primară.</string>
     <string name="pref_summary_audio_ducking">Notificări, navigație etc.</string>
     <string name="pref_summary_remember_last_tab">Accesați ultima filă deschisă la lansare</string>
-    <string name="search_hint">Căutați în bibliotecă.</string>
     <string name="favorites">Favorite</string>
     <string name="last_added">Ultimele adăugate</string>
     <string name="history">Istoric</string>
@@ -157,8 +146,6 @@
     <string name="cancel_current_timer">Anulează timer curent.</string>
     <string name="sleep_timer_canceled">Cronometru pentru somn anulat.</string>
     <string name="sleep_timer_set">Cronometrul pentru somn setat pentru %d minute din acest moment.</string>
-    <string name="action_new_playlist">Lista de redare nouă...</string>
-    <string name="new_playlist_title">Listă de redare nouă</string>
     <string name="colored_footers">Subsoluri colorate</string>
     <string name="special_thanks_to">Mulțumiri speciale</string>
     <string name="permissions_denied">Permisiune refuzată.</string>
@@ -186,8 +173,6 @@
     <string name="loading_products">Încărcare produse...</string>
     <string name="up_next">Urmează</string>
     <string name="pref_title_now_playing_screen_appearance">Aspect</string>
-    <string name="open_playing_queue_instruction">Glisați cardul în ecranul de redare acum pentru a afișa coada de redare completă.</string>
-    <string name="rearrange_playing_queue_instruction">Rearanjați coada de redare prin glisarea unei melodii de la numărul piesei sale.</string>
     <string name="library">Bibliotecă</string>
     <string name="saved_playlist_to">Listă de redare salvată în %s.</string>
     <string name="failed_to_save_playlist">Salvarea listei de redare (%s) a eșuat.</string>

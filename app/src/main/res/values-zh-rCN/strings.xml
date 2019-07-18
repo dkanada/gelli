@@ -18,9 +18,6 @@
     <string name="action_play_pause">播放/暂停</string>
     <string name="action_previous">上一首</string>
     <string name="action_next">下一首</string>
-    <string name="action_add_to_playing_queue">加入播放队列</string>
-    <string name="action_remove_from_playing_queue">从播放队列中移除</string>
-    <string name="action_add_to_playlist">加入播放列表...</string>
     <string name="action_delete_from_device">从设备中删除</string>
     <string name="action_details">详情</string>
     <string name="action_rename">重命名</string>
@@ -37,7 +34,6 @@
     <string name="genre">流派</string>
     <string name="album_artist">专辑艺术家</string>
     <string name="year">年份</string>
-    <string name="track_hint">"音轨（如用 2 表示第 2 首歌或用 3004 表示 CD3 里的第 4 首歌）"</string>
     <string name="label_details">详情</string>
     <string name="label_file_name">文件名</string>
     <string name="label_file_path">文件路径</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">采样率</string>
     <string name="action_go_to_artist">查看艺术家</string>
     <string name="action_go_to_album">查看专辑</string>
-    <string name="label_playing_queue">播放队列</string>
     <string name="no_results">没有找到结果</string>
-    <string name="added_title_to_playing_queue">"此歌曲已加入播放队列。"</string>
-    <string name="added_x_titles_to_playing_queue">%1$d 首歌曲已加入播放队列。</string>
     <string name="action_remove_from_playlist">从播放列表中移除</string>
     <string name="action_grid_size">网格尺寸</string>
     <string name="action_grid_size_land">网格尺寸（横屏）</string>
@@ -77,14 +70,11 @@
     <string name="clear_playlist_title">清空播放列表</string>
     <string name="save_playlist_title">另存为</string>
     <string name="save_playlists_title">另存为</string>
-    <string name="add_playlist_title">"添加到播放列表"</string>
     <string name="select_all_title">全选</string>
     <string name="action_shuffle_all">随机播放所有歌曲</string>
     <string name="action_shuffle_album">随机播放此专辑</string>
     <string name="action_shuffle_artist">随机播放此艺术家</string>
     <string name="action_shuffle_playlist">随机播放此播放列表</string>
-    <string name="action_clear_playing_queue">清空播放队列</string>
-    <string name="action_save_playing_queue">保存播放队列</string>
     <string name="light_theme_name">浅色</string>
     <string name="dark_theme_name">暗色</string>
     <string name="always">总是</string>
@@ -149,7 +139,6 @@
     <string name="pref_summary_colored_app_shortcuts">用主色调着色应用快捷方式。</string>
     <string name="pref_summary_audio_ducking">通知、导航等</string>
     <string name="pref_summary_remember_last_tab">启动时跳转到最后打开页面</string>
-    <string name="search_hint">正在扫描</string>
     <string name="favorites">收藏夹</string>
     <string name="last_added">最近添加</string>
     <string name="history">播放历史</string>
@@ -159,8 +148,6 @@
     <string name="cancel_current_timer">取消当前定时器</string>
     <string name="sleep_timer_canceled">定时器已取消。</string>
     <string name="sleep_timer_set">音乐将在 %d 分钟后停止播放。</string>
-    <string name="action_new_playlist">新建播放列表…</string>
-    <string name="new_playlist_title">新建播放列表</string>
     <string name="colored_footers">着色页脚</string>
     <string name="special_thanks_to">特别鸣谢</string>
     <string name="permissions_denied">未能获取权限。</string>
@@ -188,8 +175,6 @@
     <string name="loading_products">加载产品中…</string>
     <string name="up_next">即将播放</string>
     <string name="pref_title_now_playing_screen_appearance">外观</string>
-    <string name="open_playing_queue_instruction">上滑正在播放界面内的卡片即可展开播放队列。</string>
-    <string name="rearrange_playing_queue_instruction">通过拖动歌曲名前面的序列号来调整播放队列的顺序。</string>
     <string name="library">媒体库</string>
     <string name="saved_playlist_to">已保存播放列表到 %s。</string>
     <string name="failed_to_save_playlist">保存播放列表（%s）失败。</string>

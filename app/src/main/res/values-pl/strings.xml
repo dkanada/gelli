@@ -18,9 +18,6 @@
     <string name="action_play_pause">Odtwarzanie/Pauza</string>
     <string name="action_previous">Poprzedni</string>
     <string name="action_next">Następny</string>
-    <string name="action_add_to_playing_queue">Dodaj do kolejki odtwarzania</string>
-    <string name="action_remove_from_playing_queue">Usuń z kolejki odtwarzania</string>
-    <string name="action_add_to_playlist">Dodaj do listy odtwarzania...</string>
     <string name="action_delete_from_device">Usuń z urządzenia</string>
     <string name="action_details">Szczegóły</string>
     <string name="action_rename">Zmień nazwę</string>
@@ -37,7 +34,6 @@
     <string name="genre">Gatunek</string>
     <string name="album_artist">Wykonawca albumu</string>
     <string name="year">Rok</string>
-    <string name="track_hint">"Numer utworu (2 dla utworu 2 lub 3004 dla CD3 utworu 4)"</string>
     <string name="label_details">Szczegóły</string>
     <string name="label_file_name">Nazwa pliku</string>
     <string name="label_file_path">Ścieżka pliku</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Częstotliwość próbkowania</string>
     <string name="action_go_to_artist">Przejdź do wykonawcy</string>
     <string name="action_go_to_album">Przejdź do albumu</string>
-    <string name="label_playing_queue">Kolejka odtwarzania</string>
     <string name="no_results">Brak wyników</string>
-    <string name="added_title_to_playing_queue">"Dodano 1 tytuł do kolejki odtwarzania"</string>
-    <string name="added_x_titles_to_playing_queue">Dodano %1$d tytuły do kolejki odtwarzania</string>
     <string name="action_remove_from_playlist">Usuń z listy odtwarzania</string>
     <string name="action_grid_size">Rozmiar siatki</string>
     <string name="action_grid_size_land">Rozmiar siatki (poziomo)</string>
@@ -77,13 +70,10 @@
     <string name="clear_playlist_title">Wyczyść listę odtwarzania</string>
     <string name="save_playlist_title">Zapisz jako plik</string>
     <string name="save_playlists_title">Zapisz jako pliki</string>
-    <string name="add_playlist_title">"Dodaj do listy odtwarzania"</string>
     <string name="action_shuffle_all">Wszystkie losowo</string>
     <string name="action_shuffle_album">Losowy album</string>
     <string name="action_shuffle_artist">Losowy wykonawca</string>
     <string name="action_shuffle_playlist">Losowa lista odtwarzania</string>
-    <string name="action_clear_playing_queue">Wyczyść kolejkę odtwarzania</string>
-    <string name="action_save_playing_queue">Zapisz obecnie odtwarzaną kolejkę</string>
     <string name="light_theme_name">Jasny</string>
     <string name="dark_theme_name">Ciemny</string>
     <string name="always">Zawsze</string>
@@ -147,7 +137,6 @@
     <string name="pref_summary_colored_app_shortcuts">Kolory skrótów aplikacji w kolorze podstawowym</string>
     <string name="pref_summary_audio_ducking">Notyfikacje, nawigacja, itp.</string>
     <string name="pref_summary_remember_last_tab">Idź do ostatniej otwartej zakładki przy starcie</string>
-    <string name="search_hint">Szukaj w bibliotece...</string>
     <string name="favorites">Ulubione</string>
     <string name="last_added">Ostatnio dodane</string>
     <string name="history">Historia odtwarzania</string>
@@ -157,8 +146,6 @@
     <string name="cancel_current_timer">Anuluj wyłącznik</string>
     <string name="sleep_timer_canceled">Anulowano wyłącznik czasowy</string>
     <string name="sleep_timer_set">Wyłącznik czasowy ustawiony na %d minut od teraz</string>
-    <string name="action_new_playlist">Nowa lista odtwarzania...</string>
-    <string name="new_playlist_title">Nowa lista odtwarzania</string>
     <string name="colored_footers">Kolorowe stopki</string>
     <string name="special_thanks_to">Specjalne podziękowania dla</string>
     <string name="permissions_denied">Odmówiono zezwolenia</string>
@@ -186,8 +173,6 @@
     <string name="loading_products">Ładowanie produktów...</string>
     <string name="up_next">Za chwilę zagra</string>
     <string name="pref_title_now_playing_screen_appearance">Wygląd</string>
-    <string name="open_playing_queue_instruction">Przesuń kartę na ekranie Obecnie Grane w górę, aby odsłonić pełną kolejkę odtwarzania</string>
-    <string name="rearrange_playing_queue_instruction">Zmień kolejność odtwarzania, przeciągając numer utworu w górę lub w dół kolejki</string>
     <string name="library">Biblioteka</string>
     <string name="saved_playlist_to">Zapisz listę odtwarzania do %s</string>
     <string name="failed_to_save_playlist">Błąd podczas zapisywania listy odtwarzania (%s)</string>

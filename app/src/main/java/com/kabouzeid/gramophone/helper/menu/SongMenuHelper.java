@@ -13,7 +13,6 @@ import com.kabouzeid.gramophone.dialogs.AddToPlaylistDialog;
 import com.kabouzeid.gramophone.dialogs.DeleteSongsDialog;
 import com.kabouzeid.gramophone.dialogs.SongDetailDialog;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
-import com.kabouzeid.gramophone.interfaces.PaletteColorHolder;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
@@ -47,7 +46,7 @@ public class SongMenuHelper {
             case R.id.action_play_next:
                 MusicPlayerRemote.playNext(song);
                 return true;
-            case R.id.action_add_to_current_playing:
+            case R.id.action_add_to_queue:
                 MusicPlayerRemote.enqueue(song);
                 return true;
             case R.id.action_details:

@@ -18,9 +18,6 @@
     <string name="action_play_pause">再生/一時停止</string>
     <string name="action_previous">前へ</string>
     <string name="action_next">次へ</string>
-    <string name="action_add_to_playing_queue">再生キューに追加</string>
-    <string name="action_remove_from_playing_queue">再生キューから除去</string>
-    <string name="action_add_to_playlist">プレイリストに追加…</string>
     <string name="action_delete_from_device">端末から削除</string>
     <string name="action_details">詳細情報</string>
     <string name="action_rename">名前の変更</string>
@@ -37,7 +34,6 @@
     <string name="genre">ジャンル</string>
     <string name="album_artist">アルバムアーティスト</string>
     <string name="year">年</string>
-    <string name="track_hint">"トラック (例: '2'ならトラック2, '3004'ならCD3のトラック4)"</string>
     <string name="label_details">詳細情報</string>
     <string name="label_file_name">ファイル名</string>
     <string name="label_file_path">パス</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">サンプリング周波数</string>
     <string name="action_go_to_artist">アーティストを表示</string>
     <string name="action_go_to_album">アルバムを表示</string>
-    <string name="label_playing_queue">再生キュー</string>
     <string name="no_results">該当なし</string>
-    <string name="added_title_to_playing_queue">"曲を再生キューに追加しました"</string>
-    <string name="added_x_titles_to_playing_queue">%1$d曲を再生キューに追加しました</string>
     <string name="action_remove_from_playlist">プレイリストから除去</string>
     <string name="action_grid_size">グリッドサイズ</string>
     <string name="action_grid_size_land">グリッドサイズ（横向き）</string>
@@ -77,13 +70,10 @@
     <string name="clear_playlist_title">プレイリストの消去</string>
     <string name="save_playlist_title">ファイルに保存</string>
     <string name="save_playlists_title">ファイルを保存</string>
-    <string name="add_playlist_title">"プレイリストに追加"</string>
     <string name="action_shuffle_all">全曲シャッフル</string>
     <string name="action_shuffle_album">アルバムをシャッフル</string>
     <string name="action_shuffle_artist">アーティストをシャッフル</string>
     <string name="action_shuffle_playlist">プレイリストをシャッフル</string>
-    <string name="action_clear_playing_queue">再生キューを消去</string>
-    <string name="action_save_playing_queue">再生キューを保存</string>
     <string name="light_theme_name">ライト</string>
     <string name="dark_theme_name">ダーク</string>
     <string name="always">いつでも</string>
@@ -147,7 +137,6 @@
     <string name="pref_summary_colored_app_shortcuts">アプリのショートカットの色をメインカラーに変更します。</string>
     <string name="pref_summary_audio_ducking">通知やナビなどです。</string>
     <string name="pref_summary_remember_last_tab">アプリ起動時に最後に開いていたタブを開く</string>
-    <string name="search_hint">ライブラリ内を検索…</string>
     <string name="favorites">お気に入り</string>
     <string name="last_added">最近追加された曲</string>
     <string name="history">履歴</string>
@@ -157,8 +146,6 @@
     <string name="cancel_current_timer">スリープタイマーを解除</string>
     <string name="sleep_timer_canceled">スリープタイマーを解除しました</string>
     <string name="sleep_timer_set">%d分後にスリープタイマーをセットしました</string>
-    <string name="action_new_playlist">プレイリストの新規作成</string>
-    <string name="new_playlist_title">プレイリストの新規作成</string>
     <string name="colored_footers">色付きフッター</string>
     <string name="special_thanks_to">スペシャルサンクス</string>
     <string name="permissions_denied">権限が拒否されました</string>
@@ -186,8 +173,6 @@
     <string name="loading_products">製品を読み込み中…</string>
     <string name="up_next">次の曲</string>
     <string name="pref_title_now_playing_screen_appearance">外観</string>
-    <string name="open_playing_queue_instruction">カードをスワイプすると再生中のスクリーンから再生キューのページに移動します。</string>
-    <string name="rearrange_playing_queue_instruction">トラック番号をドラッグして再生キューの曲を並び替えることができます。</string>
     <string name="library">ライブラリ</string>
     <string name="saved_playlist_to">プレイリストを%sに保存しました。</string>
     <string name="failed_to_save_playlist">プレイリスト(%s)の保存に失敗しました。</string>

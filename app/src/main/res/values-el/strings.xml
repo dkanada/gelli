@@ -18,9 +18,6 @@
     <string name="action_play_pause">Αναπαραγωγή/Παύση</string>
     <string name="action_previous">Προηγούμενο</string>
     <string name="action_next">Επόμενο</string>
-    <string name="action_add_to_playing_queue">Προσθήκη στη σειρά τραγουδιών</string>
-    <string name="action_remove_from_playing_queue">Διαγραφή από την σειρά τραγουδιών</string>
-    <string name="action_add_to_playlist">Προσθήκη στην λίστα αναπαραγωγής</string>
     <string name="action_delete_from_device">Διαγραφή από την συσκευή</string>
     <string name="action_details">"Λεπτομέρειες "</string>
     <string name="action_rename">Μετονομασία</string>
@@ -37,7 +34,6 @@
     <string name="genre">Είδος</string>
     <string name="album_artist">Καλλιτέχνης Άλμπουμ</string>
     <string name="year">Έτος</string>
-    <string name="track_hint">"Κομμάτι (2 για κομμάτι 2 ή 3004 από CD3 κομμάτι 4)"</string>
     <string name="label_details">Λεπτομέρειες</string>
     <string name="label_file_name">Όνομα αρχείου</string>
     <string name="label_file_path">Διαδρομή αρχείου</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Ρυθμός δειγματοληψίας</string>
     <string name="action_go_to_artist">Πήγαινε στον καλλιτέχνη</string>
     <string name="action_go_to_album">Πήγαινε στο άλμπουμ</string>
-    <string name="label_playing_queue">Ουρά αναπαραγωγής</string>
     <string name="no_results">Κανένα αποτέλεσμα</string>
-    <string name="added_title_to_playing_queue">"Προστέθηκε ένας τίτλος στην ουρά αναπαραγωγής"</string>
-    <string name="added_x_titles_to_playing_queue">"Προστέθηκαν %1$d τίτλοι στην ουρά αναπαραγωγής "</string>
     <string name="action_remove_from_playlist">Αφαίρεση από την λίστα</string>
     <string name="action_grid_size">Μέγεθος πλέγματος</string>
     <string name="action_grid_size_land">Μέγεθος πλέγματος</string>
@@ -78,13 +71,10 @@
     <string name="clear_playlist_title">Εκκαθάριση λίστας</string>
     <string name="save_playlist_title">Αποθήκευση ως αρχείο</string>
     <string name="save_playlists_title">Αποθήκευση ως αρχεία</string>
-    <string name="add_playlist_title">"Προσθήκη στη λίστα αναπαραγωγής"</string>
     <string name="action_shuffle_all">Τυχαία τραγούδια</string>
     <string name="action_shuffle_album">Τυχαίο άλμπουμ</string>
     <string name="action_shuffle_artist">Τυχαίος καλλιτέχνης</string>
     <string name="action_shuffle_playlist">Τυχαία λίστα αναπαραγωγής</string>
-    <string name="action_clear_playing_queue">Εκκαθάριση της ουράς αναπαραγωγής</string>
-    <string name="action_save_playing_queue">Αποθήκευση της σειράς αναπαραγωγής</string>
     <string name="light_theme_name">Ανοιχτό</string>
     <string name="dark_theme_name">Σκούρο</string>
     <string name="always">Πάντα</string>
@@ -142,7 +132,6 @@
     <string name="pref_summary_colored_navigation_bar">Χρωματίζει την μπάρα πλοήγησης στο πρωτεύον χρώμα</string>
     <string name="pref_summary_colored_app_shortcuts">Χρωματίζει τις συντομεύσεις της εφαρμογής στο κυρίως χρώμα.</string>
     <string name="pref_summary_audio_ducking">Ειδοποιήσεις, πλοήγηση κ.λπ.</string>
-    <string name="search_hint">Αναζήτηση στη βιβλιοθήκη...</string>
     <string name="favorites">Αγαπημένα</string>
     <string name="last_added">Προστέθηκαν τελευταία</string>
     <string name="history">Ιστορικό</string>
@@ -152,8 +141,6 @@
     <string name="cancel_current_timer">Ακύρωση τρέχοντος χρονοδιακόπτη</string>
     <string name="sleep_timer_canceled">Ο χρονοδιακόπτης ύπνου έχει ακυρωθεί.</string>
     <string name="sleep_timer_set">Ο χρονοδιακόπτης ύπνου έχει οριστεί σε %d λεπτά από τώρα.</string>
-    <string name="action_new_playlist">Νέα λίστα αναπαραγωγής...</string>
-    <string name="new_playlist_title">Νέα λίστα αναπαραγωγής</string>
     <string name="colored_footers">Χρωματιστά υποσέλιδα</string>
     <string name="special_thanks_to">Ιδιαίτερες ευχαριστίες προς</string>
     <string name="permissions_denied">Άρνηση χορήγησης δικαιωμάτων.</string>
@@ -180,8 +167,6 @@
     <string name="loading_products">Φόρτωση προϊόντων...</string>
     <string name="up_next">Επόμενο</string>
     <string name="pref_title_now_playing_screen_appearance">Εμφάνιση</string>
-    <string name="open_playing_queue_instruction">Σύρετε την κάρτα στην οθόνη \"παίζει τώρα\" μέχρι να αποκαλυφθεί ολόκληρη η σειρά τραγουδιών.</string>
-    <string name="rearrange_playing_queue_instruction">Κάντε αναδιάταξη της σειράς τραγουδιών  σύροντας ένα τραγούδι από τον αριθμό του.</string>
     <string name="library">Βιβλιοθήκη</string>
     <string name="saved_playlist_to">Η λίστα αναπαραγωγής αποθηκεύτηκε στο %s.</string>
     <string name="failed_to_save_playlist">Η λίστα αναπαραγωγής απέτυχε να αποθηκευτεί (%s).</string>

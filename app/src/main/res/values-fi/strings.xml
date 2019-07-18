@@ -18,9 +18,6 @@
     <string name="action_play_pause">Toista/Pysäytä</string>
     <string name="action_previous">Edellinen</string>
     <string name="action_next">Seuraava</string>
-    <string name="action_add_to_playing_queue">Lisää toistojonoon</string>
-    <string name="action_remove_from_playing_queue">Poista toistojonosta</string>
-    <string name="action_add_to_playlist">Lisää soittolistaan...</string>
     <string name="action_delete_from_device">Poista laitteesta</string>
     <string name="action_details">Yksityiskohdat</string>
     <string name="action_rename">Nimeä uudelleen</string>
@@ -37,7 +34,6 @@
     <string name="genre">Tyylilaji</string>
     <string name="album_artist">Albumin artisti</string>
     <string name="year">Vuosi</string>
-    <string name="track_hint">"Raita"</string>
     <string name="label_details">Yksityiskohdat</string>
     <string name="label_file_name">Tiedostonimi</string>
     <string name="label_file_path">Tiedostopolku</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Samplausnopeus</string>
     <string name="action_go_to_artist">Näytä artisti</string>
     <string name="action_go_to_album">Näytä albumi</string>
-    <string name="label_playing_queue">Toistojono</string>
     <string name="no_results">Ei hakutuloksia</string>
-    <string name="added_title_to_playing_queue">"Kappale lisätty toistojonoon."</string>
-    <string name="added_x_titles_to_playing_queue">%1$d kappaletta lisättiin toistojonoon</string>
     <string name="action_remove_from_playlist">Poista soittolistasta</string>
     <string name="action_grid_size">Ruudukon koko</string>
     <string name="action_grid_size_land">Ruudukon koko (vaaka)</string>
@@ -77,14 +70,11 @@
     <string name="clear_playlist_title">Tyhjennä soittolistat</string>
     <string name="save_playlist_title">Tallenna tiedostona</string>
     <string name="save_playlists_title">Tallenna tiedostoina</string>
-    <string name="add_playlist_title">"Lisää soittolistaan"</string>
     <string name="select_all_title">Valitse kaikki</string>
     <string name="action_shuffle_all">Sekoita kaikki</string>
     <string name="action_shuffle_album">Sekoita albumit</string>
     <string name="action_shuffle_artist">Sekoita artistit</string>
     <string name="action_shuffle_playlist">Sekoita soittolistat</string>
-    <string name="action_clear_playing_queue">Tyhjennä toistojono</string>
-    <string name="action_save_playing_queue">Tallenna toistojono</string>
     <string name="light_theme_name">Vaalea</string>
     <string name="dark_theme_name">Tumma</string>
     <string name="always">Aina</string>
@@ -151,7 +141,6 @@
     <string name="pref_summary_audio_ducking">Ilmoitukset, liikkuminen jne.</string>
     <string name="pref_summary_remember_last_tab">Palauttaa käynnistyessään viimeksi avoinna olleen välilehden.</string>
     <string name="pref_summary_remember_shuffle">Sekoitus-tila pysyy päällä, kun valitset uuden listan kappaleita</string>
-    <string name="search_hint">Etsi kirjastostasi...</string>
     <string name="favorites">Suosikit</string>
     <string name="last_added">Viimeksi lisätyt</string>
     <string name="history">Viimeksi toistettu</string>
@@ -161,8 +150,6 @@
     <string name="cancel_current_timer">Peru tämänhetkinen ajastin</string>
     <string name="sleep_timer_canceled">Ajastin peruttu.</string>
     <string name="sleep_timer_set">Ajastin asetettu %d minuutin päähän tästä hetkestä.</string>
-    <string name="action_new_playlist">Uusi soittolista...</string>
-    <string name="new_playlist_title">Uusi soittolista</string>
     <string name="colored_footers">Värilliset alatunnisteet</string>
     <string name="special_thanks_to">Erikoiskiitokset</string>
     <string name="permissions_denied">Sinulla ei ole oikeuksia tähän.</string>
@@ -190,8 +177,6 @@
     <string name="loading_products">Ladataan tuotteita...</string>
     <string name="up_next">Seuraavaksi</string>
     <string name="pref_title_now_playing_screen_appearance">Ulkonäkö</string>
-    <string name="open_playing_queue_instruction">Vedä korttia Toistetaan parhaillaan -ikkunassa ylös, nähdäksesi koko toistojonon.</string>
-    <string name="rearrange_playing_queue_instruction">Järjestä toistojonoa vetämällä kappaletta sen raitanumerosta.</string>
     <string name="library">Kirjasto</string>
     <string name="saved_playlist_to">Soittolista tallennettu paikkaan %s.</string>
     <string name="failed_to_save_playlist">Soittolistan tallentaminen epäonnistui (%s).</string>

@@ -18,9 +18,6 @@
     <string name="action_play_pause">Phát/Dừng</string>
     <string name="action_previous">Trước</string>
     <string name="action_next">Kế tiếp</string>
-    <string name="action_add_to_playing_queue">Thêm vào danh sách phát</string>
-    <string name="action_remove_from_playing_queue">Xóa khỏi hàng đợi phât</string>
-    <string name="action_add_to_playlist">Thêm vào danh sách nhạc...</string>
     <string name="action_delete_from_device">Xóa từ thiết bị</string>
     <string name="action_details">Chi tiết</string>
     <string name="action_rename">Đổi tên</string>
@@ -36,7 +33,6 @@
     <string name="genre">Thể loại</string>
     <string name="album_artist">Album của nghệ sĩ</string>
     <string name="year">Năm</string>
-    <string name="track_hint">"Số thứ tự (ghi 2 nếu là bài thứ 2 hoặc ghi 3004 nếu là CD 3, bài thứ 4)"</string>
     <string name="label_details">Chi tiết</string>
     <string name="label_file_name">Tên tập tin</string>
     <string name="label_file_path">Đường dẫn tập tin</string>
@@ -47,10 +43,7 @@
     <string name="label_sampling_rate">Tỉ lệ mẫu</string>
     <string name="action_go_to_artist">Đi đến nghệ sĩ</string>
     <string name="action_go_to_album">Đi đến album</string>
-    <string name="label_playing_queue">Hàng đợi phát</string>
     <string name="no_results">Không có kết quả</string>
-    <string name="added_title_to_playing_queue">"Đã thêm 1 bài vào hàng đợi phát."</string>
-    <string name="added_x_titles_to_playing_queue">Đã thêm %1$d bài vào hàng đợi phát.</string>
     <string name="action_remove_from_playlist">Xóa khỏi danh sách nhạc</string>
     <string name="action_grid_size">Kích thước lưới</string>
     <string name="action_grid_size_land">Kích thước lưới (màn hình nằm ngang)</string>
@@ -74,13 +67,10 @@
     <string name="delete_playlists_title">Xóa các danh sách nhạc</string>
     <string name="clear_playlist_title">Dọn danh sách nhạc</string>
     <string name="save_playlist_title">Lưu thành tập tin</string>
-    <string name="add_playlist_title">"Thêm vào danh sách nhạc"</string>
     <string name="action_shuffle_all">Trộn tất cả</string>
     <string name="action_shuffle_album">Trộn album</string>
     <string name="action_shuffle_artist">Trộn nghệ sĩ</string>
     <string name="action_shuffle_playlist">Trộn danh sách nhạc</string>
-    <string name="action_clear_playing_queue">Dọn hàng đợi phát</string>
-    <string name="action_save_playing_queue">Lưu hàng đợi phát</string>
     <string name="light_theme_name">Sáng</string>
     <string name="dark_theme_name">Tối</string>
     <string name="always">Luôn luôn</string>
@@ -139,7 +129,6 @@
     <string name="pref_summary_colored_navigation_bar">Màu sắc thanh điều hướng trong các màu cơ bản.</string>
     <string name="pref_summary_colored_app_shortcuts">Màu sắc chủ đạo của biểu tượng ứng dụng.</string>
     <string name="pref_summary_audio_ducking">Thông báo, điều hướng, vv.</string>
-    <string name="search_hint">Tìm kiếm thư viện của bạn...</string>
     <string name="favorites">Yêu thích</string>
     <string name="last_added">Được thêm sau cùng</string>
     <string name="history">Lịch sử</string>
@@ -149,8 +138,6 @@
     <string name="cancel_current_timer">Hủy hẹn giờ hiện tại</string>
     <string name="sleep_timer_canceled">Đã hủy hẹn giờ ngủ</string>
     <string name="sleep_timer_set">Hẹn giờ ngủ được cài cho %d phút từ bây giờ.</string>
-    <string name="action_new_playlist">Danh sách nhạc mới...</string>
-    <string name="new_playlist_title">Danh sách nhạc mới</string>
     <string name="colored_footers">Màu cuối trang</string>
     <string name="special_thanks_to">Trân trọng cảm ơn</string>
     <string name="permissions_denied">Quyền hạn bị từ chối.</string>
@@ -178,8 +165,6 @@
     <string name="loading_products">Đang tải sản phẩm...</string>
     <string name="up_next">Tiếp theo</string>
     <string name="pref_title_now_playing_screen_appearance">Giao diện</string>
-    <string name="open_playing_queue_instruction">Vuốt lên thẻ trong trình đang phát để đến với hàng đợi phát đầy đủ.</string>
-    <string name="rearrange_playing_queue_instruction">Sắp xếp lại hàng đợi phát bằng cách kéo một bài hát từ số thứ tự của nó.</string>
     <string name="library">Thư viện</string>
     <string name="saved_playlist_to">Đã lưu danh sách nhạc đến %s.</string>
     <string name="failed_to_save_playlist">Không thể lưu danh sách nhạc (%s).</string>

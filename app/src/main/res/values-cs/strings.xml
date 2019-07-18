@@ -18,9 +18,6 @@
     <string name="action_play_pause">Přehrát/Pozastavit</string>
     <string name="action_previous">Předchozí</string>
     <string name="action_next">Další</string>
-    <string name="action_add_to_playing_queue">Přidat do fronty</string>
-    <string name="action_remove_from_playing_queue">Odebrat z fronty</string>
-    <string name="action_add_to_playlist">Přidat do playlistu...</string>
     <string name="action_delete_from_device">Smazat ze zařízení</string>
     <string name="action_details">Podrobné informace o skladbě</string>
     <string name="action_rename">Přejmenovat</string>
@@ -37,7 +34,6 @@
     <string name="genre">Žánr</string>
     <string name="album_artist">Interpret alba</string>
     <string name="year">Rok</string>
-    <string name="track_hint">"Stopa (2 pro stopu 2; 3004 pro stopu 4 na CD3)"</string>
     <string name="label_details">Podrobnosti</string>
     <string name="label_file_name">Název souboru</string>
     <string name="label_file_path">Umístění souboru</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Vzorkovací frekvence</string>
     <string name="action_go_to_artist">Přejít na interpreta</string>
     <string name="action_go_to_album">Přejít do alba</string>
-    <string name="label_playing_queue">Fronta</string>
     <string name="no_results">Žádné výsledky</string>
-    <string name="added_title_to_playing_queue">"Přidána 1 skladba do fronty."</string>
-    <string name="added_x_titles_to_playing_queue">Přidáno %1$d skladeb do fronty.</string>
     <string name="action_remove_from_playlist">Odstranit z playlistu</string>
     <string name="action_grid_size">Velikost mřížky</string>
     <string name="action_grid_size_land">Velikost mřížky (na šiřku)</string>
@@ -77,13 +70,10 @@
     <string name="clear_playlist_title">Vyčistit playlist</string>
     <string name="save_playlist_title">Uložit jako soubor</string>
     <string name="save_playlists_title">Uložit jako soubor</string>
-    <string name="add_playlist_title">"Přidat do playlistu"</string>
     <string name="action_shuffle_all">Přehrát náhodně</string>
     <string name="action_shuffle_album">Přehrát album náhodně</string>
     <string name="action_shuffle_artist">Přehrát skladby interpreta náhodně</string>
     <string name="action_shuffle_playlist">Přehrát playlist náhodně</string>
-    <string name="action_clear_playing_queue">Vyčistit frontu přehrávání</string>
-    <string name="action_save_playing_queue">Uložit frontu přehrávání</string>
     <string name="light_theme_name">Světlý</string>
     <string name="dark_theme_name">Tmavý</string>
     <string name="always">Vždy</string>
@@ -147,7 +137,6 @@
     <string name="pref_summary_colored_app_shortcuts">Zbarví zkratky aplikace primární barvou</string>
     <string name="pref_summary_audio_ducking">Oznámení, navigace atd.</string>
     <string name="pref_summary_remember_last_tab">Přejděte na poslední otevřenou kartu při spuštění</string>
-    <string name="search_hint">Vyhledat zvukové soubory...</string>
     <string name="favorites">Oblíbené</string>
     <string name="last_added">Naposledy přidáno</string>
     <string name="history">Historie</string>
@@ -157,8 +146,6 @@
     <string name="cancel_current_timer">Zrušit ukončení přehrávání</string>
     <string name="sleep_timer_canceled">Ukončení přehrávání zrušeno.</string>
     <string name="sleep_timer_set">Přehrávání se ukončí za %d minut.</string>
-    <string name="action_new_playlist">Nový playlist...</string>
-    <string name="new_playlist_title">Nový playlist</string>
     <string name="colored_footers">"Barevné zápatí "</string>
     <string name="special_thanks_to">Zvláštní poděkování</string>
     <string name="permissions_denied">"Oprávnění zamítnuta. "</string>
@@ -186,8 +173,6 @@
     <string name="loading_products">"Načítání výrobků... "</string>
     <string name="up_next">"Další "</string>
     <string name="pref_title_now_playing_screen_appearance">Vzhled</string>
-    <string name="open_playing_queue_instruction">"Potáhněte kartu v obrazovce Právě přehrávané nahoru pro zobrazení celé fronty přehrávání. "</string>
-    <string name="rearrange_playing_queue_instruction">"Změňte pořadí fronty přetažením skladby za její číslo. "</string>
     <string name="library">"Knihovna "</string>
     <string name="saved_playlist_to">Uloženo do playlistu %s.</string>
     <string name="failed_to_save_playlist">Chyba v uložení playlistu (%s).</string>

@@ -18,9 +18,6 @@
     <string name="action_play_pause">Lecture/Pause</string>
     <string name="action_previous">Précédent</string>
     <string name="action_next">Suivant</string>
-    <string name="action_add_to_playing_queue">Ajouter à la liste de lecture</string>
-    <string name="action_remove_from_playing_queue">Retirer de la liste de lecture</string>
-    <string name="action_add_to_playlist">Ajouter à la playlist...</string>
     <string name="action_delete_from_device">Supprimer de l\'appareil</string>
     <string name="action_details">Détails</string>
     <string name="action_rename">Renommer</string>
@@ -37,7 +34,6 @@
     <string name="genre">Genre</string>
     <string name="album_artist">Artiste de l\'album</string>
     <string name="year">Année</string>
-    <string name="track_hint">"Piste (2 pour piste 2 ou 3004 pour CD3 piste 4)"</string>
     <string name="label_details">Détails</string>
     <string name="label_file_name">Nom du fichier</string>
     <string name="label_file_path">Chemin du fichier</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Taux d\'échantillonnage</string>
     <string name="action_go_to_artist">Voir l\'artiste</string>
     <string name="action_go_to_album">Voir l\'album</string>
-    <string name="label_playing_queue">File de lecture</string>
     <string name="no_results">Aucun résultat</string>
-    <string name="added_title_to_playing_queue">"1 titre ajouté à la file de lecture."</string>
-    <string name="added_x_titles_to_playing_queue">%1$d titres ajoutés à la file de lecture.</string>
     <string name="action_remove_from_playlist">Retirer de la liste de lecture</string>
     <string name="action_grid_size">Taille de la grille</string>
     <string name="action_grid_size_land">Taille de la grille (paysage)</string>
@@ -77,13 +70,10 @@
     <string name="clear_playlist_title">Effacer la playlist</string>
     <string name="save_playlist_title">Sauvegarder en tant que fichier</string>
     <string name="save_playlists_title">"Enregistrer le fichier "</string>
-    <string name="add_playlist_title">"Ajouter à la playlist"</string>
     <string name="action_shuffle_all">Lecture aléatoire</string>
     <string name="action_shuffle_album">Lecture aléatoire</string>
     <string name="action_shuffle_artist">Artiste aléatoire</string>
     <string name="action_shuffle_playlist">Lecture aléatoire</string>
-    <string name="action_clear_playing_queue">Effacer la file de lecture</string>
-    <string name="action_save_playing_queue">Sauvegarder la file de lecture</string>
     <string name="light_theme_name">Clair</string>
     <string name="dark_theme_name">Sombre</string>
     <string name="always">Toujours</string>
@@ -147,7 +137,6 @@
     <string name="pref_summary_colored_app_shortcuts">Colore les raccourcis de l\'application selon la couleur primaire.</string>
     <string name="pref_summary_audio_ducking">Notifications, navigation, etc.</string>
     <string name="pref_summary_remember_last_tab">Aller à la dernière catégorie ouverte lors du lancement</string>
-    <string name="search_hint">Recherche dans votre bibliothèque...</string>
     <string name="favorites">Favoris</string>
     <string name="last_added">Derniers ajouts</string>
     <string name="history">Titres écoutés récemment</string>
@@ -157,8 +146,6 @@
     <string name="cancel_current_timer">Annuler le minuteur actuel</string>
     <string name="sleep_timer_canceled">Le minuteur actuel a été annulé.</string>
     <string name="sleep_timer_set">Arrêt de la musique dans %d minutes.</string>
-    <string name="action_new_playlist">Nouvelle liste de lecture…</string>
-    <string name="new_playlist_title">Nouvelle playlist</string>
     <string name="colored_footers">Bas des albums colorés</string>
     <string name="special_thanks_to">Un grand merci à</string>
     <string name="permissions_denied">Autorisation refusée.</string>
@@ -186,8 +173,6 @@
     <string name="loading_products">Chargement des produits…</string>
     <string name="up_next">Suivant</string>
     <string name="pref_title_now_playing_screen_appearance">Apparence</string>
-    <string name="open_playing_queue_instruction">Vous pouvez glisser la carte dans l\'écran de lecture en cours pour afficher la file de lecture complète.</string>
-    <string name="rearrange_playing_queue_instruction">Vous pouvez réorganiser la file de lecture en faisant glisser une chanson à partir de son numéro de piste.</string>
     <string name="library">Bibliothèque</string>
     <string name="saved_playlist_to">Liste de lecture sauvegardée dans %s.</string>
     <string name="failed_to_save_playlist">Impossible de sauvegarder la liste de lecture (%s).</string>

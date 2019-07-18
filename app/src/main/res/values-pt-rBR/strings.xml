@@ -18,9 +18,6 @@
     <string name="action_play_pause">Reproduzir/Pausar</string>
     <string name="action_previous">Anterior</string>
     <string name="action_next">Próxima</string>
-    <string name="action_add_to_playing_queue">Adicionar à fila de reprodução</string>
-    <string name="action_remove_from_playing_queue">Remover da fila de reprodução</string>
-    <string name="action_add_to_playlist">Adicionar à lista de reprodução...</string>
     <string name="action_delete_from_device">Excluir do dispositivo</string>
     <string name="action_details">Detalhes</string>
     <string name="action_rename">Renomear</string>
@@ -37,7 +34,6 @@
     <string name="genre">Gênero</string>
     <string name="album_artist">Artista do álbum</string>
     <string name="year">Ano</string>
-    <string name="track_hint">"Música (2 para a música 2 ou 3004 para a música 4 do CD3)"</string>
     <string name="label_details">Detalhes</string>
     <string name="label_file_name">Nome do arquivo</string>
     <string name="label_file_path">Endereço do arquivo</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Taxa de amostragem</string>
     <string name="action_go_to_artist">Ir para o artista</string>
     <string name="action_go_to_album">Ir para o álbum</string>
-    <string name="label_playing_queue">Fila de reprodução</string>
     <string name="no_results">Sem resultados</string>
-    <string name="added_title_to_playing_queue">"Adicionado 1 título à lista de reprodução"</string>
-    <string name="added_x_titles_to_playing_queue">Adicionados {% 1 $ d} títulos á fila de reprodução</string>
     <string name="action_remove_from_playlist">Remover da playlist</string>
     <string name="action_grid_size">Número de colunas</string>
     <string name="action_grid_size_land">Número de colunas (horizontal)</string>
@@ -77,14 +70,11 @@
     <string name="clear_playlist_title">Limpar playlist</string>
     <string name="save_playlist_title">Salvar como arquivo</string>
     <string name="save_playlists_title">Salvar como arquivos</string>
-    <string name="add_playlist_title">"Adicionar à playlist"</string>
     <string name="select_all_title">Selecionar tudo</string>
     <string name="action_shuffle_all">Misturar todas</string>
     <string name="action_shuffle_album">Misturar álbum</string>
     <string name="action_shuffle_artist">Misturar artista</string>
     <string name="action_shuffle_playlist">Misturar playlist</string>
-    <string name="action_clear_playing_queue">Limpar fila de reprodução</string>
-    <string name="action_save_playing_queue">Salvar fila de reprodução</string>
     <string name="light_theme_name">Claro</string>
     <string name="dark_theme_name">Escuro</string>
     <string name="always">Sempre</string>
@@ -151,7 +141,6 @@
     <string name="pref_summary_audio_ducking">Notificações, navegação, etc.</string>
     <string name="pref_summary_remember_last_tab">Ir para a última aba aberta ao iniciar</string>
     <string name="pref_summary_remember_shuffle">Modo aleatório continuará ativo quando uma nova lista de músicas for selecionada</string>
-    <string name="search_hint">Pesquisar na sua biblioteca...</string>
     <string name="favorites">Favoritos</string>
     <string name="last_added">Última Adição</string>
     <string name="history">Reproduzidas recentemente</string>
@@ -161,8 +150,6 @@
     <string name="cancel_current_timer">Cancelar temporizador atual</string>
     <string name="sleep_timer_canceled">Temporizador cancelado.</string>
     <string name="sleep_timer_set">Temporizador definido para %d minutos a partir de agora.</string>
-    <string name="action_new_playlist">Nova playlist...</string>
-    <string name="new_playlist_title">Nova playlist</string>
     <string name="colored_footers">Rodapés coloridos</string>
     <string name="special_thanks_to">Agradecimentos especiais para</string>
     <string name="permissions_denied">Permissões negadas.</string>
@@ -190,8 +177,6 @@
     <string name="loading_products">Carregando produtos...</string>
     <string name="up_next">Próximo</string>
     <string name="pref_title_now_playing_screen_appearance">Aparência</string>
-    <string name="open_playing_queue_instruction">Arraste para cima o card da tela de reprodução para mostrar a lista de reprodução completa.</string>
-    <string name="rearrange_playing_queue_instruction">Mude as músicas de lugar na fila pressionando-as e arrastando-as de seu número de faixa.</string>
     <string name="library">Biblioteca</string>
     <string name="saved_playlist_to">Salvo à playlist %s.</string>
     <string name="failed_to_save_playlist">Erro ao salvar a playlist (%s).</string>

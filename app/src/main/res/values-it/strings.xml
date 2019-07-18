@@ -18,9 +18,6 @@
     <string name="action_play_pause">Play/Pausa</string>
     <string name="action_previous">Precedente</string>
     <string name="action_next">Prossima</string>
-    <string name="action_add_to_playing_queue">Aggiungi alla coda di riproduzione</string>
-    <string name="action_remove_from_playing_queue">Rimuovi dalla coda di riproduzione</string>
-    <string name="action_add_to_playlist">Aggiungi alla playlist...</string>
     <string name="action_delete_from_device">Elimina dal dispositivo</string>
     <string name="action_details">Dettagli</string>
     <string name="action_rename">Rinomina</string>
@@ -37,7 +34,6 @@
     <string name="genre">Genere</string>
     <string name="album_artist">Artista dell\'album</string>
     <string name="year">Anno</string>
-    <string name="track_hint">"Traccia (2 per traccia 2, o 3004 per CD3 traccia 4)"</string>
     <string name="label_details">Dettagli</string>
     <string name="label_file_name">Nome file</string>
     <string name="label_file_path">Percorso file</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Frequenza di campionamento</string>
     <string name="action_go_to_artist">Vai all\'artista</string>
     <string name="action_go_to_album">Vai all\'album</string>
-    <string name="label_playing_queue">Coda di riproduzione</string>
     <string name="no_results">Nessun risultato</string>
-    <string name="added_title_to_playing_queue">"Un brano aggiunto alla coda di riproduzione."</string>
-    <string name="added_x_titles_to_playing_queue">%1$d titoli aggiunti alla coda.</string>
     <string name="action_remove_from_playlist">Rimuovi dalla playlist</string>
     <string name="action_grid_size">Dimensione griglia</string>
     <string name="action_grid_size_land">Dimensione griglia (schermo orizzontale)</string>
@@ -77,14 +70,11 @@
     <string name="clear_playlist_title">Svuota playlist</string>
     <string name="save_playlist_title">Salva come file</string>
     <string name="save_playlists_title">Salva come file</string>
-    <string name="add_playlist_title">"Aggiungi alla playlist"</string>
     <string name="select_all_title">Seleziona tutto</string>
     <string name="action_shuffle_all">Riproduzione casuale</string>
     <string name="action_shuffle_album">Riproduzione casuale album</string>
     <string name="action_shuffle_artist">Riproduzione casuale artista</string>
     <string name="action_shuffle_playlist">Riproduzione casuale playlist</string>
-    <string name="action_clear_playing_queue">Svuota coda di riproduzione</string>
-    <string name="action_save_playing_queue">Salva la coda di riproduzione</string>
     <string name="light_theme_name">Chiaro</string>
     <string name="dark_theme_name">Scuro</string>
     <string name="always">Sempre</string>
@@ -151,7 +141,6 @@
     <string name="pref_summary_audio_ducking">Notifiche, navigazione ecc.</string>
     <string name="pref_summary_remember_last_tab">All\'avvio vai all\'ultima scheda aperta</string>
     <string name="pref_summary_remember_shuffle">La modalità casuale rimarrà attiva quando si seleziona un nuovo elenco di brani</string>
-    <string name="search_hint">Cercando nella tua libreria...</string>
     <string name="favorites">Preferiti</string>
     <string name="last_added">Aggiunti di recente</string>
     <string name="history">Ascoltati di recente</string>
@@ -161,8 +150,6 @@
     <string name="cancel_current_timer">Annulla questo timer</string>
     <string name="sleep_timer_canceled">Il timer di spegnimento è stato annullato.</string>
     <string name="sleep_timer_set">Timer di spegnimento impostato a %d minuti da adesso</string>
-    <string name="action_new_playlist">Nuova playlist...</string>
-    <string name="new_playlist_title">Nuova playlist</string>
     <string name="colored_footers">Riquadri colorati</string>
     <string name="special_thanks_to">Ringraziamenti speciali a</string>
     <string name="permissions_denied">Permesso negato.</string>
@@ -190,8 +177,6 @@
     <string name="loading_products">Caricamento prezzi</string>
     <string name="up_next">A seguire</string>
     <string name="pref_title_now_playing_screen_appearance">Aspetto</string>
-    <string name="open_playing_queue_instruction">Fai uno swipe sulla card nella schermata In riproduzione per mostrare l\'intera coda di riproduzione.</string>
-    <string name="rearrange_playing_queue_instruction">Riorganizza la coda di riproduzione trascinando una canzone dal suo numero di traccia.</string>
     <string name="library">Libreria</string>
     <string name="saved_playlist_to">Playlist salvata in %s.</string>
     <string name="failed_to_save_playlist">Salvataggio playlist fallito (%s).</string>

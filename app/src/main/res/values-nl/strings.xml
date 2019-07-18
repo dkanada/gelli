@@ -18,9 +18,6 @@
     <string name="action_play_pause">Afspelen/Pauzeren</string>
     <string name="action_previous">Vorige</string>
     <string name="action_next">Volgende</string>
-    <string name="action_add_to_playing_queue">Toevoegen aan afspeelwachtrij</string>
-    <string name="action_remove_from_playing_queue">Verwijderen uit afspeelwachtrij</string>
-    <string name="action_add_to_playlist">Toevoegen aan afspeellijst…</string>
     <string name="action_delete_from_device">Verwijderen van apparaat</string>
     <string name="action_details">Details</string>
     <string name="action_rename">Hernoemen</string>
@@ -37,7 +34,6 @@
     <string name="genre">Genre</string>
     <string name="album_artist">Album artiest</string>
     <string name="year">Jaar</string>
-    <string name="track_hint">"Nummer (2 voor nr. 2, of 3004 voor CD3 nr. 4)"</string>
     <string name="label_details">Details</string>
     <string name="label_file_name">Bestandsnaam</string>
     <string name="label_file_path">Bestandspad</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Sampling rate</string>
     <string name="action_go_to_artist">Ga naar artiest</string>
     <string name="action_go_to_album">Ga naar album</string>
-    <string name="label_playing_queue">Afspeelwachtrij</string>
     <string name="no_results">Geen resultaten</string>
-    <string name="added_title_to_playing_queue">"1 titel toegevoegd aan de afspeelwachtrij."</string>
-    <string name="added_x_titles_to_playing_queue">%1$d titels toegevoegd aan de afspeelwachtrij.</string>
     <string name="action_remove_from_playlist">Verwijderen uit afspeellijst</string>
     <string name="action_grid_size">Rastergrootte</string>
     <string name="action_grid_size_land">Rastergrootte (landschap)</string>
@@ -77,13 +70,10 @@
     <string name="clear_playlist_title">Afspeellijst legen</string>
     <string name="save_playlist_title">Opslaan als bestand</string>
     <string name="save_playlists_title">Opslaan als bestanden</string>
-    <string name="add_playlist_title">"Toevoegen aan afspeellijst"</string>
     <string name="action_shuffle_all">Shuffle alles</string>
     <string name="action_shuffle_album">Shuffle album</string>
     <string name="action_shuffle_artist">Shuffle artiest</string>
     <string name="action_shuffle_playlist">Shuffle afspeellijst</string>
-    <string name="action_clear_playing_queue">Leeg afspeelwachtrij</string>
-    <string name="action_save_playing_queue">Afspeelwachtrij opslaan</string>
     <string name="light_theme_name">Licht</string>
     <string name="dark_theme_name">Donker</string>
     <string name="always">Altijd</string>
@@ -147,7 +137,6 @@
     <string name="pref_summary_colored_app_shortcuts">Kleurt de app-snelkoppelingen in de primaire kleur.</string>
     <string name="pref_summary_audio_ducking">Notificaties, navigatie, etc.</string>
     <string name="pref_summary_remember_last_tab">Ga naar het laatst geopende tabblad bij opstarten</string>
-    <string name="search_hint">Zoek in je bibliotheek…</string>
     <string name="favorites">Favorieten</string>
     <string name="last_added">Laatst toegevoegd</string>
     <string name="history">Geschiedenis</string>
@@ -157,8 +146,6 @@
     <string name="cancel_current_timer">Annuleer huidige timer</string>
     <string name="sleep_timer_canceled">Slaaptimer is geannuleerd.</string>
     <string name="sleep_timer_set">Slaaptimer gezet voor %d minuten vanaf nu.</string>
-    <string name="action_new_playlist">Nieuwe afspeellijst…</string>
-    <string name="new_playlist_title">Nieuwe afspeellijst</string>
     <string name="colored_footers">Gekleurde voetkaders</string>
     <string name="special_thanks_to">Speciale dank aan</string>
     <string name="permissions_denied">Machtiging geweigerd.</string>
@@ -186,8 +173,6 @@
     <string name="loading_products">Producten laden…</string>
     <string name="up_next">Als volgende</string>
     <string name="pref_title_now_playing_screen_appearance">Uiterlijk</string>
-    <string name="open_playing_queue_instruction">Veeg de kaart in het afspeelscherm om de afspeelwachtrij te weergeven.</string>
-    <string name="rearrange_playing_queue_instruction">Rangschik de afspeelwachtrij door de afspeelnummers te verslepen.</string>
     <string name="library">Bibliotheek</string>
     <string name="saved_playlist_to">Afspeellijst opgeslagen in %s.</string>
     <string name="failed_to_save_playlist">Opslaan van afspeellijst (%s) mislukt.</string>

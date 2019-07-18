@@ -18,9 +18,6 @@
     <string name="action_play_pause">Lejátszás/Szünet</string>
     <string name="action_previous">Előző</string>
     <string name="action_next">Következő</string>
-    <string name="action_add_to_playing_queue">Hozzáadás a lejátszási sorhoz</string>
-    <string name="action_remove_from_playing_queue">Eltávolítás a lejátszási sorból</string>
-    <string name="action_add_to_playlist">Hozzáadás a lejátszási listához...</string>
     <string name="action_delete_from_device">Törlés az eszközről</string>
     <string name="action_details">Részletek</string>
     <string name="action_rename">Átnevezés</string>
@@ -37,7 +34,6 @@
     <string name="genre">Műfaj</string>
     <string name="album_artist">Album előadó</string>
     <string name="year">Év</string>
-    <string name="track_hint">"Dal sorszáma az albumban"</string>
     <string name="label_details">Részletek</string>
     <string name="label_file_name">Fájlnév</string>
     <string name="label_file_path">Útvonal</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Mintavételezés</string>
     <string name="action_go_to_artist">Ugrás az előadóhoz</string>
     <string name="action_go_to_album">Ugrás az albumhoz</string>
-    <string name="label_playing_queue">Lejátszási sor</string>
     <string name="no_results">Nincs találat</string>
-    <string name="added_title_to_playing_queue">"1 dal hozzáadva a lejátszási sorhoz."</string>
-    <string name="added_x_titles_to_playing_queue">%1$d dal hozzáadva a lejátszási sorhoz.</string>
     <string name="action_remove_from_playlist">Eltávolítás a lejátszási listából</string>
     <string name="action_grid_size">Rácsméret</string>
     <string name="action_grid_size_land">Rácsméret</string>
@@ -77,13 +70,10 @@
     <string name="clear_playlist_title">Lejátszási lista kiürítése</string>
     <string name="save_playlist_title">Mentés fájlként</string>
     <string name="save_playlists_title">Mentés fájlként</string>
-    <string name="add_playlist_title">"Hozzáadás a lejátszási listához"</string>
     <string name="action_shuffle_all">Összes keverése</string>
     <string name="action_shuffle_album">Album dalainak keverése</string>
     <string name="action_shuffle_artist">Előadó dalainak keverése</string>
     <string name="action_shuffle_playlist">Lejátszási lista keverése</string>
-    <string name="action_clear_playing_queue">Lejátszási lista törlése</string>
-    <string name="action_save_playing_queue">Mentés a lejátszási sorba</string>
     <string name="light_theme_name">Világos</string>
     <string name="dark_theme_name">Sötét</string>
     <string name="always">Mindig</string>
@@ -147,7 +137,6 @@
     <string name="pref_summary_colored_app_shortcuts">Az alkalmazás hivatkozások színezése az elsődleges szín szerint.</string>
     <string name="pref_summary_audio_ducking">Beérkező értesítéskor a lejátszás hangereje lecsökken, majd az értesítés végén visszaáll az eredeti hangerőre.</string>
     <string name="pref_summary_remember_last_tab">Menjen az utolsó megnyitott fülre az indításkor</string>
-    <string name="search_hint">Keresés a könyvtárban...</string>
     <string name="favorites">Kedvencek</string>
     <string name="last_added">Legfrissebb dalok</string>
     <string name="history">Előzmények</string>
@@ -157,8 +146,6 @@
     <string name="cancel_current_timer">Az aktuális időzítő törlése</string>
     <string name="sleep_timer_canceled">Elalvás időzítő törölve.</string>
     <string name="sleep_timer_set">Elalvás időzítő beállítva, mostantól számított %d percre.</string>
-    <string name="action_new_playlist">Új lejátszási lista...</string>
-    <string name="new_playlist_title">Új lejátszási lista</string>
     <string name="colored_footers">Színes lábjegyzetek</string>
     <string name="special_thanks_to">Külön köszönet</string>
     <string name="permissions_denied">Jogosultságok megtagadva.</string>
@@ -186,8 +173,6 @@
     <string name="loading_products">Termékek betöltése...</string>
     <string name="up_next">Lejátszási sor</string>
     <string name="pref_title_now_playing_screen_appearance">Megjelenés</string>
-    <string name="open_playing_queue_instruction">Húzza fel a kártyát a most játszott képernyőn, hogy megnyissa a lejátszási sort.</string>
-    <string name="rearrange_playing_queue_instruction">A lejátszási sort átrendezheti, ha a dalokat a sorszámuknál megfogva húzni kezdi.</string>
     <string name="library">Könyvtár</string>
     <string name="saved_playlist_to">Lejátszási lista mentve ide: %s.</string>
     <string name="failed_to_save_playlist">Nem sikerült menteni a lejátszási listát (%s).</string>

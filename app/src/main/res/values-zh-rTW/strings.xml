@@ -18,9 +18,6 @@
     <string name="action_play_pause">播放/暫停</string>
     <string name="action_previous">上一首</string>
     <string name="action_next">下一首</string>
-    <string name="action_add_to_playing_queue">加入播放佇列</string>
-    <string name="action_remove_from_playing_queue">從播放佇列中移除</string>
-    <string name="action_add_to_playlist">加入播放清單...</string>
     <string name="action_delete_from_device">刪除</string>
     <string name="action_details">詳細資訊</string>
     <string name="action_rename">"重新命名
@@ -38,7 +35,6 @@
     <string name="genre">類型</string>
     <string name="album_artist">專輯演出者</string>
     <string name="year">年代</string>
-    <string name="track_hint">"音軌（用2表示第2首歌或3004表示CD3的第4首歌）"</string>
     <string name="label_details">詳細資訊</string>
     <string name="label_file_name">檔案名稱</string>
     <string name="label_file_path">檔案路徑</string>
@@ -49,10 +45,7 @@
     <string name="label_sampling_rate">取樣頻率</string>
     <string name="action_go_to_artist">前往該歌手頁面</string>
     <string name="action_go_to_album">打開專輯</string>
-    <string name="label_playing_queue">待播佇列</string>
     <string name="no_results">沒有搜尋結果</string>
-    <string name="added_title_to_playing_queue">"已將 1 首歌加到播放佇列"</string>
-    <string name="added_x_titles_to_playing_queue">已將 %1$d 首歌加到播放佇列。</string>
     <string name="action_remove_from_playlist">從播放清單中移除</string>
     <string name="action_grid_size">網格大小</string>
     <string name="action_grid_size_land">網格大小</string>
@@ -78,14 +71,11 @@
     <string name="clear_playlist_title">清空播放清單</string>
     <string name="save_playlist_title">儲存為檔案</string>
     <string name="save_playlists_title">儲存為檔案</string>
-    <string name="add_playlist_title">"加入播放清單"</string>
     <string name="select_all_title">全選</string>
     <string name="action_shuffle_all">隨機播放</string>
     <string name="action_shuffle_album">隨機播放專輯</string>
     <string name="action_shuffle_artist">歌手隨機播放</string>
     <string name="action_shuffle_playlist">隨機播放清單</string>
-    <string name="action_clear_playing_queue">清空播放佇列</string>
-    <string name="action_save_playing_queue">保存播放佇列</string>
     <string name="light_theme_name">明亮</string>
     <string name="dark_theme_name">暗沉</string>
     <string name="always">永遠</string>
@@ -152,7 +142,6 @@
     <string name="pref_summary_audio_ducking">通知鈴聲、導航語音等。</string>
     <string name="pref_summary_remember_last_tab">開啟時顯示最後使用的頁面</string>
     <string name="pref_summary_remember_shuffle">當選擇新歌曲列表時維持隨機播放模式</string>
-    <string name="search_hint">搜尋音樂庫…</string>
     <string name="favorites">最愛</string>
     <string name="last_added">最後新增</string>
     <string name="history">最近播放</string>
@@ -162,8 +151,6 @@
     <string name="cancel_current_timer">取消目前的計時器</string>
     <string name="sleep_timer_canceled">已取消睡眠定時器。</string>
     <string name="sleep_timer_set">%d分鐘後，音樂將會自動停止。</string>
-    <string name="action_new_playlist">新增播放清單...</string>
-    <string name="new_playlist_title">新增播放清單</string>
     <string name="colored_footers">彩色的註腳</string>
     <string name="special_thanks_to">特別感謝</string>
     <string name="permissions_denied">存取被拒</string>
@@ -191,8 +178,6 @@
     <string name="loading_products">正在載入</string>
     <string name="up_next">播放佇列：即將播放</string>
     <string name="pref_title_now_playing_screen_appearance">外觀</string>
-    <string name="open_playing_queue_instruction">在播放面板上滑來顯示播放佇列</string>
-    <string name="rearrange_playing_queue_instruction">您可以更改歌曲播放的順序，上下拖曳播放佇列中的歌曲編號即可。</string>
     <string name="library">音樂庫</string>
     <string name="saved_playlist_to">已儲存播放清單至%s</string>
     <string name="failed_to_save_playlist">無法儲存播放清單 \"%s\"</string>

@@ -1,7 +1,7 @@
 package com.kabouzeid.gramophone.ui.fragments.player;
 
 import android.content.Context;
-import android.content.Intent;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
@@ -57,10 +57,10 @@ public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implemen
             case R.id.action_add_to_playlist:
                 AddToPlaylistDialog.create(song).show(getFragmentManager(), "ADD_PLAYLIST");
                 return true;
-            case R.id.action_clear_playing_queue:
+            case R.id.action_clear_queue:
                 MusicPlayerRemote.clearQueue();
                 return true;
-            case R.id.action_save_playing_queue:
+            case R.id.action_save_queue:
                 CreatePlaylistDialog.create(MusicPlayerRemote.getPlayingQueue()).show(getActivity().getSupportFragmentManager(), "ADD_TO_PLAYLIST");
                 return true;
             case R.id.action_details:

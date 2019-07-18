@@ -46,7 +46,7 @@ public class AddToPlaylistDialog extends DialogFragment {
             playlistNames[i] = playlists.get(i - 1).name;
         }
         return new MaterialDialog.Builder(getActivity())
-                .title(R.string.add_playlist_title)
+                .title(R.string.action_add_to_playlist)
                 .items(playlistNames)
                 .itemsCallback((materialDialog, view, i, charSequence) -> {
                     //noinspection unchecked

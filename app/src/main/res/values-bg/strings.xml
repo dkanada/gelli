@@ -18,9 +18,6 @@
     <string name="action_play_pause">Пусни/Спри</string>
     <string name="action_previous">Предишна песен</string>
     <string name="action_next">Следваща песен</string>
-    <string name="action_add_to_playing_queue">Добави в списъка с възпроизвеждащи се песни</string>
-    <string name="action_remove_from_playing_queue">Премахни от списъка с възпроизвеждащи се песни</string>
-    <string name="action_add_to_playlist">Добави към плейлист...</string>
     <string name="action_delete_from_device">Изтрий от устройството</string>
     <string name="action_details">Детайли</string>
     <string name="action_rename">Преименувай</string>
@@ -36,7 +33,6 @@
     <string name="genre">Жанр</string>
     <string name="album_artist">Изпълнител</string>
     <string name="year">Година</string>
-    <string name="track_hint">"Трак (2 за трак 2 или 3004 за CD3 трак 4)"</string>
     <string name="label_details">Детайли</string>
     <string name="label_file_name">Име на файл</string>
     <string name="label_file_path">Местоположение на файла</string>
@@ -47,10 +43,7 @@
     <string name="label_sampling_rate">Самплинг Рейт</string>
     <string name="action_go_to_artist">Отиди при артистът</string>
     <string name="action_go_to_album">Отиди в албум</string>
-    <string name="label_playing_queue">Възпроизвеждащи се файлове</string>
     <string name="no_results">Няма резултати</string>
-    <string name="added_title_to_playing_queue">"1 заглавие бе добавено към възпроизвеждащите се песни"</string>
-    <string name="added_x_titles_to_playing_queue">%1$d заглавия бяха добавени към възпроизвеждащите се песни</string>
     <string name="action_remove_from_playlist">Премахни от плейлист</string>
     <string name="action_grid_size">Големина на иконки</string>
     <string name="action_grid_size_land">Големина на иконки (верт.)</string>
@@ -74,12 +67,10 @@
     <string name="delete_playlists_title">Изтрий плейлистите</string>
     <string name="clear_playlist_title">Изчисти този плейлист</string>
     <string name="save_playlist_title">Запази като файл</string>
-    <string name="add_playlist_title">"Добави към плейлист"</string>
     <string name="action_shuffle_all">Разбъркай всички</string>
     <string name="action_shuffle_album">Разбъркай албумът</string>
     <string name="action_shuffle_artist">Разбъркай артист</string>
     <string name="action_shuffle_playlist">Разбъркай този плейлист</string>
-    <string name="action_clear_playing_queue">Изчисти списъкът с възпроизвеждащи се песни</string>
     <string name="light_theme_name">Светъл изглед</string>
     <string name="dark_theme_name">Тъмен изглед</string>
     <string name="always">Винаги</string>
@@ -127,7 +118,6 @@
     <string name="pref_summary_colored_navigation_bar">Оцветява навигационната лента в главният цвят на апликацията.</string>
     <string name="pref_summary_colored_app_shortcuts">Оцветява бутоните в главният цвят на апликацията.</string>
     <string name="pref_summary_audio_ducking">Известия, навигация etc.</string>
-    <string name="search_hint">Търсене във вашата аудио библиотека...</string>
     <string name="favorites">Любими</string>
     <string name="last_added">Последно добавени</string>
     <string name="history">История</string>
@@ -137,8 +127,6 @@
     <string name="cancel_current_timer">Премахни текущия таймер</string>
     <string name="sleep_timer_canceled">Таймерът бе премахнат</string>
     <string name="sleep_timer_set">Таймерът за заспиване бе зададен за %d минути от сега.</string>
-    <string name="action_new_playlist">Нов плейлист...</string>
-    <string name="new_playlist_title">Нов плейлист</string>
     <string name="colored_footers">Оцветени кутийки за имената</string>
     <string name="special_thanks_to">Специални благодарности към</string>
     <string name="permissions_denied">Достъпът е отказан.</string>
@@ -165,8 +153,6 @@
     <string name="loading_products">Зареждане...</string>
     <string name="up_next">Следващи песни</string>
     <string name="pref_title_now_playing_screen_appearance">Изглед</string>
-    <string name="open_playing_queue_instruction">Плъзнете картата в екранът на текущо възпроизвеждащата се песен, за видите списъкът с песни.</string>
-    <string name="rearrange_playing_queue_instruction">Разместете списъкът с текущо възпроизвеждащи се песни, като хванете тракът за неговият номер.</string>
     <string name="library">Библиотека</string>
     <string name="saved_playlist_to">Плейлистът бе запазен в %s.</string>
     <string name="failed_to_save_playlist">Плейлистът не бе запазен успешно (%s).</string>

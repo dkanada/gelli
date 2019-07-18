@@ -18,9 +18,6 @@
     <string name="action_play_pause">Відтворити/Зупинити</string>
     <string name="action_previous">Попередня</string>
     <string name="action_next">Наступна</string>
-    <string name="action_add_to_playing_queue">Додати до черги відтворення</string>
-    <string name="action_remove_from_playing_queue">Видалити з черги відтворення</string>
-    <string name="action_add_to_playlist">Додати до списку відтворення...</string>
     <string name="action_delete_from_device">Видалити з пристрою</string>
     <string name="action_details">Подробиці</string>
     <string name="action_rename">Перейменувати</string>
@@ -37,7 +34,6 @@
     <string name="genre">Жанр</string>
     <string name="album_artist">Альбом виконавця</string>
     <string name="year">Рік</string>
-    <string name="track_hint">"Доріжка (2 для доріжки 2 або 3004 для CD3 доріжки 4)"</string>
     <string name="label_details">Подробиці</string>
     <string name="label_file_name">Назва файлу</string>
     <string name="label_file_path">Шлях до файлу</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Частота дискретизації</string>
     <string name="action_go_to_artist">Перейти до виконавця</string>
     <string name="action_go_to_album">Перейти до альбому</string>
-    <string name="label_playing_queue">Черга відтворення</string>
     <string name="no_results">Немає результатів</string>
-    <string name="added_title_to_playing_queue">"Додано 1 композицію до черги відтворення."</string>
-    <string name="added_x_titles_to_playing_queue">Додано %1$d композицій до черги відтворення</string>
     <string name="action_remove_from_playlist">Видалити зі списку відтворення</string>
     <string name="action_grid_size">Розмір сітки</string>
     <string name="action_grid_size_land">Розмір сітки (ландшафт)</string>
@@ -76,13 +69,10 @@
     <string name="delete_playlists_title">Видалити списки відтворення</string>
     <string name="clear_playlist_title">Очистити список відтворення</string>
     <string name="save_playlist_title">Зберегти як файл</string>
-    <string name="add_playlist_title">"Додати до списку відтворення"</string>
     <string name="action_shuffle_all">Перемішати всі</string>
     <string name="action_shuffle_album">Перемішати альбом</string>
     <string name="action_shuffle_artist">Перемішати виконавця</string>
     <string name="action_shuffle_playlist">Перемішати список відтворення</string>
-    <string name="action_clear_playing_queue">Очистити чергу відтворення</string>
-    <string name="action_save_playing_queue">Зберегти чергу відтворення</string>
     <string name="light_theme_name">Світла</string>
     <string name="dark_theme_name">Темна</string>
     <string name="always">Завжди</string>
@@ -146,7 +136,6 @@
     <string name="pref_summary_colored_app_shortcuts">Фарбує ярлики додатків у переважний колір.</string>
     <string name="pref_summary_audio_ducking">Повiдомлення, навiгацiя, т.д.</string>
     <string name="pref_summary_remember_last_tab">Перейдіть до останньої відкритої вкладки, щоб запустити</string>
-    <string name="search_hint">Пошук бібліотеки...</string>
     <string name="favorites">Улюблені</string>
     <string name="last_added">Останні додані</string>
     <string name="history">Історія</string>
@@ -156,8 +145,6 @@
     <string name="cancel_current_timer">Скасувати встановленний таймер</string>
     <string name="sleep_timer_canceled">Таймер сну скасовано.</string>
     <string name="sleep_timer_set">Таймер сну спрацює за %d хвилин.</string>
-    <string name="action_new_playlist">Новий список відтворення...</string>
-    <string name="new_playlist_title">Новий список відтворення</string>
     <string name="colored_footers">Фарбовані колонтитули</string>
     <string name="special_thanks_to">Особлива подяка</string>
     <string name="permissions_denied">У доступі відмовлено.</string>
@@ -185,8 +172,6 @@
     <string name="loading_products">Завантаження продуктів...</string>
     <string name="up_next">До наступного</string>
     <string name="pref_title_now_playing_screen_appearance">Вигляд</string>
-    <string name="open_playing_queue_instruction">Свайпніть картку на екрані «Зараз грає» щоб відкрити всю чергу відтворення.</string>
-    <string name="rearrange_playing_queue_instruction">Змініть чергу відтворення, перетягнувши пісню за її номер.</string>
     <string name="library">Бібліотека</string>
     <string name="saved_playlist_to">Збережено список відтворення в %s.</string>
     <string name="failed_to_save_playlist">Не вдалося зберегти список відтворення (%s).</string>

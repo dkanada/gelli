@@ -18,9 +18,6 @@
     <string name="action_play_pause">Play/Pause</string>
     <string name="action_previous">Previous</string>
     <string name="action_next">Next</string>
-    <string name="action_add_to_playing_queue">Add to playing queue</string>
-    <string name="action_remove_from_playing_queue">Remove from playing queue</string>
-    <string name="action_add_to_playlist">Add to playlist...</string>
     <string name="action_delete_from_device">Delete from device</string>
     <string name="action_details">Details</string>
     <string name="action_rename">Rename</string>
@@ -37,7 +34,6 @@
     <string name="genre">Genre</string>
     <string name="album_artist">Album artist</string>
     <string name="year">Year</string>
-    <string name="track_hint">"Track (2 for track 2 or 3004 for CD3 track 4)"</string>
     <string name="label_details">Details</string>
     <string name="label_file_name">File name</string>
     <string name="label_file_path">File path</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Sampling rate</string>
     <string name="action_go_to_artist">Go to artist</string>
     <string name="action_go_to_album">Go to album</string>
-    <string name="label_playing_queue">Playing queue</string>
     <string name="no_results">No results</string>
-    <string name="added_title_to_playing_queue">"Added 1 title to the playing queue."</string>
-    <string name="added_x_titles_to_playing_queue">Added %1$d titles to the playing queue.</string>
     <string name="action_remove_from_playlist">Remove from playlist</string>
     <string name="action_grid_size">Grid size</string>
     <string name="action_grid_size_land">Grid size (land)</string>
@@ -76,13 +69,10 @@
     <string name="delete_playlists_title">Delete playlists</string>
     <string name="clear_playlist_title">Clear playlist</string>
     <string name="save_playlist_title">Save as file</string>
-    <string name="add_playlist_title">"Add to playlist"</string>
     <string name="action_shuffle_all">Shuffle all</string>
     <string name="action_shuffle_album">Shuffle album</string>
     <string name="action_shuffle_artist">Shuffle artist</string>
     <string name="action_shuffle_playlist">Shuffle playlist</string>
-    <string name="action_clear_playing_queue">Clear playing queue</string>
-    <string name="action_save_playing_queue">Save playing queue</string>
     <string name="light_theme_name">Light</string>
     <string name="dark_theme_name">Dark</string>
     <string name="always">Always</string>
@@ -146,7 +136,6 @@
     <string name="pref_summary_colored_app_shortcuts">Colours the app shortcuts in the primary colour.</string>
     <string name="pref_summary_audio_ducking">Notifications, navigation etc.</string>
     <string name="pref_summary_remember_last_tab">Go to the last opened tab on launch</string>
-    <string name="search_hint">Search your library…</string>
     <string name="favorites">Favourites</string>
     <string name="last_added">Last added</string>
     <string name="history">History</string>
@@ -156,8 +145,6 @@
     <string name="cancel_current_timer">Cancel current timer</string>
     <string name="sleep_timer_canceled">Sleep timer canceled.</string>
     <string name="sleep_timer_set">Sleep timer set for %d minutes from now.</string>
-    <string name="action_new_playlist">New playlist…</string>
-    <string name="new_playlist_title">New playlist</string>
     <string name="colored_footers">Coloured footers</string>
     <string name="special_thanks_to">Special thanks to</string>
     <string name="permissions_denied">Permissions denied.</string>
@@ -185,8 +172,6 @@
     <string name="loading_products">Loading products…</string>
     <string name="up_next">Up next</string>
     <string name="pref_title_now_playing_screen_appearance">Appearance</string>
-    <string name="open_playing_queue_instruction">Swipe the card in the now playing screen up to reveal the full playing queue.</string>
-    <string name="rearrange_playing_queue_instruction">Rearrange the playing queue by dragging a song from its track number.</string>
     <string name="library">Library</string>
     <string name="saved_playlist_to">Saved playlist to %s.</string>
     <string name="failed_to_save_playlist">Failed to save playlist (%s).</string>

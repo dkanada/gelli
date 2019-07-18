@@ -18,9 +18,6 @@
     <string name="action_play_pause">Başlat/Durdur</string>
     <string name="action_previous">Önceki</string>
     <string name="action_next">Sonraki</string>
-    <string name="action_add_to_playing_queue">Çalma sırasına ekle</string>
-    <string name="action_remove_from_playing_queue">Çalma sırasından kaldır</string>
-    <string name="action_add_to_playlist">Çalma listesine ekle...</string>
     <string name="action_delete_from_device">Cihazdan sil</string>
     <string name="action_details">Detaylar</string>
     <string name="action_rename">Yeniden adlandır</string>
@@ -37,7 +34,6 @@
     <string name="genre">Tür</string>
     <string name="album_artist">Albüm sanatçısı</string>
     <string name="year">Yıl</string>
-    <string name="track_hint">"Parça (2. parça için 2 ya da CD3 4. parça için 3004)"</string>
     <string name="label_details">Ayrıntılar</string>
     <string name="label_file_name">Dosya adı</string>
     <string name="label_file_path">Dosya yolu</string>
@@ -48,10 +44,7 @@
     <string name="label_sampling_rate">Örnekleme oranı</string>
     <string name="action_go_to_artist">Sanatçıya git</string>
     <string name="action_go_to_album">Albüme git</string>
-    <string name="label_playing_queue">Çalma sırası</string>
     <string name="no_results">Sonuç bulunamadı</string>
-    <string name="added_title_to_playing_queue">"Çalma sırasına 1 başlık eklendi."</string>
-    <string name="added_x_titles_to_playing_queue">Çalma sırasına %1$d başlık eklendi.</string>
     <string name="action_remove_from_playlist">Çalma listesinden kaldır</string>
     <string name="action_grid_size">Kılavuz boyutu</string>
     <string name="action_grid_size_land">Kılavuz boyutu (yatay)</string>
@@ -77,13 +70,10 @@
     <string name="clear_playlist_title">Çalma listesini temizle</string>
     <string name="save_playlist_title">Dosya olarak kaydet</string>
     <string name="save_playlists_title">Dosya olarak kaydet</string>
-    <string name="add_playlist_title">"Çalma listesine ekle"</string>
     <string name="action_shuffle_all">Tümünü karıştır</string>
     <string name="action_shuffle_album">Albümü karıştır</string>
     <string name="action_shuffle_artist">Sanatçıyı karıştır</string>
     <string name="action_shuffle_playlist">Çalma listesini karıştır</string>
-    <string name="action_clear_playing_queue">Çalma sırasını temizle</string>
-    <string name="action_save_playing_queue">Çalma sırasını kaydet</string>
     <string name="light_theme_name">Açık</string>
     <string name="dark_theme_name">Koyu</string>
     <string name="always">Her zaman</string>
@@ -147,7 +137,6 @@
     <string name="pref_summary_colored_app_shortcuts">Uygulama kısayollarını ana renk ile renklendir.</string>
     <string name="pref_summary_audio_ducking">Bildirimler, gezinme vb.</string>
     <string name="pref_summary_remember_last_tab">Başlatıldığında son açılan sekmeye git</string>
-    <string name="search_hint">Kitaplığınız taranıyor...</string>
     <string name="favorites">Favoriler</string>
     <string name="last_added">Son eklenen</string>
     <string name="history">Geçmiş</string>
@@ -157,8 +146,6 @@
     <string name="cancel_current_timer">Şu anki zamanlayıcıyı iptal et</string>
     <string name="sleep_timer_canceled">Uyku zamanlayıcı iptal edildi.</string>
     <string name="sleep_timer_set">Uyku zamanlayıcı %d dakika olarak ayarlandı.</string>
-    <string name="action_new_playlist">Yeni çalma listesi....</string>
-    <string name="new_playlist_title">Yeni çalma listesi</string>
     <string name="colored_footers">Renkli alt bilgiler</string>
     <string name="special_thanks_to">Özel teşekkür</string>
     <string name="permissions_denied">İzinler reddedildi.</string>
@@ -186,8 +173,6 @@
     <string name="loading_products">İçerik yükleniyor...</string>
     <string name="up_next">Sırada olanlar</string>
     <string name="pref_title_now_playing_screen_appearance">Görünüm</string>
-    <string name="open_playing_queue_instruction">Şuan çalınıyor ekranı kartını yukarı kaydırmak çalma sırasının tamamını ortaya çıkarır.</string>
-    <string name="rearrange_playing_queue_instruction">Çalma sırasını yeniden düzenlemek için şarkının parça numarasını kaydırın</string>
     <string name="library">Kitaplık</string>
     <string name="saved_playlist_to">Çalma listesi %s kaydedildi.</string>
     <string name="failed_to_save_playlist">(%s) çalma listesine kaydetme başarısız.</string>

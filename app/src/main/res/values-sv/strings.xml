@@ -15,9 +15,6 @@
     <string name="action_search">Sök</string>
     <string name="action_play_next">Spela nästa</string>
     <string name="action_play">Spela</string>
-    <string name="action_add_to_playing_queue">Lägg till i uppspelningskön</string>
-    <string name="action_remove_from_playing_queue">Ta bort från uppspelningskön</string>
-    <string name="action_add_to_playlist">Lägg till i spellista</string>
     <string name="action_delete_from_device">Radera från enhet</string>
     <string name="action_details">Detaljer</string>
     <string name="action_rename">Byt namn</string>
@@ -33,7 +30,6 @@
     <string name="genre">Genre</string>
     <string name="album_artist">Albumartist</string>
     <string name="year">År</string>
-    <string name="track_hint">"Spår"</string>
     <string name="label_details">Detaljer</string>
     <string name="label_file_name">Filnamn</string>
     <string name="label_file_path">Sökväg</string>
@@ -44,9 +40,7 @@
     <string name="label_sampling_rate">Samplingsfrekvens</string>
     <string name="action_go_to_artist">Gå till artist</string>
     <string name="action_go_to_album">Gå till album</string>
-    <string name="label_playing_queue">Spelarkö</string>
     <string name="no_results">Inga resultat</string>
-    <string name="added_title_to_playing_queue">"Lagt till 1 titel till spellistan."</string>
     <string name="created_playlist_x">Spellista %1$s skapad</string>
     <string name="delete_playlist_x"><![CDATA[
 Vill du radera spellistan <b>%1$s</b>?
@@ -61,7 +55,6 @@ Vill du radera <b>%1$d</b> låtar?
     <string name="delete_songs_title">Radera låtar</string>
     <string name="rename_playlist_title">Döp om spellista</string>
     <string name="delete_playlist_title">Radera spellista</string>
-    <string name="add_playlist_title">"Lägg till i spellista"</string>
     <string name="light_theme_name">Ljus</string>
     <string name="dark_theme_name">Mörk</string>
     <string name="equalizer">Equalizer</string>
@@ -76,6 +69,4 @@ Vill du radera <b>%1$d</b> låtar?
     <string name="no_playlists">Inga spellistor</string>
     <string name="song">Låt</string>
     <string name="pref_summary_colored_navigation_bar">I vilken vy navigeringslisten skall vara färgad</string>
-    <string name="search_hint">Sök i ditt bibliotek ...</string>
-    <string name="new_playlist_title">Ny spellista</string>
 </resources>
