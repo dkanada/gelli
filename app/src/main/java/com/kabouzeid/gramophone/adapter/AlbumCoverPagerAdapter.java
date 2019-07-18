@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.glide.PhonographColoredTarget;
+import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
 import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.misc.CustomFragmentStatePagerAdapter;
 import com.kabouzeid.gramophone.model.Song;
@@ -131,7 +131,7 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
             SongGlideRequest.Builder.from(Glide.with(this), song)
                     .checkIgnoreMediaStore(getActivity())
                     .generatePalette(getActivity()).build()
-                    .into(new PhonographColoredTarget(albumCover) {
+                    .into(new CustomPaletteTarget(albumCover) {
                         @Override
                         public void onColorReady(int color) {
                             setColor(color);

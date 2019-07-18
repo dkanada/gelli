@@ -34,7 +34,7 @@ import com.kabouzeid.gramophone.adapter.song.ArtistSongAdapter;
 import com.kabouzeid.gramophone.dialogs.AddToPlaylistDialog;
 import com.kabouzeid.gramophone.dialogs.SleepTimerDialog;
 import com.kabouzeid.gramophone.glide.ArtistGlideRequest;
-import com.kabouzeid.gramophone.glide.PhonographColoredTarget;
+import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.interfaces.LoaderIds;
@@ -187,7 +187,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         ArtistGlideRequest.Builder.from(Glide.with(this), artist)
                 .generatePalette(this).build()
                 .dontAnimate()
-                .into(new PhonographColoredTarget(artistImage) {
+                .into(new CustomPaletteTarget(artistImage) {
                     @Override
                     public void onColorReady(int color) {
                         setColors(color);

@@ -26,7 +26,7 @@ import com.kabouzeid.gramophone.adapter.song.AlbumSongAdapter;
 import com.kabouzeid.gramophone.dialogs.AddToPlaylistDialog;
 import com.kabouzeid.gramophone.dialogs.DeleteSongsDialog;
 import com.kabouzeid.gramophone.dialogs.SleepTimerDialog;
-import com.kabouzeid.gramophone.glide.PhonographColoredTarget;
+import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
 import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
@@ -143,7 +143,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
                 .checkIgnoreMediaStore(this)
                 .generatePalette(this).build()
                 .dontAnimate()
-                .into(new PhonographColoredTarget(albumArtImageView) {
+                .into(new CustomPaletteTarget(albumArtImageView) {
                     @Override
                     public void onColorReady(int color) {
                         setColors(color);

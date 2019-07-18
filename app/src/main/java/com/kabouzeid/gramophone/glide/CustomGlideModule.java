@@ -15,7 +15,7 @@ import com.kabouzeid.gramophone.glide.audiocover.AudioFileCoverLoader;
 /**
  * @author Karim Abou Zeid (kabouzeid)
  */
-public class PhonographGlideModule implements GlideModule {
+public class CustomGlideModule implements GlideModule {
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {
 

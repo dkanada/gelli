@@ -10,8 +10,8 @@ import com.kabouzeid.gramophone.glide.palette.BitmapPaletteTarget;
 import com.kabouzeid.gramophone.glide.palette.BitmapPaletteWrapper;
 import com.kabouzeid.gramophone.util.PhonographColorUtil;
 
-public abstract class PhonographColoredTarget extends BitmapPaletteTarget {
-    public PhonographColoredTarget(ImageView view) {
+public abstract class CustomPaletteTarget extends BitmapPaletteTarget {
+    public CustomPaletteTarget(ImageView view) {
         super(view);
     }
 

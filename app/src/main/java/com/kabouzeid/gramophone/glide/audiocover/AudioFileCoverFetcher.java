@@ -18,19 +18,17 @@ public class AudioFileCoverFetcher implements DataFetcher<InputStream> {
     private InputStream stream;
 
     public AudioFileCoverFetcher(AudioFileCover model) {
-
         this.model = model;
     }
 
     @Override
     public String getId() {
-        // makes sure we never ever return null here
+        // make sure we never return null here
         return String.valueOf(model.filePath);
     }
 
     @Override
     public InputStream loadData(final Priority priority) throws Exception {
-
         final MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         try {
             retriever.setDataSource(model.filePath);
@@ -49,12 +47,13 @@ public class AudioFileCoverFetcher implements DataFetcher<InputStream> {
 
     @Override
     public void cleanup() {
-        // already cleaned up in loadData and ByteArrayInputStream will be GC'd
+        // already cleaned up in loadData
         if (stream != null) {
             try {
                 stream.close();
-            } catch (IOException ignore) {
+            } catch (IOException e) {
                 // can't do much about it
+                e.printStackTrace();
             }
         }
     }

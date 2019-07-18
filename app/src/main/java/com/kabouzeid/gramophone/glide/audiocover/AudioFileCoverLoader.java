@@ -13,7 +13,6 @@ import java.io.InputStream;
 /**
  * @author Karim Abou Zeid (kabouzeid)
  */
-
 public class AudioFileCoverLoader implements StreamModelLoader<AudioFileCover> {
 
     @Override
@@ -32,4 +31,3 @@ public class AudioFileCoverLoader implements StreamModelLoader<AudioFileCover> {
         }
     }
 }
-
