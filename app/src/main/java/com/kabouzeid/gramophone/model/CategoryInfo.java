@@ -19,7 +19,6 @@ public class CategoryInfo implements Parcelable {
         visible = source.readInt() == 1;
     }
 
-
     @Override
     public int describeContents() {
         return 0;

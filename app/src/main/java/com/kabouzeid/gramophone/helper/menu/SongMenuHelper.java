@@ -16,7 +16,6 @@ import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
-import com.kabouzeid.gramophone.util.RingtoneManager;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
@@ -26,14 +25,6 @@ public class SongMenuHelper {
 
     public static boolean handleMenuClick(@NonNull FragmentActivity activity, @NonNull Song song, int menuItemId) {
         switch (menuItemId) {
-            case R.id.action_set_as_ringtone:
-                if (RingtoneManager.requiresDialog(activity)) {
-                    RingtoneManager.showDialog(activity);
-                } else {
-                    RingtoneManager ringtoneManager = new RingtoneManager();
-                    ringtoneManager.setRingtone(activity, song.id);
-                }
-                return true;
             case R.id.action_share:
                 activity.startActivity(Intent.createChooser(MusicUtil.createShareSongFileIntent(song, activity), null));
                 return true;
