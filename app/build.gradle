@@ -83,6 +83,7 @@ dependencies {
 
     implementation 'com.github.AdrienPoupa:jaudiotagger:2.2.3'
 
-    implementation project(':apiclient')
-    implementation project(':library')
+    implementation 'com.github.jellyfin:jellyfin-apiclient-java:-SNAPSHOT'
+    //implementation project(':apiclient')
+    //implementation project(':library')
 }

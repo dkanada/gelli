@@ -18,7 +18,6 @@ import com.kabouzeid.gramophone.ui.activities.base.AbsBaseActivity;
 
 import org.jellyfin.apiclient.interaction.AndroidCredentialProvider;
 import org.jellyfin.apiclient.interaction.ConnectionResult;
-import org.jellyfin.apiclient.interaction.GsonJsonSerializer;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.interaction.VolleyHttpClient;
 import org.jellyfin.apiclient.interaction.connectionmanager.ConnectionManager;
@@ -26,6 +25,7 @@ import org.jellyfin.apiclient.interaction.http.IAsyncHttpClient;
 import org.jellyfin.apiclient.logging.AndroidLogger;
 import org.jellyfin.apiclient.model.apiclient.ServerCredentials;
 import org.jellyfin.apiclient.model.logging.ILogger;
+import org.jellyfin.apiclient.model.serialization.GsonJsonSerializer;
 import org.jellyfin.apiclient.model.serialization.IJsonSerializer;
 import org.jellyfin.apiclient.model.users.AuthenticationResult;
 
