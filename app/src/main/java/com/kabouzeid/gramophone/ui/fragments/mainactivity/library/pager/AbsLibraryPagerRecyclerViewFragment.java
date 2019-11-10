@@ -3,7 +3,6 @@ package com.kabouzeid.gramophone.ui.fragments.mainactivity.library.pager;
 import android.os.Bundle;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener;
@@ -33,7 +32,6 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
     View container;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @Nullable
     @BindView(android.R.id.empty)
     TextView empty;
 

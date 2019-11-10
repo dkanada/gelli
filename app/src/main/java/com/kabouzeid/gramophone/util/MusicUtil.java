@@ -57,8 +57,6 @@ public class MusicUtil {
         }
     }
 
-
-
     @NonNull
     public static String getArtistInfoString(@NonNull final Context context, @NonNull final Artist artist) {
         int albumCount = artist.getAlbumCount();
@@ -163,8 +161,8 @@ public class MusicUtil {
         return string1 + "  •  " + string2;
     }
 
-    //iTunes uses for example 1002 for track 2 CD1 or 3011 for track 11 CD3.
-    //this method converts those values to normal tracknumbers
+    // iTunes uses for example 1002 for track 2 CD1 or 3011 for track 11 CD3.
+    // this method converts those values to normal track numbers
     public static int getFixedTrackNumber(int trackNumberToFix) {
         return trackNumberToFix % 1000;
     }
@@ -280,7 +278,8 @@ public class MusicUtil {
     }
 
     public static boolean isFavorite(@NonNull final Context context, @NonNull final Song song) {
-        return PlaylistsUtil.doPlaylistContains(context, getFavoritesPlaylist(context).id, song.id);
+        //return PlaylistsUtil.doPlaylistContains(context, getFavoritesPlaylist(context).id, song.id);
+        return false;
     }
 
     public static void toggleFavorite(@NonNull final Context context, @NonNull final Song song) {

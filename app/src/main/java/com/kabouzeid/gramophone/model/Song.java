@@ -90,7 +90,6 @@ public class Song implements Parcelable {
                 '}';
     }
 
-
     @Override
     public int describeContents() {
         return 0;
