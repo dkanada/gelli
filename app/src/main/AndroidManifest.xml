@@ -58,9 +58,6 @@
             android:name=".ui.activities.LoginActivity"
             android:label="@string/action_login" />
         <activity
-            android:name=".ui.activities.bugreport.BugReportActivity"
-            android:label="@string/report_an_issue" />
-        <activity
             android:name=".shortcuts.AppShortcutLauncherActivity"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
@@ -88,7 +85,6 @@
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
             android:value="GlideModule" />
 
-        <!-- Widgets -->
         <receiver android:name=".widgets.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

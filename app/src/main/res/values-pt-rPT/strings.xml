@@ -122,8 +122,6 @@
     <string name="author">Autor</string>
     <string name="follow_on_twitter">Seguir no Twitter</string>
     <string name="visit_website">Visitar sítio na Internet</string>
-    <string name="report_bugs">Reportar erros</string>
-    <string name="report_bugs_summary">Reportar erros ou sugerir novas funcionalidades.</string>
     <string name="translate">Traduzir</string>
     <string name="translate_summary">Ajude a traduzir o Phonograph para o seu idioma nativo.</string>
     <string name="rate_on_google_play">Classifique</string>
@@ -144,25 +142,7 @@
     <string name="app_widget_big_name">Phonograph - Grande</string>
     <string name="app_widget_classic_name">Phonograph - Clássico</string>
     <string name="app_widget_small_name">Phonograph - Pequeno</string>
-    <string name="report_an_issue">"Denunciar um problema "</string>
-    <string name="bug_report_issue">Problema</string>
     <string name="login">Entrar</string>
-    <string name="title">Título</string>
-    <string name="description">Descrição</string>
-    <string name="device_info">Informações do dispositivo</string>
-    <string name="bug_report_use_account">Enviar usando a conta do GitHub</string>
-    <string name="bug_report_manual">Enviar manualmente</string>
     <string name="username">Nome de utilizador</string>
     <string name="password">Senha</string>
-    <string name="bug_report_no_title">Por favor indique um título do problema</string>
-    <string name="bug_report_no_description">Por favor indique uma descrição do problema</string>
-    <string name="bug_report_no_username">Por favor, introduza um utilizador GitHub válido</string>
-    <string name="bug_report_no_password">Por favor, introduza uma senha válida</string>
-    <string name="bug_report_uploading">A enviar o relatório para o GitHub...</string>
-    <string name="bug_report_failed">Impossível enviar relatório</string>
-    <string name="bug_report_failed_wrong_credentials">Nome ou senha errados</string>
-    <string name="bug_report_failed_invalid_token">Token de acesso inválido. Por favor contacte o desenvolvedor da aplicação.</string>
-    <string name="bug_report_failed_unknown">Ocorreu um erro inesperado. Por favor contacte o desenvolvedor da aplicação.</string>
-    <string name="your_account_data_is_only_used_for_authentication">A sua informação da conta é apenas usada para a autenticação.</string>
-    <string name="you_will_be_forwarded_to_the_issue_tracker_website">Vai ser reencaminhado para o site do rastreador de problemas.</string>
 </resources>
