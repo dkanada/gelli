@@ -43,8 +43,8 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
 
     protected int itemLayoutRes;
 
-    protected boolean usePalette = false;
-    protected boolean showSectionName = true;
+    protected boolean usePalette;
+    protected boolean showSectionName;
 
     public SongAdapter(AppCompatActivity activity, List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
         this(activity, dataSet, itemLayoutRes, usePalette, cabHolder, true);

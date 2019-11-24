@@ -41,10 +41,7 @@ public class Playlist implements Parcelable {
 
     @Override
     public String toString() {
-        return "Playlist{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Playlist{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 
     @Override

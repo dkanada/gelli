@@ -158,7 +158,8 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setTaskDescriptionColor(color);
 
         toolbar.setBackgroundColor(color);
-        setSupportActionBar(toolbar); // needed to auto readjust the toolbar content color
+        // needed to auto readjust the toolbar content color
+        setSupportActionBar(toolbar);
         setStatusbarColor(color);
 
         int secondaryTextColor = MaterialValueHelper.getSecondaryTextColor(this, ColorUtil.isColorLight(color));

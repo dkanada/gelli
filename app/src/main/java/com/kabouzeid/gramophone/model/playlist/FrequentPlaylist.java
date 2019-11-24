@@ -31,7 +31,6 @@ public class FrequentPlaylist extends AbsSmartPlaylist {
         SongPlayCountStore.getInstance(context).clear();
     }
 
-
     @Override
     public int describeContents() {
         return 0;

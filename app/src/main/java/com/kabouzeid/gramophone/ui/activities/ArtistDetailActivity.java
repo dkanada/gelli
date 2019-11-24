@@ -196,14 +196,6 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            reload();
-        }
-    }
-
-    @Override
     public int getPaletteColor() {
         return toolbarColor;
     }
@@ -216,7 +208,8 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         setTaskDescriptionColor(color);
 
         toolbar.setBackgroundColor(color);
-        setSupportActionBar(toolbar); // needed to auto readjust the toolbar content color
+        // needed to auto readjust the toolbar content color
+        setSupportActionBar(toolbar);
         setStatusbarColor(color);
 
         int secondaryTextColor = MaterialValueHelper.getSecondaryTextColor(this, ColorUtil.isColorLight(color));

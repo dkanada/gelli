@@ -42,7 +42,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
 
     protected int itemLayoutRes;
 
-    protected boolean usePalette = false;
+    protected boolean usePalette;
 
     public ArtistAdapter(@NonNull AppCompatActivity activity, List<Artist> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
         super(activity, cabHolder, R.menu.menu_media_selection);
@@ -168,7 +168,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
     private List<Song> getSongList(@NonNull List<Artist> artists) {
         final List<Song> songs = new ArrayList<>();
         for (Artist artist : artists) {
-            songs.addAll(artist.getSongs()); // maybe async in future?
+            songs.addAll(artist.getSongs());
         }
         return songs;
     }
