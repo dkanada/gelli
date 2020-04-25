@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,36 +15,48 @@ import java.util.List;
 public class Album implements Parcelable {
     public final List<Song> songs;
 
-    public Album(List<Song> songs) {
-        this.songs = songs;
+    public String id;
+    public String title;
+    public String artistId;
+    public String artistName;
+    public int year;
+
+    public Album(BaseItemDto itemDto) {
+        this.id = itemDto.getId();
+        this.title = itemDto.getName();
+        this.artistId = itemDto.getAlbumArtists().get(0).getId();
+        this.artistName = itemDto.getAlbumArtists().get(0).getName();
+
+        if (itemDto.getProductionYear() != null) {
+            this.year = itemDto.getProductionYear();
+        }
+
+        this.songs = new ArrayList<>();
+        songs.add(Song.EMPTY_SONG);
     }
 
     public Album() {
         this.songs = new ArrayList<>();
     }
 
-    public int getId() {
-        return safeGetFirstSong().albumId;
+    public String getId() {
+        return id;
     }
 
     public String getTitle() {
-        return safeGetFirstSong().albumName;
+        return title;
     }
 
-    public int getArtistId() {
-        return safeGetFirstSong().artistId;
+    public String getArtistId() {
+        return artistId;
     }
 
     public String getArtistName() {
-        return safeGetFirstSong().artistName;
+        return artistName;
     }
 
     public int getYear() {
-        return safeGetFirstSong().year;
-    }
-
-    public long getDateModified() {
-        return safeGetFirstSong().dateModified;
+        return year;
     }
 
     public int getSongCount() {
@@ -59,22 +73,18 @@ public class Album implements Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Album that = (Album) o;
-
-        return songs != null ? songs.equals(that.songs) : that.songs == null;
-
+        Album album = (Album) o;
+        return id.equals(album.id);
     }
 
     @Override
     public int hashCode() {
-        return songs != null ? songs.hashCode() : 0;
+        return id.hashCode();
     }
 
     @Override
     public String toString() {
-        return "Album{" +
-                "songs=" + songs +
-                '}';
+        return id;
     }
 
     @Override

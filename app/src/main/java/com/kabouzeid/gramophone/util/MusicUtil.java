@@ -37,8 +37,8 @@ import java.util.Locale;
  * @author Karim Abou Zeid (kabouzeid)
  */
 public class MusicUtil {
-    public static Uri getSongFileUri(int songId) {
-        return ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, songId);
+    public static Uri getSongFileUri(Song song) {
+        return Uri.parse(song.data);
     }
 
     @NonNull

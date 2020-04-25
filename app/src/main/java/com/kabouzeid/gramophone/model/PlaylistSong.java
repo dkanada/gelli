@@ -9,7 +9,7 @@ public class PlaylistSong extends Song {
     public final int idInPlayList;
 
     public PlaylistSong(int id, String title, int trackNumber, int year, long duration, String data, int dateModified, int albumId, String albumName, int artistId, String artistName, final int playlistId, final int idInPlayList) {
-        super(id, title, trackNumber, year, duration, data, dateModified, albumId, albumName, artistId, artistName);
+        super("", title, trackNumber, year, duration, data, dateModified, "", albumName, "", artistName);
         this.playlistId = playlistId;
         this.idInPlayList = idInPlayList;
     }

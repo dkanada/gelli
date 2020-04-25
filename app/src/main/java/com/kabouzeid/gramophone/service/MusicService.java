@@ -175,7 +175,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private Handler uiThreadHandler;
 
     private static String getTrackUri(@NonNull Song song) {
-        return MusicUtil.getSongFileUri(song.id).toString();
+        return MusicUtil.getSongFileUri(song).toString();
     }
 
     @Override
@@ -550,7 +550,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void updateNotification() {
-        if (playingNotification != null && getCurrentSong().id != -1) {
+        if (playingNotification != null && getCurrentSong().id != null) {
             playingNotification.update();
         }
     }
@@ -567,7 +567,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private void updateMediaSessionMetaData() {
         final Song song = getCurrentSong();
 
-        if (song.id == -1) {
+        if (song.id == null) {
             mediaSession.setMetadata(null);
             return;
         }
@@ -990,7 +990,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 break;
             case SHUFFLE_MODE_NONE:
                 this.shuffleMode = shuffleMode;
-                int currentSongId = getCurrentSong().id;
+                String currentSongId = getCurrentSong().id;
                 playingQueue = new ArrayList<>(originalPlayingQueue);
                 int newPosition = 0;
                 for (Song song : getPlayingQueue()) {

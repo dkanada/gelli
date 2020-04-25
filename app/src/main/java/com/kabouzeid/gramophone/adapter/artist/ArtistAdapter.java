@@ -69,7 +69,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
 
     @Override
     public long getItemId(int position) {
-        return dataSet.get(position).getId();
+        return dataSet.get(position).hashCode();
     }
 
     @Override

@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.kabouzeid.gramophone.util.MusicUtil;
 
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,16 +19,20 @@ public class Artist implements Parcelable {
 
     public final List<Album> albums;
 
-    public Artist(List<Album> albums) {
-        this.albums = albums;
+    public String id;
+
+    public Artist(BaseItemDto itemDto) {
+        this.id = itemDto.getId();
+
+        this.albums = new ArrayList<>();
     }
 
     public Artist() {
         this.albums = new ArrayList<>();
     }
 
-    public int getId() {
-        return safeGetFirstAlbum().getArtistId();
+    public String getId() {
+        return id != null ? id : "";
     }
 
     public String getName() {
@@ -79,9 +85,7 @@ public class Artist implements Parcelable {
 
     @Override
     public String toString() {
-        return "Artist{" +
-                "albums=" + albums +
-                '}';
+        return id;
     }
 
     @Override

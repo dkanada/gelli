@@ -1,7 +1,5 @@
 package com.kabouzeid.gramophone.ui.activities;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,8 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -37,22 +33,19 @@ import com.kabouzeid.gramophone.glide.ArtistGlideRequest;
 import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
-import com.kabouzeid.gramophone.interfaces.LoaderIds;
+import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.interfaces.PaletteColorHolder;
-import com.kabouzeid.gramophone.loader.ArtistLoader;
 import com.kabouzeid.gramophone.misc.SimpleObservableScrollViewCallbacks;
-import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
+import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.PhonographColorUtil;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
+import com.kabouzeid.gramophone.util.QueryUtil;
 
-public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder, LoaderManager.LoaderCallbacks<Artist> {
-
-    private static final int LOADER_ID = LoaderIds.ARTIST_DETAIL_ACTIVITY;
-
+public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder {
     public static final String EXTRA_ARTIST_ID = "extra_artist_id";
 
     @BindView(R.id.list)
@@ -119,7 +112,12 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         setUpToolbar();
         setUpViews();
 
-        getSupportLoaderManager().initLoader(LOADER_ID, getIntent().getExtras(), this);
+        QueryUtil.getArtist(getIntent().getExtras().getString(EXTRA_ARTIST_ID), new MediaCallback() {
+            @Override
+            public void onLoadMedia(List<?> media) {
+                setArtist((Artist) media.get(0));
+            }
+        });
     }
 
     @Override
@@ -177,10 +175,6 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         albumAdapter.usePalette(usePalette);
         PreferenceUtil.getInstance(this).setAlbumArtistColoredFooters(usePalette);
         this.usePalette = usePalette;
-    }
-
-    private void reload() {
-        getSupportLoaderManager().restartLoader(LOADER_ID, getIntent().getExtras(), this);
     }
 
     private void loadArtistImage() {
@@ -305,7 +299,6 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     @Override
     public void onMediaStoreChanged() {
         super.onMediaStoreChanged();
-        reload();
     }
 
     @Override
@@ -330,36 +323,5 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     private Artist getArtist() {
         if (artist == null) artist = new Artist();
         return artist;
-    }
-
-    @Override
-    public Loader<Artist> onCreateLoader(int id, Bundle args) {
-        return new AsyncArtistDataLoader(this, args.getInt(EXTRA_ARTIST_ID));
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Artist> loader, Artist data) {
-        setArtist(data);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Artist> loader) {
-        this.artist = new Artist();
-        songAdapter.swapDataSet(artist.getSongs());
-        albumAdapter.swapDataSet(artist.albums);
-    }
-
-    private static class AsyncArtistDataLoader extends WrappedAsyncTaskLoader<Artist> {
-        private final int artistId;
-
-        public AsyncArtistDataLoader(Context context, int artistId) {
-            super(context);
-            this.artistId = artistId;
-        }
-
-        @Override
-        public Artist loadInBackground() {
-            return ArtistLoader.getArtist(getContext(), artistId);
-        }
     }
 }

@@ -159,7 +159,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
 
     @Override
     public long getItemId(int position) {
-        return dataSet.get(position).getId();
+        return dataSet.get(position).hashCode();
     }
 
     @Override

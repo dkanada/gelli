@@ -76,7 +76,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
 
     @Override
     public long getItemId(int position) {
-        return dataSet.get(position).id;
+        return dataSet.get(position).hashCode();
     }
 
     @Override

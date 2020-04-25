@@ -1,34 +1,28 @@
 package com.kabouzeid.gramophone.ui.fragments.mainactivity.library.pager;
 
-import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.adapter.artist.ArtistAdapter;
-import com.kabouzeid.gramophone.interfaces.LoaderIds;
-import com.kabouzeid.gramophone.loader.ArtistLoader;
-import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
+import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
+import com.kabouzeid.gramophone.util.QueryUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)
  */
-public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<ArtistAdapter, GridLayoutManager> implements LoaderManager.LoaderCallbacks<List<Artist>> {
-
-    private static final int LOADER_ID = LoaderIds.ARTISTS_FRAGMENT;
-
+public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<ArtistAdapter, GridLayoutManager> {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     @NonNull
@@ -43,22 +37,28 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
         int itemLayoutRes = getItemLayoutRes();
         notifyLayoutResChanged(itemLayoutRes);
         List<Artist> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
-        return new ArtistAdapter(
-                getLibraryFragment().getMainActivity(),
-                dataSet,
-                itemLayoutRes,
-                loadUsePalette(),
-                getLibraryFragment());
+
+        ArtistAdapter adapter = new ArtistAdapter(getLibraryFragment().getMainActivity(), dataSet, itemLayoutRes, loadUsePalette(), getLibraryFragment());
+        QueryUtil.getArtists(new MediaCallback() {
+            @Override
+            public void onLoadMedia(List<?> media) {
+                dataSet.addAll((Collection<Artist>) media);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        return adapter;
     }
 
     @Override
+
     protected int getEmptyMessage() {
         return R.string.no_artists;
     }
 
     @Override
     public void onMediaStoreChanged() {
-        getLoaderManager().restartLoader(LOADER_ID, null, this);
+        super.onMediaStoreChanged();
     }
 
     @Override
@@ -73,7 +73,6 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
 
     @Override
     protected void setSortOrder(String sortOrder) {
-        getLoaderManager().restartLoader(LOADER_ID, null, this);
     }
 
     @Override
@@ -115,34 +114,5 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
     protected void setGridSize(int gridSize) {
         getLayoutManager().setSpanCount(gridSize);
         getAdapter().notifyDataSetChanged();
-    }
-
-
-    @Override
-    public Loader<List<Artist>> onCreateLoader(int id, Bundle args) {
-        return new AsyncArtistLoader(getActivity());
-    }
-
-
-    @Override
-    public void onLoadFinished(Loader<List<Artist>> loader, List<Artist> data) {
-        getAdapter().swapDataSet(data);
-    }
-
-
-    @Override
-    public void onLoaderReset(Loader<List<Artist>> loader) {
-        getAdapter().swapDataSet(new ArrayList<>());
-    }
-
-    private static class AsyncArtistLoader extends WrappedAsyncTaskLoader<List<Artist>> {
-        public AsyncArtistLoader(Context context) {
-            super(context);
-        }
-
-        @Override
-        public List<Artist> loadInBackground() {
-            return ArtistLoader.getAllArtists(getContext());
-        }
     }
 }

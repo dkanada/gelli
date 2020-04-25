@@ -1,11 +1,8 @@
 package com.kabouzeid.gramophone.ui.activities;
 
-import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
@@ -31,26 +28,23 @@ import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.interfaces.LoaderIds;
+import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.interfaces.PaletteColorHolder;
-import com.kabouzeid.gramophone.loader.AlbumLoader;
 import com.kabouzeid.gramophone.misc.SimpleObservableScrollViewCallbacks;
-import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
 import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.kabouzeid.gramophone.util.PhonographColorUtil;
+import com.kabouzeid.gramophone.util.QueryUtil;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder, LoaderManager.LoaderCallbacks<Album> {
-
-    private static final int LOADER_ID = LoaderIds.ALBUM_DETAIL_ACTIVITY;
-
+public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder {
     public static final String EXTRA_ALBUM_ID = "extra_album_id";
 
     private Album album;
@@ -99,7 +93,12 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setUpToolBar();
         setUpViews();
 
-        getSupportLoaderManager().initLoader(LOADER_ID, getIntent().getExtras(), this);
+        QueryUtil.getAlbum(getIntent().getExtras().getString(EXTRA_ALBUM_ID), new MediaCallback() {
+            @Override
+            public void onLoadMedia(List<?> media) {
+                setAlbum((Album) media.get(0));
+            }
+        });
     }
 
     @Override
@@ -209,10 +208,6 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         });
     }
 
-    private void reload() {
-        getSupportLoaderManager().restartLoader(LOADER_ID, getIntent().getExtras(), this);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_album_detail, menu);
@@ -291,7 +286,6 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
     @Override
     public void onMediaStoreChanged() {
         super.onMediaStoreChanged();
-        reload();
     }
 
     @Override
@@ -316,35 +310,5 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
     private Album getAlbum() {
         if (album == null) album = new Album();
         return album;
-    }
-
-    @Override
-    public Loader<Album> onCreateLoader(int id, Bundle args) {
-        return new AsyncAlbumLoader(this, args.getInt(EXTRA_ALBUM_ID));
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Album> loader, Album data) {
-        setAlbum(data);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Album> loader) {
-        this.album = new Album();
-        adapter.swapDataSet(album.songs);
-    }
-
-    private static class AsyncAlbumLoader extends WrappedAsyncTaskLoader<Album> {
-        private final int albumId;
-
-        public AsyncAlbumLoader(Context context, int albumId) {
-            super(context);
-            this.albumId = albumId;
-        }
-
-        @Override
-        public Album loadInBackground() {
-            return AlbumLoader.getAlbum(getContext(), albumId);
-        }
     }
 }
