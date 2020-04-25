@@ -27,7 +27,6 @@ import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
 import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
-import com.kabouzeid.gramophone.interfaces.LoaderIds;
 import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.interfaces.PaletteColorHolder;
 import com.kabouzeid.gramophone.misc.SimpleObservableScrollViewCallbacks;
@@ -96,7 +95,16 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         QueryUtil.getAlbum(getIntent().getExtras().getString(EXTRA_ALBUM_ID), new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
-                setAlbum((Album) media.get(0));
+                Album album = (Album) media.get(0);
+
+                setAlbum(album);
+                QueryUtil.getSongs(album.id, new MediaCallback() {
+                    @Override
+                    public void onLoadMedia(List<?> media) {
+                        album.songs = (List<Song>) media;
+                        setAlbum(album);
+                    }
+                });
             }
         });
     }

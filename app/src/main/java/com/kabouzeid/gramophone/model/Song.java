@@ -3,6 +3,8 @@ package com.kabouzeid.gramophone.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
+
 /**
  * @author Karim Abou Zeid (kabouzeid)
  */
@@ -20,6 +22,20 @@ public class Song implements Parcelable {
     public final String albumName;
     public final String artistId;
     public final String artistName;
+
+    public Song(BaseItemDto itemDto) {
+        this.id = itemDto.getId();
+        this.title = itemDto.getName();
+        this.trackNumber = itemDto.getIndexNumber();
+        this.year = itemDto.getProductionYear();
+        this.duration = itemDto.getRunTimeTicks();
+        this.data = "";
+        this.dateModified = 2;
+        this.albumId = itemDto.getAlbumId();
+        this.albumName = itemDto.getAlbum();
+        this.artistId = itemDto.getAlbumArtists().get(0).getId();
+        this.artistName = itemDto.getAlbumArtists().get(0).getName();
+    }
 
     public Song(String id, String title, int trackNumber, int year, long duration, String data, long dateModified, String albumId, String albumName, String artistId, String artistName) {
         this.id = id;

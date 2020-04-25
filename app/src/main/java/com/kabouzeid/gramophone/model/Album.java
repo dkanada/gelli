@@ -13,7 +13,7 @@ import java.util.List;
  * @author Karim Abou Zeid (kabouzeid)
  */
 public class Album implements Parcelable {
-    public final List<Song> songs;
+    public List<Song> songs;
 
     public String id;
     public String title;
