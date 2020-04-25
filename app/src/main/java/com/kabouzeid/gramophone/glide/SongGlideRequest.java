@@ -18,9 +18,6 @@ import com.kabouzeid.gramophone.glide.palette.BitmapPaletteTranscoder;
 import com.kabouzeid.gramophone.glide.palette.BitmapPaletteWrapper;
 import com.kabouzeid.gramophone.model.Song;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class SongGlideRequest {
     public static final DiskCacheStrategy DEFAULT_DISK_CACHE_STRATEGY = DiskCacheStrategy.NONE;
     public static final int DEFAULT_ERROR_IMAGE = R.drawable.default_album_art;

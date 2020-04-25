@@ -11,9 +11,6 @@ import com.kabouzeid.gramophone.provider.SongPlayCountStore;
 
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class FrequentPlaylist extends AbsSmartPlaylist {
 
     public FrequentPlaylist(@NonNull Context context) {

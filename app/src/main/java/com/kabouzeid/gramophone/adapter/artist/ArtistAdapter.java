@@ -32,11 +32,7 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolder, Artist> implements FastScrollRecyclerView.SectionedAdapter {
-
     protected final AppCompatActivity activity;
     protected List<Artist> dataSet;
 
@@ -103,11 +99,12 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
         if (holder.title != null) {
             holder.title.setText(artist.getName());
         }
+
         if (holder.text != null) {
             holder.text.setText(MusicUtil.getArtistInfoString(activity, artist));
         }
-        holder.itemView.setActivated(isChecked(artist));
 
+        holder.itemView.setActivated(isChecked(artist));
         loadArtistImage(artist, holder);
     }
 
@@ -117,6 +114,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
             if (holder.title != null) {
                 holder.title.setTextColor(MaterialValueHelper.getPrimaryTextColor(activity, ColorUtil.isColorLight(color)));
             }
+
             if (holder.text != null) {
                 holder.text.setTextColor(MaterialValueHelper.getSecondaryTextColor(activity, ColorUtil.isColorLight(color)));
             }
@@ -136,10 +134,11 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
 
                     @Override
                     public void onColorReady(int color) {
-                        if (usePalette)
+                        if (usePalette) {
                             setColors(color, holder);
-                        else
+                        } else {
                             setColors(getDefaultFooterColor(), holder);
+                        }
                     }
                 });
     }
@@ -170,6 +169,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
         for (Artist artist : artists) {
             songs.addAll(artist.getSongs());
         }
+
         return songs;
     }
 
@@ -188,7 +188,6 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
     }
 
     public class ViewHolder extends MediaEntryViewHolder {
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             setImageTransitionName(activity.getString(R.string.transition_artist_image));
@@ -202,10 +201,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
             if (isInQuickSelectMode()) {
                 toggleChecked(getAdapterPosition());
             } else {
-                Pair[] artistPairs = new Pair[]{
-                        Pair.create(image,
-                                activity.getResources().getString(R.string.transition_artist_image)
-                        )};
+                Pair[] artistPairs = new Pair[]{Pair.create(image, activity.getResources().getString(R.string.transition_artist_image))};
                 NavigationUtil.goToArtist(activity, dataSet.get(getAdapterPosition()).getId(), artistPairs);
             }
         }

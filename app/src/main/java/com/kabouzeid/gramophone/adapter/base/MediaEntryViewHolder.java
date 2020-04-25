@@ -13,9 +13,6 @@ import com.kabouzeid.gramophone.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class MediaEntryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     @Nullable
     @BindView(R.id.image)
@@ -74,6 +71,5 @@ public class MediaEntryViewHolder extends RecyclerView.ViewHolder implements Vie
 
     @Override
     public void onClick(View v) {
-
     }
 }

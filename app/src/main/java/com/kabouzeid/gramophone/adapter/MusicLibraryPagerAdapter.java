@@ -62,6 +62,7 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
         if (mWeakFragment != null && mWeakFragment.get() != null) {
             return mWeakFragment.get();
         }
+
         return getItem(position);
     }
 
@@ -73,6 +74,7 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
                 return i;
             }
         }
+
         return POSITION_NONE;
     }
 
@@ -90,6 +92,7 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
         if (mWeakFragment != null) {
             mWeakFragment.clear();
         }
+
         mFragmentArray.put(position, new WeakReference<>(mFragment));
         return mFragment;
     }
@@ -97,8 +100,7 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(final int position) {
         final Holder mCurrentHolder = mHolderList.get(position);
-        return Fragment.instantiate(mContext,
-                mCurrentHolder.mClassName, mCurrentHolder.mParams);
+        return Fragment.instantiate(mContext, mCurrentHolder.mClassName, mCurrentHolder.mParams);
     }
 
     @Override
@@ -128,7 +130,6 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
         if (mFragmentArray.size() == 0) return;
 
         HashMap<String, WeakReference<Fragment>> mappings = new HashMap<>(mFragmentArray.size());
-
         for (int i = 0, size = mFragmentArray.size(); i < size; i++) {
             WeakReference<Fragment> ref = mFragmentArray.valueAt(i);
             Fragment fragment = ref.get();
@@ -136,6 +137,7 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
                 mappings.put(fragment.getClass().getName(), ref);
             }
         }
+
         for (int i = 0, size = mHolderList.size(); i < size; i++) {
             WeakReference<Fragment> ref = mappings.get(mHolderList.get(i).mClassName);
             if (ref != null) {
@@ -166,8 +168,9 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
         public static MusicFragments of(Class<?> cl) {
             MusicFragments[] fragments = All.FRAGMENTS;
             for (MusicFragments fragment : fragments) {
-                if (cl.equals(fragment.mFragmentClass))
+                if (cl.equals(fragment.mFragmentClass)) {
                     return fragment;
+                }
             }
 
             throw new IllegalArgumentException("Unknown music fragment " + cl);

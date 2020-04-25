@@ -12,13 +12,9 @@ import com.kabouzeid.gramophone.glide.artistimage.ArtistImageLoader;
 import com.kabouzeid.gramophone.glide.audiocover.AudioFileCover;
 import com.kabouzeid.gramophone.glide.audiocover.AudioFileCoverLoader;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class CustomGlideModule implements GlideModule {
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {
-
     }
 
     @Override

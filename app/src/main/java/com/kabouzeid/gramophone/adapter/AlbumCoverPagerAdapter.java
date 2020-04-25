@@ -1,6 +1,5 @@
 package com.kabouzeid.gramophone.adapter;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,7 +15,6 @@ import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
 import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.misc.CustomFragmentStatePagerAdapter;
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.util.PreferenceUtil;
 
 import java.util.List;
 
@@ -24,9 +22,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
 
     private List<Song> dataSet;

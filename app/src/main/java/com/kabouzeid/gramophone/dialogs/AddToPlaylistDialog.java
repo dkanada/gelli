@@ -45,6 +45,7 @@ public class AddToPlaylistDialog extends DialogFragment {
         for (int i = 1; i < playlistNames.length; i++) {
             playlistNames[i] = playlists.get(i - 1).name;
         }
+
         return new MaterialDialog.Builder(getActivity())
                 .title(R.string.action_add_to_playlist)
                 .items(playlistNames)

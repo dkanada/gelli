@@ -38,9 +38,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewHolder, Playlist> {
 
     private static final int SMART_PLAYLIST = 0;
@@ -112,6 +109,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
         if (playlist instanceof AbsSmartPlaylist) {
             return ((AbsSmartPlaylist) playlist).iconRes;
         }
+
         return MusicUtil.isFavoritePlaylist(activity, playlist) ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_queue_music_white_24dp;
     }
 
@@ -148,6 +146,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                         i--;
                     }
                 }
+
                 if (selection.size() > 0) {
                     DeletePlaylistDialog.create(selection).show(activity.getSupportFragmentManager(), "DELETE_PLAYLIST");
                 }
@@ -176,7 +175,6 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
             int failures = 0;
 
             String dir = "";
-
             for (Playlist playlist : params[0]) {
                 try {
                     dir = PlaylistsUtil.savePlaylist(App.getInstance().getApplicationContext(), playlist).getParent();
@@ -212,11 +210,11 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                 songs.addAll(PlaylistSongLoader.getPlaylistSongList(activity, playlist.id));
             }
         }
+
         return songs;
     }
 
     public class ViewHolder extends MediaEntryViewHolder {
-
         public ViewHolder(@NonNull View itemView, int itemViewType) {
             super(itemView);
 
@@ -244,6 +242,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                     if (playlist instanceof LatestPlaylist) {
                         popupMenu.getMenu().findItem(R.id.action_clear_playlist).setVisible(false);
                     }
+
                     popupMenu.setOnMenuItemClickListener(item -> {
                         if (item.getItemId() == R.id.action_clear_playlist) {
                             if (playlist instanceof AbsSmartPlaylist) {
@@ -254,6 +253,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                         return PlaylistMenuHelper.handleMenuClick(
                                 activity, dataSet.get(getAdapterPosition()), item);
                     });
+
                     popupMenu.show();
                 });
             }

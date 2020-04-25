@@ -32,9 +32,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.WeakHashMap;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class MusicPlayerRemote {
 
     public static final String TAG = MusicPlayerRemote.class.getSimpleName();

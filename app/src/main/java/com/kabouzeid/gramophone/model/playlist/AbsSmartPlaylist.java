@@ -11,9 +11,6 @@ import com.kabouzeid.gramophone.model.Song;
 
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public abstract class AbsSmartPlaylist extends Playlist {
     @DrawableRes
     public final int iconRes;

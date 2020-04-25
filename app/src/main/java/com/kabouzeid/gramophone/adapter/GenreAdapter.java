@@ -64,15 +64,19 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
                 holder.separator.setVisibility(View.VISIBLE);
             }
         }
+
         if (holder.shortSeparator != null) {
             holder.shortSeparator.setVisibility(View.GONE);
         }
+
         if (holder.menu != null) {
             holder.menu.setVisibility(View.GONE);
         }
+
         if (holder.title != null) {
             holder.title.setText(genre.name);
         }
+
         if (holder.text != null) {
             holder.text.setText(MusicUtil.getGenreInfoString(activity, genre));
         }

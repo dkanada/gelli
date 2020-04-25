@@ -26,9 +26,6 @@ import com.kabouzeid.gramophone.util.NavigationUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
     private static final int HEADER = 0;

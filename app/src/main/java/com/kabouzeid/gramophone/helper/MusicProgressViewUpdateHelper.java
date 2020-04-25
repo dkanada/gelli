@@ -4,9 +4,6 @@ import android.os.Handler;
 import android.os.Message;
 import androidx.annotation.NonNull;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class MusicProgressViewUpdateHelper extends Handler {
     private static final int CMD_REFRESH_PROGRESS_VIEWS = 1;
 

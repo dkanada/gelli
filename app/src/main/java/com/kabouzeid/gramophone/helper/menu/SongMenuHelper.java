@@ -17,9 +17,6 @@ import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class SongMenuHelper {
     public static final int MENU_RES = R.menu.menu_item_song;
 

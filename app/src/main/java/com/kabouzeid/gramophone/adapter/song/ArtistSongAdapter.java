@@ -28,9 +28,6 @@ import com.kabouzeid.gramophone.util.NavigationUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class ArtistSongAdapter extends ArrayAdapter<Song> implements MaterialCab.Callback {
     @Nullable
     private final CabHolder cabHolder;

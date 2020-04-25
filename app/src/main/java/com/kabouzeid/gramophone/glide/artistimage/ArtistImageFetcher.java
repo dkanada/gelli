@@ -20,9 +20,6 @@ import com.bumptech.glide.load.data.DataFetcher;
 import com.kabouzeid.gramophone.glide.audiocover.AudioFileCoverUtils;
 import com.kabouzeid.gramophone.util.ImageUtil;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class ArtistImageFetcher implements DataFetcher<InputStream> {
 
     private ArtistImage model;
@@ -47,7 +44,6 @@ public class ArtistImageFetcher implements DataFetcher<InputStream> {
     }
 
     private InputStream getMosaic(final List<AlbumCover> albumCovers) throws FileNotFoundException {
-
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
 
         int artistBitMapSize = 512;
@@ -66,7 +62,6 @@ public class ArtistImageFetcher implements DataFetcher<InputStream> {
             }
 
             int nbImages = images.size();
-
             if (nbImages > 3) {
                 streams = new ArrayList<>(images.keySet());
 
@@ -74,6 +69,7 @@ public class ArtistImageFetcher implements DataFetcher<InputStream> {
                 for (int i = 1; i < nbImages && Math.pow(i, 2) <= nbImages; ++i) {
                     divisor = i;
                 }
+
                 divisor += 1;
                 double nbTiles = Math.pow(divisor, 2);
 
@@ -81,14 +77,13 @@ public class ArtistImageFetcher implements DataFetcher<InputStream> {
                     divisor -= 1;
                     nbTiles = Math.pow(divisor, 2);
                 }
-                final int resize = (artistBitMapSize / divisor) + 1;
 
+                final int resize = (artistBitMapSize / divisor) + 1;
                 final Bitmap bitmap = Bitmap.createBitmap(artistBitMapSize, artistBitMapSize, Bitmap.Config.RGB_565);
                 final Canvas canvas = new Canvas(bitmap);
 
                 int x = 0;
                 int y = 0;
-
                 for (int i = 0; i < streams.size() && i < nbTiles; ++i) {
                     final Bitmap bitmap1 = ImageUtil.resize(streams.get(i), resize, resize);
                     canvas.drawBitmap(bitmap1, x, y, null);
@@ -128,6 +123,7 @@ public class ArtistImageFetcher implements DataFetcher<InputStream> {
                 e.printStackTrace();
             }
         }
+
         return result;
     }
 
@@ -145,6 +141,5 @@ public class ArtistImageFetcher implements DataFetcher<InputStream> {
 
     @Override
     public void cancel() {
-
     }
 }

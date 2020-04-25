@@ -36,6 +36,7 @@ public class AudioFileCoverUtils {
                 return new FileInputStream(cover);
             }
         }
+
         return null;
     }
 }

@@ -16,9 +16,6 @@ import com.kabouzeid.gramophone.model.Song;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
 
     public ShuffleButtonSongAdapter(AppCompatActivity activity, List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
@@ -63,7 +60,6 @@ public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
     }
 
     public class ViewHolder extends AbsOffsetSongAdapter.ViewHolder {
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }
@@ -74,6 +70,7 @@ public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
                 MusicPlayerRemote.openAndShuffleQueue(dataSet, true);
                 return;
             }
+
             super.onClick(v);
         }
     }

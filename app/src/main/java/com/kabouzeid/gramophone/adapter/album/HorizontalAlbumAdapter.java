@@ -20,11 +20,7 @@ import com.kabouzeid.gramophone.util.MusicUtil;
 
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class HorizontalAlbumAdapter extends AlbumAdapter {
-
     public HorizontalAlbumAdapter(@NonNull AppCompatActivity activity, List<Album> dataSet, boolean usePalette, @Nullable CabHolder cabHolder) {
         super(activity, dataSet, HorizontalAdapterHelper.LAYOUT_RES, usePalette, cabHolder);
     }
@@ -44,6 +40,7 @@ public class HorizontalAlbumAdapter extends AlbumAdapter {
             if (holder.title != null) {
                     holder.title.setTextColor(MaterialValueHelper.getPrimaryTextColor(activity, ColorUtil.isColorLight(color)));
             }
+
             if (holder.text != null) {
                     holder.text.setTextColor(MaterialValueHelper.getSecondaryTextColor(activity, ColorUtil.isColorLight(color)));
             }
@@ -65,10 +62,11 @@ public class HorizontalAlbumAdapter extends AlbumAdapter {
 
                     @Override
                     public void onColorReady(int color) {
-                        if (usePalette)
+                        if (usePalette) {
                             setColors(color, holder);
-                        else
+                        } else {
                             setColors(getAlbumArtistFooterColor(), holder);
+                        }
                     }
                 });
     }

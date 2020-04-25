@@ -33,11 +33,7 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder, Album> implements FastScrollRecyclerView.SectionedAdapter {
-
     protected final AppCompatActivity activity;
     protected List<Album> dataSet;
 
@@ -124,6 +120,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
             if (holder.title != null) {
                 holder.title.setTextColor(MaterialValueHelper.getPrimaryTextColor(activity, ColorUtil.isColorLight(color)));
             }
+
             if (holder.text != null) {
                 holder.text.setTextColor(MaterialValueHelper.getSecondaryTextColor(activity, ColorUtil.isColorLight(color)));
             }
@@ -144,10 +141,11 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
 
                     @Override
                     public void onColorReady(int color) {
-                        if (usePalette)
+                        if (usePalette) {
                             setColors(color, holder);
-                        else
+                        } else {
                             setColors(getDefaultFooterColor(), holder);
+                        }
                     }
                 });
     }
@@ -183,6 +181,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
         for (Album album : albums) {
             songs.addAll(album.songs);
         }
+
         return songs;
     }
 
@@ -206,7 +205,6 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
     }
 
     public class ViewHolder extends MediaEntryViewHolder {
-
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             setImageTransitionName(activity.getString(R.string.transition_album_art));

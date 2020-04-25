@@ -27,9 +27,6 @@ import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.ArtistSignatureUtil;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class ArtistGlideRequest {
 
     private static final DiskCacheStrategy DEFAULT_DISK_CACHE_STRATEGY = DiskCacheStrategy.ALL;

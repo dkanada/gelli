@@ -5,9 +5,6 @@ import android.os.Parcelable;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class Song implements Parcelable {
     public static final Song EMPTY_SONG = new Song("", "", -1, -1, -1, "", -1, "", "", "", "");
 

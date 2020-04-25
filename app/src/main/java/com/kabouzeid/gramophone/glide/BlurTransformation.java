@@ -19,9 +19,6 @@ import com.kabouzeid.gramophone.BuildConfig;
 import com.kabouzeid.gramophone.helper.StackBlur;
 import com.kabouzeid.gramophone.util.ImageUtil;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class BlurTransformation extends BitmapTransformation {
     public static final float DEFAULT_BLUR_RADIUS = 5f;
 
@@ -131,7 +128,6 @@ public class BlurTransformation extends BitmapTransformation {
                 rs.destroy();
 
                 return out;
-
             } catch (RSRuntimeException e) {
                 // on some devices RenderScript.create() throws: android.support.v8.renderscript.RSRuntimeException: Error loading libRSSupport library
                 if (BuildConfig.DEBUG) e.printStackTrace();

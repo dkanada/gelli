@@ -14,9 +14,6 @@ import com.kabouzeid.gramophone.interfaces.CabHolder;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public abstract class AbsMultiSelectAdapter<VH extends RecyclerView.ViewHolder, I> extends RecyclerView.Adapter<VH> implements MaterialCab.Callback {
     private final Context context;
     private final CabHolder cabHolder;

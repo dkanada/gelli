@@ -8,9 +8,6 @@ import androidx.annotation.Nullable;
 
 import java.lang.ref.WeakReference;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public abstract class DialogAsyncTask<Params, Progress, Result> extends WeakContextAsyncTask<Params, Progress, Result> {
     private final int delay;
     private WeakReference<Dialog> dialogWeakReference;

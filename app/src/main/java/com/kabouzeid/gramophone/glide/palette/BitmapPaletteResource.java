@@ -4,9 +4,6 @@ import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.util.Util;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class BitmapPaletteResource implements Resource<BitmapPaletteWrapper> {
 
     private final BitmapPaletteWrapper bitmapPaletteWrapper;

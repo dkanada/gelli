@@ -19,11 +19,7 @@ import com.kabouzeid.gramophone.util.ViewUtil;
 
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAdapter<PlayingQueueAdapter.ViewHolder> {
-
     private static final int HISTORY = 0;
     private static final int CURRENT = 1;
     private static final int UP_NEXT = 2;

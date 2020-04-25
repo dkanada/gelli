@@ -39,6 +39,7 @@ public abstract class AbsOffsetSongAdapter extends SongAdapter {
             View view = LayoutInflater.from(activity).inflate(R.layout.item_list_single_row, parent, false);
             return createViewHolder(view);
         }
+
         return super.onCreateViewHolder(parent, viewType);
     }
 
@@ -50,6 +51,7 @@ public abstract class AbsOffsetSongAdapter extends SongAdapter {
     @Override
     public long getItemId(int position) {
         position--;
+
         if (position < 0) return -2;
         return super.getItemId(position);
     }
@@ -58,6 +60,7 @@ public abstract class AbsOffsetSongAdapter extends SongAdapter {
     @Override
     protected Song getIdentifier(int position) {
         position--;
+
         if (position < 0) return null;
         return super.getIdentifier(position);
     }
@@ -82,7 +85,6 @@ public abstract class AbsOffsetSongAdapter extends SongAdapter {
     }
 
     public class ViewHolder extends SongAdapter.ViewHolder {
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }

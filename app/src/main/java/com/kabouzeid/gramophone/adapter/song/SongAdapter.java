@@ -33,9 +33,6 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, Song> implements MaterialCab.Callback, FastScrollRecyclerView.SectionedAdapter {
 
     protected final AppCompatActivity activity;
@@ -115,7 +112,6 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
         }
 
         loadAlbumCover(song, holder);
-
     }
 
     private void setColors(int color, ViewHolder holder) {
@@ -124,6 +120,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
             if (holder.title != null) {
                 holder.title.setTextColor(MaterialValueHelper.getPrimaryTextColor(activity, ColorUtil.isColorLight(color)));
             }
+
             if (holder.text != null) {
                 holder.text.setTextColor(MaterialValueHelper.getSecondaryTextColor(activity, ColorUtil.isColorLight(color)));
             }
@@ -144,10 +141,11 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
 
                     @Override
                     public void onColorReady(int color) {
-                        if (usePalette)
+                        if (usePalette) {
                             setColors(color, holder);
-                        else
+                        } else {
                             setColors(getDefaultFooterColor(), holder);
+                        }
                     }
                 });
     }
@@ -216,6 +214,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
             if (menu == null) {
                 return;
             }
+
             menu.setOnClickListener(new SongMenuHelper.OnClickSongMenu(activity) {
                 @Override
                 public Song getSong() {
@@ -253,6 +252,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
                         return true;
                 }
             }
+
             return false;
         }
 

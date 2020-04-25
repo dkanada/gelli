@@ -11,9 +11,6 @@ import com.kabouzeid.gramophone.model.Song;
 
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class SongsMenuHelper {
     public static boolean handleMenuClick(@NonNull FragmentActivity activity, @NonNull List<Song> songs, int menuItemId) {
         switch (menuItemId) {
@@ -30,6 +27,7 @@ public class SongsMenuHelper {
                 DeleteSongsDialog.create(songs).show(activity.getSupportFragmentManager(), "DELETE_SONGS");
                 return true;
         }
+
         return false;
     }
 }

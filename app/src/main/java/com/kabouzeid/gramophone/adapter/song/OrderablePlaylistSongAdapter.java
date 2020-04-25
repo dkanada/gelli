@@ -21,9 +21,6 @@ import com.kabouzeid.gramophone.util.ViewUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 @SuppressWarnings("unchecked")
 public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements DraggableItemAdapter<OrderablePlaylistSongAdapter.ViewHolder> {
 
@@ -43,6 +40,7 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
     @Override
     public long getItemId(int position) {
         position--;
+
         if (position < 0) return -2;
         return ((List<PlaylistSong>) (List) dataSet).get(position).idInPlayList; // important!
     }
@@ -54,6 +52,7 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
                 RemoveFromPlaylistDialog.create((List<PlaylistSong>) (List) selection).show(activity.getSupportFragmentManager(), "ADD_PLAYLIST");
                 return;
         }
+
         super.onMultipleItemAction(menuItem, selection);
     }
 

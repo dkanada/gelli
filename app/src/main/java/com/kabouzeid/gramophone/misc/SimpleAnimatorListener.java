@@ -2,9 +2,6 @@ package com.kabouzeid.gramophone.misc;
 
 import android.animation.Animator;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public abstract class SimpleAnimatorListener implements Animator.AnimatorListener {
     @Override
     public void onAnimationStart(Animator animation) {

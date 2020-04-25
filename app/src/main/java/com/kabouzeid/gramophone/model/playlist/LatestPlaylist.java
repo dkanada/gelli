@@ -10,9 +10,6 @@ import com.kabouzeid.gramophone.R;
 
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class LatestPlaylist extends AbsSmartPlaylist {
 
     public LatestPlaylist(@NonNull Context context) {

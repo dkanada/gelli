@@ -9,9 +9,6 @@ import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class Album implements Parcelable {
     public List<Song> songs;
 
