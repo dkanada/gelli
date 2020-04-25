@@ -18,6 +18,7 @@ public class ArtistImage {
     }
 
     public String toIdString() {
+        if (artistName == null) return "";
         StringBuilder id = new StringBuilder(artistName);
         for (AlbumCover albumCover: albumCovers) {
             id.append(albumCover.getYear()).append(albumCover.getFilePath());

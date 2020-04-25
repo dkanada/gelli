@@ -14,14 +14,24 @@ import java.util.List;
 public class Artist implements Parcelable {
     public static final String UNKNOWN_ARTIST_DISPLAY_NAME = "Unknown Artist";
 
-    public final List<Album> albums;
+    public List<Album> albums;
+    public List<String> genres;
 
     public String id;
+    public String name;
+    public long duration;
+    public int albumCount;
+    public int songCount;
 
     public Artist(BaseItemDto itemDto) {
         this.id = itemDto.getId();
+        this.name = itemDto.getName();
+        this.duration = itemDto.getRunTimeTicks() / 10000;
+        this.albumCount = itemDto.getAlbumCount() != null ? itemDto.getAlbumCount() : 0;
+        this.songCount = itemDto.getSongCount() != null ? itemDto.getSongCount() : 0;
 
         this.albums = new ArrayList<>();
+        this.genres = itemDto.getGenres();
     }
 
     public Artist() {
@@ -29,14 +39,10 @@ public class Artist implements Parcelable {
     }
 
     public String getId() {
-        return id != null ? id : "";
+        return id;
     }
 
     public String getName() {
-        String name = safeGetFirstAlbum().getArtistName();
-        if (MusicUtil.isArtistNameUnknown(name)) {
-            return UNKNOWN_ARTIST_DISPLAY_NAME;
-        }
         return name;
     }
 
@@ -60,24 +66,18 @@ public class Artist implements Parcelable {
         return songs;
     }
 
-    @NonNull
-    public Album safeGetFirstAlbum() {
-        return albums.isEmpty() ? new Album() : albums.get(0);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Artist artist = (Artist) o;
-
-        return albums != null ? albums.equals(artist.albums) : artist.albums == null;
+        return id.equals(artist.getId());
     }
 
     @Override
     public int hashCode() {
-        return albums != null ? albums.hashCode() : 0;
+        return id.hashCode();
     }
 
     @Override

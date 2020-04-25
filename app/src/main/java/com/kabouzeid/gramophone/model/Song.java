@@ -25,7 +25,7 @@ public class Song implements Parcelable {
         this.title = itemDto.getName();
         this.trackNumber = itemDto.getIndexNumber();
         this.year = itemDto.getProductionYear();
-        this.duration = itemDto.getRunTimeTicks();
+        this.duration = itemDto.getRunTimeTicks() / 10000;
         this.data = "";
         this.dateModified = 2;
         this.albumId = itemDto.getAlbumId();

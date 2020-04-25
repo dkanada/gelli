@@ -18,6 +18,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.loader.PlaylistLoader;
@@ -27,6 +28,8 @@ import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Genre;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
+
+import org.jellyfin.apiclient.interaction.ApiClient;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +41,7 @@ import java.util.Locale;
  */
 public class MusicUtil {
     public static Uri getSongFileUri(Song song) {
-        return Uri.parse(song.data);
+        return Uri.parse(App.getApiClient().getApiUrl() + "/Audio/" + song.id + "/stream?static=true");
     }
 
     @NonNull

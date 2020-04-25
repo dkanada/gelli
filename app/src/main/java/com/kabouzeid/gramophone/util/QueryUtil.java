@@ -8,6 +8,7 @@ import com.kabouzeid.gramophone.model.Song;
 
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.querying.ArtistsQuery;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
 
@@ -55,6 +56,30 @@ public class QueryUtil {
         });
     }
 
+    public static void getAlbums(String id, MediaCallback callback) {
+        ItemQuery query = new ItemQuery();
+        query.setIncludeItemTypes(new String[]{"MusicAlbum"});
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setArtistIds(new String[]{id});
+        query.setRecursive(true);
+        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
+            @Override
+            public void onResponse(ItemsResult result) {
+                List<Album> albums = new ArrayList<>();
+                for (BaseItemDto itemDto : result.getItems()) {
+                    albums.add(new Album(itemDto));
+                }
+
+                callback.onLoadMedia(albums);
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
     public static void getSongs(String album, MediaCallback callback) {
         ItemQuery query = new ItemQuery();
         query.setIncludeItemTypes(new String[]{"Audio"});
@@ -80,12 +105,11 @@ public class QueryUtil {
     }
 
     public static void getArtists(MediaCallback callback) {
-        ItemQuery query = new ItemQuery();
-        query.setIncludeItemTypes(new String[]{"MusicArtist"});
+        ArtistsQuery query = new ArtistsQuery();
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(10);
         query.setRecursive(true);
-        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
+        App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
                 List<Artist> artists = new ArrayList<>();

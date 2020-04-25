@@ -115,7 +115,14 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         QueryUtil.getArtist(getIntent().getExtras().getString(EXTRA_ARTIST_ID), new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
-                setArtist((Artist) media.get(0));
+                Artist artist = (Artist) media.get(0);
+                QueryUtil.getAlbums(artist.id, new MediaCallback() {
+                    @Override
+                    public void onLoadMedia(List<?> media) {
+                        artist.albums = (List<Album>) media;
+                        setArtist(artist);
+                    }
+                });
             }
         });
     }
