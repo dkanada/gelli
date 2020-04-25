@@ -40,21 +40,19 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.kabouzeid.gramophone.R;
+import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
 import com.kabouzeid.gramophone.widgets.AppWidgetBig;
 import com.kabouzeid.gramophone.widgets.AppWidgetCard;
 import com.kabouzeid.gramophone.widgets.AppWidgetClassic;
 import com.kabouzeid.gramophone.widgets.AppWidgetSmall;
 import com.kabouzeid.gramophone.glide.BlurTransformation;
-import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.helper.ShuffleHelper;
 import com.kabouzeid.gramophone.helper.StopWatch;
 import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.provider.HistoryStore;
 import com.kabouzeid.gramophone.provider.QueueStore;
-import com.kabouzeid.gramophone.provider.SongPlayCountStore;
 import com.kabouzeid.gramophone.service.notification.PlayingNotification;
 import com.kabouzeid.gramophone.service.notification.PlayingNotificationImpl;
 import com.kabouzeid.gramophone.service.notification.PlayingNotificationImpl24;
@@ -275,9 +273,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             }
         });
 
-        mediaSession.setFlags(MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS
-                | MediaSession.FLAG_HANDLES_MEDIA_BUTTONS);
-
+        mediaSession.setFlags(MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS | MediaSession.FLAG_HANDLES_MEDIA_BUTTONS);
         mediaSession.setMediaButtonReceiver(mediaButtonReceiverPendingIntent);
     }
 
@@ -588,11 +584,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         if (PreferenceUtil.getInstance(this).getShowAlbumCover()) {
             final Point screenSize = Util.getScreenSize(MusicService.this);
-            final BitmapRequestBuilder<?, Bitmap> request = SongGlideRequest.Builder.from(Glide.with(MusicService.this), song)
+            final BitmapRequestBuilder<?, Bitmap> request = CustomGlideRequest.Builder.from(Glide.with(MusicService.this), song.albumId)
                     .asBitmap().build();
+
             if (PreferenceUtil.getInstance(this).getBlurAlbumCover()) {
                 request.transform(new BlurTransformation.Builder(MusicService.this).build());
             }
+
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

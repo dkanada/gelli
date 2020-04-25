@@ -29,7 +29,6 @@ public class Album implements Parcelable {
         }
 
         this.songs = new ArrayList<>();
-        songs.add(Song.EMPTY_SONG);
     }
 
     public Album() {

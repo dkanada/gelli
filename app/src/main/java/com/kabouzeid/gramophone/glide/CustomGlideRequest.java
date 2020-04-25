@@ -2,6 +2,7 @@ package com.kabouzeid.gramophone.glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.BitmapRequestBuilder;
@@ -16,24 +17,24 @@ import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.glide.audiocover.AudioFileCover;
 import com.kabouzeid.gramophone.glide.palette.BitmapPaletteTranscoder;
 import com.kabouzeid.gramophone.glide.palette.BitmapPaletteWrapper;
-import com.kabouzeid.gramophone.model.Song;
 
-public class SongGlideRequest {
-    public static final DiskCacheStrategy DEFAULT_DISK_CACHE_STRATEGY = DiskCacheStrategy.NONE;
-    public static final int DEFAULT_ERROR_IMAGE = R.drawable.default_album_art;
+public class CustomGlideRequest {
+    public static final DiskCacheStrategy DEFAULT_DISK_CACHE_STRATEGY = DiskCacheStrategy.ALL;
+
+    public static final int DEFAULT_IMAGE = R.drawable.default_album_art;
     public static final int DEFAULT_ANIMATION = android.R.anim.fade_in;
 
     public static class Builder {
         final RequestManager requestManager;
-        final Song song;
+        final String item;
 
-        public static Builder from(@NonNull RequestManager requestManager, Song song) {
-            return new Builder(requestManager, song);
+        public static Builder from(@NonNull RequestManager requestManager, String item) {
+            return new Builder(requestManager, item);
         }
 
-        private Builder(@NonNull RequestManager requestManager, Song song) {
+        private Builder(@NonNull RequestManager requestManager, String item) {
             this.requestManager = requestManager;
-            this.song = song;
+            this.item = item;
         }
 
         public PaletteBuilder generatePalette(Context context) {
@@ -45,12 +46,12 @@ public class SongGlideRequest {
         }
 
         public DrawableRequestBuilder<GlideDrawable> build() {
-            //noinspection unchecked
-            return createBaseRequest(requestManager, song)
+            // noinspection unchecked
+            return createBaseRequest(requestManager, item)
                     .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                    .error(DEFAULT_ERROR_IMAGE)
+                    .error(DEFAULT_IMAGE)
                     .animate(DEFAULT_ANIMATION)
-                    .signature(createSignature(song));
+                    .signature(createSignature(item));
         }
     }
 
@@ -62,13 +63,13 @@ public class SongGlideRequest {
         }
 
         public BitmapRequestBuilder<?, Bitmap> build() {
-            //noinspection unchecked
-            return createBaseRequest(builder.requestManager, builder.song)
+            // noinspection unchecked
+            return createBaseRequest(builder.requestManager, builder.item)
                     .asBitmap()
                     .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                    .error(DEFAULT_ERROR_IMAGE)
+                    .error(DEFAULT_IMAGE)
                     .animate(DEFAULT_ANIMATION)
-                    .signature(createSignature(builder.song));
+                    .signature(createSignature(builder.item));
         }
     }
 
@@ -82,22 +83,22 @@ public class SongGlideRequest {
         }
 
         public BitmapRequestBuilder<?, BitmapPaletteWrapper> build() {
-            //noinspection unchecked
-            return createBaseRequest(builder.requestManager, builder.song)
+            // noinspection unchecked
+            return createBaseRequest(builder.requestManager, builder.item)
                     .asBitmap()
                     .transcode(new BitmapPaletteTranscoder(context), BitmapPaletteWrapper.class)
                     .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                    .error(DEFAULT_ERROR_IMAGE)
+                    .error(DEFAULT_IMAGE)
                     .animate(DEFAULT_ANIMATION)
-                    .signature(createSignature(builder.song));
+                    .signature(createSignature(builder.item));
         }
     }
 
-    public static DrawableTypeRequest createBaseRequest(RequestManager requestManager, Song song) {
-        return requestManager.load(new AudioFileCover(song.data));
+    public static DrawableTypeRequest createBaseRequest(RequestManager requestManager, String item) {
+        return requestManager.load(new AudioFileCover(item));
     }
 
-    public static Key createSignature(Song song) {
-        return new MediaStoreSignature("", song.dateModified, 0);
+    public static Key createSignature(String item) {
+        return new MediaStoreSignature("image/jpeg", item.hashCode(), 0);
     }
 }

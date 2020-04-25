@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.glide.SongGlideRequest;
+import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.glide.palette.BitmapPaletteWrapper;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.service.MusicService;
@@ -50,7 +50,7 @@ public class PlayingNotificationImpl24 extends PlayingNotification {
         final PendingIntent deleteIntent = PendingIntent.getService(service, 0, intent, 0);
 
         final int bigNotificationImageSize = service.getResources().getDimensionPixelSize(R.dimen.notification_big_image_size);
-        service.runOnUiThread(() -> SongGlideRequest.Builder.from(Glide.with(service), song)
+        service.runOnUiThread(() -> CustomGlideRequest.Builder.from(Glide.with(service), song.albumId)
                 .generatePalette(service).build()
                 .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
                     @Override

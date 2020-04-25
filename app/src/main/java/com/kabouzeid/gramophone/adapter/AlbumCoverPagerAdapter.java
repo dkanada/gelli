@@ -11,8 +11,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.kabouzeid.gramophone.R;
+import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
-import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.misc.CustomFragmentStatePagerAdapter;
 import com.kabouzeid.gramophone.model.Song;
 
@@ -116,7 +116,7 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
         }
 
         private void loadAlbumCover() {
-            SongGlideRequest.Builder.from(Glide.with(getContext()), song)
+            CustomGlideRequest.Builder.from(Glide.with(getContext()), song.albumId)
                     .generatePalette(getActivity()).build()
                     .into(new CustomPaletteTarget(albumCover) {
                         @Override

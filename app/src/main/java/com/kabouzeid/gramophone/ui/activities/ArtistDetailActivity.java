@@ -29,7 +29,7 @@ import com.kabouzeid.gramophone.adapter.album.HorizontalAlbumAdapter;
 import com.kabouzeid.gramophone.adapter.song.ArtistSongAdapter;
 import com.kabouzeid.gramophone.dialogs.AddToPlaylistDialog;
 import com.kabouzeid.gramophone.dialogs.SleepTimerDialog;
-import com.kabouzeid.gramophone.glide.ArtistGlideRequest;
+import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
@@ -185,7 +185,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     }
 
     private void loadArtistImage() {
-        ArtistGlideRequest.Builder.from(Glide.with(this), artist)
+        CustomGlideRequest.Builder.from(Glide.with(this), artist.id)
                 .generatePalette(this).build()
                 .dontAnimate()
                 .into(new CustomPaletteTarget(artistImage) {

@@ -13,8 +13,7 @@ import com.bumptech.glide.Glide;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.adapter.base.MediaEntryViewHolder;
-import com.kabouzeid.gramophone.glide.ArtistGlideRequest;
-import com.kabouzeid.gramophone.glide.SongGlideRequest;
+import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.helper.menu.SongMenuHelper;
 import com.kabouzeid.gramophone.model.Album;
@@ -70,7 +69,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 final Album album = (Album) dataSet.get(position);
                 holder.title.setText(album.getTitle());
                 holder.text.setText(MusicUtil.getAlbumInfoString(activity, album));
-                SongGlideRequest.Builder.from(Glide.with(activity), album.safeGetFirstSong())
+                CustomGlideRequest.Builder.from(Glide.with(activity), album.id)
                         .build()
                         .into(holder.image);
                 break;
@@ -78,7 +77,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 final Artist artist = (Artist) dataSet.get(position);
                 holder.title.setText(artist.getName());
                 holder.text.setText(MusicUtil.getArtistInfoString(activity, artist));
-                ArtistGlideRequest.Builder.from(Glide.with(activity), artist)
+                CustomGlideRequest.Builder.from(Glide.with(activity), artist.id)
                         .build().into(holder.image);
                 break;
             case SONG:

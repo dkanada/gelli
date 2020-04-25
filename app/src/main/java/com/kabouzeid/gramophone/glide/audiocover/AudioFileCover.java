@@ -1,9 +1,22 @@
 package com.kabouzeid.gramophone.glide.audiocover;
 
-public class AudioFileCover {
-    public final String filePath;
+import com.kabouzeid.gramophone.App;
 
-    public AudioFileCover(String filePath) {
-        this.filePath = filePath;
+import org.jellyfin.apiclient.model.dto.ImageOptions;
+import org.jellyfin.apiclient.model.entities.ImageType;
+
+public class AudioFileCover {
+    public String location;
+
+    public AudioFileCover(String item) {
+        ImageOptions options = new ImageOptions();
+        options.setImageType(ImageType.Primary);
+
+        try {
+            this.location = App.getApiClient().GetImageUrl(item, options);
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.location = "";
+        }
     }
 }

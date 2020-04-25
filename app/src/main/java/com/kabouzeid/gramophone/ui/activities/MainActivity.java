@@ -22,7 +22,7 @@ import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.glide.SongGlideRequest;
+import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
@@ -127,7 +127,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             }
             ((TextView) navigationDrawerHeader.findViewById(R.id.title)).setText(song.title);
             ((TextView) navigationDrawerHeader.findViewById(R.id.text)).setText(MusicUtil.getSongInfoString(song));
-            SongGlideRequest.Builder.from(Glide.with(this), song)
+            CustomGlideRequest.Builder.from(Glide.with(this), song.albumId)
                     .build()
                     .into(((ImageView) navigationDrawerHeader.findViewById(R.id.image)));
         } else {

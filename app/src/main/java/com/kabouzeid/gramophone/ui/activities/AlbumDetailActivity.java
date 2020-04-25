@@ -23,8 +23,8 @@ import com.kabouzeid.gramophone.adapter.song.AlbumSongAdapter;
 import com.kabouzeid.gramophone.dialogs.AddToPlaylistDialog;
 import com.kabouzeid.gramophone.dialogs.DeleteSongsDialog;
 import com.kabouzeid.gramophone.dialogs.SleepTimerDialog;
+import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
-import com.kabouzeid.gramophone.glide.SongGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.interfaces.MediaCallback;
@@ -146,7 +146,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
     }
 
     private void loadAlbumCover() {
-        SongGlideRequest.Builder.from(Glide.with(this), getAlbum().safeGetFirstSong())
+        CustomGlideRequest.Builder.from(Glide.with(this), getAlbum().id)
                 .generatePalette(this).build()
                 .dontAnimate()
                 .into(new CustomPaletteTarget(albumArtImageView) {
@@ -312,7 +312,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         durationTextView.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, album.songs)));
         albumYearTextView.setText(MusicUtil.getYearString(album.getYear()));
 
-        adapter.swapDataSet(album.songs);
+        if (album.songs.size() != 0) adapter.swapDataSet(album.songs);
     }
 
     private Album getAlbum() {
