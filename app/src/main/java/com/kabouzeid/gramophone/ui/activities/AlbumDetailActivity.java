@@ -142,6 +142,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
                 NavigationUtil.goToArtist(AlbumDetailActivity.this, album.getArtistId());
             }
         });
+
         setColors(DialogUtils.resolveColor(this, R.attr.defaultFooterColor));
     }
 

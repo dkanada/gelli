@@ -3,8 +3,6 @@ package com.kabouzeid.gramophone.model;
 import android.os.Parcel;
 
 public class PlaylistSong extends Song {
-    public static final PlaylistSong EMPTY_PLAYLIST_SONG = new PlaylistSong(-1, "", -1, -1, -1, "", -1, -1, "", -1, "", -1, -1);
-
     public final int playlistId;
     public final int idInPlayList;
 
@@ -24,7 +22,6 @@ public class PlaylistSong extends Song {
 
         if (playlistId != that.playlistId) return false;
         return idInPlayList == that.idInPlayList;
-
     }
 
     @Override
@@ -37,11 +34,7 @@ public class PlaylistSong extends Song {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "PlaylistSong{" +
-                "playlistId=" + playlistId +
-                ", idInPlayList=" + idInPlayList +
-                '}';
+        return super.toString() + playlistId;
     }
 
 
@@ -53,12 +46,14 @@ public class PlaylistSong extends Song {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
+
         dest.writeInt(this.playlistId);
         dest.writeInt(this.idInPlayList);
     }
 
     protected PlaylistSong(Parcel in) {
         super(in);
+
         this.playlistId = in.readInt();
         this.idInPlayList = in.readInt();
     }

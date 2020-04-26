@@ -12,11 +12,6 @@ public class AudioFileCover {
         ImageOptions options = new ImageOptions();
         options.setImageType(ImageType.Primary);
 
-        try {
-            this.location = App.getApiClient().GetImageUrl(item, options);
-        } catch (Exception e) {
-            e.printStackTrace();
-            this.location = "";
-        }
+        this.location = App.getApiClient().GetImageUrl(item, options);
     }
 }

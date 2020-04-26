@@ -80,6 +80,30 @@ public class QueryUtil {
         });
     }
 
+    public static void getSongs(MediaCallback callback) {
+        ItemQuery query = new ItemQuery();
+        query.setIncludeItemTypes(new String[]{"Audio"});
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setRecursive(true);
+        query.setLimit(100);
+        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
+            @Override
+            public void onResponse(ItemsResult result) {
+                List<Song> songs = new ArrayList<>();
+                for (BaseItemDto itemDto : result.getItems()) {
+                    songs.add(new Song(itemDto));
+                }
+
+                callback.onLoadMedia(songs);
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
     public static void getSongs(String album, MediaCallback callback) {
         ItemQuery query = new ItemQuery();
         query.setIncludeItemTypes(new String[]{"Audio"});
