@@ -107,6 +107,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
         if (holder.title != null) {
             holder.title.setText(getAlbumTitle(album));
         }
+
         if (holder.text != null) {
             holder.text.setText(getAlbumText(album));
         }

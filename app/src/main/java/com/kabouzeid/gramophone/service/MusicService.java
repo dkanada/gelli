@@ -66,11 +66,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @author Karim Abou Zeid (kabouzeid), Andrew Neal
- */
 public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks {
-
     public static final String PHONOGRAPH_PACKAGE_NAME = "com.kabouzeid.gramophone";
     public static final String MUSIC_PACKAGE_NAME = "com.android.music";
 
@@ -89,7 +85,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final String APP_WIDGET_UPDATE = PHONOGRAPH_PACKAGE_NAME + ".appwidgetupdate";
     public static final String EXTRA_APP_WIDGET_NAME = PHONOGRAPH_PACKAGE_NAME + "app_widget_name";
 
-    // do not change these three strings as it will break support with other apps (e.g. last.fm scrobbling)
+    // do not change these three strings as it will break support with other apps like last.fm
     public static final String META_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".metachanged";
     public static final String QUEUE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".queuechanged";
     public static final String PLAY_STATE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".playstatechanged";
@@ -1013,7 +1009,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         sendChangeInternal(what);
     }
 
-    // to let other apps know whats playing. i.E. last.fm (scrobbling) or musixmatch
+    // to let other apps know whats playing like last.fm
     private void sendPublicIntent(@NonNull final String what) {
         final Intent intent = new Intent(what.replace(PHONOGRAPH_PACKAGE_NAME, MUSIC_PACKAGE_NAME));
 
@@ -1350,7 +1346,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         @Override
         public void run() {
             savePositionInTrack();
-            sendPublicIntent(PLAY_STATE_CHANGED); // for musixmatch synced lyrics
+            sendPublicIntent(PLAY_STATE_CHANGED);
         }
     }
 

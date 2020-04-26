@@ -120,6 +120,7 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
                     RemoveFromPlaylistDialog.create((PlaylistSong) getSong()).show(activity.getSupportFragmentManager(), "REMOVE_FROM_PLAYLIST");
                     return true;
             }
+
             return super.onSongMenuItemClick(item);
         }
 

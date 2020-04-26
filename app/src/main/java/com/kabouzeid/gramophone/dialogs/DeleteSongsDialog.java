@@ -14,9 +14,6 @@ import com.kabouzeid.gramophone.util.MusicUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid), Aidan Follestad (afollestad)
- */
 public class DeleteSongsDialog extends DialogFragment {
 
     @NonNull
@@ -38,7 +35,6 @@ public class DeleteSongsDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        //noinspection unchecked
         final List<Song> songs = getArguments().getParcelableArrayList("songs");
         int title;
         CharSequence content;
@@ -49,14 +45,14 @@ public class DeleteSongsDialog extends DialogFragment {
             title = R.string.delete_song_title;
             content = Html.fromHtml(getString(R.string.delete_song_x, songs.get(0).title));
         }
+
         return new MaterialDialog.Builder(getActivity())
                 .title(title)
                 .content(content)
                 .positiveText(R.string.delete_action)
                 .negativeText(android.R.string.cancel)
                 .onPositive((dialog, which) -> {
-                    if (getActivity() == null)
-                        return;
+                    if (getActivity() == null) return;
                     MusicUtil.deleteTracks(getActivity(), songs);
                 })
                 .build();

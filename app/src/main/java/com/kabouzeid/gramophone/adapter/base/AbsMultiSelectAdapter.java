@@ -45,6 +45,7 @@ public abstract class AbsMultiSelectAdapter<VH extends RecyclerView.ViewHolder, 
             updateCab();
             return true;
         }
+
         return false;
     }
 
@@ -57,6 +58,7 @@ public abstract class AbsMultiSelectAdapter<VH extends RecyclerView.ViewHolder, 
                     checked.add(identifier);
                 }
             }
+
             notifyDataSetChanged();
             updateCab();
         }
@@ -67,6 +69,7 @@ public abstract class AbsMultiSelectAdapter<VH extends RecyclerView.ViewHolder, 
             if (cab == null || !cab.isActive()) {
                 cab = cabHolder.openCab(menuRes, this);
             }
+
             final int size = checked.size();
             if (size <= 0) cab.finish();
             else if (size == 1) cab.setTitle(getName(checked.get(0)));
@@ -101,6 +104,7 @@ public abstract class AbsMultiSelectAdapter<VH extends RecyclerView.ViewHolder, 
             cab.finish();
             clearChecked();
         }
+
         return true;
     }
 

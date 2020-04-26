@@ -47,7 +47,7 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
     private static int mClickCounter = 0;
     private static long mLastClickTime = 0;
 
-    @SuppressLint("HandlerLeak") // false alarm, handler is already static
+    @SuppressLint("HandlerLeak")
     private static Handler mHandler = new Handler() {
 
         @Override
@@ -101,9 +101,10 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
 
             final int keycode = event.getKeyCode();
             final int action = event.getAction();
+
+            // fallback to system time if event time is not available
             final long eventTime = event.getEventTime() != 0 ?
                     event.getEventTime() : System.currentTimeMillis();
-            // Fallback to system time if event time was not available.
 
             String command = null;
             switch (keycode) {
@@ -127,6 +128,7 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                     command = MusicService.ACTION_PLAY;
                     break;
             }
+
             if (command != null) {
                 if (action == KeyEvent.ACTION_DOWN) {
                     if (event.getRepeatCount() == 0) {
@@ -153,16 +155,19 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                             if (mClickCounter >= 3) {
                                 mClickCounter = 0;
                             }
+
                             mLastClickTime = eventTime;
                             acquireWakeLockAndSendMessage(context, msg, delay);
                         } else {
                             startService(context, command);
                         }
+
                         return true;
                     }
                 }
             }
         }
+
         return false;
     }
 
@@ -189,6 +194,7 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
             mWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Phonograph headset button");
             mWakeLock.setReferenceCounted(false);
         }
+
         if (DEBUG) Log.v(TAG, "Acquiring wake lock and sending " + msg.what);
         // Make sure we don't indefinitely hold the wake lock under any circumstances
         mWakeLock.acquire(10000);

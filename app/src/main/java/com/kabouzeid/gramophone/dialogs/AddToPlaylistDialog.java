@@ -15,9 +15,6 @@ import com.kabouzeid.gramophone.util.PlaylistsUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid), Aidan Follestad (afollestad)
- */
 public class AddToPlaylistDialog extends DialogFragment {
 
     @NonNull
@@ -50,9 +47,10 @@ public class AddToPlaylistDialog extends DialogFragment {
                 .title(R.string.action_add_to_playlist)
                 .items(playlistNames)
                 .itemsCallback((materialDialog, view, i, charSequence) -> {
-                    //noinspection unchecked
+                    // noinspection unchecked
                     final List<Song> songs = getArguments().getParcelableArrayList("songs");
                     if (songs == null) return;
+
                     if (i == 0) {
                         materialDialog.dismiss();
                         CreatePlaylistDialog.create(songs).show(getActivity().getSupportFragmentManager(), "ADD_TO_PLAYLIST");

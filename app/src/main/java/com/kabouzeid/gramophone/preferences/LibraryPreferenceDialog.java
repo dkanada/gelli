@@ -36,6 +36,7 @@ public class LibraryPreferenceDialog extends DialogFragment {
         } else {
             categoryInfos = PreferenceUtil.getInstance(getContext()).getLibraryCategories();
         }
+
         adapter = new CategoryInfoAdapter(categoryInfos);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
@@ -78,6 +79,7 @@ public class LibraryPreferenceDialog extends DialogFragment {
             if (categoryInfo.visible)
                 selected++;
         }
+
         return selected;
     }
 }

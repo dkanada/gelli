@@ -97,8 +97,9 @@ public class PlayingNotificationImpl24 extends PlayingNotification {
                                 builder.setColor(color);
                         }
 
-                        if (stopped)
-                            return; // notification has been stopped before loading was finished
+                        // notification has been stopped before loading was finished
+                        if (stopped) return;
+
                         updateNotifyModeAndPostNotification(builder.build());
                     }
                 }));

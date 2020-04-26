@@ -28,9 +28,6 @@ import org.jaudiotagger.tag.TagException;
 import java.io.File;
 import java.io.IOException;
 
-/**
- * @author Karim Abou Zeid (kabouzeid), Aidan Follestad (afollestad)
- */
 public class SongDetailDialog extends DialogFragment {
 
     public static final String TAG = SongDetailDialog.class.getSimpleName();
@@ -89,6 +86,7 @@ public class SongDetailDialog extends DialogFragment {
                 fileName.setText(makeTextWithTitle(context, R.string.label_file_name, songFile.getName()));
                 filePath.setText(makeTextWithTitle(context, R.string.label_file_path, songFile.getAbsolutePath()));
                 fileSize.setText(makeTextWithTitle(context, R.string.label_file_size, getFileSizeString(songFile.length())));
+
                 try {
                     AudioFile audioFile = AudioFileIO.read(songFile);
                     AudioHeader audioHeader = audioFile.getAudioHeader();
@@ -99,11 +97,9 @@ public class SongDetailDialog extends DialogFragment {
                     samplingRate.setText(makeTextWithTitle(context, R.string.label_sampling_rate, audioHeader.getSampleRate() + " Hz"));
                 } catch (@NonNull CannotReadException | IOException | TagException | ReadOnlyFileException | InvalidAudioFrameException e) {
                     Log.e(TAG, "error while reading the song file", e);
-                    // fallback
                     trackLength.setText(makeTextWithTitle(context, R.string.label_track_length, MusicUtil.getReadableDurationString(song.duration)));
                 }
             } else {
-                // fallback
                 fileName.setText(makeTextWithTitle(context, R.string.label_file_name, song.title));
                 trackLength.setText(makeTextWithTitle(context, R.string.label_track_length, MusicUtil.getReadableDurationString(song.duration)));
             }

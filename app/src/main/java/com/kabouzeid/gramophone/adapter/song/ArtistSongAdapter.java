@@ -104,9 +104,11 @@ public class ArtistSongAdapter extends ArrayAdapter<Song> implements MaterialCab
                     Pair[] albumPairs = new Pair[]{
                             Pair.create(albumArt, activity.getResources().getString(R.string.transition_album_art))
                     };
+
                     NavigationUtil.goToAlbum(activity, song.albumId, albumPairs);
                     return true;
                 }
+
                 return super.onMenuItemClick(item);
             }
         });
@@ -119,6 +121,7 @@ public class ArtistSongAdapter extends ArrayAdapter<Song> implements MaterialCab
                 MusicPlayerRemote.openQueue(dataSet, position, true);
             }
         });
+
         convertView.setOnLongClickListener(view -> {
             toggleChecked(song);
             return true;

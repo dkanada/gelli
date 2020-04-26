@@ -10,9 +10,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class ClearSmartPlaylistDialog extends DialogFragment {
 
     @NonNull
@@ -27,10 +24,10 @@ public class ClearSmartPlaylistDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        //noinspection unchecked
+        // noinspection unchecked
         final AbsSmartPlaylist playlist = getArguments().getParcelable("playlist");
         int title = R.string.clear_playlist_title;
-        //noinspection ConstantConditions
+        // noinspection ConstantConditions
         CharSequence content = Html.fromHtml(getString(R.string.clear_playlist_x, playlist.name));
 
         return new MaterialDialog.Builder(getActivity())

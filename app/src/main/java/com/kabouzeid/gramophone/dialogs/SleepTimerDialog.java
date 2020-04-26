@@ -29,9 +29,6 @@ import com.triggertrap.seekarc.SeekArc;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class SleepTimerDialog extends DialogFragment {
     @BindView(R.id.seek_arc)
     SeekArc seekArc;
@@ -79,6 +76,7 @@ public class SleepTimerDialog extends DialogFragment {
                     if (getActivity() == null) {
                         return;
                     }
+
                     final PendingIntent previous = makeTimerPendingIntent(PendingIntent.FLAG_NO_CREATE);
                     if (previous != null) {
                         AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
@@ -134,13 +132,13 @@ public class SleepTimerDialog extends DialogFragment {
                     seekArc.setProgress(1);
                     return;
                 }
+
                 seekArcProgress = i;
                 updateTimeDisplayTime();
             }
 
             @Override
             public void onStartTrackingTouch(SeekArc seekArc) {
-
             }
 
             @Override
@@ -165,6 +163,7 @@ public class SleepTimerDialog extends DialogFragment {
         if (shouldFinishLastSong.isChecked()) {
             return intent.setAction(MusicService.ACTION_PENDING_QUIT);
         }
+
         return intent.setAction(MusicService.ACTION_QUIT);
     }
 

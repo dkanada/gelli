@@ -10,9 +10,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.util.PlaylistsUtil;
 
-/**
- * @author Karim Abou Zeid (kabouzeid), Aidan Follestad (afollestad)
- */
 public class RenamePlaylistDialog extends DialogFragment {
 
     private static final String PLAYLIST_ID = "playlist_id";
@@ -40,6 +37,7 @@ public class RenamePlaylistDialog extends DialogFragment {
                 .input(getString(R.string.playlist_name_empty), PlaylistsUtil.getNameForPlaylist(getActivity(), playlistId), false,
                         (materialDialog, charSequence) -> {
                             final String name = charSequence.toString().trim();
+
                             if (!name.isEmpty()) {
                                 long playlistId1 = getArguments().getLong(PLAYLIST_ID);
                                 PlaylistsUtil.renamePlaylist(getActivity(), playlistId1, name);

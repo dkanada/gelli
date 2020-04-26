@@ -16,9 +16,6 @@ import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.service.playback.Playback;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 
-/**
- * @author Andrew Neal, Karim Abou Zeid (kabouzeid)
- */
 public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
     public static final String TAG = MultiPlayer.class.getSimpleName();
 
@@ -31,9 +28,6 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
 
     private boolean mIsInitialized = false;
 
-    /**
-     * Constructor of <code>MultiPlayer</code>
-     */
     public MultiPlayer(final Context context) {
         this.context = context;
         mCurrentMediaPlayer.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK);
@@ -138,27 +132,16 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         }
     }
 
-    /**
-     * Sets the callbacks
-     *
-     * @param callbacks The callbacks to use
-     */
     @Override
     public void setCallbacks(@Nullable Playback.PlaybackCallbacks callbacks) {
         this.callbacks = callbacks;
     }
 
-    /**
-     * @return True if the player is ready to go, false otherwise
-     */
     @Override
     public boolean isInitialized() {
         return mIsInitialized;
     }
 
-    /**
-     * Starts or resumes playback.
-     */
     @Override
     public boolean start() {
         try {
@@ -169,18 +152,12 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         }
     }
 
-    /**
-     * Resets the MediaPlayer to its uninitialized state.
-     */
     @Override
     public void stop() {
         mCurrentMediaPlayer.reset();
         mIsInitialized = false;
     }
 
-    /**
-     * Releases resources associated with this MediaPlayer object.
-     */
     @Override
     public void release() {
         stop();
@@ -190,9 +167,6 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         }
     }
 
-    /**
-     * Pauses playback. Call start() to resume.
-     */
     @Override
     public boolean pause() {
         try {
@@ -203,24 +177,17 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         }
     }
 
-    /**
-     * Checks whether the MultiPlayer is playing.
-     */
     @Override
     public boolean isPlaying() {
         return mIsInitialized && mCurrentMediaPlayer.isPlaying();
     }
 
-    /**
-     * Gets the duration of the file.
-     *
-     * @return The duration in milliseconds
-     */
     @Override
     public int duration() {
         if (!mIsInitialized) {
             return -1;
         }
+
         try {
             return mCurrentMediaPlayer.getDuration();
         } catch (IllegalStateException e) {
@@ -228,16 +195,12 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         }
     }
 
-    /**
-     * Gets the current playback position.
-     *
-     * @return The current position in milliseconds
-     */
     @Override
     public int position() {
         if (!mIsInitialized) {
             return -1;
         }
+
         try {
             return mCurrentMediaPlayer.getCurrentPosition();
         } catch (IllegalStateException e) {
@@ -245,12 +208,6 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         }
     }
 
-    /**
-     * Gets the current playback position.
-     *
-     * @param whereto The offset in milliseconds from the start to seek to
-     * @return The offset in milliseconds from the start to seek to
-     */
     @Override
     public int seek(final int whereto) {
         try {
@@ -271,11 +228,6 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         }
     }
 
-    /**
-     * Sets the audio session ID.
-     *
-     * @param sessionId The audio session ID
-     */
     @Override
     public boolean setAudioSessionId(final int sessionId) {
         try {
@@ -286,19 +238,11 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         }
     }
 
-    /**
-     * Returns the audio session ID.
-     *
-     * @return The current audio session ID.
-     */
     @Override
     public int getAudioSessionId() {
         return mCurrentMediaPlayer.getAudioSessionId();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean onError(final MediaPlayer mp, final int what, final int extra) {
         mIsInitialized = false;
@@ -308,12 +252,10 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         if (context != null) {
             Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
         }
+
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onCompletion(final MediaPlayer mp) {
         if (mp == mCurrentMediaPlayer && mNextMediaPlayer != null) {

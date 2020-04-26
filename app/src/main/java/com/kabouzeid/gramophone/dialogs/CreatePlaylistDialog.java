@@ -16,9 +16,6 @@ import com.kabouzeid.gramophone.util.PlaylistsUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid), Aidan Follestad (afollestad)
- */
 public class CreatePlaylistDialog extends DialogFragment {
 
     private static final String SONGS = "songs";
@@ -63,7 +60,7 @@ public class CreatePlaylistDialog extends DialogFragment {
                         if (!PlaylistsUtil.doesPlaylistExist(getActivity(), name)) {
                             final int playlistId = PlaylistsUtil.createPlaylist(getActivity(), name);
                             if (getActivity() != null) {
-                                //noinspection unchecked
+                                // noinspection unchecked
                                 List<Song> songs = getArguments().getParcelableArrayList(SONGS);
                                 if (songs != null && !songs.isEmpty()) {
                                     PlaylistsUtil.addToPlaylist(getActivity(), songs, playlistId, true);

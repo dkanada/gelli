@@ -23,9 +23,6 @@ import com.kabouzeid.gramophone.ui.fragments.player.NowPlayingScreen;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 import com.kabouzeid.gramophone.util.ViewUtil;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class NowPlayingScreenPreferenceDialog extends DialogFragment implements MaterialDialog.SingleButtonCallback, ViewPager.OnPageChangeListener {
 
     private DialogAction whichButtonClicked;
@@ -73,7 +70,6 @@ public class NowPlayingScreenPreferenceDialog extends DialogFragment implements 
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
     }
 
     @Override
@@ -83,11 +79,9 @@ public class NowPlayingScreenPreferenceDialog extends DialogFragment implements 
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 
     private static class NowPlayingScreenAdapter extends PagerAdapter {
-
         private Context context;
 
         public NowPlayingScreenAdapter(Context context) {

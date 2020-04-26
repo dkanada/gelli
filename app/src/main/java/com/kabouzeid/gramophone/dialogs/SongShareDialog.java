@@ -11,9 +11,6 @@ import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.MusicUtil;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class SongShareDialog extends DialogFragment {
     @NonNull
     public static SongShareDialog create(final Song song) {

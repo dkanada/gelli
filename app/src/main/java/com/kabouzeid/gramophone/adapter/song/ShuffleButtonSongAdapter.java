@@ -36,21 +36,26 @@ public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
                 holder.title.setTextColor(accentColor);
                 holder.title.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
             }
+
             if (holder.text != null) {
                 holder.text.setVisibility(View.GONE);
             }
+
             if (holder.menu != null) {
                 holder.menu.setVisibility(View.GONE);
             }
+
             if (holder.image != null) {
                 final int padding = activity.getResources().getDimensionPixelSize(R.dimen.default_item_margin) / 2;
                 holder.image.setPadding(padding, padding, padding, padding);
                 holder.image.setColorFilter(accentColor);
                 holder.image.setImageResource(R.drawable.ic_shuffle_white_24dp);
             }
+
             if (holder.separator != null) {
                 holder.separator.setVisibility(View.VISIBLE);
             }
+
             if (holder.shortSeparator != null) {
                 holder.shortSeparator.setVisibility(View.GONE);
             }

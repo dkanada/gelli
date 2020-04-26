@@ -117,8 +117,9 @@ public class PlayingNotificationImpl extends PlayingNotification {
                                 setBackgroundColor(bgColor);
                                 setNotificationContent(ColorUtil.isColorLight(bgColor));
 
-                                if (stopped)
-                                    return; // notification has been stopped before loading was finished
+                                // notification has been stopped before loading was finished
+                                if (stopped) return;
+
                                 updateNotifyModeAndPostNotification(notification);
                             }
 
@@ -179,5 +180,4 @@ public class PlayingNotificationImpl extends PlayingNotification {
         intent.setComponent(serviceName);
         return PendingIntent.getService(context, 0, intent, 0);
     }
-
 }

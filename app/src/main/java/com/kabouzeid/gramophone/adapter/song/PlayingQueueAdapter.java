@@ -59,7 +59,7 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
 
     @Override
     protected void loadAlbumCover(Song song, SongAdapter.ViewHolder holder) {
-        // We don't want to load it in this adapter
+        // don't want to load it in this adapter
     }
 
     public void swapDataSet(List<Song> dataSet, int position) {
@@ -77,15 +77,19 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
         if (holder.image != null) {
             holder.image.setAlpha(alpha);
         }
+
         if (holder.title != null) {
             holder.title.setAlpha(alpha);
         }
+
         if (holder.text != null) {
             holder.text.setAlpha(alpha);
         }
+
         if (holder.imageText != null) {
             holder.imageText.setAlpha(alpha);
         }
+
         if (holder.paletteColorContainer != null) {
             holder.paletteColorContainer.setAlpha(alpha);
         }
@@ -130,6 +134,7 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
             if (imageText != null) {
                 imageText.setVisibility(View.VISIBLE);
             }
+
             if (image != null) {
                 image.setVisibility(View.GONE);
             }
@@ -147,6 +152,7 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
                     MusicPlayerRemote.removeFromQueue(getAdapterPosition());
                     return true;
             }
+
             return super.onSongMenuItemClick(item);
         }
 

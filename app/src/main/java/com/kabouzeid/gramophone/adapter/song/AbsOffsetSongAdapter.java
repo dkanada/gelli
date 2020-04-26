@@ -13,12 +13,8 @@ import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.model.Song;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Eugene Cheung (arkon)
- */
 public abstract class AbsOffsetSongAdapter extends SongAdapter {
 
     protected static final int OFFSET_ITEM = 0;
@@ -80,6 +76,7 @@ public abstract class AbsOffsetSongAdapter extends SongAdapter {
     @Override
     public String getSectionName(int position) {
         position--;
+
         if (position < 0) return "";
         return super.getSectionName(position);
     }
@@ -91,8 +88,8 @@ public abstract class AbsOffsetSongAdapter extends SongAdapter {
 
         @Override
         protected Song getSong() {
-            if (getItemViewType() == OFFSET_ITEM)
-                return Song.EMPTY_SONG; // could also return null, just to be safe return empty song
+            // return empty song just to be safe
+            if (getItemViewType() == OFFSET_ITEM) return Song.EMPTY_SONG;
             return dataSet.get(getAdapterPosition() - 1);
         }
 

@@ -13,11 +13,7 @@ import com.kabouzeid.gramophone.util.MusicUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class AlbumSongAdapter extends SongAdapter {
-
     public AlbumSongAdapter(AppCompatActivity activity, List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
         super(activity, dataSet, itemLayoutRes, usePalette, cabHolder);
     }
@@ -61,6 +57,6 @@ public class AlbumSongAdapter extends SongAdapter {
 
     @Override
     protected void loadAlbumCover(Song song, SongAdapter.ViewHolder holder) {
-        // We don't want to load it in this adapter
+        // don't want to load it in this adapter
     }
 }

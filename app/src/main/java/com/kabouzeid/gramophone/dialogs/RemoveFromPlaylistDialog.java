@@ -14,9 +14,6 @@ import com.kabouzeid.gramophone.util.PlaylistsUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class RemoveFromPlaylistDialog extends DialogFragment {
 
     @NonNull
@@ -49,14 +46,14 @@ public class RemoveFromPlaylistDialog extends DialogFragment {
             title = R.string.remove_song_from_playlist_title;
             content = Html.fromHtml(getString(R.string.remove_song_x_from_playlist, songs.get(0).title));
         }
+
         return new MaterialDialog.Builder(getActivity())
                 .title(title)
                 .content(content)
                 .positiveText(R.string.remove_action)
                 .negativeText(android.R.string.cancel)
                 .onPositive((dialog, which) -> {
-                    if (getActivity() == null)
-                        return;
+                    if (getActivity() == null) return;
                     PlaylistsUtil.removeFromPlaylist(getActivity(), songs);
                 })
                 .build();

@@ -95,7 +95,6 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends MediaEntryViewHolder {
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
         }

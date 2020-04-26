@@ -49,6 +49,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
 
     public SongAdapter(AppCompatActivity activity, List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder, boolean showSectionName) {
         super(activity, cabHolder, R.menu.menu_media_selection);
+
         this.activity = activity;
         this.dataSet = dataSet;
         this.itemLayoutRes = itemLayoutRes;
@@ -107,6 +108,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
         if (holder.title != null) {
             holder.title.setText(getSongTitle(song));
         }
+
         if (holder.text != null) {
             holder.text.setText(getSongText(song));
         }
@@ -245,9 +247,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
             if (image != null && image.getVisibility() == View.VISIBLE) {
                 switch (item.getItemId()) {
                     case R.id.action_go_to_album:
-                        Pair[] albumPairs = new Pair[]{
-                                Pair.create(image, activity.getResources().getString(R.string.transition_album_art))
-                        };
+                        Pair[] albumPairs = new Pair[]{Pair.create(image, activity.getResources().getString(R.string.transition_album_art))};
                         NavigationUtil.goToAlbum(activity, getSong().albumId, albumPairs);
                         return true;
                 }

@@ -38,9 +38,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class DonationsDialog extends DialogFragment implements BillingProcessor.IBillingHandler {
     public static final String TAG = DonationsDialog.class.getSimpleName();
 
@@ -111,6 +108,7 @@ public class DonationsDialog extends DialogFragment implements BillingProcessor.
         if (skuDetailsLoadAsyncTask != null) {
             skuDetailsLoadAsyncTask.cancel(true);
         }
+
         super.onDestroy();
     }
 
@@ -118,6 +116,7 @@ public class DonationsDialog extends DialogFragment implements BillingProcessor.
         if (skuDetailsLoadAsyncTask != null) {
             skuDetailsLoadAsyncTask.cancel(false);
         }
+
         skuDetailsLoadAsyncTask = new SkuDetailsLoadAsyncTask(this).execute();
     }
 
@@ -147,6 +146,7 @@ public class DonationsDialog extends DialogFragment implements BillingProcessor.
                 final String[] ids = dialog.getResources().getStringArray(DONATION_PRODUCT_IDS);
                 return dialog.billingProcessor.getPurchaseListingDetails(new ArrayList<>(Arrays.asList(ids)));
             }
+
             cancel(false);
             return null;
         }

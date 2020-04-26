@@ -37,24 +37,30 @@ public class PlaylistSongAdapter extends AbsOffsetSongAdapter {
                 holder.title.setText(MusicUtil.getPlaylistInfoString(activity, dataSet));
                 holder.title.setTextColor(textColor);
             }
+
             if (holder.text != null) {
                 holder.text.setVisibility(View.GONE);
             }
+
             if (holder.menu != null) {
                 holder.menu.setVisibility(View.GONE);
             }
+
             if (holder.image != null) {
                 final int padding = activity.getResources().getDimensionPixelSize(R.dimen.default_item_margin) / 2;
                 holder.image.setPadding(padding, padding, padding, padding);
                 holder.image.setColorFilter(textColor);
                 holder.image.setImageResource(R.drawable.ic_timer_white_24dp);
             }
+
             if (holder.dragView != null) {
                 holder.dragView.setVisibility(View.GONE);
             }
+
             if (holder.separator != null) {
                 holder.separator.setVisibility(View.VISIBLE);
             }
+
             if (holder.shortSeparator != null) {
                 holder.shortSeparator.setVisibility(View.GONE);
             }
@@ -79,9 +85,11 @@ public class PlaylistSongAdapter extends AbsOffsetSongAdapter {
                 Pair[] albumPairs = new Pair[]{
                         Pair.create(image, activity.getString(R.string.transition_album_art))
                 };
+
                 NavigationUtil.goToAlbum(activity, dataSet.get(getAdapterPosition() - 1).albumId, albumPairs);
                 return true;
             }
+
             return super.onSongMenuItemClick(item);
         }
     }
