@@ -12,6 +12,8 @@ import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 import com.kabouzeid.gramophone.util.QueryUtil;
 
+import org.jellyfin.apiclient.model.querying.ItemQuery;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -53,7 +55,7 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
                     getLibraryFragment());
         }
 
-        QueryUtil.getSongs(new MediaCallback() {
+        QueryUtil.getSongs(new ItemQuery(), new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
                 dataSet.addAll((Collection<Song>) media);

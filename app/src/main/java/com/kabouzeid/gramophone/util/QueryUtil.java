@@ -16,11 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QueryUtil {
-    public static void getAlbums(MediaCallback callback) {
-        ItemQuery query = new ItemQuery();
+    public static void getAlbums(ItemQuery query, MediaCallback callback) {
         query.setIncludeItemTypes(new String[]{"MusicAlbum"});
         query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setLimit(10);
+        query.setLimit(100);
         query.setRecursive(true);
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
@@ -56,59 +55,10 @@ public class QueryUtil {
         });
     }
 
-    public static void getAlbums(String id, MediaCallback callback) {
-        ItemQuery query = new ItemQuery();
-        query.setIncludeItemTypes(new String[]{"MusicAlbum"});
-        query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setArtistIds(new String[]{id});
-        query.setRecursive(true);
-        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
-            @Override
-            public void onResponse(ItemsResult result) {
-                List<Album> albums = new ArrayList<>();
-                for (BaseItemDto itemDto : result.getItems()) {
-                    albums.add(new Album(itemDto));
-                }
-
-                callback.onLoadMedia(albums);
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                exception.printStackTrace();
-            }
-        });
-    }
-
-    public static void getSongs(MediaCallback callback) {
-        ItemQuery query = new ItemQuery();
+    public static void getSongs(ItemQuery query, MediaCallback callback) {
         query.setIncludeItemTypes(new String[]{"Audio"});
         query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setRecursive(true);
         query.setLimit(100);
-        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
-            @Override
-            public void onResponse(ItemsResult result) {
-                List<Song> songs = new ArrayList<>();
-                for (BaseItemDto itemDto : result.getItems()) {
-                    songs.add(new Song(itemDto));
-                }
-
-                callback.onLoadMedia(songs);
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                exception.printStackTrace();
-            }
-        });
-    }
-
-    public static void getSongs(String album, MediaCallback callback) {
-        ItemQuery query = new ItemQuery();
-        query.setIncludeItemTypes(new String[]{"Audio"});
-        query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setParentId(album);
         query.setRecursive(true);
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
@@ -131,7 +81,7 @@ public class QueryUtil {
     public static void getArtists(MediaCallback callback) {
         ArtistsQuery query = new ArtistsQuery();
         query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setLimit(10);
+        query.setLimit(100);
         query.setRecursive(true);
         App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
             @Override

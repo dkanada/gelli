@@ -38,6 +38,8 @@ import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.kabouzeid.gramophone.util.PhonographColorUtil;
 import com.kabouzeid.gramophone.util.QueryUtil;
 
+import org.jellyfin.apiclient.model.querying.ItemQuery;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -96,9 +98,13 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
             @Override
             public void onLoadMedia(List<?> media) {
                 Album album = (Album) media.get(0);
-
                 setAlbum(album);
-                QueryUtil.getSongs(album.id, new MediaCallback() {
+
+                ItemQuery query = new ItemQuery();
+                query.setParentId(album.id);
+                query.setSortBy(new String[]{"IndexNumber"});
+
+                QueryUtil.getSongs(query, new MediaCallback() {
                     @Override
                     public void onLoadMedia(List<?> media) {
                         album.songs = (List<Song>) media;

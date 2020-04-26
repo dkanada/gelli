@@ -45,6 +45,8 @@ import com.kabouzeid.gramophone.util.PhonographColorUtil;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 import com.kabouzeid.gramophone.util.QueryUtil;
 
+import org.jellyfin.apiclient.model.querying.ItemQuery;
+
 public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder {
     public static final String EXTRA_ARTIST_ID = "extra_artist_id";
 
@@ -116,11 +118,28 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
             @Override
             public void onLoadMedia(List<?> media) {
                 Artist artist = (Artist) media.get(0);
-                QueryUtil.getAlbums(artist.id, new MediaCallback() {
+
+                ItemQuery query = new ItemQuery();
+                query.setArtistIds(new String[]{artist.id});
+
+                QueryUtil.getAlbums(query, new MediaCallback() {
                     @Override
                     public void onLoadMedia(List<?> media) {
                         artist.albums = (List<Album>) media;
                         setArtist(artist);
+
+                        QueryUtil.getSongs(query, new MediaCallback() {
+                            @Override
+                            public void onLoadMedia(List<?> media) {
+                                for (Album album : artist.albums) {
+                                    for (Song song : (List<Song>) media) {
+                                        if (song.albumId.equals(album.id)) album.songs.add(song);
+                                    }
+                                }
+
+                                setArtist(artist);
+                            }
+                        });
                     }
                 });
             }

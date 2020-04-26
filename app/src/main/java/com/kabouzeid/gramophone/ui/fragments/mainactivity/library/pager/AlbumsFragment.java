@@ -11,6 +11,8 @@ import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 import com.kabouzeid.gramophone.util.QueryUtil;
 
+import org.jellyfin.apiclient.model.querying.ItemQuery;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -36,7 +38,7 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
         List<Album> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
 
         AlbumAdapter adapter = new AlbumAdapter(getLibraryFragment().getMainActivity(), dataSet, itemLayoutRes, loadUsePalette(), getLibraryFragment());
-        QueryUtil.getAlbums(new MediaCallback() {
+        QueryUtil.getAlbums(new ItemQuery(), new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
                 dataSet.addAll((Collection<Album>) media);
