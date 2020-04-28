@@ -4,10 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 
-import androidx.annotation.NonNull;
-
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.TransactionDetails;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.gramophone.shortcuts.DynamicShortcutManager;
 

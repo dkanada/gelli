@@ -180,6 +180,7 @@
     <string name="website">Website</string>
     <string name="loading_products">Loading products…</string>
     <string name="up_next">Up next</string>
+    <string name="all">All</string>
     <string name="pref_title_now_playing_screen_appearance">Appearance</string>
     <string name="library">Library</string>
     <string name="saved_playlist_to">Saved playlist to %s.</string>

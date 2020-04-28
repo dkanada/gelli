@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import com.google.android.material.navigation.NavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +26,18 @@ import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
+import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.kabouzeid.gramophone.ui.fragments.mainactivity.library.LibraryFragment;
 import com.kabouzeid.gramophone.util.MusicUtil;
 
+import com.kabouzeid.gramophone.util.QueryUtil;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
+
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +55,9 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
 
     @Nullable
     private View navigationDrawerHeader;
+
+    @Nullable
+    private List<BaseItemDto> libraries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +105,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             drawerLayout.closeDrawers();
             switch (menuItem.getItemId()) {
                 case R.id.nav_library:
+                    QueryUtil.currentLibrary = null;
                     navigationView.setCheckedItem(R.id.nav_library);
                     setCurrentFragment(LibraryFragment.newInstance());
                     break;
@@ -104,6 +116,16 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, AboutActivity.class)), 200);
                     break;
             }
+
+            for (BaseItemDto itemDto : libraries) {
+                if (menuItem.getItemId() == itemDto.getId().hashCode()) {
+                    QueryUtil.currentLibrary = itemDto;
+                    navigationView.setCheckedItem(itemDto.getId().hashCode());
+                    setCurrentFragment(LibraryFragment.newInstance());
+                    break;
+                }
+            }
+
             return true;
         });
     }
@@ -117,14 +139,37 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             Song song = MusicPlayerRemote.getCurrentSong();
             if (navigationDrawerHeader == null) {
                 navigationDrawerHeader = navigationView.inflateHeaderView(R.layout.navigation_drawer_header);
-                //noinspection ConstantConditions
                 navigationDrawerHeader.setOnClickListener(v -> {
                     drawerLayout.closeDrawers();
                     if (getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                         expandPanel();
                     }
                 });
+
+                Menu menu = navigationView.getMenu();
+                QueryUtil.getLibraries(new MediaCallback() {
+                    @Override
+                    public void onLoadMedia(List<?> media) {
+                        libraries = (List<BaseItemDto>) media;
+                        menu.clear();
+
+                        menu.add(R.id.navigation_drawer_menu_category_sections, R.id.nav_library, menu.size(), R.string.all);
+                        menu.getItem(0).setIcon(R.drawable.ic_library_music_white_24dp);
+
+                        for (BaseItemDto itemDto : libraries) {
+                            if (itemDto.getCollectionType() == null || !itemDto.getCollectionType().equals("music")) continue;
+                            menu.add(R.id.navigation_drawer_menu_category_sections, itemDto.getId().hashCode(), menu.size(), itemDto.getName());
+                            menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_album_white_24dp);
+                        }
+
+                        menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_settings, menu.size(), R.string.action_settings);
+                        menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_settings_white_24dp);
+                        menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_about, menu.size(), R.string.action_about);
+                        menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_help_white_24dp);
+                    }
+                });
             }
+
             ((TextView) navigationDrawerHeader.findViewById(R.id.title)).setText(song.title);
             ((TextView) navigationDrawerHeader.findViewById(R.id.text)).setText(MusicUtil.getSongInfoString(song));
             CustomGlideRequest.Builder.from(Glide.with(this), song.albumId)

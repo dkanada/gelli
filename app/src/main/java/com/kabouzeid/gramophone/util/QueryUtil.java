@@ -13,14 +13,36 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class QueryUtil {
+    public static BaseItemDto currentLibrary;
+
+    public static void getLibraries(MediaCallback callback) {
+        String id = App.getApiClient().getCurrentUserId();
+        App.getApiClient().GetUserViews(id, new Response<ItemsResult>() {
+            @Override
+            public void onResponse(ItemsResult result) {
+                List<BaseItemDto> libraries = new ArrayList<>();
+                libraries.addAll(Arrays.asList(result.getItems()));
+
+                callback.onLoadMedia(libraries);
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
     public static void getAlbums(ItemQuery query, MediaCallback callback) {
         query.setIncludeItemTypes(new String[]{"MusicAlbum"});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(100);
         query.setRecursive(true);
+        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
@@ -60,6 +82,7 @@ public class QueryUtil {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(100);
         query.setRecursive(true);
+        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
@@ -83,6 +106,7 @@ public class QueryUtil {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(100);
         query.setRecursive(true);
+        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
         App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
