@@ -54,12 +54,8 @@
     <string name="delete_playlist_x"><![CDATA[確定要刪除播放清單<b>%1$s</b>嗎？]]></string>
     <string name="clear_playlist_x"><![CDATA[\u78ba\u5b9a\u8981\u6e05\u9664\u64ad\u653e\u6e05\u55ae <b>%1$s</b> \u55ce\uff1f\u6b64\u64cd\u4f5c\u662f\u7121\u6cd5\u5fa9\u539f\u7684\uff01]]></string>
     <string name="delete_x_playlists"><![CDATA[確定要刪除<b>%1$d</b>個播放清單？]]></string>
-    <string name="delete_song_x"><![CDATA[確定刪除歌曲<b>%1$s</b>嗎？]]></string>
-    <string name="delete_x_songs"><![CDATA[確定要刪除<b>%1$d</b>首歌嗎？]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[確定要將歌曲<b>%1$s</b>從播放清單中移除嗎？]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[確定要將<b>%1$d</b>首歌從播放清單中移除嗎？]]></string>
-    <string name="delete_song_title">刪除歌曲</string>
-    <string name="delete_songs_title">刪除多首歌曲</string>
     <string name="remove_song_from_playlist_title">將歌曲從播放清單中移除</string>
     <string name="remove_songs_from_playlist_title">將多首歌曲從播放清單中移除</string>
     <string name="rename_playlist_title">重新命名播放清單</string>

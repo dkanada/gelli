@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[Izbrisati popis naslova <b>%1$s</b>?]]></string>
     <string name="clear_playlist_x"><![CDATA[O\u010distiti popis naslova <b>%1$s</b>? Ovaj postupak se ne mo\u017ee poni\u0161titi!]]></string>
     <string name="delete_x_playlists"><![CDATA[Izbrisati <b>%1$d</b> popisa naslova?]]></string>
-    <string name="delete_song_x"><![CDATA[Izbrisati pjesmu <b>%1$s</b>?]]></string>
-    <string name="delete_x_songs"><![CDATA[Izbrisati <b>%1$d</b> pjesme?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Ukloniti pjesmu <b>%1$s</b> s popisa naslova?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Ukloniti pjesme <b>%1$d</b> s popisa naslova?]]></string>
-    <string name="delete_song_title">Izbriši pjesmu</string>
-    <string name="delete_songs_title">Izbriši pjesme</string>
     <string name="remove_song_from_playlist_title">Ukloni pjesmu s popisa naslova</string>
     <string name="remove_songs_from_playlist_title">Ukloni pjesme s popisa naslova</string>
     <string name="rename_playlist_title">Preimenuj popis naslova</string>

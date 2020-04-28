@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[Hapus daftar putar {<b>}{%1$s}{</b>}?]]></string>
     <string name="clear_playlist_x"><![CDATA[Kosongkan daftar putar {<b>}{%1$s}{</b>}? Tindakan ini tidak dapat diurungkan.]]></string>
     <string name="delete_x_playlists"><![CDATA[Hapus <b>%1$d</b> daftar putar?]]></string>
-    <string name="delete_song_x"><![CDATA[Hapus lagu <b>%1$s</b>?]]></string>
-    <string name="delete_x_songs"><![CDATA[Hapus <b>%1$d</b> lagu?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Hapus lagu <b>%1$s</b> dari daftar putar?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Hapus <b>%1$d</b> dari daftar putar?]]></string>
-    <string name="delete_song_title">Hapus lagu</string>
-    <string name="delete_songs_title">Hapus lagu-lagu</string>
     <string name="remove_song_from_playlist_title">Hapus lagu dari daftar putar</string>
     <string name="remove_songs_from_playlist_title">Hapus lagu-lagu dari daftar putar</string>
     <string name="rename_playlist_title">Ubah nama daftar putar</string>

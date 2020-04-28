@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[Haluatko poistaa soittolistan <b>%1$s</b>?]]></string>
     <string name="clear_playlist_x"><![CDATA[Haluatko tyhjent\u00e4\u00e4 soittolistan <b>%1$s</b>? T\u00e4t\u00e4 toimintoa ei voi perua!]]></string>
     <string name="delete_x_playlists"><![CDATA[Poistetaanko <b>%1$d</b> soittolistaa?]]></string>
-    <string name="delete_song_x"><![CDATA[Haluatko poistaa kappaleen <b>%1$s</b>?]]></string>
-    <string name="delete_x_songs"><![CDATA[Haluatko poistaa <b>%1$d</b> kappaletta?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Haluatko poistaa kappaleen <b>%1$s</b> soittolistasta?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Haluatko poistaa <b>%1$d</b> kappaletta soittolistasta?]]></string>
-    <string name="delete_song_title">Poista kappale</string>
-    <string name="delete_songs_title">Poista kappaleet</string>
     <string name="remove_song_from_playlist_title">Poista kappale soittolistasta</string>
     <string name="remove_songs_from_playlist_title">Poista kappaleita soittolistasta</string>
     <string name="rename_playlist_title">Nimeä soittolista uudelleen</string>

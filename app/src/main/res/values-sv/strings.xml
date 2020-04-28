@@ -42,14 +42,6 @@
     <string name="delete_playlist_x"><![CDATA[
 Vill du radera spellistan <b>%1$s</b>?
     ]]></string>
-    <string name="delete_song_x"><![CDATA[
-Vill du radera låten <b>%1$s</b>?
-    ]]></string>
-    <string name="delete_x_songs"><![CDATA[
-Vill du radera <b>%1$d</b> låtar?
-    ]]></string>
-    <string name="delete_song_title">Radera låt</string>
-    <string name="delete_songs_title">Radera låtar</string>
     <string name="rename_playlist_title">Döp om spellista</string>
     <string name="delete_playlist_title">Radera spellista</string>
     <string name="light_theme_name">Ljus</string>

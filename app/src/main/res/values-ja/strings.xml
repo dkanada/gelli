@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[<b>%1$s</b> を削除してもよろしいですか？]]></string>
     <string name="clear_playlist_x"><![CDATA[\u672c\u5f53\u306b\u30d7\u30ec\u30a4\u30ea\u30b9\u30c8 <b>%1$s</b> \u3092\u6d88\u53bb\u3057\u3066\u3082\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f\u3053\u306e\u64cd\u4f5c\u306f\u53d6\u308a\u6d88\u305b\u307e\u305b\u3093\uff01]]></string>
     <string name="delete_x_playlists"><![CDATA[選択された<b>%1$d</b>つのプレイリストを削除してもよろしいですか？]]></string>
-    <string name="delete_song_x"><![CDATA[<b>%1$s</b> を削除してもよろしいですか？]]></string>
-    <string name="delete_x_songs"><![CDATA[選択された<b>%1$d</b>曲を削除してもよろしいですか？]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[プレイリストから <b>%1$s</b> を除去してもよろしいですか？]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[選択された<b>%1$d</b>曲をプレイリストから除去してもよろしいですか？]]></string>
-    <string name="delete_song_title">楽曲の削除</string>
-    <string name="delete_songs_title">楽曲の複数削除</string>
     <string name="remove_song_from_playlist_title">プレイリストから曲を除去</string>
     <string name="remove_songs_from_playlist_title">プレイリストから曲を複数除去</string>
     <string name="rename_playlist_title">名前の変更</string>

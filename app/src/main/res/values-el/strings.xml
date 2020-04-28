@@ -54,12 +54,8 @@
     <string name="clear_playlist_x"><![CDATA[\u0395\u03ba\u03ba\u03b1\u03b8\u03ac\u03c1\u03b9\u03c3\u03b7 \u03c4\u03b7\u03c2 \u03bb\u03af\u03c3\u03c4\u03b1\u03c2  <b>%1$s</b> ; (\u039c\u03b7 \u03b1\u03bd\u03b1\u03c3\u03c4\u03c1\u03ad\u03c8\u03b9\u03bc\u03bf!)]]></string>
     <string name="delete_x_playlists"><![CDATA[Θα θέλατε να διαγράψετε <b>%1$d</b> λίστες αναπαραγωγής; 
     ]]></string>
-    <string name="delete_song_x"><![CDATA[Θέλετε να διαγράψετε το τραγούδι <b>%1$s</b>;]]></string>
-    <string name="delete_x_songs"><![CDATA[Θέλετε να διαγράψετε <b>%1$d</b> τραγούδια;]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Να αφαιρεθεί το τραγούδι <b>%1$s</b> από τη λίστα αναπαραγωγής;]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Να αφαιρεθούν <b>%1$d</b> τα τραγούδια από την λίστα αναπαραγωγής;]]></string>
-    <string name="delete_song_title">Διαγραφή τραγουδιού</string>
-    <string name="delete_songs_title">Διαγραφή τραγουδιών</string>
     <string name="remove_song_from_playlist_title">Διαγραφή από την λίστα</string>
     <string name="remove_songs_from_playlist_title">Διαγραφή τραγουδιών από την λίστα</string>
     <string name="rename_playlist_title">Μετονομασία λίστας αναπαραγωγής</string>

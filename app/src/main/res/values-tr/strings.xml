@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[<b>%1$s</b> çalma listesini sil?]]></string>
     <string name="clear_playlist_x"><![CDATA[<b>%1$s</b> \u00e7alma listesini temizlemek istedi\u011finize emin misiniz? Bu geri al\u0131namaz!]]></string>
     <string name="delete_x_playlists"><![CDATA[<b>%1$d</b> çalma listelerini silmek istiyor musunuz?]]></string>
-    <string name="delete_song_x"><![CDATA[<b>%1$s</b> şarkıyı silmek istiyor musunuz?]]></string>
-    <string name="delete_x_songs"><![CDATA[<b>%1$d</b> bu şarkıları silmek istiyor musunuz?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Çalma listesinden <b>%1$s</b> şarkıyı kaldırmak istiyor musunuz?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Çalma listesinden <b>%1$d</b> şarkıları kaldırmak istiyor musunuz?]]></string>
-    <string name="delete_song_title">Şarkıyı sil</string>
-    <string name="delete_songs_title">Şarkıları sil</string>
     <string name="remove_song_from_playlist_title">Şarkıyı çalma listesinden kaldır</string>
     <string name="remove_songs_from_playlist_title">Şarkıları çalma listesinden kaldır</string>
     <string name="rename_playlist_title">Çalma listesini yeniden adlandır</string>

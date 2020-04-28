@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[Doriți să ștergeți lista de redare <b>%1$s</b>?]]></string>
     <string name="clear_playlist_x"><![CDATA[Sunte\u021bi sigur ca dori\u021bi s\u0103 \u015fterge\u0163i lista  <b>%1$s</b>? Aceasta ac\u021biune este ireversibil\u0103!]]></string>
     <string name="delete_x_playlists"><![CDATA[Ştergeți <b>%1$d</b> liste?]]></string>
-    <string name="delete_song_x"><![CDATA[Ştergeți melodia <b>%1$s</b> ?]]></string>
-    <string name="delete_x_songs"><![CDATA[Ştergeți <b>%1$d</b> melodii?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Ştergeți melodia <b>%1$s</b> din listă?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Scoateți <b>%1$d</b> melodii din playlist?]]></string>
-    <string name="delete_song_title">Ștergeţi melodia</string>
-    <string name="delete_songs_title">Ștergeţi melodiile</string>
     <string name="remove_song_from_playlist_title">Scoatere melodie din playlist</string>
     <string name="remove_songs_from_playlist_title">Scoatere melodii din playlist</string>
     <string name="rename_playlist_title">Redenumire listă de redare</string>

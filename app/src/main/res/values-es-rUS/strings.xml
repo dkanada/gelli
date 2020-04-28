@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[¿Borrar la lista de reproducción <b>%1$s</b>?]]></string>
     <string name="clear_playlist_x"><![CDATA[\u00bfLimpiar la lista de reproducci\u00f3n <b>%1$s</b>. Esto no puede ser revertido!]]></string>
     <string name="delete_x_playlists"><![CDATA[¿Borrar <b>%1$d</b> listas de reproducción?]]></string>
-    <string name="delete_song_x"><![CDATA[¿Eliminar la canción <b>%1$s</b>?]]></string>
-    <string name="delete_x_songs"><![CDATA[¿Eliminar <b>%1$d</b> canciones?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[¿Eliminar la canción </b>%1$s<b> de la lista de reproducción?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[¿Eliminar </b>%1$d<b> canciones de la lista de reproducción?]]></string>
-    <string name="delete_song_title">Eliminar canción</string>
-    <string name="delete_songs_title">Eliminar canciones</string>
     <string name="remove_song_from_playlist_title">Eliminar canción de la lista de reproducción</string>
     <string name="remove_songs_from_playlist_title">Eliminar canciones de la lista de reproducción</string>
     <string name="rename_playlist_title">Renombrar lista de reproducción</string>

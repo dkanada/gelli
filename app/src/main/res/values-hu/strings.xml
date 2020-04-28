@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[Biztosan törli a(z) <b>%1$s</b> lejátszási listát?]]></string>
     <string name="clear_playlist_x"><![CDATA[Biztosan t\u00f6rli a(z) <b>%1$s</b> lej\u00e1tsz\u00e1si lista tartalm\u00e1t? Ez a m\u0171velet nem visszavonhat\u00f3!]]></string>
     <string name="delete_x_playlists"><![CDATA[Biztosan töröl <b>%1$d</b> lejátszási listát?]]></string>
-    <string name="delete_song_x"><![CDATA[Biztosan törli a(z) <b>%1$s</b> dalt?]]></string>
-    <string name="delete_x_songs"><![CDATA[Biztosan töröl <b>%1$d</b> dalt?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Biztosan eltávolítja a(z) <b>%1$s</b> dalt a lejátszási listából?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Biztosan eltávolít <b>%1$d</b> dalt a lejátszási listából?]]></string>
-    <string name="delete_song_title">Dal törlése</string>
-    <string name="delete_songs_title">Dalok törlése</string>
     <string name="remove_song_from_playlist_title">Dal eltávolítása a lejátszási listából</string>
     <string name="remove_songs_from_playlist_title">Dalok eltávolítása a lejátszási listából</string>
     <string name="rename_playlist_title">Lejátszási lista átnevezése</string>

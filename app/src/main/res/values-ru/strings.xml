@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[Вы хотите удалить плейлист <b>%1$s</b>?]]></string>
     <string name="clear_playlist_x"><![CDATA[\u0412\u044b \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u0445\u043e\u0442\u0438\u0442\u0435 \u043e\u0447\u0438\u0441\u0442\u0438\u0442\u044c \u043f\u043b\u0435\u0439\u043b\u0438\u0441\u0442 <b>%1$s</b>? \u042d\u0442\u043e \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u043d\u0435\u043e\u0431\u0440\u0430\u0442\u0438\u043c\u043e!]]></string>
     <string name="delete_x_playlists"><![CDATA[Удалить <b>%1$d</b> плейлиста?]]></string>
-    <string name="delete_song_x"><![CDATA[Удалить песню <b>%1$s</b>?]]></string>
-    <string name="delete_x_songs"><![CDATA[Удалить <b>%1$d</b> песни?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Удалить песню <b>%1$s</b> из плейлиста?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Удалить <b>%1$d</b> песен из плейлиста?]]></string>
-    <string name="delete_song_title">Удалить песню</string>
-    <string name="delete_songs_title">Удалить песни</string>
     <string name="remove_song_from_playlist_title">Удалить песню из плейлиста</string>
     <string name="remove_songs_from_playlist_title">Удалить песни из плейлиста</string>
     <string name="rename_playlist_title">Переименовать плейлист</string>

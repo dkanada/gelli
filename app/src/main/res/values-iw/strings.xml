@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[האם ברצונך למחוק את רשימת השמיעה <b>%1$s</b>?]]></string>
     <string name="clear_playlist_x"><![CDATA[\u05d4\u05d0\u05dd \u05dc\u05e0\u05e7\u05d5\u05ea \u05d0\u05ea \u05e8\u05e9\u05d9\u05de\u05ea \u05d4\u05e9\u05de\u05d9\u05e2\u05d4 <b>%1$s</b>? \u05dc\u05d0\u05d7\u05e8 \u05ea\u05d4\u05dc\u05d9\u05da \u05d6\u05d4 \u05dc\u05d0 \u05ea\u05d5\u05db\u05dc/\u05d9 \u05dc\u05d4\u05d7\u05d6\u05d9\u05e8 \u05d0\u05ea \u05d4\u05de\u05e6\u05d1 \u05dc\u05e7\u05d3\u05de\u05d5\u05ea\u05d5!]]></string>
     <string name="delete_x_playlists"><![CDATA[האם ברצונך למחוק  <b>%1$d</b> רשימות השמיעה?]]></string>
-    <string name="delete_song_x"><![CDATA[למחוק את השיר <b>%1$s</b>?]]></string>
-    <string name="delete_x_songs"><![CDATA[למחוק <b>%1$d</b> שירים?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[למחוק את השיר <b>%1$s</b> מרשימת ההשמעה?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[למחוק את השירים <b>%1$d</b> מרשימת ההשמעה?]]></string>
-    <string name="delete_song_title">מחק שיר</string>
-    <string name="delete_songs_title">מחק שירים</string>
     <string name="remove_song_from_playlist_title">מחיקת שיר מרשימת ההשמעה</string>
     <string name="remove_songs_from_playlist_title">מחיקת שירים מרשימת ההשמעה</string>
     <string name="rename_playlist_title">שנה שם לרשימת ההשמעה</string>

@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[ Deseja excluir a playlist <b>%1$s</b>? ]]></string>
     <string name="clear_playlist_x"><![CDATA[Limpar a lista de reprodu\u00e7\u00e3o {<b>}{%1$s}{</b>}? Isso n\u00e3o pode ser desfeito!]]></string>
     <string name="delete_x_playlists"><![CDATA[Excluir {<b>}{%1$d}{</b>} listas de reprodução?]]></string>
-    <string name="delete_song_x"><![CDATA[Excluir a música {<b>}{%1$s}{</b>}?]]></string>
-    <string name="delete_x_songs"><![CDATA[Excluir <b>%1$d</b> faixas?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Remover a música <b>%1$s</b> da playlist?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Remover <b>%1$d</b> músicas da playlist?]]></string>
-    <string name="delete_song_title">Excluir música</string>
-    <string name="delete_songs_title">Excluir Músicas</string>
     <string name="remove_song_from_playlist_title">Remover Música da Lista de Reprodução</string>
     <string name="remove_songs_from_playlist_title">Remover Músicas da Lista de Reprodução</string>
     <string name="rename_playlist_title">Renomear a Lista de Reprodução</string>

@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[حذف قائمة التشغيل <b>%1$s</b>؟]]></string>
     <string name="clear_playlist_x"><![CDATA[\u0645\u0633\u062d \u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u062a\u0634\u063a\u064a\u0644 <b>%1$s</b>\u061f \u0644\u0627 \u064a\u0645\u0643\u0646 \u0627\u0644\u062a\u0631\u0627\u062c\u0639 \u0639\u0646 \u0630\u0644\u0643!]]></string>
     <string name="delete_x_playlists"><![CDATA[حذف <b>%1$d</b> قوائم تشغيل؟]]></string>
-    <string name="delete_song_x"><![CDATA[حذف الأغنية <b>%1$s</b>؟]]></string>
-    <string name="delete_x_songs"><![CDATA[حذف <b>%1$d</b> أغاني؟]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[إزالة الأغنية <b>%1$s</b> من قائمة التشغيل؟]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[إزالة <b>%1$d</b> أغاني من قائمة التشغيل؟]]></string>
-    <string name="delete_song_title">حذف الأغنية</string>
-    <string name="delete_songs_title">حذف الأغاني</string>
     <string name="remove_song_from_playlist_title">إزالة الأغنية من قائمة التشغيل</string>
     <string name="remove_songs_from_playlist_title">إزالة الأغاني من قائمة التشغيل</string>
     <string name="rename_playlist_title">إعادة تسمية قائمة التشغيل</string>

@@ -53,12 +53,8 @@
     <string name="delete_playlist_x"><![CDATA[Eliminare la playlist <b>%1$s</b>?]]></string>
     <string name="clear_playlist_x"><![CDATA[Vuoi svuotare la playlist <b>%1$s</b>? L\'operazione non pu\u00f2 essere annullata!]]></string>
     <string name="delete_x_playlists"><![CDATA[Eliminare <b>%1$d</b> playlist?]]></string>
-    <string name="delete_song_x"><![CDATA[Eliminare il brano <b>%1$s</b>?]]></string>
-    <string name="delete_x_songs"><![CDATA[Eliminare <b>%1$d</b> brani?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Rimuovere il brano <b>%1$s</b> dalla playlist?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Rimuovere <b>%1$d</b> brani dalla playlist?]]></string>
-    <string name="delete_song_title">Elimina brano</string>
-    <string name="delete_songs_title">Elimina brani</string>
     <string name="remove_song_from_playlist_title">Rimuovi brano dalla playlist</string>
     <string name="remove_songs_from_playlist_title">Rimuovi brani dalla playlist</string>
     <string name="rename_playlist_title">Rinomina playlist</string>

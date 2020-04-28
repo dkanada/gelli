@@ -51,12 +51,8 @@
     <string name="delete_playlist_x"><![CDATA[Xóa danh sách nhạc <b>%1$s</b>?]]></string>
     <string name="clear_playlist_x"><![CDATA[D\u1ecdn danh s\u00e1ch nh\u1ea1c <b>%1$s</b>? \u0110i\u1ec1u n\u00e0y kh\u00f4ng th\u1ec3 kh\u00f4i ph\u1ee5c!]]></string>
     <string name="delete_x_playlists"><![CDATA[Xóa danh sách nhạc <b>%1$d</b>? ]]></string>
-    <string name="delete_song_x"><![CDATA[Xóa bài hát <b>%1$s</b>?]]></string>
-    <string name="delete_x_songs"><![CDATA[Xóa bài hát <b>%1$d</b>? ]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Xóa bài hát <b>%1$s</b> từ danh sách nhạc này?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Xóa bài hát <b>%1$d</b> từ danh sách nhạc? ]]></string>
-    <string name="delete_song_title">Xóa bài hát</string>
-    <string name="delete_songs_title">Xóa các bài hát</string>
     <string name="remove_song_from_playlist_title">Di chuyển bài hát từ danh sách nhạc</string>
     <string name="remove_songs_from_playlist_title">Di chuyển các bài hát từ danh sách nhạc</string>
     <string name="rename_playlist_title">Đổi tên danh sách nhạc</string>
