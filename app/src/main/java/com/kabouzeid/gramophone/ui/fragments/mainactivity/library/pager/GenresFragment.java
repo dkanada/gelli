@@ -1,30 +1,22 @@
 package com.kabouzeid.gramophone.ui.fragments.mainactivity.library.pager;
 
-import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.adapter.GenreAdapter;
-import com.kabouzeid.gramophone.interfaces.LoaderIds;
-import com.kabouzeid.gramophone.loader.GenreLoader;
-import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
+import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.model.Genre;
+import com.kabouzeid.gramophone.util.QueryUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAdapter, LinearLayoutManager> implements LoaderManager.LoaderCallbacks<List<Genre>> {
-
-    private static final int LOADER_ID = LoaderIds.GENRES_FRAGMENT;
-
+public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAdapter, LinearLayoutManager> {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     @NonNull
@@ -39,6 +31,14 @@ public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAda
         List<Genre> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
 
         GenreAdapter adapter = new GenreAdapter(getLibraryFragment().getMainActivity(), dataSet, R.layout.item_list_no_image);
+        QueryUtil.getGenres(new MediaCallback() {
+            @Override
+            public void onLoadMedia(List<?> media) {
+                dataSet.addAll((List<Genre>) media);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         return adapter;
     }
 
@@ -49,33 +49,5 @@ public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAda
 
     @Override
     public void onMediaStoreChanged() {
-        getLoaderManager().restartLoader(LOADER_ID, null, this);
-    }
-
-    @Override
-    @NonNull
-    public Loader<List<Genre>> onCreateLoader(int id, Bundle args) {
-        return new GenresFragment.AsyncGenreLoader(getActivity());
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<List<Genre>> loader, List<Genre> data) {
-        getAdapter().swapDataSet(data);
-    }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<List<Genre>> loader) {
-        getAdapter().swapDataSet(new ArrayList<>());
-    }
-
-    private static class AsyncGenreLoader extends WrappedAsyncTaskLoader<List<Genre>> {
-        public AsyncGenreLoader(Context context) {
-            super(context);
-        }
-
-        @Override
-        public List<Genre> loadInBackground() {
-            return GenreLoader.getAllGenres(getContext());
-        }
     }
 }

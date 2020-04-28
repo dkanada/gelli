@@ -91,7 +91,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
     @Override
     public String getSectionName(int position) {
         final Genre genre = dataSet.get(position);
-        return genre.id == -1 ? "" : MusicUtil.getSectionName(dataSet.get(position).name);
+        return genre.id.hashCode() == -1 ? "" : MusicUtil.getSectionName(dataSet.get(position).name);
     }
 
     public class ViewHolder extends MediaEntryViewHolder {

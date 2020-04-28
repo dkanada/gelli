@@ -153,9 +153,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                         libraries = (List<BaseItemDto>) media;
                         menu.clear();
 
-                        menu.add(R.id.navigation_drawer_menu_category_sections, R.id.nav_library, menu.size(), R.string.all);
-                        menu.getItem(0).setIcon(R.drawable.ic_library_music_white_24dp);
-
                         for (BaseItemDto itemDto : libraries) {
                             if (itemDto.getCollectionType() == null || !itemDto.getCollectionType().equals("music")) continue;
                             menu.add(R.id.navigation_drawer_menu_category_sections, itemDto.getId().hashCode(), menu.size(), itemDto.getName());

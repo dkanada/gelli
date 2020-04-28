@@ -3,13 +3,21 @@ package com.kabouzeid.gramophone.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
+
 public class Genre implements Parcelable {
-    public final int id;
+    public final String id;
     public final String name;
     public final int songCount;
 
+    public Genre(BaseItemDto itemDto) {
+        this.id = itemDto.getId();
+        this.name = itemDto.getName();
+        this.songCount = itemDto.getSongCount() != null ? itemDto.getSongCount() : 0;
+    }
+
     public Genre(final int id, final String name, final int songCount) {
-        this.id = id;
+        this.id = Integer.toString(id);
         this.name = name;
         this.songCount = songCount;
     }
@@ -28,12 +36,12 @@ public class Genre implements Parcelable {
 
     @Override
     public int hashCode() {
-        return id;
+        return id.hashCode();
     }
 
     @Override
     public String toString() {
-        return Integer.toString(id);
+        return id;
     }
 
     @Override
@@ -43,13 +51,13 @@ public class Genre implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeString(this.id);
         dest.writeString(this.name);
         dest.writeInt(this.songCount);
     }
 
     protected Genre(Parcel in) {
-        this.id = in.readInt();
+        this.id = in.readString();
         this.name = in.readString();
         this.songCount = in.readInt();
     }
