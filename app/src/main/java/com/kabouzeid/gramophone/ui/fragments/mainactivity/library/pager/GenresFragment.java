@@ -37,7 +37,9 @@ public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAda
     @Override
     protected GenreAdapter createAdapter() {
         List<Genre> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
-        return new GenreAdapter(getLibraryFragment().getMainActivity(), dataSet, R.layout.item_list_no_image);
+
+        GenreAdapter adapter = new GenreAdapter(getLibraryFragment().getMainActivity(), dataSet, R.layout.item_list_no_image);
+        return adapter;
     }
 
     @Override

@@ -2,9 +2,6 @@ package com.kabouzeid.gramophone.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-
-import com.kabouzeid.gramophone.util.MusicUtil;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 
@@ -15,27 +12,24 @@ public class Artist implements Parcelable {
     public static final String UNKNOWN_ARTIST_DISPLAY_NAME = "Unknown Artist";
 
     public List<Album> albums;
-    public List<String> genres;
+    public List<Song> songs;
 
     public String id;
     public String name;
     public long duration;
-    public int albumCount;
-    public int songCount;
 
     public Artist(BaseItemDto itemDto) {
         this.id = itemDto.getId();
         this.name = itemDto.getName();
         this.duration = itemDto.getRunTimeTicks() / 10000;
-        this.albumCount = itemDto.getAlbumCount() != null ? itemDto.getAlbumCount() : 0;
-        this.songCount = itemDto.getSongCount() != null ? itemDto.getSongCount() : 0;
 
         this.albums = new ArrayList<>();
-        this.genres = itemDto.getGenres();
+        this.songs = new ArrayList<>();
     }
 
     public Artist() {
         this.albums = new ArrayList<>();
+        this.songs = new ArrayList<>();
     }
 
     public String getId() {
@@ -47,11 +41,7 @@ public class Artist implements Parcelable {
     }
 
     public int getSongCount() {
-        int songCount = 0;
-        for (Album album : albums) {
-            songCount += album.getSongCount();
-        }
-        return songCount;
+        return songs.size();
     }
 
     public int getAlbumCount() {
@@ -59,10 +49,6 @@ public class Artist implements Parcelable {
     }
 
     public List<Song> getSongs() {
-        List<Song> songs = new ArrayList<>();
-        for (Album album : albums) {
-            songs.addAll(album.songs);
-        }
         return songs;
     }
 

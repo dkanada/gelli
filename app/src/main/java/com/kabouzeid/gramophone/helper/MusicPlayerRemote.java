@@ -389,6 +389,7 @@ public class MusicPlayerRemote {
         if (musicService != null) {
             return musicService.getAudioSessionId();
         }
+
         return -1;
     }
 

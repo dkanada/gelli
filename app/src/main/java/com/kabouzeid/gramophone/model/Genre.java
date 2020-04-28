@@ -28,19 +28,12 @@ public class Genre implements Parcelable {
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + songCount;
-        return result;
+        return id;
     }
 
     @Override
     public String toString() {
-        return "Genre{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", songCount=" + songCount + '\'' +
-                '}';
+        return Integer.toString(id);
     }
 
     @Override
