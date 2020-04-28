@@ -16,7 +16,6 @@
     <string name="action_play_pause">Toista/Pysäytä</string>
     <string name="action_previous">Edellinen</string>
     <string name="action_next">Seuraava</string>
-    <string name="action_delete_from_device">Poista laitteesta</string>
     <string name="action_details">Yksityiskohdat</string>
     <string name="action_rename">Nimeä uudelleen</string>
     <string name="action_delete">Poista</string>

@@ -33,8 +33,4 @@
         android:id="@+id/action_details"
         android:title="@string/action_details"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_delete_from_device"
-        android:title="@string/action_delete_from_device"
-        app:showAsAction="never" />
 </menu>

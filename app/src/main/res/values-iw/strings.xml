@@ -16,7 +16,6 @@
     <string name="action_play_pause">הפעל/השהה</string>
     <string name="action_previous">הקודם</string>
     <string name="action_next">הבא</string>
-    <string name="action_delete_from_device">מחק מהמכשיר</string>
     <string name="action_details">פרטים</string>
     <string name="action_rename">שנה שם</string>
     <string name="action_delete">מחק</string>

@@ -16,7 +16,6 @@
     <string name="action_play_pause">재생/일시 정지</string>
     <string name="action_previous">이전</string>
     <string name="action_next">다음</string>
-    <string name="action_delete_from_device">파일 삭제</string>
     <string name="action_details">세부 정보</string>
     <string name="action_rename">이름 변경</string>
     <string name="action_delete">삭제</string>

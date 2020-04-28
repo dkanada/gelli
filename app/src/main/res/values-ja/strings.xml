@@ -16,7 +16,6 @@
     <string name="action_play_pause">再生/一時停止</string>
     <string name="action_previous">前へ</string>
     <string name="action_next">次へ</string>
-    <string name="action_delete_from_device">端末から削除</string>
     <string name="action_details">詳細情報</string>
     <string name="action_rename">名前の変更</string>
     <string name="action_delete">削除</string>

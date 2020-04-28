@@ -16,7 +16,6 @@
     <string name="action_play_pause">Reprodukcija/Pauza</string>
     <string name="action_previous">Prethodno</string>
     <string name="action_next">Sljedeće</string>
-    <string name="action_delete_from_device">Izbriši s uređaja</string>
     <string name="action_details">Detalji</string>
     <string name="action_rename">Preimenuj</string>
     <string name="action_delete">Izbriši</string>

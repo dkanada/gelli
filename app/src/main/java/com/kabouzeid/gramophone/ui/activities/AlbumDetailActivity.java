@@ -249,9 +249,6 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
             case R.id.action_add_to_playlist:
                 AddToPlaylistDialog.create(songs).show(getSupportFragmentManager(), "ADD_PLAYLIST");
                 return true;
-            case R.id.action_delete_from_device:
-                DeleteSongsDialog.create(songs).show(getSupportFragmentManager(), "DELETE_SONGS");
-                return true;
             case android.R.id.home:
                 super.onBackPressed();
                 return true;

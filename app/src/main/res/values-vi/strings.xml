@@ -16,7 +16,6 @@
     <string name="action_play_pause">Phát/Dừng</string>
     <string name="action_previous">Trước</string>
     <string name="action_next">Kế tiếp</string>
-    <string name="action_delete_from_device">Xóa từ thiết bị</string>
     <string name="action_details">Chi tiết</string>
     <string name="action_rename">Đổi tên</string>
     <string name="action_delete">Xóa</string>

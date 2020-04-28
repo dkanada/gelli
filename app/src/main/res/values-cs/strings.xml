@@ -16,7 +16,6 @@
     <string name="action_play_pause">Přehrát/Pozastavit</string>
     <string name="action_previous">Předchozí</string>
     <string name="action_next">Další</string>
-    <string name="action_delete_from_device">Smazat ze zařízení</string>
     <string name="action_details">Podrobné informace o skladbě</string>
     <string name="action_rename">Přejmenovat</string>
     <string name="action_delete">Smazat</string>

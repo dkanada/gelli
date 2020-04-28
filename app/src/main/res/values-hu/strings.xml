@@ -16,7 +16,6 @@
     <string name="action_play_pause">Lejátszás/Szünet</string>
     <string name="action_previous">Előző</string>
     <string name="action_next">Következő</string>
-    <string name="action_delete_from_device">Törlés az eszközről</string>
     <string name="action_details">Részletek</string>
     <string name="action_rename">Átnevezés</string>
     <string name="action_delete">Törlés</string>

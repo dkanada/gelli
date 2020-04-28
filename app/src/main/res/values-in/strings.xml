@@ -16,7 +16,6 @@
     <string name="action_play_pause">Putar/Jeda</string>
     <string name="action_previous">Sebelumnya</string>
     <string name="action_next">Selanjutnya</string>
-    <string name="action_delete_from_device">Hapus dari perangkat</string>
     <string name="action_details">Rincian</string>
     <string name="action_rename">Ganti Nama</string>
     <string name="action_delete">Hapus</string>

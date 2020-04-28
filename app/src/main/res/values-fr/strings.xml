@@ -16,7 +16,6 @@
     <string name="action_play_pause">Lecture/Pause</string>
     <string name="action_previous">Précédent</string>
     <string name="action_next">Suivant</string>
-    <string name="action_delete_from_device">Supprimer de l\'appareil</string>
     <string name="action_details">Détails</string>
     <string name="action_rename">Renommer</string>
     <string name="action_delete">Supprimer</string>

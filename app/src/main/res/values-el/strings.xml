@@ -16,7 +16,6 @@
     <string name="action_play_pause">Αναπαραγωγή/Παύση</string>
     <string name="action_previous">Προηγούμενο</string>
     <string name="action_next">Επόμενο</string>
-    <string name="action_delete_from_device">Διαγραφή από την συσκευή</string>
     <string name="action_details">"Λεπτομέρειες "</string>
     <string name="action_rename">Μετονομασία</string>
     <string name="action_delete">Διαγραφή</string>

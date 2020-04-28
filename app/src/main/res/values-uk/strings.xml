@@ -16,7 +16,6 @@
     <string name="action_play_pause">Відтворити/Зупинити</string>
     <string name="action_previous">Попередня</string>
     <string name="action_next">Наступна</string>
-    <string name="action_delete_from_device">Видалити з пристрою</string>
     <string name="action_details">Подробиці</string>
     <string name="action_rename">Перейменувати</string>
     <string name="action_delete">Видалити</string>

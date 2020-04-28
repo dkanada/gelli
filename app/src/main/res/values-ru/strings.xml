@@ -16,7 +16,6 @@
     <string name="action_play_pause">Воспроизведение/Пауза</string>
     <string name="action_previous">Предыдущий</string>
     <string name="action_next">Следующий</string>
-    <string name="action_delete_from_device">Удалить с устройства</string>
     <string name="action_details">Подробнее</string>
     <string name="action_rename">Переименовать</string>
     <string name="action_delete">Удалить</string>

@@ -16,7 +16,6 @@
     <string name="action_play_pause">播放/暫停</string>
     <string name="action_previous">上一首</string>
     <string name="action_next">下一首</string>
-    <string name="action_delete_from_device">刪除</string>
     <string name="action_details">詳細資訊</string>
     <string name="action_rename">"重新命名
 "</string>

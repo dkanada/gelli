@@ -23,9 +23,6 @@ public class SongsMenuHelper {
             case R.id.action_add_to_playlist:
                 AddToPlaylistDialog.create(songs).show(activity.getSupportFragmentManager(), "ADD_PLAYLIST");
                 return true;
-            case R.id.action_delete_from_device:
-                DeleteSongsDialog.create(songs).show(activity.getSupportFragmentManager(), "DELETE_SONGS");
-                return true;
         }
 
         return false;

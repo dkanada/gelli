@@ -13,7 +13,6 @@
     <string name="action_search">Pesquisar</string>
     <string name="action_play_next">Reproduzir a próxima</string>
     <string name="action_play">Reproduzir</string>
-    <string name="action_delete_from_device">Eliminar do dispositivo</string>
     <string name="action_details">Detalhes</string>
     <string name="action_rename">Mudar nome</string>
     <string name="action_delete">Apagar</string>

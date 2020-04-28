@@ -16,7 +16,6 @@
     <string name="action_play_pause">Reproducir/Pausar</string>
     <string name="action_previous">Anterior</string>
     <string name="action_next">Siguiente</string>
-    <string name="action_delete_from_device">Eliminar del dispositivo</string>
     <string name="action_details">Detalles</string>
     <string name="action_rename">Renombrar</string>
     <string name="action_delete">Eliminar</string>

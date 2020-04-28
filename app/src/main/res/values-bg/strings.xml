@@ -16,7 +16,6 @@
     <string name="action_play_pause">Пусни/Спри</string>
     <string name="action_previous">Предишна песен</string>
     <string name="action_next">Следваща песен</string>
-    <string name="action_delete_from_device">Изтрий от устройството</string>
     <string name="action_details">Детайли</string>
     <string name="action_rename">Преименувай</string>
     <string name="action_delete">Изтрий</string>

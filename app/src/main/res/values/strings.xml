@@ -20,7 +20,6 @@
     <string name="action_add_to_queue">Add to queue</string>
     <string name="action_remove_from_queue">Remove from queue</string>
     <string name="action_add_to_playlist">Add to playlist</string>
-    <string name="action_delete_from_device">Delete from device</string>
     <string name="action_details">Details</string>
     <string name="action_rename">Rename</string>
     <string name="action_delete">Delete</string>

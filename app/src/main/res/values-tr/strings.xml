@@ -16,7 +16,6 @@
     <string name="action_play_pause">Başlat/Durdur</string>
     <string name="action_previous">Önceki</string>
     <string name="action_next">Sonraki</string>
-    <string name="action_delete_from_device">Cihazdan sil</string>
     <string name="action_details">Detaylar</string>
     <string name="action_rename">Yeniden adlandır</string>
     <string name="action_delete">Sil</string>

@@ -16,7 +16,6 @@
     <string name="action_play_pause">Afspelen/Pauzeren</string>
     <string name="action_previous">Vorige</string>
     <string name="action_next">Volgende</string>
-    <string name="action_delete_from_device">Verwijderen van apparaat</string>
     <string name="action_details">Details</string>
     <string name="action_rename">Hernoemen</string>
     <string name="action_delete">Verwijderen</string>

@@ -16,7 +16,6 @@
     <string name="action_play_pause">تشغيل/إيقاف مؤقت</string>
     <string name="action_previous">السابق</string>
     <string name="action_next">التالي</string>
-    <string name="action_delete_from_device">حذف من الجهاز</string>
     <string name="action_details">التفاصيل</string>
     <string name="action_rename">إعادة التسمية</string>
     <string name="action_delete">حذف</string>

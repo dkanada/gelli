@@ -13,7 +13,6 @@
     <string name="action_search">Sök</string>
     <string name="action_play_next">Spela nästa</string>
     <string name="action_play">Spela</string>
-    <string name="action_delete_from_device">Radera från enhet</string>
     <string name="action_details">Detaljer</string>
     <string name="action_rename">Byt namn</string>
     <string name="action_delete">Radera</string>
