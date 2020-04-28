@@ -1,10 +1,7 @@
 package com.kabouzeid.gramophone.ui.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
@@ -20,15 +17,16 @@ import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.adapter.song.SongAdapter;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
-import com.kabouzeid.gramophone.interfaces.LoaderIds;
-import com.kabouzeid.gramophone.loader.GenreLoader;
-import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
+import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.model.Genre;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.kabouzeid.gramophone.util.PhonographColorUtil;
+import com.kabouzeid.gramophone.util.QueryUtil;
 import com.kabouzeid.gramophone.util.ViewUtil;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
+
+import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +34,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder, LoaderManager.LoaderCallbacks<List<Song>> {
-
-    private static final int LOADER_ID = LoaderIds.GENRE_DETAIL_ACTIVITY;
-
+public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder {
     public static final String EXTRA_GENRE = "extra_genre";
 
     @BindView(R.id.recycler_view)
@@ -69,10 +64,17 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
         genre = getIntent().getExtras().getParcelable(EXTRA_GENRE);
 
         setUpRecyclerView();
-
         setUpToolBar();
 
-        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
+        ItemQuery query = new ItemQuery();
+        query.setGenreIds(new String[]{genre.id});
+        QueryUtil.getSongs(query, new MediaCallback() {
+            @Override
+            public void onLoadMedia(List<?> media) {
+                adapter.getDataSet().addAll((List<Song>) media);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -121,6 +123,7 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
                 onBackPressed();
                 return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -133,6 +136,7 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
                 .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
                 .setBackgroundColor(PhonographColorUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(this)))
                 .start(callback);
+
         return cab;
     }
 
@@ -148,13 +152,10 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
     @Override
     public void onMediaStoreChanged() {
         super.onMediaStoreChanged();
-        getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
     }
 
     private void checkIsEmpty() {
-        empty.setVisibility(
-                adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE
-        );
+        empty.setVisibility(adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -168,40 +169,8 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
             WrapperAdapterUtils.releaseAll(wrappedAdapter);
             wrappedAdapter = null;
         }
+
         adapter = null;
-
         super.onDestroy();
-    }
-
-    @Override
-    @NonNull
-    public Loader<List<Song>> onCreateLoader(int id, Bundle args) {
-        return new GenreDetailActivity.AsyncGenreSongLoader(this, genre);
-    }
-
-    @Override
-    public void onLoadFinished(@NonNull Loader<List<Song>> loader, List<Song> data) {
-        if (adapter != null)
-            adapter.swapDataSet(data);
-    }
-
-    @Override
-    public void onLoaderReset(@NonNull Loader<List<Song>> loader) {
-        if (adapter != null)
-            adapter.swapDataSet(new ArrayList<>());
-    }
-
-    private static class AsyncGenreSongLoader extends WrappedAsyncTaskLoader<List<Song>> {
-        private final Genre genre;
-
-        public AsyncGenreSongLoader(Context context, Genre genre) {
-            super(context);
-            this.genre = genre;
-        }
-
-        @Override
-        public List<Song> loadInBackground() {
-            return GenreLoader.getSongs(getContext(), genre.id.hashCode());
-        }
     }
 }
