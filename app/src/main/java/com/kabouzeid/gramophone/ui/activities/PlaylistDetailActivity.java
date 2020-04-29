@@ -1,6 +1,5 @@
 package com.kabouzeid.gramophone.ui.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,8 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,18 +24,19 @@ import com.kabouzeid.gramophone.adapter.song.SongAdapter;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.helper.menu.PlaylistMenuHelper;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
-import com.kabouzeid.gramophone.interfaces.LoaderIds;
+import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.loader.PlaylistLoader;
-import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
-import com.kabouzeid.gramophone.misc.WrappedAsyncTaskLoader;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
+import com.kabouzeid.gramophone.util.QueryUtil;
 import com.kabouzeid.gramophone.util.ThemeUtil;
 import com.kabouzeid.gramophone.util.PlaylistsUtil;
 import com.kabouzeid.gramophone.util.ViewUtil;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
+
+import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +44,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder, LoaderManager.LoaderCallbacks<List<Song>> {
-
-    private static final int LOADER_ID = LoaderIds.PLAYLIST_DETAIL_ACTIVITY;
+public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder {
 
     @NonNull
     public static String EXTRA_PLAYLIST = "extra_playlist";
@@ -81,10 +77,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
         playlist = getIntent().getExtras().getParcelable(EXTRA_PLAYLIST);
 
         setUpRecyclerView();
-
         setUpToolbar();
-
-        getSupportLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     @Override
@@ -108,6 +101,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
                     adapter.notifyItemMoved(fromPosition, toPosition);
                 }
             });
+
             wrappedAdapter = recyclerViewDragDropManager.createWrappedAdapter(adapter);
 
             recyclerView.setAdapter(wrappedAdapter);
@@ -167,13 +161,15 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
                 .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
                 .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(this)))
                 .start(callback);
+
         return cab;
     }
 
     @Override
     public void onBackPressed() {
-        if (cab != null && cab.isActive()) cab.finish();
-        else {
+        if (cab != null && cab.isActive()) {
+            cab.finish();
+        } else {
             recyclerView.stopScroll();
             super.onBackPressed();
         }
@@ -197,8 +193,6 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
                 setToolbarTitle(playlist.name);
             }
         }
-
-        getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
     }
 
     private void checkIsEmpty() {
@@ -232,44 +226,8 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
             WrapperAdapterUtils.releaseAll(wrappedAdapter);
             wrappedAdapter = null;
         }
+
         adapter = null;
-
         super.onDestroy();
-    }
-
-    @Override
-    public Loader<List<Song>> onCreateLoader(int id, Bundle args) {
-        return new AsyncPlaylistSongLoader(this, playlist);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<List<Song>> loader, List<Song> data) {
-        if (adapter != null)
-            adapter.swapDataSet(data);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<List<Song>> loader) {
-        if (adapter != null)
-            adapter.swapDataSet(new ArrayList<>());
-    }
-
-    private static class AsyncPlaylistSongLoader extends WrappedAsyncTaskLoader<List<Song>> {
-        private final Playlist playlist;
-
-        public AsyncPlaylistSongLoader(Context context, Playlist playlist) {
-            super(context);
-            this.playlist = playlist;
-        }
-
-        @Override
-        public List<Song> loadInBackground() {
-            if (playlist instanceof AbsSmartPlaylist) {
-                return ((AbsSmartPlaylist) playlist).getSongs(getContext());
-            } else {
-                //noinspection unchecked
-                return (List) PlaylistSongLoader.getPlaylistSongList(getContext(), playlist.id.hashCode());
-            }
-        }
     }
 }
