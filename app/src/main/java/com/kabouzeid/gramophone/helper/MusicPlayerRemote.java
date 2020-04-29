@@ -1,32 +1,21 @@
 package com.kabouzeid.gramophone.helper;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
 import android.os.IBinder;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.loader.SongLoader;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.service.MusicService;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -108,18 +97,12 @@ public class MusicPlayerRemote {
         }
     }
 
-    /**
-     * Async
-     */
     public static void playSongAt(final int position) {
         if (musicService != null) {
             musicService.playSongAt(position);
         }
     }
 
-    /**
-     * Async
-     */
     public static void setPosition(final int position) {
         if (musicService != null) {
             musicService.setPosition(position);
@@ -132,27 +115,18 @@ public class MusicPlayerRemote {
         }
     }
 
-    /**
-     * Async
-     */
     public static void playNextSong() {
         if (musicService != null) {
             musicService.playNextSong(true);
         }
     }
 
-    /**
-     * Async
-     */
     public static void playPreviousSong() {
         if (musicService != null) {
             musicService.playPreviousSong(true);
         }
     }
 
-    /**
-     * Async
-     */
     public static void back() {
         if (musicService != null) {
             musicService.back(true);
@@ -169,9 +143,6 @@ public class MusicPlayerRemote {
         }
     }
 
-    /**
-     * Async
-     */
     public static void openQueue(final List<Song> queue, final int startPosition, final boolean startPlaying) {
         if (!tryToHandleOpenPlayingQueue(queue, startPosition, startPlaying) && musicService != null) {
             musicService.openQueue(queue, startPosition, startPlaying);
@@ -181,9 +152,6 @@ public class MusicPlayerRemote {
         }
     }
 
-    /**
-     * Async
-     */
     public static void openAndShuffleQueue(final List<Song> queue, boolean startPlaying) {
         int startPosition = 0;
         if (!queue.isEmpty()) {
@@ -203,8 +171,10 @@ public class MusicPlayerRemote {
             } else {
                 setPosition(startPosition);
             }
+
             return true;
         }
+
         return false;
     }
 
@@ -292,6 +262,7 @@ public class MusicPlayerRemote {
             musicService.setShuffleMode(shuffleMode);
             return true;
         }
+
         return false;
     }
 
@@ -304,9 +275,11 @@ public class MusicPlayerRemote {
                 queue.add(song);
                 openQueue(queue, 0, false);
             }
+
             Toast.makeText(musicService, musicService.getResources().getString(R.string.added_title_to_queue), Toast.LENGTH_SHORT).show();
             return true;
         }
+
         return false;
     }
 
@@ -317,10 +290,12 @@ public class MusicPlayerRemote {
             } else {
                 openQueue(songs, 0, false);
             }
+
             final String toast = songs.size() == 1 ? musicService.getResources().getString(R.string.added_title_to_queue) : musicService.getResources().getString(R.string.added_x_titles_to_queue, songs.size());
             Toast.makeText(musicService, toast, Toast.LENGTH_SHORT).show();
             return true;
         }
+
         return false;
     }
 
@@ -333,9 +308,11 @@ public class MusicPlayerRemote {
                 queue.add(song);
                 openQueue(queue, 0, false);
             }
+
             Toast.makeText(musicService, musicService.getResources().getString(R.string.added_title_to_queue), Toast.LENGTH_SHORT).show();
             return true;
         }
+
         return false;
     }
 
@@ -346,10 +323,12 @@ public class MusicPlayerRemote {
             } else {
                 openQueue(songs, 0, false);
             }
+
             final String toast = songs.size() == 1 ? musicService.getResources().getString(R.string.added_title_to_queue) : musicService.getResources().getString(R.string.added_x_titles_to_queue, songs.size());
             Toast.makeText(musicService, toast, Toast.LENGTH_SHORT).show();
             return true;
         }
+
         return false;
     }
 
@@ -358,6 +337,7 @@ public class MusicPlayerRemote {
             musicService.removeSong(song);
             return true;
         }
+
         return false;
     }
 
@@ -366,6 +346,7 @@ public class MusicPlayerRemote {
             musicService.removeSong(position);
             return true;
         }
+
         return false;
     }
 
@@ -374,6 +355,7 @@ public class MusicPlayerRemote {
             musicService.moveSong(from, to);
             return true;
         }
+
         return false;
     }
 
@@ -382,96 +364,7 @@ public class MusicPlayerRemote {
             musicService.clearQueue();
             return true;
         }
+
         return false;
-    }
-
-    public static int getAudioSessionId() {
-        if (musicService != null) {
-            return musicService.getAudioSessionId();
-        }
-
-        return -1;
-    }
-
-    public static void playFromUri(Uri uri) {
-        if (musicService != null) {
-            List<Song> songs = null;
-            if (uri.getScheme() != null && uri.getAuthority() != null) {
-                if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
-                    String songId = null;
-                    if (uri.getAuthority().equals("com.android.providers.media.documents")) {
-                        songId = getSongIdFromMediaProvider(uri);
-                    } else if (uri.getAuthority().equals("media")) {
-                        songId = uri.getLastPathSegment();
-                    }
-                    if (songId != null) {
-                        songs = SongLoader.getSongs(SongLoader.makeSongCursor(
-                                musicService,
-                                MediaStore.Audio.AudioColumns._ID + "=?",
-                                new String[]{songId}
-                        ));
-                    }
-                }
-            }
-            if (songs == null) {
-                File songFile = null;
-                if (uri.getAuthority() != null && uri.getAuthority().equals("com.android.externalstorage.documents")) {
-                    songFile = new File(Environment.getExternalStorageDirectory(), uri.getPath().split(":", 2)[1]);
-                }
-                if (songFile == null) {
-                    String path = getFilePathFromUri(musicService, uri);
-                    if (path != null)
-                        songFile = new File(path);
-                }
-                if (songFile == null && uri.getPath() != null) {
-                    songFile = new File(uri.getPath());
-                }
-                if (songFile != null) {
-                    songs = SongLoader.getSongs(SongLoader.makeSongCursor(
-                            musicService,
-                            MediaStore.Audio.AudioColumns.DATA + "=?",
-                            new String[]{songFile.getAbsolutePath()}
-                    ));
-                }
-            }
-            if (songs != null && !songs.isEmpty()) {
-                openQueue(songs, 0, true);
-            } else {
-                //TODO the file is not listed in the media store
-            }
-        }
-    }
-    @Nullable
-    private static String getFilePathFromUri(Context context, Uri uri)
-    {
-        Cursor cursor = null;
-        final String column = "_data";
-        final String[] projection = {
-                column
-        };
-
-        try {
-            cursor = context.getContentResolver().query(uri, projection, null, null,
-                    null);
-            if (cursor != null && cursor.moveToFirst()) {
-                final int column_index = cursor.getColumnIndexOrThrow(column);
-                return cursor.getString(column_index);
-            }
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        } finally {
-            if (cursor != null)
-                cursor.close();
-        }
-        return null;
-    }
-
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private static String getSongIdFromMediaProvider(Uri uri) {
-        return DocumentsContract.getDocumentId(uri).split(":")[1];
-    }
-
-    public static boolean isServiceConnected() {
-        return musicService != null;
     }
 }

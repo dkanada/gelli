@@ -41,7 +41,6 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.glide.CustomGlideRequest;
-import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
 import com.kabouzeid.gramophone.widgets.AppWidgetBig;
 import com.kabouzeid.gramophone.widgets.AppWidgetCard;
 import com.kabouzeid.gramophone.widgets.AppWidgetClassic;
@@ -49,7 +48,6 @@ import com.kabouzeid.gramophone.widgets.AppWidgetSmall;
 import com.kabouzeid.gramophone.glide.BlurTransformation;
 import com.kabouzeid.gramophone.helper.ShuffleHelper;
 import com.kabouzeid.gramophone.helper.StopWatch;
-import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.provider.QueueStore;
@@ -297,19 +295,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         Playlist playlist = intent.getParcelableExtra(INTENT_EXTRA_PLAYLIST);
                         int shuffleMode = intent.getIntExtra(INTENT_EXTRA_SHUFFLE_MODE, getShuffleMode());
                         if (playlist != null) {
-                            List<Song> playlistSongs;
-                            if (playlist instanceof AbsSmartPlaylist) {
-                                playlistSongs = ((AbsSmartPlaylist) playlist).getSongs(getApplicationContext());
-                            } else {
-                                //noinspection unchecked
-                                playlistSongs = (List) PlaylistSongLoader.getPlaylistSongList(getApplicationContext(), playlist.id.hashCode());
-                            }
+                            List<Song> playlistSongs = new ArrayList<>();
                             if (!playlistSongs.isEmpty()) {
                                 if (shuffleMode == SHUFFLE_MODE_SHUFFLE) {
-                                    int startPosition = 0;
-                                    if (!playlistSongs.isEmpty()) {
-                                        startPosition = new Random().nextInt(playlistSongs.size());
-                                    }
+                                    int startPosition = new Random().nextInt(playlistSongs.size());
                                     openQueue(playlistSongs, startPosition, true);
                                     setShuffleMode(shuffleMode);
                                 } else {

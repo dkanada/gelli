@@ -8,7 +8,7 @@ import android.text.Html;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.model.PlaylistSong;
+import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.PlaylistsUtil;
 
 import java.util.ArrayList;
@@ -17,14 +17,14 @@ import java.util.List;
 public class RemoveFromPlaylistDialog extends DialogFragment {
 
     @NonNull
-    public static RemoveFromPlaylistDialog create(PlaylistSong song) {
-        List<PlaylistSong> list = new ArrayList<>();
+    public static RemoveFromPlaylistDialog create(Song song) {
+        List<Song> list = new ArrayList<>();
         list.add(song);
         return create(list);
     }
 
     @NonNull
-    public static RemoveFromPlaylistDialog create(List<PlaylistSong> songs) {
+    public static RemoveFromPlaylistDialog create(List<Song> songs) {
         RemoveFromPlaylistDialog dialog = new RemoveFromPlaylistDialog();
         Bundle args = new Bundle();
         args.putParcelableArrayList("songs", new ArrayList<>(songs));
@@ -36,7 +36,7 @@ public class RemoveFromPlaylistDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         //noinspection unchecked
-        final List<PlaylistSong> songs = getArguments().getParcelableArrayList("songs");
+        final List<Song> songs = getArguments().getParcelableArrayList("songs");
         int title;
         CharSequence content;
         if (songs.size() > 1) {
@@ -54,7 +54,7 @@ public class RemoveFromPlaylistDialog extends DialogFragment {
                 .negativeText(android.R.string.cancel)
                 .onPositive((dialog, which) -> {
                     if (getActivity() == null) return;
-                    PlaylistsUtil.removeFromPlaylist(getActivity(), songs);
+                    PlaylistsUtil.removeFromPlaylist(getActivity(), songs.get(0), songs.get(0).id);
                 })
                 .build();
     }

@@ -5,22 +5,15 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.dialogs.AddToPlaylistDialog;
 import com.kabouzeid.gramophone.dialogs.DeletePlaylistDialog;
 import com.kabouzeid.gramophone.dialogs.RenamePlaylistDialog;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
-import com.kabouzeid.gramophone.loader.PlaylistSongLoader;
-import com.kabouzeid.gramophone.misc.WeakContextAsyncTask;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
-import com.kabouzeid.gramophone.util.PlaylistsUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,9 +43,7 @@ public class PlaylistMenuHelper {
     }
 
     @NonNull
-    private static List<? extends Song> getPlaylistSongs(@NonNull Activity activity, Playlist playlist) {
-        return playlist instanceof AbsSmartPlaylist ?
-                ((AbsSmartPlaylist) playlist).getSongs(activity) :
-                PlaylistSongLoader.getPlaylistSongList(activity, playlist.id.hashCode());
+    private static List<Song> getPlaylistSongs(@NonNull Activity activity, Playlist playlist) {
+        return new ArrayList<>();
     }
 }

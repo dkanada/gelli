@@ -13,6 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+
 package com.kabouzeid.gramophone.provider;
 
 import android.content.ContentValues;
@@ -30,11 +31,6 @@ import com.kabouzeid.gramophone.model.Song;
 
 import java.util.List;
 
-/**
- * @author Andrew Neal, modified for Phonograph by Karim Abou Zeid
- *         <p/>
- *         This keeps track of the music playback and history state of the playback service
- */
 public class QueueStore extends SQLiteOpenHelper {
     @Nullable
     private static QueueStore sInstance = null;
@@ -43,11 +39,6 @@ public class QueueStore extends SQLiteOpenHelper {
     public static final String ORIGINAL_PLAYING_QUEUE_TABLE_NAME = "original_playing_queue";
     private static final int VERSION = 3;
 
-    /**
-     * Constructor of <code>MusicPlaybackState</code>
-     *
-     * @param context The {@link Context} to use
-     */
     public QueueStore(final Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
@@ -59,7 +50,7 @@ public class QueueStore extends SQLiteOpenHelper {
     }
 
     private void createTable(@NonNull final SQLiteDatabase db, final String tableName) {
-        //noinspection StringBufferReplaceableByString
+        // noinspection StringBufferReplaceableByString
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS ");
         builder.append(tableName);
@@ -103,7 +94,6 @@ public class QueueStore extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(@NonNull final SQLiteDatabase db, final int oldVersion, final int newVersion) {
-        // not necessary yet
         db.execSQL("DROP TABLE IF EXISTS " + PLAYING_QUEUE_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ORIGINAL_PLAYING_QUEUE_TABLE_NAME);
         onCreate(db);
@@ -111,21 +101,17 @@ public class QueueStore extends SQLiteOpenHelper {
 
     @Override
     public void onDowngrade(@NonNull SQLiteDatabase db, int oldVersion, int newVersion) {
-        // If we ever have downgrade, drop the table to be safe
         db.execSQL("DROP TABLE IF EXISTS " + PLAYING_QUEUE_TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ORIGINAL_PLAYING_QUEUE_TABLE_NAME);
         onCreate(db);
     }
 
-    /**
-     * @param context The {@link Context} to use
-     * @return A new instance of this class.
-     */
     @NonNull
     public static synchronized QueueStore getInstance(@NonNull final Context context) {
         if (sInstance == null) {
             sInstance = new QueueStore(context.getApplicationContext());
         }
+
         return sInstance;
     }
 
@@ -134,12 +120,6 @@ public class QueueStore extends SQLiteOpenHelper {
         saveQueue(ORIGINAL_PLAYING_QUEUE_TABLE_NAME, originalPlayingQueue);
     }
 
-    /**
-     * Clears the existing database and saves the queue into the db so that when the
-     * app is restarted, the tracks you were listening to is restored
-     *
-     * @param queue the queue to save
-     */
     private synchronized void saveQueue(final String tableName, @NonNull final List<Song> queue) {
         final SQLiteDatabase database = getWritableDatabase();
         database.beginTransaction();

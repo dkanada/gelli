@@ -14,11 +14,9 @@ import com.h6ah4i.android.widget.advrecyclerview.draggable.annotation.DraggableI
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.dialogs.RemoveFromPlaylistDialog;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
-import com.kabouzeid.gramophone.model.PlaylistSong;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.ViewUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
@@ -26,8 +24,8 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
 
     private OnMoveItemListener onMoveItemListener;
 
-    public OrderablePlaylistSongAdapter(@NonNull AppCompatActivity activity, @NonNull List<PlaylistSong> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder, @Nullable OnMoveItemListener onMoveItemListener) {
-        super(activity, (List<Song>) (List) dataSet, itemLayoutRes, usePalette, cabHolder);
+    public OrderablePlaylistSongAdapter(@NonNull AppCompatActivity activity, @NonNull List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder, @Nullable OnMoveItemListener onMoveItemListener) {
+        super(activity, (List<Song>) dataSet, itemLayoutRes, usePalette, cabHolder);
         setMultiSelectMenuRes(R.menu.menu_playlists_songs_selection);
         this.onMoveItemListener = onMoveItemListener;
     }
@@ -42,14 +40,14 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
         position--;
 
         if (position < 0) return -2;
-        return ((List<PlaylistSong>) (List) dataSet).get(position).idInPlayList; // important!
+        return dataSet.get(position).id.hashCode();
     }
 
     @Override
     protected void onMultipleItemAction(@NonNull MenuItem menuItem, @NonNull List<Song> selection) {
         switch (menuItem.getItemId()) {
             case R.id.action_remove_from_playlist:
-                RemoveFromPlaylistDialog.create((List<PlaylistSong>) (List) selection).show(activity.getSupportFragmentManager(), "ADD_PLAYLIST");
+                RemoveFromPlaylistDialog.create((List<Song>) (List) selection).show(activity.getSupportFragmentManager(), "ADD_PLAYLIST");
                 return;
         }
 
@@ -117,7 +115,7 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
         protected boolean onSongMenuItemClick(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.action_remove_from_playlist:
-                    RemoveFromPlaylistDialog.create((PlaylistSong) getSong()).show(activity.getSupportFragmentManager(), "REMOVE_FROM_PLAYLIST");
+                    RemoveFromPlaylistDialog.create(getSong()).show(activity.getSupportFragmentManager(), "REMOVE_FROM_PLAYLIST");
                     return true;
             }
 

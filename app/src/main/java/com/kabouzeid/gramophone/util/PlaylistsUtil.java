@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.kabouzeid.gramophone.model.Playlist;
-import com.kabouzeid.gramophone.model.PlaylistSong;
 import com.kabouzeid.gramophone.model.Song;
 
 import java.util.List;
@@ -29,9 +28,6 @@ public class PlaylistsUtil {
     }
 
     public static void removeFromPlaylist(@NonNull final Context context, @NonNull final Song song, String playlistId) {
-    }
-
-    public static void removeFromPlaylist(@NonNull final Context context, @NonNull final List<PlaylistSong> songs) {
     }
 
     public static boolean moveItem(@NonNull final Context context, String playlistId, int from, int to) {
