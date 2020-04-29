@@ -4,13 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.dto.GenreDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Artist implements Parcelable {
-    public static final String UNKNOWN_ARTIST_DISPLAY_NAME = "Unknown Artist";
-
+    public List<Genre> genres;
     public List<Album> albums;
     public List<Song> songs;
 
@@ -23,8 +23,15 @@ public class Artist implements Parcelable {
         this.name = itemDto.getName();
         this.duration = itemDto.getRunTimeTicks() / 10000;
 
+        this.genres = new ArrayList<>();
         this.albums = new ArrayList<>();
         this.songs = new ArrayList<>();
+
+        if (itemDto.getGenreItems() != null) {
+            for (GenreDto genre : itemDto.getGenreItems()) {
+                genres.add(new Genre(genre));
+            }
+        }
     }
 
     public Artist() {

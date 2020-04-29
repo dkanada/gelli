@@ -20,17 +20,15 @@ import java.util.List;
 public class SongLoader {
     protected static final String BASE_SELECTION = AudioColumns.IS_MUSIC + "=1" + " AND " + AudioColumns.TITLE + " != ''";
     protected static final String[] BASE_PROJECTION = new String[]{
-            BaseColumns._ID,// 0
-            AudioColumns.TITLE,// 1
-            AudioColumns.TRACK,// 2
-            AudioColumns.YEAR,// 3
-            AudioColumns.DURATION,// 4
-            AudioColumns.DATA,// 5
-            AudioColumns.DATE_MODIFIED,// 6
-            AudioColumns.ALBUM_ID,// 7
-            AudioColumns.ALBUM,// 8
-            AudioColumns.ARTIST_ID,// 9
-            AudioColumns.ARTIST,// 10
+            BaseColumns._ID,
+            AudioColumns.TITLE,
+            AudioColumns.TRACK,
+            AudioColumns.YEAR,
+            AudioColumns.DURATION,
+            AudioColumns.ALBUM_ID,
+            AudioColumns.ALBUM,
+            AudioColumns.ARTIST_ID,
+            AudioColumns.ARTIST,
     };
 
     @NonNull
@@ -73,9 +71,11 @@ public class SongLoader {
         } else {
             song = Song.EMPTY_SONG;
         }
+
         if (cursor != null) {
             cursor.close();
         }
+
         return song;
     }
 
@@ -86,14 +86,14 @@ public class SongLoader {
         final int trackNumber = cursor.getInt(2);
         final int year = cursor.getInt(3);
         final long duration = cursor.getLong(4);
-        final String data = cursor.getString(5);
-        final long dateModified = cursor.getLong(6);
-        final String albumId = cursor.getString(7);
-        final String albumName = cursor.getString(8);
-        final String artistId = cursor.getString(9);
-        final String artistName = cursor.getString(10);
 
-        return new Song(id, title, trackNumber, year, duration, data, dateModified, albumId, albumName, artistId, artistName);
+        final String albumId = cursor.getString(5);
+        final String albumName = cursor.getString(6);
+
+        final String artistId = cursor.getString(7);
+        final String artistName = cursor.getString(8);
+
+        return new Song(id, title, trackNumber, year, duration, albumId, albumName, artistId, artistName);
     }
 
     @Nullable

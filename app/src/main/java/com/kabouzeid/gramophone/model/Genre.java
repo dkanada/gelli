@@ -4,22 +4,23 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.dto.GenreDto;
 
 public class Genre implements Parcelable {
     public final String id;
     public final String name;
     public final int songCount;
 
+    public Genre(GenreDto genreDto) {
+        this.id = genreDto.getId();
+        this.name = genreDto.getName();
+        this.songCount = 0;
+    }
+
     public Genre(BaseItemDto itemDto) {
         this.id = itemDto.getId();
         this.name = itemDto.getName();
         this.songCount = itemDto.getSongCount() != null ? itemDto.getSongCount() : 0;
-    }
-
-    public Genre(final int id, final String name, final int songCount) {
-        this.id = Integer.toString(id);
-        this.name = name;
-        this.songCount = songCount;
     }
 
     @Override

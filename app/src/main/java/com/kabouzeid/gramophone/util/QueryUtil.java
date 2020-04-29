@@ -11,6 +11,7 @@ import com.kabouzeid.gramophone.model.Song;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.querying.ArtistsQuery;
+import org.jellyfin.apiclient.model.querying.ItemFields;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 import org.jellyfin.apiclient.model.querying.ItemsByNameQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
@@ -155,6 +156,7 @@ public class QueryUtil {
 
     public static void getArtists(MediaCallback callback) {
         ArtistsQuery query = new ArtistsQuery();
+        query.setFields(new ItemFields[]{ItemFields.Genres});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(100);
         query.setRecursive(true);

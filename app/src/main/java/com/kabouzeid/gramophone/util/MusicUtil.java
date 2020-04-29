@@ -6,7 +6,6 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.FileProvider;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -18,7 +17,9 @@ import com.kabouzeid.gramophone.model.Genre;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 
-import java.io.File;
+import org.jellyfin.apiclient.interaction.Response;
+import org.jellyfin.apiclient.model.dto.UserItemDataDto;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -30,11 +31,7 @@ public class MusicUtil {
     @NonNull
     public static Intent createShareSongFileIntent(@NonNull final Song song, Context context) {
         try {
-            return new Intent()
-                .setAction(Intent.ACTION_SEND)
-                .putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName(), new File(song.data)))
-                .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                .setType("audio/*");
+            return new Intent();
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             Toast.makeText(context, R.string.error_share_file, Toast.LENGTH_SHORT).show();
@@ -44,31 +41,17 @@ public class MusicUtil {
 
     @NonNull
     public static String getArtistInfoString(@NonNull final Context context, @NonNull final Artist artist) {
-        int albumCount = artist.getAlbumCount();
-        int songCount = artist.getSongCount();
-
-        return MusicUtil.buildInfoString(
-            MusicUtil.getAlbumCountString(context, albumCount),
-            MusicUtil.getSongCountString(context, songCount)
-        );
+        return artist.genres.size() != 0 ? artist.genres.get(0).name : artist.id;
     }
 
     @NonNull
     public static String getAlbumInfoString(@NonNull final Context context, @NonNull final Album album) {
-        int songCount = album.getSongCount();
-
-        return MusicUtil.buildInfoString(
-            album.getArtistName(),
-            MusicUtil.getSongCountString(context, songCount)
-        );
+        return album.artistName;
     }
 
     @NonNull
     public static String getSongInfoString(@NonNull final Song song) {
-        return MusicUtil.buildInfoString(
-            song.artistName,
-            song.albumName
-        );
+        return song.albumName;
     }
 
     @NonNull
@@ -126,18 +109,18 @@ public class MusicUtil {
     }
 
     @NonNull
-    public static String buildInfoString(@Nullable final String string1, @Nullable final String string2) {
-        // Skip empty strings
-        if (TextUtils.isEmpty(string1)) {
-            //noinspection ConstantConditions
-            return TextUtils.isEmpty(string2) ? "" : string2;
+    public static String buildInfoString(@Nullable final String one, @Nullable final String two) {
+        // skip empty strings
+        if (TextUtils.isEmpty(one)) {
+            // noinspection ConstantConditions
+            return TextUtils.isEmpty(two) ? "" : two;
         }
-        if (TextUtils.isEmpty(string2)) {
-            //noinspection ConstantConditions
-            return TextUtils.isEmpty(string1) ? "" : string1;
+        if (TextUtils.isEmpty(two)) {
+            // noinspection ConstantConditions
+            return TextUtils.isEmpty(one) ? "" : one;
         }
 
-        return string1 + "  •  " + string2;
+        return one + "  •  " + two;
     }
 
     // iTunes uses for example 1002 for track 2 CD1 or 3011 for track 11 CD3.
@@ -150,24 +133,22 @@ public class MusicUtil {
         return playlist.name != null && playlist.name.equals(context.getString(R.string.favorites));
     }
 
-    public static Playlist getFavoritesPlaylist(@NonNull final Context context) {
-        return new Playlist();
-    }
-
-    private static Playlist getOrCreateFavoritesPlaylist(@NonNull final Context context) {
-        return new Playlist();
-    }
-
-    public static boolean isFavorite(@NonNull final Context context, @NonNull final Song song) {
-        return false;
-    }
-
     public static void toggleFavorite(@NonNull final Context context, @NonNull final Song song) {
-        if (isFavorite(context, song)) {
-            PlaylistsUtil.removeFromPlaylist(context, song, getFavoritesPlaylist(context).id);
-        } else {
-            PlaylistsUtil.addToPlaylist(context, song, getOrCreateFavoritesPlaylist(context).id, false);
-        }
+        song.favorite = !song.favorite;
+
+        String user = App.getApiClient().getCurrentUserId();
+        App.getApiClient().UpdateFavoriteStatusAsync(song.id, user, song.favorite, new Response<UserItemDataDto>() {
+                @Override
+                public void onResponse(UserItemDataDto data) {
+                    song.favorite = data.getIsFavorite();
+                }
+
+                @Override
+                public void onError(Exception exception) {
+                    exception.printStackTrace();
+                }
+            }
+        );
     }
 
     @NonNull

@@ -89,8 +89,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     private RecyclerView.Adapter wrappedAdapter;
     private RecyclerViewDragDropManager recyclerViewDragDropManager;
 
-    private AsyncTask updateIsFavoriteTask;
-
     private Impl impl;
 
     @Override
@@ -256,32 +254,13 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     }
 
     private void updateIsFavorite() {
-        if (updateIsFavoriteTask != null) updateIsFavoriteTask.cancel(false);
-        updateIsFavoriteTask = new AsyncTask<Song, Void, Boolean>() {
-            @Override
-            protected Boolean doInBackground(Song... params) {
-                Activity activity = getActivity();
-                if (activity != null) {
-                    return MusicUtil.isFavorite(getActivity(), params[0]);
-                } else {
-                    cancel(false);
-                    return null;
-                }
-            }
-
-            @Override
-            protected void onPostExecute(Boolean isFavorite) {
-                Activity activity = getActivity();
-                if (activity != null) {
-                    int res = isFavorite ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_favorite_border_white_24dp;
-                    int color = ToolbarContentTintHelper.toolbarContentColor(activity, Color.TRANSPARENT);
-                    Drawable drawable = ImageUtil.getTintedVectorDrawable(activity, res, color);
-                    toolbar.getMenu().findItem(R.id.action_toggle_favorite)
-                            .setIcon(drawable)
-                            .setTitle(isFavorite ? getString(R.string.action_remove_from_favorites) : getString(R.string.action_add_to_favorites));
-                }
-            }
-        }.execute(MusicPlayerRemote.getCurrentSong());
+        boolean favorite = MusicPlayerRemote.getCurrentSong().favorite;
+        int res = favorite ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_favorite_border_white_24dp;
+        int color = ToolbarContentTintHelper.toolbarContentColor(getActivity(), Color.TRANSPARENT);
+        Drawable drawable = ImageUtil.getTintedVectorDrawable(getActivity(), res, color);
+        toolbar.getMenu().findItem(R.id.action_toggle_favorite)
+                .setIcon(drawable)
+                .setTitle(favorite ? getString(R.string.action_remove_from_favorites) : getString(R.string.action_add_to_favorites));
     }
 
     @Override
@@ -299,9 +278,10 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     protected void toggleFavorite(Song song) {
         super.toggleFavorite(song);
         if (song.id == MusicPlayerRemote.getCurrentSong().id) {
-            if (MusicUtil.isFavorite(getActivity(), song)) {
+            if (song.favorite) {
                 playerAlbumCoverFragment.showHeartAnimation();
             }
+
             updateIsFavorite();
         }
     }
@@ -455,6 +435,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
                     fragment.slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 }
             });
+
             currentSongViewHolder.menu.setOnClickListener(new SongMenuHelper.OnClickSongMenu((AppCompatActivity) fragment.getActivity()) {
                 @Override
                 public Song getSong() {
@@ -475,6 +456,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
                             SongShareDialog.create(getSong()).show(fragment.getFragmentManager(), "SONG_SHARE_DIALOG");
                             return true;
                     }
+
                     return super.onMenuItemClick(item);
                 }
             });
@@ -490,8 +472,8 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
                 albumCoverContainer.getLayoutParams().height = albumCoverContainer.getHeight() - (minPanelHeight - availablePanelHeight);
                 albumCoverContainer.forceSquare(false);
             }
-            fragment.slidingUpPanelLayout.setPanelHeight(Math.max(minPanelHeight, availablePanelHeight));
 
+            fragment.slidingUpPanelLayout.setPanelHeight(Math.max(minPanelHeight, availablePanelHeight));
             ((AbsSlidingMusicPanelActivity) fragment.getActivity()).setAntiDragView(fragment.slidingUpPanelLayout.findViewById(R.id.player_panel));
         }
 
@@ -507,7 +489,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             super.animateColorChange(newColor);
 
             fragment.slidingUpPanelLayout.setBackgroundColor(fragment.lastColor);
-
             createDefaultColorChangeAnimatorSet(newColor).start();
         }
     }
@@ -520,7 +501,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
         @Override
         public void init() {
-
         }
 
         @Override
@@ -546,6 +526,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             AnimatorSet animatorSet = createDefaultColorChangeAnimatorSet(newColor);
             animatorSet.play(ViewUtil.createBackgroundColorTransition(fragment.toolbar, fragment.lastColor, newColor))
                     .with(ViewUtil.createBackgroundColorTransition(fragment.getView().findViewById(R.id.status_bar), ColorUtil.darkenColor(fragment.lastColor), ColorUtil.darkenColor(newColor)));
+
             animatorSet.start();
         }
     }

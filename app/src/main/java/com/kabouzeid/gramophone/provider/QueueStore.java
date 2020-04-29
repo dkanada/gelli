@@ -145,8 +145,6 @@ public class QueueStore extends SQLiteOpenHelper {
                     values.put(AudioColumns.TRACK, song.trackNumber);
                     values.put(AudioColumns.YEAR, song.year);
                     values.put(AudioColumns.DURATION, song.duration);
-                    values.put(AudioColumns.DATA, song.data);
-                    values.put(AudioColumns.DATE_MODIFIED, song.dateModified);
                     values.put(AudioColumns.ALBUM_ID, song.albumId);
                     values.put(AudioColumns.ALBUM, song.albumName);
                     values.put(AudioColumns.ARTIST_ID, song.artistId);

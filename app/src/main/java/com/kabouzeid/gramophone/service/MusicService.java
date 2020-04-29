@@ -569,7 +569,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         if (PreferenceUtil.getInstance(this).getShowAlbumCover()) {
             final Point screenSize = Util.getScreenSize(MusicService.this);
-            final BitmapRequestBuilder<?, Bitmap> request = CustomGlideRequest.Builder.from(Glide.with(MusicService.this), song.albumId)
+            final BitmapRequestBuilder<?, Bitmap> request = CustomGlideRequest.Builder
+                    .from(Glide.with(MusicService.this), song.albumId)
                     .asBitmap().build();
 
             if (PreferenceUtil.getInstance(this).getBlurAlbumCover()) {
@@ -604,6 +605,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         if (config == null) {
             config = Bitmap.Config.RGB_565;
         }
+
         try {
             return bitmap.copy(config, false);
         } catch (OutOfMemoryError e) {
@@ -684,7 +686,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public void openQueue(@Nullable final List<Song> playingQueue, final int startPosition, final boolean startPlaying) {
         if (playingQueue != null && !playingQueue.isEmpty() && startPosition >= 0 && startPosition < playingQueue.size()) {
-            // it is important to copy the playing queue here first as we might add/remove songs later
+            // it is important to copy the playing queue here first as we might add or remove songs later
             originalPlayingQueue = new ArrayList<>(playingQueue);
             this.playingQueue = new ArrayList<>(originalPlayingQueue);
 
@@ -693,11 +695,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 ShuffleHelper.makeShuffleList(this.playingQueue, startPosition);
                 position = 0;
             }
+
             if (startPlaying) {
                 playSongAt(position);
             } else {
                 setPosition(position);
             }
+
             notifyChange(QUEUE_CHANGED);
         }
     }
@@ -735,7 +739,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
 
         rePosition(position);
-
         notifyChange(QUEUE_CHANGED);
     }
 
@@ -746,11 +749,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 rePosition(i);
             }
         }
+
         for (int i = 0; i < originalPlayingQueue.size(); i++) {
             if (originalPlayingQueue.get(i).id == song.id) {
                 originalPlayingQueue.remove(i);
             }
         }
+
         notifyChange(QUEUE_CHANGED);
     }
 
@@ -776,6 +781,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             Song tmpSong = originalPlayingQueue.remove(from);
             originalPlayingQueue.add(to, tmpSong);
         }
+
         if (from > currentPosition && to <= currentPosition) {
             position = currentPosition + 1;
         } else if (from < currentPosition && to >= currentPosition) {
@@ -783,6 +789,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         } else if (from == currentPosition) {
             position = to;
         }
+
         notifyChange(QUEUE_CHANGED);
     }
 

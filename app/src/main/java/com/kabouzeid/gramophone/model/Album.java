@@ -14,19 +14,18 @@ public class Album implements Parcelable {
 
     public String id;
     public String title;
+    public int year;
+
     public String artistId;
     public String artistName;
-    public int year;
 
     public Album(BaseItemDto itemDto) {
         this.id = itemDto.getId();
         this.title = itemDto.getName();
+        this.year = itemDto.getProductionYear() != null ? itemDto.getProductionYear() : 0;
+
         this.artistId = itemDto.getAlbumArtists().get(0).getId();
         this.artistName = itemDto.getAlbumArtists().get(0).getName();
-
-        if (itemDto.getProductionYear() != null) {
-            this.year = itemDto.getProductionYear();
-        }
 
         this.songs = new ArrayList<>();
     }
@@ -57,11 +56,6 @@ public class Album implements Parcelable {
 
     public int getSongCount() {
         return songs.size();
-    }
-
-    @NonNull
-    public Song safeGetFirstSong() {
-        return songs.isEmpty() ? Song.EMPTY_SONG : songs.get(0);
     }
 
     @Override
