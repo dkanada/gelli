@@ -22,7 +22,7 @@ import com.kabouzeid.gramophone.util.PreferenceUtil;
 public final class AppShortcutIconGenerator {
 
     public static Icon generateThemedIcon(Context context, int iconId) {
-        if (PreferenceUtil.getInstance(context).getColoredAppShortcuts()) {
+        if (PreferenceUtil.getInstance(context).getColoredShortcuts()) {
             return generateUserThemedIcon(context, iconId).toIcon();
         } else {
             return generateDefaultThemedIcon(context, iconId).toIcon();

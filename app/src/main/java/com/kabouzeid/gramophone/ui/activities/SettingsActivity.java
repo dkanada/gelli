@@ -122,7 +122,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             addPreferencesFromResource(R.xml.pref_now_playing_screen);
             addPreferencesFromResource(R.xml.pref_lockscreen);
             addPreferencesFromResource(R.xml.pref_audio);
-            addPreferencesFromResource(R.xml.pref_playlists);
         }
 
         @Nullable
@@ -236,10 +235,10 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
                 colorAppShortcuts.setVisible(false);
             } else {
-                colorAppShortcuts.setChecked(PreferenceUtil.getInstance(getActivity()).getColoredAppShortcuts());
+                colorAppShortcuts.setChecked(PreferenceUtil.getInstance(getActivity()).getColoredShortcuts());
                 colorAppShortcuts.setOnPreferenceChangeListener((preference, newValue) -> {
                     // Save preference
-                    PreferenceUtil.getInstance(getActivity()).setColoredAppShortcuts((Boolean) newValue);
+                    PreferenceUtil.getInstance(getActivity()).setColoredShortcuts((Boolean) newValue);
 
                     // Update app shortcuts
                     new DynamicShortcutManager(getActivity()).updateDynamicShortcuts();

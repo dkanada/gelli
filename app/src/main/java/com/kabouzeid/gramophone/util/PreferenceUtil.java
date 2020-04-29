@@ -51,13 +51,11 @@ public final class PreferenceUtil {
     public static final String CLASSIC_NOTIFICATION = "classic_notification";
 
     public static final String GENERAL_THEME = "general_theme";
-    public static final String COLORED_APP_SHORTCUTS = "colored_app_shortcuts";
+    public static final String COLORED_SHORTCUTS = "colored_shortcuts";
 
     public static final String AUDIO_DUCKING = "audio_ducking";
     public static final String GAPLESS_PLAYBACK = "gapless_playback";
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
-
-    public static final String LAST_ADDED_CUTOFF = "last_added_interval";
 
     public static final String SHOW_ALBUM_COVER = "show_album_cover";
     public static final String BLUR_ALBUM_COVER = "blur_album_cover";
@@ -157,22 +155,26 @@ public final class PreferenceUtil {
         editor.apply();
     }
 
-    public final boolean getColoredAppShortcuts() {
-        return mPreferences.getBoolean(COLORED_APP_SHORTCUTS, true);
+    public final boolean getColoredShortcuts() {
+        return mPreferences.getBoolean(COLORED_SHORTCUTS, true);
     }
 
-    public void setColoredAppShortcuts(final boolean value) {
+    public void setColoredShortcuts(final boolean value) {
         final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(COLORED_APP_SHORTCUTS, value);
+        editor.putBoolean(COLORED_SHORTCUTS, value);
         editor.apply();
+    }
+
+    public final boolean getAudioDucking() {
+        return mPreferences.getBoolean(AUDIO_DUCKING, true);
     }
 
     public final boolean getGaplessPlayback() {
         return mPreferences.getBoolean(GAPLESS_PLAYBACK, true);
     }
 
-    public final boolean getAudioDucking() {
-        return mPreferences.getBoolean(AUDIO_DUCKING, true);
+    public final boolean getRememberShuffle() {
+        return mPreferences.getBoolean(REMEMBER_SHUFFLE, true);
     }
 
     public final boolean getShowAlbumCover() {
@@ -227,34 +229,6 @@ public final class PreferenceUtil {
 
     public final String getGenreSortOrder() {
         return mPreferences.getString(GENRE_SORT_ORDER, SortOrder.GenreSortOrder.GENRE_A_Z);
-    }
-
-    public long getLastAddedCutoff() {
-        final CalendarUtil calendarUtil = new CalendarUtil();
-        long interval;
-        switch (mPreferences.getString(LAST_ADDED_CUTOFF, "")) {
-            case "today":
-                interval = calendarUtil.getElapsedToday();
-                break;
-            case "this_week":
-                interval = calendarUtil.getElapsedWeek();
-                break;
-             case "past_seven_days":
-                interval = calendarUtil.getElapsedDays(7);
-                break;
-            case "past_three_months":
-                interval = calendarUtil.getElapsedMonths(3);
-                break;
-            case "this_year":
-                interval = calendarUtil.getElapsedYear();
-                break;
-            case "this_month":
-            default:
-                interval = calendarUtil.getElapsedMonth();
-                break;
-        }
-
-        return (System.currentTimeMillis() - interval) / 1000;
     }
 
     public int getLastSleepTimerValue() {
@@ -387,20 +361,6 @@ public final class PreferenceUtil {
         editor.apply();
     }
 
-    public final boolean getRememberShuffle() {
-        return mPreferences.getBoolean(REMEMBER_SHUFFLE, true);
-    }
-
-    public void setLibraryCategories(List<CategoryInfo> categories) {
-        Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<CategoryInfo>>() {
-        }.getType();
-
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(LIBRARY_CATEGORIES, gson.toJson(categories, collectionType));
-        editor.apply();
-    }
-
     public List<CategoryInfo> getLibraryCategories() {
         String data = mPreferences.getString(LIBRARY_CATEGORIES, null);
         if (data != null) {
@@ -416,6 +376,15 @@ public final class PreferenceUtil {
         }
 
         return getDefaultLibraryCategories();
+    }
+
+    public void setLibraryCategories(List<CategoryInfo> categories) {
+        Gson gson = new Gson();
+        Type collectionType = new TypeToken<List<CategoryInfo>>() {}.getType();
+
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(LIBRARY_CATEGORIES, gson.toJson(categories, collectionType));
+        editor.apply();
     }
 
     public List<CategoryInfo> getDefaultLibraryCategories() {
