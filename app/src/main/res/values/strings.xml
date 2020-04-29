@@ -98,8 +98,8 @@
     <string name="pref_title_app_shortcuts">Colored app shortcuts</string>
     <string name="pref_title_album_art_on_lockscreen">Show album cover</string>
     <string name="pref_title_blurred_album_art">Blur album cover</string>
+    <string name="pref_title_classic_notification">Classic design</string>
     <string name="pref_title_colored_notification">Colored notification</string>
-    <string name="pref_title_classic_notification">Classic notification design</string>
     <string name="pref_title_gapless_playback">Gapless playback</string>
     <string name="pref_title_audio_ducking">Reduce volume on focus loss</string>
     <string name="pref_title_last_added_interval">Last added playlist interval</string>
@@ -114,8 +114,11 @@
     <string name="x_selected">%1$d selected</string>
     <string name="primary_color">Primary color</string>
     <string name="accent_color">Accent color</string>
-    <string name="primary_color_desc">The primary theme color, defaults to indigo.</string>
-    <string name="accent_color_desc">The accent theme color, defaults to pink.</string>
+    <string name="card">Card</string>
+    <string name="flat">Flat</string>
+    <string name="primary_color_desc">The primary theme color for control elements.</string>
+    <string name="accent_color_desc">An alternate color used to accent elements.</string>
+    <string name="error_share_file">There was an error sharing the file.</string>
     <string name="playlist_empty_text">Empty playlist</string>
     <string name="no_playlists">No playlists</string>
     <string name="no_albums">No albums</string>

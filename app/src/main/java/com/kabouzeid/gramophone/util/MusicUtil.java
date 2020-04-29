@@ -1,28 +1,18 @@
 package com.kabouzeid.gramophone.util;
 
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
-import android.os.Environment;
-import android.provider.BaseColumns;
-import android.provider.MediaStore;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.loader.PlaylistLoader;
-import com.kabouzeid.gramophone.loader.SongLoader;
 import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Genre;
@@ -30,7 +20,6 @@ import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -43,14 +32,13 @@ public class MusicUtil {
     public static Intent createShareSongFileIntent(@NonNull final Song song, Context context) {
         try {
             return new Intent()
-                    .setAction(Intent.ACTION_SEND)
-                    .putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName(), new File(song.data)))
-                    .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    .setType("audio/*");
+                .setAction(Intent.ACTION_SEND)
+                .putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName(), new File(song.data)))
+                .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                .setType("audio/*");
         } catch (IllegalArgumentException e) {
-            // TODO the path is most likely not like /storage/emulated/0/... but something like /storage/28C7-75B0/...
             e.printStackTrace();
-            Toast.makeText(context, "Could not share this file, I'm aware of the issue.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.error_share_file, Toast.LENGTH_SHORT).show();
             return new Intent();
         }
     }
@@ -182,13 +170,6 @@ public class MusicUtil {
         } else {
             PlaylistsUtil.addToPlaylist(context, song, getOrCreateFavoritesPlaylist(context).id, false);
         }
-    }
-
-    public static boolean isArtistNameUnknown(@Nullable String artistName) {
-        if (TextUtils.isEmpty(artistName)) return false;
-        if (artistName.equals(Artist.UNKNOWN_ARTIST_DISPLAY_NAME)) return true;
-        artistName = artistName.trim().toLowerCase();
-        return artistName.equals("unknown") || artistName.equals("<unknown>");
     }
 
     @NonNull
