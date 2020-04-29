@@ -28,10 +28,7 @@ public class Genre implements Parcelable {
         if (o == null || getClass() != o.getClass()) return false;
 
         Genre genre = (Genre) o;
-
-        if (id != genre.id) return false;
-        if (!name.equals(genre.name)) return false;
-        return songCount == genre.songCount;
+        return id.equals(genre.id);
     }
 
     @Override
