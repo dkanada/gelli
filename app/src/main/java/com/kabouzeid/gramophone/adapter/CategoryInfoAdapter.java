@@ -14,9 +14,8 @@ import android.widget.Toast;
 
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.model.CategoryInfo;
-import com.kabouzeid.gramophone.util.SwipeAndDragHelper;
+import com.kabouzeid.gramophone.helper.SwipeAndDragHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapter.ViewHolder> implements SwipeAndDragHelper.ActionCompletionContract {

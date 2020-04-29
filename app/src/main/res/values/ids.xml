@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <item name="action_new_playlist" type="id" />
 
     <item name="action_album_sort_order_asc" type="id" />
@@ -15,4 +16,5 @@
     <item name="action_song_sort_order_year" type="id" />
 
     <item name="action_multi_select_adapter_check_all" type="id" />
+
 </resources>

@@ -8,7 +8,7 @@ import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.glide.palette.BitmapPaletteTarget;
 import com.kabouzeid.gramophone.glide.palette.BitmapPaletteWrapper;
-import com.kabouzeid.gramophone.util.PhonographColorUtil;
+import com.kabouzeid.gramophone.util.ThemeUtil;
 
 public abstract class CustomPaletteTarget extends BitmapPaletteTarget {
     public CustomPaletteTarget(ImageView view) {
@@ -24,7 +24,7 @@ public abstract class CustomPaletteTarget extends BitmapPaletteTarget {
     @Override
     public void onResourceReady(BitmapPaletteWrapper resource, GlideAnimation<? super BitmapPaletteWrapper> glideAnimation) {
         super.onResourceReady(resource, glideAnimation);
-        onColorReady(PhonographColorUtil.getColor(resource.getPalette(), getDefaultFooterColor()));
+        onColorReady(ThemeUtil.getColor(resource.getPalette(), getDefaultFooterColor()));
     }
 
     protected int getDefaultFooterColor() {

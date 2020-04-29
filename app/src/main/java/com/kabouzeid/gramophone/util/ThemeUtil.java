@@ -10,7 +10,7 @@ import com.kabouzeid.appthemehelper.util.ColorUtil;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class PhonographColorUtil {
+public class ThemeUtil {
 
     @Nullable
     public static Palette generatePalette(Bitmap bitmap) {

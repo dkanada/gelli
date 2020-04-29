@@ -27,7 +27,7 @@ import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.service.MusicService;
 import com.kabouzeid.gramophone.ui.activities.MainActivity;
 import com.kabouzeid.gramophone.util.ImageUtil;
-import com.kabouzeid.gramophone.util.PhonographColorUtil;
+import com.kabouzeid.gramophone.util.ThemeUtil;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 
 public class PlayingNotificationImpl extends PlayingNotification {
@@ -93,7 +93,7 @@ public class PlayingNotificationImpl extends PlayingNotification {
                         .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
                             @Override
                             public void onResourceReady(BitmapPaletteWrapper resource, GlideAnimation<? super BitmapPaletteWrapper> glideAnimation) {
-                                update(resource.getBitmap(), PhonographColorUtil.getColor(resource.getPalette(), Color.TRANSPARENT));
+                                update(resource.getBitmap(), ThemeUtil.getColor(resource.getPalette(), Color.TRANSPARENT));
                             }
 
                             @Override

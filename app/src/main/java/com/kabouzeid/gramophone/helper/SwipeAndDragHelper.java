@@ -1,4 +1,4 @@
-package com.kabouzeid.gramophone.util;
+package com.kabouzeid.gramophone.helper;
 
 import android.graphics.Canvas;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,13 +34,7 @@ public class SwipeAndDragHelper extends ItemTouchHelper.Callback {
     }
 
     @Override
-    public void onChildDraw(Canvas c,
-                            RecyclerView recyclerView,
-                            RecyclerView.ViewHolder viewHolder,
-                            float dX,
-                            float dY,
-                            int actionState,
-                            boolean isCurrentlyActive) {
+    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             float alpha = 1 - (Math.abs(dX) / recyclerView.getWidth());
             viewHolder.itemView.setAlpha(alpha);

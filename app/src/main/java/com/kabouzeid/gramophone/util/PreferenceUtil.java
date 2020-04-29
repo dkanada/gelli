@@ -78,6 +78,7 @@ public final class PreferenceUtil {
         if (sInstance == null) {
             sInstance = new PreferenceUtil(context.getApplicationContext());
         }
+
         return sInstance;
     }
 
@@ -91,7 +92,7 @@ public final class PreferenceUtil {
 
     @StyleRes
     public int getGeneralTheme() {
-        return getThemeResFromPrefValue(mPreferences.getString(GENERAL_THEME, "light"));
+        return getThemeResFromPrefValue(mPreferences.getString(GENERAL_THEME, "dark"));
     }
 
     @StyleRes
