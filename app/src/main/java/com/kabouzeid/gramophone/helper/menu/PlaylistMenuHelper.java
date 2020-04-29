@@ -45,9 +45,6 @@ public class PlaylistMenuHelper {
             case R.id.action_delete_playlist:
                 DeletePlaylistDialog.create(playlist).show(activity.getSupportFragmentManager(), "DELETE_PLAYLIST");
                 return true;
-            case R.id.action_save_playlist:
-                // TODO remove
-                return true;
         }
         return false;
     }

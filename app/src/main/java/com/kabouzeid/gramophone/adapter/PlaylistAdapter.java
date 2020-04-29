@@ -144,9 +144,6 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                     DeletePlaylistDialog.create(selection).show(activity.getSupportFragmentManager(), "DELETE_PLAYLIST");
                 }
                 break;
-            case R.id.action_save_playlist:
-                // TODO remove
-                break;
             default:
                 SongsMenuHelper.handleMenuClick(activity, getSongList(selection), menuItem.getItemId());
                 break;
