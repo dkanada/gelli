@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.loader.PlaylistLoader;
 import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Genre;
@@ -152,15 +151,14 @@ public class MusicUtil {
     }
 
     public static Playlist getFavoritesPlaylist(@NonNull final Context context) {
-        return PlaylistLoader.getPlaylist(context, context.getString(R.string.favorites));
+        return new Playlist();
     }
 
     private static Playlist getOrCreateFavoritesPlaylist(@NonNull final Context context) {
-        return PlaylistLoader.getPlaylist(context, PlaylistsUtil.createPlaylist(context, context.getString(R.string.favorites)));
+        return new Playlist();
     }
 
     public static boolean isFavorite(@NonNull final Context context, @NonNull final Song song) {
-        //return PlaylistsUtil.doPlaylistContains(context, getFavoritesPlaylist(context).id, song.id);
         return false;
     }
 

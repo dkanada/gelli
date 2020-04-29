@@ -25,7 +25,6 @@ import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.helper.menu.PlaylistMenuHelper;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.interfaces.MediaCallback;
-import com.kabouzeid.gramophone.loader.PlaylistLoader;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
@@ -78,6 +77,16 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
 
         setUpRecyclerView();
         setUpToolbar();
+
+        ItemQuery query = new ItemQuery();
+        query.setParentId(playlist.id);
+        QueryUtil.getSongs(query, new MediaCallback() {
+            @Override
+            public void onLoadMedia(List<?> media) {
+                adapter.getDataSet().addAll((List<Song>) media);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -178,27 +187,10 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
     @Override
     public void onMediaStoreChanged() {
         super.onMediaStoreChanged();
-
-        if (!(playlist instanceof AbsSmartPlaylist)) {
-            // Playlist deleted
-            if (!PlaylistsUtil.doesPlaylistExist(this, playlist.id)) {
-                finish();
-                return;
-            }
-
-            // Playlist renamed
-            final String playlistName = PlaylistsUtil.getNameForPlaylist(this, playlist.id.hashCode());
-            if (!playlistName.equals(playlist.name)) {
-                playlist = PlaylistLoader.getPlaylist(this, playlist.id);
-                setToolbarTitle(playlist.name);
-            }
-        }
     }
 
     private void checkIsEmpty() {
-        empty.setVisibility(
-                adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE
-        );
+        empty.setVisibility(adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -206,6 +198,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
         if (recyclerViewDragDropManager != null) {
             recyclerViewDragDropManager.cancelDrag();
         }
+
         super.onPause();
     }
 

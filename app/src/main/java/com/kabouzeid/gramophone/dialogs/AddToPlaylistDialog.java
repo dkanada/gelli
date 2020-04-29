@@ -7,7 +7,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.loader.PlaylistLoader;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.PlaylistsUtil;
@@ -36,7 +35,8 @@ public class AddToPlaylistDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final List<Playlist> playlists = PlaylistLoader.getAllPlaylists(getActivity());
+        final List<Playlist> playlists = new ArrayList<>();
+
         CharSequence[] playlistNames = new CharSequence[playlists.size() + 1];
         playlistNames[0] = getActivity().getResources().getString(R.string.action_new_playlist);
         for (int i = 1; i < playlistNames.length; i++) {
