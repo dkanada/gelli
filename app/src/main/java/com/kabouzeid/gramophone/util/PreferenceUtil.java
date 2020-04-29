@@ -126,6 +126,7 @@ public final class PreferenceUtil {
         for (NowPlayingScreen nowPlayingScreen : NowPlayingScreen.values()) {
             if (nowPlayingScreen.id == id) return nowPlayingScreen;
         }
+
         return NowPlayingScreen.CARD;
     }
 
@@ -251,6 +252,7 @@ public final class PreferenceUtil {
                 interval = calendarUtil.getElapsedMonth();
                 break;
         }
+
         return (System.currentTimeMillis() - interval) / 1000;
     }
 

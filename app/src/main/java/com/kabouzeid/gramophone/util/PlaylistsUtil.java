@@ -10,9 +10,6 @@ import com.kabouzeid.gramophone.model.Song;
 
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class PlaylistsUtil {
     public static boolean doesPlaylistExist(@NonNull final Context context, final String name) {
         return false;

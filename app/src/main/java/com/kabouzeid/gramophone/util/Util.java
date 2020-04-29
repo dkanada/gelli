@@ -20,9 +20,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.kabouzeid.gramophone.R;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class Util {
 
     public static int getActionBarSize(@NonNull Context context) {
@@ -51,8 +48,7 @@ public class Util {
 
     public static void setAllowDrawUnderStatusBar(@NonNull Window window) {
         window.getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
     public static void hideSoftKeyboard(@Nullable Activity activity) {
@@ -87,5 +83,4 @@ public class Util {
             return config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
         } else return false;
     }
-
 }

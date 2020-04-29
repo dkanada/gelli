@@ -19,9 +19,6 @@ import java.io.InputStream;
 
 import com.kabouzeid.appthemehelper.util.TintHelper;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class ImageUtil {
 
     public static int calculateInSampleSize(int width, int height, int reqWidth) {
@@ -60,6 +57,7 @@ public class ImageUtil {
             if (maxForSmallerSize >= width) {
                 return src;
             }
+
             float ratio = (float) height / width;
             dstWidth = maxForSmallerSize;
             dstHeight = Math.round(maxForSmallerSize * ratio);
@@ -67,6 +65,7 @@ public class ImageUtil {
             if (maxForSmallerSize >= height) {
                 return src;
             }
+
             float ratio = (float) width / height;
             dstWidth = Math.round(maxForSmallerSize * ratio);
             dstHeight = maxForSmallerSize;
@@ -91,6 +90,7 @@ public class ImageUtil {
         if (Build.VERSION.SDK_INT >= 21) {
             return res.getDrawable(resId, theme);
         }
+
         return VectorDrawableCompat.create(res, resId, theme);
     }
 
@@ -116,6 +116,5 @@ public class ImageUtil {
     public static Bitmap resize(InputStream stream, int scaledWidth, int scaledHeight) {
         final Bitmap bitmap = BitmapFactory.decodeStream(stream);
         return Bitmap.createScaledBitmap(bitmap, scaledWidth, scaledHeight, true);
-
     }
 }

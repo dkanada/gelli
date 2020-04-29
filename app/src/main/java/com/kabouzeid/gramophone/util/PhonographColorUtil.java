@@ -10,9 +10,6 @@ import com.kabouzeid.appthemehelper.util.ColorUtil;
 import java.util.Collections;
 import java.util.Comparator;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class PhonographColorUtil {
 
     @Nullable
@@ -40,6 +37,7 @@ public class PhonographColorUtil {
                 return Collections.max(palette.getSwatches(), SwatchComparator.getInstance()).getRgb();
             }
         }
+
         return fallback;
     }
 
@@ -50,6 +48,7 @@ public class PhonographColorUtil {
             if (sInstance == null) {
                 sInstance = new SwatchComparator();
             }
+
             return sInstance;
         }
 
@@ -64,6 +63,7 @@ public class PhonographColorUtil {
         while (ColorUtil.isColorLight(backgroundColor)) {
             backgroundColor = ColorUtil.darkenColor(backgroundColor);
         }
+
         return backgroundColor;
     }
 
@@ -72,6 +72,7 @@ public class PhonographColorUtil {
         while (!ColorUtil.isColorLight(backgroundColor)) {
             backgroundColor = ColorUtil.lightenColor(backgroundColor);
         }
+
         return backgroundColor;
     }
 }

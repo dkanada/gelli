@@ -3,9 +3,6 @@ package com.kabouzeid.gramophone.util;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/**
- * @author Eugene Cheung (arkon)
- */
 public class CalendarUtil {
     private static final long MS_PER_MINUTE = 60 * 1000;
     private static final long MS_PER_DAY = 24 * 60 * MS_PER_MINUTE;
@@ -23,7 +20,8 @@ public class CalendarUtil {
      */
     public long getElapsedToday() {
         // Time elapsed so far today
-        return (calendar.get(Calendar.HOUR_OF_DAY) * 60 + calendar.get(Calendar.MINUTE)) * MS_PER_MINUTE
+        return (calendar.get(Calendar.HOUR_OF_DAY) * 60
+                + calendar.get(Calendar.MINUTE)) * MS_PER_MINUTE
                 + calendar.get(Calendar.SECOND) * 1000
                 + calendar.get(Calendar.MILLISECOND);
     }
@@ -63,9 +61,8 @@ public class CalendarUtil {
      * @return Time elapsed this month in milliseconds.
      */
     public long getElapsedMonth() {
-        // Today + rest of this month
-        return getElapsedToday() +
-                ((calendar.get(Calendar.DAY_OF_MONTH) - 1) * MS_PER_DAY);
+        // Today and the rest of this month
+        return getElapsedToday() + ((calendar.get(Calendar.DAY_OF_MONTH) - 1) * MS_PER_DAY);
     }
 
     /**
@@ -75,7 +72,7 @@ public class CalendarUtil {
      * @return Time elapsed this month and the last numMonths months in milliseconds.
      */
     public long getElapsedMonths(int numMonths) {
-        // Today + rest of this month
+        // Today and the rest of this month
         long elapsed = getElapsedMonth();
 
         // Previous numMonths months
@@ -108,7 +105,6 @@ public class CalendarUtil {
         int year = calendar.get(Calendar.YEAR);
         while (month > Calendar.JANUARY) {
             elapsed += getDaysInMonth(year, month) * MS_PER_DAY;
-
             month--;
         }
 

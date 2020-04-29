@@ -29,16 +29,11 @@ import com.kabouzeid.gramophone.model.Genre;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 
-import org.jellyfin.apiclient.interaction.ApiClient;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class MusicUtil {
     public static Uri getSongFileUri(Song song) {
         return Uri.parse(App.getApiClient().getApiUrl() + "/Audio/" + song.id + "/stream?static=true");
@@ -127,6 +122,7 @@ public class MusicUtil {
         for (int i = 0; i < songs.size(); i++) {
             duration += songs.get(i).duration;
         }
+
         return duration;
     }
 
@@ -142,15 +138,8 @@ public class MusicUtil {
         }
     }
 
-    /** 
-     * Build a concatenated string from the provided arguments
-     * The intended purpose is to show extra annotations
-     * to a music library item.
-     * Ex: for a given album --> buildInfoString(album.artist, album.songCount)
-     */
     @NonNull
-    public static String buildInfoString(@Nullable final String string1, @Nullable final String string2)
-    {
+    public static String buildInfoString(@Nullable final String string1, @Nullable final String string2) {
         // Skip empty strings
         if (TextUtils.isEmpty(string1)) {
             //noinspection ConstantConditions
@@ -168,104 +157,6 @@ public class MusicUtil {
     // this method converts those values to normal track numbers
     public static int getFixedTrackNumber(int trackNumberToFix) {
         return trackNumberToFix % 1000;
-    }
-
-    public static void insertAlbumArt(@NonNull Context context, int albumId, String path) {
-        ContentResolver contentResolver = context.getContentResolver();
-
-        Uri artworkUri = Uri.parse("content://media/external/audio/albumart");
-        contentResolver.delete(ContentUris.withAppendedId(artworkUri, albumId), null, null);
-
-        ContentValues values = new ContentValues();
-        values.put("album_id", albumId);
-        values.put("_data", path);
-
-        contentResolver.insert(artworkUri, values);
-    }
-
-    public static void deleteAlbumArt(@NonNull Context context, int albumId) {
-        ContentResolver contentResolver = context.getContentResolver();
-        Uri localUri = Uri.parse("content://media/external/audio/albumart");
-        contentResolver.delete(ContentUris.withAppendedId(localUri, albumId), null, null);
-    }
-
-    @NonNull
-    public static File createAlbumArtFile() {
-        return new File(createAlbumArtDir(), String.valueOf(System.currentTimeMillis()));
-    }
-
-    @NonNull
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static File createAlbumArtDir() {
-        File albumArtDir = new File(Environment.getExternalStorageDirectory(), "/albumthumbs/");
-        if (!albumArtDir.exists()) {
-            albumArtDir.mkdirs();
-            try {
-                new File(albumArtDir, ".nomedia").createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return albumArtDir;
-    }
-
-    public static void deleteTracks(@NonNull final Context context, @NonNull final List<Song> songs) {
-        final String[] projection = new String[]{
-                BaseColumns._ID, MediaStore.MediaColumns.DATA
-        };
-        final StringBuilder selection = new StringBuilder();
-        selection.append(BaseColumns._ID + " IN (");
-        for (int i = 0; i < songs.size(); i++) {
-            selection.append(songs.get(i).id);
-            if (i < songs.size() - 1) {
-                selection.append(",");
-            }
-        }
-        selection.append(")");
-
-        try {
-            final Cursor cursor = context.getContentResolver().query(
-                    MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, selection.toString(),
-                    null, null);
-            if (cursor != null) {
-                // Step 1: Remove selected tracks from the current playlist, as well
-                // as from the album art cache
-                cursor.moveToFirst();
-                while (!cursor.isAfterLast()) {
-                    final int id = cursor.getInt(0);
-                    final Song song = SongLoader.getSong(context, id);
-                    MusicPlayerRemote.removeFromQueue(song);
-                    cursor.moveToNext();
-                }
-
-                // Step 2: Remove selected tracks from the database
-                context.getContentResolver().delete(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                        selection.toString(), null);
-
-                // Step 3: Remove files from card
-                cursor.moveToFirst();
-                while (!cursor.isAfterLast()) {
-                    final String name = cursor.getString(1);
-                    try { // File.delete can throw a security exception
-                        final File f = new File(name);
-                        if (!f.delete()) {
-                            // I'm not sure if we'd ever get here (deletion would
-                            // have to fail, but no exception thrown)
-                            Log.e("MusicUtils", "Failed to delete file " + name);
-                        }
-                        cursor.moveToNext();
-                    } catch (@NonNull final SecurityException ex) {
-                        cursor.moveToNext();
-                    } catch (NullPointerException e) {
-                        Log.e("MusicUtils", "Failed to find file " + name);
-                    }
-                }
-                cursor.close();
-            }
-            context.getContentResolver().notifyChange(Uri.parse("content://media"), null);
-            Toast.makeText(context, context.getString(R.string.deleted_x_songs, songs.size()), Toast.LENGTH_SHORT).show();
-        } catch (SecurityException ignored) {
-        }
     }
 
     public static boolean isFavoritePlaylist(@NonNull final Context context, @NonNull final Playlist playlist) {
@@ -303,12 +194,14 @@ public class MusicUtil {
     @NonNull
     public static String getSectionName(@Nullable String musicMediaTitle) {
         if (TextUtils.isEmpty(musicMediaTitle)) return "";
+
         musicMediaTitle = musicMediaTitle.trim().toLowerCase();
         if (musicMediaTitle.startsWith("the ")) {
             musicMediaTitle = musicMediaTitle.substring(4);
         } else if (musicMediaTitle.startsWith("a ")) {
             musicMediaTitle = musicMediaTitle.substring(2);
         }
+
         if (musicMediaTitle.isEmpty()) return "";
         return String.valueOf(musicMediaTitle.charAt(0)).toUpperCase();
     }

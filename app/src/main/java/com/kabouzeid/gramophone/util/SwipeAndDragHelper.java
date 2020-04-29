@@ -45,12 +45,12 @@ public class SwipeAndDragHelper extends ItemTouchHelper.Callback {
             float alpha = 1 - (Math.abs(dX) / recyclerView.getWidth());
             viewHolder.itemView.setAlpha(alpha);
         }
+
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
     }
 
     public interface ActionCompletionContract {
         void onViewMoved(int oldPosition, int newPosition);
     }
-
 }
 

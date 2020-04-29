@@ -24,9 +24,6 @@ import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.kabouzeid.gramophone.R;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class ViewUtil {
 
     public final static int PHONOGRAPH_ANIM_TIME = 1000;
@@ -51,6 +48,7 @@ public class ViewUtil {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             animator.setInterpolator(new PathInterpolator(0.4f, 0f, 1f, 1f));
         }
+
         animator.setDuration(PHONOGRAPH_ANIM_TIME);
         return animator;
     }
