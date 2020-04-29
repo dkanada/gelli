@@ -40,13 +40,13 @@ public class PlaylistMenuHelper {
                 AddToPlaylistDialog.create(new ArrayList<>(getPlaylistSongs(activity, playlist))).show(activity.getSupportFragmentManager(), "ADD_PLAYLIST");
                 return true;
             case R.id.action_rename_playlist:
-                RenamePlaylistDialog.create(playlist.id).show(activity.getSupportFragmentManager(), "RENAME_PLAYLIST");
+                RenamePlaylistDialog.create(playlist.id.hashCode()).show(activity.getSupportFragmentManager(), "RENAME_PLAYLIST");
                 return true;
             case R.id.action_delete_playlist:
                 DeletePlaylistDialog.create(playlist).show(activity.getSupportFragmentManager(), "DELETE_PLAYLIST");
                 return true;
             case R.id.action_save_playlist:
-                new SavePlaylistAsyncTask(activity).execute(playlist);
+                // TODO remove
                 return true;
         }
         return false;
@@ -56,32 +56,6 @@ public class PlaylistMenuHelper {
     private static List<? extends Song> getPlaylistSongs(@NonNull Activity activity, Playlist playlist) {
         return playlist instanceof AbsSmartPlaylist ?
                 ((AbsSmartPlaylist) playlist).getSongs(activity) :
-                PlaylistSongLoader.getPlaylistSongList(activity, playlist.id);
-    }
-
-
-    private static class SavePlaylistAsyncTask extends WeakContextAsyncTask<Playlist, String, String> {
-        public SavePlaylistAsyncTask(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected String doInBackground(Playlist... params) {
-            try {
-                return String.format(App.getInstance().getApplicationContext().getString(R.string.saved_playlist_to), PlaylistsUtil.savePlaylist(App.getInstance().getApplicationContext(), params[0]));
-            } catch (IOException e) {
-                e.printStackTrace();
-                return String.format(App.getInstance().getApplicationContext().getString(R.string.failed_to_save_playlist), e);
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String string) {
-            super.onPostExecute(string);
-            Context context = getContext();
-            if (context != null) {
-                Toast.makeText(context, string, Toast.LENGTH_LONG).show();
-            }
-        }
+                PlaylistSongLoader.getPlaylistSongList(activity, playlist.id.hashCode());
     }
 }

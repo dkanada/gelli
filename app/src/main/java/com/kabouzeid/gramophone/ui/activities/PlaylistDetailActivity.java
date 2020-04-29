@@ -191,7 +191,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
             }
 
             // Playlist renamed
-            final String playlistName = PlaylistsUtil.getNameForPlaylist(this, playlist.id);
+            final String playlistName = PlaylistsUtil.getNameForPlaylist(this, playlist.id.hashCode());
             if (!playlistName.equals(playlist.name)) {
                 playlist = PlaylistLoader.getPlaylist(this, playlist.id);
                 setToolbarTitle(playlist.name);
@@ -268,7 +268,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
                 return ((AbsSmartPlaylist) playlist).getSongs(getContext());
             } else {
                 //noinspection unchecked
-                return (List) PlaylistSongLoader.getPlaylistSongList(getContext(), playlist.id);
+                return (List) PlaylistSongLoader.getPlaylistSongList(getContext(), playlist.id.hashCode());
             }
         }
     }

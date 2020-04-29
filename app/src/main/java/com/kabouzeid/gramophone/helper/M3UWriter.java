@@ -24,7 +24,7 @@ public class M3UWriter implements M3UConstants {
         if (playlist instanceof AbsSmartPlaylist) {
             songs = ((AbsSmartPlaylist) playlist).getSongs(context);
         } else {
-            songs = PlaylistSongLoader.getPlaylistSongList(context, playlist.id);
+            songs = PlaylistSongLoader.getPlaylistSongList(context, playlist.id.hashCode());
         }
 
         if (songs.size() > 0) {

@@ -5,6 +5,7 @@ import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Genre;
+import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 
 import org.jellyfin.apiclient.interaction.Response;
@@ -30,6 +31,31 @@ public class QueryUtil {
                 libraries.addAll(Arrays.asList(result.getItems()));
 
                 callback.onLoadMedia(libraries);
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    public static void getPlaylists(MediaCallback callback) {
+        ItemQuery query = new ItemQuery();
+        query.setIncludeItemTypes(new String[]{"Playlist"});
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setLimit(100);
+        query.setRecursive(true);
+        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
+        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
+            @Override
+            public void onResponse(ItemsResult result) {
+                List<Playlist> playlists = new ArrayList<>();
+                for (BaseItemDto itemDto : result.getItems()) {
+                    playlists.add(new Playlist(itemDto));
+                }
+
+                callback.onLoadMedia(playlists);
             }
 
             @Override

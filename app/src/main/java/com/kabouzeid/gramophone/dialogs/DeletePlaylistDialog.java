@@ -54,7 +54,7 @@ public class DeletePlaylistDialog extends DialogFragment {
                 .negativeText(android.R.string.cancel)
                 .onPositive((dialog, which) -> {
                     if (getActivity() == null) return;
-                    PlaylistsUtil.deletePlaylists(getActivity(), playlists);
+                    PlaylistsUtil.deletePlaylist(getActivity(), playlists);
                 })
                 .build();
     }

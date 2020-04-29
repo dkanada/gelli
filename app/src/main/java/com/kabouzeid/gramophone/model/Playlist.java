@@ -2,19 +2,25 @@ package com.kabouzeid.gramophone.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
+
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
 
 public class Playlist implements Parcelable {
-    public final int id;
+    public final String id;
     public final String name;
 
+    public Playlist(BaseItemDto itemDto) {
+        this.id = itemDto.getId();
+        this.name = itemDto.getName();
+    }
+
     public Playlist(final int id, final String name) {
-        this.id = id;
+        this.id = Integer.toString(id);
         this.name = name;
     }
 
     public Playlist() {
-        this.id = -1;
+        this.id = "";
         this.name = "";
     }
 
@@ -24,21 +30,17 @@ public class Playlist implements Parcelable {
         if (o == null || getClass() != o.getClass()) return false;
 
         Playlist playlist = (Playlist) o;
-
-        if (id != playlist.id) return false;
-        return name != null ? name.equals(playlist.name) : playlist.name == null;
+        return id.equals(playlist.id);
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+        return id.hashCode();
     }
 
     @Override
     public String toString() {
-        return "Playlist{" + "id=" + id + ", name='" + name + '\'' + '}';
+        return id;
     }
 
     @Override
@@ -48,12 +50,12 @@ public class Playlist implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeString(this.id);
         dest.writeString(this.name);
     }
 
     protected Playlist(Parcel in) {
-        this.id = in.readInt();
+        this.id = in.readString();
         this.name = in.readString();
     }
 

@@ -58,7 +58,7 @@ public class CreatePlaylistDialog extends DialogFragment {
                     final String name = charSequence.toString().trim();
                     if (!name.isEmpty()) {
                         if (!PlaylistsUtil.doesPlaylistExist(getActivity(), name)) {
-                            final int playlistId = PlaylistsUtil.createPlaylist(getActivity(), name);
+                            final String playlistId = PlaylistsUtil.createPlaylist(getActivity(), name);
                             if (getActivity() != null) {
                                 // noinspection unchecked
                                 List<Song> songs = getArguments().getParcelableArrayList(SONGS);
