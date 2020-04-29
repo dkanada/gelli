@@ -29,7 +29,6 @@ import com.kabouzeid.gramophone.misc.WeakContextAsyncTask;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
-import com.kabouzeid.gramophone.model.playlist.LatestPlaylist;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.kabouzeid.gramophone.util.PlaylistsUtil;
@@ -239,10 +238,6 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                     final Playlist playlist = dataSet.get(getAdapterPosition());
                     final PopupMenu popupMenu = new PopupMenu(activity, view);
                     popupMenu.inflate(getItemViewType() == SMART_PLAYLIST ? R.menu.menu_item_smart_playlist : R.menu.menu_item_playlist);
-                    if (playlist instanceof LatestPlaylist) {
-                        popupMenu.getMenu().findItem(R.id.action_clear_playlist).setVisible(false);
-                    }
-
                     popupMenu.setOnMenuItemClickListener(item -> {
                         if (item.getItemId() == R.id.action_clear_playlist) {
                             if (playlist instanceof AbsSmartPlaylist) {

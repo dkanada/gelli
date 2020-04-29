@@ -8,9 +8,6 @@ import com.kabouzeid.gramophone.shortcuts.shortcuttype.LatestShortcutType;
 import com.kabouzeid.gramophone.shortcuts.shortcuttype.ShuffleShortcutType;
 import com.kabouzeid.gramophone.shortcuts.shortcuttype.FrequentShortcutType;
 import com.kabouzeid.gramophone.model.Playlist;
-import com.kabouzeid.gramophone.model.playlist.LatestPlaylist;
-import com.kabouzeid.gramophone.model.playlist.FrequentPlaylist;
-import com.kabouzeid.gramophone.model.playlist.ShufflePlaylist;
 import com.kabouzeid.gramophone.service.MusicService;
 
 /**
@@ -40,18 +37,12 @@ public class AppShortcutLauncherActivity extends Activity {
 
         switch (shortcutType) {
             case SHORTCUT_TYPE_SHUFFLE:
-                startServiceWithPlaylist(MusicService.SHUFFLE_MODE_SHUFFLE,
-                        new ShufflePlaylist(getApplicationContext()));
                 DynamicShortcutManager.reportShortcutUsed(this, ShuffleShortcutType.getId());
                 break;
             case SHORTCUT_TYPE_FREQUENT:
-                startServiceWithPlaylist(MusicService.SHUFFLE_MODE_NONE,
-                        new FrequentPlaylist(getApplicationContext()));
                 DynamicShortcutManager.reportShortcutUsed(this, FrequentShortcutType.getId());
                 break;
             case SHORTCUT_TYPE_LATEST:
-                startServiceWithPlaylist(MusicService.SHUFFLE_MODE_NONE,
-                        new LatestPlaylist(getApplicationContext()));
                 DynamicShortcutManager.reportShortcutUsed(this, LatestShortcutType.getId());
                 break;
         }
