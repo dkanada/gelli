@@ -30,7 +30,7 @@ public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAda
     protected GenreAdapter createAdapter() {
         List<Genre> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
 
-        GenreAdapter adapter = new GenreAdapter(getLibraryFragment().getMainActivity(), dataSet, R.layout.item_list_no_image);
+        GenreAdapter adapter = new GenreAdapter(getLibraryFragment().getMainActivity(), dataSet, R.layout.item_list_single_row);
         QueryUtil.getGenres(new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {

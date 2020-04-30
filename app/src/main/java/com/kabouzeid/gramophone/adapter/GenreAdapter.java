@@ -4,24 +4,27 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.kabouzeid.gramophone.adapter.base.MediaEntryViewHolder;
+import com.kabouzeid.gramophone.glide.CustomGlideRequest;
+import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
 import com.kabouzeid.gramophone.model.Genre;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> implements FastScrollRecyclerView.SectionedAdapter {
-
-    @NonNull
     private final AppCompatActivity activity;
     private List<Genre> dataSet;
+
     private int itemLayoutRes;
 
     public GenreAdapter(@NonNull AppCompatActivity activity, List<Genre> dataSet, @LayoutRes int itemLayoutRes) {
@@ -77,9 +80,25 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
             holder.title.setText(genre.name);
         }
 
-        if (holder.text != null) {
-            holder.text.setText(MusicUtil.getGenreInfoString(activity, genre));
-        }
+        loadImage(genre, holder);
+    }
+
+    protected void loadImage(Genre genre, final GenreAdapter.ViewHolder holder) {
+        if (holder.image == null) return;
+
+        CustomGlideRequest.Builder
+                .from(Glide.with(activity), genre.id)
+                .generatePalette(activity).build()
+                .into(new CustomPaletteTarget(holder.image) {
+                    @Override
+                    public void onLoadCleared(Drawable placeholder) {
+                        super.onLoadCleared(placeholder);
+                    }
+
+                    @Override
+                    public void onColorReady(int color) {
+                    }
+                });
     }
 
     @Override
