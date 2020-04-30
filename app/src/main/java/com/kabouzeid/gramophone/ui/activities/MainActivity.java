@@ -69,13 +69,39 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             navigationView.setFitsSystemWindows(false);
         }
 
-        setUpDrawerLayout();
+        Menu menu = navigationView.getMenu();
+        QueryUtil.getLibraries(new MediaCallback() {
+            @Override
+            public void onLoadMedia(List<?> media) {
+                libraries = (List<BaseItemDto>) media;
+                menu.clear();
 
-        if (savedInstanceState == null) {
-            setCurrentFragment(LibraryFragment.newInstance());
-        } else {
-            restoreCurrentFragment();
-        }
+                for (BaseItemDto itemDto : libraries) {
+                    if (menu.size() == 0) {
+                        QueryUtil.currentLibrary = itemDto;
+                    }
+
+                    if (itemDto.getCollectionType() == null || !itemDto.getCollectionType().equals("music")) continue;
+                    int test = itemDto.getId().hashCode();
+                    menu.add(R.id.navigation_drawer_menu_category_sections, itemDto.getId().hashCode(), menu.size(), itemDto.getName());
+                    menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_album_white_24dp);
+                }
+
+                menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_settings, menu.size(), R.string.action_settings);
+                menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_settings_white_24dp);
+                menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_about, menu.size(), R.string.action_about);
+                menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_help_white_24dp);
+
+                setUpDrawerLayout();
+
+                menu.getItem(0).setChecked(true);
+                if (savedInstanceState == null) {
+                    setCurrentFragment(LibraryFragment.newInstance());
+                } else {
+                    restoreCurrentFragment();
+                }
+            }
+        });
     }
 
     private void setCurrentFragment(@SuppressWarnings("NullableProblems") Fragment fragment) {
@@ -117,10 +143,20 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     break;
             }
 
+            // setCheckable must be applied to the items on creation
+            // it also applies a tacky background color for the checked item
+            // this is a hack to check the current item without that
+            for (int i = 0; i < navigationView.getMenu().size(); i++) {
+                if (navigationView.getMenu().getItem(i) == menuItem) {
+                    navigationView.getMenu().getItem(i).setChecked(true);
+                } else {
+                    navigationView.getMenu().getItem(i).setChecked(false);
+                }
+            }
+
             for (BaseItemDto itemDto : libraries) {
                 if (menuItem.getItemId() == itemDto.getId().hashCode()) {
                     QueryUtil.currentLibrary = itemDto;
-                    navigationView.setCheckedItem(itemDto.getId().hashCode());
                     setCurrentFragment(LibraryFragment.newInstance());
                     break;
                 }
@@ -143,26 +179,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     drawerLayout.closeDrawers();
                     if (getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                         expandPanel();
-                    }
-                });
-
-                Menu menu = navigationView.getMenu();
-                QueryUtil.getLibraries(new MediaCallback() {
-                    @Override
-                    public void onLoadMedia(List<?> media) {
-                        libraries = (List<BaseItemDto>) media;
-                        menu.clear();
-
-                        for (BaseItemDto itemDto : libraries) {
-                            if (itemDto.getCollectionType() == null || !itemDto.getCollectionType().equals("music")) continue;
-                            menu.add(R.id.navigation_drawer_menu_category_sections, itemDto.getId().hashCode(), menu.size(), itemDto.getName());
-                            menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_album_white_24dp);
-                        }
-
-                        menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_settings, menu.size(), R.string.action_settings);
-                        menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_settings_white_24dp);
-                        menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_about, menu.size(), R.string.action_about);
-                        menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_help_white_24dp);
                     }
                 });
             }
