@@ -12,11 +12,6 @@ public class PlaylistSong extends Song {
         this.playlistId = playlistId;
     }
 
-    public PlaylistSong(String id, String title, int trackNumber, int year, long duration, String albumId, String albumName, String artistId, String artistName, final String playlistId) {
-        super("", title, trackNumber, year, duration, "", albumName, "", artistName);
-        this.playlistId = playlistId;
-    }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);

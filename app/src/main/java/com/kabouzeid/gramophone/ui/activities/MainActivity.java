@@ -82,7 +82,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     }
 
                     if (itemDto.getCollectionType() == null || !itemDto.getCollectionType().equals("music")) continue;
-                    int test = itemDto.getId().hashCode();
                     menu.add(R.id.navigation_drawer_menu_category_sections, itemDto.getId().hashCode(), menu.size(), itemDto.getName());
                     menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_album_white_24dp);
                 }
@@ -130,11 +129,6 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
         navigationView.setNavigationItemSelectedListener(menuItem -> {
             drawerLayout.closeDrawers();
             switch (menuItem.getItemId()) {
-                case R.id.nav_library:
-                    QueryUtil.currentLibrary = null;
-                    navigationView.setCheckedItem(R.id.nav_library);
-                    setCurrentFragment(LibraryFragment.newInstance());
-                    break;
                 case R.id.nav_settings:
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, SettingsActivity.class)), 200);
                     break;
@@ -143,22 +137,23 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     break;
             }
 
-            // setCheckable must be applied to the items on creation
-            // it also applies a tacky background color for the checked item
-            // this is a hack to check the current item without that
-            for (int i = 0; i < navigationView.getMenu().size(); i++) {
-                if (navigationView.getMenu().getItem(i) == menuItem) {
-                    navigationView.getMenu().getItem(i).setChecked(true);
-                } else {
-                    navigationView.getMenu().getItem(i).setChecked(false);
-                }
-            }
-
             for (BaseItemDto itemDto : libraries) {
                 if (menuItem.getItemId() == itemDto.getId().hashCode()) {
                     QueryUtil.currentLibrary = itemDto;
                     setCurrentFragment(LibraryFragment.newInstance());
                     break;
+                }
+            }
+
+            // setCheckable must be applied to the items on creation
+            // it also applies a tacky background color for the checked item
+            // this is a hack to check the current item without that
+            if (menuItem.getItemId() == R.id.nav_settings || menuItem.getItemId() == R.id.nav_about) return true;
+            for (int i = 0; i < navigationView.getMenu().size(); i++) {
+                if (navigationView.getMenu().getItem(i) == menuItem) {
+                    navigationView.getMenu().getItem(i).setChecked(true);
+                } else {
+                    navigationView.getMenu().getItem(i).setChecked(false);
                 }
             }
 

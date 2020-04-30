@@ -3,14 +3,7 @@
 
     <group
         android:id="@+id/navigation_drawer_menu_category_sections"
-        android:checkableBehavior="single">
-
-        <item
-            android:id="@+id/nav_library"
-            android:icon="@drawable/ic_library_music_white_24dp"
-            android:title="@string/all" />
-
-    </group>
+        android:checkableBehavior="single" />
 
     <group
         android:id="@+id/navigation_drawer_menu_category_other"
