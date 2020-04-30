@@ -106,7 +106,10 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                             if (result.getAccessToken() == null) return;
                             serverCredentials.GetServer(result.getServerId()).setAccessToken(result.getAccessToken());
                             credentialProvider.SaveCredentials(serverCredentials);
-                            context.startActivity(new Intent(context, MainActivity.class));
+
+                            Intent intent = new Intent(context, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            context.startActivity(intent);
                         }
                     });
                 }

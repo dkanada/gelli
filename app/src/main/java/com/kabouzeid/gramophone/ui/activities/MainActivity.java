@@ -200,8 +200,10 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             } else {
                 drawerLayout.openDrawer(navigationView);
             }
+
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -211,6 +213,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             drawerLayout.closeDrawers();
             return true;
         }
+
         return super.handleBackPress() || (currentFragment != null && currentFragment.handleBackPress());
     }
 

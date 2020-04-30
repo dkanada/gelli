@@ -1,7 +1,7 @@
 include ':app'
 
-include ':apiclient'
-project(':apiclient').projectDir = new File(settingsDir, '../jellyfin-apiclient-java/android')
+// include ':apiclient'
+// project(':apiclient').projectDir = new File(settingsDir, '../jellyfin-apiclient-java/android')
 
-include ':library'
-project(':library').projectDir = new File(settingsDir, '../jellyfin-apiclient-java/library')
+// include ':library'
+// project(':library').projectDir = new File(settingsDir, '../jellyfin-apiclient-java/library')

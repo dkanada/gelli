@@ -15,6 +15,7 @@ import org.jellyfin.apiclient.interaction.VolleyHttpClient;
 import org.jellyfin.apiclient.interaction.connectionmanager.ConnectionManager;
 import org.jellyfin.apiclient.interaction.http.IAsyncHttpClient;
 import org.jellyfin.apiclient.logging.AndroidLogger;
+import org.jellyfin.apiclient.model.apiclient.ConnectionState;
 import org.jellyfin.apiclient.model.logging.ILogger;
 import org.jellyfin.apiclient.model.serialization.GsonJsonSerializer;
 import org.jellyfin.apiclient.model.serialization.IJsonSerializer;
@@ -49,9 +50,17 @@ public class SplashActivity extends AbsBaseActivity {
             connectionManager.Connect(credentialProvider.GetCredentials().getServers().get(0), new Response<ConnectionResult>() {
                 @Override
                 public void onResponse(ConnectionResult result) {
-                    //if (result.getState() != ConnectionState.SignedIn) return;
-                    App.setApiClient(result.getApiClient());
-                    context.startActivity(new Intent(context, MainActivity.class));
+                    if (result.getState() != ConnectionState.SignedIn) {
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        context.startActivity(intent);
+                    } else {
+                        App.setApiClient(result.getApiClient());
+
+                        Intent intent = new Intent(context, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        context.startActivity(intent);
+                    }
                 }
             });
         }
