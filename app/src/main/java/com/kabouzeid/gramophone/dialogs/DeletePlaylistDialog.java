@@ -9,7 +9,7 @@ import android.text.Html;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.model.Playlist;
-import com.kabouzeid.gramophone.util.PlaylistsUtil;
+import com.kabouzeid.gramophone.util.PlaylistUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class DeletePlaylistDialog extends DialogFragment {
                 .negativeText(android.R.string.cancel)
                 .onPositive((dialog, which) -> {
                     if (getActivity() == null) return;
-                    PlaylistsUtil.deletePlaylist(getActivity(), playlists);
+                    PlaylistUtil.deletePlaylist(playlists);
                 })
                 .build();
     }

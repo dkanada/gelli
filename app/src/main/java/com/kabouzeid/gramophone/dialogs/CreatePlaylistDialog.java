@@ -6,12 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import android.text.InputType;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.model.Song;
-import com.kabouzeid.gramophone.util.PlaylistsUtil;
+import com.kabouzeid.gramophone.util.PlaylistUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,27 +48,13 @@ public class CreatePlaylistDialog extends DialogFragment {
                 .title(R.string.action_new_playlist)
                 .positiveText(R.string.create_action)
                 .negativeText(android.R.string.cancel)
-                .inputType(InputType.TYPE_CLASS_TEXT |
-                        InputType.TYPE_TEXT_VARIATION_PERSON_NAME |
-                        InputType.TYPE_TEXT_FLAG_CAP_WORDS)
+                .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME | InputType.TYPE_TEXT_FLAG_CAP_WORDS)
                 .input(R.string.playlist_name_empty, 0, false, (materialDialog, charSequence) -> {
-                    if (getActivity() == null)
-                        return;
                     final String name = charSequence.toString().trim();
-                    if (!name.isEmpty()) {
-                        if (!PlaylistsUtil.doesPlaylistExist(getActivity(), name)) {
-                            final String playlistId = PlaylistsUtil.createPlaylist(getActivity(), name);
-                            if (getActivity() != null) {
-                                // noinspection unchecked
-                                List<Song> songs = getArguments().getParcelableArrayList(SONGS);
-                                if (songs != null && !songs.isEmpty()) {
-                                    PlaylistsUtil.addToPlaylist(getActivity(), songs, playlistId, true);
-                                }
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), getActivity().getResources().getString(
-                                    R.string.playlist_exists, name), Toast.LENGTH_SHORT).show();
-                        }
+                    if (getActivity() == null || getArguments() == null || name.isEmpty()) return;
+                    List<Song> songs = getArguments().getParcelableArrayList(SONGS);
+                    if (songs != null && !songs.isEmpty()) {
+                        PlaylistUtil.createPlaylist(name, songs);
                     }
                 })
                 .build();
