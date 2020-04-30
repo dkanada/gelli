@@ -23,6 +23,8 @@ import java.util.List;
 public class QueryUtil {
     public static BaseItemDto currentLibrary;
 
+    // TODO return BaseItemDto everywhere
+    // will simplify the code for the getPlaylists method
     public static void getLibraries(MediaCallback callback) {
         String id = App.getApiClient().getCurrentUserId();
         App.getApiClient().GetUserViews(id, new Response<ItemsResult>() {

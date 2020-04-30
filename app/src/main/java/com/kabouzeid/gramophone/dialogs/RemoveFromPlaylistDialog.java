@@ -8,6 +8,8 @@ import android.text.Html;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kabouzeid.gramophone.R;
+import com.kabouzeid.gramophone.model.Playlist;
+import com.kabouzeid.gramophone.model.PlaylistSong;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.PlaylistUtil;
 
@@ -26,8 +28,10 @@ public class RemoveFromPlaylistDialog extends DialogFragment {
     @NonNull
     public static RemoveFromPlaylistDialog create(List<Song> songs) {
         RemoveFromPlaylistDialog dialog = new RemoveFromPlaylistDialog();
+
         Bundle args = new Bundle();
         args.putParcelableArrayList("songs", new ArrayList<>(songs));
+
         dialog.setArguments(args);
         return dialog;
     }
@@ -36,6 +40,7 @@ public class RemoveFromPlaylistDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final List<Song> songs = getArguments().getParcelableArrayList("songs");
+
         int title;
         CharSequence content;
         if (songs.size() > 1) {
@@ -53,7 +58,9 @@ public class RemoveFromPlaylistDialog extends DialogFragment {
                 .negativeText(android.R.string.cancel)
                 .onPositive((dialog, which) -> {
                     if (getActivity() == null) return;
-                    PlaylistUtil.deleteItems(songs, songs.get(0).id);
+
+                    PlaylistSong song = (PlaylistSong) songs.get(0);
+                    PlaylistUtil.deleteItems(songs, song.playlistId);
                 })
                 .build();
     }

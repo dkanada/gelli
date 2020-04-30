@@ -27,8 +27,7 @@ public class CreatePlaylistDialog extends DialogFragment {
     @NonNull
     public static CreatePlaylistDialog create(@Nullable Song song) {
         List<Song> list = new ArrayList<>();
-        if (song != null)
-            list.add(song);
+        if (song != null) list.add(song);
         return create(list);
     }
 
@@ -53,7 +52,7 @@ public class CreatePlaylistDialog extends DialogFragment {
                     final String name = charSequence.toString().trim();
                     if (getActivity() == null || getArguments() == null || name.isEmpty()) return;
                     List<Song> songs = getArguments().getParcelableArrayList(SONGS);
-                    if (songs != null && !songs.isEmpty()) {
+                    if (songs != null) {
                         PlaylistUtil.createPlaylist(name, songs);
                     }
                 })

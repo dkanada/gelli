@@ -26,10 +26,10 @@ import com.kabouzeid.gramophone.helper.menu.PlaylistMenuHelper;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.model.Playlist;
+import com.kabouzeid.gramophone.model.PlaylistSong;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.model.playlist.AbsSmartPlaylist;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
-import com.kabouzeid.gramophone.util.QueryUtil;
 import com.kabouzeid.gramophone.util.ThemeUtil;
 import com.kabouzeid.gramophone.util.PlaylistUtil;
 import com.kabouzeid.gramophone.util.ViewUtil;
@@ -80,10 +80,10 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
 
         ItemQuery query = new ItemQuery();
         query.setParentId(playlist.id);
-        QueryUtil.getSongs(query, new MediaCallback() {
+        PlaylistUtil.getPlaylist(query, new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
-                adapter.getDataSet().addAll((List<Song>) media);
+                adapter.getDataSet().addAll((List<PlaylistSong>) media);
                 adapter.notifyDataSetChanged();
             }
         });

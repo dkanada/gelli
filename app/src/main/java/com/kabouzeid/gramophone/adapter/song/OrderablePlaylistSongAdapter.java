@@ -19,13 +19,12 @@ import com.kabouzeid.gramophone.util.ViewUtil;
 
 import java.util.List;
 
-@SuppressWarnings("unchecked")
 public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements DraggableItemAdapter<OrderablePlaylistSongAdapter.ViewHolder> {
 
     private OnMoveItemListener onMoveItemListener;
 
     public OrderablePlaylistSongAdapter(@NonNull AppCompatActivity activity, @NonNull List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder, @Nullable OnMoveItemListener onMoveItemListener) {
-        super(activity, (List<Song>) dataSet, itemLayoutRes, usePalette, cabHolder);
+        super(activity, dataSet, itemLayoutRes, usePalette, cabHolder);
         setMultiSelectMenuRes(R.menu.menu_playlists_songs_selection);
         this.onMoveItemListener = onMoveItemListener;
     }
@@ -47,7 +46,7 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
     protected void onMultipleItemAction(@NonNull MenuItem menuItem, @NonNull List<Song> selection) {
         switch (menuItem.getItemId()) {
             case R.id.action_remove_from_playlist:
-                RemoveFromPlaylistDialog.create((List<Song>) (List) selection).show(activity.getSupportFragmentManager(), "ADD_PLAYLIST");
+                RemoveFromPlaylistDialog.create(selection).show(activity.getSupportFragmentManager(), "ADD_PLAYLIST");
                 return;
         }
 
