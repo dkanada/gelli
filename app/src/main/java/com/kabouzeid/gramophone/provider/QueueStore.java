@@ -37,7 +37,7 @@ public class QueueStore extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "music_playback_state.db";
     public static final String PLAYING_QUEUE_TABLE_NAME = "playing_queue";
     public static final String ORIGINAL_PLAYING_QUEUE_TABLE_NAME = "original_playing_queue";
-    private static final int VERSION = 3;
+    private static final int VERSION = 4;
 
     public QueueStore(final Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -69,12 +69,6 @@ public class QueueStore extends SQLiteOpenHelper {
         builder.append(" INT NOT NULL,");
 
         builder.append(AudioColumns.DURATION);
-        builder.append(" LONG NOT NULL,");
-
-        builder.append(AudioColumns.DATA);
-        builder.append(" STRING NOT NULL,");
-
-        builder.append(AudioColumns.DATE_MODIFIED);
         builder.append(" LONG NOT NULL,");
 
         builder.append(AudioColumns.ALBUM_ID);
