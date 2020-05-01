@@ -1,7 +1,12 @@
 include ':app'
 
-// include ':apiclient'
-// project(':apiclient').projectDir = new File(settingsDir, '../jellyfin-apiclient-java/android')
+def enableDependencySubstitution = properties.get('enable.dependency.substitution', 'true').equalsIgnoreCase('true')
+def apiClientLocation = '../jellyfin-apiclient-java'
 
-// include ':library'
-// project(':library').projectDir = new File(settingsDir, '../jellyfin-apiclient-java/library')
+if (new File(apiClientLocation).exists() && enableDependencySubstitution) {
+    includeBuild(apiClientLocation) {
+        dependencySubstitution {
+            substitute module('com.github.jellyfin.jellyfin-apiclient-java:android') with project(':android')
+        }
+    }
+}

@@ -18,6 +18,7 @@ android {
             minifyEnabled true
             shrinkResources true
         }
+
         debug {
             applicationIdSuffix '.debug'
         }
@@ -46,7 +47,6 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.palette:palette:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
     implementation 'androidx.preference:preference:1.0.0'
@@ -63,9 +63,7 @@ dependencies {
     implementation 'com.github.ksoichiro:android-observablescrollview:1.6.0'
     implementation 'com.heinrichreimersoftware:material-intro:1.6'
     implementation 'me.zhanghai.android.materialprogressbar:library:1.4.2'
-    implementation('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.11.0@aar') {
-        transitive = true
-    }
+    implementation('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.11.0')
 
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
@@ -73,6 +71,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.android.material:material:1.0.0'
 
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'
     implementation 'de.psdev.licensesdialog:licensesdialog:2.0.0'
@@ -83,7 +82,5 @@ dependencies {
 
     implementation 'com.github.AdrienPoupa:jaudiotagger:2.2.3'
 
-    implementation 'com.github.jellyfin:jellyfin-apiclient-java:-SNAPSHOT'
-    //implementation project(':apiclient')
-    //implementation project(':library')
+    implementation 'com.github.jellyfin.jellyfin-apiclient-java:android:0.6.0'
 }
