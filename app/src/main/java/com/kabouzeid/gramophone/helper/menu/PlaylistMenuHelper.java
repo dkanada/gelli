@@ -1,7 +1,6 @@
 package com.kabouzeid.gramophone.helper.menu;
 
 import android.app.Activity;
-import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -33,7 +32,7 @@ public class PlaylistMenuHelper {
                 AddToPlaylistDialog.create(new ArrayList<>(getPlaylistSongs(activity, playlist))).show(activity.getSupportFragmentManager(), "ADD_PLAYLIST");
                 return true;
             case R.id.action_rename_playlist:
-                RenamePlaylistDialog.create(playlist.id.hashCode()).show(activity.getSupportFragmentManager(), "RENAME_PLAYLIST");
+                RenamePlaylistDialog.create(playlist).show(activity.getSupportFragmentManager(), "RENAME_PLAYLIST");
                 return true;
             case R.id.action_delete_playlist:
                 DeletePlaylistDialog.create(playlist).show(activity.getSupportFragmentManager(), "DELETE_PLAYLIST");

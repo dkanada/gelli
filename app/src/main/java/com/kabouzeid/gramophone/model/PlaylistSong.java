@@ -6,10 +6,13 @@ import org.jellyfin.apiclient.model.dto.BaseItemDto;
 
 public class PlaylistSong extends Song {
     public final String playlistId;
+    public final String indexId;
 
-    public PlaylistSong(BaseItemDto itemDto, String playlistId) {
+    public PlaylistSong(BaseItemDto itemDto, String playlist) {
         super(itemDto);
-        this.playlistId = playlistId;
+
+        this.playlistId = playlist;
+        this.indexId = itemDto.getPlaylistItemId();
     }
 
     @Override
@@ -17,12 +20,14 @@ public class PlaylistSong extends Song {
         super.writeToParcel(dest, flags);
 
         dest.writeString(this.playlistId);
+        dest.writeString(this.indexId);
     }
 
     protected PlaylistSong(Parcel in) {
         super(in);
 
         this.playlistId = in.readString();
+        this.indexId = in.readString();
     }
 
     public static final Creator<PlaylistSong> CREATOR = new Creator<PlaylistSong>() {

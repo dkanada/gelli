@@ -35,7 +35,7 @@ import com.kabouzeid.gramophone.util.PlaylistUtil;
 import com.kabouzeid.gramophone.util.ViewUtil;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
-import org.jellyfin.apiclient.model.querying.ItemQuery;
+import org.jellyfin.apiclient.model.playlists.PlaylistItemQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,8 +78,8 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
         setUpRecyclerView();
         setUpToolbar();
 
-        ItemQuery query = new ItemQuery();
-        query.setParentId(playlist.id);
+        PlaylistItemQuery query = new PlaylistItemQuery();
+        query.setId(playlist.id);
         PlaylistUtil.getPlaylist(query, new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
@@ -104,7 +104,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
             recyclerViewDragDropManager = new RecyclerViewDragDropManager();
             final GeneralItemAnimator animator = new RefactoredDefaultItemAnimator();
             adapter = new OrderablePlaylistSongAdapter(this, new ArrayList<>(), R.layout.item_list, false, this, (fromPosition, toPosition) -> {
-                PlaylistUtil.moveItem(playlist.id, adapter.getDataSet().get(fromPosition), toPosition);
+                PlaylistUtil.moveItem(playlist.id, (PlaylistSong) adapter.getDataSet().get(fromPosition), toPosition);
                 Song song = adapter.getDataSet().remove(fromPosition);
                 adapter.getDataSet().add(toPosition, song);
                 adapter.notifyItemMoved(fromPosition, toPosition);

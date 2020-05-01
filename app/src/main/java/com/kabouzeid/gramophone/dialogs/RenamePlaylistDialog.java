@@ -8,6 +8,7 @@ import android.text.InputType;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kabouzeid.gramophone.R;
+import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.util.PlaylistUtil;
 
 public class RenamePlaylistDialog extends DialogFragment {
@@ -15,10 +16,12 @@ public class RenamePlaylistDialog extends DialogFragment {
     private static final String PLAYLIST_ID = "playlist_id";
 
     @NonNull
-    public static RenamePlaylistDialog create(long playlistId) {
+    public static RenamePlaylistDialog create(Playlist playlist) {
         RenamePlaylistDialog dialog = new RenamePlaylistDialog();
+
         Bundle args = new Bundle();
-        args.putLong(PLAYLIST_ID, playlistId);
+        args.putString(PLAYLIST_ID, playlist.id);
+
         dialog.setArguments(args);
         return dialog;
     }

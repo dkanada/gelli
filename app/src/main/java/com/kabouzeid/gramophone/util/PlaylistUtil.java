@@ -10,25 +10,22 @@ import org.jellyfin.apiclient.interaction.EmptyResponse;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.playlists.PlaylistCreationRequest;
-import org.jellyfin.apiclient.model.querying.ItemQuery;
+import org.jellyfin.apiclient.model.playlists.PlaylistItemQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistUtil {
-    public static void getPlaylist(ItemQuery query, MediaCallback callback) {
-        query.setIncludeItemTypes(new String[]{"Audio"});
+    public static void getPlaylist(PlaylistItemQuery query, MediaCallback callback) {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(100);
-        query.setRecursive(true);
-        if (QueryUtil.currentLibrary != null && query.getParentId() == null) query.setParentId(QueryUtil.currentLibrary.getId());
-        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
+        App.getApiClient().GetPlaylistItems(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
                 List<PlaylistSong> songs = new ArrayList<>();
                 for (BaseItemDto itemDto : result.getItems()) {
-                    songs.add(new PlaylistSong(itemDto, query.getParentId()));
+                    songs.add(new PlaylistSong(itemDto, query.getId()));
                 }
 
                 callback.onLoadMedia(songs);
@@ -70,16 +67,17 @@ public class PlaylistUtil {
         App.getApiClient().AddToPlaylist(playlist, ids, user, new EmptyResponse());
     }
 
-    public static void deleteItems(final List<Song> songs, final String playlist) {
+    public static void deleteItems(final List<PlaylistSong> songs, final String playlist) {
         String[] ids = new String[songs.size()];
         for (int i = 0; i < songs.size(); i++) {
-            ids[i] = songs.get(i).id;
+            ids[i] = songs.get(i).indexId;
         }
 
         App.getApiClient().RemoveFromPlaylist(playlist, ids, new EmptyResponse());
     }
 
-    public static void moveItem(final String playlist, final Song song, int to) {
+    public static void moveItem(final String playlist, final PlaylistSong song, int to) {
+        App.getApiClient().MoveItem(playlist, song.indexId, to, new EmptyResponse());
     }
 
     public static void renamePlaylist(final String playlist, final String name) {
@@ -99,7 +97,7 @@ public class PlaylistUtil {
     }
 
     public static void renamePlaylistInner(final BaseItemDto itemDto) {
-        // TODO find a method to upload metadata changes
-        // at some point this could become metadata utilities
+        // TODO at some point this should become metadata utilities
+        App.getApiClient().UpdateItem(itemDto.getId(), itemDto, new EmptyResponse());
     }
 }
