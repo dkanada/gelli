@@ -10,6 +10,7 @@ import com.kabouzeid.gramophone.model.Song;
 
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.dto.BaseItemType;
 import org.jellyfin.apiclient.model.querying.ArtistsQuery;
 import org.jellyfin.apiclient.model.querying.ItemFields;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
@@ -92,6 +93,35 @@ public class QueryUtil {
         });
     }
 
+    public static void getItems(ItemQuery query, MediaCallback callback) {
+        query.setIncludeItemTypes(new String[]{"MusicArtist", "MusicAlbum", "Audio"});
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setLimit(40);
+        query.setRecursive(true);
+        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
+            @Override
+            public void onResponse(ItemsResult result) {
+                List<Object> items = new ArrayList<>();
+                for (BaseItemDto itemDto : result.getItems()) {
+                    if (itemDto.getBaseItemType() == BaseItemType.MusicArtist) {
+                        items.add(new Artist(itemDto));
+                    } else if (itemDto.getBaseItemType() == BaseItemType.MusicAlbum) {
+                        items.add(new Album(itemDto));
+                    } else {
+                        items.add(new Song(itemDto));
+                    }
+                }
+
+                callback.onLoadMedia(items);
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
     public static void getAlbums(ItemQuery query, MediaCallback callback) {
         query.setIncludeItemTypes(new String[]{"MusicAlbum"});
         query.setUserId(App.getApiClient().getCurrentUserId());
@@ -123,30 +153,6 @@ public class QueryUtil {
                 List<Album> albums = new ArrayList<>();
                 albums.add(new Album(itemDto));
                 callback.onLoadMedia(albums);
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                exception.printStackTrace();
-            }
-        });
-    }
-
-    public static void getSongs(ItemQuery query, MediaCallback callback) {
-        query.setIncludeItemTypes(new String[]{"Audio"});
-        query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setLimit(100);
-        query.setRecursive(true);
-        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
-        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
-            @Override
-            public void onResponse(ItemsResult result) {
-                List<Song> songs = new ArrayList<>();
-                for (BaseItemDto itemDto : result.getItems()) {
-                    songs.add(new Song(itemDto));
-                }
-
-                callback.onLoadMedia(songs);
             }
 
             @Override
@@ -188,6 +194,30 @@ public class QueryUtil {
                 List<Artist> artists = new ArrayList<>();
                 artists.add(new Artist(itemDto));
                 callback.onLoadMedia(artists);
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+    }
+
+    public static void getSongs(ItemQuery query, MediaCallback callback) {
+        query.setIncludeItemTypes(new String[]{"Audio"});
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setLimit(100);
+        query.setRecursive(true);
+        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
+        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
+            @Override
+            public void onResponse(ItemsResult result) {
+                List<Song> songs = new ArrayList<>();
+                for (BaseItemDto itemDto : result.getItems()) {
+                    songs.add(new Song(itemDto));
+                }
+
+                callback.onLoadMedia(songs);
             }
 
             @Override
