@@ -32,8 +32,10 @@ import butterknife.ButterKnife;
 public class SleepTimerDialog extends DialogFragment {
     @BindView(R.id.seek_arc)
     SeekArc seekArc;
+
     @BindView(R.id.timer_display)
     TextView timerDisplay;
+
     @BindView(R.id.should_finish_last_song)
     CheckBox shouldFinishLastSong;
 

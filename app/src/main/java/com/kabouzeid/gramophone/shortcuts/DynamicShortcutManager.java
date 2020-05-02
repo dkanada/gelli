@@ -15,10 +15,6 @@ import com.kabouzeid.gramophone.shortcuts.shortcuttype.FrequentShortcutType;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author Adrian Campos
- */
-
 @TargetApi(Build.VERSION_CODES.N_MR1)
 public class DynamicShortcutManager {
 

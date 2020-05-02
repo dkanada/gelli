@@ -23,6 +23,7 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
     private MediaPlayer mNextMediaPlayer;
 
     private Context context;
+
     @Nullable
     private Playback.PlaybackCallbacks callbacks;
 
@@ -46,6 +47,7 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         if (mIsInitialized) {
             setNextDataSource(null);
         }
+
         return mIsInitialized;
     }
 
@@ -60,6 +62,7 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         if (context == null) {
             return false;
         }
+
         try {
             player.reset();
             player.setOnPreparedListener(null);
@@ -68,17 +71,21 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
             } else {
                 player.setDataSource(path);
             }
+
             player.setAudioStreamType(AudioManager.STREAM_MUSIC);
             player.prepare();
         } catch (Exception e) {
             return false;
         }
+
         player.setOnCompletionListener(this);
         player.setOnErrorListener(this);
+
         final Intent intent = new Intent(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
         intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, getAudioSessionId());
         intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());
         intent.putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC);
+
         context.sendBroadcast(intent);
         return true;
     }
@@ -94,6 +101,7 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         if (context == null) {
             return;
         }
+
         try {
             mCurrentMediaPlayer.setNextMediaPlayer(null);
         } catch (IllegalArgumentException e) {
@@ -102,13 +110,16 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
             Log.e(TAG, "Media player not initialized!");
             return;
         }
+
         if (mNextMediaPlayer != null) {
             mNextMediaPlayer.release();
             mNextMediaPlayer = null;
         }
+
         if (path == null) {
             return;
         }
+
         if (PreferenceUtil.getInstance(context).getGaplessPlayback()) {
             mNextMediaPlayer = new MediaPlayer();
             mNextMediaPlayer.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK);
@@ -161,6 +172,7 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
     @Override
     public void release() {
         stop();
+
         mCurrentMediaPlayer.release();
         if (mNextMediaPlayer != null) {
             mNextMediaPlayer.release();
@@ -264,11 +276,9 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
             mCurrentMediaPlayer = mNextMediaPlayer;
             mIsInitialized = true;
             mNextMediaPlayer = null;
-            if (callbacks != null)
-                callbacks.onTrackWentToNext();
+            if (callbacks != null) callbacks.onTrackWentToNext();
         } else {
-            if (callbacks != null)
-                callbacks.onTrackEnded();
+            if (callbacks != null) callbacks.onTrackEnded();
         }
     }
 }

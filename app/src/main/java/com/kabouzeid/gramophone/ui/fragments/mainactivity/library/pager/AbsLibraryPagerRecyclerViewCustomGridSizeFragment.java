@@ -9,9 +9,6 @@ import android.view.View;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.util.Util;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extends RecyclerView.Adapter, LM extends RecyclerView.LayoutManager> extends AbsLibraryPagerRecyclerViewFragment<A, LM> {
     private int gridSize;
     private String sortOrder;
@@ -28,6 +25,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
                 gridSize = loadGridSize();
             }
         }
+
         return gridSize;
     }
 
@@ -39,14 +37,12 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         }
     }
 
-    /**
-     * @return whether the palette should be used at all or not
-     */
     public final boolean usePalette() {
         if (!usePaletteInitialized) {
             usePalette = loadUsePalette();
             usePaletteInitialized = true;
         }
+
         return usePalette;
     }
 
@@ -54,6 +50,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         if (sortOrder == null) {
             sortOrder = loadSortOrder();
         }
+
         return sortOrder;
     }
 
@@ -65,6 +62,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         } else {
             saveGridSize(gridSize);
         }
+
         // only recreate the adapter and layout manager if the layout currentLayoutRes has changed
         if (oldLayoutRes != getItemLayoutRes()) {
             invalidateLayoutManager();
@@ -86,18 +84,10 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         setSortOrder(sortOrder);
     }
 
-    /**
-     * @return whether the palette option should be available for the current item layout or not
-     */
     public boolean canUsePalette() {
         return getItemLayoutRes() == R.layout.item_grid;
     }
 
-    /**
-     * Override to customize which item layout currentLayoutRes should be used. You might also want to override {@link #canUsePalette()} then.
-     *
-     * @see #getGridSize()
-     */
     @LayoutRes
     protected int getItemLayoutRes() {
         if (getGridSize() > getMaxGridSizeForList()) {
@@ -156,6 +146,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         if (isLandscape()) {
             return getActivity().getResources().getInteger(R.integer.default_list_columns_land);
         }
+
         return getActivity().getResources().getInteger(R.integer.default_list_columns);
     }
 

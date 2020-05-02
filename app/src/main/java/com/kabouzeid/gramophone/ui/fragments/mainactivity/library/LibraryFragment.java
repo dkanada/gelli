@@ -1,6 +1,5 @@
 package com.kabouzeid.gramophone.ui.fragments.mainactivity.library;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -207,6 +206,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             menu.removeItem(R.id.action_colored_footers);
             menu.removeItem(R.id.action_sort_order);
         }
+
         Activity activity = getActivity();
         if (activity == null) return;
         ToolbarContentTintHelper.handleOnCreateOptionsMenu(getActivity(), toolbar, menu, ATHToolbarActivity.getToolbarBackgroundColor(toolbar));
@@ -234,6 +234,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             if (handleGridSizeMenuItem(absLibraryRecyclerViewCustomGridSizeFragment, item)) {
                 return true;
             }
+
             if (handleSortOrderMenuItem(absLibraryRecyclerViewCustomGridSizeFragment, item)) {
                 return true;
             }
@@ -251,6 +252,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                 startActivity(new Intent(getActivity(), SearchActivity.class));
                 return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -330,12 +332,14 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                 gridSize = 8;
                 break;
         }
+
         if (gridSize > 0) {
             item.setChecked(true);
             fragment.setAndSaveGridSize(gridSize);
             toolbar.getMenu().findItem(R.id.action_colored_footers).setEnabled(fragment.canUsePalette());
             return true;
         }
+
         return false;
     }
 
@@ -434,6 +438,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             cab.finish();
             return true;
         }
+
         return false;
     }
 

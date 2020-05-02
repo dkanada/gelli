@@ -22,10 +22,6 @@ import java.util.Random;
 import java.util.WeakHashMap;
 
 public class MusicPlayerRemote {
-
-    public static final String TAG = MusicPlayerRemote.class.getSimpleName();
-
-    @Nullable
     public static MusicService musicService;
 
     private static final WeakHashMap<Context, ServiceBinder> mConnectionMap = new WeakHashMap<>();

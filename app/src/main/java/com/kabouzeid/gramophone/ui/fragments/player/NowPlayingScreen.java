@@ -11,6 +11,7 @@ public enum NowPlayingScreen {
 
     @StringRes
     public final int titleRes;
+
     @DrawableRes
     public final int drawableResId;
     public final int id;

@@ -22,18 +22,17 @@ import com.kabouzeid.gramophone.R;
 public class PlayPauseDrawable extends Drawable {
     private static final long PLAY_PAUSE_ANIMATION_DURATION = 250;
 
-    private static final Property<PlayPauseDrawable, Float> PROGRESS =
-            new Property<PlayPauseDrawable, Float>(Float.class, "progress") {
-                @Override
-                public Float get(@NonNull PlayPauseDrawable d) {
-                    return d.getProgress();
-                }
+    private static final Property<PlayPauseDrawable, Float> PROGRESS = new Property<PlayPauseDrawable, Float>(Float.class, "progress") {
+        @Override
+        public Float get(@NonNull PlayPauseDrawable d) {
+            return d.getProgress();
+        }
 
-                @Override
-                public void set(@NonNull PlayPauseDrawable d, Float value) {
-                    d.setProgress(value);
-                }
-            };
+        @Override
+        public void set(@NonNull PlayPauseDrawable d, Float value) {
+            d.setProgress(value);
+        }
+    };
 
     private final Path leftPauseBar = new Path();
     private final Path rightPauseBar = new Path();
@@ -77,13 +76,17 @@ public class PlayPauseDrawable extends Drawable {
 
         // The current distance between the two pause bars.
         final float barDist = lerp(pauseBarDistance, 0f, progress);
+
         // The current width of each pause bar.
         float rawBarWidth = lerp(pauseBarWidth, pauseBarHeight / 1.75f, progress);
+
         // We have to round the bar width when finishing the progress to prevent the gap
         // that might occur onDraw because of a pixel is lost when casting float to int instead of rounding it.
         final float barWidth = progress == 1f ? Math.round(rawBarWidth) : rawBarWidth;
+
         // The current position of the left pause bar's top left coordinate.
         final float firstBarTopLeft = lerp(0f, barWidth, progress);
+
         // The current position of the right pause bar's top right coordinate.
         final float secondBarTopRight = lerp(2f * barWidth + barDist, barWidth + barDist, progress);
 
@@ -136,6 +139,7 @@ public class PlayPauseDrawable extends Drawable {
                 isPlay = !isPlay;
             }
         });
+
         return anim;
     }
 

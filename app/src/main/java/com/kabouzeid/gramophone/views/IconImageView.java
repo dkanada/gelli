@@ -8,9 +8,6 @@ import android.util.AttributeSet;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.gramophone.R;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class IconImageView extends AppCompatImageView {
     public IconImageView(Context context) {
         super(context);

@@ -302,7 +302,6 @@ public class StackBlur {
                 }
             }
         }
-
     }
 
     private static class BlurTask implements Callable<Void> {
@@ -329,6 +328,5 @@ public class StackBlur {
             blurIteration(_src, _w, _h, _radius, _totalCores, _coreIndex, _round);
             return null;
         }
-
     }
 }

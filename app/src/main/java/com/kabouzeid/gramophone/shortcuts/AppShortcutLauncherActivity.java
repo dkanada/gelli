@@ -10,10 +10,6 @@ import com.kabouzeid.gramophone.shortcuts.shortcuttype.FrequentShortcutType;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.service.MusicService;
 
-/**
- * @author Adrian Campos
- */
-
 public class AppShortcutLauncherActivity extends Activity {
     public static final String KEY_SHORTCUT_TYPE = "com.kabouzeid.gramophone.shortcuts.ShortcutType";
 

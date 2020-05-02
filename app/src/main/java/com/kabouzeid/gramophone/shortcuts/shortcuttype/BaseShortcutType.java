@@ -9,9 +9,6 @@ import android.os.Bundle;
 
 import com.kabouzeid.gramophone.shortcuts.AppShortcutLauncherActivity;
 
-/**
- * @author Adrian Campos
- */
 @TargetApi(Build.VERSION_CODES.N_MR1)
 public abstract class BaseShortcutType {
 

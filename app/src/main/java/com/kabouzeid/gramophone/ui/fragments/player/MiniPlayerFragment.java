@@ -28,17 +28,16 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class MiniPlayerFragment extends AbsMusicServiceFragment implements MusicProgressViewUpdateHelper.Callback {
 
     private Unbinder unbinder;
 
     @BindView(R.id.mini_player_title)
     TextView miniPlayerTitle;
+
     @BindView(R.id.mini_player_play_pause_button)
     ImageView miniPlayerPlayPauseButton;
+
     @BindView(R.id.progress_bar)
     MaterialProgressBar progressBar;
 

@@ -15,9 +15,6 @@ import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.util.ImageUtil;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
 
-/**
- * @author Adrian Campos
- */
 @RequiresApi(Build.VERSION_CODES.N_MR1)
 public final class AppShortcutIconGenerator {
 

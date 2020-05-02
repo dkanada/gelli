@@ -9,9 +9,6 @@ import android.view.View;
 import com.kabouzeid.gramophone.interfaces.MusicServiceEventListener;
 import com.kabouzeid.gramophone.ui.activities.base.AbsMusicServiceActivity;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class AbsMusicServiceFragment extends Fragment implements MusicServiceEventListener {
     private AbsMusicServiceActivity activity;
 
@@ -45,41 +42,33 @@ public class AbsMusicServiceFragment extends Fragment implements MusicServiceEve
 
     @Override
     public void onPlayingMetaChanged() {
-
     }
 
     @Override
     public void onServiceConnected() {
-
     }
 
     @Override
     public void onServiceDisconnected() {
-
     }
 
     @Override
     public void onQueueChanged() {
-
     }
 
     @Override
     public void onPlayStateChanged() {
-
     }
 
     @Override
     public void onRepeatModeChanged() {
-
     }
 
     @Override
     public void onShuffleModeChanged() {
-
     }
 
     @Override
     public void onMediaStoreChanged() {
-
     }
 }

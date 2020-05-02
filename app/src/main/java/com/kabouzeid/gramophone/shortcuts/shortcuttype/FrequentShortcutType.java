@@ -9,9 +9,6 @@ import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.shortcuts.AppShortcutIconGenerator;
 import com.kabouzeid.gramophone.shortcuts.AppShortcutLauncherActivity;
 
-/**
- * @author Adrian Campos
- */
 @TargetApi(Build.VERSION_CODES.N_MR1)
 public final class FrequentShortcutType extends BaseShortcutType {
     public FrequentShortcutType(Context context) {

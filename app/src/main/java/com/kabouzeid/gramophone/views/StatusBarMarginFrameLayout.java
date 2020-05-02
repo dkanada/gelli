@@ -7,8 +7,6 @@ import android.view.WindowInsets;
 import android.widget.FrameLayout;
 
 public class StatusBarMarginFrameLayout extends FrameLayout {
-
-
     public StatusBarMarginFrameLayout(Context context) {
         super(context);
     }
@@ -28,6 +26,7 @@ public class StatusBarMarginFrameLayout extends FrameLayout {
             lp.topMargin = insets.getSystemWindowInsetTop();
             setLayoutParams(lp);
         }
+
         return super.onApplyWindowInsets(insets);
     }
 }

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 
 public class StatusBarView extends View {
-
     public StatusBarView(Context context) {
         super(context);
     }
@@ -28,7 +27,7 @@ public class StatusBarView extends View {
             lp.height = insets.getSystemWindowInsetTop();
             setLayoutParams(lp);
         }
+
         return super.onApplyWindowInsets(insets);
     }
-
 }

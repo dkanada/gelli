@@ -24,9 +24,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements ViewPager.OnPageChangeListener {
 
     public static final int VISIBILITY_ANIM_DURATION = 300;

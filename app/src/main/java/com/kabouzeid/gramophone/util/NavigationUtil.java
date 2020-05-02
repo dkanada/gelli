@@ -14,9 +14,6 @@ import com.kabouzeid.gramophone.ui.activities.ArtistDetailActivity;
 import com.kabouzeid.gramophone.ui.activities.GenreDetailActivity;
 import com.kabouzeid.gramophone.ui.activities.PlaylistDetailActivity;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class NavigationUtil {
 
     public static void goToArtist(@NonNull final Activity activity, final String artistId, @Nullable Pair... sharedElements) {
@@ -24,7 +21,7 @@ public class NavigationUtil {
         intent.putExtra(ArtistDetailActivity.EXTRA_ARTIST_ID, artistId);
 
         if (sharedElements != null && sharedElements.length > 0) {
-            //noinspection unchecked
+            // noinspection unchecked
             activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity, sharedElements).toBundle());
         } else {
             activity.startActivity(intent);
@@ -36,7 +33,7 @@ public class NavigationUtil {
         intent.putExtra(AlbumDetailActivity.EXTRA_ALBUM_ID, albumId);
 
         if (sharedElements != null && sharedElements.length > 0) {
-            //noinspection unchecked
+            // noinspection unchecked
             activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity, sharedElements).toBundle());
         } else {
             activity.startActivity(intent);

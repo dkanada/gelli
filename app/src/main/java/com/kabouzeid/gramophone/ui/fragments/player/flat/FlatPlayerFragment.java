@@ -127,6 +127,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         if (slidingUpPanelLayout != null) {
             slidingUpPanelLayout.removePanelSlideListener(this);
         }
+
         if (recyclerViewDragDropManager != null) {
             recyclerViewDragDropManager.release();
             recyclerViewDragDropManager = null;
@@ -142,6 +143,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             WrapperAdapterUtils.releaseAll(wrappedAdapter);
             wrappedAdapter = null;
         }
+
         playingQueueAdapter = null;
         layoutManager = null;
         super.onDestroyView();
@@ -328,8 +330,8 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
                 onPanelCollapsed(panel);
                 break;
             case ANCHORED:
-                //noinspection ConstantConditions
-                slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED); // this fixes a bug where the panel would get stuck for some reason
+                // this fixes a bug where the panel would get stuck for some reason
+                slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 break;
         }
     }
@@ -432,6 +434,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
                             SongShareDialog.create(getSong()).show(fragment.getFragmentManager(), "SONG_SHARE_DIALOG");
                             return true;
                     }
+
                     return super.onMenuItemClick(item);
                 }
             });

@@ -140,12 +140,14 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private MediaSessionCompat mediaSession;
     private PowerManager.WakeLock wakeLock;
     private PlaybackHandler playerHandler;
+
     private final AudioManager.OnAudioFocusChangeListener audioFocusListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(final int focusChange) {
             playerHandler.obtainMessage(FOCUS_CHANGE, focusChange, 0).sendToTarget();
         }
     };
+
     private QueueSaveHandler queueSaveHandler;
     private HandlerThread musicPlayerHandlerThread;
     private HandlerThread queueSaveHandlerThread;
@@ -153,6 +155,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private ThrottledSeekHandler throttledSeekHandler;
     private boolean becomingNoisyReceiverRegistered;
     private IntentFilter becomingNoisyReceiverIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
+
     private final BroadcastReceiver becomingNoisyReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, @NonNull Intent intent) {
@@ -161,6 +164,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             }
         }
     };
+
     private ContentObserver mediaStoreObserver;
     private boolean notHandledMetaChangedForCurrentTrack;
 
@@ -200,6 +204,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         mediaStoreObserver = new MediaStoreObserver(playerHandler);
         throttledSeekHandler = new ThrottledSeekHandler(playerHandler);
+
         getContentResolver().registerContentObserver(
                 MediaStore.Audio.Media.INTERNAL_CONTENT_URI, true, mediaStoreObserver);
         getContentResolver().registerContentObserver(
@@ -339,6 +344,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             unregisterReceiver(becomingNoisyReceiver);
             becomingNoisyReceiverRegistered = false;
         }
+
         mediaSession.setActive(false);
         quit();
         releaseResources();
@@ -400,6 +406,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private void restoreState() {
         shuffleMode = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_SHUFFLE_MODE, 0);
         repeatMode = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_REPEAT_MODE, 0);
+
         handleAndSendChangeInternal(SHUFFLE_MODE_CHANGED);
         handleAndSendChangeInternal(REPEAT_MODE_CHANGED);
 
@@ -411,6 +418,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         if (!queuesRestored && playingQueue.isEmpty()) {
             List<Song> restoredQueue = QueueStore.getInstance(this).getSavedPlayingQueue();
             List<Song> restoredOriginalQueue = QueueStore.getInstance(this).getSavedOriginalPlayingQueue();
+
             int restoredPosition = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_POSITION, -1);
             int restoredPositionInTrack = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_POSITION_IN_TRACK, -1);
 
@@ -429,6 +437,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 sendChangeInternal(QUEUE_CHANGED);
             }
         }
+
         queuesRestored = true;
     }
 
@@ -448,12 +457,14 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         } else {
             musicPlayerHandlerThread.quit();
         }
+
         queueSaveHandler.removeCallbacksAndMessages(null);
         if (Build.VERSION.SDK_INT >= 18) {
             queueSaveHandlerThread.quitSafely();
         } else {
             queueSaveHandlerThread.quit();
         }
+
         playback.release();
         playback = null;
         mediaSession.release();
@@ -527,6 +538,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         } else {
             playingNotification = new PlayingNotificationImpl();
         }
+
         playingNotification.init(this);
     }
 
@@ -540,8 +552,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         mediaSession.setPlaybackState(
                 new PlaybackStateCompat.Builder()
                         .setActions(MEDIA_SESSION_ACTIONS)
-                        .setState(isPlaying() ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED,
-                                getPosition(), 1)
+                        .setState(isPlaying() ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED, getPosition(), 1)
                         .build());
     }
 
@@ -865,11 +876,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 if (!songs.isEmpty()) {
                     startPosition = new Random().nextInt(songs.size());
                 }
+
                 openQueue(songs, startPosition, false);
                 setShuffleMode(shuffleMode);
             } else {
                 openQueue(songs, 0, false);
             }
+
             play();
         } else {
             Toast.makeText(getApplicationContext(), R.string.playlist_is_empty, Toast.LENGTH_LONG).show();

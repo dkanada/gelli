@@ -25,7 +25,6 @@ import com.kabouzeid.gramophone.R;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
 public class ViewUtil {
-
     public final static int PHONOGRAPH_ANIM_TIME = 1000;
 
     public static Animator createBackgroundColorTransition(final View v, @ColorInt final int startColor, @ColorInt final int endColor) {

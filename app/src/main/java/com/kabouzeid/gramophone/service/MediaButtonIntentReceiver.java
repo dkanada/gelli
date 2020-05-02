@@ -77,8 +77,10 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                         final Context context = (Context) msg.obj;
                         startService(context, command);
                     }
+
                     break;
             }
+
             releaseWakeLockIfHandlerIdle();
         }
     };
@@ -103,8 +105,9 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
             final int action = event.getAction();
 
             // fallback to system time if event time is not available
-            final long eventTime = event.getEventTime() != 0 ?
-                    event.getEventTime() : System.currentTimeMillis();
+            final long eventTime = event.getEventTime() != 0
+                    ? event.getEventTime()
+                    : System.currentTimeMillis();
 
             String command = null;
             switch (keycode) {
@@ -196,9 +199,8 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
         }
 
         if (DEBUG) Log.v(TAG, "Acquiring wake lock and sending " + msg.what);
-        // Make sure we don't indefinitely hold the wake lock under any circumstances
-        mWakeLock.acquire(10000);
 
+        mWakeLock.acquire(10000);
         mHandler.sendMessageDelayed(msg, delay);
     }
 
@@ -210,6 +212,7 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
 
         if (mWakeLock != null) {
             if (DEBUG) Log.v(TAG, "Releasing wake lock");
+
             mWakeLock.release();
             mWakeLock = null;
         }

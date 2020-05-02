@@ -54,8 +54,6 @@ public class DonationsDialog extends DialogFragment implements BillingProcessor.
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        billingProcessor = new BillingProcessor(getContext(), App.GOOGLE_PLAY_LICENSE_KEY, this);
-
         @SuppressLint("InflateParams")
         View customView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_donation, null);
         ProgressBar progressBar = customView.findViewById(R.id.progress);
