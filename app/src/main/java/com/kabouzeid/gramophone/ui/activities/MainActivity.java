@@ -137,6 +137,8 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     break;
             }
 
+            // only run the following code when a new library has been selected
+            if (menuItem.getItemId() == QueryUtil.currentLibrary.getId().hashCode()) return true;
             for (BaseItemDto itemDto : libraries) {
                 if (menuItem.getItemId() == itemDto.getId().hashCode()) {
                     QueryUtil.currentLibrary = itemDto;
