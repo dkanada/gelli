@@ -48,6 +48,7 @@ import com.kabouzeid.gramophone.util.QueryUtil;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder {
+    public static final String EXTRA_ARTIST = "extra_artist";
     public static final String EXTRA_ARTIST_ID = "extra_artist_id";
 
     @BindView(R.id.list)
@@ -114,7 +115,15 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         setUpToolbar();
         setUpViews();
 
-        QueryUtil.getArtist(getIntent().getExtras().getString(EXTRA_ARTIST_ID), new MediaCallback() {
+        Artist artist = getIntent().getExtras().getParcelable(EXTRA_ARTIST);
+        String id = getIntent().getExtras().getString(EXTRA_ARTIST_ID);
+
+        if (artist != null) {
+            setArtist(artist);
+            id = artist.getId();
+        }
+
+        QueryUtil.getArtist(id, new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
                 Artist artist = (Artist) media.get(0);
@@ -240,7 +249,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
 
     private void setUpToolbar() {
         setSupportActionBar(toolbar);
-        //noinspection ConstantConditions
+        // noinspection ConstantConditions
         getSupportActionBar().setTitle(null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -339,8 +348,10 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         albumCountTextView.setText(MusicUtil.getAlbumCountString(this, artist.getAlbumCount()));
         durationTextView.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, artist.getSongs())));
 
-        songAdapter.swapDataSet(artist.getSongs());
-        albumAdapter.swapDataSet(artist.albums);
+        // TODO this activity will crash when an artist is passed with an empty album array
+        // something in the album adapter is causing the issue
+        if (artist.albums.size() != 0) songAdapter.swapDataSet(artist.songs);
+        if (artist.albums.size() != 0) albumAdapter.swapDataSet(artist.albums);
     }
 
     private Artist getArtist() {

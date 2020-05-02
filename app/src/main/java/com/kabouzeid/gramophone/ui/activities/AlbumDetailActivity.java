@@ -45,6 +45,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder {
+    public static final String EXTRA_ALBUM = "extra_album";
     public static final String EXTRA_ALBUM_ID = "extra_album_id";
 
     private Album album;
@@ -93,7 +94,15 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setUpToolBar();
         setUpViews();
 
-        QueryUtil.getAlbum(getIntent().getExtras().getString(EXTRA_ALBUM_ID), new MediaCallback() {
+        Album album = getIntent().getExtras().getParcelable(EXTRA_ALBUM);
+        String id = getIntent().getExtras().getString(EXTRA_ALBUM_ID);
+
+        if (album != null) {
+            setAlbum(album);
+            id = album.getId();
+        }
+
+        QueryUtil.getAlbum(id, new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
                 Album album = (Album) media.get(0);

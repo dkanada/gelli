@@ -85,11 +85,19 @@ public class Artist implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(this.albums);
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeLong(duration);
     }
 
     protected Artist(Parcel in) {
-        this.albums = in.createTypedArrayList(Album.CREATOR);
+        this.genres = new ArrayList<>();
+        this.albums = new ArrayList<>();
+        this.songs = new ArrayList<>();
+
+        this.id = in.readString();
+        this.name = in.readString();
+        this.duration = in.readLong();
     }
 
     public static final Parcelable.Creator<Artist> CREATOR = new Parcelable.Creator<Artist>() {

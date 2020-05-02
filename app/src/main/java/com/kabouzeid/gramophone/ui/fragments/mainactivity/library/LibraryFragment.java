@@ -139,6 +139,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         if (PreferenceUtil.getInstance(getContext()).getRememberLastTab()) {
             pager.setCurrentItem(PreferenceUtil.getInstance(getContext()).getLastTab());
         }
+
         pager.addOnPageChangeListener(this);
     }
 

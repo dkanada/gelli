@@ -202,7 +202,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
                 toggleChecked(getAdapterPosition());
             } else {
                 Pair[] artistPairs = new Pair[]{Pair.create(image, activity.getResources().getString(R.string.transition_artist_image))};
-                NavigationUtil.goToArtist(activity, dataSet.get(getAdapterPosition()).getId(), artistPairs);
+                NavigationUtil.goToArtist(activity, dataSet.get(getAdapterPosition()), artistPairs);
             }
         }
 

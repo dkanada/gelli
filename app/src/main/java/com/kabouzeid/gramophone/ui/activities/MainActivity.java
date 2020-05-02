@@ -103,7 +103,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
         });
     }
 
-    private void setCurrentFragment(@SuppressWarnings("NullableProblems") Fragment fragment) {
+    private void setCurrentFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, null).commit();
         currentFragment = (MainActivityFragmentCallbacks) fragment;
     }

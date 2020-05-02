@@ -11,6 +11,8 @@ public class AudioFileCover {
     public AudioFileCover(String item) {
         ImageOptions options = new ImageOptions();
         options.setImageType(ImageType.Primary);
+        options.setQuality(60);
+        options.setMaxHeight(800);
 
         this.location = App.getApiClient().GetImageUrl(item, options);
     }

@@ -84,11 +84,23 @@ public class Album implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(songs);
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeInt(year);
+
+        dest.writeString(artistId);
+        dest.writeString(artistName);
     }
 
     protected Album(Parcel in) {
-        this.songs = in.createTypedArrayList(Song.CREATOR);
+        this.songs = new ArrayList<>();
+
+        this.id = in.readString();
+        this.title = in.readString();
+        this.year = in.readInt();
+
+        this.artistId = in.readString();
+        this.artistName = in.readString();
     }
 
     public static final Creator<Album> CREATOR = new Creator<Album>() {
