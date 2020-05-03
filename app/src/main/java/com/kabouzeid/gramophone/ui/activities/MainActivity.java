@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
+import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
@@ -35,7 +36,14 @@ import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.QueryUtil;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
+import org.jellyfin.apiclient.interaction.EmptyResponse;
+import org.jellyfin.apiclient.interaction.VolleyHttpClient;
+import org.jellyfin.apiclient.interaction.http.IAsyncHttpClient;
+import org.jellyfin.apiclient.logging.AndroidLogger;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.logging.ILogger;
+import org.jellyfin.apiclient.model.serialization.GsonJsonSerializer;
+import org.jellyfin.apiclient.model.serialization.IJsonSerializer;
 
 import java.util.List;
 
@@ -89,7 +97,9 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                 menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_settings, menu.size(), R.string.action_settings);
                 menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_settings_white_24dp);
                 menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_about, menu.size(), R.string.action_about);
-                menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_help_white_24dp);
+                menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_info_outline_white_24dp);
+                menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_logout, menu.size(), R.string.logout);
+                menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_exit_to_app_white_48dp);
 
                 setUpDrawerLayout();
 
@@ -135,6 +145,15 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                 case R.id.nav_about:
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, AboutActivity.class)), 200);
                     break;
+                case R.id.nav_logout:
+                    IJsonSerializer jsonSerializer = new GsonJsonSerializer();
+                    ILogger logger = new AndroidLogger(TAG);
+                    IAsyncHttpClient httpClient = new VolleyHttpClient(logger, this);
+
+                    App.getConnectionManager(this, jsonSerializer, logger, httpClient).Logout(new EmptyResponse());
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    this.startActivity(intent);
             }
 
             // only run the following code when a new library has been selected
@@ -182,6 +201,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
 
             ((TextView) navigationDrawerHeader.findViewById(R.id.title)).setText(song.title);
             ((TextView) navigationDrawerHeader.findViewById(R.id.text)).setText(MusicUtil.getSongInfoString(song));
+
             CustomGlideRequest.Builder.from(Glide.with(this), song.albumId)
                     .build()
                     .into(((ImageView) navigationDrawerHeader.findViewById(R.id.image)));

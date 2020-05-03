@@ -51,6 +51,7 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
         if (currentColorReceiver != null && currentColorReceiverPosition == position) {
             receiveColor(currentColorReceiver, currentColorReceiverPosition);
         }
+
         return o;
     }
 

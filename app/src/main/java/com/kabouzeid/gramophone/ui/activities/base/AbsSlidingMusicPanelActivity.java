@@ -73,7 +73,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
         playerFragment = (AbsPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.player_fragment_container);
         miniPlayerFragment = (MiniPlayerFragment) getSupportFragmentManager().findFragmentById(R.id.mini_player_fragment);
 
-        //noinspection ConstantConditions
+        // noinspection ConstantConditions
         miniPlayerFragment.getView().setOnClickListener(v -> expandPanel());
 
         slidingUpPanelLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -95,6 +95,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
                 }
             }
         });
+
         slidingUpPanelLayout.addPanelSlideListener(this);
     }
 
@@ -228,6 +229,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
             collapsePanel();
             return true;
         }
+
         return false;
     }
 

@@ -93,6 +93,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         if (getGridSize() > getMaxGridSizeForList()) {
             return R.layout.item_grid;
         }
+
         return R.layout.item_list;
     }
 

@@ -16,8 +16,13 @@
 
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/ic_help_white_24dp"
+            android:icon="@drawable/ic_info_outline_white_24dp"
             android:title="@string/action_about" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app_white_48dp"
+            android:title="@string/logout" />
 
     </group>
 

@@ -195,6 +195,7 @@
     <string name="app_widget_small_name">Phonograph - Small</string>
     <string name="app_widget_card_name">Phonograph - Card</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="server">Server</string>
