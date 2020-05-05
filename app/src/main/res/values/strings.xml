@@ -212,10 +212,13 @@
     <string name="pref_summary_library_categories">Configure visibility and order of library categories.</string>
     <string name="you_have_to_select_at_least_one_category">You have to select at least one category.</string>
     <string name="action_sort_order">Sort order</string>
+    <string name="action_sort_method">Sort method</string>
     <string name="sort_order_a_z">Ascending</string>
     <string name="sort_order_z_a">Descending</string>
+    <string name="sort_order_name">Name</string>
     <string name="sort_order_artist">Artist</string>
     <string name="sort_order_album">Album</string>
     <string name="sort_order_year">Year</string>
+    <string name="sort_order_random">Random</string>
     <string name="finish_current_music_sleep_timer">Finish last song</string>
 </resources>

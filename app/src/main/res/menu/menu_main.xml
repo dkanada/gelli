@@ -51,6 +51,13 @@
     </item>
 
     <item
+        android:id="@+id/action_sort_method"
+        android:title="@string/action_sort_method">
+        <menu>
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/action_sort_order"
         android:title="@string/action_sort_order">
         <menu>

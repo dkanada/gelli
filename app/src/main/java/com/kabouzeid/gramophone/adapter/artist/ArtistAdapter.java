@@ -19,8 +19,8 @@ import com.kabouzeid.gramophone.adapter.base.AbsMultiSelectAdapter;
 import com.kabouzeid.gramophone.adapter.base.MediaEntryViewHolder;
 import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
-import com.kabouzeid.gramophone.helper.SortOrder;
 import com.kabouzeid.gramophone.helper.menu.SongsMenuHelper;
+import com.kabouzeid.gramophone.helper.sort.SortMethod;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Song;
@@ -180,8 +180,10 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
     public String getSectionName(int position) {
         @Nullable String sectionName = null;
         switch (PreferenceUtil.getInstance(activity).getArtistSortOrder()) {
-            case SortOrder.ArtistSortOrder.ARTIST_A_Z:
-            case SortOrder.ArtistSortOrder.ARTIST_Z_A:
+            case SortMethod.NAME:
+                sectionName = dataSet.get(position).getName();
+                break;
+            case SortMethod.RANDOM:
                 sectionName = dataSet.get(position).getName();
                 break;
         }

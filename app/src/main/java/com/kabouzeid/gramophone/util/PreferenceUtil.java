@@ -10,7 +10,8 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.helper.SortOrder;
+import com.kabouzeid.gramophone.helper.sort.SortMethod;
+import com.kabouzeid.gramophone.helper.sort.SortOrder;
 import com.kabouzeid.gramophone.model.CategoryInfo;
 import com.kabouzeid.gramophone.ui.fragments.player.NowPlayingScreen;
 
@@ -25,13 +26,13 @@ public final class PreferenceUtil {
 
     public static final String NOW_PLAYING_SCREEN = "now_playing_screen";
 
+    public static final String ARTIST_SORT_METHOD = "artist_sort_method";
+    public static final String ALBUM_SORT_METHOD = "album_sort_method";
+    public static final String SONG_SORT_METHOD = "song_sort_method";
+
     public static final String ARTIST_SORT_ORDER = "artist_sort_order";
-    public static final String ARTIST_SONG_SORT_ORDER = "artist_song_sort_order";
-    public static final String ARTIST_ALBUM_SORT_ORDER = "artist_album_sort_order";
     public static final String ALBUM_SORT_ORDER = "album_sort_order";
-    public static final String ALBUM_SONG_SORT_ORDER = "album_song_sort_order";
     public static final String SONG_SORT_ORDER = "song_sort_order";
-    public static final String GENRE_SORT_ORDER = "genre_sort_order";
 
     public static final String ALBUM_GRID_SIZE = "album_grid_size";
     public static final String ALBUM_GRID_SIZE_LAND = "album_grid_size_land";
@@ -186,7 +187,7 @@ public final class PreferenceUtil {
     }
 
     public final String getArtistSortOrder() {
-        return mPreferences.getString(ARTIST_SORT_ORDER, SortOrder.ArtistSortOrder.ARTIST_A_Z);
+        return mPreferences.getString(ARTIST_SORT_ORDER, SortOrder.DESCENDING);
     }
 
     public void setArtistSortOrder(final String sortOrder) {
@@ -195,16 +196,8 @@ public final class PreferenceUtil {
         editor.commit();
     }
 
-    public final String getArtistSongSortOrder() {
-        return mPreferences.getString(ARTIST_SONG_SORT_ORDER, SortOrder.ArtistSongSortOrder.SONG_A_Z);
-    }
-
-    public final String getArtistAlbumSortOrder() {
-        return mPreferences.getString(ARTIST_ALBUM_SORT_ORDER, SortOrder.ArtistAlbumSortOrder.ALBUM_YEAR);
-    }
-
     public final String getAlbumSortOrder() {
-        return mPreferences.getString(ALBUM_SORT_ORDER, SortOrder.AlbumSortOrder.ALBUM_A_Z);
+        return mPreferences.getString(ALBUM_SORT_ORDER, SortOrder.DESCENDING);
     }
 
     public void setAlbumSortOrder(final String sortOrder) {
@@ -213,12 +206,8 @@ public final class PreferenceUtil {
         editor.commit();
     }
 
-    public final String getAlbumSongSortOrder() {
-        return mPreferences.getString(ALBUM_SONG_SORT_ORDER, SortOrder.AlbumSongSortOrder.SONG_TRACK_LIST);
-    }
-
     public final String getSongSortOrder() {
-        return mPreferences.getString(SONG_SORT_ORDER, SortOrder.SongSortOrder.SONG_A_Z);
+        return mPreferences.getString(SONG_SORT_ORDER, SortOrder.DESCENDING);
     }
 
     public void setSongSortOrder(final String sortOrder) {
@@ -227,8 +216,34 @@ public final class PreferenceUtil {
         editor.commit();
     }
 
-    public final String getGenreSortOrder() {
-        return mPreferences.getString(GENRE_SORT_ORDER, SortOrder.GenreSortOrder.GENRE_A_Z);
+    public final String getArtistSortMethod() {
+        return mPreferences.getString(ARTIST_SORT_METHOD, SortMethod.NAME);
+    }
+
+    public void setArtistSortMethod(final String sortMethod) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(ARTIST_SORT_METHOD, sortMethod);
+        editor.commit();
+    }
+
+    public final String getAlbumSortMethod() {
+        return mPreferences.getString(ALBUM_SORT_METHOD, SortMethod.NAME);
+    }
+
+    public void setAlbumSortMethod(final String sortMethod) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(ALBUM_SORT_METHOD, sortMethod);
+        editor.commit();
+    }
+
+    public final String getSongSortMethod() {
+        return mPreferences.getString(SONG_SORT_METHOD, SortMethod.NAME);
+    }
+
+    public void setSongSortMethod(final String sortMethod) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(SONG_SORT_METHOD, sortMethod);
+        editor.commit();
     }
 
     public int getLastSleepTimerValue() {

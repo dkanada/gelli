@@ -3,17 +3,14 @@
 
     <item name="action_new_playlist" type="id" />
 
-    <item name="action_album_sort_order_asc" type="id" />
-    <item name="action_album_sort_order_desc" type="id" />
-    <item name="action_album_sort_order_artist" type="id" />
-    <item name="action_album_sort_order_year" type="id" />
-    <item name="action_artist_sort_order_asc" type="id" />
-    <item name="action_artist_sort_order_desc" type="id" />
-    <item name="action_song_sort_order_asc" type="id" />
-    <item name="action_song_sort_order_desc" type="id" />
-    <item name="action_song_sort_order_artist" type="id" />
-    <item name="action_song_sort_order_album" type="id" />
-    <item name="action_song_sort_order_year" type="id" />
+    <item name="action_sort_order_ascending" type="id" />
+    <item name="action_sort_order_descending" type="id" />
+
+    <item name="action_sort_method_name" type="id" />
+    <item name="action_sort_method_album" type="id" />
+    <item name="action_sort_method_artist" type="id" />
+    <item name="action_sort_method_year" type="id" />
+    <item name="action_sort_method_random" type="id" />
 
     <item name="action_multi_select_adapter_check_all" type="id" />
 

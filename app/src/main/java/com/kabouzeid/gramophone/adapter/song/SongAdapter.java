@@ -21,9 +21,9 @@ import com.kabouzeid.gramophone.adapter.base.MediaEntryViewHolder;
 import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
-import com.kabouzeid.gramophone.helper.SortOrder;
 import com.kabouzeid.gramophone.helper.menu.SongMenuHelper;
 import com.kabouzeid.gramophone.helper.menu.SongsMenuHelper;
+import com.kabouzeid.gramophone.helper.sort.SortMethod;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Song;
@@ -191,18 +191,19 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
 
         @Nullable String sectionName = null;
         switch (PreferenceUtil.getInstance(activity).getSongSortOrder()) {
-            case SortOrder.SongSortOrder.SONG_A_Z:
-            case SortOrder.SongSortOrder.SONG_Z_A:
+            case SortMethod.NAME:
                 sectionName = dataSet.get(position).title;
                 break;
-            case SortOrder.SongSortOrder.SONG_ALBUM:
+            case SortMethod.ALBUM:
                 sectionName = dataSet.get(position).albumName;
                 break;
-            case SortOrder.SongSortOrder.SONG_ARTIST:
+            case SortMethod.ARTIST:
                 sectionName = dataSet.get(position).artistName;
                 break;
-            case SortOrder.SongSortOrder.SONG_YEAR:
+            case SortMethod.YEAR:
                 return MusicUtil.getYearString(dataSet.get(position).year);
+            case SortMethod.RANDOM:
+                sectionName = dataSet.get(position).title;
         }
 
         return MusicUtil.getSectionName(sectionName);
