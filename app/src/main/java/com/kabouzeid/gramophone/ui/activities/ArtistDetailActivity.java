@@ -123,31 +123,23 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         setArtist(artist);
         loadArtistImage();
 
-        QueryUtil.getArtist(artist.id, new MediaCallback() {
+        ItemQuery albums = new ItemQuery();
+        albums.setArtistIds(new String[]{artist.id});
+        QueryUtil.getAlbums(albums, new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
-                Artist artist = (Artist) media.get(0);
+                artist.albums = (List<Album>) media;
+                setArtist(artist);
+            }
+        });
 
-                ItemQuery query = new ItemQuery();
-                query.setArtistIds(new String[]{artist.id});
-
-                QueryUtil.getAlbums(query, new MediaCallback() {
-                    @Override
-                    public void onLoadMedia(List<?> media) {
-                        artist.albums = (List<Album>) media;
-                        setArtist(artist);
-                    }
-                });
-
-                ItemQuery querys = new ItemQuery();
-                querys.setArtistIds(new String[]{artist.id});
-                QueryUtil.getSongs(querys, new MediaCallback() {
-                    @Override
-                    public void onLoadMedia(List<?> media) {
-                        artist.songs = (List<Song>) media;
-                        setArtist(artist);
-                    }
-                });
+        ItemQuery songs = new ItemQuery();
+        songs.setArtistIds(new String[]{artist.id});
+        QueryUtil.getSongs(songs, new MediaCallback() {
+            @Override
+            public void onLoadMedia(List<?> media) {
+                artist.songs = (List<Song>) media;
+                setArtist(artist);
             }
         });
     }

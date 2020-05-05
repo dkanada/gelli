@@ -105,23 +105,15 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setAlbum(album);
         loadAlbumCover();
 
-        QueryUtil.getAlbum(album.id, new MediaCallback() {
+        ItemQuery query = new ItemQuery();
+        query.setParentId(album.id);
+        query.setSortBy(new String[]{"IndexNumber"});
+
+        QueryUtil.getSongs(query, new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
-                Album album = (Album) media.get(0);
+                album.songs = (List<Song>) media;
                 setAlbum(album);
-
-                ItemQuery query = new ItemQuery();
-                query.setParentId(album.id);
-                query.setSortBy(new String[]{"IndexNumber"});
-
-                QueryUtil.getSongs(query, new MediaCallback() {
-                    @Override
-                    public void onLoadMedia(List<?> media) {
-                        album.songs = (List<Song>) media;
-                        setAlbum(album);
-                    }
-                });
             }
         });
     }
