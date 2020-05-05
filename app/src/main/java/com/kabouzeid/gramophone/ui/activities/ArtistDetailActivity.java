@@ -1,6 +1,7 @@
 package com.kabouzeid.gramophone.ui.activities;
 
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +22,8 @@ import java.util.List;
 import com.afollestad.materialcab.MaterialCab;
 import com.afollestad.materialdialogs.util.DialogUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.github.ksoichiro.android.observablescrollview.ObservableListView;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
@@ -31,6 +34,7 @@ import com.kabouzeid.gramophone.dialogs.AddToPlaylistDialog;
 import com.kabouzeid.gramophone.dialogs.SleepTimerDialog;
 import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
+import com.kabouzeid.gramophone.glide.palette.BitmapPaletteWrapper;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.interfaces.MediaCallback;
@@ -49,7 +53,6 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder {
     public static final String EXTRA_ARTIST = "extra_artist";
-    public static final String EXTRA_ARTIST_ID = "extra_artist_id";
 
     @BindView(R.id.list)
     ObservableListView songListView;
@@ -115,15 +118,11 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         setUpToolbar();
         setUpViews();
 
+        if (Build.VERSION.SDK_INT > 21) postponeEnterTransition();
         Artist artist = getIntent().getExtras().getParcelable(EXTRA_ARTIST);
-        String id = getIntent().getExtras().getString(EXTRA_ARTIST_ID);
+        setArtist(artist);
 
-        if (artist != null) {
-            setArtist(artist);
-            id = artist.getId();
-        }
-
-        QueryUtil.getArtist(id, new MediaCallback() {
+        QueryUtil.getArtist(artist.id, new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
                 Artist artist = (Artist) media.get(0);
@@ -210,8 +209,21 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     }
 
     private void loadArtistImage() {
-        CustomGlideRequest.Builder.from(Glide.with(this), artist.id)
+        CustomGlideRequest.Builder
+                .from(Glide.with(this), artist.primary)
                 .generatePalette(this).build()
+                .listener(new RequestListener<Object, BitmapPaletteWrapper>() {
+                    @Override
+                    public boolean onException(Exception e, Object model, Target<BitmapPaletteWrapper> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(BitmapPaletteWrapper resource, Object model, Target<BitmapPaletteWrapper> target, boolean dataSource, boolean isFirstResource) {
+                        if (Build.VERSION.SDK_INT > 21) startPostponedEnterTransition();
+                        return false;
+                    }
+                })
                 .dontAnimate()
                 .into(new CustomPaletteTarget(artistImage) {
                     @Override

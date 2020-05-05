@@ -17,9 +17,10 @@ public class Song implements Parcelable {
     public final String albumId;
     public final String albumName;
 
-    public final String artistId;
-    public final String artistName;
+    public String artistId;
+    public String artistName;
 
+    public String primary;
     public boolean favorite;
 
     public Song(BaseItemDto itemDto) {
@@ -27,14 +28,20 @@ public class Song implements Parcelable {
         this.title = itemDto.getName();
         this.trackNumber = itemDto.getIndexNumber() != null ? itemDto.getIndexNumber() : 0;
         this.year = itemDto.getProductionYear() != null ? itemDto.getProductionYear() : 0;
-        this.duration = itemDto.getRunTimeTicks() / 10000;
+        this.duration = itemDto.getRunTimeTicks() != null ? itemDto.getRunTimeTicks() / 10000 : 0;
 
         this.albumId = itemDto.getAlbumId();
         this.albumName = itemDto.getAlbum();
 
-        this.artistId = itemDto.getAlbumArtists().get(0).getId();
-        this.artistName = itemDto.getAlbumArtists().get(0).getName();
+        if (itemDto.getAlbumArtists().size() != 0) {
+            this.artistId = itemDto.getAlbumArtists().get(0).getId();
+            this.artistName = itemDto.getAlbumArtists().get(0).getName();
+        } else if (itemDto.getArtistItems().size() != 0) {
+            this.artistId = itemDto.getArtistItems().get(0).getId();
+            this.artistName = itemDto.getArtistItems().get(0).getName();
+        }
 
+        this.primary = itemDto.getAlbumPrimaryImageTag() != null ? albumId : null;
         this.favorite = itemDto.getUserData() != null && itemDto.getUserData().getIsFavorite();
     }
 
@@ -51,6 +58,7 @@ public class Song implements Parcelable {
         this.artistId = artistId;
         this.artistName = artistName;
 
+        this.primary = null;
         this.favorite = false;
     }
 
@@ -91,6 +99,9 @@ public class Song implements Parcelable {
 
         dest.writeString(this.artistId);
         dest.writeString(this.artistName);
+
+        dest.writeString(this.primary);
+        dest.writeString(Boolean.toString(favorite));
     }
 
     protected Song(Parcel in) {
@@ -106,7 +117,8 @@ public class Song implements Parcelable {
         this.artistId = in.readString();
         this.artistName = in.readString();
 
-        this.favorite = false;
+        this.primary = in.readString();
+        this.favorite = Boolean.valueOf(in.readString());
     }
 
     public static final Creator<Song> CREATOR = new Creator<Song>() {

@@ -202,9 +202,9 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             ((TextView) navigationDrawerHeader.findViewById(R.id.title)).setText(song.title);
             ((TextView) navigationDrawerHeader.findViewById(R.id.text)).setText(MusicUtil.getSongInfoString(song));
 
-            CustomGlideRequest.Builder.from(Glide.with(this), song.albumId)
-                    .build()
-                    .into(((ImageView) navigationDrawerHeader.findViewById(R.id.image)));
+            CustomGlideRequest.Builder
+                    .from(Glide.with(this), song.primary)
+                    .build().into(((ImageView) navigationDrawerHeader.findViewById(R.id.image)));
         } else {
             if (navigationDrawerHeader != null) {
                 navigationView.removeHeaderView(navigationDrawerHeader);

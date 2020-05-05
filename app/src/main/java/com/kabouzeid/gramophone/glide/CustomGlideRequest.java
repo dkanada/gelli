@@ -13,10 +13,13 @@ import com.bumptech.glide.load.Key;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.signature.MediaStoreSignature;
+import com.kabouzeid.gramophone.App;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.glide.audiocover.AudioFileCover;
 import com.kabouzeid.gramophone.glide.palette.BitmapPaletteTranscoder;
 import com.kabouzeid.gramophone.glide.palette.BitmapPaletteWrapper;
+
+import org.jellyfin.apiclient.model.dto.ImageOptions;
+import org.jellyfin.apiclient.model.entities.ImageType;
 
 public class CustomGlideRequest {
     public static final DiskCacheStrategy DEFAULT_DISK_CACHE_STRATEGY = DiskCacheStrategy.ALL;
@@ -49,7 +52,7 @@ public class CustomGlideRequest {
             // noinspection unchecked
             return createBaseRequest(requestManager, item)
                     .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                    .error(DEFAULT_IMAGE)
+                    .placeholder(DEFAULT_IMAGE)
                     .animate(DEFAULT_ANIMATION)
                     .signature(createSignature(item));
         }
@@ -67,7 +70,7 @@ public class CustomGlideRequest {
             return createBaseRequest(builder.requestManager, builder.item)
                     .asBitmap()
                     .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                    .error(DEFAULT_IMAGE)
+                    .placeholder(DEFAULT_IMAGE)
                     .animate(DEFAULT_ANIMATION)
                     .signature(createSignature(builder.item));
         }
@@ -88,17 +91,26 @@ public class CustomGlideRequest {
                     .asBitmap()
                     .transcode(new BitmapPaletteTranscoder(context), BitmapPaletteWrapper.class)
                     .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                    .error(DEFAULT_IMAGE)
+                    .placeholder(DEFAULT_IMAGE)
                     .animate(DEFAULT_ANIMATION)
                     .signature(createSignature(builder.item));
         }
     }
 
     public static DrawableTypeRequest createBaseRequest(RequestManager requestManager, String item) {
-        return requestManager.load(new AudioFileCover(item));
+        if (item == null) {
+            return requestManager.load(R.drawable.default_album_art);
+        }
+
+        ImageOptions options = new ImageOptions();
+        options.setImageType(ImageType.Primary);
+        options.setMaxHeight(800);
+
+        String url = App.getApiClient().GetImageUrl(item, options);
+        return requestManager.load(url);
     }
 
     public static Key createSignature(String item) {
-        return new MediaStoreSignature("image/jpeg", item.hashCode(), 0);
+        return new MediaStoreSignature("image/jpeg", item != null ? item.hashCode() : 0, 0);
     }
 }

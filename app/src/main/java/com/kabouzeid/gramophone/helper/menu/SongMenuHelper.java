@@ -12,6 +12,8 @@ import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.dialogs.AddToPlaylistDialog;
 import com.kabouzeid.gramophone.dialogs.SongDetailDialog;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
+import com.kabouzeid.gramophone.model.Album;
+import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
@@ -37,10 +39,10 @@ public class SongMenuHelper {
                 SongDetailDialog.create(song).show(activity.getSupportFragmentManager(), "SONG_DETAILS");
                 return true;
             case R.id.action_go_to_album:
-                NavigationUtil.goToAlbum(activity, song.albumId);
+                NavigationUtil.goToAlbum(activity, new Album(song));
                 return true;
             case R.id.action_go_to_artist:
-                NavigationUtil.goToArtist(activity, song.artistId);
+                NavigationUtil.goToArtist(activity, new Artist(song));
                 return true;
         }
         return false;

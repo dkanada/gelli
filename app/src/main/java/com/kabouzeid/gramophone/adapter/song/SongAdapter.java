@@ -25,6 +25,7 @@ import com.kabouzeid.gramophone.helper.SortOrder;
 import com.kabouzeid.gramophone.helper.menu.SongMenuHelper;
 import com.kabouzeid.gramophone.helper.menu.SongsMenuHelper;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
+import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
@@ -132,7 +133,8 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
     protected void loadAlbumCover(Song song, final ViewHolder holder) {
         if (holder.image == null) return;
 
-        CustomGlideRequest.Builder.from(Glide.with(activity), song.albumId)
+        CustomGlideRequest.Builder
+                .from(Glide.with(activity), song.primary)
                 .generatePalette(activity).build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override
@@ -248,7 +250,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
                 switch (item.getItemId()) {
                     case R.id.action_go_to_album:
                         Pair[] albumPairs = new Pair[]{Pair.create(image, activity.getResources().getString(R.string.transition_album_art))};
-                        NavigationUtil.goToAlbum(activity, getSong().albumId, albumPairs);
+                        NavigationUtil.goToAlbum(activity, new Album(getSong()), albumPairs);
                         return true;
                 }
             }

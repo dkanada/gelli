@@ -123,7 +123,9 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
 
     protected void loadArtistImage(Artist artist, final ViewHolder holder) {
         if (holder.image == null) return;
-        CustomGlideRequest.Builder.from(Glide.with(activity), artist.id)
+
+        CustomGlideRequest.Builder
+                .from(Glide.with(activity), artist.primary)
                 .generatePalette(activity).build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override

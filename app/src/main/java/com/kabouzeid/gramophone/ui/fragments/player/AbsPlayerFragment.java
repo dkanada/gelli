@@ -15,6 +15,8 @@ import com.kabouzeid.gramophone.dialogs.SongDetailDialog;
 import com.kabouzeid.gramophone.dialogs.SongShareDialog;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.PaletteColorHolder;
+import com.kabouzeid.gramophone.model.Album;
+import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.ui.fragments.AbsMusicServiceFragment;
 import com.kabouzeid.gramophone.util.MusicUtil;
@@ -67,10 +69,10 @@ public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implemen
                 SongDetailDialog.create(song).show(getFragmentManager(), "SONG_DETAIL");
                 return true;
             case R.id.action_go_to_album:
-                NavigationUtil.goToAlbum(getActivity(), song.albumId);
+                NavigationUtil.goToAlbum(getActivity(), new Album(song));
                 return true;
             case R.id.action_go_to_artist:
-                NavigationUtil.goToArtist(getActivity(), song.artistId);
+                NavigationUtil.goToArtist(getActivity(), new Artist(song));
                 return true;
         }
         return false;

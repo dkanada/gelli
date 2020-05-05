@@ -2,9 +2,12 @@ package com.kabouzeid.gramophone.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
+
+import com.kabouzeid.gramophone.App;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.dto.ImageOptions;
+import org.jellyfin.apiclient.model.entities.ImageType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +22,35 @@ public class Album implements Parcelable {
     public String artistId;
     public String artistName;
 
+    public String primary;
+
     public Album(BaseItemDto itemDto) {
         this.id = itemDto.getId();
         this.title = itemDto.getName();
         this.year = itemDto.getProductionYear() != null ? itemDto.getProductionYear() : 0;
 
-        this.artistId = itemDto.getAlbumArtists().get(0).getId();
-        this.artistName = itemDto.getAlbumArtists().get(0).getName();
+        if (itemDto.getAlbumArtists().size() != 0) {
+            this.artistId = itemDto.getAlbumArtists().get(0).getId();
+            this.artistName = itemDto.getAlbumArtists().get(0).getName();
+        } else if (itemDto.getArtistItems().size() != 0) {
+            this.artistId = itemDto.getArtistItems().get(0).getId();
+            this.artistName = itemDto.getArtistItems().get(0).getName();
+        }
+
+        this.primary = itemDto.getImageTags().containsKey(ImageType.Primary) ? id : null;
 
         this.songs = new ArrayList<>();
+    }
+
+    public Album(Song song) {
+        this.id = song.albumId;
+        this.title = song.albumName;
+        this.year = song.year;
+
+        this.artistId = song.artistId;
+        this.artistName = song.artistName;
+
+        this.primary = song.primary;
     }
 
     public Album() {
@@ -90,6 +113,8 @@ public class Album implements Parcelable {
 
         dest.writeString(artistId);
         dest.writeString(artistName);
+
+        dest.writeString(primary);
     }
 
     protected Album(Parcel in) {
@@ -101,6 +126,8 @@ public class Album implements Parcelable {
 
         this.artistId = in.readString();
         this.artistName = in.readString();
+
+        this.primary = in.readString();
     }
 
     public static final Creator<Album> CREATOR = new Creator<Album>() {

@@ -91,7 +91,7 @@ public class AppWidgetClassic extends BaseAppWidget {
                 if (target != null) {
                     Glide.clear(target);
                 }
-                target = CustomGlideRequest.Builder.from(Glide.with(appContext), song.albumId)
+                target = CustomGlideRequest.Builder.from(Glide.with(appContext), song.primary)
                         .generatePalette(service).build()
                         .centerCrop()
                         .into(new SimpleTarget<BitmapPaletteWrapper>(imageSize, imageSize) {

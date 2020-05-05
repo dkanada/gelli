@@ -22,6 +22,7 @@ import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.helper.menu.SongMenuHelper;
 import com.kabouzeid.gramophone.helper.menu.SongsMenuHelper;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
+import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.NavigationUtil;
 
@@ -83,9 +84,9 @@ public class ArtistSongAdapter extends ArrayAdapter<Song> implements MaterialCab
         songTitle.setText(song.title);
         songInfo.setText(song.albumName);
 
-        CustomGlideRequest.Builder.from(Glide.with(activity), song.albumId)
-                .build()
-                .into(albumArt);
+        CustomGlideRequest.Builder
+                .from(Glide.with(activity), song.primary)
+                .build().into(albumArt);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             albumArt.setTransitionName(activity.getString(R.string.transition_album_art));
@@ -101,11 +102,8 @@ public class ArtistSongAdapter extends ArrayAdapter<Song> implements MaterialCab
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_go_to_album) {
-                    Pair[] albumPairs = new Pair[]{
-                            Pair.create(albumArt, activity.getResources().getString(R.string.transition_album_art))
-                    };
-
-                    NavigationUtil.goToAlbum(activity, song.albumId, albumPairs);
+                    Pair[] albumPairs = new Pair[]{Pair.create(albumArt, activity.getResources().getString(R.string.transition_album_art))};
+                    NavigationUtil.goToAlbum(activity, new Album(song), albumPairs);
                     return true;
                 }
 

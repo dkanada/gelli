@@ -128,7 +128,8 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
     protected void loadAlbumCover(Album album, final ViewHolder holder) {
         if (holder.image == null) return;
 
-        CustomGlideRequest.Builder.from(Glide.with(activity), album.id)
+        CustomGlideRequest.Builder
+                .from(Glide.with(activity), album.primary)
                 .generatePalette(activity).build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override

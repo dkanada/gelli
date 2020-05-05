@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.GenreDto;
+import org.jellyfin.apiclient.model.entities.ImageType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +17,14 @@ public class Artist implements Parcelable {
 
     public String id;
     public String name;
-    public long duration;
+
+    public String primary;
 
     public Artist(BaseItemDto itemDto) {
         this.id = itemDto.getId();
         this.name = itemDto.getName();
-        this.duration = itemDto.getRunTimeTicks() / 10000;
+
+        this.primary = itemDto.getImageTags().containsKey(ImageType.Primary) ? id : null;
 
         this.genres = new ArrayList<>();
         this.albums = new ArrayList<>();
@@ -32,6 +35,16 @@ public class Artist implements Parcelable {
                 genres.add(new Genre(genre));
             }
         }
+    }
+
+    public Artist(Album album) {
+        this.id = album.artistId;
+        this.name = album.artistName;
+    }
+
+    public Artist(Song song) {
+        this.id = song.artistId;
+        this.name = song.artistName;
     }
 
     public Artist() {
@@ -87,7 +100,8 @@ public class Artist implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(name);
-        dest.writeLong(duration);
+
+        dest.writeString(primary);
     }
 
     protected Artist(Parcel in) {
@@ -97,7 +111,8 @@ public class Artist implements Parcelable {
 
         this.id = in.readString();
         this.name = in.readString();
-        this.duration = in.readLong();
+
+        this.primary = in.readString();
     }
 
     public static final Parcelable.Creator<Artist> CREATOR = new Parcelable.Creator<Artist>() {

@@ -117,7 +117,8 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
         }
 
         private void loadAlbumCover() {
-            CustomGlideRequest.Builder.from(Glide.with(getContext()), song.albumId)
+            CustomGlideRequest.Builder
+                    .from(Glide.with(getContext()), song.primary)
                     .generatePalette(getActivity()).build()
                     .into(new CustomPaletteTarget(albumCover) {
                         @Override

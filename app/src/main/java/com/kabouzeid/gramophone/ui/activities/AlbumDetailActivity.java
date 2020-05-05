@@ -1,11 +1,14 @@
 package com.kabouzeid.gramophone.ui.activities;
 
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +18,8 @@ import android.widget.TextView;
 import com.afollestad.materialcab.MaterialCab;
 import com.afollestad.materialdialogs.util.DialogUtils;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
@@ -24,12 +29,14 @@ import com.kabouzeid.gramophone.dialogs.AddToPlaylistDialog;
 import com.kabouzeid.gramophone.dialogs.SleepTimerDialog;
 import com.kabouzeid.gramophone.glide.CustomGlideRequest;
 import com.kabouzeid.gramophone.glide.CustomPaletteTarget;
+import com.kabouzeid.gramophone.glide.palette.BitmapPaletteWrapper;
 import com.kabouzeid.gramophone.helper.MusicPlayerRemote;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
 import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.interfaces.PaletteColorHolder;
 import com.kabouzeid.gramophone.misc.SimpleObservableScrollViewCallbacks;
 import com.kabouzeid.gramophone.model.Album;
+import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.kabouzeid.gramophone.util.MusicUtil;
@@ -46,7 +53,6 @@ import butterknife.ButterKnife;
 
 public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder {
     public static final String EXTRA_ALBUM = "extra_album";
-    public static final String EXTRA_ALBUM_ID = "extra_album_id";
 
     private Album album;
 
@@ -94,15 +100,11 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setUpToolBar();
         setUpViews();
 
+        if (Build.VERSION.SDK_INT > 21) postponeEnterTransition();
         Album album = getIntent().getExtras().getParcelable(EXTRA_ALBUM);
-        String id = getIntent().getExtras().getString(EXTRA_ALBUM_ID);
+        setAlbum(album);
 
-        if (album != null) {
-            setAlbum(album);
-            id = album.getId();
-        }
-
-        QueryUtil.getAlbum(id, new MediaCallback() {
+        QueryUtil.getAlbum(album.id, new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
                 Album album = (Album) media.get(0);
@@ -153,7 +155,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setUpSongsAdapter();
         artistTextView.setOnClickListener(v -> {
             if (album != null) {
-                NavigationUtil.goToArtist(AlbumDetailActivity.this, album.getArtistId());
+                NavigationUtil.goToArtist(AlbumDetailActivity.this, new Artist(album));
             }
         });
 
@@ -161,8 +163,21 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
     }
 
     private void loadAlbumCover() {
-        CustomGlideRequest.Builder.from(Glide.with(this), getAlbum().id)
+        CustomGlideRequest.Builder
+                .from(Glide.with(this), getAlbum().primary)
                 .generatePalette(this).build()
+                .listener(new RequestListener<Object, BitmapPaletteWrapper>() {
+                    @Override
+                    public boolean onException(Exception e, Object model, Target<BitmapPaletteWrapper> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(BitmapPaletteWrapper resource, Object model, Target<BitmapPaletteWrapper> target, boolean dataSource, boolean isFirstResource) {
+                        if (Build.VERSION.SDK_INT > 21) startPostponedEnterTransition();
+                        return false;
+                    }
+                })
                 .dontAnimate()
                 .into(new CustomPaletteTarget(albumArtImageView) {
                     @Override
@@ -261,7 +276,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
                 super.onBackPressed();
                 return true;
             case R.id.action_go_to_artist:
-                NavigationUtil.goToArtist(this, getAlbum().getArtistId());
+                NavigationUtil.goToArtist(this, new Artist(album));
                 return true;
         }
         return super.onOptionsItemSelected(item);

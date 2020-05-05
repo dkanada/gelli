@@ -11,6 +11,7 @@ import android.view.View;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.interfaces.CabHolder;
+import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.util.MusicUtil;
 import com.kabouzeid.gramophone.util.NavigationUtil;
@@ -83,7 +84,7 @@ public class PlaylistSongAdapter extends AbsOffsetSongAdapter {
         protected boolean onSongMenuItemClick(MenuItem item) {
             if (item.getItemId() == R.id.action_go_to_album) {
                 Pair[] albumPairs = new Pair[]{Pair.create(image, activity.getString(R.string.transition_album_art))};
-                NavigationUtil.goToAlbum(activity, dataSet.get(getAdapterPosition() - 1).albumId, albumPairs);
+                NavigationUtil.goToAlbum(activity, new Album(dataSet.get(getAdapterPosition() - 1)), albumPairs);
                 return true;
             }
 

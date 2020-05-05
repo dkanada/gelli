@@ -50,7 +50,8 @@ public class PlayingNotificationImpl24 extends PlayingNotification {
         final PendingIntent deleteIntent = PendingIntent.getService(service, 0, intent, 0);
 
         final int bigNotificationImageSize = service.getResources().getDimensionPixelSize(R.dimen.notification_big_image_size);
-        service.runOnUiThread(() -> CustomGlideRequest.Builder.from(Glide.with(service), song.albumId)
+        service.runOnUiThread(() -> CustomGlideRequest.Builder
+                .from(Glide.with(service), song.primary)
                 .generatePalette(service).build()
                 .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
                     @Override

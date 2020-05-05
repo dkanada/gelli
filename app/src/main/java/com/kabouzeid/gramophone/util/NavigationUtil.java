@@ -11,6 +11,7 @@ import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.model.Genre;
 import com.kabouzeid.gramophone.model.Playlist;
+import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.ui.activities.AlbumDetailActivity;
 import com.kabouzeid.gramophone.ui.activities.ArtistDetailActivity;
 import com.kabouzeid.gramophone.ui.activities.GenreDetailActivity;
@@ -42,20 +43,6 @@ public class NavigationUtil {
     public static void goToPlaylist(@NonNull final Activity activity, final Playlist playlist, @Nullable Pair... sharedElements) {
         final Intent intent = new Intent(activity, PlaylistDetailActivity.class);
         intent.putExtra(PlaylistDetailActivity.EXTRA_PLAYLIST, playlist);
-
-        startActivitySharedElements(activity, intent, sharedElements);
-    }
-
-    public static void goToArtist(@NonNull final Activity activity, final String artist, @Nullable Pair... sharedElements) {
-        final Intent intent = new Intent(activity, ArtistDetailActivity.class);
-        intent.putExtra(ArtistDetailActivity.EXTRA_ARTIST_ID, artist);
-
-        startActivitySharedElements(activity, intent, sharedElements);
-    }
-
-    public static void goToAlbum(@NonNull final Activity activity, final String album, @Nullable Pair... sharedElements) {
-        final Intent intent = new Intent(activity, AlbumDetailActivity.class);
-        intent.putExtra(AlbumDetailActivity.EXTRA_ALBUM_ID, album);
 
         startActivitySharedElements(activity, intent, sharedElements);
     }

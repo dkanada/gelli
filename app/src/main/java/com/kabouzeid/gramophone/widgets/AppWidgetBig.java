@@ -94,7 +94,7 @@ public class AppWidgetBig extends BaseAppWidget {
                 if (target != null) {
                     Glide.clear(target);
                 }
-                target = CustomGlideRequest.Builder.from(Glide.with(appContext), song.albumId)
+                target = CustomGlideRequest.Builder.from(Glide.with(appContext), song.primary)
                         .asBitmap().build()
                         .into(new SimpleTarget<Bitmap>(widgetImageSize, widgetImageSize) {
                             @Override

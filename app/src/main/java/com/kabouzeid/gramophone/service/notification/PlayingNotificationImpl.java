@@ -88,7 +88,7 @@ public class PlayingNotificationImpl extends PlayingNotification {
                 if (target != null) {
                     Glide.clear(target);
                 }
-                target = CustomGlideRequest.Builder.from(Glide.with(service), song.albumId)
+                target = CustomGlideRequest.Builder.from(Glide.with(service), song.primary)
                         .generatePalette(service).build()
                         .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
                             @Override
