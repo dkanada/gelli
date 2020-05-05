@@ -349,7 +349,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     private void setUpSortMethodMenu(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull SubMenu sortOrderMenu) {
-        String currentSortOrder = fragment.getSortOrder();
+        String currentSortOrder = fragment.getSortMethod();
         sortOrderMenu.clear();
 
         if (fragment instanceof AlbumsFragment) {
@@ -383,7 +383,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     private void setUpSortOrderMenu(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull SubMenu sortOrderMenu) {
-        String currentSortOrder = fragment.getSortOrder();
+        String currentSortOrder = fragment.getSortMethod();
         sortOrderMenu.clear();
 
         sortOrderMenu.add(0, R.id.action_sort_order_ascending, 0, R.string.sort_order_a_z)

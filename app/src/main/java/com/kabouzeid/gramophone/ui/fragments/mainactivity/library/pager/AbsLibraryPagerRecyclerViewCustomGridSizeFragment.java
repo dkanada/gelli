@@ -11,7 +11,7 @@ import com.kabouzeid.gramophone.util.Util;
 
 public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extends RecyclerView.Adapter, LM extends RecyclerView.LayoutManager> extends AbsLibraryPagerRecyclerViewFragment<A, LM> {
     private int gridSize;
-    private String sortOrder;
+    private String sortMethod;
 
     private boolean usePaletteInitialized;
     private boolean usePalette;
@@ -46,12 +46,12 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         return usePalette;
     }
 
-    public final String getSortOrder() {
-        if (sortOrder == null) {
-            sortOrder = loadSortOrder();
+    public final String getSortMethod() {
+        if (sortMethod == null) {
+            sortMethod = loadSortMethod();
         }
 
-        return sortOrder;
+        return sortMethod;
     }
 
     public void setAndSaveGridSize(final int gridSize) {
@@ -78,10 +78,10 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         setUsePalette(usePalette);
     }
 
-    public void setAndSaveSortOrder(final String sortOrder) {
-        this.sortOrder = sortOrder;
-        saveSortOrder(sortOrder);
-        setSortOrder(sortOrder);
+    public void setAndSaveSortOrder(final String sortMethod) {
+        this.sortMethod = sortMethod;
+        saveSortMethod(sortMethod);
+        setSortMethod(sortMethod);
     }
 
     public boolean canUsePalette() {
@@ -137,11 +137,11 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
 
     protected abstract void setGridSize(int gridSize);
 
-    protected abstract String loadSortOrder();
+    protected abstract String loadSortMethod();
 
-    protected abstract void saveSortOrder(String sortOrder);
+    protected abstract void saveSortMethod(String sortOrder);
 
-    protected abstract void setSortOrder(String sortOrder);
+    protected abstract void setSortMethod(String sortOrder);
 
     protected int getMaxGridSizeForList() {
         if (isLandscape()) {

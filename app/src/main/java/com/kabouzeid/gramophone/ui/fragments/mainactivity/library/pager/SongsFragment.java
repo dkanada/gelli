@@ -77,17 +77,17 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
     }
 
     @Override
-    protected String loadSortOrder() {
-        return PreferenceUtil.getInstance(getActivity()).getSongSortOrder();
+    protected String loadSortMethod() {
+        return PreferenceUtil.getInstance(getActivity()).getSongSortMethod();
     }
 
     @Override
-    protected void saveSortOrder(String sortOrder) {
-        PreferenceUtil.getInstance(getActivity()).setSongSortOrder(sortOrder);
+    protected void saveSortMethod(String sortOrder) {
+        PreferenceUtil.getInstance(getActivity()).setSongSortMethod(sortOrder);
     }
 
     @Override
-    protected void setSortOrder(String sortOrder) {
+    protected void setSortMethod(String sortOrder) {
     }
 
     @Override

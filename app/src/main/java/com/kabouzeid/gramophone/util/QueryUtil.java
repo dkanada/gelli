@@ -1,6 +1,7 @@
 package com.kabouzeid.gramophone.util;
 
 import com.kabouzeid.gramophone.App;
+import com.kabouzeid.gramophone.helper.sort.SortMethod;
 import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.model.Album;
 import com.kabouzeid.gramophone.model.Artist;
@@ -127,6 +128,7 @@ public class QueryUtil {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(100);
         query.setRecursive(true);
+        applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod());
         if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
@@ -168,6 +170,7 @@ public class QueryUtil {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(100);
         query.setRecursive(true);
+        applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getArtistSortMethod());
         if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
         App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
             @Override
@@ -208,6 +211,7 @@ public class QueryUtil {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(100);
         query.setRecursive(true);
+        applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortMethod());
         if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
@@ -225,5 +229,40 @@ public class QueryUtil {
                 exception.printStackTrace();
             }
         });
+    }
+
+    public static ItemQuery applySortMethod(ItemQuery query, String method) {
+        switch (method) {
+            case SortMethod.NAME:
+                query.setSortBy(new String[]{"SortName"});
+                break;
+            case SortMethod.ALBUM:
+                query.setSortBy(new String[]{"Album"});
+                break;
+            case SortMethod.ARTIST:
+                query.setSortBy(new String[]{"AlbumArtist"});
+                break;
+            case SortMethod.YEAR:
+                query.setSortBy(new String[]{"ProductionYear"});
+                break;
+            case SortMethod.RANDOM:
+                query.setSortBy(new String[]{"Random"});
+                break;
+        }
+
+        return query;
+    }
+
+    public static ArtistsQuery applySortMethod(ArtistsQuery query, String method) {
+        switch (method) {
+            case SortMethod.NAME:
+                query.setSortBy(new String[]{"SortName"});
+                break;
+            case SortMethod.RANDOM:
+                query.setSortBy(new String[]{"Random"});
+                break;
+        }
+
+        return query;
     }
 }

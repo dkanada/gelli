@@ -16,6 +16,8 @@
     <string name="github" translatable="false">GitHub</string>
     <string name="twitter" translatable="false">Twitter</string>
 
+    <string name="random" translatable="false">\?</string>
+
     <string-array name="donation_ids" translatable="false">
         <item>donation_1</item>
         <item>donation_2</item>

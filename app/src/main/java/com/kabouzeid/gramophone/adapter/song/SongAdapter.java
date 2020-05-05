@@ -190,7 +190,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
         }
 
         @Nullable String sectionName = null;
-        switch (PreferenceUtil.getInstance(activity).getSongSortOrder()) {
+        switch (PreferenceUtil.getInstance(activity).getSongSortMethod()) {
             case SortMethod.NAME:
                 sectionName = dataSet.get(position).title;
                 break;
@@ -203,7 +203,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
             case SortMethod.YEAR:
                 return MusicUtil.getYearString(dataSet.get(position).year);
             case SortMethod.RANDOM:
-                sectionName = dataSet.get(position).title;
+                return activity.getResources().getString(R.string.random);
         }
 
         return MusicUtil.getSectionName(sectionName);

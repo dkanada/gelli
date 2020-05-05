@@ -188,7 +188,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
     @Override
     public String getSectionName(int position) {
         @Nullable String sectionName = null;
-        switch (PreferenceUtil.getInstance(activity).getAlbumSortOrder()) {
+        switch (PreferenceUtil.getInstance(activity).getAlbumSortMethod()) {
             case SortMethod.NAME:
                 sectionName = dataSet.get(position).getTitle();
                 break;
@@ -198,7 +198,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
             case SortMethod.YEAR:
                 return MusicUtil.getYearString(dataSet.get(position).getYear());
             case SortMethod.RANDOM:
-                sectionName = dataSet.get(position).getTitle();
+                return activity.getResources().getString(R.string.random);
         }
 
         return MusicUtil.getSectionName(sectionName);
