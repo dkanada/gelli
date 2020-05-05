@@ -1,6 +1,5 @@
 package com.kabouzeid.gramophone.adapter;
 
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.PopupMenu;
 
 import com.bumptech.glide.Glide;
-import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.adapter.base.AbsMultiSelectAdapter;
 import com.kabouzeid.gramophone.adapter.base.MediaEntryViewHolder;
