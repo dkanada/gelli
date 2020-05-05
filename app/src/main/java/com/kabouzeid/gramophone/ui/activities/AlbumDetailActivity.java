@@ -103,6 +103,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         if (Build.VERSION.SDK_INT > 21) postponeEnterTransition();
         Album album = getIntent().getExtras().getParcelable(EXTRA_ALBUM);
         setAlbum(album);
+        loadAlbumCover();
 
         QueryUtil.getAlbum(album.id, new MediaCallback() {
             @Override
@@ -279,6 +280,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
                 NavigationUtil.goToArtist(this, new Artist(album));
                 return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -311,8 +313,9 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
 
     @Override
     public void onBackPressed() {
-        if (cab != null && cab.isActive()) cab.finish();
-        else {
+        if (cab != null && cab.isActive()) {
+            cab.finish();
+        } else {
             recyclerView.stopScroll();
             super.onBackPressed();
         }
@@ -331,7 +334,6 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
 
     private void setAlbum(Album album) {
         this.album = album;
-        loadAlbumCover();
 
         getSupportActionBar().setTitle(album.getTitle());
         artistTextView.setText(album.getArtistName());
