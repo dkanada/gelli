@@ -31,12 +31,13 @@ public class AppWidgetClassic extends BaseAppWidget {
     private static AppWidgetClassic mInstance;
     private static int imageSize = 0;
     private static float cardRadius = 0f;
-    private Target<BitmapPaletteWrapper> target; // for cancellation
+    private Target<BitmapPaletteWrapper> target;
 
     public static synchronized AppWidgetClassic getInstance() {
         if (mInstance == null) {
             mInstance = new AppWidgetClassic();
         }
+
         return mInstance;
     }
 

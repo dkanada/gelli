@@ -25,16 +25,17 @@ import com.kabouzeid.gramophone.ui.activities.MainActivity;
 import com.kabouzeid.gramophone.util.ImageUtil;
 import com.kabouzeid.gramophone.util.Util;
 
-public class AppWidgetBig extends BaseAppWidget {
-    public static final String NAME = "app_widget_big";
+public class AppWidgetAlbum extends BaseAppWidget {
+    public static final String NAME = "app_widget_album";
 
-    private static AppWidgetBig mInstance;
-    private Target<Bitmap> target; // for cancellation
+    private static AppWidgetAlbum mInstance;
+    private Target<Bitmap> target;
 
-    public static synchronized AppWidgetBig getInstance() {
+    public static synchronized AppWidgetAlbum getInstance() {
         if (mInstance == null) {
-            mInstance = new AppWidgetBig();
+            mInstance = new AppWidgetAlbum();
         }
+
         return mInstance;
     }
 

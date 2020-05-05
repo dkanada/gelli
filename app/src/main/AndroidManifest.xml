@@ -92,7 +92,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".widgets.AppWidgetBig"
+            android:name=".widgets.AppWidgetAlbum"
             android:exported="false"
             android:label="@string/app_widget_big_name">
             <intent-filter>

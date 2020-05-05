@@ -41,7 +41,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.glide.CustomGlideRequest;
-import com.kabouzeid.gramophone.widgets.AppWidgetBig;
+import com.kabouzeid.gramophone.widgets.AppWidgetAlbum;
 import com.kabouzeid.gramophone.widgets.AppWidgetCard;
 import com.kabouzeid.gramophone.widgets.AppWidgetClassic;
 import com.kabouzeid.gramophone.widgets.AppWidgetSmall;
@@ -121,7 +121,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public boolean pendingQuit = false;
 
-    private AppWidgetBig appWidgetBig = AppWidgetBig.getInstance();
+    private AppWidgetAlbum appWidgetAlbum = AppWidgetAlbum.getInstance();
     private AppWidgetClassic appWidgetClassic = AppWidgetClassic.getInstance();
     private AppWidgetSmall appWidgetSmall = AppWidgetSmall.getInstance();
     private AppWidgetCard appWidgetCard = AppWidgetCard.getInstance();
@@ -1042,7 +1042,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void sendChangeInternal(final String what) {
         sendBroadcast(new Intent(what));
-        appWidgetBig.notifyChange(this, what);
+        appWidgetAlbum.notifyChange(this, what);
         appWidgetClassic.notifyChange(this, what);
         appWidgetSmall.notifyChange(this, what);
         appWidgetCard.notifyChange(this, what);
@@ -1299,8 +1299,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     appWidgetSmall.performUpdate(MusicService.this, ids);
                     break;
                 }
-                case AppWidgetBig.NAME: {
-                    appWidgetBig.performUpdate(MusicService.this, ids);
+                case AppWidgetAlbum.NAME: {
+                    appWidgetAlbum.performUpdate(MusicService.this, ids);
                     break;
                 }
                 case AppWidgetCard.NAME: {
