@@ -112,11 +112,9 @@ public class MusicUtil {
     public static String buildInfoString(@Nullable final String one, @Nullable final String two) {
         // skip empty strings
         if (TextUtils.isEmpty(one)) {
-            // noinspection ConstantConditions
             return TextUtils.isEmpty(two) ? "" : two;
         }
         if (TextUtils.isEmpty(two)) {
-            // noinspection ConstantConditions
             return TextUtils.isEmpty(one) ? "" : one;
         }
 
@@ -127,10 +125,6 @@ public class MusicUtil {
     // this method converts those values to normal track numbers
     public static int getFixedTrackNumber(int trackNumberToFix) {
         return trackNumberToFix % 1000;
-    }
-
-    public static boolean isFavoritePlaylist(@NonNull final Context context, @NonNull final Playlist playlist) {
-        return playlist.name != null && playlist.name.equals(context.getString(R.string.favorites));
     }
 
     public static void toggleFavorite(@NonNull final Context context, @NonNull final Song song) {
