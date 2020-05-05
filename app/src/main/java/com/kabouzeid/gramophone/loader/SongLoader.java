@@ -14,10 +14,10 @@ import com.kabouzeid.gramophone.util.PreferenceUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public class SongLoader {
+    public static final String QUEUE_PRIMARY = "image";
+    public static final String QUEUE_FAVORITE = "favorite";
+
     protected static final String BASE_SELECTION = AudioColumns.IS_MUSIC + "=1" + " AND " + AudioColumns.TITLE + " != ''";
     protected static final String[] BASE_PROJECTION = new String[]{
             BaseColumns._ID,
@@ -29,24 +29,14 @@ public class SongLoader {
             AudioColumns.ALBUM,
             AudioColumns.ARTIST_ID,
             AudioColumns.ARTIST,
+            QUEUE_PRIMARY,
+            QUEUE_FAVORITE,
     };
 
     @NonNull
     public static List<Song> getAllSongs(@NonNull Context context) {
         Cursor cursor = makeSongCursor(context, null, null);
         return getSongs(cursor);
-    }
-
-    @NonNull
-    public static List<Song> getSongs(@NonNull final Context context, final String query) {
-        Cursor cursor = makeSongCursor(context, AudioColumns.TITLE + " LIKE ?", new String[]{"%" + query + "%"});
-        return getSongs(cursor);
-    }
-
-    @NonNull
-    public static Song getSong(@NonNull final Context context, final int queryId) {
-        Cursor cursor = makeSongCursor(context, AudioColumns._ID + "=?", new String[]{String.valueOf(queryId)});
-        return getSong(cursor);
     }
 
     @NonNull
@@ -58,8 +48,7 @@ public class SongLoader {
             } while (cursor.moveToNext());
         }
 
-        if (cursor != null)
-            cursor.close();
+        if (cursor != null) cursor.close();
         return songs;
     }
 
@@ -93,7 +82,10 @@ public class SongLoader {
         final String artistId = cursor.getString(7);
         final String artistName = cursor.getString(8);
 
-        return new Song(id, title, trackNumber, year, duration, albumId, albumName, artistId, artistName);
+        final String primary = cursor.getString(9);
+        final boolean favorite = Boolean.valueOf(cursor.getString(10));
+
+        return new Song(id, title, trackNumber, year, duration, albumId, albumName, artistId, artistName, primary, favorite);
     }
 
     @Nullable

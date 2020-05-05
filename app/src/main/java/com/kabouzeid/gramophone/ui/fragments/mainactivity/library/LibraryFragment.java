@@ -240,7 +240,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                 return true;
             }
 
-            if (handleSortOrderMenuItem(absLibraryRecyclerViewCustomGridSizeFragment, item)) {
+            if (handleSortMethodMenuItem(absLibraryRecyclerViewCustomGridSizeFragment, item)) {
                 return true;
             }
         }
@@ -288,6 +288,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                 gridSizeMenu.findItem(R.id.action_grid_size_8).setChecked(true);
                 break;
         }
+
         int maxGridSize = fragment.getMaxGridSize();
         if (maxGridSize < 8) {
             gridSizeMenu.findItem(R.id.action_grid_size_8).setVisible(false);
@@ -348,38 +349,38 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         return false;
     }
 
-    private void setUpSortMethodMenu(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull SubMenu sortOrderMenu) {
-        String currentSortOrder = fragment.getSortMethod();
-        sortOrderMenu.clear();
+    private void setUpSortMethodMenu(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull SubMenu sortMethodMenu) {
+        String currentSortMethod = fragment.getSortMethod();
+        sortMethodMenu.clear();
 
         if (fragment instanceof AlbumsFragment) {
-            sortOrderMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_order_name)
-                    .setChecked(currentSortOrder.equals(SortMethod.NAME));
-            sortOrderMenu.add(0, R.id.action_sort_method_artist, 1, R.string.sort_order_artist)
-                    .setChecked(currentSortOrder.equals(SortMethod.ARTIST));
-            sortOrderMenu.add(0, R.id.action_sort_method_year, 2, R.string.sort_order_year)
-                    .setChecked(currentSortOrder.equals(SortMethod.YEAR));
-            sortOrderMenu.add(0, R.id.action_sort_method_random, 3, R.string.sort_order_random)
-                    .setChecked(currentSortOrder.equals(SortMethod.RANDOM));
+            sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_order_name)
+                    .setChecked(currentSortMethod.equals(SortMethod.NAME));
+            sortMethodMenu.add(0, R.id.action_sort_method_artist, 1, R.string.sort_order_artist)
+                    .setChecked(currentSortMethod.equals(SortMethod.ARTIST));
+            sortMethodMenu.add(0, R.id.action_sort_method_year, 2, R.string.sort_order_year)
+                    .setChecked(currentSortMethod.equals(SortMethod.YEAR));
+            sortMethodMenu.add(0, R.id.action_sort_method_random, 3, R.string.sort_order_random)
+                    .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
         } else if (fragment instanceof ArtistsFragment) {
-            sortOrderMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_order_name)
-                    .setChecked(currentSortOrder.equals(SortMethod.NAME));
-            sortOrderMenu.add(0, R.id.action_sort_method_random, 1, R.string.sort_order_random)
-                    .setChecked(currentSortOrder.equals(SortMethod.RANDOM));
+            sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_order_name)
+                    .setChecked(currentSortMethod.equals(SortMethod.NAME));
+            sortMethodMenu.add(0, R.id.action_sort_method_random, 1, R.string.sort_order_random)
+                    .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
         } else if (fragment instanceof SongsFragment) {
-            sortOrderMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_order_name)
-                    .setChecked(currentSortOrder.equals(SortMethod.NAME));
-            sortOrderMenu.add(0, R.id.action_sort_method_album, 1, R.string.sort_order_album)
-                    .setChecked(currentSortOrder.equals(SortMethod.ALBUM));
-            sortOrderMenu.add(0, R.id.action_sort_method_artist, 2, R.string.sort_order_artist)
-                    .setChecked(currentSortOrder.equals(SortMethod.ARTIST));
-            sortOrderMenu.add(0, R.id.action_sort_method_year, 3, R.string.sort_order_year)
-                    .setChecked(currentSortOrder.equals(SortMethod.YEAR));
-            sortOrderMenu.add(0, R.id.action_sort_method_random, 4, R.string.sort_order_random)
-                    .setChecked(currentSortOrder.equals(SortMethod.RANDOM));
+            sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_order_name)
+                    .setChecked(currentSortMethod.equals(SortMethod.NAME));
+            sortMethodMenu.add(0, R.id.action_sort_method_album, 1, R.string.sort_order_album)
+                    .setChecked(currentSortMethod.equals(SortMethod.ALBUM));
+            sortMethodMenu.add(0, R.id.action_sort_method_artist, 2, R.string.sort_order_artist)
+                    .setChecked(currentSortMethod.equals(SortMethod.ARTIST));
+            sortMethodMenu.add(0, R.id.action_sort_method_year, 3, R.string.sort_order_year)
+                    .setChecked(currentSortMethod.equals(SortMethod.YEAR));
+            sortMethodMenu.add(0, R.id.action_sort_method_random, 4, R.string.sort_order_random)
+                    .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
         }
 
-        sortOrderMenu.setGroupCheckable(0, true, true);
+        sortMethodMenu.setGroupCheckable(0, true, true);
     }
 
     private void setUpSortOrderMenu(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull SubMenu sortOrderMenu) {
@@ -394,29 +395,29 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         sortOrderMenu.setGroupCheckable(0, true, true);
     }
 
-    private boolean handleSortOrderMenuItem(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull MenuItem item) {
-        String sortOrder = null;
+    private boolean handleSortMethodMenuItem(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull MenuItem item) {
+        String sortMethod = null;
         switch (item.getItemId()) {
             case R.id.action_sort_method_name:
-                sortOrder = SortMethod.NAME;
+                sortMethod = SortMethod.NAME;
                 break;
             case R.id.action_sort_method_album:
-                sortOrder = SortMethod.ALBUM;
+                sortMethod = SortMethod.ALBUM;
                 break;
             case R.id.action_sort_method_artist:
-                sortOrder = SortMethod.ARTIST;
+                sortMethod = SortMethod.ARTIST;
                 break;
             case R.id.action_sort_method_year:
-                sortOrder = SortMethod.YEAR;
+                sortMethod = SortMethod.YEAR;
                 break;
             case R.id.action_sort_method_random:
-                sortOrder = SortMethod.RANDOM;
+                sortMethod = SortMethod.RANDOM;
                 break;
         }
 
-        if (sortOrder != null) {
+        if (sortMethod != null) {
             item.setChecked(true);
-            fragment.setAndSaveSortOrder(sortOrder);
+            fragment.setAndSaveSortMethod(sortMethod);
             return true;
         }
 

@@ -78,7 +78,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         setUsePalette(usePalette);
     }
 
-    public void setAndSaveSortOrder(final String sortMethod) {
+    public void setAndSaveSortMethod(final String sortMethod) {
         this.sortMethod = sortMethod;
         saveSortMethod(sortMethod);
         setSortMethod(sortMethod);
@@ -99,6 +99,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
 
     protected final void notifyLayoutResChanged(@LayoutRes int res) {
         this.currentLayoutRes = res;
+
         RecyclerView recyclerView = getRecyclerView();
         if (recyclerView != null) {
             applyRecyclerViewPaddingForLayoutRes(recyclerView, currentLayoutRes);
@@ -118,6 +119,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         } else {
             padding = 0;
         }
+
         recyclerView.setPadding(padding, padding, padding, padding);
     }
 
@@ -139,9 +141,9 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
 
     protected abstract String loadSortMethod();
 
-    protected abstract void saveSortMethod(String sortOrder);
+    protected abstract void saveSortMethod(String sortMethod);
 
-    protected abstract void setSortMethod(String sortOrder);
+    protected abstract void setSortMethod(String sortMethod);
 
     protected int getMaxGridSizeForList() {
         if (isLandscape()) {

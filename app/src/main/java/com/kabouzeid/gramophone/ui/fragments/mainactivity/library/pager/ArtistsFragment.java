@@ -69,7 +69,7 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
     }
 
     @Override
-    protected void setSortMethod(String sortOrder) {
+    protected void setSortMethod(String sortMethod) {
     }
 
     @Override

@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 
 public class Song implements Parcelable {
-    public static final Song EMPTY_SONG = new Song(null, "", -1, -1, -1, null, "", null, "");
+    public static final Song EMPTY_SONG = new Song(null, "", -1, -1, -1, null, "", null, "", null, false);
 
     public final String id;
     public final String title;
@@ -45,7 +45,7 @@ public class Song implements Parcelable {
         this.favorite = itemDto.getUserData() != null && itemDto.getUserData().getIsFavorite();
     }
 
-    public Song(String id, String title, int trackNumber, int year, long duration, String albumId, String albumName, String artistId, String artistName) {
+    public Song(String id, String title, int trackNumber, int year, long duration, String albumId, String albumName, String artistId, String artistName, String primary, boolean favorite) {
         this.id = id;
         this.title = title;
         this.trackNumber = trackNumber;
@@ -58,8 +58,8 @@ public class Song implements Parcelable {
         this.artistId = artistId;
         this.artistName = artistName;
 
-        this.primary = null;
-        this.favorite = false;
+        this.primary = primary;
+        this.favorite = favorite;
     }
 
     @Override
