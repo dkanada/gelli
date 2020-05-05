@@ -44,7 +44,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
      * default click and hide actions if service not running.
      */
     protected void defaultAppWidget(final Context context, final int[] appWidgetIds) {
-        final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_big);
+        final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_album);
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);
         appWidgetView.setImageViewResource(R.id.image, R.drawable.default_album_art);
@@ -60,7 +60,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
      * Update all active widget instances by pushing changes
      */
     public void performUpdate(final MusicService service, final int[] appWidgetIds) {
-        final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(), R.layout.app_widget_big);
+        final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(), R.layout.app_widget_album);
 
         final boolean isPlaying = service.isPlaying();
         final Song song = service.getCurrentSong();
