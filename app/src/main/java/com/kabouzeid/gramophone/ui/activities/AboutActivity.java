@@ -15,15 +15,11 @@ import android.widget.TextView;
 
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.gramophone.R;
-import com.kabouzeid.gramophone.dialogs.DonationsDialog;
 import com.kabouzeid.gramophone.ui.activities.base.AbsBaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 @SuppressWarnings("FieldCanBeLocal")
 public class AboutActivity extends AbsBaseActivity implements View.OnClickListener {
 
@@ -182,7 +178,7 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
         } else if (v == rateOnGooglePlay) {
             openUrl(RATE_ON_GOOGLE_PLAY);
         } else if (v == donate) {
-            DonationsDialog.create().show(getSupportFragmentManager(), "DONATION_DIALOG");
+            openUrl(RATE_ON_GOOGLE_PLAY);
         } else if (v == aidanFollestadGooglePlus) {
             openUrl(AIDAN_FOLLESTAD_GOOGLE_PLUS);
         } else if (v == aidanFollestadGitHub) {

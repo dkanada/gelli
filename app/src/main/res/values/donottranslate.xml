@@ -18,13 +18,4 @@
 
     <string name="random" translatable="false">\?</string>
 
-    <string-array name="donation_ids" translatable="false">
-        <item>donation_1</item>
-        <item>donation_2</item>
-        <item>donation_3</item>
-        <item>donation_4</item>
-        <item>donation_5</item>
-        <item>donation_6</item>
-    </string-array>
-
 </resources>
