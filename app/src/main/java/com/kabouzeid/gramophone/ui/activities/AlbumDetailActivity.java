@@ -102,8 +102,8 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
 
         if (Build.VERSION.SDK_INT > 21) postponeEnterTransition();
         Album album = getIntent().getExtras().getParcelable(EXTRA_ALBUM);
+        loadAlbumCover(album.primary);
         setAlbum(album);
-        loadAlbumCover();
 
         ItemQuery query = new ItemQuery();
         query.setParentId(album.id);
@@ -155,9 +155,9 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setColors(DialogUtils.resolveColor(this, R.attr.defaultFooterColor));
     }
 
-    private void loadAlbumCover() {
+    private void loadAlbumCover(String primary) {
         CustomGlideRequest.Builder
-                .from(Glide.with(this), getAlbum().primary)
+                .from(Glide.with(this), primary)
                 .generatePalette(this).build()
                 .listener(new RequestListener<Object, BitmapPaletteWrapper>() {
                     @Override

@@ -120,8 +120,8 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
 
         if (Build.VERSION.SDK_INT > 21) postponeEnterTransition();
         Artist artist = getIntent().getExtras().getParcelable(EXTRA_ARTIST);
+        loadArtistImage(artist.primary);
         setArtist(artist);
-        loadArtistImage();
 
         ItemQuery albums = new ItemQuery();
         albums.setArtistIds(new String[]{artist.id});
@@ -201,9 +201,9 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         this.usePalette = usePalette;
     }
 
-    private void loadArtistImage() {
+    private void loadArtistImage(String primary) {
         CustomGlideRequest.Builder
-                .from(Glide.with(this), artist.primary)
+                .from(Glide.with(this), primary)
                 .generatePalette(this).build()
                 .listener(new RequestListener<Object, BitmapPaletteWrapper>() {
                     @Override
