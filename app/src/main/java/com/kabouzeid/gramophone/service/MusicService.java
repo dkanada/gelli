@@ -46,7 +46,6 @@ import com.kabouzeid.gramophone.widgets.AppWidgetCard;
 import com.kabouzeid.gramophone.widgets.AppWidgetClassic;
 import com.kabouzeid.gramophone.glide.BlurTransformation;
 import com.kabouzeid.gramophone.helper.ShuffleHelper;
-import com.kabouzeid.gramophone.helper.StopWatch;
 import com.kabouzeid.gramophone.model.Playlist;
 import com.kabouzeid.gramophone.model.Song;
 import com.kabouzeid.gramophone.provider.QueueStore;
@@ -149,7 +148,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private QueueSaveHandler queueSaveHandler;
     private HandlerThread musicPlayerHandlerThread;
     private HandlerThread queueSaveHandlerThread;
-    private SongPlayCountHelper songPlayCountHelper = new SongPlayCountHelper();
     private ThrottledSeekHandler throttledSeekHandler;
     private boolean becomingNoisyReceiverRegistered;
     private IntentFilter becomingNoisyReceiverIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
@@ -1062,19 +1060,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 if (!isPlaying && getSongProgressMillis() > 0) {
                     savePositionInTrack();
                 }
-                songPlayCountHelper.notifyPlayStateChanged(isPlaying);
                 break;
             case META_CHANGED:
                 updateNotification();
                 updateMediaSessionMetaData();
                 savePosition();
                 savePositionInTrack();
-                final Song currentSong = getCurrentSong();
-                //HistoryStore.getInstance(this).addSongId(currentSong.id);
-                if (songPlayCountHelper.shouldBumpPlayCount()) {
-                    //SongPlayCountStore.getInstance(this).bumpPlayCount(songPlayCountHelper.getSong().id);
-                }
-                songPlayCountHelper.notifySongChanged(currentSong);
                 break;
             case QUEUE_CHANGED:
                 // because playing queue size might have changed
@@ -1288,18 +1279,15 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
             final int[] ids = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
             switch (command) {
-                case AppWidgetClassic.NAME: {
+                case AppWidgetClassic.NAME:
                     appWidgetClassic.performUpdate(MusicService.this, ids);
                     break;
-                }
-                case AppWidgetAlbum.NAME: {
+                case AppWidgetAlbum.NAME:
                     appWidgetAlbum.performUpdate(MusicService.this, ids);
                     break;
-                }
-                case AppWidgetCard.NAME: {
+                case AppWidgetCard.NAME:
                     appWidgetCard.performUpdate(MusicService.this, ids);
                     break;
-                }
             }
         }
     };
@@ -1332,7 +1320,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private class ThrottledSeekHandler implements Runnable {
-        // milliseconds to throttle before calling run() to aggregate events
+        // milliseconds to throttle before calling run to aggregate events
         private static final long THROTTLE = 500;
         private Handler mHandler;
 
@@ -1349,38 +1337,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         public void run() {
             savePositionInTrack();
             sendPublicIntent(PLAY_STATE_CHANGED);
-        }
-    }
-
-    private static class SongPlayCountHelper {
-        public static final String TAG = SongPlayCountHelper.class.getSimpleName();
-
-        private StopWatch stopWatch = new StopWatch();
-        private Song song = Song.EMPTY_SONG;
-
-        public Song getSong() {
-            return song;
-        }
-
-        boolean shouldBumpPlayCount() {
-            return song.duration * 0.5d < stopWatch.getElapsedTime();
-        }
-
-        void notifySongChanged(Song song) {
-            synchronized (this) {
-                stopWatch.reset();
-                this.song = song;
-            }
-        }
-
-        void notifyPlayStateChanged(boolean isPlaying) {
-            synchronized (this) {
-                if (isPlaying) {
-                    stopWatch.start();
-                } else {
-                    stopWatch.pause();
-                }
-            }
         }
     }
 }
