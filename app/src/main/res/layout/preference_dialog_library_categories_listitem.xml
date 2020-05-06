@@ -33,7 +33,6 @@
         android:gravity="center_vertical"
         android:minHeight="@dimen/md_listitem_height"
         android:paddingBottom="@dimen/md_listitem_vertical_margin_choice"
-        android:paddingLeft="@dimen/md_listitem_control_margin"
         android:paddingStart="@dimen/md_listitem_control_margin"
         android:paddingTop="@dimen/md_listitem_vertical_margin_choice"
         android:singleLine="true"

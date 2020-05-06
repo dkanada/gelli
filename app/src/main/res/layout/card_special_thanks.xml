@@ -55,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/aidan_follestad_summary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -78,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/github"
                     android:textColor="#4183c4" />
+
             </LinearLayout>
 
         </LinearLayout>
@@ -113,6 +115,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/michael_cook_summary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -136,6 +139,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/website"
                     android:textColor="#4183c4" />
+
             </LinearLayout>
 
         </LinearLayout>
@@ -171,6 +175,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/maarten_corpel_summary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -186,6 +191,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/google_plus"
                     android:textColor="#dd4b39" />
+
             </LinearLayout>
 
         </LinearLayout>
@@ -221,6 +227,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/aleksandar_tesic_summary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -236,6 +243,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/google_plus"
                     android:textColor="#dd4b39" />
+
             </LinearLayout>
 
         </LinearLayout>
@@ -271,6 +279,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/eugene_cheung_summary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -330,6 +339,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/adrian_summary"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
             </LinearLayout>
 
             <LinearLayout

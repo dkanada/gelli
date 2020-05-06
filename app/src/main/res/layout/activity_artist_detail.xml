@@ -73,8 +73,6 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingEnd="16dp"
-                        android:paddingLeft="0dp"
-                        android:paddingRight="16dp"
                         android:paddingStart="0dp">
 
                         <ImageView
@@ -82,8 +80,6 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginLeft="0dp"
-                            android:layout_marginRight="8dp"
                             android:layout_marginStart="0dp"
                             app:srcCompat="@drawable/ic_album_white_24dp"
                             tools:ignore="ContentDescription,UnusedAttribute" />
@@ -103,8 +99,6 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingEnd="16dp"
-                        android:paddingLeft="0dp"
-                        android:paddingRight="16dp"
                         android:paddingStart="0dp">
 
                         <ImageView
@@ -112,8 +106,6 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginLeft="0dp"
-                            android:layout_marginRight="8dp"
                             android:layout_marginStart="0dp"
                             app:srcCompat="@drawable/ic_music_note_white_24dp"
                             tools:ignore="ContentDescription,UnusedAttribute" />
@@ -133,8 +125,6 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:paddingEnd="16dp"
-                        android:paddingLeft="0dp"
-                        android:paddingRight="16dp"
                         android:paddingStart="0dp">
 
                         <ImageView
@@ -142,8 +132,6 @@
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginLeft="0dp"
-                            android:layout_marginRight="8dp"
                             android:layout_marginStart="0dp"
                             app:srcCompat="@drawable/ic_timer_white_24dp"
                             tools:ignore="ContentDescription,UnusedAttribute" />
@@ -183,6 +171,7 @@
             android:layout_height="@dimen/detail_header_height"
             android:elevation="@dimen/toolbar_elevation"
             tools:ignore="UnusedAttribute" />
+
     </FrameLayout>
 
 </LinearLayout>

@@ -30,7 +30,7 @@
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         tools:ignore="UnusedAttribute"
-        tools:text="Lorem ipsum" />
+        tools:text="Title" />
 
     <TextView
         android:id="@id/mi_description"
@@ -39,6 +39,6 @@
         android:layout_marginTop="@dimen/mi_baseline"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        tools:text="Lorem ipsum dolor sit amet, consectetur, adipisci velit, …" />
+        tools:text="Description" />
 
 </com.heinrichreimersoftware.materialintro.view.parallax.ParallaxLinearLayout>

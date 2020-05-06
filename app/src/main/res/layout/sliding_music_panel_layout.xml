@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <fragment
+        <FragmentContainerView
             android:id="@+id/mini_player_fragment"
             class="com.kabouzeid.gramophone.ui.fragments.player.MiniPlayerFragment"
             android:layout_width="match_parent"

@@ -78,6 +78,6 @@
         android:layout_marginTop="32dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:text="login" />
+        android:text="@string/login" />
 
 </LinearLayout>
