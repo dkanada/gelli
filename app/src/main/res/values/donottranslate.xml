@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name" translatable="false">Gelli</string>
 
-    <string name="karim_abou_zeid" translatable="false">Karim Abou Zeid</string>
+    <string name="dkanada" translatable="false">dkanada</string>
     <string name="aidan_follestad" translatable="false">Aidan Follestad</string>
     <string name="maarten_corpel" translatable="false">Maarten Corpel</string>
     <string name="michael_cook" translatable="false">Michael Cook</string>
