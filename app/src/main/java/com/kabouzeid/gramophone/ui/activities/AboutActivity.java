@@ -23,19 +23,16 @@ import butterknife.ButterKnife;
 @SuppressWarnings("FieldCanBeLocal")
 public class AboutActivity extends AbsBaseActivity implements View.OnClickListener {
 
-    private static String GITHUB = "https://github.com/kabouzeid/Phonograph";
+    private static String GITHUB = "https://github.com/dkanada/gelli";
 
     private static String TWITTER = "https://twitter.com/karimjabouzeid";
-    private static String WEBSITE = "https://kabouzeid.com/";
+    private static String WEBSITE = "https://github.com/dkanada";
 
     private static String TRANSLATE = "https://phonograph.oneskyapp.com/collaboration/project?id=26521";
     private static String RATE_ON_GOOGLE_PLAY = "https://play.google.com/store/apps/details?id=com.kabouzeid.gramophone";
 
     private static String AIDAN_FOLLESTAD_GOOGLE_PLUS = "https://google.com/+AidanFollestad";
     private static String AIDAN_FOLLESTAD_GITHUB = "https://github.com/afollestad";
-
-    private static String MICHAEL_COOK_GOOGLE_PLUS = "https://plus.google.com/102718493746376292361";
-    private static String MICHAEL_COOK_WEBSITE = "https://cookicons.co/";
 
     private static String MAARTEN_CORPEL_GOOGLE_PLUS = "https://google.com/+MaartenCorpel";
 
@@ -71,10 +68,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     AppCompatButton aidanFollestadGooglePlus;
     @BindView(R.id.aidan_follestad_git_hub)
     AppCompatButton aidanFollestadGitHub;
-    @BindView(R.id.michael_cook_google_plus)
-    AppCompatButton michaelCookGooglePlus;
-    @BindView(R.id.michael_cook_website)
-    AppCompatButton michaelCookWebsite;
     @BindView(R.id.maarten_corpel_google_plus)
     AppCompatButton maartenCorpelGooglePlus;
     @BindView(R.id.aleksandar_tesic_google_plus)
@@ -129,8 +122,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
         donate.setOnClickListener(this);
         aidanFollestadGooglePlus.setOnClickListener(this);
         aidanFollestadGitHub.setOnClickListener(this);
-        michaelCookGooglePlus.setOnClickListener(this);
-        michaelCookWebsite.setOnClickListener(this);
         maartenCorpelGooglePlus.setOnClickListener(this);
         aleksandarTesicGooglePlus.setOnClickListener(this);
         eugeneCheungGitHub.setOnClickListener(this);
@@ -183,10 +174,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
             openUrl(AIDAN_FOLLESTAD_GOOGLE_PLUS);
         } else if (v == aidanFollestadGitHub) {
             openUrl(AIDAN_FOLLESTAD_GITHUB);
-        } else if (v == michaelCookGooglePlus) {
-            openUrl(MICHAEL_COOK_GOOGLE_PLUS);
-        } else if (v == michaelCookWebsite) {
-            openUrl(MICHAEL_COOK_WEBSITE);
         } else if (v == maartenCorpelGooglePlus) {
             openUrl(MAARTEN_CORPEL_GOOGLE_PLUS);
         } else if (v == aleksandarTesicGooglePlus) {
