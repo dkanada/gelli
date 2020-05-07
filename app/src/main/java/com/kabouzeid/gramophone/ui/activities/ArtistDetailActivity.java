@@ -208,6 +208,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
                 .listener(new RequestListener<Object, BitmapPaletteWrapper>() {
                     @Override
                     public boolean onException(Exception e, Object model, Target<BitmapPaletteWrapper> target, boolean isFirstResource) {
+                        if (Build.VERSION.SDK_INT > 21) startPostponedEnterTransition();
                         return false;
                     }
 
