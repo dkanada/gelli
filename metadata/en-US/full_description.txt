@@ -1,0 +1,1 @@
+This is a native music player for Android devices that connects to Jellyfin media servers. The code is based on a relatively recent version of Phonograph and was made for personal use, but contributions are welcome! Please open an issue to discuss larger changes before submitting a pull request.
