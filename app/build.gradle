@@ -28,6 +28,7 @@ android {
     }
 
     lintOptions {
+        disable 'ExtraTranslation'
         disable 'MissingTranslation'
         abortOnError false
     }
@@ -39,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.jellyfin.jellyfin-apiclient-java:android:0.6.1'
+
     implementation 'androidx.core:core:1.2.0'
     implementation 'androidx.media:media:1.1.0'
     implementation 'androidx.fragment:fragment:1.2.4'
@@ -74,6 +77,4 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:3.8.0'
     implementation 'com.github.bumptech.glide:okhttp3-integration:1.5.0'
-
-    implementation 'com.github.jellyfin.jellyfin-apiclient-java:android:0.6.0'
 }
