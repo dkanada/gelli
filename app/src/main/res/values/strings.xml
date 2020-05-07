@@ -190,10 +190,10 @@
     <string name="failed_to_save_playlist">Failed to save playlist (%s).</string>
     <string name="saved_x_playlists_to_x">Saved %1$d playlists to %2$s.</string>
     <string name="saved_x_playlists_to_x_failed_to_save_x">Saved %1$d playlists to %2$s, failed to save %3$d.</string>
-    <string name="app_widget_big_name">Phonograph Album</string>
-    <string name="app_widget_classic_name">Phonograph Classic</string>
+    <string name="app_widget_big_name">Gelli Album</string>
+    <string name="app_widget_classic_name">Gelli Classic</string>
     <string name="app_widget_small_name">Phonograph Small</string>
-    <string name="app_widget_card_name">Phonograph Card</string>
+    <string name="app_widget_card_name">Gelli Card</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="username">Username</string>
