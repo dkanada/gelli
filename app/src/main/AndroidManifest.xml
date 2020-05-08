@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:name=".App"
+        android:name="com.dkanada.gramophone.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,13 +20,13 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Phonograph.Light"
         tools:ignore="UnusedAttribute">
-        <activity android:name=".ui.activities.MainActivity" />
-        <activity android:name=".ui.activities.AlbumDetailActivity" />
-        <activity android:name=".ui.activities.ArtistDetailActivity" />
-        <activity android:name=".ui.activities.GenreDetailActivity" />
-        <activity android:name=".ui.activities.PlaylistDetailActivity" />
-        <activity android:name=".ui.activities.SearchActivity" />
-        <activity android:name=".ui.activities.SplashActivity">
+        <activity android:name="com.dkanada.gramophone.ui.activities.MainActivity" />
+        <activity android:name="com.dkanada.gramophone.ui.activities.AlbumDetailActivity" />
+        <activity android:name="com.dkanada.gramophone.ui.activities.ArtistDetailActivity" />
+        <activity android:name="com.dkanada.gramophone.ui.activities.GenreDetailActivity" />
+        <activity android:name="com.dkanada.gramophone.ui.activities.PlaylistDetailActivity" />
+        <activity android:name="com.dkanada.gramophone.ui.activities.SearchActivity" />
+        <activity android:name="com.dkanada.gramophone.ui.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.MUSIC_PLAYER" />
@@ -45,24 +45,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.SettingsActivity"
+            android:name="com.dkanada.gramophone.ui.activities.SettingsActivity"
             android:label="@string/action_settings" />
         <activity
-            android:name=".ui.activities.AboutActivity"
+            android:name="com.dkanada.gramophone.ui.activities.AboutActivity"
             android:label="@string/action_about" />
         <activity
-            android:name=".ui.activities.LoginActivity"
+            android:name="com.dkanada.gramophone.ui.activities.LoginActivity"
             android:label="@string/action_login" />
         <activity
-            android:name=".shortcuts.AppShortcutLauncherActivity"
+            android:name="com.dkanada.gramophone.shortcuts.AppShortcutLauncherActivity"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <service
-            android:name=".service.MusicService"
+            android:name="com.dkanada.gramophone.service.MusicService"
             android:enabled="true" />
 
-        <receiver android:name=".service.MediaButtonIntentReceiver">
+        <receiver android:name="com.dkanada.gramophone.service.MediaButtonIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -78,7 +78,7 @@
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
             android:value="GlideModule" />
 
-        <receiver android:name=".widgets.BootReceiver">
+        <receiver android:name="com.dkanada.gramophone.widgets.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
@@ -86,7 +86,7 @@
         </receiver>
 
         <receiver
-            android:name=".widgets.AppWidgetAlbum"
+            android:name="com.dkanada.gramophone.widgets.AppWidgetAlbum"
             android:exported="false"
             android:label="@string/app_widget_big_name">
             <intent-filter>
@@ -98,7 +98,7 @@
                 android:resource="@xml/app_widget_album_info" />
         </receiver>
         <receiver
-            android:name=".widgets.AppWidgetClassic"
+            android:name="com.dkanada.gramophone.widgets.AppWidgetClassic"
             android:exported="false"
             android:label="@string/app_widget_classic_name">
             <intent-filter>
@@ -110,7 +110,7 @@
                 android:resource="@xml/app_widget_classic_info" />
         </receiver>
         <receiver
-            android:name=".widgets.AppWidgetCard"
+            android:name="com.dkanada.gramophone.widgets.AppWidgetCard"
             android:exported="false"
             android:label="@string/app_widget_card_name">
             <intent-filter>

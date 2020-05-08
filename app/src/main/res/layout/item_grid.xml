@@ -14,7 +14,7 @@
         android:orientation="vertical"
         tools:ignore="UnusedAttribute,UselessParent">
 
-        <com.kabouzeid.gramophone.views.WidthFitSquareLayout
+        <com.dkanada.gramophone.views.WidthFitSquareLayout
             android:id="@+id/image_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -27,7 +27,7 @@
                 app:srcCompat="@drawable/default_album_art"
                 tools:ignore="ContentDescription" />
 
-        </com.kabouzeid.gramophone.views.WidthFitSquareLayout>
+        </com.dkanada.gramophone.views.WidthFitSquareLayout>
 
         <LinearLayout
             android:id="@+id/palette_color_container"
