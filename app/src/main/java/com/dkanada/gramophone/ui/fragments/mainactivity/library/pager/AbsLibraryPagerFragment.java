@@ -1,7 +1,6 @@
 package com.dkanada.gramophone.ui.fragments.mainactivity.library.pager;
 
 import android.os.Bundle;
-import androidx.loader.app.LoaderManager;
 
 import com.dkanada.gramophone.ui.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.ui.fragments.mainactivity.library.LibraryFragment;

@@ -11,7 +11,7 @@ import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.service.MusicService;
 
 public class AppShortcutLauncherActivity extends Activity {
-    public static final String KEY_SHORTCUT_TYPE = "com.kabouzeid.gramophone.shortcuts.ShortcutType";
+    public static final String KEY_SHORTCUT_TYPE = "com.dkanada.gramophone.shortcuts.ShortcutType";
 
     public static final int SHORTCUT_TYPE_SHUFFLE = 0;
     public static final int SHORTCUT_TYPE_FREQUENT = 1;

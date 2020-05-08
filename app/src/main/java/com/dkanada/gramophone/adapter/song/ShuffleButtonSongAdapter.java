@@ -13,7 +13,6 @@ import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Song;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {

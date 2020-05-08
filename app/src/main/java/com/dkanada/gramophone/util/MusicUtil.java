@@ -14,7 +14,6 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Genre;
-import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.Song;
 
 import org.jellyfin.apiclient.interaction.Response;

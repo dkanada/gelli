@@ -12,7 +12,7 @@ import com.dkanada.gramophone.shortcuts.AppShortcutLauncherActivity;
 @TargetApi(Build.VERSION_CODES.N_MR1)
 public abstract class BaseShortcutType {
 
-    static final String ID_PREFIX = "com.kabouzeid.gramophone.shortcuts.id.";
+    static final String ID_PREFIX = "com.dkanada.gramophone.shortcuts.id.";
 
     Context context;
 

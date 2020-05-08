@@ -3,10 +3,7 @@ package com.dkanada.gramophone.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.dkanada.gramophone.App;
-
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
-import org.jellyfin.apiclient.model.dto.ImageOptions;
 import org.jellyfin.apiclient.model.entities.ImageType;
 
 import java.util.ArrayList;

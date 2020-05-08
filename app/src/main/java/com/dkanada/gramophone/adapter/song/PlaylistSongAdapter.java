@@ -16,7 +16,6 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.NavigationUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistSongAdapter extends AbsOffsetSongAdapter {

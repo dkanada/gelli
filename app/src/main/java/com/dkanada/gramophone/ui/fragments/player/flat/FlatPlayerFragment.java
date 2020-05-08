@@ -2,11 +2,9 @@ package com.dkanada.gramophone.ui.fragments.player.flat;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
-import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;

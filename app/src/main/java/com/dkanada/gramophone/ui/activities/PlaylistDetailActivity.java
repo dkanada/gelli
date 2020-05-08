@@ -19,7 +19,6 @@ import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.song.OrderablePlaylistSongAdapter;
-import com.dkanada.gramophone.adapter.song.PlaylistSongAdapter;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.helper.menu.PlaylistMenuHelper;

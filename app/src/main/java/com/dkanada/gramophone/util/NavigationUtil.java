@@ -11,7 +11,6 @@ import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Genre;
 import com.dkanada.gramophone.model.Playlist;
-import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.ui.activities.AlbumDetailActivity;
 import com.dkanada.gramophone.ui.activities.ArtistDetailActivity;
 import com.dkanada.gramophone.ui.activities.GenreDetailActivity;
