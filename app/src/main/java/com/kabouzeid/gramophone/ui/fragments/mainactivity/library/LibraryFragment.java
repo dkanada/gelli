@@ -207,11 +207,12 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             // TODO the API doesn't support artist sorting
             if (currentFragment instanceof ArtistsFragment) {
                 menu.removeItem(R.id.action_sort_method);
-                menu.removeItem(R.id.action_sort_order);
             } else {
                 setUpSortMethodMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_method).getSubMenu());
-                setUpSortOrderMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_order).getSubMenu());
             }
+
+            // TODO implement sort order
+            menu.removeItem(R.id.action_sort_order);
         } else {
             menu.removeItem(R.id.action_grid_size);
             menu.removeItem(R.id.action_colored_footers);
