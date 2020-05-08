@@ -11,6 +11,7 @@ import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.Key;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.BitmapEncoder;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.signature.MediaStoreSignature;
 import com.kabouzeid.gramophone.App;
@@ -91,6 +92,7 @@ public class CustomGlideRequest {
                     .asBitmap()
                     .transcode(new BitmapPaletteTranscoder(context), BitmapPaletteWrapper.class)
                     .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
+                    .encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG, 100))
                     .placeholder(DEFAULT_IMAGE)
                     .animate(DEFAULT_ANIMATION)
                     .signature(createSignature(builder.item));
