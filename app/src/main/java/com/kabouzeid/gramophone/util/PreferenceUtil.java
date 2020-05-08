@@ -26,11 +26,9 @@ public final class PreferenceUtil {
 
     public static final String NOW_PLAYING_SCREEN = "now_playing_screen";
 
-    public static final String ARTIST_SORT_METHOD = "artist_sort_method";
     public static final String ALBUM_SORT_METHOD = "album_sort_method";
     public static final String SONG_SORT_METHOD = "song_sort_method";
 
-    public static final String ARTIST_SORT_ORDER = "artist_sort_order";
     public static final String ALBUM_SORT_ORDER = "album_sort_order";
     public static final String SONG_SORT_ORDER = "song_sort_order";
 
@@ -61,8 +59,8 @@ public final class PreferenceUtil {
     public static final String SHOW_ALBUM_COVER = "show_album_cover";
     public static final String BLUR_ALBUM_COVER = "blur_album_cover";
 
-    public static final String LAST_SLEEP_TIMER_VALUE = "last_sleep_timer_value";
-    public static final String NEXT_SLEEP_TIMER_ELAPSED_REALTIME = "next_sleep_timer_elapsed_real_time";
+    public static final String SLEEP_TIMER_LAST_VALUE = "sleep_timer_last_value";
+    public static final String SLEEP_TIMER_ELAPSED_REALTIME = "sleep_timer_elapsed_real_time";
     public static final String SLEEP_TIMER_FINISH_SONG = "sleep_timer_finish_music";
 
     private static PreferenceUtil sInstance;
@@ -186,16 +184,6 @@ public final class PreferenceUtil {
         return mPreferences.getBoolean(BLUR_ALBUM_COVER, true);
     }
 
-    public final String getArtistSortOrder() {
-        return mPreferences.getString(ARTIST_SORT_ORDER, SortOrder.DESCENDING);
-    }
-
-    public void setArtistSortOrder(final String sortOrder) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(ARTIST_SORT_ORDER, sortOrder);
-        editor.commit();
-    }
-
     public final String getAlbumSortOrder() {
         return mPreferences.getString(ALBUM_SORT_ORDER, SortOrder.DESCENDING);
     }
@@ -213,16 +201,6 @@ public final class PreferenceUtil {
     public void setSongSortOrder(final String sortOrder) {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putString(SONG_SORT_ORDER, sortOrder);
-        editor.commit();
-    }
-
-    public final String getArtistSortMethod() {
-        return mPreferences.getString(ARTIST_SORT_METHOD, SortMethod.NAME);
-    }
-
-    public void setArtistSortMethod(final String sortMethod) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(ARTIST_SORT_METHOD, sortMethod);
         editor.commit();
     }
 
@@ -247,22 +225,22 @@ public final class PreferenceUtil {
     }
 
     public int getLastSleepTimerValue() {
-        return mPreferences.getInt(LAST_SLEEP_TIMER_VALUE, 30);
+        return mPreferences.getInt(SLEEP_TIMER_LAST_VALUE, 30);
     }
 
     public void setLastSleepTimerValue(final int value) {
         final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(LAST_SLEEP_TIMER_VALUE, value);
+        editor.putInt(SLEEP_TIMER_LAST_VALUE, value);
         editor.apply();
     }
 
     public long getNextSleepTimerElapsedRealTime() {
-        return mPreferences.getLong(NEXT_SLEEP_TIMER_ELAPSED_REALTIME, -1);
+        return mPreferences.getLong(SLEEP_TIMER_ELAPSED_REALTIME, -1);
     }
 
     public void setNextSleepTimerElapsedRealtime(final long value) {
         final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putLong(NEXT_SLEEP_TIMER_ELAPSED_REALTIME, value);
+        editor.putLong(SLEEP_TIMER_ELAPSED_REALTIME, value);
         editor.apply();
     }
 

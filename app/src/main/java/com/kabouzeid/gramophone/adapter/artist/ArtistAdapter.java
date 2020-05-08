@@ -178,16 +178,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
     @NonNull
     @Override
     public String getSectionName(int position) {
-        @Nullable String sectionName = null;
-        switch (PreferenceUtil.getInstance(activity).getArtistSortMethod()) {
-            case SortMethod.NAME:
-                sectionName = dataSet.get(position).getName();
-                break;
-            case SortMethod.RANDOM:
-                return activity.getResources().getString(R.string.random);
-        }
-
-        return MusicUtil.getSectionName(sectionName);
+        return MusicUtil.getSectionName(dataSet.get(position).getName());
     }
 
     public class ViewHolder extends MediaEntryViewHolder {

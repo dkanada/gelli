@@ -166,6 +166,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                 .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
                 .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(getActivity())))
                 .start(callback);
+
         return cab;
     }
 
@@ -203,8 +204,14 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             menu.findItem(R.id.action_colored_footers).setChecked(absLibraryRecyclerViewCustomGridSizeFragment.usePalette());
             menu.findItem(R.id.action_colored_footers).setEnabled(absLibraryRecyclerViewCustomGridSizeFragment.canUsePalette());
 
-            setUpSortMethodMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_method).getSubMenu());
-            setUpSortOrderMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_order).getSubMenu());
+            // TODO the API doesn't support artist sorting
+            if (currentFragment instanceof ArtistsFragment) {
+                menu.removeItem(R.id.action_sort_method);
+                menu.removeItem(R.id.action_sort_order);
+            } else {
+                setUpSortMethodMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_method).getSubMenu());
+                setUpSortOrderMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_order).getSubMenu());
+            }
         } else {
             menu.removeItem(R.id.action_grid_size);
             menu.removeItem(R.id.action_colored_footers);
@@ -361,11 +368,6 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             sortMethodMenu.add(0, R.id.action_sort_method_year, 2, R.string.sort_order_year)
                     .setChecked(currentSortMethod.equals(SortMethod.YEAR));
             sortMethodMenu.add(0, R.id.action_sort_method_random, 3, R.string.sort_order_random)
-                    .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
-        } else if (fragment instanceof ArtistsFragment) {
-            sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_order_name)
-                    .setChecked(currentSortMethod.equals(SortMethod.NAME));
-            sortMethodMenu.add(0, R.id.action_sort_method_random, 1, R.string.sort_order_random)
                     .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
         } else if (fragment instanceof SongsFragment) {
             sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_order_name)

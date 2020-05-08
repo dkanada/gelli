@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.kabouzeid.gramophone.R;
 import com.kabouzeid.gramophone.adapter.artist.ArtistAdapter;
+import com.kabouzeid.gramophone.helper.sort.SortMethod;
 import com.kabouzeid.gramophone.interfaces.MediaCallback;
 import com.kabouzeid.gramophone.model.Artist;
 import com.kabouzeid.gramophone.util.PreferenceUtil;
@@ -60,12 +61,12 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
 
     @Override
     protected String loadSortMethod() {
-        return PreferenceUtil.getInstance(getActivity()).getArtistSortMethod();
+        return SortMethod.NAME;
     }
 
     @Override
     protected void saveSortMethod(String sortMethod) {
-        PreferenceUtil.getInstance(getActivity()).setArtistSortMethod(sortMethod);
+        // not supported through API
     }
 
     @Override

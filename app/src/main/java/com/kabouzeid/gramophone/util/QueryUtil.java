@@ -148,29 +148,12 @@ public class QueryUtil {
         });
     }
 
-    public static void getAlbum(String id, MediaCallback callback) {
-        App.getApiClient().GetItemAsync(id, App.getApiClient().getCurrentUserId(), new Response<BaseItemDto>() {
-            @Override
-            public void onResponse(BaseItemDto itemDto) {
-                List<Album> albums = new ArrayList<>();
-                albums.add(new Album(itemDto));
-                callback.onLoadMedia(albums);
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                exception.printStackTrace();
-            }
-        });
-    }
-
     public static void getArtists(MediaCallback callback) {
         ArtistsQuery query = new ArtistsQuery();
         query.setFields(new ItemFields[]{ItemFields.Genres});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(100);
         query.setRecursive(true);
-        applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getArtistSortMethod());
         if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
         App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
             @Override
@@ -180,22 +163,6 @@ public class QueryUtil {
                     artists.add(new Artist(itemDto));
                 }
 
-                callback.onLoadMedia(artists);
-            }
-
-            @Override
-            public void onError(Exception exception) {
-                exception.printStackTrace();
-            }
-        });
-    }
-
-    public static void getArtist(String id, MediaCallback callback) {
-        App.getApiClient().GetItemAsync(id, App.getApiClient().getCurrentUserId(), new Response<BaseItemDto>() {
-            @Override
-            public void onResponse(BaseItemDto itemDto) {
-                List<Artist> artists = new ArrayList<>();
-                artists.add(new Artist(itemDto));
                 callback.onLoadMedia(artists);
             }
 
@@ -231,7 +198,7 @@ public class QueryUtil {
         });
     }
 
-    public static ItemQuery applySortMethod(ItemQuery query, String method) {
+    private static void applySortMethod(ItemQuery query, String method) {
         switch (method) {
             case SortMethod.NAME:
                 query.setSortBy(new String[]{"SortName"});
@@ -249,20 +216,5 @@ public class QueryUtil {
                 query.setSortBy(new String[]{"Random"});
                 break;
         }
-
-        return query;
-    }
-
-    public static ArtistsQuery applySortMethod(ArtistsQuery query, String method) {
-        switch (method) {
-            case SortMethod.NAME:
-                query.setSortBy(new String[]{"SortName"});
-                break;
-            case SortMethod.RANDOM:
-                query.setSortBy(new String[]{"Random"});
-                break;
-        }
-
-        return query;
     }
 }
