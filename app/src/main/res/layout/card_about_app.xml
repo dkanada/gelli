@@ -24,7 +24,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/icon_web"
+                android:src="@mipmap/ic_launcher"
                 tools:ignore="ContentDescription" />
 
             <TextView
