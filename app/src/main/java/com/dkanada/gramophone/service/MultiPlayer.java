@@ -1,10 +1,8 @@
 package com.dkanada.gramophone.service;
 
 import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.audiofx.AudioEffect;
 import android.net.Uri;
 import android.os.PowerManager;
 import androidx.annotation.NonNull;
@@ -34,12 +32,6 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         mCurrentMediaPlayer.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK);
     }
 
-    /**
-     * @param path The path of the file, or the http/rtsp URL of the stream
-     *             you want to play
-     * @return True if the <code>player</code> has been prepared and is
-     * ready to play, false otherwise
-     */
     @Override
     public boolean setDataSource(@NonNull final String path) {
         mIsInitialized = false;
@@ -51,13 +43,6 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         return mIsInitialized;
     }
 
-    /**
-     * @param player The {@link MediaPlayer} to use
-     * @param path   The path of the file, or the http/rtsp URL of the stream
-     *               you want to play
-     * @return True if the <code>player</code> has been prepared and is
-     * ready to play, false otherwise
-     */
     private boolean setDataSourceImpl(@NonNull final MediaPlayer player, @NonNull final String path) {
         if (context == null) {
             return false;
@@ -81,21 +66,9 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
         player.setOnCompletionListener(this);
         player.setOnErrorListener(this);
 
-        final Intent intent = new Intent(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
-        intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, getAudioSessionId());
-        intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());
-        intent.putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC);
-
-        context.sendBroadcast(intent);
         return true;
     }
 
-    /**
-     * Set the MediaPlayer to start when this MediaPlayer finishes playback.
-     *
-     * @param path The path of the file, or the http/rtsp URL of the stream
-     *             you want to play
-     */
     @Override
     public void setNextDataSource(@Nullable final String path) {
         if (context == null) {

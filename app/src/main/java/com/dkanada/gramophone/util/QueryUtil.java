@@ -199,6 +199,9 @@ public class QueryUtil {
     }
 
     private static void applySortMethod(ItemQuery query, String method) {
+        // album activity will always sort by track number
+        if (query.getSortBy() != null) return;
+
         switch (method) {
             case SortMethod.NAME:
                 query.setSortBy(new String[]{"SortName"});

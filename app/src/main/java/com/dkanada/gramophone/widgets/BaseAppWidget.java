@@ -67,8 +67,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
      */
     protected boolean hasInstances(final Context context) {
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        final int[] mAppWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context,
-                getClass()));
+        final int[] mAppWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, getClass()));
         return mAppWidgetIds.length > 0;
     }
 

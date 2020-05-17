@@ -14,7 +14,6 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
-import android.media.audiofx.AudioEffect;
 import android.media.session.MediaSession;
 import android.os.Binder;
 import android.os.Build;
@@ -441,25 +440,16 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         pause();
         playingNotification.stop();
 
-        closeAudioEffectSession();
         getAudioManager().abandonAudioFocus(audioFocusListener);
         stopSelf();
     }
 
     private void releaseResources() {
         playerHandler.removeCallbacksAndMessages(null);
-        if (Build.VERSION.SDK_INT >= 18) {
-            musicPlayerHandlerThread.quitSafely();
-        } else {
-            musicPlayerHandlerThread.quit();
-        }
+        musicPlayerHandlerThread.quitSafely();
 
         queueSaveHandler.removeCallbacksAndMessages(null);
-        if (Build.VERSION.SDK_INT >= 18) {
-            queueSaveHandlerThread.quitSafely();
-        } else {
-            queueSaveHandlerThread.quit();
-        }
+        queueSaveHandlerThread.quitSafely();
 
         playback.release();
         playback = null;
@@ -515,13 +505,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 return false;
             }
         }
-    }
-
-    private void closeAudioEffectSession() {
-        final Intent audioEffectsIntent = new Intent(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION);
-        audioEffectsIntent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, playback.getAudioSessionId());
-        audioEffectsIntent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, getPackageName());
-        sendBroadcast(audioEffectsIntent);
     }
 
     private boolean requestFocus() {
@@ -661,6 +644,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 }
                 break;
         }
+
         return position;
     }
 
@@ -751,14 +735,14 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public void removeSong(@NonNull Song song) {
         for (int i = 0; i < playingQueue.size(); i++) {
-            if (playingQueue.get(i).id == song.id) {
+            if (playingQueue.get(i).id.equals(song.id)) {
                 playingQueue.remove(i);
                 rePosition(i);
             }
         }
 
         for (int i = 0; i < originalPlayingQueue.size(); i++) {
-            if (originalPlayingQueue.get(i).id == song.id) {
+            if (originalPlayingQueue.get(i).id.equals(song.id)) {
                 originalPlayingQueue.remove(i);
             }
         }
@@ -848,10 +832,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                             registerReceiver(becomingNoisyReceiver, becomingNoisyReceiverIntentFilter);
                             becomingNoisyReceiverRegistered = true;
                         }
+
                         if (notHandledMetaChangedForCurrentTrack) {
                             handleChangeInternal(META_CHANGED);
                             notHandledMetaChangedForCurrentTrack = false;
                         }
+
                         notifyChange(PLAY_STATE_CHANGED);
 
                         // fixes a bug where the volume would stay ducked because the AudioManager.AUDIOFOCUS_GAIN event is not sent
@@ -906,10 +892,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 }
                 break;
             case REPEAT_MODE_THIS:
-                if (force) {
-                    if (newPosition < 0) {
-                        newPosition = getPlayingQueue().size() - 1;
-                    }
+                if (force && newPosition < 0) {
+                    newPosition = getPlayingQueue().size() - 1;
                 } else {
                     newPosition = getPosition();
                 }
@@ -921,6 +905,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 }
                 break;
         }
+
         return newPosition;
     }
 
@@ -934,8 +919,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public long getQueueDurationMillis(int position) {
         long duration = 0;
-        for (int i = position + 1; i < playingQueue.size(); i++)
+        for (int i = position + 1; i < playingQueue.size(); i++) {
             duration += playingQueue.get(i).duration;
+        }
+
         return duration;
     }
 
@@ -981,6 +968,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         PreferenceManager.getDefaultSharedPreferences(this).edit()
                 .putInt(SAVED_SHUFFLE_MODE, shuffleMode)
                 .apply();
+
         switch (shuffleMode) {
             case SHUFFLE_MODE_SHUFFLE:
                 this.shuffleMode = shuffleMode;
@@ -997,9 +985,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         newPosition = getPlayingQueue().indexOf(song);
                     }
                 }
+
                 position = newPosition;
                 break;
         }
+
         handleAndSendChangeInternal(SHUFFLE_MODE_CHANGED);
         notifyChange(QUEUE_CHANGED);
     }
@@ -1276,8 +1266,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         @Override
         public void onReceive(final Context context, final Intent intent) {
             final String command = intent.getStringExtra(EXTRA_APP_WIDGET_NAME);
-
             final int[] ids = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+
             switch (command) {
                 case AppWidgetClassic.NAME:
                     appWidgetClassic.performUpdate(MusicService.this, ids);
