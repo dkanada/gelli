@@ -892,8 +892,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 }
                 break;
             case REPEAT_MODE_THIS:
-                if (force && newPosition < 0) {
-                    newPosition = getPlayingQueue().size() - 1;
+                if (force) {
+                    if (newPosition < 0) {
+                        newPosition = getPlayingQueue().size() - 1;
+                    }
                 } else {
                     newPosition = getPosition();
                 }
@@ -1194,6 +1196,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     } else {
                         service.playNextSong(false);
                     }
+
                     sendEmptyMessage(RELEASE_WAKELOCK);
                     break;
 
