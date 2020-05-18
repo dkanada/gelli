@@ -12,10 +12,6 @@
     <string name="unplayable_file">Orsak - ein feil oppstod medan spelaren pr\u00f8vde \u00e5 spele denne songen</string>
     <string name="audio_focus_denied">We were not able to gain audio focus.</string>
     <string name="album">Album</string>
-    <string name="artist">Artist</string>
-    <string name="genre">Genre</string>
-    <string name="album_artist">Albumartist</string>
-    <string name="year">År</string>
     <string name="label_details">Detaljar</string>
     <string name="label_file_name">Filnamn</string>
     <string name="label_file_path">Sti til fil</string>
@@ -27,7 +23,6 @@
     <string name="action_go_to_artist">Gå til artist</string>
     <string name="action_go_to_album">Gå til album</string>
     <string name="no_results">Ingen resultat</string>
-    <string name="created_playlist_x">Oppretta speleliste %1$s</string>
     <string name="delete_playlist_x"><![CDATA[
         Ynskjer du å slette spelelista <b>%1$s</b>? 
     ]]></string>
@@ -39,7 +34,6 @@
     <string name="delete_playlists_title">Slett spelelister</string>
     <string name="light_theme_name">Lys</string>
     <string name="dark_theme_name">Mørk</string>
-    <string name="equalizer">Equalizer</string>
     <string name="pref_title_general_theme">Generelt tema</string>
     <string name="pref_header_audio">Audio</string>
     <string name="pref_title_navigation_bar">Farga navigasjonslinje</string>

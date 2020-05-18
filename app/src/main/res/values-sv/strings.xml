@@ -7,7 +7,6 @@
     <string name="action_settings">"Inställningar"</string>
     <string name="action_grant">Tillåt</string>
     <string name="action_about">Om</string>
-    <string name="action_clear_playlist">"Rensa spellista "</string>
     <string name="action_add_to_favorites">"Lägg till i favoriter "</string>
     <string name="action_remove_from_favorites">"Ta bort från favoriter "</string>
     <string name="action_search">Sök</string>
@@ -23,10 +22,6 @@
     <string name="unplayable_file">Ett problem uppstod vid spelningen av denna l\u00e5t.</string>
     <string name="audio_focus_denied">Kunde inte hitta ljudfokus</string>
     <string name="album">Album</string>
-    <string name="artist">Artist</string>
-    <string name="genre">Genre</string>
-    <string name="album_artist">Albumartist</string>
-    <string name="year">År</string>
     <string name="label_details">Detaljer</string>
     <string name="label_file_name">Filnamn</string>
     <string name="label_file_path">Sökväg</string>
@@ -38,7 +33,6 @@
     <string name="action_go_to_artist">Gå till artist</string>
     <string name="action_go_to_album">Gå till album</string>
     <string name="no_results">Inga resultat</string>
-    <string name="created_playlist_x">Spellista %1$s skapad</string>
     <string name="delete_playlist_x"><![CDATA[
 Vill du radera spellistan <b>%1$s</b>?
     ]]></string>
@@ -46,7 +40,6 @@ Vill du radera spellistan <b>%1$s</b>?
     <string name="delete_playlist_title">Radera spellista</string>
     <string name="light_theme_name">Ljus</string>
     <string name="dark_theme_name">Mörk</string>
-    <string name="equalizer">Equalizer</string>
     <string name="pref_title_general_theme">Allmänt tema</string>
     <string name="pref_header_audio">Ljud</string>
     <string name="pref_title_navigation_bar">Färgad navigeringslist</string>
