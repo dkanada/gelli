@@ -1,18 +1,14 @@
 package com.dkanada.gramophone.service;
 
 import android.content.Context;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.PowerManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.service.playback.Playback;
-import com.dkanada.gramophone.util.PreferenceUtil;
 
 public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
     public static final String TAG = MultiPlayer.class.getSimpleName();
@@ -34,86 +30,15 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
 
     @Override
     public boolean setDataSource(@NonNull final String path) {
-        mIsInitialized = false;
-        mIsInitialized = setDataSourceImpl(mCurrentMediaPlayer, path);
-        if (mIsInitialized) {
-            setNextDataSource(null);
-        }
-
-        return mIsInitialized;
-    }
-
-    private boolean setDataSourceImpl(@NonNull final MediaPlayer player, @NonNull final String path) {
-        if (context == null) {
-            return false;
-        }
-
-        try {
-            player.reset();
-            player.setOnPreparedListener(null);
-            if (path.startsWith("content://")) {
-                player.setDataSource(context, Uri.parse(path));
-            } else {
-                player.setDataSource(path);
-            }
-
-            player.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            player.prepare();
-        } catch (Exception e) {
-            return false;
-        }
-
-        player.setOnCompletionListener(this);
-        player.setOnErrorListener(this);
-
         return true;
     }
 
     @Override
     public void setNextDataSource(@Nullable final String path) {
-        if (context == null) {
-            return;
-        }
+    }
 
-        try {
-            mCurrentMediaPlayer.setNextMediaPlayer(null);
-        } catch (IllegalArgumentException e) {
-            Log.i(TAG, "Next media player is current one, continuing");
-        } catch (IllegalStateException e) {
-            Log.e(TAG, "Media player not initialized!");
-            return;
-        }
-
-        if (mNextMediaPlayer != null) {
-            mNextMediaPlayer.release();
-            mNextMediaPlayer = null;
-        }
-
-        if (path == null) {
-            return;
-        }
-
-        if (PreferenceUtil.getInstance(context).getGaplessPlayback()) {
-            mNextMediaPlayer = new MediaPlayer();
-            mNextMediaPlayer.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK);
-            mNextMediaPlayer.setAudioSessionId(getAudioSessionId());
-            if (setDataSourceImpl(mNextMediaPlayer, path)) {
-                try {
-                    mCurrentMediaPlayer.setNextMediaPlayer(mNextMediaPlayer);
-                } catch (@NonNull IllegalArgumentException | IllegalStateException e) {
-                    Log.e(TAG, "setNextDataSource: setNextMediaPlayer()", e);
-                    if (mNextMediaPlayer != null) {
-                        mNextMediaPlayer.release();
-                        mNextMediaPlayer = null;
-                    }
-                }
-            } else {
-                if (mNextMediaPlayer != null) {
-                    mNextMediaPlayer.release();
-                    mNextMediaPlayer = null;
-                }
-            }
-        }
+    private boolean appendDataSource(@NonNull final String path) {
+        return true;
     }
 
     @Override
