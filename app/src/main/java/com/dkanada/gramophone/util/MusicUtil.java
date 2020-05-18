@@ -146,12 +146,6 @@ public class MusicUtil {
         return one + "  •  " + two;
     }
 
-    // iTunes uses for example 1002 for track 2 CD1 or 3011 for track 11 CD3.
-    // this method converts those values to normal track numbers
-    public static int getFixedTrackNumber(int trackNumberToFix) {
-        return trackNumberToFix % 1000;
-    }
-
     public static void toggleFavorite(@NonNull final Context context, @NonNull final Song song) {
         song.favorite = !song.favorite;
 

@@ -107,7 +107,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
 
         ItemQuery query = new ItemQuery();
         query.setParentId(album.id);
-        query.setSortBy(new String[]{"IndexNumber"});
+        query.setSortBy(new String[]{"ParentIndexNumber", "IndexNumber"});
 
         QueryUtil.getSongs(query, new MediaCallback() {
             @Override

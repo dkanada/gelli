@@ -11,6 +11,7 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
 
 import java.util.List;
+import java.util.Locale;
 
 public class AlbumSongAdapter extends SongAdapter {
     public AlbumSongAdapter(AppCompatActivity activity, List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
@@ -29,9 +30,9 @@ public class AlbumSongAdapter extends SongAdapter {
         final Song song = dataSet.get(position);
 
         if (holder.imageText != null) {
-            final int trackNumber = MusicUtil.getFixedTrackNumber(song.trackNumber);
-            final String trackNumberString = trackNumber > 0 ? String.valueOf(trackNumber) : "-";
-            holder.imageText.setText(trackNumberString);
+            final String trackNumber = song.trackNumber > 0 ? String.format(Locale.ENGLISH, "%02d", song.trackNumber) : null;
+            final String discNumber = song.discNumber > 0 ? String.valueOf(song.discNumber) : null;
+            holder.imageText.setText(trackNumber != null ? String.format(Locale.ENGLISH, "%s.%s", discNumber, trackNumber) : "-");
         }
     }
 

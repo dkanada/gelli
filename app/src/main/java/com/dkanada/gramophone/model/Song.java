@@ -6,11 +6,12 @@ import android.os.Parcelable;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 
 public class Song implements Parcelable {
-    public static final Song EMPTY_SONG = new Song(null, "", -1, -1, -1, null, "", null, "", null, false);
+    public static final Song EMPTY_SONG = new Song(null, "", -1, -1, -1, -1, null, "", null, "", null, false);
 
     public final String id;
     public final String title;
     public final int trackNumber;
+    public final int discNumber;
     public final int year;
     public final long duration;
 
@@ -27,6 +28,7 @@ public class Song implements Parcelable {
         this.id = itemDto.getId();
         this.title = itemDto.getName();
         this.trackNumber = itemDto.getIndexNumber() != null ? itemDto.getIndexNumber() : 0;
+        this.discNumber = itemDto.getParentIndexNumber() != null ? itemDto.getParentIndexNumber() : 0;
         this.year = itemDto.getProductionYear() != null ? itemDto.getProductionYear() : 0;
         this.duration = itemDto.getRunTimeTicks() != null ? itemDto.getRunTimeTicks() / 10000 : 0;
 
@@ -45,10 +47,11 @@ public class Song implements Parcelable {
         this.favorite = itemDto.getUserData() != null && itemDto.getUserData().getIsFavorite();
     }
 
-    public Song(String id, String title, int trackNumber, int year, long duration, String albumId, String albumName, String artistId, String artistName, String primary, boolean favorite) {
+    public Song(String id, String title, int trackNumber, int discNumber, int year, long duration, String albumId, String albumName, String artistId, String artistName, String primary, boolean favorite) {
         this.id = id;
         this.title = title;
         this.trackNumber = trackNumber;
+        this.discNumber = discNumber;
         this.year = year;
         this.duration = duration;
 
@@ -91,6 +94,7 @@ public class Song implements Parcelable {
         dest.writeString(this.id);
         dest.writeString(this.title);
         dest.writeInt(this.trackNumber);
+        dest.writeInt(this.discNumber);
         dest.writeInt(this.year);
         dest.writeLong(this.duration);
 
@@ -108,6 +112,7 @@ public class Song implements Parcelable {
         this.id = in.readString();
         this.title = in.readString();
         this.trackNumber = in.readInt();
+        this.discNumber = in.readInt();
         this.year = in.readInt();
         this.duration = in.readLong();
 

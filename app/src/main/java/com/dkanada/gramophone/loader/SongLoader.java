@@ -85,7 +85,7 @@ public class SongLoader {
         final String primary = cursor.getString(9);
         final boolean favorite = Boolean.valueOf(cursor.getString(10));
 
-        return new Song(id, title, trackNumber, year, duration, albumId, albumName, artistId, artistName, primary, favorite);
+        return new Song(id, title, trackNumber, 1, year, duration, albumId, albumName, artistId, artistName, primary, favorite);
     }
 
     @Nullable

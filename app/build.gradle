@@ -29,7 +29,6 @@ android {
     }
 
     lintOptions {
-        disable 'ExtraTranslation'
         disable 'MissingTranslation'
         abortOnError false
     }
