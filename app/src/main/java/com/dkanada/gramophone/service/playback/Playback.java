@@ -3,7 +3,7 @@ package com.dkanada.gramophone.service.playback;
 import androidx.annotation.Nullable;
 
 public interface Playback {
-    boolean setDataSource(String path);
+    void setDataSource(String path);
 
     void setNextDataSource(@Nullable String path);
 
@@ -14,8 +14,6 @@ public interface Playback {
     boolean start();
 
     void stop();
-
-    void release();
 
     boolean pause();
 
@@ -29,11 +27,9 @@ public interface Playback {
 
     boolean setVolume(float vol);
 
-    boolean setAudioSessionId(int sessionId);
-
-    int getAudioSessionId();
-
     interface PlaybackCallbacks {
+        void onTrackStarted();
+
         void onTrackWentToNext();
 
         void onTrackEnded();

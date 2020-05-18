@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation 'com.github.jellyfin.jellyfin-apiclient-java:android:0.6.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.11.4'
 
     implementation 'androidx.core:core:1.2.0'
     implementation 'androidx.media:media:1.1.0'

@@ -7,6 +7,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.dkanada.gramophone.App;
@@ -16,6 +17,7 @@ import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Genre;
 import com.dkanada.gramophone.model.Song;
 
+import org.jellyfin.apiclient.interaction.ApiClient;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.UserItemDataDto;
 
@@ -24,7 +26,30 @@ import java.util.Locale;
 
 public class MusicUtil {
     public static Uri getSongFileUri(Song song) {
-        return Uri.parse(App.getApiClient().getApiUrl() + "/Audio/" + song.id + "/stream?static=true");
+        if (song.id == null) return null;
+
+        StringBuilder builder = new StringBuilder();
+        ApiClient apiClient = App.getApiClient();
+
+        builder.append(apiClient.getApiUrl());
+        builder.append("/Audio/");
+        builder.append(song.id);
+        builder.append("/universal");
+        builder.append("?UserId=" + apiClient.getCurrentUserId());
+        builder.append("&DeviceId=" + apiClient.getDeviceId());
+
+        // web max is 12444445 and 320kbps is 320000
+        builder.append("&MaxStreamingBitrate=10000000");
+        builder.append("&Container=flac");
+        builder.append("&TranscodingContainer=ts");
+        builder.append("&TranscodingProtocol=hls");
+
+        // preferred codec when transcoding
+        builder.append("&AudioCodec=aac");
+        builder.append("&api_key=" + apiClient.getAccessToken());
+
+        Log.i(MusicUtil.class.getName(), "playing audio: " + builder);
+        return Uri.parse(builder.toString());
     }
 
     @NonNull

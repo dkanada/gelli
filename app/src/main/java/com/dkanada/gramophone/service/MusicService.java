@@ -423,7 +423,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
                 position = restoredPosition;
                 openCurrent();
-                prepareNext();
 
                 if (restoredPositionInTrack > 0) seek(restoredPositionInTrack);
 
@@ -451,7 +450,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         queueSaveHandler.removeCallbacksAndMessages(null);
         queueSaveHandlerThread.quitSafely();
 
-        playback.release();
+        playback.stop();
         playback = null;
         mediaSession.release();
     }
@@ -468,24 +467,20 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         playSongAt(getNextPosition(force));
     }
 
-    private boolean openTrackAndPrepareNextAt(int position) {
+    private void openTrackAndPrepareNextAt(int position) {
         synchronized (this) {
             this.position = position;
-            boolean prepared = openCurrent();
-            if (prepared) prepareNextImpl();
+
+            openCurrent();
+
             notifyChange(META_CHANGED);
             notHandledMetaChangedForCurrentTrack = false;
-            return prepared;
         }
     }
 
-    private boolean openCurrent() {
+    private void openCurrent() {
         synchronized (this) {
-            try {
-                return playback.setDataSource(getTrackUri(getCurrentSong()));
-            } catch (Exception e) {
-                return false;
-            }
+            playback.setDataSource(getTrackUri(getCurrentSong()));
         }
     }
 
@@ -494,16 +489,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         playerHandler.obtainMessage(PREPARE_NEXT).sendToTarget();
     }
 
-    private boolean prepareNextImpl() {
+    private void prepareNextImpl() {
         synchronized (this) {
-            try {
-                int nextPosition = getNextPosition(false);
-                playback.setNextDataSource(getTrackUri(getSongAt(nextPosition)));
-                this.nextPosition = nextPosition;
-                return true;
-            } catch (Exception e) {
-                return false;
-            }
+            nextPosition = getNextPosition(false);
+            playback.setNextDataSource(getTrackUri(getSongAt(nextPosition)));
         }
     }
 
@@ -805,11 +794,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private void playSongAtImpl(int position) {
-        if (openTrackAndPrepareNextAt(position)) {
-            play();
-        } else {
-            Toast.makeText(this, getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
-        }
+        openTrackAndPrepareNextAt(position);
     }
 
     public void pause() {
@@ -1072,10 +1057,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     }
 
-    public int getAudioSessionId() {
-        return playback.getAudioSessionId();
-    }
-
     public MediaSessionCompat getMediaSession() {
         return mediaSession;
     }
@@ -1093,13 +1074,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         switch (key) {
-            case PreferenceUtil.GAPLESS_PLAYBACK:
-                if (sharedPreferences.getBoolean(key, false)) {
-                    prepareNext();
-                } else {
-                    playback.setNextDataSource(null);
-                }
-                break;
             case PreferenceUtil.SHOW_ALBUM_COVER:
             case PreferenceUtil.BLUR_ALBUM_COVER:
                 updateMediaSessionMetaData();
@@ -1112,6 +1086,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 updateNotification();
                 break;
         }
+    }
+
+    @Override
+    public void onTrackStarted() {
+        handleAndSendChangeInternal(PLAY_STATE_CHANGED);
+        prepareNext();
     }
 
     @Override

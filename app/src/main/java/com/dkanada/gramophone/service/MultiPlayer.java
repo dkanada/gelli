@@ -1,44 +1,163 @@
 package com.dkanada.gramophone.service;
 
 import android.content.Context;
-import android.media.MediaPlayer;
-import android.os.PowerManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import android.net.Uri;
+
+import android.util.Log;
 import android.widget.Toast;
 
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.service.playback.Playback;
 
-public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
-    public static final String TAG = MultiPlayer.class.getSimpleName();
+import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
+import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.source.hls.HlsMediaSource;
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 
-    private MediaPlayer mCurrentMediaPlayer = new MediaPlayer();
-    private MediaPlayer mNextMediaPlayer;
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+public class MultiPlayer implements Playback {
+    public static final String TAG = MultiPlayer.class.getSimpleName();
 
     private Context context;
 
-    @Nullable
+    private OkHttpClient httpClient;
+    private SimpleExoPlayer exoPlayer;
+
+    private ConcatenatingMediaSource mediaSource;
     private Playback.PlaybackCallbacks callbacks;
 
-    private boolean mIsInitialized = false;
+    private boolean isReady = false;
+    private boolean isPlaying = false;
+    private boolean isNew = false;
+    private boolean isFirst = true;
+
+    private ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
+        @Override
+        public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+            Log.i(TAG,"onTracksChanged");
+        }
+
+        @Override
+        public void onLoadingChanged(boolean isLoading) {
+            Log.i(TAG,"onLoadingChanged: isLoading = " + isLoading);
+        }
+
+        @Override
+        public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+            Log.i(TAG,"onPlayerStateChanged: playWhenReady = " + playWhenReady);
+            Log.i(TAG,"onPlayerStateChanged: playbackState = " + playbackState);
+        }
+
+        @Override
+        public void onPositionDiscontinuity(int reason) {
+            Log.i(TAG,"onPositionDiscontinuity: reason = " + reason);
+            int windowIndex = exoPlayer.getCurrentWindowIndex();
+
+            if (windowIndex == 1) {
+                mediaSource.removeMediaSource(0);
+                if (mediaSource.getSize() != 0) {
+                    // there are still songs left in the queue
+                    callbacks.onTrackWentToNext();
+                } else {
+                    callbacks.onTrackEnded();
+                }
+            }
+        }
+
+        @Override
+        public void onPlayerError(ExoPlaybackException error) {
+            Log.i(TAG,"onPlaybackError: " + error.getMessage());
+            if (context != null) {
+                Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
+            }
+
+            stop();
+        }
+    };
 
     public MultiPlayer(final Context context) {
         this.context = context;
-        mCurrentMediaPlayer.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK);
+
+        httpClient = new OkHttpClient();
+        exoPlayer = new SimpleExoPlayer.Builder(context).build();
+        mediaSource = new ConcatenatingMediaSource();
     }
 
     @Override
-    public boolean setDataSource(@NonNull final String path) {
-        return true;
+    public void setDataSource(@NonNull final String path) {
+        isReady = false;
+        if (context == null) {
+            return;
+        }
+
+        isNew = true;
+        mediaSource = new ConcatenatingMediaSource();
+
+        exoPlayer.addListener(eventListener);
+        exoPlayer.prepare(mediaSource);
+
+        appendDataSource(path, true);
+        isReady = true;
     }
 
     @Override
     public void setNextDataSource(@Nullable final String path) {
+        if (context == null) {
+            return;
+        }
+
+        if (mediaSource.getSize() >= 2) {
+            mediaSource.removeMediaSource(1);
+        }
+
+        appendDataSource(path, false);
     }
 
-    private boolean appendDataSource(@NonNull final String path) {
-        return true;
+    private void appendDataSource(String path, boolean next) {
+        Uri uri = Uri.parse(path);
+
+        DataSource.Factory dataSource = new DefaultHttpDataSourceFactory(Util.getUserAgent(context, this.getClass().getName()));
+        httpClient.newCall(new Request.Builder().url(path).head().build()).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                MediaSource source;
+                if (response.header("Content-Type").equals("application/x-mpegURL")) {
+                    source = new HlsMediaSource.Factory(dataSource).createMediaSource(uri);
+                } else {
+                    source = new ProgressiveMediaSource.Factory(dataSource).createMediaSource(uri);
+                }
+
+                mediaSource.addMediaSource(source);
+                if (!isFirst && next) {
+                    start();
+                }
+
+                isFirst = false;
+            }
+        });
     }
 
     @Override
@@ -48,135 +167,61 @@ public class MultiPlayer implements Playback, MediaPlayer.OnErrorListener, Media
 
     @Override
     public boolean isInitialized() {
-        return mIsInitialized;
+        return isReady;
     }
 
     @Override
     public boolean start() {
-        try {
-            mCurrentMediaPlayer.start();
-            return true;
-        } catch (IllegalStateException e) {
-            return false;
+        isPlaying = true;
+        exoPlayer.setPlayWhenReady(true);
+
+        if (isNew) {
+            callbacks.onTrackStarted();
+            isNew = false;
         }
+
+        return true;
     }
 
     @Override
     public void stop() {
-        mCurrentMediaPlayer.reset();
-        mIsInitialized = false;
-    }
-
-    @Override
-    public void release() {
-        stop();
-
-        mCurrentMediaPlayer.release();
-        if (mNextMediaPlayer != null) {
-            mNextMediaPlayer.release();
-        }
+        exoPlayer.release();
+        isReady = false;
     }
 
     @Override
     public boolean pause() {
-        try {
-            mCurrentMediaPlayer.pause();
-            return true;
-        } catch (IllegalStateException e) {
-            return false;
-        }
+        isPlaying = false;
+        exoPlayer.setPlayWhenReady(false);
+        return true;
     }
 
     @Override
     public boolean isPlaying() {
-        return mIsInitialized && mCurrentMediaPlayer.isPlaying();
+        return isReady && isPlaying;
     }
 
     @Override
     public int duration() {
-        if (!mIsInitialized) {
-            return -1;
-        }
-
-        try {
-            return mCurrentMediaPlayer.getDuration();
-        } catch (IllegalStateException e) {
-            return -1;
-        }
+        if (!isReady) return -1;
+        return (int) exoPlayer.getDuration();
     }
 
     @Override
     public int position() {
-        if (!mIsInitialized) {
-            return -1;
-        }
-
-        try {
-            return mCurrentMediaPlayer.getCurrentPosition();
-        } catch (IllegalStateException e) {
-            return -1;
-        }
+        if (!isReady) return -1;
+        return (int) exoPlayer.getCurrentPosition();
     }
 
     @Override
-    public int seek(final int whereto) {
-        try {
-            mCurrentMediaPlayer.seekTo(whereto);
-            return whereto;
-        } catch (IllegalStateException e) {
-            return -1;
-        }
+    public int seek(int position) {
+        exoPlayer.seekTo(position);
+        return position;
     }
 
     @Override
-    public boolean setVolume(final float vol) {
-        try {
-            mCurrentMediaPlayer.setVolume(vol, vol);
-            return true;
-        } catch (IllegalStateException e) {
-            return false;
-        }
-    }
-
-    @Override
-    public boolean setAudioSessionId(final int sessionId) {
-        try {
-            mCurrentMediaPlayer.setAudioSessionId(sessionId);
-            return true;
-        } catch (@NonNull IllegalArgumentException | IllegalStateException e) {
-            return false;
-        }
-    }
-
-    @Override
-    public int getAudioSessionId() {
-        return mCurrentMediaPlayer.getAudioSessionId();
-    }
-
-    @Override
-    public boolean onError(final MediaPlayer mp, final int what, final int extra) {
-        mIsInitialized = false;
-        mCurrentMediaPlayer.release();
-        mCurrentMediaPlayer = new MediaPlayer();
-        mCurrentMediaPlayer.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK);
-        if (context != null) {
-            Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
-        }
-
-        return false;
-    }
-
-    @Override
-    public void onCompletion(final MediaPlayer mp) {
-        if (mp == mCurrentMediaPlayer && mNextMediaPlayer != null) {
-            mIsInitialized = false;
-            mCurrentMediaPlayer.release();
-            mCurrentMediaPlayer = mNextMediaPlayer;
-            mIsInitialized = true;
-            mNextMediaPlayer = null;
-            if (callbacks != null) callbacks.onTrackWentToNext();
-        } else {
-            if (callbacks != null) callbacks.onTrackEnded();
-        }
+    public boolean setVolume(float volume) {
+        exoPlayer.setVolume(volume);
+        return true;
     }
 }
