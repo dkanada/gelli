@@ -104,8 +104,9 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                     ServerCredentials serverCredentials = new ServerCredentials();
                     List<ServerInfo> servers = result.getServers();
 
-                    if (servers.size() < 1)
+                    if (servers.size() < 1) {
                         return;
+                    }
 
                     serverCredentials.AddOrUpdateServer(servers.get(0));
                     App.getApiClient().AuthenticateUserAsync(username.getText().toString(), password.getText().toString(), new Response<AuthenticationResult>() {
