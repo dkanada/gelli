@@ -11,10 +11,10 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
+import com.kabouzeid.appthemehelper.ThemeStore;
 
 import org.jellyfin.apiclient.interaction.AndroidCredentialProvider;
 import org.jellyfin.apiclient.interaction.ConnectionResult;
@@ -24,10 +24,13 @@ import org.jellyfin.apiclient.interaction.connectionmanager.ConnectionManager;
 import org.jellyfin.apiclient.interaction.http.IAsyncHttpClient;
 import org.jellyfin.apiclient.logging.AndroidLogger;
 import org.jellyfin.apiclient.model.apiclient.ServerCredentials;
+import org.jellyfin.apiclient.model.apiclient.ServerInfo;
 import org.jellyfin.apiclient.model.logging.ILogger;
 import org.jellyfin.apiclient.model.serialization.GsonJsonSerializer;
 import org.jellyfin.apiclient.model.serialization.IJsonSerializer;
 import org.jellyfin.apiclient.model.users.AuthenticationResult;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -99,7 +102,13 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                 public void onResponse(ConnectionResult result) {
                     App.setApiClient(result.getApiClient());
                     ServerCredentials serverCredentials = new ServerCredentials();
-                    serverCredentials.AddOrUpdateServer(result.getServers().get(0));
+                    List<ServerInfo> servers = result.getServers();
+
+                    if (servers.size() < 1) {
+                        return;
+                    }
+
+                    serverCredentials.AddOrUpdateServer(servers.get(0));
                     App.getApiClient().AuthenticateUserAsync(username.getText().toString(), password.getText().toString(), new Response<AuthenticationResult>() {
                         @Override
                         public void onResponse(AuthenticationResult result) {
