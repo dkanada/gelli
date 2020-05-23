@@ -26,8 +26,6 @@ import java.util.Locale;
 
 public class MusicUtil {
     public static Uri getSongFileUri(Song song) {
-        if (song.id == null) return null;
-
         StringBuilder builder = new StringBuilder();
         ApiClient apiClient = App.getApiClient();
 

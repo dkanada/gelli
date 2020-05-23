@@ -480,6 +480,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void openCurrent() {
         synchronized (this) {
+            // current song will be null when queue is cleared
+            if (getCurrentSong() == null) return;
             playback.setDataSource(getTrackUri(getCurrentSong()));
         }
     }
