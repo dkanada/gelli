@@ -32,7 +32,14 @@ public class AlbumSongAdapter extends SongAdapter {
         if (holder.imageText != null) {
             final String trackNumber = song.trackNumber > 0 ? String.format(Locale.ENGLISH, "%02d", song.trackNumber) : null;
             final String discNumber = song.discNumber > 0 ? String.valueOf(song.discNumber) : null;
-            holder.imageText.setText(trackNumber != null ? String.format(Locale.ENGLISH, "%s.%s", discNumber, trackNumber) : "-");
+
+            if (trackNumber != null && discNumber != null) {
+                holder.imageText.setText(String.format(Locale.ENGLISH, "%s.%s", discNumber, trackNumber));
+            } else if (trackNumber != null) {
+                holder.imageText.setText(String.format(Locale.ENGLISH, "%s", trackNumber));
+            } else {
+                holder.imageText.setText("-");
+            }
         }
     }
 
