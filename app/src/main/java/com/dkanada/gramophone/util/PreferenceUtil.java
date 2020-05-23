@@ -53,7 +53,6 @@ public final class PreferenceUtil {
     public static final String COLORED_SHORTCUTS = "colored_shortcuts";
 
     public static final String AUDIO_DUCKING = "audio_ducking";
-    public static final String GAPLESS_PLAYBACK = "gapless_playback";
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
 
     public static final String SHOW_ALBUM_COVER = "show_album_cover";
@@ -166,10 +165,6 @@ public final class PreferenceUtil {
 
     public final boolean getAudioDucking() {
         return mPreferences.getBoolean(AUDIO_DUCKING, true);
-    }
-
-    public final boolean getGaplessPlayback() {
-        return mPreferences.getBoolean(GAPLESS_PLAYBACK, true);
     }
 
     public final boolean getRememberShuffle() {
