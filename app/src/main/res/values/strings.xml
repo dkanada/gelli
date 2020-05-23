@@ -179,6 +179,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="server">Server</string>
+    <string name="unlimited">Unlimited</string>
     <string name="up_next">Up next</string>
     <string name="x_selected">%1$d selected</string>
 

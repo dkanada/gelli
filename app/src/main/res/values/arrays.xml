@@ -23,7 +23,7 @@
     </string-array>
 
     <string-array name="pref_maximum_bitrate_titles">
-        <item>@string/bitrate_unlimited</item>
+        <item>@string/unlimited</item>
         <item>@string/bitrate_320kbps</item>
         <item>@string/bitrate_256kbps</item>
         <item>@string/bitrate_128kbps</item>
