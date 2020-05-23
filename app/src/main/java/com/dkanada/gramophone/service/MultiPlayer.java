@@ -46,7 +46,6 @@ public class MultiPlayer implements Playback {
     private boolean isReady = false;
     private boolean isPlaying = false;
     private boolean isNew = false;
-    private boolean isFirst = true;
 
     private ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
         @Override
@@ -118,7 +117,7 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public void setNextDataSource(@Nullable final String path) {
+    public void queueDataSource(@Nullable final String path) {
         if (context == null) {
             return;
         }
@@ -151,11 +150,7 @@ public class MultiPlayer implements Playback {
                 }
 
                 mediaSource.addMediaSource(source);
-                if (!isFirst && next) {
-                    start();
-                }
-
-                isFirst = false;
+                if (next) start();
             }
         });
     }
@@ -171,7 +166,7 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public boolean start() {
+    public void start() {
         isPlaying = true;
         exoPlayer.setPlayWhenReady(true);
 
@@ -179,8 +174,6 @@ public class MultiPlayer implements Playback {
             callbacks.onTrackStarted();
             isNew = false;
         }
-
-        return true;
     }
 
     @Override
@@ -190,10 +183,9 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public boolean pause() {
+    public void pause() {
         isPlaying = false;
         exoPlayer.setPlayWhenReady(false);
-        return true;
     }
 
     @Override
@@ -220,8 +212,7 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public boolean setVolume(float volume) {
+    public void setVolume(float volume) {
         exoPlayer.setVolume(volume);
-        return true;
     }
 }

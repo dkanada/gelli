@@ -15,10 +15,6 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
-
 public abstract class AbsThemeActivity extends ATHToolbarActivity {
 
     @Override
@@ -29,10 +25,11 @@ public abstract class AbsThemeActivity extends ATHToolbarActivity {
     }
 
     protected void setDrawUnderStatusbar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Util.setAllowDrawUnderStatusBar(getWindow());
-        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Util.setStatusBarTranslucent(getWindow());
+        }
     }
 
     /**
@@ -59,7 +56,7 @@ public abstract class AbsThemeActivity extends ATHToolbarActivity {
     }
 
     public void setStatusbarColorAuto() {
-        // we don't want to use statusbar color because we are doing the color darkening on our own to support KitKat
+        // we don't want to use status bar color because we are darkening the color on our own to support KitKat
         setStatusbarColor(ThemeStore.primaryColor(this));
     }
 

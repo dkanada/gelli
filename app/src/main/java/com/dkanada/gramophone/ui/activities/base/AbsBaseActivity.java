@@ -18,9 +18,6 @@ import android.view.View;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public abstract class AbsBaseActivity extends AbsThemeActivity {
     public static final int PERMISSION_REQUEST = 100;
 
@@ -69,11 +66,11 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
             showOverflowMenu();
             return true;
         }
+
         return super.dispatchKeyEvent(event);
     }
 
     protected void showOverflowMenu() {
-
     }
 
     @Nullable
@@ -107,6 +104,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
                 }
             }
         }
+
         return true;
     }
 
@@ -117,14 +115,14 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
             for (int grantResult : grantResults) {
                 if (grantResult != PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(AbsBaseActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                        //User has deny from permission dialog
+                        // user has deny from permission dialog
                         Snackbar.make(getSnackBarContainer(), getPermissionDeniedMessage(),
                                 Snackbar.LENGTH_INDEFINITE)
                                 .setAction(R.string.action_grant, view -> requestPermissions())
                                 .setActionTextColor(ThemeStore.accentColor(this))
                                 .show();
                     } else {
-                        // User has deny permission and checked never show permission dialog so you can redirect to Application settings page
+                        // user has deny permission and checked never show permission dialog so you can redirect to application settings page
                         Snackbar.make(getSnackBarContainer(), getPermissionDeniedMessage(),
                                 Snackbar.LENGTH_INDEFINITE)
                                 .setAction(R.string.action_settings, view -> {
@@ -140,6 +138,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
                     return;
                 }
             }
+
             hadPermissions = true;
             onHasPermissionsChanged(true);
         }

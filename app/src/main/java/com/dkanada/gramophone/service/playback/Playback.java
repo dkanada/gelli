@@ -1,31 +1,29 @@
 package com.dkanada.gramophone.service.playback;
 
-import androidx.annotation.Nullable;
-
 public interface Playback {
     void setDataSource(String path);
 
-    void setNextDataSource(@Nullable String path);
+    void queueDataSource(String path);
 
     void setCallbacks(PlaybackCallbacks callbacks);
 
-    boolean isInitialized();
+    void start();
 
-    boolean start();
+    void pause();
 
     void stop();
 
-    boolean pause();
+    boolean isInitialized();
 
     boolean isPlaying();
 
-    int duration();
-
     int position();
 
-    int seek(int whereto);
+    int duration();
 
-    boolean setVolume(float vol);
+    int seek(int position);
+
+    void setVolume(float volume);
 
     interface PlaybackCallbacks {
         void onTrackStarted();

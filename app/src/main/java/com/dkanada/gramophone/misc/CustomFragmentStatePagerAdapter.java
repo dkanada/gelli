@@ -68,7 +68,6 @@ import java.util.List;
  * complete}
  */
 public abstract class CustomFragmentStatePagerAdapter extends PagerAdapter {
-
     public static final String TAG = CustomFragmentStatePagerAdapter.class.getSimpleName();
     private static final boolean DEBUG = false;
 
@@ -83,9 +82,6 @@ public abstract class CustomFragmentStatePagerAdapter extends PagerAdapter {
         mFragmentManager = fm;
     }
 
-    /**
-     * Return the Fragment associated with a specified position.
-     */
     public abstract Fragment getItem(int position);
 
     @Override
@@ -117,9 +113,11 @@ public abstract class CustomFragmentStatePagerAdapter extends PagerAdapter {
                 fragment.setInitialSavedState(fss);
             }
         }
+
         while (mFragments.size() <= position) {
             mFragments.add(null);
         }
+
         fragment.setMenuVisibility(false);
         fragment.setUserVisibleHint(false);
         mFragments.set(position, fragment);
@@ -135,11 +133,13 @@ public abstract class CustomFragmentStatePagerAdapter extends PagerAdapter {
         if (mCurTransaction == null) {
             mCurTransaction = mFragmentManager.beginTransaction();
         }
+
         if (DEBUG) Log.v(TAG, "Removing item #" + position + ": f=" + object
                 + " v=" + ((Fragment) object).getView());
         while (mSavedState.size() <= position) {
             mSavedState.add(null);
         }
+
         mSavedState.set(position, mFragmentManager.saveFragmentInstanceState(fragment));
         mFragments.set(position, null);
 
@@ -158,6 +158,7 @@ public abstract class CustomFragmentStatePagerAdapter extends PagerAdapter {
                 fragment.setMenuVisibility(true);
                 fragment.setUserVisibleHint(true);
             }
+
             mCurrentPrimaryItem = fragment;
         }
     }
@@ -185,6 +186,7 @@ public abstract class CustomFragmentStatePagerAdapter extends PagerAdapter {
             mSavedState.toArray(fss);
             state.putParcelableArray("states", fss);
         }
+
         for (int i = 0; i < mFragments.size(); i++) {
             Fragment f = mFragments.get(i);
             if (f != null && f.isAdded()) {
@@ -195,6 +197,7 @@ public abstract class CustomFragmentStatePagerAdapter extends PagerAdapter {
                 mFragmentManager.putFragment(state, key, f);
             }
         }
+
         return state;
     }
 
@@ -211,6 +214,7 @@ public abstract class CustomFragmentStatePagerAdapter extends PagerAdapter {
                     mSavedState.add((Fragment.SavedState) fs);
                 }
             }
+
             Iterable<String> keys = bundle.keySet();
             for (String key : keys) {
                 if (key.startsWith("f")) {
@@ -234,6 +238,7 @@ public abstract class CustomFragmentStatePagerAdapter extends PagerAdapter {
         if (position < mFragments.size() && position >= 0) {
             return mFragments.get(position);
         }
+
         return null;
     }
 }

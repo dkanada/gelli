@@ -218,6 +218,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         if (audioManager == null) {
             audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         }
+
         return audioManager;
     }
 
@@ -422,7 +423,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 this.playingQueue = restoredQueue;
 
                 position = restoredPosition;
-                openCurrent();
+                openCurrent(true);
 
                 if (restoredPositionInTrack > 0) seek(restoredPositionInTrack);
 
@@ -471,18 +472,25 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         synchronized (this) {
             this.position = position;
 
-            openCurrent();
+            openCurrent(false);
 
             notifyChange(META_CHANGED);
             notHandledMetaChangedForCurrentTrack = false;
         }
     }
 
-    private void openCurrent() {
+    private void openCurrent(boolean queue) {
         synchronized (this) {
             // current song will be null when queue is cleared
             if (getCurrentSong() == null) return;
-            playback.setDataSource(getTrackUri(getCurrentSong()));
+
+            if (queue) {
+                // restore queue from database
+                playback.queueDataSource(getTrackUri(getCurrentSong()));
+            } else {
+                // set current song and start playback
+                playback.setDataSource(getTrackUri(getCurrentSong()));
+            }
         }
     }
 
@@ -494,7 +502,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private void prepareNextImpl() {
         synchronized (this) {
             nextPosition = getNextPosition(false);
-            playback.setNextDataSource(getTrackUri(getSongAt(nextPosition)));
+            playback.queueDataSource(getTrackUri(getSongAt(nextPosition)));
         }
     }
 

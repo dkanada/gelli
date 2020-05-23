@@ -28,12 +28,6 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- *         <p/>
- *         Do not use {@link #setContentView(int)}. Instead wrap your layout with
- *         {@link #wrapSlidingMusicPanel(int)} first and then return it in {@link #createContentView()}
- */
 public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivity implements SlidingUpPanelLayout.PanelSlideListener, CardPlayerFragment.Callbacks {
 
     @BindView(R.id.sliding_layout)
@@ -57,7 +51,9 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
         ButterKnife.bind(this);
 
         currentNowPlayingScreen = PreferenceUtil.getInstance(this).getNowPlayingScreen();
-        Fragment fragment; // must implement AbsPlayerFragment
+
+        // must implement AbsPlayerFragment
+        Fragment fragment;
         switch (currentNowPlayingScreen) {
             case FLAT:
                 fragment = new FlatPlayerFragment();

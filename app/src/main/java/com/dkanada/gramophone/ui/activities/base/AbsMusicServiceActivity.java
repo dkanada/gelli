@@ -21,9 +21,6 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Karim Abou Zeid (kabouzeid)
- */
 public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements MusicServiceEventListener {
 
     private final List<MusicServiceEventListener> mMusicServiceEventListeners = new ArrayList<>();
@@ -206,7 +203,9 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
     protected void onHasPermissionsChanged(boolean hasPermissions) {
         super.onHasPermissionsChanged(hasPermissions);
         Intent intent = new Intent(MusicService.MEDIA_STORE_CHANGED);
-        intent.putExtra("from_permissions_changed", true); // just in case we need to know this at some point
+
+        // just in case we need to know this at some point
+        intent.putExtra("from_permissions_changed", true);
         sendBroadcast(intent);
     }
 
