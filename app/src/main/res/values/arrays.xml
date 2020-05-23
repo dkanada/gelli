@@ -12,4 +12,27 @@
         <item>black</item>
     </string-array>
 
+    <string-array name="pref_transcode_codec_titles">
+        <item>@string/codec_aac</item>
+        <item>@string/codec_mp3</item>
+    </string-array>
+
+    <string-array name="pref_transcode_codec_values">
+        <item>aac</item>
+        <item>mp3</item>
+    </string-array>
+
+    <string-array name="pref_maximum_bitrate_titles">
+        <item>@string/bitrate_unlimited</item>
+        <item>@string/bitrate_320kbps</item>
+        <item>@string/bitrate_256kbps</item>
+        <item>@string/bitrate_128kbps</item>
+    </string-array>
+
+    <string-array name="pref_maximum_bitrate_values">
+        <item>10000000</item>
+        <item>320000</item>
+        <item>256000</item>
+        <item>128000</item>
+    </string-array>
 </resources>

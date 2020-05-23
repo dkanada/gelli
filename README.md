@@ -21,12 +21,10 @@ Since this was a small project intended mainly for myself, there are some things
 * Playlists and favorites will not update automatically when changed
 * Sorting also requires a reload to take effect
 * Batch actions are not yet functional
-* Some reports of audio playback ending prematurely
 
 ## Future Plans
 
 I don't currently have plans to add any large features. If I ever find the time, these are some of the items I would potentially include.
 
 * Offline downloads
-* Transcoding
 * Support for other media types

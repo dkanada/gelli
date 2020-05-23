@@ -4,6 +4,26 @@
 
     <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory android:title="@string/pref_header_audio">
 
+        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="aac"
+            android:entries="@array/pref_transcode_codec_titles"
+            android:entryValues="@array/pref_transcode_codec_values"
+            android:key="transcode_codec"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_transcode_codec" />
+
+        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="320000"
+            android:entries="@array/pref_maximum_bitrate_titles"
+            android:entryValues="@array/pref_maximum_bitrate_values"
+            android:key="maximum_bitrate"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_maximum_bitrate" />
+
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="true"

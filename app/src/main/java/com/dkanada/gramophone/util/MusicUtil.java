@@ -38,14 +38,14 @@ public class MusicUtil {
         builder.append("?UserId=" + apiClient.getCurrentUserId());
         builder.append("&DeviceId=" + apiClient.getDeviceId());
 
-        // web max is 12444445 and 320kbps is 320000
-        builder.append("&MaxStreamingBitrate=10000000");
+        // web client maximum is 12444445 and 320kbps is 320000
+        builder.append("&MaxStreamingBitrate=" + PreferenceUtil.getInstance(App.getInstance()).getMaximumBitrate());
         builder.append("&Container=flac");
         builder.append("&TranscodingContainer=ts");
         builder.append("&TranscodingProtocol=hls");
 
         // preferred codec when transcoding
-        builder.append("&AudioCodec=aac");
+        builder.append("&AudioCodec=" + PreferenceUtil.getInstance(App.getInstance()).getTranscodeCodec());
         builder.append("&api_key=" + apiClient.getAccessToken());
 
         Log.i(MusicUtil.class.getName(), "playing audio: " + builder);

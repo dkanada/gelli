@@ -18,4 +18,12 @@
 
     <string name="random" translatable="false">\?</string>
 
+    <string name="bitrate_unlimited" translatable="false">Unlimited</string>
+    <string name="bitrate_320kbps" translatable="false">320Kbps</string>
+    <string name="bitrate_256kbps" translatable="false">256Kbps</string>
+    <string name="bitrate_128kbps" translatable="false">128Kbps</string>
+
+    <string name="codec_aac" translatable="false">AAC</string>
+    <string name="codec_mp3" translatable="false">MP3</string>
+
 </resources>

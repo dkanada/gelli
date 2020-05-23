@@ -52,6 +52,8 @@ public final class PreferenceUtil {
     public static final String GENERAL_THEME = "general_theme";
     public static final String COLORED_SHORTCUTS = "colored_shortcuts";
 
+    public static final String TRANSCODE_CODEC = "transcode_codec";
+    public static final String MAXIMUM_BITRATE = "maximum_bitrate";
     public static final String AUDIO_DUCKING = "audio_ducking";
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
 
@@ -161,6 +163,14 @@ public final class PreferenceUtil {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putBoolean(COLORED_SHORTCUTS, value);
         editor.apply();
+    }
+
+    public final String getTranscodeCodec() {
+        return mPreferences.getString(TRANSCODE_CODEC, "aac");
+    }
+
+    public final String getMaximumBitrate() {
+        return mPreferences.getString(MAXIMUM_BITRATE, "320000");
     }
 
     public final boolean getAudioDucking() {
