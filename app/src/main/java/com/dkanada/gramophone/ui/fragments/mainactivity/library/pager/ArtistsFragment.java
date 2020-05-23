@@ -2,6 +2,7 @@ package com.dkanada.gramophone.ui.fragments.mainactivity.library.pager;
 
 import android.os.Bundle;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -49,9 +50,17 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
     }
 
     @Override
-
     protected int getEmptyMessage() {
         return R.string.no_artists;
+    }
+
+    @LayoutRes
+    protected int getItemLayoutRes() {
+        if (getGridSize() > getMaxGridSizeForList()) {
+            return R.layout.item_grid;
+        }
+
+        return R.layout.item_list_single_row;
     }
 
     @Override
