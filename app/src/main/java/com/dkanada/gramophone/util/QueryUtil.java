@@ -48,10 +48,7 @@ public class QueryUtil {
     public static void getPlaylists(MediaCallback callback) {
         ItemQuery query = new ItemQuery();
         query.setIncludeItemTypes(new String[]{"Playlist"});
-        query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setLimit(100);
-        query.setRecursive(true);
-        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
+        applyProperties(query);
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
@@ -72,10 +69,7 @@ public class QueryUtil {
 
     public static void getGenres(MediaCallback callback) {
         ItemsByNameQuery query = new ItemsByNameQuery();
-        query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setLimit(100);
-        query.setRecursive(true);
-        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
+        applyProperties(query);
         App.getApiClient().GetGenresAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
@@ -125,11 +119,8 @@ public class QueryUtil {
 
     public static void getAlbums(ItemQuery query, MediaCallback callback) {
         query.setIncludeItemTypes(new String[]{"MusicAlbum"});
-        query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setLimit(100);
-        query.setRecursive(true);
+        applyProperties(query);
         applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod());
-        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
@@ -151,10 +142,7 @@ public class QueryUtil {
     public static void getArtists(MediaCallback callback) {
         ArtistsQuery query = new ArtistsQuery();
         query.setFields(new ItemFields[]{ItemFields.Genres});
-        query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setLimit(100);
-        query.setRecursive(true);
-        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
+        applyProperties(query);
         App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
@@ -175,11 +163,8 @@ public class QueryUtil {
 
     public static void getSongs(ItemQuery query, MediaCallback callback) {
         query.setIncludeItemTypes(new String[]{"Audio"});
-        query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setLimit(100);
-        query.setRecursive(true);
+        applyProperties(query);
         applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortMethod());
-        if (currentLibrary != null && query.getParentId() == null) query.setParentId(currentLibrary.getId());
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
@@ -196,6 +181,24 @@ public class QueryUtil {
                 exception.printStackTrace();
             }
         });
+    }
+
+    private static void applyProperties(ItemQuery query) {
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        if (query.getParentId() == null && query.getArtistIds().length == 0) query.setLimit(100);
+        query.setRecursive(true);
+
+        if (currentLibrary == null || query.getParentId() != null) return;
+        if (query.getArtistIds().length == 0) query.setParentId(currentLibrary.getId());
+    }
+
+    private static void applyProperties(ItemsByNameQuery query) {
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        if (query.getParentId() == null) query.setLimit(100);
+        query.setRecursive(true);
+
+        if (currentLibrary == null || query.getParentId() != null) return;
+        query.setParentId(currentLibrary.getId());
     }
 
     private static void applySortMethod(ItemQuery query, String method) {
