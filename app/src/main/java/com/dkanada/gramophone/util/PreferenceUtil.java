@@ -2,6 +2,7 @@ package com.dkanada.gramophone.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import androidx.annotation.StyleRes;
 
@@ -146,7 +147,8 @@ public final class PreferenceUtil {
     }
 
     public final boolean getClassicNotification() {
-        return mPreferences.getBoolean(CLASSIC_NOTIFICATION, true);
+        return mPreferences.getBoolean(CLASSIC_NOTIFICATION,
+                Build.VERSION.SDK_INT <= Build.VERSION_CODES.O);
     }
 
     public void setClassicNotification(final boolean value) {
