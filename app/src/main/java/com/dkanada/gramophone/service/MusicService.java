@@ -516,7 +516,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         mediaSession.setPlaybackState(
                 new PlaybackStateCompat.Builder()
                         .setActions(MEDIA_SESSION_ACTIONS)
-                        .setState(isPlaying() ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED, getPosition(), 1)
+                        .setState(isPlaying() ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED, getSongProgressMillis(), 1)
                         .build());
     }
 
@@ -983,6 +983,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             case META_CHANGED:
                 updateNotification();
                 updateMediaSessionMetaData();
+                updateMediaSessionPlaybackState();
                 savePosition();
                 saveProgress();
                 break;
@@ -1099,6 +1100,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     if (service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
                         service.pause();
                         service.seek(0);
+                        service.notifyChange(PLAY_STATE_CHANGED);
                     } else {
                         service.position = service.nextPosition;
                         service.prepareNextImpl();
@@ -1129,6 +1131,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
                 case PLAY_SONG:
                     service.playSongAtImpl(msg.arg1);
+                    // notification progress needs to be reset
+                    service.notifyChange(PLAY_STATE_CHANGED);
                     break;
 
                 case SET_POSITION:
