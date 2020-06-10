@@ -1,0 +1,22 @@
+name: Test and build Gelli
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cache Gradle wrapper and dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/wrapper/dists
+            ~/.gradle/caches
+          key: gradle-cache
+      - name: Assemble application
+        run: ./gradlew testDebug assembleRelease
+      - name: Upload compiled APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: Gelli.apk
+          path: app/build/outputs/apk/release/Gelli-release-unsigned.apk
