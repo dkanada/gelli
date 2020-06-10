@@ -19,4 +19,8 @@ allprojects {
             url 'https://jitpack.io'
         }
     }
+
+    wrapper {
+        distributionType = Wrapper.DistributionType.ALL
+    }
 }
