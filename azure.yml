@@ -1,0 +1,24 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - '*'
+  tags:
+    include:
+    - '*'
+
+pr:
+  branches:
+    include:
+    - '*'
+
+jobs:
+- job: Build
+  displayName: 'Build'
+
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - script: 'echo hello world'
+    displayName: 'Initial Commit'
