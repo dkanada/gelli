@@ -27,5 +27,5 @@
 
 -keep class !android.support.v7.internal.view.menu.**,** {*;}
 
-# Jellyfin API models
+# Jellyfin API
 -keepclasseswithmembers class org.jellyfin.apiclient.model.**.* { *; }
