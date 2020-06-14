@@ -16,9 +16,95 @@ jobs:
 - job: Build
   displayName: 'Build'
 
+  strategy:
+    matrix:
+      Release:
+        Gradle: Release
+        Suffix: release
+      Debug:
+        Gradle: Debug
+        Suffix: debug
+
   pool:
     vmImage: 'ubuntu-latest'
 
   steps:
-  - script: 'echo hello world'
-    displayName: 'Initial Commit'
+  - script: 'echo "##vso[task.setvariable variable=TAG]$(git describe --tags)"'
+    displayName: 'Set Variable'
+
+  - task: Gradle@2
+    displayName: 'Build APK'
+    inputs:
+      gradleWrapperFile: 'gradlew'
+      tasks: 'assemble$(Gradle)'
+      javaHomeOption: 'JDKVersion'
+
+  - task: CopyFiles@2
+    displayName: 'Copy APK'
+    inputs:
+      SourceFolder: 'app/build/outputs/apk/'
+      Contents: '**/*.apk'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+      flattenFolders: true
+
+  - task: Bash@3
+    displayName: 'Rename APK'
+    inputs:
+      targetType: 'inline'
+      script: 'mv *.apk gelli-${SUFFIX}-${TAG}.apk'
+      workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish APK'
+    inputs:
+      PathToPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'gelli-$(SUFFIX)-$(TAG)'
+      publishLocation: 'Container'
+
+- job: Publish
+  displayName: 'Publish'
+
+  dependsOn: Build
+
+  strategy:
+    matrix:
+      Release:
+        Suffix: release
+      Debug:
+        Suffix: debug
+
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - script: 'echo "##vso[task.setvariable variable=TAG]$(git describe --tags)"'
+    displayName: 'Set Variable'
+
+  - task: DownloadBuildArtifacts@0
+    displayName: 'Download APK'
+    inputs:
+      buildType: 'current'
+      downloadType: 'single'
+      artifactName: 'gelli-$(Suffix)-$(TAG)'
+      downloadPath: '$(System.ArtifactsDirectory)'
+
+  - task: AndroidSigning@3
+    displayName: 'Sign APK'
+    condition: eq(variables['Suffix'], 'release')
+    inputs:
+      apkFiles: '$(System.ArtifactsDirectory)/**/*.apk'
+      apksignerKeystoreFile: 'KeyStore'
+      apksignerKeystorePassword: '$(KeyStorePassword)'
+      apksignerKeystoreAlias: 'gelli'
+      apksignerKeyPassword: '$(KeyStorePassword)'
+
+  - task: GithubRelease@0
+    displayName: 'Upload APK'
+    condition: startsWith(variables['Build.SourceBranch'], 'refs/tags')
+    inputs:
+      gitHubConnection: github
+      repositoryName: dkanada/gelli
+      assets: '$(System.ArtifactsDirectory)/*.apk'
+      action: 'edit'
+      assetUploadMode: 'replace'
+      tag: '$(TAG)'
