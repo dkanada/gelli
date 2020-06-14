@@ -1,18 +1,18 @@
-# Built application files
+# Build
 *.apk
 
-# Generated files
-bin/
-gen/
-out/
+# Cache
+bin
+gen
+out
 
-# Gradle files
-.gradle/
-build/
+# Gradle
+.gradle
+build
 
-# Local configuration file (sdk path, etc)
+# Configuration
 local.properties
 
-# Intellij
+# IntelliJ
 *.iml
-.idea/
+.idea
