@@ -104,7 +104,7 @@ jobs:
     inputs:
       gitHubConnection: github
       repositoryName: dkanada/gelli
-      assets: '$(System.ArtifactsDirectory)/*.apk'
+      assets: '$(System.ArtifactsDirectory)/**/*.apk'
       action: 'edit'
       assetUploadMode: 'replace'
       tag: '$(TAG)'
