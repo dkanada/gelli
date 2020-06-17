@@ -84,6 +84,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
             onBackPressed();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

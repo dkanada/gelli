@@ -32,6 +32,7 @@
             android:layout_marginEnd="32dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
+            android:inputType="textShortMessage"
             android:hint="@string/username" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -65,6 +66,7 @@
             android:layout_marginEnd="32dp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
+            android:inputType="textShortMessage"
             android:hint="@string/server" />
 
     </com.google.android.material.textfield.TextInputLayout>

@@ -10,6 +10,7 @@ import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
 
 import org.jellyfin.apiclient.interaction.AndroidCredentialProvider;
 import org.jellyfin.apiclient.interaction.ConnectionResult;
+import org.jellyfin.apiclient.interaction.EmptyResponse;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.interaction.VolleyHttpClient;
 import org.jellyfin.apiclient.interaction.connectionmanager.ConnectionManager;
@@ -24,6 +25,9 @@ import butterknife.ButterKnife;
 
 public class SplashActivity extends AbsBaseActivity {
     public static final String TAG = SplashActivity.class.getSimpleName();
+
+    public AndroidCredentialProvider credentialProvider;
+    public ConnectionManager connectionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,17 +44,25 @@ public class SplashActivity extends AbsBaseActivity {
         ILogger logger = new AndroidLogger(TAG);
         IAsyncHttpClient httpClient = new VolleyHttpClient(logger, this);
 
-        AndroidCredentialProvider credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
+        credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
+        connectionManager = App.getConnectionManager(this, jsonSerializer, logger, httpClient);
+
+        login();
+    }
+
+    public void login() {
         if (credentialProvider.GetCredentials().getServers().size() == 0) {
             Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         } else {
             final Context context = this;
-            ConnectionManager connectionManager = App.getConnectionManager(this, jsonSerializer, logger, httpClient);
             connectionManager.Connect(credentialProvider.GetCredentials().getServers().get(0), new Response<ConnectionResult>() {
                 @Override
                 public void onResponse(ConnectionResult result) {
                     if (result.getState() != ConnectionState.SignedIn) {
+                        connectionManager.DeleteServer(credentialProvider.GetCredentials().getServers().get(0).getId(), new EmptyResponse());
+
                         Intent intent = new Intent(context, LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         context.startActivity(intent);
