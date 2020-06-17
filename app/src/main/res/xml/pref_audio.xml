@@ -16,7 +16,7 @@
 
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="320000"
+            android:defaultValue="10000000"
             android:entries="@array/pref_maximum_bitrate_titles"
             android:entryValues="@array/pref_maximum_bitrate_values"
             android:key="maximum_bitrate"

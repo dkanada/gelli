@@ -170,7 +170,7 @@ public final class PreferenceUtil {
     }
 
     public final String getMaximumBitrate() {
-        return mPreferences.getString(MAXIMUM_BITRATE, "320000");
+        return mPreferences.getString(MAXIMUM_BITRATE, "10000000");
     }
 
     public final boolean getAudioDucking() {
