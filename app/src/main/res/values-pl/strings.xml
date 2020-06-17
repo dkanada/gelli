@@ -81,14 +81,12 @@
     <string name="accent_color">Kolor dodatków</string>
     <string name="primary_color_desc">Główny kolor motywu, domyślnie indygo</string>
     <string name="accent_color_desc">Kolor akcentów motywu, domyślnie różowy</string>
-    <string name="playlist_empty_text">Lista odtwarzania jest pusta</string>
     <string name="no_playlists">Brak list odtwarzania</string>
     <string name="no_albums">Brak albumów</string>
     <string name="no_songs">Brak utworów</string>
     <string name="no_artists">Brak wykonawców</string>
     <string name="no_genres">Brak gatunków</string>
     <string name="empty">Pusto</string>
-    <string name="playlist_name_empty">Nazwa listy odtwarzania</string>
     <string name="song">Utwór</string>
     <string name="pref_summary_album_art_on_lockscreen">Okładki albumów obecnie granych utworów będą zastępowały tapetę na ekranie blokady</string>
     <string name="pref_summary_blurred_album_art">Rozmywa okładki albumów na ekranie blokady. Mogą wystąpić problemy z aplikacjami firm trzecich oraz widżetami</string>

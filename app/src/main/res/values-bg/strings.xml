@@ -75,13 +75,11 @@
     <string name="accent_color">Цвят на акцента</string>
     <string name="primary_color_desc">Подразбиращият се цвят на темата е индиго.</string>
     <string name="accent_color_desc">Цветът по подразбиране на акцентите е розов.</string>
-    <string name="playlist_empty_text">Празен плейлист</string>
     <string name="no_playlists">Няма плейлисти</string>
     <string name="no_albums">Няма албуми</string>
     <string name="no_songs">Няма песни</string>
     <string name="no_artists">Няма артисти</string>
     <string name="empty">Празен</string>
-    <string name="playlist_name_empty">Име на плейлист</string>
     <string name="song">Песен</string>
     <string name="pref_summary_album_art_on_lockscreen">Използва обложката на албума при заключен екран.</string>
     <string name="pref_summary_blurred_album_art">Замъглява обложката при заключен екран. Би могло да създаде проблеми с апликации и известия създадени от трети лица.</string>

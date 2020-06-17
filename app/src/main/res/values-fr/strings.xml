@@ -81,14 +81,12 @@
     <string name="accent_color">Couleur secondaire</string>
     <string name="primary_color_desc">La couleur principale du thème (indigo par défaut)</string>
     <string name="accent_color_desc">La couleur secondaire du thème (rose par défaut)</string>
-    <string name="playlist_empty_text">Liste de lecture vide</string>
     <string name="no_playlists">Aucune playlist</string>
     <string name="no_albums">Aucun album</string>
     <string name="no_songs">Aucun titre</string>
     <string name="no_artists">Aucun artiste</string>
     <string name="no_genres">Aucun genre</string>
     <string name="empty">Vide</string>
-    <string name="playlist_name_empty">Nom de la playlist</string>
     <string name="song">Titre</string>
     <string name="pref_summary_album_art_on_lockscreen">La pochette d\'album du titre actuel est utilisée comme fond d\'écran de verrouillage.</string>
     <string name="pref_summary_blurred_album_art">Floute la pochette d\'album sur l\'écran de verrouillage. Peut causer des problèmes avec des applications et des widgets tiers.</string>

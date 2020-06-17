@@ -83,14 +83,12 @@
     <string name="accent_color">Warna aksen</string>
     <string name="primary_color_desc">Warna tema utama, distandarkan ke biru tua.</string>
     <string name="accent_color_desc">Warna aksen tema, distandarkan ke merah muda.</string>
-    <string name="playlist_empty_text">Daftar putar kosong</string>
     <string name="no_playlists">Tidak ada daftar putar</string>
     <string name="no_albums">Tidak ada album</string>
     <string name="no_songs">Tidak ada lagu</string>
     <string name="no_artists">Tidak ada artis</string>
     <string name="no_genres">Tidak ada aliran</string>
     <string name="empty">Kosong</string>
-    <string name="playlist_name_empty">Nama daftar putar</string>
     <string name="song">Lagu</string>
     <string name="pref_summary_album_art_on_lockscreen">Gunakan sambul album lagu yang sedang diputar sebagai wallpaper layar kunci</string>
     <string name="pref_summary_blurred_album_art">Buramkan sampul album di layar kunci. Dapat menyebabkan masalah dengan aplikasi pihak ke tiga dan widget</string>

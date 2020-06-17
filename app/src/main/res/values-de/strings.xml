@@ -83,14 +83,12 @@
     <string name="accent_color">Akzentfarbe</string>
     <string name="primary_color_desc">Die primäre Farbe, Standard ist indigo.</string>
     <string name="accent_color_desc">Die Akzentfarbe, Standard ist pink.</string>
-    <string name="playlist_empty_text">Die Wiedergabeliste ist leer</string>
     <string name="no_playlists">Keine Wiedergabelisten</string>
     <string name="no_albums">Keine Alben</string>
     <string name="no_songs">Keine Songs</string>
     <string name="no_artists">Keine Interpreten</string>
     <string name="no_genres">Keine Genres</string>
     <string name="empty">Leer</string>
-    <string name="playlist_name_empty">Wiedergabelisten Name</string>
     <string name="song">Titel</string>
     <string name="pref_summary_album_art_on_lockscreen">Das Album Cover des aktuellen Titels wird als Hintergrund im Sperrbildschirm verwendet.</string>
     <string name="pref_summary_blurred_album_art">Lässt das Album Cover auf dem Sperrbildschirm verschwommen aussehen. Kann Probleme mit Apps und Widgets von Dritten verursachen.</string>

@@ -77,13 +77,11 @@
     <string name="accent_color">Màu phụ</string>
     <string name="primary_color_desc">Màu sắc chính, mặc định là màu chàm.</string>
     <string name="accent_color_desc">Màu sắc chủ đề, mặc định là màu hồng.</string>
-    <string name="playlist_empty_text">Danh sách nhạc trống</string>
     <string name="no_playlists">Không có danh sách nhạc</string>
     <string name="no_albums">Không có album</string>
     <string name="no_songs">Không có bài hát</string>
     <string name="no_artists">Không có nghệ sĩ</string>
     <string name="empty">Trống</string>
-    <string name="playlist_name_empty">Tên danh sách nhạc</string>
     <string name="song">Bài hát</string>
     <string name="pref_summary_album_art_on_lockscreen">Sử dụng bìa album các bài hát hiện tại làm hình nền màn hình khóa.</string>
     <string name="pref_summary_blurred_album_art">Làm mờ bìa album trên màn hình khóa. Có thể gây ra vấn đề với các ứng dụng của bên thứ ba và các tiện ích (widget).</string>

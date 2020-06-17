@@ -81,14 +81,12 @@
     <string name="accent_color">강조 색상</string>
     <string name="primary_color_desc">테마의 주 색상입니다. 기본값은 인디고색입니다.</string>
     <string name="accent_color_desc">테마의 강조 색상입니다. 기본값은 분홍색입니다.</string>
-    <string name="playlist_empty_text">빈 재생 목록</string>
     <string name="no_playlists">재생 목록 없음</string>
     <string name="no_albums">앨범 없음</string>
     <string name="no_songs">노래 없음</string>
     <string name="no_artists">아티스트 없음</string>
     <string name="no_genres">장르 없음</string>
     <string name="empty">트랙 없음</string>
-    <string name="playlist_name_empty">재생 목록 이름</string>
     <string name="song">노래</string>
     <string name="pref_summary_album_art_on_lockscreen">현재 재생 중인 노래의 앨범 커버를 잠금 화면의 배경 화면으로 사용합니다.</string>
     <string name="pref_summary_blurred_album_art">잠금화면에서 앨범 커버를 흐릿하게 표시합니다. 써드파티 앱이나 위젯에서 문제가 발생할 수도 있습니다.</string>

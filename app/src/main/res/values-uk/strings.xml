@@ -81,14 +81,12 @@
     <string name="accent_color">Колір підкреслення</string>
     <string name="primary_color_desc">Основний колір теми, стандартно синій.</string>
     <string name="accent_color_desc">Акцентований колір теми, стандартно рожевий.</string>
-    <string name="playlist_empty_text">Порожній список відтворення</string>
     <string name="no_playlists">Немає списків відтворення</string>
     <string name="no_albums">Немає альбомів</string>
     <string name="no_songs">Немає пісень</string>
     <string name="no_artists">Немає виконавців</string>
     <string name="no_genres">Немає жанрів</string>
     <string name="empty">Порожньо</string>
-    <string name="playlist_name_empty">Назва списку відтворення</string>
     <string name="song">Пісня</string>
     <string name="pref_summary_album_art_on_lockscreen">Використовувати обкладинку альбому поточної пісні як шпалери екрана блокування.</string>
     <string name="pref_summary_blurred_album_art">Розмиває обладинку альбому на екрані блокування. Може конфліктувати зі сторонніми додатками та віджетами.</string>

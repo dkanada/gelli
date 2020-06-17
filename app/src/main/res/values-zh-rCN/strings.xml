@@ -82,14 +82,12 @@
     <string name="accent_color">强调色</string>
     <string name="primary_color_desc">主题主色调，默认为靛蓝色。</string>
     <string name="accent_color_desc">主题强调色，默认为粉色。</string>
-    <string name="playlist_empty_text">播放列表为空</string>
     <string name="no_playlists">没有播放列表</string>
     <string name="no_albums">没有专辑</string>
     <string name="no_songs">没有歌曲</string>
     <string name="no_artists">没有艺术家</string>
     <string name="no_genres">没有流派</string>
     <string name="empty">空</string>
-    <string name="playlist_name_empty">播放列表名称</string>
     <string name="song">歌曲</string>
     <string name="pref_summary_album_art_on_lockscreen">使用当前播放曲目的专辑封面作为锁屏壁纸。</string>
     <string name="pref_summary_blurred_album_art">模糊化显示锁屏界面内的专辑封面。此功能或与第三方应用及桌面插件产生冲突。</string>

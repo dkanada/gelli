@@ -83,14 +83,12 @@
     <string name="accent_color">Color secundario</string>
     <string name="primary_color_desc">El color principal, índigo por defecto</string>
     <string name="accent_color_desc">El color de énfasis por defecto es rosa.</string>
-    <string name="playlist_empty_text">Lista de reproducción vacía</string>
     <string name="no_playlists">No hay listas de reproducción</string>
     <string name="no_albums">No hay álbumes</string>
     <string name="no_songs">No hay canciones</string>
     <string name="no_artists">No hay artistas</string>
     <string name="no_genres">No hay géneros</string>
     <string name="empty">Vacío</string>
-    <string name="playlist_name_empty">Nombre de la lista de reproducción</string>
     <string name="song">Canción</string>
     <string name="pref_summary_album_art_on_lockscreen">Utiliza la carátula del álbum que se reproduce como fondo de pantalla de bloqueo</string>
     <string name="pref_summary_blurred_album_art">Desenfoca la carátula del álbum en la pantalla de bloqueo. Puede causar problemas con aplicaciones de terceros y widgets.</string>

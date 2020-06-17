@@ -48,8 +48,8 @@
     <string name="artists">Artists</string>
     <string name="genres">Genres</string>
     <string name="songs">Songs</string>
+    <string name="playlists">Playlists</string>
     <string name="album">Album</string>
-    <string name="playlist_empty_text">Empty playlist</string>
     <string name="no_playlists">No playlists</string>
     <string name="no_albums">No albums</string>
     <string name="no_songs">No songs</string>
@@ -57,9 +57,8 @@
     <string name="no_genres">No genres</string>
     <string name="no_results">No results</string>
     <string name="empty">Empty</string>
-    <string name="playlist_name_empty">Playlist name</string>
+    <string name="name">Name</string>
     <string name="song">Song</string>
-    <string name="playlists">Playlists</string>
 
     <string name="label_details">Details</string>
     <string name="label_file_name">File name</string>
@@ -115,12 +114,6 @@
     <string name="pref_title_audio_ducking">Audio Ducking</string>
     <string name="pref_title_remember_last_tab">Remember Tab</string>
     <string name="pref_title_remember_shuffle">Remember Shuffle</string>
-
-    <string name="delete_action">Delete</string>
-    <string name="remove_action">Remove</string>
-    <string name="rename_action">Rename</string>
-    <string name="create_action">Create</string>
-    <string name="reset_action">Reset</string>
     <string name="primary_color_desc">The primary theme color for control elements.</string>
     <string name="accent_color_desc">An alternate color used to accent elements.</string>
     <string name="pref_summary_album_art_on_lockscreen">Uses the current song\'s album cover as the lockscreen wallpaper.</string>
@@ -134,6 +127,12 @@
     <string name="pref_summary_colored_app_shortcuts">Colors the app shortcuts in the primary color.</string>
     <string name="pref_summary_remember_last_tab">Go to the last opened tab on launch.</string>
     <string name="pref_summary_library_categories">Configure visibility and order of library categories.</string>
+
+    <string name="delete_action">Delete</string>
+    <string name="remove_action">Remove</string>
+    <string name="rename_action">Rename</string>
+    <string name="create_action">Create</string>
+    <string name="reset_action">Reset</string>
 
     <string name="last_added">Last added</string>
     <string name="my_top_tracks">My top tracks</string>

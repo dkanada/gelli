@@ -81,14 +81,12 @@
     <string name="accent_color">اللون الثانوي</string>
     <string name="primary_color_desc">لون التنسيق الأساسي، الافتراضي هو الأزرق النيلي.</string>
     <string name="accent_color_desc">لون التنسيق الثانوي، الافتراضي هو الزهري.</string>
-    <string name="playlist_empty_text">قائمة تشغيل فارغة</string>
     <string name="no_playlists">لا توجد قوائم تشغيل</string>
     <string name="no_albums">لا توجد ألبومات</string>
     <string name="no_songs">لا توجد أغاني</string>
     <string name="no_artists">لا يوجد فنانون</string>
     <string name="no_genres">لا توجد أنواع</string>
     <string name="empty">فارغ</string>
-    <string name="playlist_name_empty">اسم قائمة التشغيل</string>
     <string name="song">الأغنية</string>
     <string name="pref_summary_album_art_on_lockscreen">استعمال غلاف ألبوم الأغنية الحالية كخلفية لشاشة القفل.</string>
     <string name="pref_summary_blurred_album_art">تغييم غلاف الألبوم في شاشة القفل. قد يسبب مشاكل مع التطبيقات والأدوات الذكية من طرف ثالث.</string>

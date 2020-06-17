@@ -83,14 +83,12 @@
     <string name="accent_color">Colore secondario</string>
     <string name="primary_color_desc">Colore principale, predefinito impostato su indaco.</string>
     <string name="accent_color_desc">Colore secondario, predefinito impostato su rosa</string>
-    <string name="playlist_empty_text">Playlist vuota</string>
     <string name="no_playlists">Nessuna playlist</string>
     <string name="no_albums">Nessun album</string>
     <string name="no_songs">Nessun brano</string>
     <string name="no_artists">Nessun artista</string>
     <string name="no_genres">Nessun genere</string>
     <string name="empty">Vuoto</string>
-    <string name="playlist_name_empty">Nome playlist</string>
     <string name="song">Brano</string>
     <string name="pref_summary_album_art_on_lockscreen">Usa la copertina dell\'album in riproduzione come sfondo della schermata di blocco.</string>
     <string name="pref_summary_blurred_album_art">Applica una sfocatura sulla copertina nella schermata di blocco. Può causare problemi con app e widget di terze parti.</string>

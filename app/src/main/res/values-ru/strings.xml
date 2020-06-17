@@ -83,14 +83,12 @@
     <string name="accent_color">Цвет акцента</string>
     <string name="primary_color_desc">Основной цвет темы, по умолчанию — индиго.</string>
     <string name="accent_color_desc">Цвет акцента, по умолчанию — розовый</string>
-    <string name="playlist_empty_text">Пустой плейлист</string>
     <string name="no_playlists">Нет плейлистов для отображения</string>
     <string name="no_albums">Нет альбомов для отображения</string>
     <string name="no_songs">Нет песен для отображения</string>
     <string name="no_artists">Нет исполнителей для отображения</string>
     <string name="no_genres">Нет жанров для отображения</string>
     <string name="empty">Пусто</string>
-    <string name="playlist_name_empty">Имя плейлиста</string>
     <string name="song">Песня</string>
     <string name="pref_summary_album_art_on_lockscreen">Обложка альбома текущей песни используется как изображение экрана блокировки.</string>
     <string name="pref_summary_blurred_album_art">Делает размытую обложку фоном экрана блокировки. Может создавать проблемы с другими приложениями и виджетами.</string>

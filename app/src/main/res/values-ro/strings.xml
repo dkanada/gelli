@@ -81,14 +81,12 @@
     <string name="accent_color">Culoare de accent</string>
     <string name="primary_color_desc">Culoarea primară temei, originalul este indigo.</string>
     <string name="accent_color_desc">Culoarea de accent a temei, originalul este roz.</string>
-    <string name="playlist_empty_text">Listă goală</string>
     <string name="no_playlists">Nu sunt liste de redare</string>
     <string name="no_albums">Nu sunt albume</string>
     <string name="no_songs">Nu sunt melodii</string>
     <string name="no_artists">Nu sunt artiști</string>
     <string name="no_genres">Niciun gen</string>
     <string name="empty">Gol</string>
-    <string name="playlist_name_empty">Nume listă</string>
     <string name="song">Melodie</string>
     <string name="pref_summary_album_art_on_lockscreen">Folosește coperta de album a melodiei curente ca fundal pentru ecranul de blocare.</string>
     <string name="pref_summary_blurred_album_art">Blurează coperta de album pentru ecranul de blocare. Poate cauza probleme cu widgeturi și aplicații terțe.</string>

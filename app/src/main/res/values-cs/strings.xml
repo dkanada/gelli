@@ -81,14 +81,12 @@
     <string name="accent_color">Vedlejší barva</string>
     <string name="primary_color_desc">Hlavní barva motivu (výchozí: modrá).</string>
     <string name="accent_color_desc">Vedlejší barva motivu (výchozí: růžová).</string>
-    <string name="playlist_empty_text">Tento playlist je prázdný</string>
     <string name="no_playlists">Žádný playlist</string>
     <string name="no_albums">Žádná alba</string>
     <string name="no_songs">Žádně skladby</string>
     <string name="no_artists">Žádní interpreti</string>
     <string name="no_genres">Žádné žánry</string>
     <string name="empty">Prázdné</string>
-    <string name="playlist_name_empty">Pojmenování seznamu skladeb</string>
     <string name="song">Skladba</string>
     <string name="pref_summary_album_art_on_lockscreen">Používá aktuální obal alba jako tapetu zamykací obrazovky.</string>
     <string name="pref_summary_blurred_album_art">Rozostří obal alba na uzamčené obrazovce. Může být problematické s aplikacemi a widgety třetích stran.</string>

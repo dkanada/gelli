@@ -35,7 +35,7 @@ public class RenamePlaylistDialog extends DialogFragment {
                 .positiveText(R.string.rename_action)
                 .negativeText(android.R.string.cancel)
                 .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME | InputType.TYPE_TEXT_FLAG_CAP_WORDS)
-                .input(getString(R.string.playlist_name_empty), "", false,
+                .input(getString(R.string.name), "", false,
                         (materialDialog, charSequence) -> {
                             final String name = charSequence.toString().trim();
 

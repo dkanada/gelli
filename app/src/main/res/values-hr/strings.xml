@@ -81,14 +81,12 @@
     <string name="accent_color">Naglašena boja</string>
     <string name="primary_color_desc">Primarna boja teme, zadana je indigo plava.</string>
     <string name="accent_color_desc">Naglašena boja teme, zadana je roza.</string>
-    <string name="playlist_empty_text">Prazan popis naslova</string>
     <string name="no_playlists">Nema popisa naslova</string>
     <string name="no_albums">Nema albuma</string>
     <string name="no_songs">Nema pjesama</string>
     <string name="no_artists">Nema izvođača</string>
     <string name="no_genres">Nema žanrova</string>
     <string name="empty">Prazno</string>
-    <string name="playlist_name_empty">Naziv popisa naslova</string>
     <string name="song">Pjesma</string>
     <string name="pref_summary_album_art_on_lockscreen">Koristi omot albuma trenutne pjesme kao pozadinu zaključanog zaslona.</string>
     <string name="pref_summary_blurred_album_art">Zamagljuje omot albuma na zaključanom zaslonu. Može izazvati probleme za ostale aplikacije i widgete.</string>

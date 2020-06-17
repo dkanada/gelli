@@ -81,14 +81,12 @@
     <string name="accent_color">צבע הדגשה</string>
     <string name="primary_color_desc">צבע הנושא העיקרי, ברירת המחדל הוא אינדיגו.</string>
     <string name="accent_color_desc">צבע ההדגשה של ערכת הנושא, ברירת המחדל הוא ורוד.</string>
-    <string name="playlist_empty_text">רשימת השמעה ריקה</string>
     <string name="no_playlists">אין רשימות השמעה</string>
     <string name="no_albums">אין אלבומים</string>
     <string name="no_songs">אין שירים</string>
     <string name="no_artists">אין אמנים</string>
     <string name="no_genres">אין סגנונות</string>
     <string name="empty">ריק</string>
-    <string name="playlist_name_empty">שם רשימת השמעה</string>
     <string name="song">שיר</string>
     <string name="pref_summary_album_art_on_lockscreen">השתמש בתמונת האלבום של השיר הנוכחי כרקע מסך הנעילה.</string>
     <string name="pref_summary_blurred_album_art">מטשטש את תמונת האלבום במסך הנעילה. עלול לגרום לבעיות עם ווידג\'טים ואפליקציות צד שלישי.</string>

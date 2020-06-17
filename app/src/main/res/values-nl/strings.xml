@@ -81,14 +81,12 @@
     <string name="accent_color">Accentkleur</string>
     <string name="primary_color_desc">De primaire themakleur, standaard indigo.</string>
     <string name="accent_color_desc">De thema accentkleur, standaard roze.</string>
-    <string name="playlist_empty_text">Lege afspeellijst</string>
     <string name="no_playlists">Geen afspeellijsten</string>
     <string name="no_albums">Geen albums</string>
     <string name="no_songs">Geen nummers</string>
     <string name="no_artists">Geen artiesten</string>
     <string name="no_genres">Geen genres</string>
     <string name="empty">Leeg</string>
-    <string name="playlist_name_empty">Afspeellijstnaam</string>
     <string name="song">Nummer</string>
     <string name="pref_summary_album_art_on_lockscreen">Albumhoes weergeven op het vergrendelscherm.</string>
     <string name="pref_summary_blurred_album_art">Vervaagt de albumhoes op het vergrendelscherm. Kan problemen met andere apps of widgets veroorzaken.</string>

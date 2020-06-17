@@ -83,14 +83,12 @@
     <string name="accent_color">Cor dos detalhes</string>
     <string name="primary_color_desc">A cor do tema principal, o padrão é índigo.</string>
     <string name="accent_color_desc">A cor dos detalhes do tema, o padrão é rosa.</string>
-    <string name="playlist_empty_text">Esta lista está vazia</string>
     <string name="no_playlists">Nenhuma playlist</string>
     <string name="no_albums">Nenhum Álbum</string>
     <string name="no_songs">Nenhuma Musica</string>
     <string name="no_artists">Nenhum Artista</string>
     <string name="no_genres">Nenhum gênero</string>
     <string name="empty">Vazio</string>
-    <string name="playlist_name_empty">Nome da Playlist</string>
     <string name="song">Música</string>
     <string name="pref_summary_album_art_on_lockscreen">A imagem do álbum está sendo mostrada no bloqueio de tela. Você deve reiniciar o Phonograph para as mudanças fazerem efeito.</string>
     <string name="pref_summary_blurred_album_art">Esmaece a capa de álbum no bloqueio de tela. Pode causar problemas com aplicativos de terceiros e widgets.</string>

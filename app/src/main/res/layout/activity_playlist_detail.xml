@@ -35,7 +35,7 @@
         android:layout_gravity="center"
         android:fontFamily="sans-serif-light"
         android:gravity="center_vertical"
-        android:text="@string/playlist_empty_text"
+        android:text="@string/empty"
         android:textColor="?android:textColorSecondary"
         android:textSize="@dimen/empty_text_size"
         android:visibility="gone" />

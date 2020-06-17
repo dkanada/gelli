@@ -83,14 +83,12 @@
     <string name="accent_color">Aksenttiväri</string>
     <string name="primary_color_desc">Ensisijainen teemaväri, oletuksena indigo.</string>
     <string name="accent_color_desc">Aksentti teemaväri, oletuksena pinkki.</string>
-    <string name="playlist_empty_text">Tyhjä soittolista</string>
     <string name="no_playlists">Ei soittolistoja</string>
     <string name="no_albums">Ei albumeja</string>
     <string name="no_songs">Ei kappaleita</string>
     <string name="no_artists">Ei artisteja</string>
     <string name="no_genres">Ei tyylilajeja</string>
     <string name="empty">Tyhjä</string>
-    <string name="playlist_name_empty">Soittolistan nimi</string>
     <string name="song">Kappale</string>
     <string name="pref_summary_album_art_on_lockscreen">Käyttää tämänhetkisen kappaleen albumin kantta lukitusnäytön taustakuvana.</string>
     <string name="pref_summary_blurred_album_art">Sumentaa albumin kannen lukitusnäytöllä. Saattaa aiheuttaa ongelmia kolmannen osapuolen sovellusten ja widgettien kanssa.</string>

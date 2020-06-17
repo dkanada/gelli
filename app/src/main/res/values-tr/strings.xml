@@ -81,14 +81,12 @@
     <string name="accent_color">Vurgu rengi</string>
     <string name="primary_color_desc">Varsayılan tema ana rengi mavi.</string>
     <string name="accent_color_desc">Varsayılan tema vurgu rengi pembe.</string>
-    <string name="playlist_empty_text">Bu çalma listesi boş</string>
     <string name="no_playlists">Çalma listesi yok</string>
     <string name="no_albums">Albüm yok</string>
     <string name="no_songs">Şarkı yok</string>
     <string name="no_artists">Sanatçı yok</string>
     <string name="no_genres">Tür yok</string>
     <string name="empty">Boş</string>
-    <string name="playlist_name_empty">Çalma listesi adı</string>
     <string name="song">Şarkı</string>
     <string name="pref_summary_album_art_on_lockscreen">Kilit ekranı duvar kağıdı olarak çalan şarkının albüm kapağını kullanır.</string>
     <string name="pref_summary_blurred_album_art">Kilit ekranındaki albüm kapağını bulanıklaştırır. Üçüncü taraf uygulamalar ve widget\'ler ile ilgili sorunlara neden olabilir.</string>
