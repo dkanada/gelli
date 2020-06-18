@@ -31,9 +31,9 @@ public class LibraryPreferenceDialog extends DialogFragment {
 
         List<CategoryInfo> categoryInfos;
         if (savedInstanceState != null) {
-            categoryInfos = savedInstanceState.getParcelableArrayList(PreferenceUtil.LIBRARY_CATEGORIES);
+            categoryInfos = savedInstanceState.getParcelableArrayList(PreferenceUtil.CATEGORIES);
         } else {
-            categoryInfos = PreferenceUtil.getInstance(getContext()).getLibraryCategories();
+            categoryInfos = PreferenceUtil.getInstance(getContext()).getCategories();
         }
 
         adapter = new CategoryInfoAdapter(categoryInfos);
@@ -51,7 +51,7 @@ public class LibraryPreferenceDialog extends DialogFragment {
                 .negativeText(android.R.string.cancel)
                 .neutralText(R.string.reset_action)
                 .autoDismiss(false)
-                .onNeutral((dialog, action) -> adapter.setCategoryInfos(PreferenceUtil.getInstance(getContext()).getDefaultLibraryCategories()))
+                .onNeutral((dialog, action) -> adapter.setCategoryInfos(PreferenceUtil.getInstance(getContext()).getDefaultCategories()))
                 .onNegative((dialog, action) -> dismiss())
                 .onPositive((dialog, action) -> {
                     updateCategories(adapter.getCategoryInfos());
@@ -63,13 +63,13 @@ public class LibraryPreferenceDialog extends DialogFragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(PreferenceUtil.LIBRARY_CATEGORIES, new ArrayList<>(adapter.getCategoryInfos()));
+        outState.putParcelableArrayList(PreferenceUtil.CATEGORIES, new ArrayList<>(adapter.getCategoryInfos()));
     }
 
     private void updateCategories(List<CategoryInfo> categories) {
         if (getSelected(categories) == 0) return;
 
-        PreferenceUtil.getInstance(getContext()).setLibraryCategories(categories);
+        PreferenceUtil.getInstance(getContext()).setCategories(categories);
     }
 
     private int getSelected(List<CategoryInfo> categories) {

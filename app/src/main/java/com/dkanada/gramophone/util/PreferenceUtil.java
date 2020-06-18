@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class PreferenceUtil {
-    public static final String LIBRARY_CATEGORIES = "library_categories";
+    public static final String CATEGORIES = "library_categories";
     public static final String REMEMBER_LAST_TAB = "remember_last_tab";
     public static final String LAST_TAB = "last_tab";
 
@@ -51,6 +51,7 @@ public final class PreferenceUtil {
     public static final String CLASSIC_NOTIFICATION = "classic_notification";
 
     public static final String GENERAL_THEME = "general_theme";
+    public static final String COLORED_NAVIGATION_BAR = "should_color_navigation_bar";
     public static final String COLORED_SHORTCUTS = "colored_shortcuts";
 
     public static final String TRANSCODE_CODEC = "transcode_codec";
@@ -366,8 +367,8 @@ public final class PreferenceUtil {
         editor.apply();
     }
 
-    public List<CategoryInfo> getLibraryCategories() {
-        String data = mPreferences.getString(LIBRARY_CATEGORIES, null);
+    public List<CategoryInfo> getCategories() {
+        String data = mPreferences.getString(CATEGORIES, null);
         if (data != null) {
             Gson gson = new Gson();
             Type collectionType = new TypeToken<List<CategoryInfo>>() {
@@ -380,19 +381,19 @@ public final class PreferenceUtil {
             }
         }
 
-        return getDefaultLibraryCategories();
+        return getDefaultCategories();
     }
 
-    public void setLibraryCategories(List<CategoryInfo> categories) {
+    public void setCategories(List<CategoryInfo> categories) {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<CategoryInfo>>() {}.getType();
 
         final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(LIBRARY_CATEGORIES, gson.toJson(categories, collectionType));
+        editor.putString(CATEGORIES, gson.toJson(categories, collectionType));
         editor.apply();
     }
 
-    public List<CategoryInfo> getDefaultLibraryCategories() {
+    public List<CategoryInfo> getDefaultCategories() {
         List<CategoryInfo> defaultCategories = new ArrayList<>(5);
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.SONGS, true));
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.ALBUMS, true));

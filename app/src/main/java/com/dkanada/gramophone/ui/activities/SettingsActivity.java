@@ -75,6 +75,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             new DynamicShortcutManager(this).updateDynamicShortcuts();
         }
+
         recreate();
     }
 
@@ -106,9 +107,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
                 preference.setSummary(
-                        index >= 0
-                                ? listPreference.getEntries()[index]
-                                : null);
+                        index >= 0 ? listPreference.getEntries()[index] : null);
             } else {
                 preference.setSummary(stringValue);
             }
@@ -132,6 +131,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             } else if (preference instanceof LibraryPreference) {
                 return LibraryPreferenceDialog.newInstance();
             }
+
             return super.onCreatePreferenceDialog(preference);
         }
 
@@ -150,7 +150,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         }
 
         private void invalidateSettings() {
-            final Preference generalTheme = findPreference("general_theme");
+            final Preference generalTheme = findPreference(PreferenceUtil.GENERAL_THEME);
             setSummary(generalTheme);
             generalTheme.setOnPreferenceChangeListener((preference, o) -> {
                 String themeName = (String) o;
@@ -193,7 +193,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 return true;
             });
 
-            TwoStatePreference colorNavBar = (TwoStatePreference) findPreference("should_color_navigation_bar");
+            TwoStatePreference colorNavBar = (TwoStatePreference) findPreference(PreferenceUtil.COLORED_NAVIGATION_BAR);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 colorNavBar.setVisible(false);
             } else {
@@ -207,7 +207,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 });
             }
 
-            final TwoStatePreference classicNotification = (TwoStatePreference) findPreference("classic_notification");
+            final TwoStatePreference classicNotification = (TwoStatePreference) findPreference(PreferenceUtil.CLASSIC_NOTIFICATION);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 classicNotification.setVisible(false);
             } else {
@@ -219,7 +219,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 });
             }
 
-            final TwoStatePreference coloredNotification = (TwoStatePreference) findPreference("colored_notification");
+            final TwoStatePreference coloredNotification = (TwoStatePreference) findPreference(PreferenceUtil.COLORED_NOTIFICATION);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 coloredNotification.setEnabled(PreferenceUtil.getInstance(getActivity()).getClassicNotification());
             } else {
@@ -258,14 +258,14 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                     break;
                 case PreferenceUtil.CLASSIC_NOTIFICATION:
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        findPreference("colored_notification").setEnabled(sharedPreferences.getBoolean(key, false));
+                        findPreference(PreferenceUtil.COLORED_NOTIFICATION).setEnabled(sharedPreferences.getBoolean(key, false));
                     }
                     break;
             }
         }
 
         private void updateNowPlayingScreenSummary() {
-            findPreference("now_playing_screen_id").setSummary(PreferenceUtil.getInstance(getActivity()).getNowPlayingScreen().titleRes);
+            findPreference(PreferenceUtil.NOW_PLAYING_SCREEN).setSummary(PreferenceUtil.getInstance(getActivity()).getNowPlayingScreen().titleRes);
         }
     }
 }
