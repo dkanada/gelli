@@ -147,10 +147,10 @@
     <string name="pref_summary_library_categories">Määrittele kirjaston välilehtien näkyvyyttä ja järjestystä.</string>
     <string name="you_have_to_select_at_least_one_category">Sinun täytyy valita vähintään yksi kategoria.</string>
     <string name="action_sort_order">Lajittelu järjestys</string>
-    <string name="sort_order_a_z">Nouseva</string>
-    <string name="sort_order_z_a">Laskeva</string>
-    <string name="sort_order_artist">Artisti</string>
-    <string name="sort_order_album">Albumi</string>
-    <string name="sort_order_year">Vuosi</string>
+    <string name="sort_order_ascending">Nouseva</string>
+    <string name="sort_order_descending">Laskeva</string>
+    <string name="sort_method_artist">Artisti</string>
+    <string name="sort_method_album">Albumi</string>
+    <string name="sort_method_year">Vuosi</string>
     <string name="finish_current_music_sleep_timer">Lopeta viimeinen kappale</string>
 </resources>

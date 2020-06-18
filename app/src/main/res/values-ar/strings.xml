@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">تخصيص رؤية وترتيب أقسام المكتبة.</string>
     <string name="you_have_to_select_at_least_one_category">عليك أن تختار قسماً واحداً على الأقل.</string>
     <string name="action_sort_order">ترتيب الفرز</string>
-    <string name="sort_order_a_z">تصاعدي</string>
-    <string name="sort_order_z_a">تنازلي</string>
-    <string name="sort_order_artist">الفنان</string>
-    <string name="sort_order_album">الألبوم</string>
-    <string name="sort_order_year">السنة</string>
+    <string name="sort_order_ascending">تصاعدي</string>
+    <string name="sort_order_descending">تنازلي</string>
+    <string name="sort_method_artist">الفنان</string>
+    <string name="sort_method_album">الألبوم</string>
+    <string name="sort_method_year">السنة</string>
 </resources>

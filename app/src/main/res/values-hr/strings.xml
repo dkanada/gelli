@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">Prilagodite vidljivost i poredak kategorija biblioteke</string>
     <string name="you_have_to_select_at_least_one_category">Morate odabrati barem jednu kategoriju</string>
     <string name="action_sort_order">Način sortiranja</string>
-    <string name="sort_order_a_z">Uzlazno</string>
-    <string name="sort_order_z_a">Silazno</string>
-    <string name="sort_order_artist">Izvođač</string>
-    <string name="sort_order_album">Album</string>
-    <string name="sort_order_year">Godina</string>
+    <string name="sort_order_ascending">Uzlazno</string>
+    <string name="sort_order_descending">Silazno</string>
+    <string name="sort_method_artist">Izvođač</string>
+    <string name="sort_method_album">Album</string>
+    <string name="sort_method_year">Godina</string>
 </resources>

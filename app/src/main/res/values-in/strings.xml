@@ -147,10 +147,10 @@
     <string name="pref_summary_library_categories">Konfigurasi visibilitas dan urutan kategori perpustakaan.</string>
     <string name="you_have_to_select_at_least_one_category">Anda harus memilih setidaknya satu kategori</string>
     <string name="action_sort_order">Tata urutan</string>
-    <string name="sort_order_a_z">Naik</string>
-    <string name="sort_order_z_a">Turun</string>
-    <string name="sort_order_artist">Artis</string>
-    <string name="sort_order_album">Album</string>
-    <string name="sort_order_year">Tahun</string>
+    <string name="sort_order_ascending">Naik</string>
+    <string name="sort_order_descending">Turun</string>
+    <string name="sort_method_artist">Artis</string>
+    <string name="sort_method_album">Album</string>
+    <string name="sort_method_year">Tahun</string>
     <string name="finish_current_music_sleep_timer">Selesaikan lagu terakhir</string>
 </resources>

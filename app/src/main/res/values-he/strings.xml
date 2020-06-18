@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">הגדר את הנראות והסדר של הקטגוריות בספרייה.</string>
     <string name="you_have_to_select_at_least_one_category">עליך לבחור לפחות קטגוריה אחת.</string>
     <string name="action_sort_order">סדר המיון</string>
-    <string name="sort_order_a_z">סדר עולה</string>
-    <string name="sort_order_z_a">סדר יורד</string>
-    <string name="sort_order_artist">אמן</string>
-    <string name="sort_order_album">אלבום</string>
-    <string name="sort_order_year">שנה</string>
+    <string name="sort_order_ascending">סדר עולה</string>
+    <string name="sort_order_descending">סדר יורד</string>
+    <string name="sort_method_artist">אמן</string>
+    <string name="sort_method_album">אלבום</string>
+    <string name="sort_method_year">שנה</string>
 </resources>

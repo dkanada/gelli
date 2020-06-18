@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">Configurer la visibilité et l\'ordre des catégories.</string>
     <string name="you_have_to_select_at_least_one_category">Vous devez sélectionner au moins une catégorie.</string>
     <string name="action_sort_order">Ordre de tri</string>
-    <string name="sort_order_a_z">Ascendant</string>
-    <string name="sort_order_z_a">Descendant</string>
-    <string name="sort_order_artist">Artiste</string>
-    <string name="sort_order_album">Album</string>
-    <string name="sort_order_year">Année</string>
+    <string name="sort_order_ascending">Ascendant</string>
+    <string name="sort_order_descending">Descendant</string>
+    <string name="sort_method_artist">Artiste</string>
+    <string name="sort_method_album">Album</string>
+    <string name="sort_method_year">Année</string>
 </resources>

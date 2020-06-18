@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">ライブラリに表示するカテゴリとその順番を設定します。</string>
     <string name="you_have_to_select_at_least_one_category">最低でも1つのカテゴリを選択を選択してください</string>
     <string name="action_sort_order">並べ替え</string>
-    <string name="sort_order_a_z">昇順</string>
-    <string name="sort_order_z_a">降順</string>
-    <string name="sort_order_artist">Artista</string>
-    <string name="sort_order_album">Álbum</string>
-    <string name="sort_order_year">Ano</string>
+    <string name="sort_order_ascending">昇順</string>
+    <string name="sort_order_descending">降順</string>
+    <string name="sort_method_artist">Artista</string>
+    <string name="sort_method_album">Álbum</string>
+    <string name="sort_method_year">Ano</string>
 </resources>

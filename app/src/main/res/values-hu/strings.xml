@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">Könyvtár kategóriák láthatóságának és sorrendjének beállítása.</string>
     <string name="you_have_to_select_at_least_one_category">Legalább egy kategóriát ki kell választania.</string>
     <string name="action_sort_order">Sorrend</string>
-    <string name="sort_order_a_z">Növekvő</string>
-    <string name="sort_order_z_a">Csökkenő</string>
-    <string name="sort_order_artist">Előadó</string>
-    <string name="sort_order_album">Album</string>
-    <string name="sort_order_year">Év</string>
+    <string name="sort_order_ascending">Növekvő</string>
+    <string name="sort_order_descending">Csökkenő</string>
+    <string name="sort_method_artist">Előadó</string>
+    <string name="sort_method_album">Album</string>
+    <string name="sort_method_year">Év</string>
 </resources>

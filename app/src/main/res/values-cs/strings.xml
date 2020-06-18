@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">Nastavit viditelnost a pořadí kategorií knihoven.</string>
     <string name="you_have_to_select_at_least_one_category">Musíte zvolit alespoň jednu kategorii.</string>
     <string name="action_sort_order">Seřazení</string>
-    <string name="sort_order_a_z">Vzestupně</string>
-    <string name="sort_order_z_a">Sestupně</string>
-    <string name="sort_order_artist">Interpret</string>
-    <string name="sort_order_album">Album</string>
-    <string name="sort_order_year">Rok</string>
+    <string name="sort_order_ascending">Vzestupně</string>
+    <string name="sort_order_descending">Sestupně</string>
+    <string name="sort_method_artist">Interpret</string>
+    <string name="sort_method_album">Album</string>
+    <string name="sort_method_year">Rok</string>
 </resources>

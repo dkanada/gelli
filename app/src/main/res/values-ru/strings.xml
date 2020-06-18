@@ -147,10 +147,10 @@
     <string name="pref_summary_library_categories">Настройте видимость и порядок категорий библиотеки.</string>
     <string name="you_have_to_select_at_least_one_category">Вы должны выбрать хотя бы одну категорию.</string>
     <string name="action_sort_order">Сортировка</string>
-    <string name="sort_order_a_z">По возрастанию</string>
-    <string name="sort_order_z_a">По убыванию</string>
-    <string name="sort_order_artist">Исполнитель</string>
-    <string name="sort_order_album">Альбом</string>
-    <string name="sort_order_year">Год</string>
+    <string name="sort_order_ascending">По возрастанию</string>
+    <string name="sort_order_descending">По убыванию</string>
+    <string name="sort_method_artist">Исполнитель</string>
+    <string name="sort_method_album">Альбом</string>
+    <string name="sort_method_year">Год</string>
     <string name="finish_current_music_sleep_timer">Последняя песня завершилась</string>
 </resources>

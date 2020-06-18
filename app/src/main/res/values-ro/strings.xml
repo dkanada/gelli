@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">Configurați vizibilitatea și ordinea categoriilor din bibliotecă.</string>
     <string name="you_have_to_select_at_least_one_category">Trebuie să selectați cel puțin o categorie.</string>
     <string name="action_sort_order">Ordine de sortare</string>
-    <string name="sort_order_a_z">crescător</string>
-    <string name="sort_order_z_a">descrescător</string>
-    <string name="sort_order_artist">Artist</string>
-    <string name="sort_order_album">Album</string>
-    <string name="sort_order_year">An</string>
+    <string name="sort_order_ascending">crescător</string>
+    <string name="sort_order_descending">descrescător</string>
+    <string name="sort_method_artist">Artist</string>
+    <string name="sort_method_album">Album</string>
+    <string name="sort_method_year">An</string>
 </resources>

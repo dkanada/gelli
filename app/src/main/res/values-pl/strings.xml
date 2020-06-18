@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">Ustawia widoczność i kolejność kategorii biblioteki</string>
     <string name="you_have_to_select_at_least_one_category">Musisz wybrać co najmniej jedną kategorię</string>
     <string name="action_sort_order">Kolejność sortowania</string>
-    <string name="sort_order_a_z">Rosnąco</string>
-    <string name="sort_order_z_a">Malejąco</string>
-    <string name="sort_order_artist">Artysta</string>
-    <string name="sort_order_album">Album</string>
-    <string name="sort_order_year">Rok</string>
+    <string name="sort_order_ascending">Rosnąco</string>
+    <string name="sort_order_descending">Malejąco</string>
+    <string name="sort_method_artist">Artysta</string>
+    <string name="sort_method_album">Album</string>
+    <string name="sort_method_year">Rok</string>
 </resources>

@@ -147,10 +147,10 @@
     <string name="pref_summary_library_categories">Anzeige und Anordnung der einzelnen Kategorien festlegen.</string>
     <string name="you_have_to_select_at_least_one_category">Mindestens eine Kategorie muss ausgewählt sein.</string>
     <string name="action_sort_order">Sortierung</string>
-    <string name="sort_order_a_z">Aufsteigend</string>
-    <string name="sort_order_z_a">Absteigend</string>
-    <string name="sort_order_artist">Interpret</string>
-    <string name="sort_order_album">Album</string>
-    <string name="sort_order_year">Jahr</string>
+    <string name="sort_order_ascending">Aufsteigend</string>
+    <string name="sort_order_descending">Absteigend</string>
+    <string name="sort_method_artist">Interpret</string>
+    <string name="sort_method_album">Album</string>
+    <string name="sort_method_year">Jahr</string>
     <string name="finish_current_music_sleep_timer">Letzten Song beenden</string>
 </resources>

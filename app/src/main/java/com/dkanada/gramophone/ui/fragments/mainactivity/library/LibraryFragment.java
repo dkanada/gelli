@@ -362,24 +362,24 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         sortMethodMenu.clear();
 
         if (fragment instanceof AlbumsFragment) {
-            sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_order_name)
+            sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_method_name)
                     .setChecked(currentSortMethod.equals(SortMethod.NAME));
-            sortMethodMenu.add(0, R.id.action_sort_method_artist, 1, R.string.sort_order_artist)
+            sortMethodMenu.add(0, R.id.action_sort_method_artist, 1, R.string.sort_method_artist)
                     .setChecked(currentSortMethod.equals(SortMethod.ARTIST));
-            sortMethodMenu.add(0, R.id.action_sort_method_year, 2, R.string.sort_order_year)
+            sortMethodMenu.add(0, R.id.action_sort_method_year, 2, R.string.sort_method_year)
                     .setChecked(currentSortMethod.equals(SortMethod.YEAR));
-            sortMethodMenu.add(0, R.id.action_sort_method_random, 3, R.string.sort_order_random)
+            sortMethodMenu.add(0, R.id.action_sort_method_random, 3, R.string.sort_method_random)
                     .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
         } else if (fragment instanceof SongsFragment) {
-            sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_order_name)
+            sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_method_name)
                     .setChecked(currentSortMethod.equals(SortMethod.NAME));
-            sortMethodMenu.add(0, R.id.action_sort_method_album, 1, R.string.sort_order_album)
+            sortMethodMenu.add(0, R.id.action_sort_method_album, 1, R.string.sort_method_album)
                     .setChecked(currentSortMethod.equals(SortMethod.ALBUM));
-            sortMethodMenu.add(0, R.id.action_sort_method_artist, 2, R.string.sort_order_artist)
+            sortMethodMenu.add(0, R.id.action_sort_method_artist, 2, R.string.sort_method_artist)
                     .setChecked(currentSortMethod.equals(SortMethod.ARTIST));
-            sortMethodMenu.add(0, R.id.action_sort_method_year, 3, R.string.sort_order_year)
+            sortMethodMenu.add(0, R.id.action_sort_method_year, 3, R.string.sort_method_year)
                     .setChecked(currentSortMethod.equals(SortMethod.YEAR));
-            sortMethodMenu.add(0, R.id.action_sort_method_random, 4, R.string.sort_order_random)
+            sortMethodMenu.add(0, R.id.action_sort_method_random, 4, R.string.sort_method_random)
                     .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
         }
 
@@ -390,9 +390,9 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         String currentSortOrder = fragment.getSortMethod();
         sortOrderMenu.clear();
 
-        sortOrderMenu.add(0, R.id.action_sort_order_ascending, 0, R.string.sort_order_a_z)
+        sortOrderMenu.add(0, R.id.action_sort_order_ascending, 0, R.string.sort_order_ascending)
                 .setChecked(currentSortOrder.equals(SortOrder.ASCENDING));
-        sortOrderMenu.add(0, R.id.action_sort_order_descending, 1, R.string.sort_order_z_a)
+        sortOrderMenu.add(0, R.id.action_sort_order_descending, 1, R.string.sort_order_descending)
                 .setChecked(currentSortOrder.equals(SortOrder.DESCENDING));
 
         sortOrderMenu.setGroupCheckable(0, true, true);

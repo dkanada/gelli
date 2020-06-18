@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">라이브러리 카테고리의 표시 여부 및 배열 순서를 조정합니다.</string>
     <string name="you_have_to_select_at_least_one_category">적어도 하나의 카테고리는 선택해야 합니다.</string>
     <string name="action_sort_order">순서 정렬하기</string>
-    <string name="sort_order_a_z">오름차순</string>
-    <string name="sort_order_z_a">내림차순</string>
-    <string name="sort_order_artist">아티스트</string>
-    <string name="sort_order_album">앨범</string>
-    <string name="sort_order_year">연도</string>
+    <string name="sort_order_ascending">오름차순</string>
+    <string name="sort_order_descending">내림차순</string>
+    <string name="sort_method_artist">아티스트</string>
+    <string name="sort_method_album">앨범</string>
+    <string name="sort_method_year">연도</string>
 </resources>

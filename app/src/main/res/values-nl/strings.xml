@@ -144,9 +144,9 @@
     <string name="pref_summary_library_categories">Configureer de zichtbaarheid en volgorde van categorieën</string>
     <string name="you_have_to_select_at_least_one_category">Je moet tenminste één categorie selecteren.</string>
     <string name="action_sort_order">Sorteervolgorde</string>
-    <string name="sort_order_a_z">Oplopend</string>
-    <string name="sort_order_z_a">Aflopend</string>
-    <string name="sort_order_artist">Artiest</string>
-    <string name="sort_order_album">Album</string>
-    <string name="sort_order_year">Jaar</string>
+    <string name="sort_order_ascending">Oplopend</string>
+    <string name="sort_order_descending">Aflopend</string>
+    <string name="sort_method_artist">Artiest</string>
+    <string name="sort_method_album">Album</string>
+    <string name="sort_method_year">Jaar</string>
 </resources>
