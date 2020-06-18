@@ -1,0 +1,5 @@
+- improve input fields on login activity
+- set default bitrate to unlimited
+- add setting to save the queue on exit
+- add maximum list size preference
+- check android version for default notification style
