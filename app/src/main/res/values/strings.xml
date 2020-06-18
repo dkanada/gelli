@@ -115,6 +115,7 @@
     <string name="pref_title_remember_last_tab">Remember Tab</string>
     <string name="pref_title_remember_shuffle">Remember Shuffle</string>
     <string name="pref_title_remember_queue">Remember Queue</string>
+    <string name="pref_title_maximum_list_size">Maximum List Size</string>
     <string name="primary_color_desc">The primary theme color for control elements.</string>
     <string name="accent_color_desc">An alternate color used to accent elements.</string>
     <string name="pref_summary_album_art_on_lockscreen">Uses the current song\'s album cover as the lockscreen wallpaper.</string>

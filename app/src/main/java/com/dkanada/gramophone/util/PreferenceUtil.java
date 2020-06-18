@@ -22,6 +22,7 @@ import java.util.List;
 
 public final class PreferenceUtil {
     public static final String CATEGORIES = "library_categories";
+    public static final String MAXIMUM_LIST_SIZE = "maximum_list_size";
     public static final String REMEMBER_LAST_TAB = "remember_last_tab";
     public static final String LAST_TAB = "last_tab";
 
@@ -47,21 +48,21 @@ public final class PreferenceUtil {
     public static final String ARTIST_COLORED_FOOTERS = "artist_colored_footers";
     public static final String ALBUM_ARTIST_COLORED_FOOTERS = "album_artist_colored_footers";
 
-    public static final String COLORED_NOTIFICATION = "colored_notification";
-    public static final String CLASSIC_NOTIFICATION = "classic_notification";
-
     public static final String GENERAL_THEME = "general_theme";
     public static final String COLORED_NAVIGATION_BAR = "should_color_navigation_bar";
     public static final String COLORED_SHORTCUTS = "colored_shortcuts";
+
+    public static final String CLASSIC_NOTIFICATION = "classic_notification";
+    public static final String COLORED_NOTIFICATION = "colored_notification";
+
+    public static final String SHOW_ALBUM_COVER = "show_album_cover";
+    public static final String BLUR_ALBUM_COVER = "blur_album_cover";
 
     public static final String TRANSCODE_CODEC = "transcode_codec";
     public static final String MAXIMUM_BITRATE = "maximum_bitrate";
     public static final String AUDIO_DUCKING = "audio_ducking";
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
     public static final String REMEMBER_QUEUE = "remember_queue";
-
-    public static final String SHOW_ALBUM_COVER = "show_album_cover";
-    public static final String BLUR_ALBUM_COVER = "blur_album_cover";
 
     public static final String SLEEP_TIMER_LAST_VALUE = "sleep_timer_last_value";
     public static final String SLEEP_TIMER_ELAPSED_REALTIME = "sleep_timer_elapsed_real_time";
@@ -113,6 +114,10 @@ public final class PreferenceUtil {
         return mPreferences.getBoolean(REMEMBER_LAST_TAB, true);
     }
 
+    public final int getMaximumListSize() {
+        return Integer.parseInt(mPreferences.getString(MAXIMUM_LIST_SIZE, "100"));
+    }
+
     public final int getLastTab() {
         return mPreferences.getInt(LAST_TAB, 0);
     }
@@ -149,8 +154,7 @@ public final class PreferenceUtil {
     }
 
     public final boolean getClassicNotification() {
-        return mPreferences.getBoolean(CLASSIC_NOTIFICATION,
-                Build.VERSION.SDK_INT <= Build.VERSION_CODES.O);
+        return mPreferences.getBoolean(CLASSIC_NOTIFICATION, Build.VERSION.SDK_INT <= Build.VERSION_CODES.O);
     }
 
     public void setClassicNotification(final boolean value) {

@@ -9,6 +9,16 @@
             android:summary="@string/pref_summary_library_categories"
             android:title="@string/library_categories" />
 
+        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="100"
+            android:entries="@array/pref_maximum_list_size_titles"
+            android:entryValues="@array/pref_maximum_list_size_values"
+            android:key="maximum_list_size"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_maximum_list_size" />
+
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="true"

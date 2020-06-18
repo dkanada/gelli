@@ -35,4 +35,21 @@
         <item>256000</item>
         <item>128000</item>
     </string-array>
+
+    <string-array name="pref_maximum_list_size_titles">
+        <item>@string/unlimited</item>
+        <item>1000</item>
+        <item>400</item>
+        <item>200</item>
+        <item>100</item>
+    </string-array>
+
+    <string-array name="pref_maximum_list_size_values">
+        <item>10000000</item>
+        <item>1000</item>
+        <item>400</item>
+        <item>200</item>
+        <item>100</item>
+    </string-array>
+
 </resources>
