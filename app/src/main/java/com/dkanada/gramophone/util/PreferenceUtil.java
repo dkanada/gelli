@@ -57,6 +57,7 @@ public final class PreferenceUtil {
     public static final String MAXIMUM_BITRATE = "maximum_bitrate";
     public static final String AUDIO_DUCKING = "audio_ducking";
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
+    public static final String REMEMBER_QUEUE = "remember_queue";
 
     public static final String SHOW_ALBUM_COVER = "show_album_cover";
     public static final String BLUR_ALBUM_COVER = "blur_album_cover";
@@ -181,6 +182,10 @@ public final class PreferenceUtil {
 
     public final boolean getRememberShuffle() {
         return mPreferences.getBoolean(REMEMBER_SHUFFLE, true);
+    }
+
+    public final boolean getRememberQueue() {
+        return mPreferences.getBoolean(REMEMBER_QUEUE, true);
     }
 
     public final boolean getShowAlbumCover() {

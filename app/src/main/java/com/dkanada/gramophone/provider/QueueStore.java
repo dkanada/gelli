@@ -26,9 +26,12 @@ import android.provider.MediaStore.Audio.AudioColumns;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.loader.SongLoader;
 import com.dkanada.gramophone.model.Song;
+import com.dkanada.gramophone.util.PreferenceUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QueueStore extends SQLiteOpenHelper {
@@ -175,6 +178,10 @@ public class QueueStore extends SQLiteOpenHelper {
 
     @NonNull
     private List<Song> getQueue(@NonNull final String tableName) {
+        if (!PreferenceUtil.getInstance(App.getInstance()).getRememberQueue()) {
+            return new ArrayList<>();
+        }
+
         Cursor cursor = getReadableDatabase().query(tableName, null,
                 null, null, null, null, null);
         return SongLoader.getSongs(cursor);

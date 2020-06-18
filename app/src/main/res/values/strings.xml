@@ -114,6 +114,7 @@
     <string name="pref_title_audio_ducking">Audio Ducking</string>
     <string name="pref_title_remember_last_tab">Remember Tab</string>
     <string name="pref_title_remember_shuffle">Remember Shuffle</string>
+    <string name="pref_title_remember_queue">Remember Queue</string>
     <string name="primary_color_desc">The primary theme color for control elements.</string>
     <string name="accent_color_desc">An alternate color used to accent elements.</string>
     <string name="pref_summary_album_art_on_lockscreen">Uses the current song\'s album cover as the lockscreen wallpaper.</string>
@@ -124,6 +125,7 @@
     <string name="pref_summary_gapless_playback">"This can cause playback issues on some devices."</string>
     <string name="pref_summary_remember_shuffle">Shuffle mode will stay on when selecting a new list of songs for the queue.</string>
     <string name="pref_summary_colored_navigation_bar">Colors the navigation bar in the primary color.</string>
+    <string name="pref_summary_remember_queue">Save the queue when closing the app so it can persist across sessions.</string>
     <string name="pref_summary_colored_app_shortcuts">Colors the app shortcuts in the primary color.</string>
     <string name="pref_summary_remember_last_tab">Go to the last opened tab on launch.</string>
     <string name="pref_summary_library_categories">Configure visibility and order of library categories.</string>

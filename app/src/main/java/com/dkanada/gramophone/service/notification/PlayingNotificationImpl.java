@@ -178,6 +178,7 @@ public class PlayingNotificationImpl extends PlayingNotification {
     private PendingIntent buildPendingIntent(Context context, final String action, final ComponentName serviceName) {
         Intent intent = new Intent(action);
         intent.setComponent(serviceName);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         return PendingIntent.getService(context, 0, intent, 0);
     }
 }
