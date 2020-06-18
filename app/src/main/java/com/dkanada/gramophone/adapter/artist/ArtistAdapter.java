@@ -95,7 +95,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
         }
 
         if (holder.title != null) {
-            holder.title.setText(artist.getName());
+            holder.title.setText(artist.name);
         }
 
         if (holder.text != null) {
@@ -155,7 +155,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
 
     @Override
     protected String getName(Artist artist) {
-        return artist.getName();
+        return artist.name;
     }
 
     @Override
@@ -167,7 +167,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
     private List<Song> getSongList(@NonNull List<Artist> artists) {
         final List<Song> songs = new ArrayList<>();
         for (Artist artist : artists) {
-            songs.addAll(artist.getSongs());
+            songs.addAll(artist.songs);
         }
 
         return songs;
@@ -176,7 +176,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
     @NonNull
     @Override
     public String getSectionName(int position) {
-        return MusicUtil.getSectionName(dataSet.get(position).getName());
+        return MusicUtil.getSectionName(dataSet.get(position).name);
     }
 
     public class ViewHolder extends MediaEntryViewHolder {

@@ -77,7 +77,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
     }
 
     protected String getAlbumTitle(Album album) {
-        return album.getTitle();
+        return album.title;
     }
 
     protected String getAlbumText(Album album) {
@@ -166,7 +166,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
 
     @Override
     protected String getName(Album album) {
-        return album.getTitle();
+        return album.title;
     }
 
     @Override
@@ -190,13 +190,13 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
         @Nullable String sectionName = null;
         switch (PreferenceUtil.getInstance(activity).getAlbumSortMethod()) {
             case SortMethod.NAME:
-                sectionName = dataSet.get(position).getTitle();
+                sectionName = dataSet.get(position).title;
                 break;
             case SortMethod.ARTIST:
-                sectionName = dataSet.get(position).getArtistName();
+                sectionName = dataSet.get(position).artistName;
                 break;
             case SortMethod.YEAR:
-                return MusicUtil.getYearString(dataSet.get(position).getYear());
+                return MusicUtil.getYearString(dataSet.get(position).year);
             case SortMethod.RANDOM:
                 return activity.getResources().getString(R.string.random);
         }

@@ -67,7 +67,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         switch (getItemViewType(position)) {
             case ALBUM:
                 final Album album = (Album) dataSet.get(position);
-                holder.title.setText(album.getTitle());
+                holder.title.setText(album.title);
                 holder.text.setText(MusicUtil.getAlbumInfoString(activity, album));
                 CustomGlideRequest.Builder
                         .from(Glide.with(activity), album.primary)
@@ -75,7 +75,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 break;
             case ARTIST:
                 final Artist artist = (Artist) dataSet.get(position);
-                holder.title.setText(artist.getName());
+                holder.title.setText(artist.name);
                 holder.text.setText(MusicUtil.getArtistInfoString(activity, artist));
                 CustomGlideRequest.Builder
                         .from(Glide.with(activity), artist.primary)

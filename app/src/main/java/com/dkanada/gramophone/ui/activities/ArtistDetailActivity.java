@@ -171,7 +171,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         songListView.setScrollViewCallbacks(observableScrollViewCallbacks);
         songListView.addHeaderView(songListHeader);
 
-        songAdapter = new ArtistSongAdapter(this, getArtist().getSongs(), this);
+        songAdapter = new ArtistSongAdapter(this, getArtist().songs, this);
         songListView.setAdapter(songAdapter);
 
         final View contentView = getWindow().getDecorView().findViewById(android.R.id.content);
@@ -350,10 +350,10 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     private void setArtist(Artist artist) {
         this.artist = artist;
 
-        getSupportActionBar().setTitle(artist.getName());
-        songCountTextView.setText(MusicUtil.getSongCountString(this, artist.getSongCount()));
-        albumCountTextView.setText(MusicUtil.getAlbumCountString(this, artist.getAlbumCount()));
-        durationTextView.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, artist.getSongs())));
+        getSupportActionBar().setTitle(artist.name);
+        songCountTextView.setText(MusicUtil.getSongCountString(this, artist.songs.size()));
+        albumCountTextView.setText(MusicUtil.getAlbumCountString(this, artist.albums.size()));
+        durationTextView.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, artist.songs)));
 
         // TODO this activity will crash when an artist is passed with an empty album array
         // something in the album adapter is causing the issue

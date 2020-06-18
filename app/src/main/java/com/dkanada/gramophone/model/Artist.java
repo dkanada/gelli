@@ -52,33 +52,13 @@ public class Artist implements Parcelable {
         this.songs = new ArrayList<>();
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getSongCount() {
-        return songs.size();
-    }
-
-    public int getAlbumCount() {
-        return albums.size();
-    }
-
-    public List<Song> getSongs() {
-        return songs;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Artist artist = (Artist) o;
-        return id.equals(artist.getId());
+        return id.equals(artist.id);
     }
 
     @Override

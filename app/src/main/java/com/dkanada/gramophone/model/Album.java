@@ -54,30 +54,6 @@ public class Album implements Parcelable {
         this.songs = new ArrayList<>();
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getArtistId() {
-        return artistId;
-    }
-
-    public String getArtistName() {
-        return artistName;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public int getSongCount() {
-        return songs.size();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
