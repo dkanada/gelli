@@ -64,6 +64,9 @@ public final class PreferenceUtil {
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
     public static final String REMEMBER_QUEUE = "remember_queue";
 
+    public static final String IMAGES_CACHE_SIZE = "images_cache_size";
+    public static final String IMAGES_EXTERNAL_DIRECTORY = "images_external_directory";
+
     public static final String SLEEP_TIMER_LAST_VALUE = "sleep_timer_last_value";
     public static final String SLEEP_TIMER_ELAPSED_REALTIME = "sleep_timer_elapsed_real_time";
     public static final String SLEEP_TIMER_FINISH_SONG = "sleep_timer_finish_music";
@@ -116,6 +119,14 @@ public final class PreferenceUtil {
 
     public final int getMaximumListSize() {
         return Integer.parseInt(mPreferences.getString(MAXIMUM_LIST_SIZE, "100"));
+    }
+
+    public final int getImagesCacheSize() {
+        return Integer.parseInt(mPreferences.getString(IMAGES_CACHE_SIZE, "400000000"));
+    }
+
+    public final boolean getImagesExternalDirectory() {
+        return mPreferences.getBoolean(IMAGES_EXTERNAL_DIRECTORY, false);
     }
 
     public final int getLastTab() {

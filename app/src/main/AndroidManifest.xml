@@ -75,6 +75,9 @@
             android:name="com.lge.support.SPLIT_WINDOW"
             android:value="true" />
         <meta-data
+            android:name="com.dkanada.gramophone.glide.CustomGlideModule"
+            android:value="GlideModule" />
+        <meta-data
             android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule"
             android:value="GlideModule" />
 

@@ -92,6 +92,7 @@
     <string name="pref_header_colors">Colors</string>
     <string name="pref_header_now_playing_screen">Now Playing</string>
     <string name="pref_header_audio">Audio</string>
+    <string name="pref_header_images">Images</string>
     <string name="pref_header_library">Library</string>
     <string name="pref_header_lockscreen">Lockscreen</string>
     <string name="pref_header_notification">Notification</string>
@@ -116,6 +117,9 @@
     <string name="pref_title_remember_shuffle">Remember Shuffle</string>
     <string name="pref_title_remember_queue">Remember Queue</string>
     <string name="pref_title_maximum_list_size">Maximum List Size</string>
+    <string name="pref_title_images_cache_size">Cache Size</string>
+    <string name="pref_title_images_external_directory">External Directory</string>
+    <string name="pref_summary_images_external_directory">Store the image cache in an external directory to keep the files between installs.</string>
     <string name="primary_color_desc">The primary theme color for control elements.</string>
     <string name="accent_color_desc">An alternate color used to accent elements.</string>
     <string name="pref_summary_album_art_on_lockscreen">Uses the current song\'s album cover as the lockscreen wallpaper.</string>
