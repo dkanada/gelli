@@ -7,6 +7,7 @@
     <string name="unplayable_file">Couldn\u2019t play this song.</string>
     <string name="audio_focus_denied">Audio focus denied.</string>
     <string name="error_share_file">There was an error sharing the file.</string>
+    <string name="error_version">Please update your server to the latest version.</string>
 
     <string name="action_share">Share</string>
     <string name="action_settings">"Settings"</string>
