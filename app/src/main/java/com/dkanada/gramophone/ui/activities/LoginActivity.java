@@ -28,6 +28,7 @@ import org.jellyfin.apiclient.model.apiclient.ServerInfo;
 import org.jellyfin.apiclient.model.logging.ILogger;
 import org.jellyfin.apiclient.model.serialization.GsonJsonSerializer;
 import org.jellyfin.apiclient.model.serialization.IJsonSerializer;
+import org.jellyfin.apiclient.model.system.SystemInfo;
 import org.jellyfin.apiclient.model.users.AuthenticationResult;
 
 import java.util.List;
@@ -36,7 +37,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AbsBaseActivity implements View.OnClickListener {
-    public static final String TAG = SplashActivity.class.getSimpleName();
+    public String TAG = SplashActivity.class.getSimpleName();
+    public AndroidCredentialProvider credentialProvider;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -96,7 +98,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
             ILogger logger = new AndroidLogger(TAG);
             IAsyncHttpClient httpClient = new VolleyHttpClient(logger, this);
 
-            AndroidCredentialProvider credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
+            credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
             ConnectionManager connectionManager = App.getConnectionManager(context, jsonSerializer, logger, httpClient);
             connectionManager.Connect(server.getText().toString(), new Response<ConnectionResult>() {
                 @Override
@@ -114,16 +116,27 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                         @Override
                         public void onResponse(AuthenticationResult result) {
                             if (result.getAccessToken() == null) return;
-                            serverCredentials.GetServer(result.getServerId()).setAccessToken(result.getAccessToken());
-                            credentialProvider.SaveCredentials(serverCredentials);
-
-                            Intent intent = new Intent(context, MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            context.startActivity(intent);
+                            check(context, serverCredentials, result);
                         }
                     });
                 }
             });
         }
+    }
+
+    public void check(Context context, ServerCredentials serverCredentials, AuthenticationResult authenticationResult) {
+        App.getApiClient().GetSystemInfoAsync(new Response<SystemInfo>() {
+            @Override
+            public void onResponse(SystemInfo result) {
+                if (Integer.parseInt(result.getVersion().substring(0, 1)) == 1) {
+                    serverCredentials.GetServer(authenticationResult.getServerId()).setAccessToken(authenticationResult.getAccessToken());
+                    credentialProvider.SaveCredentials(serverCredentials);
+
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    context.startActivity(intent);
+                }
+            }
+        });
     }
 }
