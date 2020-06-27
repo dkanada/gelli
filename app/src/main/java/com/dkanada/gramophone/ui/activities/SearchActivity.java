@@ -24,10 +24,11 @@ import com.dkanada.gramophone.ui.activities.base.AbsMusicServiceActivity;
 import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.Util;
 
+import org.jellyfin.apiclient.model.querying.ArtistsQuery;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -144,26 +145,35 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
         this.query = query;
         ItemQuery itemQuery = new ItemQuery();
         itemQuery.setSearchTerm(query);
-        QueryUtil.getItems(itemQuery, new MediaCallback() {
+
+        ArtistsQuery artistsQuery = new ArtistsQuery();
+        artistsQuery.setSearchTerm(query);
+
+        MediaCallback callback = new MediaCallback() {
+            private final List<Object> data = new ArrayList<>();
+
             @Override
             public void onLoadMedia(List<?> media) {
-                Collections.sort(media, new Comparator<Object>() {
-                    public int compare(Object one, Object two) {
-                        if (one.getClass() == Album.class || one.getClass() == Artist.class) {
-                            if (two.getClass() == Song.class) return -1;
-                        }
+                data.addAll(media);
 
-                        if (two.getClass() == Album.class || two.getClass() == Artist.class) {
-                            if (one.getClass() == Song.class) return 1;
-                        }
-
-                        return 0;
+                Collections.sort(data, (one, two) -> {
+                    if (one.getClass() == Album.class || one.getClass() == Artist.class) {
+                        if (two.getClass() == Song.class) return -1;
                     }
+
+                    if (two.getClass() == Album.class || two.getClass() == Artist.class) {
+                        if (one.getClass() == Song.class) return 1;
+                    }
+
+                    return 0;
                 });
 
-                adapter.swapDataSet((List<Object>) media);
+                adapter.swapDataSet(data);
             }
-        });
+        };
+
+        QueryUtil.getArtists(artistsQuery, callback);
+        QueryUtil.getItems(itemQuery, callback);
     }
 
     @Override

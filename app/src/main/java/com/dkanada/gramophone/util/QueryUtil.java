@@ -139,8 +139,7 @@ public class QueryUtil {
         });
     }
 
-    public static void getArtists(MediaCallback callback) {
-        ArtistsQuery query = new ArtistsQuery();
+    public static void getArtists(ArtistsQuery query, MediaCallback callback) {
         query.setFields(new ItemFields[]{ItemFields.Genres});
         applyProperties(query);
         App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
