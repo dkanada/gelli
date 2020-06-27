@@ -1,19 +1,18 @@
 package com.dkanada.gramophone.ui.activities;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.kabouzeid.appthemehelper.ThemeStore;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.SearchAdapter;
 import com.dkanada.gramophone.interfaces.MediaCallback;
@@ -23,13 +22,16 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.ui.activities.base.AbsMusicServiceActivity;
 import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.Util;
+import com.kabouzeid.appthemehelper.ThemeStore;
 
 import org.jellyfin.apiclient.model.querying.ArtistsQuery;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -152,23 +154,41 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
         MediaCallback callback = new MediaCallback() {
             private final List<Object> data = new ArrayList<>();
 
+            @SuppressWarnings("ConstantConditions")
             @Override
             public void onLoadMedia(List<?> media) {
                 data.addAll(media);
 
-                Collections.sort(data, (one, two) -> {
-                    if (one.getClass() == Album.class || one.getClass() == Artist.class) {
-                        if (two.getClass() == Song.class) return -1;
+                Map<Class<?>, List<Object>> byClass = new HashMap<>();
+                byClass.put(Artist.class, new ArrayList<>());
+                byClass.put(Album.class, new ArrayList<>());
+                byClass.put(Song.class, new ArrayList<>());
+                byClass.put(Object.class, new ArrayList<>());
+
+                for (Object datum : data) {
+                    if (byClass.containsKey(datum.getClass())) {
+                        byClass.get(datum.getClass()).add(datum);
+                    } else {
+                        byClass.get(Object.class).add(datum);
                     }
+                }
 
-                    if (two.getClass() == Album.class || two.getClass() == Artist.class) {
-                        if (one.getClass() == Song.class) return 1;
-                    }
+                Collections.sort(byClass.get(Artist.class),
+                        (one, two) -> ((Artist) one).name.compareTo(((Artist) two).name));
 
-                    return 0;
-                });
+                Collections.sort(byClass.get(Album.class),
+                        (one, two) -> ((Album) one).title.compareTo(((Album) two).title));
 
-                adapter.swapDataSet(data);
+                Collections.sort(byClass.get(Song.class),
+                        (one, two) -> ((Song) one).title.compareTo(((Song) two).title));
+
+
+                List<Object> sortedData = byClass.get(Artist.class);
+                sortedData.addAll(byClass.get(Album.class));
+                sortedData.addAll(byClass.get(Song.class));
+                sortedData.addAll(byClass.get(Object.class));
+
+                adapter.swapDataSet(sortedData);
             }
         };
 
