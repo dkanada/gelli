@@ -149,4 +149,6 @@
     <string name="sort_method_artist">Artiste</string>
     <string name="sort_method_album">Album</string>
     <string name="sort_method_year">Année</string>
+    <string name="error_login_empty_addr">Veuillez saisir l\'adresse du serveur.</string>
+    <string name="error_unexpected">Une erreur inattendue s\'est produite.</string>
 </resources>

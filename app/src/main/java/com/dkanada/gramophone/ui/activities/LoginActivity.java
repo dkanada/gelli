@@ -101,27 +101,37 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
 
             credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
             ConnectionManager connectionManager = App.getConnectionManager(context, jsonSerializer, logger, httpClient);
-            connectionManager.Connect(server.getText().toString(), new Response<ConnectionResult>() {
-                @Override
-                public void onResponse(ConnectionResult result) {
-                    App.setApiClient(result.getApiClient());
-                    ServerCredentials serverCredentials = new ServerCredentials();
-                    List<ServerInfo> servers = result.getServers();
 
-                    if (servers.size() < 1) {
-                        return;
-                    }
+            try {
+                connectionManager.Connect(server.getText().toString(), new Response<ConnectionResult>() {
+                    @Override
+                    public void onResponse(ConnectionResult result) {
+                        App.setApiClient(result.getApiClient());
+                        ServerCredentials serverCredentials = new ServerCredentials();
+                        List<ServerInfo> servers = result.getServers();
 
-                    serverCredentials.AddOrUpdateServer(servers.get(0));
-                    App.getApiClient().AuthenticateUserAsync(username.getText().toString(), password.getText().toString(), new Response<AuthenticationResult>() {
-                        @Override
-                        public void onResponse(AuthenticationResult result) {
-                            if (result.getAccessToken() == null) return;
-                            check(context, serverCredentials, result);
+                        if (servers.size() < 1) {
+                            return;
                         }
-                    });
+
+                        serverCredentials.AddOrUpdateServer(servers.get(0));
+                        App.getApiClient().AuthenticateUserAsync(username.getText().toString(), password.getText().toString(), new Response<AuthenticationResult>() {
+                            @Override
+                            public void onResponse(AuthenticationResult result) {
+                                if (result.getAccessToken() == null) return;
+                                check(context, serverCredentials, result);
+                            }
+                        });
+                    }
+                });
+            } catch (IllegalArgumentException e) {
+                if (e.getMessage().equals("address")) {
+                    Toast.makeText(context, context.getResources().getString(R.string.error_login_empty_addr), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, context.getResources().getString(R.string.error_unexpected), Toast.LENGTH_SHORT).show();
                 }
-            });
+            }
+
         }
     }
 
