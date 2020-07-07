@@ -150,8 +150,8 @@
     <string name="sort_method_album">Album</string>
     <string name="sort_method_year">Année</string>
     <string name="action_add_to_playlist">Ajouter à une playlist</string>
-    <string name="action_add_to_queue">Ajouter à la file d\'attente</string>
-    <string name="action_clear_queue">Vider la file d\'attente</string>
+    <string name="action_add_to_queue">Ajouter à la liste de lecture</string>
+    <string name="action_clear_queue">Vider la liste de lecture</string>
     <string name="action_login">Connexion</string>
     <string name="action_new_playlist">Nouvelle playlist</string>
     <string name="action_remove_from_queue">Retirer de la liste de lecture</string>
