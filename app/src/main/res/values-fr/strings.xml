@@ -45,7 +45,7 @@
     <string name="remove_song_x_from_playlist"><![CDATA[Retirer le titre <b>%1$s</b> de la playlist ?]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Retirer les <b>%1$d</b> titres de la playlist ?]]></string>
     <string name="remove_song_from_playlist_title">Retirer le titre de la playlist</string>
-    <string name="remove_songs_from_playlist_title">Retirer les titres de la plaulist</string>
+    <string name="remove_songs_from_playlist_title">Retirer les titres de la playlist</string>
     <string name="rename_playlist_title">Renommer la playlist</string>
     <string name="delete_playlist_title">Supprimer la playlist</string>
     <string name="delete_playlists_title">Supprimer les playlists</string>
