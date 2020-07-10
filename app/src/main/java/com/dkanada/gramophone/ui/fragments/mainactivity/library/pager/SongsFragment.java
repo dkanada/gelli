@@ -58,6 +58,7 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
         QueryUtil.getSongs(new ItemQuery(), new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
+                dataSet.clear();
                 dataSet.addAll((Collection<Song>) media);
                 adapter.notifyDataSetChanged();
             }

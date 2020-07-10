@@ -197,6 +197,8 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
                 break;
             case SortMethod.YEAR:
                 return MusicUtil.getYearString(dataSet.get(position).year);
+            case SortMethod.ADDED:
+                return "";
             case SortMethod.RANDOM:
                 return activity.getResources().getString(R.string.random);
         }

@@ -82,6 +82,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         this.sortMethod = sortMethod;
         saveSortMethod(sortMethod);
         setSortMethod(sortMethod);
+        invalidateAdapter();
     }
 
     public boolean canUsePalette() {

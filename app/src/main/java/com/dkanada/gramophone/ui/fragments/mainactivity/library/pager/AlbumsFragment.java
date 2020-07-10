@@ -38,6 +38,7 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
         QueryUtil.getAlbums(new ItemQuery(), new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
+                dataSet.clear();
                 dataSet.addAll((Collection<Album>) media);
                 adapter.notifyDataSetChanged();
             }
