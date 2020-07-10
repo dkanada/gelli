@@ -101,6 +101,12 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
 
             credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
             ConnectionManager connectionManager = App.getConnectionManager(context, jsonSerializer, logger, httpClient);
+
+            if (server.getText().toString().trim().length() == 0) {
+                Toast.makeText(context, context.getResources().getString(R.string.error_login_empty_addr), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             connectionManager.Connect(server.getText().toString(), new Response<ConnectionResult>() {
                 @Override
                 public void onResponse(ConnectionResult result) {
