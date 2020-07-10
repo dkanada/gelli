@@ -14,6 +14,8 @@ import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 
+import org.jellyfin.apiclient.model.querying.ArtistsQuery;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -38,7 +40,7 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
         List<Artist> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
 
         ArtistAdapter adapter = new ArtistAdapter(getLibraryFragment().getMainActivity(), dataSet, itemLayoutRes, loadUsePalette(), getLibraryFragment());
-        QueryUtil.getArtists(new MediaCallback() {
+        QueryUtil.getArtists(new ArtistsQuery(), new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
                 dataSet.addAll((Collection<Artist>) media);

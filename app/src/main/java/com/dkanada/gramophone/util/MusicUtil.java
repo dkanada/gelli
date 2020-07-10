@@ -63,7 +63,7 @@ public class MusicUtil {
 
     @NonNull
     public static String getArtistInfoString(@NonNull final Context context, @NonNull final Artist artist) {
-        return artist.genres.size() != 0 ? artist.genres.get(0).name : artist.id;
+        return artist.genres.size() != 0 ? artist.genres.get(0).name : "";
     }
 
     @NonNull
