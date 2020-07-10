@@ -128,8 +128,6 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                     });
                 }
             });
-
-
         }
     }
 
