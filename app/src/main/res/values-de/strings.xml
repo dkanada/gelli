@@ -32,7 +32,6 @@
     <string name="label_file_size">Größe</string>
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Länge</string>
-    <string name="label_bit_rate">Bitrate</string>
     <string name="label_sampling_rate">Samplingrate</string>
     <string name="action_go_to_artist">Gehe zu Interpret</string>
     <string name="action_go_to_album">Gehe zum Album</string>
@@ -89,6 +88,8 @@
     <string name="no_artists">Keine Interpreten</string>
     <string name="no_genres">Keine Genres</string>
     <string name="empty">Leer</string>
+    <string name="error_unreachable_server">Kann Server nicht erreichen.</string>
+    <string name="error_login_credentials">Ungültige Anmeldedaten.</string>
     <string name="song">Titel</string>
     <string name="pref_summary_album_art_on_lockscreen">Das Album Cover des aktuellen Titels wird als Hintergrund im Sperrbildschirm verwendet.</string>
     <string name="pref_summary_blurred_album_art">Lässt das Album Cover auf dem Sperrbildschirm verschwommen aussehen. Kann Probleme mit Apps und Widgets von Dritten verursachen.</string>
@@ -124,7 +125,7 @@
     <string name="donate">Spenden</string>
     <string name="donate_summary">Wenn du denkst, dass ich es verdient hätte für meine Arbeit bezahlt zu werden, kannst du mir hier ein paar Euro da lassen.</string>
     <string name="aidan_follestad_summary">Für die Theme Engine und andere tolle Sachen.</string>
-    <string name="maarten_corpel_summary">Für das Machen der Play Store Illustration und des leeren Album Covers.</string>
+    <string name="maarten_corpel_summary">Für das Erstellen der Play Store Illustration und des leeren Album Covers.</string>
     <string name="aleksandar_tesic_summary">Für die Hilfe beim Design.</string>
     <string name="website">Website</string>
     <string name="up_next">Als nächstes</string>
@@ -132,7 +133,7 @@
     <string name="app_widget_big_name">Phonograph - Groß</string>
     <string name="app_widget_classic_name">Phonograph - Klassisch</string>
     <string name="app_widget_card_name">Phonograph - Karte</string>
-    <string name="login">Login</string>
+    <string name="login">Einloggen</string>
     <string name="username">Benutzername</string>
     <string name="password">Passwort</string>
     <string name="app_shortcut_shuffle_all_short">Zufällig</string>
@@ -153,4 +154,32 @@
     <string name="sort_method_album">Album</string>
     <string name="sort_method_year">Jahr</string>
     <string name="finish_current_music_sleep_timer">Letzten Song beenden</string>
+    <string name="action_login">Einloggen</string>
+    <string name="action_add_to_queue">In Warteschlange</string>
+    <string name="action_remove_from_queue">Aus Warteschlange entfernen</string>
+    <string name="action_add_to_playlist">Zu Wiedergabeliste hinzufügen</string>
+    <string name="action_clear_queue">Warteschlange leeren</string>
+    <string name="action_save_queue">Warteschlange speichern</string>
+    <string name="action_sort_method">Sortierungsmethode</string>
+    <string name="action_new_playlist">Neue Wiedergabeliste</string>
+    <string name="black_theme_name">Schwarz</string>
+    <string name="pref_header_images">Bilder</string>
+    <string name="pref_title_maximum_bitrate">Maximale Bitrate</string>
+    <string name="pref_title_remember_queue">Warteschlange merken</string>
+    <string name="pref_title_maximum_list_size">Maximale Listen Größe</string>
+    <string name="pref_title_images_cache_size">Cache Größe</string>
+    <string name="pref_title_images_external_directory">Externes Verzeichnis</string>
+    <string name="pref_summary_images_external_directory">"Bildcache in externen Verzeichnis speichern, um die Dateien zwischen Installationen aufzubewahren. "</string>
+    <string name="pref_summary_remember_queue">Warteschlange beim Schließen der Anwendung speichen, damit sie über Sitzungen hinweg bestehen bleibt.</string>
+    <string name="source">Quellcode</string>
+    <string name="report_bugs">Melde Fehler</string>
+    <string name="report_bugs_summary">Einen Issue für neue Funktionen oder Fehler öffnen.</string>
+    <string name="logout">Abmelden</string>
+    <string name="unlimited">Unbegrenzt</string>
+    <string name="sort_method_random">Zufällig</string>
+    <string name="added_title_to_queue">Einen Titel zur Wiedergabeliste hinzugefügt.</string>
+    <string name="added_x_titles_to_queue">%1$d Titel zur Wiedergabeliste hinzugefügt.</string>
+    <string name="error_version">Bitte update den Server auf die aktuellste Version.</string>
+    <string name="error_share_file">Die Datei konnte nicht geteilt werden.</string>
+    <string name="pref_title_transcode_codec">Transkodierungs Codec</string>
 </resources>
