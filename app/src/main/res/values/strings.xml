@@ -190,11 +190,6 @@
     <string name="up_next">Up next</string>
     <string name="x_selected">%1$d selected</string>
 
-    <string name="error_credential_validation">Field cannot be empty</string>
-    <string name="server_unreachable">Server unreachable</string>
-    <string name="authentication_failed">Authentication failed</string>
-    <string name="No_network_connection_available">No network connection available</string>
-
     <string name="app_shortcut_shuffle_all_short">Shuffle</string>
     <string name="app_shortcut_top_tracks_short">Top tracks</string>
     <string name="app_shortcut_last_added_short">Last added</string>
@@ -221,5 +216,8 @@
     <string name="sleep_timer_set">Sleep timer set for %d minutes from now.</string>
     <string name="error_login_empty_addr">Please fill in the server address.</string>
     <string name="error_unexpected">An unexpected error occurred.</string>
-
+    <string name="field_cannot_be_empty">Field cannot be empty</string>
+    <string name="server_is_unreachable">Server unreachable</string>
+    <string name="authentication_failed">Authentication failed</string>
+    <string name="no_network_connection_available">No network connection available</string>
 </resources>
