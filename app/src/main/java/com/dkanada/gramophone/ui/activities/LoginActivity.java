@@ -3,6 +3,8 @@ package com.dkanada.gramophone.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -94,41 +96,69 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if (v == login) {
-            final Context context = this;
-            IJsonSerializer jsonSerializer = new GsonJsonSerializer();
-            ILogger logger = new AndroidLogger(TAG);
-            IAsyncHttpClient httpClient = new VolleyHttpClient(logger, this);
+            String mUsername = username.getText().toString().trim();
+            String mPassword = password.getText().toString().trim();
+            String mServer = server.getText().toString().trim();
 
-            credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
-            ConnectionManager connectionManager = App.getConnectionManager(context, jsonSerializer, logger, httpClient);
+            if (validate(mUsername, mPassword, mServer)) {
+                final Context context = this;
+                IJsonSerializer jsonSerializer = new GsonJsonSerializer();
+                ILogger logger = new AndroidLogger(TAG);
+                IAsyncHttpClient httpClient = new VolleyHttpClient(logger, this);
 
-            if (server.getText().toString().trim().length() == 0) {
-                Toast.makeText(context, context.getResources().getString(R.string.error_login_empty_addr), Toast.LENGTH_SHORT).show();
-                return;
-            }
+                credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
+                ConnectionManager connectionManager = App.getConnectionManager(context, jsonSerializer, logger, httpClient);
+                connectionManager.Connect(server.getText().toString(), new Response<ConnectionResult>() {
+                    @Override
+                    public void onResponse(ConnectionResult result) {
+                        App.setApiClient(result.getApiClient());
+                        ServerCredentials serverCredentials = new ServerCredentials();
+                        List<ServerInfo> servers = result.getServers();
 
-            connectionManager.Connect(server.getText().toString(), new Response<ConnectionResult>() {
-                @Override
-                public void onResponse(ConnectionResult result) {
-                    App.setApiClient(result.getApiClient());
-                    ServerCredentials serverCredentials = new ServerCredentials();
-                    List<ServerInfo> servers = result.getServers();
-
-                    if (servers.size() < 1) {
-                        return;
-                    }
-
-                    serverCredentials.AddOrUpdateServer(servers.get(0));
-                    App.getApiClient().AuthenticateUserAsync(username.getText().toString(), password.getText().toString(), new Response<AuthenticationResult>() {
-                        @Override
-                        public void onResponse(AuthenticationResult result) {
-                            if (result.getAccessToken() == null) return;
-                            check(context, serverCredentials, result);
+                        if (servers.size() < 1) {
+                            Toast.makeText(context, R.string.server_unreachable, Toast.LENGTH_SHORT).show();
+                            return;
                         }
-                    });
-                }
-            });
+
+                        serverCredentials.AddOrUpdateServer(servers.get(0));
+                        App.getApiClient().AuthenticateUserAsync(username.getText().toString(), password.getText().toString(), new Response<AuthenticationResult>() {
+                            @Override
+                            public void onResponse(AuthenticationResult result) {
+                                if (result.getAccessToken() == null) return;
+                                check(context, serverCredentials, result);
+                            }
+
+                            @Override
+                            public void onError(Exception exception) {
+                                Log.e(TAG, exception.getMessage());
+                                Toast.makeText(LoginActivity.this, R.string.authentication_failed, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+            }
         }
+    }
+
+    public boolean validate(String mUsername, String mPassword, String mServerAddres) {
+        boolean isValid = true;
+
+        if (TextUtils.isEmpty(mUsername)) {
+            username.setError(getString(R.string.error_credential_validation));
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(mPassword)) {
+            password.setError(getString(R.string.error_credential_validation));
+            isValid = false;
+        }
+
+        if (TextUtils.isEmpty(mServerAddres)) {
+            server.setError(getString(R.string.error_credential_validation));
+            isValid = false;
+        }
+
+        return isValid;
     }
 
     public void check(Context context, ServerCredentials serverCredentials, AuthenticationResult authenticationResult) {

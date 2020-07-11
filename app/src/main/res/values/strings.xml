@@ -190,6 +190,10 @@
     <string name="up_next">Up next</string>
     <string name="x_selected">%1$d selected</string>
 
+    <string name="error_credential_validation">Field cannot be empty</string>
+    <string name="server_unreachable">Server unreachable</string>
+    <string name="authentication_failed">Authentication failed</string>
+
     <string name="app_shortcut_shuffle_all_short">Shuffle</string>
     <string name="app_shortcut_top_tracks_short">Top tracks</string>
     <string name="app_shortcut_last_added_short">Last added</string>
