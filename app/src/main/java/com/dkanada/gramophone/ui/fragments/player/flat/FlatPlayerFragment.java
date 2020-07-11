@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,10 +58,12 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
     @BindView(R.id.player_status_bar)
     View playerStatusBar;
+    @Nullable
     @BindView(R.id.toolbar_container)
     FrameLayout toolbarContainer;
     @BindView(R.id.player_toolbar)
     Toolbar toolbar;
+    @Nullable
     @BindView(R.id.player_sliding_layout)
     SlidingUpPanelLayout slidingUpPanelLayout;
     @BindView(R.id.player_recycler_view)
