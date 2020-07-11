@@ -32,13 +32,6 @@ public class SplashActivity extends AbsBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        setDrawUnderStatusbar();
-        ButterKnife.bind(this);
-
-        setStatusbarColorAuto();
-        setNavigationbarColorAuto();
-        setTaskDescriptionColorAuto();
 
         IJsonSerializer jsonSerializer = new GsonJsonSerializer();
         ILogger logger = new AndroidLogger(TAG);
@@ -48,6 +41,12 @@ public class SplashActivity extends AbsBaseActivity {
         connectionManager = App.getConnectionManager(this, jsonSerializer, logger, httpClient);
 
         login();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 
     public void login() {

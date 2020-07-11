@@ -28,7 +28,9 @@
         <activity android:name=".ui.activities.GenreDetailActivity" />
         <activity android:name=".ui.activities.PlaylistDetailActivity" />
         <activity android:name=".ui.activities.SearchActivity" />
-        <activity android:name=".ui.activities.SplashActivity">
+        <activity android:name=".ui.activities.SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.MUSIC_PLAYER" />

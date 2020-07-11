@@ -37,4 +37,8 @@
         <item name="android:transitionName" tools:ignore="NewApi">toolbar</item>
     </style>
 
+    <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/activity_splash</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
 </resources>
