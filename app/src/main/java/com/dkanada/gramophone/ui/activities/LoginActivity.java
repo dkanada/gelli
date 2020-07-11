@@ -42,7 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AbsBaseActivity implements View.OnClickListener {
-    public String TAG = SplashActivity.class.getSimpleName();
+    public String TAG = LoginActivity.class.getSimpleName();
     public AndroidCredentialProvider credentialProvider;
 
     @BindView(R.id.toolbar)
@@ -68,6 +68,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         setTaskDescriptionColorAuto();
 
         setUpViews();
+        checkNetworkConnection();
     }
 
     private void setUpViews() {
@@ -185,7 +186,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         boolean isConnected = connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
 
-        if(!isConnected) {
+        if (!isConnected) {
             Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), R.string.No_network_connection_available, Snackbar.LENGTH_LONG);
             snackbar.show();
             return false;
