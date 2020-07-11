@@ -107,6 +107,11 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                 return;
             }
 
+            if(username.getText().toString().trim().length()==0){
+                Toast.makeText(context, context.getResources().getString(R.string.error_no_username), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             connectionManager.Connect(server.getText().toString(), new Response<ConnectionResult>() {
                 @Override
                 public void onResponse(ConnectionResult result) {
@@ -115,6 +120,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                     List<ServerInfo> servers = result.getServers();
 
                     if (servers.size() < 1) {
+                        Toast.makeText(context, context.getResources().getString(R.string.error_unreachable_server), Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -124,6 +130,11 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                         public void onResponse(AuthenticationResult result) {
                             if (result.getAccessToken() == null) return;
                             check(context, serverCredentials, result);
+                        }
+
+                        @Override
+                        public void onError(Exception exception) {
+                            Toast.makeText(context, context.getResources().getString(R.string.error_login_credentials), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
