@@ -71,6 +71,12 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         checkNetworkConnection();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
     private void setUpViews() {
         setUpToolbar();
         setUpOnClickListeners();
@@ -119,7 +125,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                         List<ServerInfo> servers = result.getServers();
 
                         if (servers.size() < 1) {
-                            Toast.makeText(context, R.string.server_unreachable, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.server_is_unreachable, Toast.LENGTH_SHORT).show();
                             return;
                         }
 
@@ -147,17 +153,17 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         boolean isValid = true;
 
         if (TextUtils.isEmpty(mUsername)) {
-            username.setError(getString(R.string.error_credential_validation));
+            username.setError(getString(R.string.field_cannot_be_empty));
             isValid = false;
         }
 
         if (TextUtils.isEmpty(mPassword)) {
-            password.setError(getString(R.string.error_credential_validation));
+            password.setError(getString(R.string.field_cannot_be_empty));
             isValid = false;
         }
 
         if (TextUtils.isEmpty(mServerAddres)) {
-            server.setError(getString(R.string.error_credential_validation));
+            server.setError(getString(R.string.field_cannot_be_empty));
             isValid = false;
         }
 
@@ -187,7 +193,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         boolean isConnected = connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
 
         if (!isConnected) {
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), R.string.No_network_connection_available, Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), R.string.no_network_connection_available, Snackbar.LENGTH_LONG);
             snackbar.show();
             return false;
         }

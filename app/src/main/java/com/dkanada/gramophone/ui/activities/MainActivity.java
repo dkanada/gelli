@@ -113,6 +113,12 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
         });
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
     private void setCurrentFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, null).commit();
         currentFragment = (MainActivityFragmentCallbacks) fragment;
