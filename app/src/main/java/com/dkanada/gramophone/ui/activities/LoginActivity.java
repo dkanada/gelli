@@ -2,6 +2,7 @@ package com.dkanada.gramophone.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,6 +18,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
+import com.google.android.material.snackbar.Snackbar;
 import com.kabouzeid.appthemehelper.ThemeStore;
 
 import org.jellyfin.apiclient.interaction.AndroidCredentialProvider;
@@ -95,7 +97,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if (v == login) {
+        if (v == login && checkNetworkConnection()) {
             String mUsername = username.getText().toString().trim();
             String mPassword = password.getText().toString().trim();
             String mServer = server.getText().toString().trim();
@@ -177,5 +179,17 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                 }
             }
         });
+    }
+
+    private boolean checkNetworkConnection() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        boolean isConnected = connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+
+        if(!isConnected) {
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), R.string.No_network_connection_available, Snackbar.LENGTH_LONG);
+            snackbar.show();
+            return false;
+        }
+        return true;
     }
 }

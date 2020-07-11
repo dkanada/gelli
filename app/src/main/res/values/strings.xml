@@ -193,6 +193,7 @@
     <string name="error_credential_validation">Field cannot be empty</string>
     <string name="server_unreachable">Server unreachable</string>
     <string name="authentication_failed">Authentication failed</string>
+    <string name="No_network_connection_available">No network connection available</string>
 
     <string name="app_shortcut_shuffle_all_short">Shuffle</string>
     <string name="app_shortcut_top_tracks_short">Top tracks</string>
