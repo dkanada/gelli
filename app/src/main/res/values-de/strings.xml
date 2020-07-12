@@ -181,5 +181,5 @@
     <string name="added_x_titles_to_queue">%1$d Titel zur Wiedergabeliste hinzugefügt.</string>
     <string name="error_version">Bitte update den Server auf die aktuellste Version.</string>
     <string name="error_share_file">Die Datei konnte nicht geteilt werden.</string>
-    <string name="pref_title_transcode_codec">Transkodierungs Codec</string>
+    <string name="pref_title_transcode_codec">Transkodierungs-Codec</string>
 </resources>
