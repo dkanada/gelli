@@ -182,4 +182,8 @@
     <string name="error_version">Bitte update den Server auf die aktuellste Version.</string>
     <string name="error_share_file">Die Datei konnte nicht geteilt werden.</string>
     <string name="pref_title_transcode_codec">Transkodierungs-Codec</string>
+    <string name="field_cannot_be_empty">Das Feld darf nicht leer sein.</string>
+    <string name="server_is_unreachable">Server nicht erreichbar.</string>
+    <string name="authentication_failed">Authentifizierung fehlgeschlagen.</string>
+    <string name="no_network_connection_available">Keine Netzwerkverbindung verfügbar.</string>
 </resources>
