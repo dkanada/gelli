@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.helper.NetworkConnectionHelper;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.kabouzeid.appthemehelper.ThemeStore;
@@ -45,8 +46,6 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     public String TAG = LoginActivity.class.getSimpleName();
     public AndroidCredentialProvider credentialProvider;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
     @BindView(R.id.username)
     EditText username;
     @BindView(R.id.password)
@@ -68,7 +67,6 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         setTaskDescriptionColorAuto();
 
         setUpViews();
-        checkNetworkConnection();
     }
 
     @Override
@@ -78,14 +76,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     }
 
     private void setUpViews() {
-        setUpToolbar();
         setUpOnClickListeners();
-    }
-
-    private void setUpToolbar() {
-        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setUpOnClickListeners() {
@@ -104,47 +95,52 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if (v == login && checkNetworkConnection()) {
-            String mUsername = username.getText().toString().trim();
-            String mPassword = password.getText().toString().trim();
-            String mServer = server.getText().toString().trim();
+        if (v == login) {
+            if (NetworkConnectionHelper.checkNetworkConnection(this)) {
+                String mUsername = username.getText().toString().trim();
+                String mPassword = password.getText().toString().trim();
+                String mServer = server.getText().toString().trim();
 
-            if (validate(mUsername, mPassword, mServer)) {
-                final Context context = this;
-                IJsonSerializer jsonSerializer = new GsonJsonSerializer();
-                ILogger logger = new AndroidLogger(TAG);
-                IAsyncHttpClient httpClient = new VolleyHttpClient(logger, this);
+                if (validate(mUsername, mPassword, mServer)) {
+                    final Context context = this;
+                    IJsonSerializer jsonSerializer = new GsonJsonSerializer();
+                    ILogger logger = new AndroidLogger(TAG);
+                    IAsyncHttpClient httpClient = new VolleyHttpClient(logger, this);
 
-                credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
-                ConnectionManager connectionManager = App.getConnectionManager(context, jsonSerializer, logger, httpClient);
-                connectionManager.Connect(server.getText().toString(), new Response<ConnectionResult>() {
-                    @Override
-                    public void onResponse(ConnectionResult result) {
-                        App.setApiClient(result.getApiClient());
-                        ServerCredentials serverCredentials = new ServerCredentials();
-                        List<ServerInfo> servers = result.getServers();
+                    credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
+                    ConnectionManager connectionManager = App.getConnectionManager(context, jsonSerializer, logger, httpClient);
+                    connectionManager.Connect(server.getText().toString(), new Response<ConnectionResult>() {
+                        @Override
+                        public void onResponse(ConnectionResult result) {
+                            App.setApiClient(result.getApiClient());
+                            ServerCredentials serverCredentials = new ServerCredentials();
+                            List<ServerInfo> servers = result.getServers();
 
-                        if (servers.size() < 1) {
-                            Toast.makeText(context, R.string.server_is_unreachable, Toast.LENGTH_SHORT).show();
-                            return;
+                            if (servers.size() < 1) {
+                                Toast.makeText(context, R.string.server_is_unreachable, Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            serverCredentials.AddOrUpdateServer(servers.get(0));
+                            App.getApiClient().AuthenticateUserAsync(username.getText().toString(), password.getText().toString(), new Response<AuthenticationResult>() {
+                                @Override
+                                public void onResponse(AuthenticationResult result) {
+                                    if (result.getAccessToken() == null) return;
+                                    check(context, serverCredentials, result);
+                                }
+
+                                @Override
+                                public void onError(Exception exception) {
+                                    Log.e(TAG, exception.getMessage());
+                                    Toast.makeText(LoginActivity.this, R.string.authentication_failed, Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         }
-
-                        serverCredentials.AddOrUpdateServer(servers.get(0));
-                        App.getApiClient().AuthenticateUserAsync(username.getText().toString(), password.getText().toString(), new Response<AuthenticationResult>() {
-                            @Override
-                            public void onResponse(AuthenticationResult result) {
-                                if (result.getAccessToken() == null) return;
-                                check(context, serverCredentials, result);
-                            }
-
-                            @Override
-                            public void onError(Exception exception) {
-                                Log.e(TAG, exception.getMessage());
-                                Toast.makeText(LoginActivity.this, R.string.authentication_failed, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
+                    });
+                }
+            } else {
+                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), R.string.no_network_connection_available, Snackbar.LENGTH_LONG);
+                snackbar.show();
             }
         }
     }
@@ -186,17 +182,5 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                 }
             }
         });
-    }
-
-    private boolean checkNetworkConnection() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        boolean isConnected = connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
-
-        if (!isConnected) {
-            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), R.string.no_network_connection_available, Snackbar.LENGTH_LONG);
-            snackbar.show();
-            return false;
-        }
-        return true;
     }
 }

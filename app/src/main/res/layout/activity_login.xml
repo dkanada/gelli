@@ -3,26 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.activities.LoginActivity">
 
-    <include layout="@layout/status_bar" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="@style/Toolbar"
-        android:background="@android:color/transparent" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
-        android:src="@mipmap/ic_launcher" />
+    <TextView
+        android:id="@+id/text_sign_in"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="32dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Sign in"
+        android:textSize="32sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/ic_finish"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
             android:id="@+id/username"
@@ -30,16 +30,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:inputType="textShortMessage"
-            android:hint="@string/username" />
+            android:hint="@string/username"
+            android:text="Antonio" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/ic_finish"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
             android:id="@+id/password"
@@ -47,16 +50,19 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:inputType="textPassword"
-            android:hint="@string/password" />
+            android:hint="@string/password"
+            android:text="D5S%TXefMwHg4!i%ucNHJ#57" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:startIconDrawable="@drawable/ic_finish"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <EditText
             android:id="@+id/server"
@@ -67,7 +73,8 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:inputType="textShortMessage"
-            android:hint="@string/server" />
+            android:hint="@string/server"
+            android:text="http://192.168.1.81:8096" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

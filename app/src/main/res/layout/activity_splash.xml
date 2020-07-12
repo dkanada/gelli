@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/splash_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/no_network_logo"
+            android:layout_width="256dp"
+            android:layout_height="256dp"
+            android:layout_marginTop="128dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:srcCompat="@drawable/ic_no_network" />
+
+        <LinearLayout
+            android:id="@+id/text_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/top_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Whoops"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/middle_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Slow or no network connection" />
+
+            <TextView
+                android:id="@+id/bottom_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please check your network settings" />
+
+            <Button
+                android:id="@+id/retry_connection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="retry"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="96dp"
+                android:layout_marginRight="96dp"
+                android:layout_marginBottom="96dp"
+                android:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+

@@ -38,7 +38,8 @@
     </style>
 
     <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/activity_splash</item>
         <item name="android:windowAnimationStyle">@null</item>
     </style>
+
+    <style name="LoginScreen" parent="Theme.MaterialComponents.Light.NoActionBar" />
 </resources>
