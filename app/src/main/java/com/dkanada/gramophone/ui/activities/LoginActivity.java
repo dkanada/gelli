@@ -20,6 +20,7 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.NetworkConnectionHelper;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.kabouzeid.appthemehelper.ThemeStore;
 
 import org.jellyfin.apiclient.interaction.AndroidCredentialProvider;
@@ -46,6 +47,12 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     public String TAG = LoginActivity.class.getSimpleName();
     public AndroidCredentialProvider credentialProvider;
 
+    @BindView(R.id.username_textLayout)
+    TextInputLayout username_layout;
+    @BindView(R.id.password_textLayout)
+    TextInputLayout password_layout;
+    @BindView(R.id.server_textLayout)
+    TextInputLayout server_layout;
     @BindView(R.id.username)
     EditText username;
     @BindView(R.id.password)
@@ -149,18 +156,24 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         boolean isValid = true;
 
         if (TextUtils.isEmpty(mUsername)) {
-            username.setError(getString(R.string.field_cannot_be_empty));
+            username_layout.setError(getString(R.string.field_cannot_be_empty));
             isValid = false;
+        } else {
+            username_layout.setError(null);
         }
 
         if (TextUtils.isEmpty(mPassword)) {
-            password.setError(getString(R.string.field_cannot_be_empty));
+            password_layout.setError(getString(R.string.field_cannot_be_empty));
             isValid = false;
+        } else {
+            password_layout.setError(null);
         }
 
         if (TextUtils.isEmpty(mServerAddres)) {
-            server.setError(getString(R.string.field_cannot_be_empty));
+            server_layout.setError(getString(R.string.field_cannot_be_empty));
             isValid = false;
+        } else {
+            server_layout.setError(null);
         }
 
         return isValid;

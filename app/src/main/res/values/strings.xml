@@ -190,6 +190,11 @@
     <string name="up_next">Up next</string>
     <string name="x_selected">%1$d selected</string>
 
+    <string name="top_error_message">Whoops</string>
+    <string name="middle_error_message">Slow or no network connection</string>
+    <string name="bottom_error_message">Please check your network settings</string>
+    <string name="retry">retry</string>
+
     <string name="app_shortcut_shuffle_all_short">Shuffle</string>
     <string name="app_shortcut_top_tracks_short">Top tracks</string>
     <string name="app_shortcut_last_added_short">Last added</string>

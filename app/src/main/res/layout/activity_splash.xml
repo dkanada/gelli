@@ -39,31 +39,30 @@
                 android:id="@+id/top_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Whoops"
+                android:text="@string/top_error_message"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/middle_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Slow or no network connection" />
+                android:text="@string/middle_error_message" />
 
             <TextView
                 android:id="@+id/bottom_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Please check your network settings" />
+                android:text="@string/bottom_error_message" />
 
             <Button
                 android:id="@+id/retry_connection"
-                android:layout_width="match_parent"
+                android:layout_width="256dp"
                 android:layout_height="wrap_content"
-                android:text="retry"
-                android:layout_marginTop="16dp"
+                android:text="@string/retry"
+                android:layout_marginTop="8dp"
                 android:layout_marginLeft="96dp"
                 android:layout_marginRight="96dp"
-                android:layout_marginBottom="96dp"
-                android:visibility="visible" />
+                android:layout_marginBottom="16dp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
