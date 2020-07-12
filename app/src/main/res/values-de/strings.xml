@@ -169,7 +169,7 @@
     <string name="pref_title_maximum_list_size">Maximale Listen Größe</string>
     <string name="pref_title_images_cache_size">Cache Größe</string>
     <string name="pref_title_images_external_directory">Externes Verzeichnis</string>
-    <string name="pref_summary_images_external_directory">"Bildcache in externen Verzeichnis speichern, um die Dateien zwischen Installationen aufzubewahren. "</string>
+    <string name="pref_summary_images_external_directory">"Bildcache in externem Verzeichnis speichern, um die Dateien zwischen Installationen aufzubewahren. "</string>
     <string name="pref_summary_remember_queue">Warteschlange beim Schließen der Anwendung speichen, damit sie über Sitzungen hinweg bestehen bleibt.</string>
     <string name="source">Quellcode</string>
     <string name="report_bugs">Melde Fehler</string>
