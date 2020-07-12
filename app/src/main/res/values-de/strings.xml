@@ -153,6 +153,7 @@
     <string name="sort_method_artist">Interpret</string>
     <string name="sort_method_album">Album</string>
     <string name="sort_method_year">Jahr</string>
+    <string name="sort_method_added">Hinzugefügt</string>
     <string name="finish_current_music_sleep_timer">Letzten Song beenden</string>
     <string name="action_login">Einloggen</string>
     <string name="action_add_to_queue">In Warteschlange</string>
