@@ -41,5 +41,7 @@
         <item name="android:windowAnimationStyle">@null</item>
     </style>
 
-    <style name="LoginScreen" parent="Theme.MaterialComponents.Light.DarkActionBar" />
+    <style name="LoginScreen" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
 </resources>
