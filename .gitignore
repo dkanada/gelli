@@ -16,3 +16,4 @@ local.properties
 # IntelliJ
 *.iml
 .idea
+/.vs

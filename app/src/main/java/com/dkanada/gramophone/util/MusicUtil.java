@@ -38,7 +38,9 @@ public class MusicUtil {
 
         // web client maximum is 12444445 and 320kbps is 320000
         builder.append("&MaxStreamingBitrate=" + PreferenceUtil.getInstance(App.getInstance()).getMaximumBitrate());
-        builder.append("&Container=flac");
+        
+        builder.append("&Container=mka|opus,mp3|mp3,m4a|aac,ogg|vorbis,flac|flac");
+
         builder.append("&TranscodingContainer=ts");
         builder.append("&TranscodingProtocol=hls");
 
