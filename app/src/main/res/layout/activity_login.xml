@@ -26,14 +26,14 @@
             android:layout_marginRight="64dp" />
 
         <TextView
-            android:id="@+id/text_sign_in"
+            android:id="@+id/text_log_in"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="@string/sign_in"
+            android:text="@string/log_in"
             android:textSize="28sp"
             android:textStyle="bold" />
 
