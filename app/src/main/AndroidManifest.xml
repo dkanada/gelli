@@ -56,7 +56,8 @@
         <activity
             android:name=".ui.activities.LoginActivity"
             android:label="@string/action_login"
-            android:theme="@style/LoginScreen" />
+            android:theme="@style/LoginScreen"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".shortcuts.AppShortcutLauncherActivity"
             android:launchMode="singleInstance"

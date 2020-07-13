@@ -22,7 +22,8 @@
             android:id="@+id/no_network_logo"
             android:layout_width="256dp"
             android:layout_height="256dp"
-            android:layout_marginTop="128dp"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
             android:layout_gravity="center"
             android:visibility="gone"
             app:srcCompat="@drawable/ic_no_network" />
@@ -46,6 +47,7 @@
                 android:id="@+id/middle_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:text="@string/middle_error_message" />
 
             <TextView
@@ -56,7 +58,7 @@
 
             <Button
                 android:id="@+id/retry_connection"
-                android:layout_width="256dp"
+                android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:text="@string/retry"
                 android:layout_marginTop="8dp"

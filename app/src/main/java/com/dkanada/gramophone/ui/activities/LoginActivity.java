@@ -83,6 +83,14 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     }
 
     private void setUpViews() {
+        int primaryColor = ThemeStore.primaryColor(this);
+
+        username_layout.setBoxStrokeColor(primaryColor);
+        password_layout.setBoxStrokeColor(primaryColor);
+        server_layout.setBoxStrokeColor(primaryColor);
+        
+        login.setBackgroundColor(primaryColor);
+
         setUpOnClickListeners();
     }
 

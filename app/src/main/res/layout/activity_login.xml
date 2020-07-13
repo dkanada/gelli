@@ -4,15 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".ui.activities.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingTop="32dp"
-        android:paddingBottom="32dp"
-        tools:context=".ui.activities.LoginActivity">
+        android:paddingBottom="32dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:src="@drawable/app_login_image"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp" />
 
         <TextView
             android:id="@+id/text_sign_in"
@@ -20,10 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:paddingTop="48dp"
-            android:paddingBottom="32dp"
-            android:text="Sign in"
-            android:textSize="32sp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="@string/sign_in"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -34,7 +45,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:padding="2dp"
-            app:hintTextColor="@color/md_purple_700"
+            app:hintTextColor="?android:textColorSecondary"
             app:boxStrokeColor="@color/md_purple_700"
             app:errorEnabled="true"
             app:boxCornerRadiusTopStart="24dp"
@@ -48,6 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
+                android:text="Antonio"
+                app:hintTextColor="?android:textColorSecondary"
                 android:inputType="textShortMessage" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,7 +72,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:padding="2dp"
-            app:hintTextColor="@color/md_purple_700"
+            app:hintTextColor="?android:textColorSecondary"
             app:boxStrokeColor="@color/md_purple_700"
             app:errorEnabled="true"
             app:boxCornerRadiusTopStart="24dp"
@@ -74,6 +87,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
+                android:text="D5S%TXefMwHg4!i%ucNHJ#57"
+                app:hintTextColor="?android:textColorSecondary"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +100,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:padding="2dp"
-            app:hintTextColor="@color/md_purple_700"
+            app:hintTextColor="?android:textColorSecondary"
             app:boxStrokeColor="@color/md_purple_700"
             app:errorEnabled="true"
             app:boxCornerRadiusTopStart="24dp"
@@ -99,6 +114,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/server"
+                android:text="http://192.168.1.81:8096/"
+                app:hintTextColor="?android:textColorSecondary"
                 android:inputType="textShortMessage" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +129,6 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:textColor="@color/md_white_1000"
-            android:backgroundTint="@color/md_purple_700"
             android:text="@string/login"
             app:cornerRadius="24dp" />
 
