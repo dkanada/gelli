@@ -153,4 +153,21 @@
     <string name="sort_method_album">Album</string>
     <string name="sort_method_year">Anno</string>
     <string name="finish_current_music_sleep_timer">Termina l\'ultimo brano</string>
+    <string name="action_add_to_queue">Aggiungi alla coda</string>
+    <string name="action_remove_from_queue">Rimuovi dalla coda</string>
+    <string name="action_sort_method">Metodo di ordinamento</string>
+    <string name="action_save_queue">Salva coda</string>
+    <string name="action_new_playlist">Nuova playlist</string>
+    <string name="name">Nome</string>
+    <string name="added_title_to_queue">Aggiunto un titolo alla coda.</string>
+    <string name="added_x_titles_to_queue">Aggiunti %1$d titoli alla coda.</string>
+    <string name="pref_header_images">Immagini</string>
+    <string name="pref_title_remember_queue">Ricorda coda</string>
+    <string name="pref_title_images_external_directory">Directory esterna</string>
+    <string name="source">Autore</string>
+    <string name="logout">Esci</string>
+    <string name="unlimited">Illimitato</string>
+    <string name="middle_error_message">Connessione alla rete lenta o assente</string>
+    <string name="bottom_error_message">Controlla le tue impostazioni di rete</string>
+    <string name="retry">Riprova</string>
 </resources>
