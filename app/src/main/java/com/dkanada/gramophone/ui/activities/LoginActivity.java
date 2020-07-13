@@ -88,7 +88,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         username_layout.setBoxStrokeColor(primaryColor);
         password_layout.setBoxStrokeColor(primaryColor);
         server_layout.setBoxStrokeColor(primaryColor);
-        
+
         login.setBackgroundColor(primaryColor);
 
         setUpOnClickListeners();
@@ -154,8 +154,9 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                     });
                 }
             } else {
-                Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), R.string.no_network_connection_available, Snackbar.LENGTH_LONG);
-                snackbar.show();
+                Intent intent = new Intent(this, SplashActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         }
     }

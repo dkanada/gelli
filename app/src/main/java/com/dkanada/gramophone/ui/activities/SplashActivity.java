@@ -13,6 +13,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.NetworkConnectionHelper;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
+import com.kabouzeid.appthemehelper.ThemeStore;
 
 import org.jellyfin.apiclient.interaction.AndroidCredentialProvider;
 import org.jellyfin.apiclient.interaction.ConnectionResult;
@@ -38,8 +39,6 @@ public class SplashActivity extends AbsBaseActivity implements View.OnClickListe
 
     @BindView(R.id.splash_logo)
     ImageView splash_logo;
-    @BindView(R.id.no_network_logo)
-    ImageView network_logo;
     @BindView(R.id.retry_connection)
     Button retry_connection;
     @BindView(R.id.text_area)
@@ -75,6 +74,10 @@ public class SplashActivity extends AbsBaseActivity implements View.OnClickListe
     }
 
     private void setUpViews() {
+        int primaryColor = ThemeStore.primaryColor(this);
+
+        retry_connection.setBackgroundColor(primaryColor);
+
         setUpOnClickListeners();
     }
 
@@ -94,7 +97,6 @@ public class SplashActivity extends AbsBaseActivity implements View.OnClickListe
             login();
         } else {
             splash_logo.setVisibility(View.GONE);
-            network_logo.setVisibility(View.VISIBLE);
             text_area.setVisibility(View.VISIBLE);
         }
     }

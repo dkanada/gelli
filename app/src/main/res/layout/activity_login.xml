@@ -46,7 +46,6 @@
             android:layout_marginEnd="32dp"
             android:padding="2dp"
             app:hintTextColor="?android:textColorSecondary"
-            app:boxStrokeColor="@color/md_purple_700"
             app:errorEnabled="true"
             app:boxCornerRadiusTopStart="24dp"
             app:boxCornerRadiusBottomStart="24dp"
@@ -59,7 +58,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
-                android:text="Antonio"
                 app:hintTextColor="?android:textColorSecondary"
                 android:inputType="textShortMessage" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -73,7 +71,6 @@
             android:layout_marginEnd="32dp"
             android:padding="2dp"
             app:hintTextColor="?android:textColorSecondary"
-            app:boxStrokeColor="@color/md_purple_700"
             app:errorEnabled="true"
             app:boxCornerRadiusTopStart="24dp"
             app:boxCornerRadiusBottomStart="24dp"
@@ -87,7 +84,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                android:text="D5S%TXefMwHg4!i%ucNHJ#57"
                 app:hintTextColor="?android:textColorSecondary"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -101,7 +97,6 @@
             android:layout_marginEnd="32dp"
             android:padding="2dp"
             app:hintTextColor="?android:textColorSecondary"
-            app:boxStrokeColor="@color/md_purple_700"
             app:errorEnabled="true"
             app:boxCornerRadiusTopStart="24dp"
             app:boxCornerRadiusBottomStart="24dp"
@@ -114,7 +109,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/server"
-                android:text="http://192.168.1.81:8096/"
                 app:hintTextColor="?android:textColorSecondary"
                 android:inputType="textShortMessage" />
         </com.google.android.material.textfield.TextInputLayout>
