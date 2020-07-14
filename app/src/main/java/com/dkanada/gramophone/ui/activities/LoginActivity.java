@@ -2,7 +2,6 @@ package com.dkanada.gramophone.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,13 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.NetworkConnectionHelper;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.kabouzeid.appthemehelper.ThemeStore;
 
@@ -48,11 +45,11 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     public AndroidCredentialProvider credentialProvider;
 
     @BindView(R.id.username_textLayout)
-    TextInputLayout username_layout;
+    TextInputLayout usernameLayout;
     @BindView(R.id.password_textLayout)
-    TextInputLayout password_layout;
+    TextInputLayout passwordLayout;
     @BindView(R.id.server_textLayout)
-    TextInputLayout server_layout;
+    TextInputLayout serverLayout;
     @BindView(R.id.username)
     EditText username;
     @BindView(R.id.password)
@@ -85,9 +82,9 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     private void setUpViews() {
         int primaryColor = ThemeStore.primaryColor(this);
 
-        username_layout.setBoxStrokeColor(primaryColor);
-        password_layout.setBoxStrokeColor(primaryColor);
-        server_layout.setBoxStrokeColor(primaryColor);
+        usernameLayout.setBoxStrokeColor(primaryColor);
+        passwordLayout.setBoxStrokeColor(primaryColor);
+        serverLayout.setBoxStrokeColor(primaryColor);
 
         login.setBackgroundColor(primaryColor);
 
@@ -165,24 +162,24 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         boolean isValid = true;
 
         if (TextUtils.isEmpty(mUsername)) {
-            username_layout.setError(getString(R.string.field_cannot_be_empty));
+            usernameLayout.setError(getString(R.string.field_cannot_be_empty));
             isValid = false;
         } else {
-            username_layout.setError(null);
+            usernameLayout.setError(null);
         }
 
         if (TextUtils.isEmpty(mPassword)) {
-            password_layout.setError(getString(R.string.field_cannot_be_empty));
+            passwordLayout.setError(getString(R.string.field_cannot_be_empty));
             isValid = false;
         } else {
-            password_layout.setError(null);
+            passwordLayout.setError(null);
         }
 
         if (TextUtils.isEmpty(mServerAddres)) {
-            server_layout.setError(getString(R.string.field_cannot_be_empty));
+            serverLayout.setError(getString(R.string.field_cannot_be_empty));
             isValid = false;
         } else {
-            server_layout.setError(null);
+            serverLayout.setError(null);
         }
 
         return isValid;

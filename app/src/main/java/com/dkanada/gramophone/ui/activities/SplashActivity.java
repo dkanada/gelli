@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -38,11 +37,11 @@ public class SplashActivity extends AbsBaseActivity implements View.OnClickListe
     public ConnectionManager connectionManager;
 
     @BindView(R.id.splash_logo)
-    ImageView splash_logo;
+    ImageView splashLogo;
     @BindView(R.id.retry_connection)
-    Button retry_connection;
+    Button retryConnection;
     @BindView(R.id.text_area)
-    LinearLayout text_area;
+    LinearLayout textArea;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,18 +75,18 @@ public class SplashActivity extends AbsBaseActivity implements View.OnClickListe
     private void setUpViews() {
         int primaryColor = ThemeStore.primaryColor(this);
 
-        retry_connection.setBackgroundColor(primaryColor);
+        retryConnection.setBackgroundColor(primaryColor);
 
         setUpOnClickListeners();
     }
 
     private void setUpOnClickListeners() {
-        retry_connection.setOnClickListener(this);
+        retryConnection.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view == retry_connection) {
+        if (view == retryConnection) {
             tryConnect();
         }
     }
@@ -96,8 +95,8 @@ public class SplashActivity extends AbsBaseActivity implements View.OnClickListe
         if (NetworkConnectionHelper.checkNetworkConnection(this)) {
             login();
         } else {
-            splash_logo.setVisibility(View.GONE);
-            text_area.setVisibility(View.VISIBLE);
+            splashLogo.setVisibility(View.GONE);
+            textArea.setVisibility(View.VISIBLE);
         }
     }
 
