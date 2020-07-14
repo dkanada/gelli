@@ -183,7 +183,6 @@
 
     <string name="login">Login</string>
     <string name="logout">Logout</string>
-    <string name="log_in">Log in</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="server">Server</string>
@@ -191,9 +190,9 @@
     <string name="up_next">Up next</string>
     <string name="x_selected">%1$d selected</string>
 
-    <string name="top_error_message">Whoops</string>
-    <string name="middle_error_message">Slow or no network connection</string>
-    <string name="bottom_error_message">Please check your network settings</string>
+    <string name="networking_error_top_message">Whoops</string>
+    <string name="networking_error_middle_message">Slow or no network connection</string>
+    <string name="networking_error_bottom_message">Please check your network settings</string>
     <string name="retry">retry</string>
 
     <string name="app_shortcut_shuffle_all_short">Shuffle</string>
@@ -223,7 +222,7 @@
     <string name="error_login_empty_addr">Please fill in the server address.</string>
     <string name="error_unexpected">An unexpected error occurred.</string>
     <string name="field_cannot_be_empty">Field cannot be empty</string>
-    <string name="server_is_unreachable">Server unreachable</string>
+    <string name="server_is_unreachable">Server is unreachable</string>
     <string name="authentication_failed">Authentication failed</string>
     <string name="no_network_connection_available">No network connection available</string>
 </resources>

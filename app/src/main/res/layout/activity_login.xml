@@ -18,12 +18,12 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="64dp"
             android:adjustViewBounds="true"
             android:cropToPadding="true"
-            android:src="@drawable/app_login_image"
-            android:layout_marginTop="32dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginRight="64dp" />
+            android:src="@drawable/app_login_image" />
 
         <TextView
             android:id="@+id/text_log_in"
@@ -33,7 +33,7 @@
             android:layout_marginEnd="32dp"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="@string/log_in"
+            android:text="@string/login"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -45,21 +45,21 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:padding="2dp"
-            app:hintTextColor="?android:textColorSecondary"
-            app:errorEnabled="true"
-            app:boxCornerRadiusTopStart="24dp"
+            app:boxCornerRadiusBottomEnd="24dp"
             app:boxCornerRadiusBottomStart="24dp"
             app:boxCornerRadiusTopEnd="24dp"
-            app:boxCornerRadiusBottomEnd="24dp"
-            app:endIconMode="clear_text">
+            app:boxCornerRadiusTopStart="24dp"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:hintTextColor="?android:textColorSecondary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/username"
-                app:hintTextColor="?android:textColorSecondary"
-                android:inputType="textShortMessage" />
+                android:inputType="textShortMessage"
+                app:hintTextColor="?android:textColorSecondary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -70,22 +70,22 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:padding="2dp"
-            app:hintTextColor="?android:textColorSecondary"
-            app:errorEnabled="true"
-            app:boxCornerRadiusTopStart="24dp"
+            app:boxCornerRadiusBottomEnd="24dp"
             app:boxCornerRadiusBottomStart="24dp"
             app:boxCornerRadiusTopEnd="24dp"
-            app:boxCornerRadiusBottomEnd="24dp"
+            app:boxCornerRadiusTopStart="24dp"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="true"
 
-            app:endIconMode="password_toggle">
+            app:hintTextColor="?android:textColorSecondary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                app:hintTextColor="?android:textColorSecondary"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                app:hintTextColor="?android:textColorSecondary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -96,21 +96,21 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:padding="2dp"
-            app:hintTextColor="?android:textColorSecondary"
-            app:errorEnabled="true"
-            app:boxCornerRadiusTopStart="24dp"
+            app:boxCornerRadiusBottomEnd="24dp"
             app:boxCornerRadiusBottomStart="24dp"
             app:boxCornerRadiusTopEnd="24dp"
-            app:boxCornerRadiusBottomEnd="24dp"
-            app:endIconMode="clear_text">
+            app:boxCornerRadiusTopStart="24dp"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:hintTextColor="?android:textColorSecondary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/server"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/server"
-                app:hintTextColor="?android:textColorSecondary"
-                android:inputType="textShortMessage" />
+                android:inputType="textShortMessage"
+                app:hintTextColor="?android:textColorSecondary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -122,10 +122,10 @@
             android:layout_marginEnd="32dp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:textColor="@color/md_white_1000"
             android:text="@string/login"
+            android:textColor="@color/md_white_1000"
             app:cornerRadius="24dp" />
 
     </LinearLayout>
-</ScrollView>
 
+</ScrollView>

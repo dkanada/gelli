@@ -23,23 +23,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/no_network_logo"
                 android:layout_width="256dp"
                 android:layout_height="256dp"
+                android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
-                android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_no_network" />
 
             <TextView
                 android:id="@+id/top_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/top_error_message"
+                android:text="@string/networking_error_top_message"
                 android:textStyle="bold" />
 
             <TextView
@@ -47,27 +47,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@string/middle_error_message" />
+                android:text="@string/networking_error_middle_message" />
 
             <TextView
                 android:id="@+id/bottom_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/bottom_error_message" />
+                android:text="@string/networking_error_bottom_message" />
 
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/retry_connection"
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginLeft="96dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="96dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@color/md_white_1000"
                 android:text="@string/retry"
+                android:textColor="@color/md_white_1000"
                 app:cornerRadius="24dp" />
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
 
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
