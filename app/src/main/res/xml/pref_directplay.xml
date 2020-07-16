@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory android:title="@string/pref_header_directplay">
+
+        <com.dkanada.gramophone.preferences.DirectplayPreference
+            app:iconSpaceReserved="false"
+            android:key="directplay_codecs"
+            android:summary="@string/pref_summary_directplay_codecs"
+            android:title="@string/directplay_codecs" />
+
+    </com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

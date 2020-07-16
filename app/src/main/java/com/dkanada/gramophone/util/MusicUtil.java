@@ -14,6 +14,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
+import com.dkanada.gramophone.model.DirectplayCodec;
 import com.dkanada.gramophone.model.Genre;
 import com.dkanada.gramophone.model.Song;
 
@@ -26,25 +27,42 @@ import java.util.Locale;
 
 public class MusicUtil {
     public static Uri getSongFileUri(Song song) {
-        StringBuilder builder = new StringBuilder();
+        PreferenceUtil preferenceUtil = PreferenceUtil.getInstance(App.getInstance());
+
+        StringBuilder builder = new StringBuilder(256);
         ApiClient apiClient = App.getApiClient();
 
         builder.append(apiClient.getApiUrl());
         builder.append("/Audio/");
         builder.append(song.id);
         builder.append("/universal");
-        builder.append("?UserId=" + apiClient.getCurrentUserId());
-        builder.append("&DeviceId=" + apiClient.getDeviceId());
+        builder.append("?UserId=").append(apiClient.getCurrentUserId());
+        builder.append("&DeviceId=").append(apiClient.getDeviceId());
 
         // web client maximum is 12444445 and 320kbps is 320000
-        builder.append("&MaxStreamingBitrate=" + PreferenceUtil.getInstance(App.getInstance()).getMaximumBitrate());
-        builder.append("&Container=flac");
+        builder.append("&MaxStreamingBitrate=").append(preferenceUtil.getMaximumBitrate());
+
+        boolean containerAdded = false;
+        for (DirectplayCodec directplayCodec : preferenceUtil.getDirectplayCodecs()){
+            if (directplayCodec.selected){
+                if (!containerAdded){
+                    builder.append("&Container=");
+                    containerAdded = true;
+                }
+                builder.append(directplayCodec.value).append(',');
+            }
+        }
+        if (containerAdded){
+            // Remove last comma
+            builder.deleteCharAt(builder.length() - 1);
+        }
+
         builder.append("&TranscodingContainer=ts");
         builder.append("&TranscodingProtocol=hls");
 
         // preferred codec when transcoding
-        builder.append("&AudioCodec=" + PreferenceUtil.getInstance(App.getInstance()).getTranscodeCodec());
-        builder.append("&api_key=" + apiClient.getAccessToken());
+        builder.append("&AudioCodec=").append(preferenceUtil.getTranscodeCodec());
+        builder.append("&api_key=").append(apiClient.getAccessToken());
 
         Log.i(MusicUtil.class.getName(), "playing audio: " + builder);
         return Uri.parse(builder.toString());

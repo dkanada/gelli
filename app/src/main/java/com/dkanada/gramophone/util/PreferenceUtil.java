@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
+
 import androidx.annotation.StyleRes;
 
 import com.google.gson.Gson;
@@ -14,14 +15,18 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.sort.SortMethod;
 import com.dkanada.gramophone.helper.sort.SortOrder;
 import com.dkanada.gramophone.model.CategoryInfo;
+import com.dkanada.gramophone.model.DirectplayCodec;
 import com.dkanada.gramophone.ui.fragments.player.NowPlayingScreen;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public final class PreferenceUtil {
     public static final String CATEGORIES = "library_categories";
+    public static final String DIRECTPLAY_CODECS = "directplay_codecs";
     public static final String MAXIMUM_LIST_SIZE = "maximum_list_size";
     public static final String REMEMBER_LAST_TAB = "remember_last_tab";
     public static final String LAST_TAB = "last_tab";
@@ -416,5 +421,39 @@ public final class PreferenceUtil {
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.GENRES, true));
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.PLAYLISTS, true));
         return defaultCategories;
+    }
+
+    public List<DirectplayCodec> getDirectplayCodecs() {
+        DirectplayCodec.Codec[] codecs = DirectplayCodec.Codec.values();
+
+        Set<String> selectedCodecNames = new HashSet<>();
+        for (DirectplayCodec.Codec codec : codecs){
+            selectedCodecNames.add(codec.name());
+        }
+
+        selectedCodecNames = mPreferences.getStringSet(DIRECTPLAY_CODECS, selectedCodecNames);
+
+        ArrayList<DirectplayCodec> directplayCodecs = new ArrayList<>();
+        for (DirectplayCodec.Codec codec : codecs){
+            String name = codec.name();
+            boolean selected = selectedCodecNames.contains(name);
+
+            directplayCodecs.add(new DirectplayCodec(name, codec.title, codec.value, selected));
+        }
+
+        return directplayCodecs;
+    }
+
+    public void setDirectplayCodecs(List<DirectplayCodec> directplayCodecs){
+        Set<String> codecNames = new HashSet<>();
+        for (DirectplayCodec directplayCodec : directplayCodecs){
+            if (directplayCodec.selected){
+                codecNames.add(directplayCodec.codecName);
+            }
+        }
+
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putStringSet(DIRECTPLAY_CODECS, codecNames);
+        editor.apply();
     }
 }

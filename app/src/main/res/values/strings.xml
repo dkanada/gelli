@@ -93,11 +93,13 @@
     <string name="pref_header_colors">Colors</string>
     <string name="pref_header_now_playing_screen">Now Playing</string>
     <string name="pref_header_audio">Audio</string>
+    <string name="pref_header_directplay">Directplay</string>
     <string name="pref_header_images">Images</string>
     <string name="pref_header_library">Library</string>
     <string name="pref_header_lockscreen">Lockscreen</string>
     <string name="pref_header_notification">Notification</string>
 
+    <string name="directplay_codecs">Directplay Codecs</string>
     <string name="library_categories">Categories</string>
     <string name="primary_color">Primary Color</string>
     <string name="accent_color">Accent Color</string>
@@ -135,6 +137,7 @@
     <string name="pref_summary_colored_app_shortcuts">Colors the app shortcuts in the primary color.</string>
     <string name="pref_summary_remember_last_tab">Go to the last opened tab on launch.</string>
     <string name="pref_summary_library_categories">Configure visibility and order of display categories.</string>
+    <string name="pref_summary_directplay_codecs">Disable directplay codecs to force transcoding.</string>
 
     <string name="delete_action">Delete</string>
     <string name="remove_action">Remove</string>
