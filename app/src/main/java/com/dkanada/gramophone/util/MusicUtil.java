@@ -43,7 +43,7 @@ public class MusicUtil {
         builder.append("&MaxStreamingBitrate=").append(preferenceUtil.getMaximumBitrate());
 
         boolean containerAdded = false;
-        for (DirectplayCodec directplayCodec : preferenceUtil.getDirectplayCodecs()){
+        for (DirectplayCodec directplayCodec : preferenceUtil.getDirectplayCodecs()) {
             if (directplayCodec.selected){
                 if (!containerAdded){
                     builder.append("&Container=");
@@ -52,7 +52,7 @@ public class MusicUtil {
                 builder.append(directplayCodec.value).append(',');
             }
         }
-        if (containerAdded){
+        if (containerAdded) {
             // Remove last comma
             builder.deleteCharAt(builder.length() - 1);
         }
