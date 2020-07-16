@@ -15,7 +15,7 @@ import com.dkanada.gramophone.model.DirectplayCodec;
 
 import java.util.List;
 
-public class DirectplayCodecAdapter extends RecyclerView.Adapter<DirectplayCodecAdapter.ViewHolder> /*implements SwipeAndDragHelper.ActionCompletionContract*/ {
+public class DirectplayCodecAdapter extends RecyclerView.Adapter<DirectplayCodecAdapter.ViewHolder> {
     private List<DirectplayCodec> directplayCodecs;
 
     public DirectplayCodecAdapter(List<DirectplayCodec> directplayCodecs) {

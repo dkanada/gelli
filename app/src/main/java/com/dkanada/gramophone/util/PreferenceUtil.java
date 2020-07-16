@@ -444,7 +444,7 @@ public final class PreferenceUtil {
         return directplayCodecs;
     }
 
-    public void setDirectplayCodecs(List<DirectplayCodec> directplayCodecs){
+    public void setDirectplayCodecs(List<DirectplayCodec> directplayCodecs) {
         Set<String> codecNames = new HashSet<>();
         for (DirectplayCodec directplayCodec : directplayCodecs){
             if (directplayCodec.selected){
