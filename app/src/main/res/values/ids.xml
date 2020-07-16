@@ -10,6 +10,7 @@
     <item name="action_sort_method_album" type="id" />
     <item name="action_sort_method_artist" type="id" />
     <item name="action_sort_method_year" type="id" />
+    <item name="action_sort_method_added" type="id" />
     <item name="action_sort_method_random" type="id" />
 
     <item name="action_multi_select_adapter_check_all" type="id" />

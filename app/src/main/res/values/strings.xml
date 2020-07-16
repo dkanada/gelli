@@ -208,6 +208,7 @@
     <string name="sort_method_artist">Artist</string>
     <string name="sort_method_album">Album</string>
     <string name="sort_method_year">Year</string>
+    <string name="sort_method_added">Added</string>
     <string name="sort_method_random">Random</string>
 
     <string name="finish_current_music_sleep_timer">Finish last song</string>

@@ -368,7 +368,9 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                     .setChecked(currentSortMethod.equals(SortMethod.ARTIST));
             sortMethodMenu.add(0, R.id.action_sort_method_year, 2, R.string.sort_method_year)
                     .setChecked(currentSortMethod.equals(SortMethod.YEAR));
-            sortMethodMenu.add(0, R.id.action_sort_method_random, 3, R.string.sort_method_random)
+            sortMethodMenu.add(0, R.id.action_sort_method_added, 3, R.string.sort_method_added)
+                    .setChecked(currentSortMethod.equals(SortMethod.ADDED));
+            sortMethodMenu.add(0, R.id.action_sort_method_random, 4, R.string.sort_method_random)
                     .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
         } else if (fragment instanceof SongsFragment) {
             sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_method_name)
@@ -379,7 +381,9 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                     .setChecked(currentSortMethod.equals(SortMethod.ARTIST));
             sortMethodMenu.add(0, R.id.action_sort_method_year, 3, R.string.sort_method_year)
                     .setChecked(currentSortMethod.equals(SortMethod.YEAR));
-            sortMethodMenu.add(0, R.id.action_sort_method_random, 4, R.string.sort_method_random)
+            sortMethodMenu.add(0, R.id.action_sort_method_added, 4, R.string.sort_method_added)
+                    .setChecked(currentSortMethod.equals(SortMethod.ADDED));
+            sortMethodMenu.add(0, R.id.action_sort_method_random, 5, R.string.sort_method_random)
                     .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
         }
 
@@ -412,6 +416,9 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                 break;
             case R.id.action_sort_method_year:
                 sortMethod = SortMethod.YEAR;
+                break;
+            case R.id.action_sort_method_added:
+                sortMethod = SortMethod.ADDED;
                 break;
             case R.id.action_sort_method_random:
                 sortMethod = SortMethod.RANDOM;

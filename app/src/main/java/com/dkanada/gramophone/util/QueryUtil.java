@@ -12,6 +12,7 @@ import com.dkanada.gramophone.model.Song;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.BaseItemType;
+import org.jellyfin.apiclient.model.entities.SortOrder;
 import org.jellyfin.apiclient.model.querying.ArtistsQuery;
 import org.jellyfin.apiclient.model.querying.ItemFields;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
@@ -220,6 +221,9 @@ public class QueryUtil {
                 break;
             case SortMethod.YEAR:
                 query.setSortBy(new String[]{"ProductionYear"});
+                break;
+            case SortMethod.ADDED:
+                query.setSortBy(new String[]{"DateCreated"});
                 break;
             case SortMethod.RANDOM:
                 query.setSortBy(new String[]{"Random"});
