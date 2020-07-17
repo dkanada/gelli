@@ -107,7 +107,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                 return;
             }
 
-            if (username.getText().toString().trim().length()==0) {
+            if (username.getText().toString().trim().length() == 0) {
                 Toast.makeText(context, context.getResources().getString(R.string.error_no_username), Toast.LENGTH_SHORT).show();
                 return;
             }
