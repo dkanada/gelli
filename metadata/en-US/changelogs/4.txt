@@ -1,0 +1,6 @@
+- add sort by date added
+- dynamically refresh lists on sort method change
+- update string translations
+- improve error handling for login activity
+- add password visibility toggle on login
+- fix edge case to show artists during search
