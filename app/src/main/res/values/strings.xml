@@ -215,7 +215,10 @@
     <string name="cancel_current_timer">Cancel current timer</string>
     <string name="sleep_timer_canceled">Sleep timer canceled.</string>
     <string name="sleep_timer_set">Sleep timer set for %d minutes from now.</string>
+    <string name="error_unreachable_server">Can\'t reach server.</string>
+    <string name="error_login_credentials">Invalid login credentials.</string>
     <string name="error_login_empty_addr">Please fill in the server address.</string>
     <string name="error_unexpected">An unexpected error occurred.</string>
+    <string name="error_no_username">Please fill in your username.</string>
 
 </resources>

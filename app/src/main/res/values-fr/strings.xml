@@ -149,6 +149,8 @@
     <string name="sort_method_artist">Artiste</string>
     <string name="sort_method_album">Album</string>
     <string name="sort_method_year">Année</string>
+    <string name="error_unreachable_server">Impossible de contacter le serveur.</string>
+    <string name="error_login_credentials">Identifiants de connexion invalides.</string>
     <string name="error_login_empty_addr">Veuillez saisir l\'adresse du serveur.</string>
     <string name="error_unexpected">Une erreur inattendue s\'est produite.</string>
     <string name="action_add_to_playlist">Ajouter à une playlist</string>
@@ -188,4 +190,5 @@
     <string name="source">Source</string>
     <string name="unlimited">Illimité</string>
     <string name="select_all_title">Sélectionner tout</string>
+    <string name="error_no_username">Veuillez saisir votre nom d\'utilisateur.</string>
 </resources>
