@@ -51,7 +51,11 @@ public class SplashActivity extends AbsBaseActivity {
 
         credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
         connectionManager = App.getConnectionManager(this, jsonSerializer, logger, httpClient);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         if (detectBatteryOptimization()) {
             showBatteryOptimizationDialog();
         } else {
@@ -79,7 +83,6 @@ public class SplashActivity extends AbsBaseActivity {
                 })
                 .setPositiveButton(R.string.action_go_to_optimization_settings, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        login();
                         openPowerSettings(SplashActivity.this);
                     }
                 })
