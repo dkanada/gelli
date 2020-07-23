@@ -11,36 +11,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.adapter.DirectplayCodecAdapter;
+import com.dkanada.gramophone.adapter.DirectPlayCodecAdapter;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
-public class DirectplayPreferenceDialog extends DialogFragment {
-    public static DirectplayPreferenceDialog newInstance() {
-        return new DirectplayPreferenceDialog();
+public class DirectPlayPreferenceDialog extends DialogFragment {
+    public static DirectPlayPreferenceDialog newInstance() {
+        return new DirectPlayPreferenceDialog();
     }
 
-    private DirectplayCodecAdapter adapter;
+    private DirectPlayCodecAdapter adapter;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = getActivity().getLayoutInflater().inflate(R.layout.preference_dialog_directplay_codecs, null);
+        View view = getActivity().getLayoutInflater().inflate(R.layout.preference_dialog_direct_play_codecs, null);
 
-        adapter = new DirectplayCodecAdapter(PreferenceUtil.getInstance(getContext()).getDirectplayCodecs());
+        adapter = new DirectPlayCodecAdapter(PreferenceUtil.getInstance(getContext()).getDirectPlayCodecs());
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
 
         return new MaterialDialog.Builder(getContext())
-                .title(R.string.directplay_codecs)
+                .title(R.string.direct_play_codecs)
                 .customView(view, false)
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
                 .autoDismiss(false)
                 .onNegative((dialog, action) -> dismiss())
                 .onPositive((dialog, action) -> {
-                    PreferenceUtil.getInstance(getContext()).setDirectplayCodecs(adapter.getDirectplayCodecs());
+                    PreferenceUtil.getInstance(getContext()).setDirectPlayCodecs(adapter.getDirectPlayCodecs());
                     dismiss();
                 })
                 .build();

@@ -4,11 +4,11 @@
 
     <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory android:title="@string/pref_header_directplay">
 
-        <com.dkanada.gramophone.preferences.DirectplayPreference
+        <com.dkanada.gramophone.preferences.DirectPlayPreference
             app:iconSpaceReserved="false"
-            android:key="directplay_codecs"
-            android:summary="@string/pref_summary_directplay_codecs"
-            android:title="@string/directplay_codecs" />
+            android:key="direct_play_codecs"
+            android:summary="@string/pref_summary_direct_play_codecs"
+            android:title="@string/direct_play_codecs" />
 
     </com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
 

@@ -14,7 +14,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
-import com.dkanada.gramophone.model.DirectplayCodec;
+import com.dkanada.gramophone.model.DirectPlayCodec;
 import com.dkanada.gramophone.model.Genre;
 import com.dkanada.gramophone.model.Song;
 
@@ -43,17 +43,18 @@ public class MusicUtil {
         builder.append("&MaxStreamingBitrate=").append(preferenceUtil.getMaximumBitrate());
 
         boolean containerAdded = false;
-        for (DirectplayCodec directplayCodec : preferenceUtil.getDirectplayCodecs()) {
-            if (directplayCodec.selected){
+        for (DirectPlayCodec directPlayCodec : preferenceUtil.getDirectPlayCodecs()) {
+            if (directPlayCodec.selected){
                 if (!containerAdded){
                     builder.append("&Container=");
                     containerAdded = true;
                 }
-                builder.append(directplayCodec.value).append(',');
+
+                builder.append(directPlayCodec.value).append(',');
             }
         }
         if (containerAdded) {
-            // Remove last comma
+            // remove last comma
             builder.deleteCharAt(builder.length() - 1);
         }
 
