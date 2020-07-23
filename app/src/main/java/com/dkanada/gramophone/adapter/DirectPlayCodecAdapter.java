@@ -63,4 +63,3 @@ public class DirectPlayCodecAdapter extends RecyclerView.Adapter<DirectPlayCodec
         }
     }
 }
-

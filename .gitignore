@@ -13,7 +13,7 @@ build
 # Configuration
 local.properties
 
-# IntelliJ
+# Other
 *.iml
 .idea
-/.vs
+.vs
