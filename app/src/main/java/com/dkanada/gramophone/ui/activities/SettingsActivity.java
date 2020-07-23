@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
+import com.dkanada.gramophone.preferences.DirectPlayPreference;
+import com.dkanada.gramophone.preferences.DirectPlayPreferenceDialog;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEColorPreference;
 import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceFragmentCompat;
@@ -122,6 +124,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             addPreferencesFromResource(R.xml.pref_lockscreen);
             addPreferencesFromResource(R.xml.pref_audio);
             addPreferencesFromResource(R.xml.pref_images);
+            addPreferencesFromResource(R.xml.pref_direct_play);
         }
 
         @Nullable
@@ -131,6 +134,8 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 return NowPlayingScreenPreferenceDialog.newInstance();
             } else if (preference instanceof LibraryPreference) {
                 return LibraryPreferenceDialog.newInstance();
+            } else if (preference instanceof DirectPlayPreference) {
+                return DirectPlayPreferenceDialog.newInstance();
             }
 
             return super.onCreatePreferenceDialog(preference);
