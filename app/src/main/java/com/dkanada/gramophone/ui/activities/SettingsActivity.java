@@ -124,7 +124,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             addPreferencesFromResource(R.xml.pref_lockscreen);
             addPreferencesFromResource(R.xml.pref_audio);
             addPreferencesFromResource(R.xml.pref_images);
-            addPreferencesFromResource(R.xml.pref_directplay);
+            addPreferencesFromResource(R.xml.pref_direct_play);
         }
 
         @Nullable

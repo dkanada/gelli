@@ -44,8 +44,8 @@ public class MusicUtil {
 
         boolean containerAdded = false;
         for (DirectPlayCodec directPlayCodec : preferenceUtil.getDirectPlayCodecs()) {
-            if (directPlayCodec.selected){
-                if (!containerAdded){
+            if (directPlayCodec.selected) {
+                if (!containerAdded) {
                     builder.append("&Container=");
                     containerAdded = true;
                 }
@@ -53,6 +53,7 @@ public class MusicUtil {
                 builder.append(directPlayCodec.value).append(',');
             }
         }
+
         if (containerAdded) {
             // remove last comma
             builder.deleteCharAt(builder.length() - 1);
