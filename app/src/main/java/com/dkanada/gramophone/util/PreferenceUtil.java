@@ -427,14 +427,14 @@ public final class PreferenceUtil {
         DirectPlayCodec.Codec[] codecs = DirectPlayCodec.Codec.values();
 
         Set<String> selectedCodecNames = new HashSet<>();
-        for (DirectPlayCodec.Codec codec : codecs){
+        for (DirectPlayCodec.Codec codec : codecs) {
             selectedCodecNames.add(codec.name());
         }
 
         selectedCodecNames = mPreferences.getStringSet(DIRECT_PLAY_CODECS, selectedCodecNames);
 
         ArrayList<DirectPlayCodec> directPlayCodecs = new ArrayList<>();
-        for (DirectPlayCodec.Codec codec : codecs){
+        for (DirectPlayCodec.Codec codec : codecs) {
             String name = codec.name();
             boolean selected = selectedCodecNames.contains(name);
             directPlayCodecs.add(new DirectPlayCodec(name, codec.title, codec.value, selected));
@@ -445,8 +445,8 @@ public final class PreferenceUtil {
 
     public void setDirectPlayCodecs(List<DirectPlayCodec> directPlayCodecs) {
         Set<String> codecNames = new HashSet<>();
-        for (DirectPlayCodec directPlayCodec : directPlayCodecs){
-            if (directPlayCodec.selected){
+        for (DirectPlayCodec directPlayCodec : directPlayCodecs) {
+            if (directPlayCodec.selected) {
                 codecNames.add(directPlayCodec.codecName);
             }
         }
