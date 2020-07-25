@@ -66,11 +66,6 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
     }
 
     @Override
-    public void onMediaStoreChanged() {
-        super.onMediaStoreChanged();
-    }
-
-    @Override
     protected String loadSortMethod() {
         return SortMethod.NAME;
     }

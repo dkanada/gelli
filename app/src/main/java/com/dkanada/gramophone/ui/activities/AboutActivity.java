@@ -136,6 +136,7 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
             onBackPressed();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -145,6 +146,7 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+
         return "Unknown";
     }
 

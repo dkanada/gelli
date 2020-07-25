@@ -81,7 +81,7 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
     }
 
     @Override
-    public void onPlayingMetaChanged() {
+    public void onPlayMetadataChanged() {
         viewPager.setCurrentItem(MusicPlayerRemote.getPosition());
     }
 

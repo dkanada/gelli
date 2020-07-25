@@ -87,7 +87,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public static final String REPEAT_MODE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".repeatmodechanged";
     public static final String SHUFFLE_MODE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".shufflemodechanged";
-    public static final String MEDIA_STORE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".mediastorechanged";
 
     public static final String SAVED_POSITION = "POSITION";
     public static final String SAVED_POSITION_IN_TRACK = "POSITION_IN_TRACK";
@@ -160,7 +159,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     };
 
-    private ContentObserver mediaStoreObserver;
     private boolean notHandledMetaChangedForCurrentTrack;
 
     private Handler uiThreadHandler;
@@ -197,13 +195,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         initNotification();
 
-        mediaStoreObserver = new MediaStoreObserver(playerHandler);
         throttledSeekHandler = new ThrottledSeekHandler(playerHandler);
-
-        getContentResolver().registerContentObserver(
-                MediaStore.Audio.Media.INTERNAL_CONTENT_URI, true, mediaStoreObserver);
-        getContentResolver().registerContentObserver(
-                MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, true, mediaStoreObserver);
 
         PreferenceUtil.getInstance(this).registerOnSharedPreferenceChangedListener(this);
 
@@ -344,7 +336,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         mediaSession.setActive(false);
         quit();
         releaseResources();
-        getContentResolver().unregisterContentObserver(mediaStoreObserver);
         PreferenceUtil.getInstance(this).unregisterOnSharedPreferenceChangedListener(this);
         wakeLock.release();
 
@@ -1274,33 +1265,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             }
         }
     };
-
-    private class MediaStoreObserver extends ContentObserver implements Runnable {
-        // milliseconds to delay before calling refresh to aggregate events
-        private static final long REFRESH_DELAY = 500;
-        private Handler mHandler;
-
-        public MediaStoreObserver(Handler handler) {
-            super(handler);
-            mHandler = handler;
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            // if a change is detected, remove any scheduled callback
-            // then post a new one. This is intended to prevent closely
-            // spaced events from generating multiple refresh calls
-            mHandler.removeCallbacks(this);
-            mHandler.postDelayed(this, REFRESH_DELAY);
-        }
-
-        @Override
-        public void run() {
-            // actually call refresh when the delayed callback fires
-            // do not send a sticky broadcast here
-            handleAndSendChangeInternal(MEDIA_STORE_CHANGED);
-        }
-    }
 
     private class ThrottledSeekHandler implements Runnable {
         // milliseconds to throttle before calling run to aggregate events

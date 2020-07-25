@@ -95,7 +95,7 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
     }
 
     @Override
-    public void onPlayingMetaChanged() {
+    public void onPlayMetadataChanged() {
         updateSongTitle();
     }
 

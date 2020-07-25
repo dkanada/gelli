@@ -47,8 +47,4 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
     protected int getEmptyMessage() {
         return R.string.no_playlists;
     }
-
-    @Override
-    public void onMediaStoreChanged() {
-    }
 }

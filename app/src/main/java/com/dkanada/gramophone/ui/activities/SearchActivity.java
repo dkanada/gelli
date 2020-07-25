@@ -197,11 +197,6 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
     }
 
     @Override
-    public void onMediaStoreChanged() {
-        super.onMediaStoreChanged();
-    }
-
-    @Override
     public boolean onQueryTextSubmit(String query) {
         hideSoftKeyboard();
         return false;

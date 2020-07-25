@@ -7,13 +7,11 @@ public interface MusicServiceEventListener {
 
     void onQueueChanged();
 
-    void onPlayingMetaChanged();
+    void onPlayMetadataChanged();
 
     void onPlayStateChanged();
 
     void onRepeatModeChanged();
 
     void onShuffleModeChanged();
-
-    void onMediaStoreChanged();
 }

@@ -337,11 +337,6 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     }
 
     @Override
-    public void onMediaStoreChanged() {
-        super.onMediaStoreChanged();
-    }
-
-    @Override
     public void setStatusbarColor(int color) {
         super.setStatusbarColor(color);
         setLightStatusbar(false);

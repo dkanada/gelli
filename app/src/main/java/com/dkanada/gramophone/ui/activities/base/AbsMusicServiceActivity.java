@@ -27,6 +27,7 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
 
     private MusicPlayerRemote.ServiceToken serviceToken;
     private MusicStateReceiver musicStateReceiver;
+
     private boolean receiverRegistered;
 
     @Override
@@ -80,7 +81,6 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
             filter.addAction(MusicService.REPEAT_MODE_CHANGED);
             filter.addAction(MusicService.META_CHANGED);
             filter.addAction(MusicService.QUEUE_CHANGED);
-            filter.addAction(MusicService.MEDIA_STORE_CHANGED);
 
             registerReceiver(musicStateReceiver, filter);
 
@@ -109,10 +109,10 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
     }
 
     @Override
-    public void onPlayingMetaChanged() {
+    public void onPlayMetadataChanged() {
         for (MusicServiceEventListener listener : mMusicServiceEventListeners) {
             if (listener != null) {
-                listener.onPlayingMetaChanged();
+                listener.onPlayMetadataChanged();
             }
         }
     }
@@ -131,15 +131,6 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
         for (MusicServiceEventListener listener : mMusicServiceEventListeners) {
             if (listener != null) {
                 listener.onPlayStateChanged();
-            }
-        }
-    }
-
-    @Override
-    public void onMediaStoreChanged() {
-        for (MusicServiceEventListener listener : mMusicServiceEventListeners) {
-            if (listener != null) {
-                listener.onMediaStoreChanged();
             }
         }
     }
@@ -177,7 +168,7 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
             if (activity != null) {
                 switch (action) {
                     case MusicService.META_CHANGED:
-                        activity.onPlayingMetaChanged();
+                        activity.onPlayMetadataChanged();
                         break;
                     case MusicService.QUEUE_CHANGED:
                         activity.onQueueChanged();
@@ -191,9 +182,6 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
                     case MusicService.SHUFFLE_MODE_CHANGED:
                         activity.onShuffleModeChanged();
                         break;
-                    case MusicService.MEDIA_STORE_CHANGED:
-                        activity.onMediaStoreChanged();
-                        break;
                 }
             }
         }
@@ -201,12 +189,8 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
 
     @Override
     protected void onHasPermissionsChanged(boolean hasPermissions) {
+        // TODO is this method even required
         super.onHasPermissionsChanged(hasPermissions);
-        Intent intent = new Intent(MusicService.MEDIA_STORE_CHANGED);
-
-        // just in case we need to know this at some point
-        intent.putExtra("from_permissions_changed", true);
-        sendBroadcast(intent);
     }
 
     @Nullable

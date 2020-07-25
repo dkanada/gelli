@@ -106,9 +106,4 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
     protected void saveUsePalette(boolean usePalette) {
         PreferenceUtil.getInstance(getActivity()).setAlbumColoredFooters(usePalette);
     }
-
-    @Override
-    public void onMediaStoreChanged() {
-        super.onMediaStoreChanged();
-    }
 }

@@ -214,8 +214,8 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     }
 
     @Override
-    public void onPlayingMetaChanged() {
-        super.onPlayingMetaChanged();
+    public void onPlayMetadataChanged() {
+        super.onPlayMetadataChanged();
         updateNavigationDrawerHeader();
     }
 

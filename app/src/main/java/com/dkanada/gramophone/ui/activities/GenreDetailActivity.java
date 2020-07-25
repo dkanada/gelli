@@ -149,11 +149,6 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
         }
     }
 
-    @Override
-    public void onMediaStoreChanged() {
-        super.onMediaStoreChanged();
-    }
-
     private void checkIsEmpty() {
         empty.setVisibility(adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }

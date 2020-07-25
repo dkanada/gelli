@@ -46,8 +46,4 @@ public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAda
     protected int getEmptyMessage() {
         return R.string.no_genres;
     }
-
-    @Override
-    public void onMediaStoreChanged() {
-    }
 }

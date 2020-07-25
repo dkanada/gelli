@@ -41,10 +41,6 @@ public class AbsMusicServiceFragment extends Fragment implements MusicServiceEve
     }
 
     @Override
-    public void onPlayingMetaChanged() {
-    }
-
-    @Override
     public void onServiceConnected() {
     }
 
@@ -57,6 +53,10 @@ public class AbsMusicServiceFragment extends Fragment implements MusicServiceEve
     }
 
     @Override
+    public void onPlayMetadataChanged() {
+    }
+
+    @Override
     public void onPlayStateChanged() {
     }
 
@@ -66,9 +66,5 @@ public class AbsMusicServiceFragment extends Fragment implements MusicServiceEve
 
     @Override
     public void onShuffleModeChanged() {
-    }
-
-    @Override
-    public void onMediaStoreChanged() {
     }
 }

@@ -177,11 +177,6 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
         }
     }
 
-    @Override
-    public void onMediaStoreChanged() {
-        super.onMediaStoreChanged();
-    }
-
     private void checkIsEmpty() {
         empty.setVisibility(adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }

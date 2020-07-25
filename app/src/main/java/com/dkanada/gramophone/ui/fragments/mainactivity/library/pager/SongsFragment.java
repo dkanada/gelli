@@ -73,11 +73,6 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
     }
 
     @Override
-    public void onMediaStoreChanged() {
-        super.onMediaStoreChanged();
-    }
-
-    @Override
     protected String loadSortMethod() {
         return PreferenceUtil.getInstance(getActivity()).getSongSortMethod();
     }

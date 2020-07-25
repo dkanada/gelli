@@ -170,7 +170,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     }
 
     @Override
-    public void onPlayingMetaChanged() {
+    public void onPlayMetadataChanged() {
         updateCurrentSong();
         updateIsFavorite();
         updateQueuePosition();
@@ -178,11 +178,6 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
     @Override
     public void onQueueChanged() {
-        updateQueue();
-    }
-
-    @Override
-    public void onMediaStoreChanged() {
         updateQueue();
     }
 
