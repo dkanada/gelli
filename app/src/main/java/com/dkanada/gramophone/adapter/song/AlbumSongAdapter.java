@@ -56,6 +56,7 @@ public class AlbumSongAdapter extends SongAdapter {
             if (imageText != null) {
                 imageText.setVisibility(View.VISIBLE);
             }
+
             if (image != null) {
                 image.setVisibility(View.GONE);
             }

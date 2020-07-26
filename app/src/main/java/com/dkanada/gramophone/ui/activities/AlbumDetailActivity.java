@@ -20,7 +20,7 @@ import com.afollestad.materialdialogs.util.DialogUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView;
+import com.google.android.material.appbar.AppBarLayout;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
@@ -34,7 +34,6 @@ import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.interfaces.PaletteColorHolder;
-import com.dkanada.gramophone.misc.SimpleObservableScrollViewCallbacks;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
@@ -51,21 +50,21 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder {
+public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
     public static final String EXTRA_ALBUM = "extra_album";
 
     private Album album;
 
+    @BindView(R.id.app_bar_layout)
+    AppBarLayout appBarLayout;
     @BindView(R.id.list)
-    ObservableRecyclerView recyclerView;
+    RecyclerView recyclerView;
     @BindView(R.id.image)
     ImageView albumArtImageView;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.header)
     View headerView;
-    @BindView(R.id.header_overlay)
-    View headerOverlay;
 
     @BindView(R.id.artist_icon)
     ImageView artistIconImageView;
@@ -119,25 +118,15 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
     }
 
     @Override
+    public void onOffsetChanged (AppBarLayout appBarLayout, int verticalOffset) {
+        float headerAlpha = Math.max(0, Math.min(1, 1 + (2 * (float) verticalOffset / headerViewHeight)));
+        headerView.setAlpha(headerAlpha);
+    }
+
+    @Override
     protected View createContentView() {
         return wrapSlidingMusicPanel(R.layout.activity_album_detail);
     }
-
-    private final SimpleObservableScrollViewCallbacks observableScrollViewCallbacks = new SimpleObservableScrollViewCallbacks() {
-        @Override
-        public void onScrollChanged(int scrollY, boolean b, boolean b2) {
-            scrollY += headerViewHeight;
-
-            // Change alpha of overlay
-            float headerAlpha = Math.max(0, Math.min(1, (float) 2 * scrollY / headerViewHeight));
-            headerOverlay.setBackgroundColor(ColorUtil.withAlpha(toolbarColor, headerAlpha));
-
-            // Translate name text
-            headerView.setTranslationY(Math.max(-scrollY, -headerViewHeight));
-            headerOverlay.setTranslationY(Math.max(-scrollY, -headerViewHeight));
-            albumArtImageView.setTranslationY(Math.max(-scrollY, -headerViewHeight));
-        }
-    };
 
     private void setUpObservableListViewParams() {
         headerViewHeight = getResources().getDimensionPixelSize(R.dimen.detail_header_height);
@@ -183,7 +172,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
 
     private void setColors(int color) {
         toolbarColor = color;
-        headerView.setBackgroundColor(color);
+        appBarLayout.setBackgroundColor(color);
 
         setNavigationbarColor(color);
         setTaskDescriptionColor(color);
@@ -210,14 +199,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
     }
 
     private void setUpRecyclerView() {
-        setUpRecyclerViewPadding();
-        recyclerView.setScrollViewCallbacks(observableScrollViewCallbacks);
-        final View contentView = getWindow().getDecorView().findViewById(android.R.id.content);
-        contentView.post(() -> observableScrollViewCallbacks.onScrollChanged(-headerViewHeight, false, false));
-    }
-
-    private void setUpRecyclerViewPadding() {
-        recyclerView.setPadding(0, headerViewHeight, 0, 0);
+        appBarLayout.addOnOffsetChangedListener(this);
     }
 
     private void setUpToolBar() {

@@ -26,38 +26,33 @@
 
     </FrameLayout>
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.github.ksoichiro.android.observablescrollview.ObservableRecyclerView
-            android:id="@+id/list"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:scrollbars="none" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/detail_header_height"
-                android:background="?attr/defaultFooterColor"
                 android:elevation="@dimen/toolbar_elevation"
                 android:orientation="horizontal"
+                app:layout_scrollFlags="scroll"
                 tools:ignore="UnusedAttribute">
 
-                <!--placeholder image view, the actual image view can't go here or the shared element transition won't work right-->
-                <View
+                <ImageView
+                    android:id="@+id/image"
                     android:layout_width="@dimen/detail_header_image_height"
                     android:layout_height="@dimen/detail_header_image_height"
-                    android:layout_margin="16dp" />
+                    android:layout_margin="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/default_album_art"
+                    android:transitionName="@string/transition_album_art"
+                    tools:ignore="ContentDescription,UnusedAttribute" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -176,30 +171,24 @@
 
             </LinearLayout>
 
-            <View
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/transparent" />
+                android:clipToPadding="false"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                android:scrollbars="none" />
 
-        </FrameLayout>
+        </androidx.core.widget.NestedScrollView>
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="@dimen/detail_header_image_height"
-            android:layout_height="@dimen/detail_header_image_height"
-            android:layout_margin="16dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/default_album_art"
-            android:transitionName="@string/transition_album_art"
-            tools:ignore="ContentDescription,UnusedAttribute" />
-
-        <View
-            android:id="@+id/header_overlay"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/detail_header_height"
-            android:elevation="@dimen/toolbar_elevation"
-            tools:ignore="UnusedAttribute" />
-
-    </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </LinearLayout>

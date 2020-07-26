@@ -3,7 +3,6 @@ package com.dkanada.gramophone.ui.activities;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -24,12 +24,12 @@ import com.afollestad.materialdialogs.util.DialogUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.github.ksoichiro.android.observablescrollview.ObservableListView;
+import com.dkanada.gramophone.adapter.song.SongAdapter;
+import com.google.android.material.appbar.AppBarLayout;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.album.HorizontalAlbumAdapter;
-import com.dkanada.gramophone.adapter.song.ArtistSongAdapter;
 import com.dkanada.gramophone.dialogs.AddToPlaylistDialog;
 import com.dkanada.gramophone.dialogs.SleepTimerDialog;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
@@ -39,7 +39,6 @@ import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.interfaces.PaletteColorHolder;
-import com.dkanada.gramophone.misc.SimpleObservableScrollViewCallbacks;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
@@ -51,19 +50,21 @@ import com.dkanada.gramophone.util.QueryUtil;
 
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 
-public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder {
+public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
     public static final String EXTRA_ARTIST = "extra_artist";
 
-    @BindView(R.id.list)
-    ObservableListView songListView;
+    @BindView(R.id.app_bar_layout)
+    AppBarLayout appBarLayout;
+    @BindView(R.id.albums)
+    RecyclerView albumRecyclerView;
+    @BindView(R.id.songs)
+    RecyclerView songRecyclerView;
     @BindView(R.id.image)
     ImageView artistImage;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.header)
     View headerView;
-    @BindView(R.id.header_overlay)
-    View headerOverlay;
 
     @BindView(R.id.duration_icon)
     ImageView durationIconImageView;
@@ -78,32 +79,13 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     @BindView(R.id.album_count_text)
     TextView albumCountTextView;
 
-    View songListHeader;
-    RecyclerView albumRecyclerView;
-
     private MaterialCab cab;
     private int headerViewHeight;
     private int toolbarColor;
 
     private Artist artist;
     private HorizontalAlbumAdapter albumAdapter;
-    private ArtistSongAdapter songAdapter;
-
-    private final SimpleObservableScrollViewCallbacks observableScrollViewCallbacks = new SimpleObservableScrollViewCallbacks() {
-        @Override
-        public void onScrollChanged(int scrollY, boolean b, boolean b2) {
-            scrollY += headerViewHeight;
-
-            // Change alpha of overlay
-            float headerAlpha = Math.max(0, Math.min(1, (float) 2 * scrollY / headerViewHeight));
-            headerOverlay.setBackgroundColor(ColorUtil.withAlpha(toolbarColor, headerAlpha));
-
-            // Translate name text
-            headerView.setTranslationY(Math.max(-scrollY, -headerViewHeight));
-            headerOverlay.setTranslationY(Math.max(-scrollY, -headerViewHeight));
-            artistImage.setTranslationY(Math.max(-scrollY, -headerViewHeight));
-        }
-    };
+    private SongAdapter songAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,7 +95,6 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
 
         usePalette = PreferenceUtil.getInstance(this).getAlbumArtistColoredFooters();
 
-        initViews();
         setUpObservableListViewParams();
         setUpToolbar();
         setUpViews();
@@ -145,6 +126,12 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     }
 
     @Override
+    public void onOffsetChanged (AppBarLayout appBarLayout, int verticalOffset) {
+        float headerAlpha = Math.max(0, Math.min(1, 1 + (2 * (float) verticalOffset / headerViewHeight)));
+        headerView.setAlpha(headerAlpha);
+    }
+
+    @Override
     protected View createContentView() {
         return wrapSlidingMusicPanel(R.layout.activity_artist_detail);
     }
@@ -155,11 +142,6 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         headerViewHeight = getResources().getDimensionPixelSize(R.dimen.detail_header_height);
     }
 
-    private void initViews() {
-        songListHeader = LayoutInflater.from(this).inflate(R.layout.artist_detail_header, songListView, false);
-        albumRecyclerView = songListHeader.findViewById(R.id.recycler_view);
-    }
-
     private void setUpViews() {
         setUpSongListView();
         setUpAlbumRecyclerView();
@@ -167,19 +149,12 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     }
 
     private void setUpSongListView() {
-        setUpSongListPadding();
-        songListView.setScrollViewCallbacks(observableScrollViewCallbacks);
-        songListView.addHeaderView(songListHeader);
+        appBarLayout.addOnOffsetChangedListener(this);
 
-        songAdapter = new ArtistSongAdapter(this, getArtist().songs, this);
-        songListView.setAdapter(songAdapter);
+        songAdapter = new SongAdapter(this, getArtist().songs, R.layout.item_list, false, this);
 
-        final View contentView = getWindow().getDecorView().findViewById(android.R.id.content);
-        contentView.post(() -> observableScrollViewCallbacks.onScrollChanged(-headerViewHeight, false, false));
-    }
-
-    private void setUpSongListPadding() {
-        songListView.setPadding(0, headerViewHeight, 0, 0);
+        songRecyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        songRecyclerView.setAdapter(songAdapter);
     }
 
     private void setUpAlbumRecyclerView() {
@@ -234,7 +209,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
 
     private void setColors(int color) {
         toolbarColor = color;
-        headerView.setBackgroundColor(color);
+        appBarLayout.setBackgroundColor(color);
 
         setNavigationbarColor(color);
         setTaskDescriptionColor(color);
@@ -350,9 +325,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         albumCountTextView.setText(MusicUtil.getAlbumCountString(this, artist.albums.size()));
         durationTextView.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, artist.songs)));
 
-        // TODO this activity will crash when an artist is passed with an empty album array
-        // something in the album adapter is causing the issue
-        if (artist.albums.size() != 0) songAdapter.swapDataSet(artist.songs);
+        if (artist.songs.size() != 0) songAdapter.swapDataSet(artist.songs);
         if (artist.albums.size() != 0) albumAdapter.swapDataSet(artist.albums);
     }
 
