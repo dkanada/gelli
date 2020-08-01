@@ -23,7 +23,7 @@
             android:layout_marginRight="64dp"
             android:adjustViewBounds="true"
             android:cropToPadding="true"
-            android:src="@drawable/app_login_image" />
+            android:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/text_log_in"

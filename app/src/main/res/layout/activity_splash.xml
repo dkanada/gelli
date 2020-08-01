@@ -26,22 +26,6 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <ImageView
-                android:id="@+id/no_network_logo"
-                android:layout_width="256dp"
-                android:layout_height="256dp"
-                android:layout_gravity="center"
-                android:adjustViewBounds="true"
-                android:cropToPadding="true"
-                app:srcCompat="@drawable/ic_no_network" />
-
-            <TextView
-                android:id="@+id/top_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/networking_error_top_message"
-                android:textStyle="bold" />
-
             <TextView
                 android:id="@+id/middle_text"
                 android:layout_width="wrap_content"
