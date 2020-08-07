@@ -44,10 +44,6 @@
     <string name="action_sleep_timer">Sleep timer</string>
     <string name="action_set">Set</string>
     <string name="action_new_playlist">New playlist</string>
-    <string name="action_disable_battery_optimizations_title">Disable battery optimizations</string>
-    <string name="action_disable_battery_optimizations_message">Please disable battery optimizations for media playback while the screen is off</string>
-    <string name="action_cancel">Cancel</string>
-    <string name="action_go_to_optimization_settings">Go to settings</string>
 
     <string name="albums">Albums</string>
     <string name="artists">Artists</string>
@@ -74,6 +70,8 @@
     <string name="label_bit_rate">Bitrate</string>
     <string name="label_sampling_rate">Sample Rate</string>
 
+    <string name="battery_optimizations_title">Battery Optimizations</string>
+    <string name="battery_optimizations_message">Please disable battery optimizations for media playback while the screen is off.</string>
     <string name="added_title_to_queue">"Added 1 title to the queue."</string>
     <string name="added_x_titles_to_queue">Added %1$d titles to the queue.</string>
     <string name="delete_playlist_x"><![CDATA[Delete the playlist <b>%1$s</b>?]]></string>
@@ -189,6 +187,8 @@
     <string name="app_widget_card_name">Gelli Card</string>
 
     <string name="login">Login</string>
+    <string name="disable">Disable</string>
+    <string name="ignore">Ignore</string>
     <string name="logout">Logout</string>
     <string name="username">Username</string>
     <string name="password">Password</string>

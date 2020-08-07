@@ -69,19 +69,20 @@ public class SplashActivity extends AbsBaseActivity {
             PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
             return !pm.isIgnoringBatteryOptimizations(packageName);
         }
+
         return false;
     }
 
     private void showBatteryOptimizationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(SplashActivity.this);
-        builder.setMessage(R.string.action_disable_battery_optimizations_message)
-                .setTitle(R.string.action_disable_battery_optimizations_title)
-                .setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener() {
+        builder.setMessage(R.string.battery_optimizations_message)
+                .setTitle(R.string.battery_optimizations_title)
+                .setNegativeButton(R.string.ignore, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         login();
                     }
                 })
-                .setPositiveButton(R.string.action_go_to_optimization_settings, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.disable, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         openPowerSettings(SplashActivity.this);
                     }
