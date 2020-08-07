@@ -116,7 +116,7 @@ public class MultiPlayer implements Playback {
         // queue and other information is currently handled outside exoplayer
         exoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
 
-        appendDataSource(path, true);
+        appendDataSource(path, 0);
         isReady = true;
     }
 
@@ -126,14 +126,16 @@ public class MultiPlayer implements Playback {
             return;
         }
 
-        if (mediaSource.getSize() >= 2) {
+        if (mediaSource.getSize() == 2 && mediaSource.getMediaSource(1).getTag() != path) {
             mediaSource.removeMediaSource(1);
         }
 
-        appendDataSource(path, false);
+        if (mediaSource.getSize() != 2) {
+            appendDataSource(path, 1);
+        }
     }
 
-    private void appendDataSource(String path, boolean next) {
+    private void appendDataSource(String path, int position) {
         Uri uri = Uri.parse(path);
 
         DataSource.Factory dataSource = new DefaultHttpDataSourceFactory(Util.getUserAgent(context, this.getClass().getName()));
@@ -148,13 +150,23 @@ public class MultiPlayer implements Playback {
             public void onResponse(Call call, Response response) {
                 MediaSource source;
                 if (response.header("Content-Type").equals("application/x-mpegURL")) {
-                    source = new HlsMediaSource.Factory(dataSource).createMediaSource(uri);
+                    source = new HlsMediaSource.Factory(dataSource)
+                            .setTag(path)
+                            .setAllowChunklessPreparation(true)
+                            .createMediaSource(uri);
                 } else {
-                    source = new ProgressiveMediaSource.Factory(dataSource).createMediaSource(uri);
+                    source = new ProgressiveMediaSource.Factory(dataSource)
+                            .setTag(path)
+                            .createMediaSource(uri);
                 }
 
-                mediaSource.addMediaSource(source);
-                if (next) start();
+                if (mediaSource.getSize() < position) {
+                    mediaSource.addMediaSource(mediaSource.getSize(), source);
+                } else {
+                    mediaSource.addMediaSource(position, source);
+                }
+
+                if (position == 0) start();
             }
         });
     }
