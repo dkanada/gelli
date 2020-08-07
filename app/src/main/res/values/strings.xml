@@ -44,6 +44,10 @@
     <string name="action_sleep_timer">Sleep timer</string>
     <string name="action_set">Set</string>
     <string name="action_new_playlist">New playlist</string>
+    <string name="action_disable_battery_optimizations_title">Disable battery optimizations</string>
+    <string name="action_disable_battery_optimizations_message">Please disable battery optimizations for media playback while the screen is off</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_go_to_optimization_settings">Go to settings</string>
 
     <string name="albums">Albums</string>
     <string name="artists">Artists</string>

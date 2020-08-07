@@ -1,8 +1,13 @@
 package com.dkanada.gramophone.ui.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.provider.Settings;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
@@ -46,8 +51,49 @@ public class SplashActivity extends AbsBaseActivity {
 
         credentialProvider = new AndroidCredentialProvider(jsonSerializer, this, logger);
         connectionManager = App.getConnectionManager(this, jsonSerializer, logger, httpClient);
+    }
 
-        login();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (detectBatteryOptimization()) {
+            showBatteryOptimizationDialog();
+        } else {
+            login();
+        }
+    }
+
+    private boolean detectBatteryOptimization() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            String packageName = getPackageName();
+            PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+            return !pm.isIgnoringBatteryOptimizations(packageName);
+        }
+        return false;
+    }
+
+    private void showBatteryOptimizationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SplashActivity.this);
+        builder.setMessage(R.string.action_disable_battery_optimizations_message)
+                .setTitle(R.string.action_disable_battery_optimizations_title)
+                .setNegativeButton(R.string.action_cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        login();
+                    }
+                })
+                .setPositiveButton(R.string.action_go_to_optimization_settings, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        openPowerSettings(SplashActivity.this);
+                    }
+                })
+                .show();
+    }
+
+    private void openPowerSettings(Context context) {
+        Intent intent = new Intent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+        context.startActivity(intent);
     }
 
     public void login() {
