@@ -29,6 +29,10 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     lintOptions {
         disable 'MissingTranslation'
         abortOnError false

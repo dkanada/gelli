@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.databinding.FragmentAlbumCoverBinding;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.CustomPaletteTarget;
 import com.dkanada.gramophone.misc.CustomFragmentStatePagerAdapter;
@@ -71,10 +72,7 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
     public static class AlbumCoverFragment extends Fragment {
         private static final String SONG_ARG = "song";
 
-        private Unbinder unbinder;
-
-        @BindView(R.id.player_image)
-        ImageView albumCover;
+        private FragmentAlbumCoverBinding binding;
 
         private boolean isColorReady;
         private int color;
@@ -98,9 +96,9 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
 
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_album_cover, container, false);
-            unbinder = ButterKnife.bind(this, view);
-            return view;
+            binding = FragmentAlbumCoverBinding.inflate(inflater);
+
+            return binding.getRoot();
         }
 
         @Override
@@ -112,7 +110,6 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
         @Override
         public void onDestroyView() {
             super.onDestroyView();
-            unbinder.unbind();
             colorReceiver = null;
         }
 
@@ -120,7 +117,7 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
             CustomGlideRequest.Builder
                     .from(Glide.with(getContext()), song.primary)
                     .generatePalette(getActivity()).build()
-                    .into(new CustomPaletteTarget(albumCover) {
+                    .into(new CustomPaletteTarget(binding.playerImage) {
                         @Override
                         public void onColorReady(int color) {
                             setColor(color);

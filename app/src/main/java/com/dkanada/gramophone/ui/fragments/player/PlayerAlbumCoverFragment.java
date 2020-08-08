@@ -11,45 +11,35 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.ImageView;
 
-import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.AlbumCoverPagerAdapter;
+import com.dkanada.gramophone.databinding.FragmentPlayerAlbumCoverBinding;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.misc.SimpleAnimatorListener;
 import com.dkanada.gramophone.ui.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.util.ViewUtil;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements ViewPager.OnPageChangeListener {
 
     public static final int VISIBILITY_ANIM_DURATION = 300;
 
-    private Unbinder unbinder;
-
-    @BindView(R.id.player_album_cover_viewpager)
-    ViewPager viewPager;
-    @BindView(R.id.player_favorite_icon)
-    ImageView favoriteIcon;
+    FragmentPlayerAlbumCoverBinding binding;
 
     private Callbacks callbacks;
     private int currentPosition;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_player_album_cover, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentPlayerAlbumCoverBinding.inflate(inflater);
+
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewPager.addOnPageChangeListener(this);
-        viewPager.setOnTouchListener(new View.OnTouchListener() {
+        binding.playerAlbumCoverViewPager.addOnPageChangeListener(this);
+        binding.playerAlbumCoverViewPager.setOnTouchListener(new View.OnTouchListener() {
             GestureDetector gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener() {
                 @Override
                 public boolean onSingleTapConfirmed(MotionEvent e) {
@@ -71,8 +61,8 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        viewPager.removeOnPageChangeListener(this);
-        unbinder.unbind();
+
+        binding.playerAlbumCoverViewPager.removeOnPageChangeListener(this);
     }
 
     @Override
@@ -82,7 +72,7 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
 
     @Override
     public void onPlayMetadataChanged() {
-        viewPager.setCurrentItem(MusicPlayerRemote.getPosition());
+        binding.playerAlbumCoverViewPager.setCurrentItem(MusicPlayerRemote.getPosition());
     }
 
     @Override
@@ -91,8 +81,8 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
     }
 
     private void updatePlayingQueue() {
-        viewPager.setAdapter(new AlbumCoverPagerAdapter(getFragmentManager(), MusicPlayerRemote.getPlayingQueue()));
-        viewPager.setCurrentItem(MusicPlayerRemote.getPosition());
+        binding.playerAlbumCoverViewPager.setAdapter(new AlbumCoverPagerAdapter(getFragmentManager(), MusicPlayerRemote.getPlayingQueue()));
+        binding.playerAlbumCoverViewPager.setCurrentItem(MusicPlayerRemote.getPosition());
         onPageSelected(MusicPlayerRemote.getPosition());
     }
 
@@ -103,7 +93,7 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
     @Override
     public void onPageSelected(int position) {
         currentPosition = position;
-        ((AlbumCoverPagerAdapter) viewPager.getAdapter()).receiveColor(colorReceiver, position);
+        ((AlbumCoverPagerAdapter) binding.playerAlbumCoverViewPager.getAdapter()).receiveColor(colorReceiver, position);
         if (position != MusicPlayerRemote.getPosition()) {
             MusicPlayerRemote.playSongAt(position);
         }
@@ -123,16 +113,16 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
     }
 
     public void showHeartAnimation() {
-        favoriteIcon.clearAnimation();
+        binding.playerFavoriteIcon.clearAnimation();
 
-        favoriteIcon.setAlpha(0f);
-        favoriteIcon.setScaleX(0f);
-        favoriteIcon.setScaleY(0f);
-        favoriteIcon.setVisibility(View.VISIBLE);
-        favoriteIcon.setPivotX(favoriteIcon.getWidth() / 2);
-        favoriteIcon.setPivotY(favoriteIcon.getHeight() / 2);
+        binding.playerFavoriteIcon.setAlpha(0f);
+        binding.playerFavoriteIcon.setScaleX(0f);
+        binding.playerFavoriteIcon.setScaleY(0f);
+        binding.playerFavoriteIcon.setVisibility(View.VISIBLE);
+        binding.playerFavoriteIcon.setPivotX(binding.playerFavoriteIcon.getWidth() / 2);
+        binding.playerFavoriteIcon.setPivotY(binding.playerFavoriteIcon.getHeight() / 2);
 
-        favoriteIcon.animate()
+        binding.playerFavoriteIcon.animate()
                 .setDuration(ViewUtil.PHONOGRAPH_ANIM_TIME / 2)
                 .setInterpolator(new DecelerateInterpolator())
                 .scaleX(1f)
@@ -141,10 +131,10 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
                 .setListener(new SimpleAnimatorListener() {
                     @Override
                     public void onAnimationCancel(Animator animation) {
-                        favoriteIcon.setVisibility(View.INVISIBLE);
+                        binding.playerFavoriteIcon.setVisibility(View.INVISIBLE);
                     }
                 })
-                .withEndAction(() -> favoriteIcon.animate()
+                .withEndAction(() -> binding.playerFavoriteIcon.animate()
                         .setDuration(ViewUtil.PHONOGRAPH_ANIM_TIME / 2)
                         .setInterpolator(new AccelerateInterpolator())
                         .scaleX(0f)
