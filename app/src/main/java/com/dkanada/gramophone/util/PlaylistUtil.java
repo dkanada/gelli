@@ -86,7 +86,9 @@ public class PlaylistUtil {
             @Override
             public void onResponse(BaseItemDto itemDto) {
                 itemDto.setName(name);
-                renamePlaylistInner(itemDto);
+
+                // TODO at some point this should become metadata utilities
+                App.getApiClient().UpdateItem(itemDto.getId(), itemDto, new EmptyResponse());
             }
 
             @Override
@@ -94,10 +96,5 @@ public class PlaylistUtil {
                 exception.printStackTrace();
             }
         });
-    }
-
-    public static void renamePlaylistInner(final BaseItemDto itemDto) {
-        // TODO at some point this should become metadata utilities
-        App.getApiClient().UpdateItem(itemDto.getId(), itemDto, new EmptyResponse());
     }
 }
