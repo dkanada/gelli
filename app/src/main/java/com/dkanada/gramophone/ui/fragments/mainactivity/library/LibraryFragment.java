@@ -244,6 +244,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                 absLibraryRecyclerViewCustomGridSizeFragment.setAndSaveUsePalette(item.isChecked());
                 return true;
             }
+
             if (handleGridSizeMenuItem(absLibraryRecyclerViewCustomGridSizeFragment, item)) {
                 return true;
             }

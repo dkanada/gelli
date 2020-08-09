@@ -2,6 +2,7 @@ package com.dkanada.gramophone.ui.fragments.mainactivity.library.pager;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.dkanada.gramophone.R;
@@ -23,11 +24,13 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
         super.onActivityCreated(savedInstanceState);
     }
 
+    @NonNull
     @Override
     protected GridLayoutManager createLayoutManager() {
         return new GridLayoutManager(getActivity(), getGridSize());
     }
 
+    @NonNull
     @Override
     protected AlbumAdapter createAdapter() {
         int itemLayoutRes = getItemLayoutRes();

@@ -9,7 +9,7 @@ import android.view.View;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.Util;
 
-public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extends RecyclerView.Adapter, LM extends RecyclerView.LayoutManager> extends AbsLibraryPagerRecyclerViewFragment<A, LM> {
+public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extends RecyclerView.Adapter, L extends RecyclerView.LayoutManager> extends AbsLibraryPagerRecyclerViewFragment<A, L> {
     private int gridSize;
     private String sortMethod;
 

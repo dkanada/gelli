@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView.Adapter, LM extends RecyclerView.LayoutManager> extends AbsLibraryPagerFragment implements OnOffsetChangedListener {
+public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView.Adapter, L extends RecyclerView.LayoutManager> extends AbsLibraryPagerFragment implements OnOffsetChangedListener {
 
     private Unbinder unbinder;
 
@@ -33,7 +33,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
     TextView empty;
 
     private A adapter;
-    private LM layoutManager;
+    private L layoutManager;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,26 +50,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
 
         initLayoutManager();
         initAdapter();
-        setUpRecyclerView();
-    }
-
-    private void setUpRecyclerView() {
-        if (recyclerView instanceof FastScrollRecyclerView) {
-            ViewUtil.setUpFastScrollRecyclerViewColor(getActivity(), ((FastScrollRecyclerView) recyclerView), ThemeStore.accentColor(getActivity()));
-        }
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
-    }
-
-    protected void invalidateLayoutManager() {
-        initLayoutManager();
-        recyclerView.setLayoutManager(layoutManager);
-    }
-
-    protected void invalidateAdapter() {
-        initAdapter();
-        checkIsEmpty();
-        recyclerView.setAdapter(adapter);
+        initRecyclerView();
     }
 
     private void initAdapter() {
@@ -87,21 +68,35 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
         layoutManager = createLayoutManager();
     }
 
-    protected A getAdapter() {
-        return adapter;
+    private void initRecyclerView() {
+        if (recyclerView instanceof FastScrollRecyclerView) {
+            ViewUtil.setUpFastScrollRecyclerViewColor(getActivity(), ((FastScrollRecyclerView) recyclerView), ThemeStore.accentColor(getActivity()));
+        }
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
-    protected LM getLayoutManager() {
-        return layoutManager;
+    protected void invalidateAdapter() {
+        initAdapter();
+        recyclerView.setAdapter(adapter);
+    }
+
+    protected void invalidateLayoutManager() {
+        initLayoutManager();
+        recyclerView.setLayoutManager(layoutManager);
     }
 
     protected RecyclerView getRecyclerView() {
         return recyclerView;
     }
 
-    @Override
-    public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-        container.setPadding(container.getPaddingLeft(), container.getPaddingTop(), container.getPaddingRight(), getLibraryFragment().getTotalAppBarScrollingRange() + i);
+    protected A getAdapter() {
+        return adapter;
+    }
+
+    protected L getLayoutManager() {
+        return layoutManager;
     }
 
     private void checkIsEmpty() {
@@ -121,14 +116,21 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
         return R.layout.fragment_main_activity_recycler_view;
     }
 
-    protected abstract LM createLayoutManager();
-
     @NonNull
     protected abstract A createAdapter();
+
+    @NonNull
+    protected abstract L createLayoutManager();
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+        container.setPadding(container.getPaddingLeft(), container.getPaddingTop(), container.getPaddingRight(), getLibraryFragment().getTotalAppBarScrollingRange() + i);
+    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
         getLibraryFragment().removeOnAppBarOffsetChangedListener(this);
         unbinder.unbind();
     }
