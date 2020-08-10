@@ -1,0 +1,7 @@
+- infinite loading on main library fragments
+- add direct playback for all supported audio formats
+- remove deprecated library for artist detail activity
+- check for battery optimization on start
+- possible fix for repeat on last song in queue
+- queue playback improvements
+- start view binding migration to standard library
