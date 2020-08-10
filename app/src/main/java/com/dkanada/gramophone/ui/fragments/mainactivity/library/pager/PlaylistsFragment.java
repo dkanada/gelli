@@ -5,16 +5,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.PlaylistAdapter;
-import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Playlist;
+import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
+
+import org.jellyfin.apiclient.interaction.Response;
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.querying.ItemQuery;
+import org.jellyfin.apiclient.model.querying.ItemsResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<PlaylistAdapter, LinearLayoutManager> {
+public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<PlaylistAdapter, LinearLayoutManager, ItemQuery> {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -30,17 +36,43 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
     @Override
     protected PlaylistAdapter createAdapter() {
         List<Playlist> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
+        return new PlaylistAdapter(getLibraryFragment().getMainActivity(), dataSet, R.layout.item_list_single_row, getLibraryFragment());
+    }
 
-        PlaylistAdapter adapter = new PlaylistAdapter(getLibraryFragment().getMainActivity(), dataSet, R.layout.item_list_single_row, getLibraryFragment());
-        QueryUtil.getPlaylists(new MediaCallback() {
+    @NonNull
+    @Override
+    protected ItemQuery createQuery() {
+        ItemQuery query = new ItemQuery();
+
+        query.setIncludeItemTypes(new String[]{"Playlist"});
+        query.setParentId(QueryUtil.currentLibrary.getId());
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setStartIndex(getAdapter().getItemCount());
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setRecursive(true);
+
+        return query;
+    }
+
+    @Override
+    protected void loadItems() {
+        App.getApiClient().GetItemsAsync(getQuery(), new Response<ItemsResult>() {
             @Override
-            public void onLoadMedia(List<?> media) {
-                dataSet.addAll((List<Playlist>) media);
-                adapter.notifyDataSetChanged();
+            public void onResponse(ItemsResult result) {
+                for (BaseItemDto itemDto : result.getItems()) {
+                    getAdapter().getDataSet().add(new Playlist(itemDto));
+                }
+
+                size = result.getTotalRecordCount();
+                getAdapter().notifyDataSetChanged();
+                loading = false;
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                exception.printStackTrace();
             }
         });
-
-        return adapter;
     }
 
     @Override

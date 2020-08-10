@@ -6,21 +6,24 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.artist.ArtistAdapter;
 import com.dkanada.gramophone.helper.sort.SortMethod;
-import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 
+import org.jellyfin.apiclient.interaction.Response;
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.querying.ArtistsQuery;
+import org.jellyfin.apiclient.model.querying.ItemFields;
+import org.jellyfin.apiclient.model.querying.ItemsResult;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<ArtistAdapter, GridLayoutManager> {
+public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<ArtistAdapter, GridLayoutManager, ArtistsQuery> {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -37,18 +40,45 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
     protected ArtistAdapter createAdapter() {
         int itemLayoutRes = getItemLayoutRes();
         notifyLayoutResChanged(itemLayoutRes);
-        List<Artist> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
 
-        ArtistAdapter adapter = new ArtistAdapter(getLibraryFragment().getMainActivity(), dataSet, itemLayoutRes, loadUsePalette(), getLibraryFragment());
-        QueryUtil.getArtists(new ArtistsQuery(), new MediaCallback() {
+        List<Artist> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
+        return new ArtistAdapter(getLibraryFragment().getMainActivity(), dataSet, itemLayoutRes, loadUsePalette(), getLibraryFragment());
+    }
+
+    @NonNull
+    @Override
+    protected ArtistsQuery createQuery() {
+        ArtistsQuery query = new ArtistsQuery();
+
+        query.setFields(new ItemFields[]{ItemFields.Genres});
+        query.setParentId(QueryUtil.currentLibrary.getId());
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setStartIndex(getAdapter().getItemCount());
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setRecursive(true);
+
+        return query;
+    }
+
+    @Override
+    protected void loadItems() {
+        App.getApiClient().GetAlbumArtistsAsync(getQuery(), new Response<ItemsResult>() {
             @Override
-            public void onLoadMedia(List<?> media) {
-                dataSet.addAll((Collection<Artist>) media);
-                adapter.notifyDataSetChanged();
+            public void onResponse(ItemsResult result) {
+                for (BaseItemDto itemDto : result.getItems()) {
+                    getAdapter().getDataSet().add(new Artist(itemDto));
+                }
+
+                size = result.getTotalRecordCount();
+                getAdapter().notifyDataSetChanged();
+                loading = false;
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                exception.printStackTrace();
             }
         });
-
-        return adapter;
     }
 
     @Override

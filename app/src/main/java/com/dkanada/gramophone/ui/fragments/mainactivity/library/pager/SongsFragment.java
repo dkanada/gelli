@@ -4,21 +4,23 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.song.ShuffleButtonSongAdapter;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
-import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 
+import org.jellyfin.apiclient.interaction.Response;
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
+import org.jellyfin.apiclient.model.querying.ItemsResult;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<SongAdapter, GridLayoutManager> {
+public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<SongAdapter, GridLayoutManager, ItemQuery> {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -36,9 +38,10 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
         int itemLayoutRes = getItemLayoutRes();
         notifyLayoutResChanged(itemLayoutRes);
         boolean usePalette = loadUsePalette();
-        List<Song> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
 
+        List<Song> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
         SongAdapter adapter;
+
         if (getGridSize() <= getMaxGridSizeForList()) {
             adapter = new ShuffleButtonSongAdapter(
                     getLibraryFragment().getMainActivity(),
@@ -55,16 +58,43 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
                     getLibraryFragment());
         }
 
-        QueryUtil.getSongs(new ItemQuery(), new MediaCallback() {
+        return adapter;
+    }
+
+    @NonNull
+    @Override
+    protected ItemQuery createQuery() {
+        ItemQuery query = new ItemQuery();
+
+        query.setIncludeItemTypes(new String[]{"Audio"});
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setRecursive(true);
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setStartIndex(getAdapter().getItemCount());
+        query.setParentId(QueryUtil.currentLibrary.getId());
+
+        return query;
+    }
+
+    @Override
+    protected void loadItems() {
+        App.getApiClient().GetItemsAsync(getQuery(), new Response<ItemsResult>() {
             @Override
-            public void onLoadMedia(List<?> media) {
-                dataSet.clear();
-                dataSet.addAll((Collection<Song>) media);
-                adapter.notifyDataSetChanged();
+            public void onResponse(ItemsResult result) {
+                for (BaseItemDto itemDto : result.getItems()) {
+                    getAdapter().getDataSet().add(new Song(itemDto));
+                }
+
+                size = result.getTotalRecordCount();
+                getAdapter().notifyDataSetChanged();
+                loading = false;
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                exception.printStackTrace();
             }
         });
-
-        return adapter;
     }
 
     @Override

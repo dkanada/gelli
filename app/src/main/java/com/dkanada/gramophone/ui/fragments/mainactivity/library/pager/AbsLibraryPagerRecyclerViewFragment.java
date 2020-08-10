@@ -4,8 +4,14 @@ import android.os.Bundle;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+
+import com.dkanada.gramophone.App;
+import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView.Adapter, L extends RecyclerView.LayoutManager> extends AbsLibraryPagerFragment implements OnOffsetChangedListener {
+public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView.Adapter, L extends RecyclerView.LayoutManager, Q> extends AbsLibraryPagerFragment implements OnOffsetChangedListener {
 
     private Unbinder unbinder;
 
@@ -34,6 +40,10 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
 
     private A adapter;
     private L layoutManager;
+    private Q query;
+
+    public int size;
+    public boolean loading;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,13 +58,16 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
 
         getLibraryFragment().addOnAppBarOffsetChangedListener(this);
 
-        initLayoutManager();
         initAdapter();
+        initLayoutManager();
+
         initRecyclerView();
     }
 
     private void initAdapter() {
         adapter = createAdapter();
+        query = createQuery();
+
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
@@ -62,6 +75,8 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
                 checkIsEmpty();
             }
         });
+
+        loadItems();
     }
 
     private void initLayoutManager() {
@@ -99,11 +114,8 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
         return layoutManager;
     }
 
-    private void checkIsEmpty() {
-        if (empty != null) {
-            empty.setText(getEmptyMessage());
-            empty.setVisibility(adapter == null || adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
-        }
+    protected Q getQuery() {
+        return query;
     }
 
     @StringRes
@@ -122,9 +134,31 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
     @NonNull
     protected abstract L createLayoutManager();
 
+    @NonNull
+    protected abstract Q createQuery();
+
+    protected abstract void loadItems();
+
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
         container.setPadding(container.getPaddingLeft(), container.getPaddingTop(), container.getPaddingRight(), getLibraryFragment().getTotalAppBarScrollingRange() + i);
+
+        int last = 0;
+        if (!loading && getLayoutManager() instanceof GridLayoutManager) {
+            GridLayoutManager layoutManager = (GridLayoutManager) getLayoutManager();
+            last = layoutManager.findLastVisibleItemPosition();
+        } else if (!loading && getLayoutManager() instanceof LinearLayoutManager) {
+            LinearLayoutManager layoutManager = (LinearLayoutManager) getLayoutManager();
+            last = layoutManager.findLastVisibleItemPosition();
+        }
+
+        int page = PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize();
+        int total = getAdapter().getItemCount();
+        if (last > total - page / 2 && total < size) {
+            query = createQuery();
+            loading = true;
+            loadItems();
+        }
     }
 
     @Override
@@ -133,5 +167,12 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
 
         getLibraryFragment().removeOnAppBarOffsetChangedListener(this);
         unbinder.unbind();
+    }
+
+    private void checkIsEmpty() {
+        if (empty != null) {
+            empty.setText(getEmptyMessage());
+            empty.setVisibility(adapter == null || adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
+        }
     }
 }

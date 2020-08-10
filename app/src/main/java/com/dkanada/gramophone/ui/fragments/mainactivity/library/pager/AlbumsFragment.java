@@ -5,20 +5,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.album.AlbumAdapter;
-import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 
+import org.jellyfin.apiclient.interaction.Response;
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
+import org.jellyfin.apiclient.model.querying.ItemsResult;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<AlbumAdapter, GridLayoutManager> {
+public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<AlbumAdapter, GridLayoutManager, ItemQuery> {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -35,19 +37,44 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
     protected AlbumAdapter createAdapter() {
         int itemLayoutRes = getItemLayoutRes();
         notifyLayoutResChanged(itemLayoutRes);
-        List<Album> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
 
-        AlbumAdapter adapter = new AlbumAdapter(getLibraryFragment().getMainActivity(), dataSet, itemLayoutRes, loadUsePalette(), getLibraryFragment());
-        QueryUtil.getAlbums(new ItemQuery(), new MediaCallback() {
+        List<Album> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
+        return new AlbumAdapter(getLibraryFragment().getMainActivity(), dataSet, itemLayoutRes, loadUsePalette(), getLibraryFragment());
+    }
+
+    @NonNull
+    @Override
+    protected ItemQuery createQuery() {
+        ItemQuery query = new ItemQuery();
+
+        query.setIncludeItemTypes(new String[]{"MusicAlbum"});
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setRecursive(true);
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setStartIndex(getAdapter().getItemCount());
+        query.setParentId(QueryUtil.currentLibrary.getId());
+
+        return query;
+    }
+
+    protected void loadItems() {
+        App.getApiClient().GetItemsAsync(getQuery(), new Response<ItemsResult>() {
             @Override
-            public void onLoadMedia(List<?> media) {
-                dataSet.clear();
-                dataSet.addAll((Collection<Album>) media);
-                adapter.notifyDataSetChanged();
+            public void onResponse(ItemsResult result) {
+                for (BaseItemDto itemDto : result.getItems()) {
+                    getAdapter().getDataSet().add(new Album(itemDto));
+                }
+
+                size = result.getTotalRecordCount();
+                getAdapter().notifyDataSetChanged();
+                loading = false;
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                exception.printStackTrace();
             }
         });
-
-        return adapter;
     }
 
     @Override
