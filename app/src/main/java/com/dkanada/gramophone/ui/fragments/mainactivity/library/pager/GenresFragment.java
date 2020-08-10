@@ -43,11 +43,11 @@ public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAda
     protected ItemsByNameQuery createQuery() {
         ItemsByNameQuery query = new ItemsByNameQuery();
 
-        query.setParentId(QueryUtil.currentLibrary.getId());
-        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
         query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setStartIndex(getAdapter().getItemCount());
         query.setRecursive(true);
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setStartIndex(getAdapter().getItemCount());
+        query.setParentId(QueryUtil.currentLibrary.getId());
 
         return query;
     }

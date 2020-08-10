@@ -183,7 +183,7 @@ public class QueryUtil {
         });
     }
 
-    private static void applyProperties(ItemQuery query) {
+    public static void applyProperties(ItemQuery query) {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
         if (query.getParentId() == null && query.getArtistIds().length == 0) {
@@ -194,7 +194,7 @@ public class QueryUtil {
         if (query.getArtistIds().length == 0) query.setParentId(currentLibrary.getId());
     }
 
-    private static void applyProperties(ItemsByNameQuery query) {
+    public static void applyProperties(ItemsByNameQuery query) {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
         if (query.getParentId() == null) {
@@ -205,7 +205,7 @@ public class QueryUtil {
         query.setParentId(currentLibrary.getId());
     }
 
-    private static void applySortMethod(ItemQuery query, String method) {
+    public static void applySortMethod(ItemQuery query, String method) {
         // album activity will always sort by track number
         if (query.getSortBy().length != 0) return;
 

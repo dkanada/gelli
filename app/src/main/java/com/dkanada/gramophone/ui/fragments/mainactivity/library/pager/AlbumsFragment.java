@@ -54,6 +54,7 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 
+        QueryUtil.applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod());
         return query;
     }
 

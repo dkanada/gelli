@@ -73,6 +73,7 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 
+        QueryUtil.applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod());
         return query;
     }
 
