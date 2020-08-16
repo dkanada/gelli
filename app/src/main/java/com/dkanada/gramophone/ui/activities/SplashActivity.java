@@ -26,8 +26,6 @@ import org.jellyfin.apiclient.model.logging.ILogger;
 import org.jellyfin.apiclient.model.serialization.GsonJsonSerializer;
 import org.jellyfin.apiclient.model.serialization.IJsonSerializer;
 
-import butterknife.ButterKnife;
-
 public class SplashActivity extends AbsBaseActivity {
     public static final String TAG = SplashActivity.class.getSimpleName();
 
@@ -39,7 +37,6 @@ public class SplashActivity extends AbsBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         setDrawUnderStatusbar();
-        ButterKnife.bind(this);
 
         setStatusbarColorAuto();
         setNavigationbarColorAuto();

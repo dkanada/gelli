@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.SearchAdapter;
+import com.dkanada.gramophone.databinding.ActivitySearchBinding;
 import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
@@ -33,21 +34,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class SearchActivity extends AbsMusicServiceActivity implements SearchView.OnQueryTextListener {
-
     public static final String QUERY = "query";
 
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-    @BindView(android.R.id.empty)
-    TextView empty;
+    ActivitySearchBinding binding;
 
     SearchView searchView;
 
@@ -59,26 +49,28 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        setDrawUnderStatusbar();
-        ButterKnife.bind(this);
 
+        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        setDrawUnderStatusbar();
         setStatusbarColorAuto();
+
         setNavigationbarColorAuto();
         setTaskDescriptionColorAuto();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new SearchAdapter(this, Collections.emptyList());
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
                 super.onChanged();
-                empty.setVisibility(adapter.getItemCount() < 1 ? View.VISIBLE : View.GONE);
+                binding.empty.setVisibility(adapter.getItemCount() < 1 ? View.VISIBLE : View.GONE);
             }
         });
 
-        recyclerView.setAdapter(adapter);
-        recyclerView.setOnTouchListener((v, event) -> {
+        binding.recyclerView.setAdapter(adapter);
+        binding.recyclerView.setOnTouchListener((v, event) -> {
             hideSoftKeyboard();
             return false;
         });
@@ -99,8 +91,8 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
     }
 
     private void setUpToolBar() {
-        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
-        setSupportActionBar(toolbar);
+        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        setSupportActionBar(binding.toolbar);
         // noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
