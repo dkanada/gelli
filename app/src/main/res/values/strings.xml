@@ -2,6 +2,7 @@
 <resources>
 
     <string name="what_do_you_want_to_share">What do you want to share?</string>
+    <string name="confirm_logout">Are you sure you want to logout?</string>
     <string name="currently_listening_to_x_by_x">Currently listening to %1$s by %2$s.</string>
     <string name="the_audio_file">The audio file</string>
     <string name="unplayable_file">Couldn\u2019t play this song.</string>

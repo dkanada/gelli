@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.dkanada.gramophone.dialogs.ConfirmLogoutDialog;
 import com.google.android.material.navigation.NavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -23,7 +25,6 @@ import com.bumptech.glide.Glide;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
-import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
@@ -36,14 +37,7 @@ import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-import org.jellyfin.apiclient.interaction.EmptyResponse;
-import org.jellyfin.apiclient.interaction.VolleyHttpClient;
-import org.jellyfin.apiclient.interaction.http.IAsyncHttpClient;
-import org.jellyfin.apiclient.logging.AndroidLogger;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
-import org.jellyfin.apiclient.model.logging.ILogger;
-import org.jellyfin.apiclient.model.serialization.GsonJsonSerializer;
-import org.jellyfin.apiclient.model.serialization.IJsonSerializer;
 
 import java.util.List;
 
@@ -146,14 +140,8 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, AboutActivity.class)), 200);
                     break;
                 case R.id.nav_logout:
-                    IJsonSerializer jsonSerializer = new GsonJsonSerializer();
-                    ILogger logger = new AndroidLogger(TAG);
-                    IAsyncHttpClient httpClient = new VolleyHttpClient(logger, this);
-
-                    App.getConnectionManager(this, jsonSerializer, logger, httpClient).Logout(new EmptyResponse());
-                    Intent intent = new Intent(this, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    this.startActivity(intent);
+                    ConfirmLogoutDialog.create().show(getSupportFragmentManager(), "CONFIRM_LOGOUT_DIALOG");
+                    break;
             }
 
             // only run the following code when a new library has been selected
@@ -169,7 +157,10 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             // setCheckable must be applied to the items on creation
             // it also applies a tacky background color for the checked item
             // this is a hack to check the current item without that
-            if (menuItem.getItemId() == R.id.nav_settings || menuItem.getItemId() == R.id.nav_about) return true;
+            if (menuItem.getItemId() == R.id.nav_settings
+                    || menuItem.getItemId() == R.id.nav_about
+                    || menuItem.getItemId() == R.id.nav_logout) return true;
+
             for (int i = 0; i < navigationView.getMenu().size(); i++) {
                 if (navigationView.getMenu().getItem(i) == menuItem) {
                     navigationView.getMenu().getItem(i).setChecked(true);
