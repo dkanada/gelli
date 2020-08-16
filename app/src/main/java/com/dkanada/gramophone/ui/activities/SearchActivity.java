@@ -5,11 +5,9 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SearchActivity extends AbsMusicServiceActivity implements SearchView.OnQueryTextListener {
-    public static final String QUERY = "query";
+    public String QUERY = "query";
 
     ActivitySearchBinding binding;
 
@@ -85,7 +83,7 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(QUERY, query);
     }

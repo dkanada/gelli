@@ -6,16 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import java.util.List;
 
@@ -25,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
+import com.dkanada.gramophone.databinding.ActivityArtistDetailBinding;
 import com.google.android.material.appbar.AppBarLayout;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
@@ -53,31 +49,7 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
     public static final String EXTRA_ARTIST = "extra_artist";
 
-    @BindView(R.id.app_bar_layout)
-    AppBarLayout appBarLayout;
-    @BindView(R.id.albums)
-    RecyclerView albumRecyclerView;
-    @BindView(R.id.songs)
-    RecyclerView songRecyclerView;
-    @BindView(R.id.image)
-    ImageView artistImage;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.header)
-    View headerView;
-
-    @BindView(R.id.duration_icon)
-    ImageView durationIconImageView;
-    @BindView(R.id.song_count_icon)
-    ImageView songCountIconImageView;
-    @BindView(R.id.album_count_icon)
-    ImageView albumCountIconImageView;
-    @BindView(R.id.duration_text)
-    TextView durationTextView;
-    @BindView(R.id.song_count_text)
-    TextView songCountTextView;
-    @BindView(R.id.album_count_text)
-    TextView albumCountTextView;
+    ActivityArtistDetailBinding binding;
 
     private MaterialCab cab;
     private int headerViewHeight;
@@ -90,14 +62,16 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        binding = ActivityArtistDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         setDrawUnderStatusbar();
-        ButterKnife.bind(this);
-
-        usePalette = PreferenceUtil.getInstance(this).getAlbumArtistColoredFooters();
-
         setUpObservableListViewParams();
         setUpToolbar();
         setUpViews();
+
+        usePalette = PreferenceUtil.getInstance(this).getAlbumArtistColoredFooters();
 
         if (Build.VERSION.SDK_INT > 21) postponeEnterTransition();
         Artist artist = getIntent().getExtras().getParcelable(EXTRA_ARTIST);
@@ -126,9 +100,9 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     }
 
     @Override
-    public void onOffsetChanged (AppBarLayout appBarLayout, int verticalOffset) {
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
         float headerAlpha = Math.max(0, Math.min(1, 1 + (2 * (float) verticalOffset / headerViewHeight)));
-        headerView.setAlpha(headerAlpha);
+        binding.header.setAlpha(headerAlpha);
     }
 
     @Override
@@ -149,18 +123,18 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     }
 
     private void setUpSongListView() {
-        appBarLayout.addOnOffsetChangedListener(this);
+        binding.appBarLayout.addOnOffsetChangedListener(this);
 
         songAdapter = new SongAdapter(this, getArtist().songs, R.layout.item_list, false, this);
 
-        songRecyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-        songRecyclerView.setAdapter(songAdapter);
+        binding.songs.setLayoutManager(new GridLayoutManager(this, 1));
+        binding.songs.setAdapter(songAdapter);
     }
 
     private void setUpAlbumRecyclerView() {
-        albumRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        binding.albums.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         albumAdapter = new HorizontalAlbumAdapter(this, getArtist().albums, usePalette, this);
-        albumRecyclerView.setAdapter(albumAdapter);
+        binding.albums.setAdapter(albumAdapter);
         albumAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
@@ -194,7 +168,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
                     }
                 })
                 .dontAnimate()
-                .into(new CustomPaletteTarget(artistImage) {
+                .into(new CustomPaletteTarget(binding.image) {
                     @Override
                     public void onColorReady(int color) {
                         setColors(color);
@@ -209,27 +183,28 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
 
     private void setColors(int color) {
         toolbarColor = color;
-        appBarLayout.setBackgroundColor(color);
+        binding.appBarLayout.setBackgroundColor(color);
 
         setNavigationbarColor(color);
         setTaskDescriptionColor(color);
 
-        toolbar.setBackgroundColor(color);
+        binding.toolbar.setBackgroundColor(color);
         // needed to auto readjust the toolbar content color
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
         setStatusbarColor(color);
 
         int secondaryTextColor = MaterialValueHelper.getSecondaryTextColor(this, ColorUtil.isColorLight(color));
-        durationIconImageView.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
-        songCountIconImageView.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
-        albumCountIconImageView.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
-        durationTextView.setTextColor(secondaryTextColor);
-        songCountTextView.setTextColor(secondaryTextColor);
-        albumCountTextView.setTextColor(secondaryTextColor);
+        binding.durationIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
+        binding.songCountIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
+        binding.albumCountIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
+
+        binding.durationText.setTextColor(secondaryTextColor);
+        binding.songCountText.setTextColor(secondaryTextColor);
+        binding.albumCountText.setTextColor(secondaryTextColor);
     }
 
     private void setUpToolbar() {
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
         // noinspection ConstantConditions
         getSupportActionBar().setTitle(null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -306,7 +281,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         if (cab != null && cab.isActive()) {
             cab.finish();
         } else {
-            albumRecyclerView.stopScroll();
+            binding.albums.stopScroll();
             super.onBackPressed();
         }
     }
@@ -321,9 +296,9 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         this.artist = artist;
 
         getSupportActionBar().setTitle(artist.name);
-        songCountTextView.setText(MusicUtil.getSongCountString(this, artist.songs.size()));
-        albumCountTextView.setText(MusicUtil.getAlbumCountString(this, artist.albums.size()));
-        durationTextView.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, artist.songs)));
+        binding.songCountText.setText(MusicUtil.getSongCountString(this, artist.songs.size()));
+        binding.albumCountText.setText(MusicUtil.getAlbumCountString(this, artist.albums.size()));
+        binding.durationText.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, artist.songs)));
 
         if (artist.songs.size() != 0) songAdapter.swapDataSet(artist.songs);
         if (artist.albums.size() != 0) albumAdapter.swapDataSet(artist.albums);
