@@ -42,7 +42,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preferences);
+        setContentView(R.layout.activity_settings);
         setDrawUnderStatusbar();
         ButterKnife.bind(this);
 
