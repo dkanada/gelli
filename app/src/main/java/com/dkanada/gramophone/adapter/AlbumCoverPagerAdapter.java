@@ -7,10 +7,8 @@ import androidx.fragment.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.databinding.FragmentAlbumCoverBinding;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.CustomPaletteTarget;
@@ -19,12 +17,7 @@ import com.dkanada.gramophone.model.Song;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-
 public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
-
     private List<Song> dataSet;
 
     private AlbumCoverFragment.ColorReceiver currentColorReceiver;
