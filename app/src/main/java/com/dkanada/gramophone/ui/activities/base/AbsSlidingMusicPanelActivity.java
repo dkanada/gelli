@@ -3,10 +3,12 @@ package com.dkanada.gramophone.ui.activities.base;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
+import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ import com.dkanada.gramophone.ui.fragments.player.card.CardPlayerFragment;
 import com.dkanada.gramophone.ui.fragments.player.flat.FlatPlayerFragment;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.ViewUtil;
+import com.kabouzeid.appthemehelper.ThemeStore;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivity implements SlidingUpPanelLayout.PanelSlideListener, CardPlayerFragment.Callbacks {
@@ -141,7 +144,15 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
     public void onPanelSlide(View panel, @FloatRange(from = 0, to = 1) float slideOffset) {
         setMiniPlayerAlphaProgress(slideOffset);
         if (navigationBarColorAnimator != null) navigationBarColorAnimator.cancel();
-        super.setNavigationbarColor((int) argbEvaluator.evaluate(slideOffset, navigationbarColor, playerFragment.getPaletteColor()));
+        int color = shiftNavbarColor(playerFragment.getPaletteColor());
+
+        if (ThemeStore.coloredNavigationBar(this)) {
+            int navbarColor = ColorUtils.blendARGB(navigationbarColor, color, slideOffset);
+            super.setNavigationbarColor(navbarColor);
+        } else {
+            int navbarColor = ColorUtils.blendARGB(Color.TRANSPARENT, color, slideOffset);
+            super.setNavigationbarColor(navbarColor);
+        }
     }
 
     @Override
@@ -176,7 +187,8 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
         int playerFragmentColor = playerFragment.getPaletteColor();
         super.setLightStatusbar(false);
         super.setTaskDescriptionColor(playerFragmentColor);
-        super.setNavigationbarColor(playerFragmentColor);
+        int color = shiftNavbarColor(playerFragmentColor);
+        super.setNavigationbarColor(color);
 
         playerFragment.setMenuVisibility(true);
         playerFragment.setUserVisibleHint(true);
@@ -243,7 +255,8 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
         if (getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
             int playerFragmentColor = playerFragment.getPaletteColor();
             super.setTaskDescriptionColor(playerFragmentColor);
-            animateNavigationBarColor(playerFragmentColor);
+            int color = shiftNavbarColor(playerFragmentColor);
+            animateNavigationBarColor(color);
         }
     }
 
@@ -294,5 +307,29 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
     @Override
     protected View getSnackBarContainer() {
         return findViewById(R.id.content_container);
+    }
+
+    /**
+     * To improve contrast with the navbar controls
+     */
+    private int shiftNavbarColor(int color) {
+        double luminance = ColorUtils.calculateLuminance(color);
+
+        if (luminance > 0.7 || luminance < 0.3) {
+            // The color is really dark or really light, the navbar is just fine
+            return color;
+        } else if (luminance > 0.5) {
+            // The color is a bit lighter than the center, let's make it a bit lighter, so it's easier to see
+            float[] hsv = new float[3];
+            Color.colorToHSV(color, hsv);
+            hsv[2] *= 1.3f;
+            return Color.HSVToColor(hsv);
+        } else {
+            // The color is a bit darker than the center, let's make it a bit darker, so it's easier to see
+            float[] hsv = new float[3];
+            Color.colorToHSV(color, hsv);
+            hsv[2] *= 0.7f;
+            return Color.HSVToColor(hsv);
+        }
     }
 }

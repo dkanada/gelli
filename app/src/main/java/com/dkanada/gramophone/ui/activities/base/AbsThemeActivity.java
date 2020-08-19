@@ -69,15 +69,15 @@ public abstract class AbsThemeActivity extends ATHToolbarActivity {
     }
 
     public void setNavigationbarColor(int color) {
-        if (ThemeStore.coloredNavigationBar(this)) {
-            ATH.setNavigationbarColor(this, color);
-        } else {
-            ATH.setNavigationbarColor(this, Color.BLACK);
-        }
+        ATH.setNavigationbarColor(this, color);
     }
 
     public void setNavigationbarColorAuto() {
-        setNavigationbarColor(ThemeStore.navigationBarColor(this));
+        if (ThemeStore.coloredNavigationBar(this)) {
+            setNavigationbarColor(ThemeStore.navigationBarColor(this));
+        } else {
+            setNavigationbarColor(Color.TRANSPARENT);
+        }
     }
 
     public void setLightStatusbar(boolean enabled) {
