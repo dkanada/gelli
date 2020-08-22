@@ -1,10 +1,16 @@
 package com.dkanada.gramophone.service;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.net.Uri;
 
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -48,6 +54,63 @@ public class MultiPlayer implements Playback {
     private boolean isPlaying = false;
     private boolean isNew = false;
 
+    private Handler uiThreadHandler = new Handler();
+    public void runOnUiThread(Runnable runnable) {
+        uiThreadHandler.post(runnable);
+    }
+
+    private boolean debugToast = false;
+
+    private void DebugToast(String msg) {
+        if (!debugToast) return;
+
+        runOnUiThread(() -> {
+            Toast.makeText(context, "Becoming noisy", Toast.LENGTH_LONG).show();
+        });
+    }
+
+    private IntentFilter becomingNoisyReceiverIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
+
+    private class BecomingNoisyReceiver extends BroadcastReceiver {
+        private boolean registered;
+
+        public boolean isRegistered(){
+            return registered;
+        }
+
+        public void setRegistered(boolean registered){
+            this.registered = registered;
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(AudioManager.ACTION_AUDIO_BECOMING_NOISY)) {
+                DebugToast("Becoming noisy");
+                pause();
+            }
+        }
+    }
+
+    private final BecomingNoisyReceiver becomingNoisyReceiver = new BecomingNoisyReceiver();
+
+    private void registerBecomingNoisyReceiver(){
+        if (!becomingNoisyReceiver.isRegistered()) {
+            becomingNoisyReceiver.setRegistered(true);
+
+            DebugToast("Registering");
+            context.registerReceiver(becomingNoisyReceiver, becomingNoisyReceiverIntentFilter);
+        }
+    }
+
+    private void unRegisterBecomingNoisyReceiver(){
+        if (becomingNoisyReceiver.isRegistered()) {
+            becomingNoisyReceiver.setRegistered(false);
+
+            DebugToast("Unregistering");
+            context.unregisterReceiver(becomingNoisyReceiver);
+        }
+    }
+
     private ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
         @Override
         public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
@@ -87,7 +150,6 @@ public class MultiPlayer implements Playback {
             if (context != null) {
                 Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
             }
-
             stop();
         }
     };
@@ -183,6 +245,8 @@ public class MultiPlayer implements Playback {
 
     @Override
     public void start() {
+        registerBecomingNoisyReceiver();
+
         isPlaying = true;
         exoPlayer.setPlayWhenReady(true);
 
@@ -194,12 +258,16 @@ public class MultiPlayer implements Playback {
 
     @Override
     public void stop() {
+        unRegisterBecomingNoisyReceiver();
+
         exoPlayer.release();
         isReady = false;
     }
 
     @Override
     public void pause() {
+        unRegisterBecomingNoisyReceiver();
+
         isPlaying = false;
         exoPlayer.setPlayWhenReady(false);
     }
