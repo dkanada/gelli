@@ -65,7 +65,7 @@ public class MultiPlayer implements Playback {
         if (!debugToast) return;
 
         runOnUiThread(() -> {
-            Toast.makeText(context, "Becoming noisy", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
         });
     }
 
