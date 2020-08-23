@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.dkanada.gramophone.App;
+import com.dkanada.gramophone.ui.activities.SplashActivity;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.core.app.ActivityCompat;
 import android.view.KeyEvent;
@@ -28,6 +31,15 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (App.getApiClient() == null) {
+            Intent intent = new Intent(this, SplashActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         permissions = getPermissionsToRequest();
