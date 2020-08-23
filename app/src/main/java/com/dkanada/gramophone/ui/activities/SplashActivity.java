@@ -2,12 +2,13 @@ package com.dkanada.gramophone.ui.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
+
+import androidx.annotation.RequiresApi;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
@@ -32,40 +33,31 @@ public class SplashActivity extends AbsBaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (detectBatteryOptimization()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && detectBatteryOptimization()) {
             showBatteryOptimizationDialog();
         } else {
             login();
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private boolean detectBatteryOptimization() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            String packageName = getPackageName();
-            PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
-            return !pm.isIgnoringBatteryOptimizations(packageName);
-        }
-
-        return false;
+        String packageName = getPackageName();
+        PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+        return !pm.isIgnoringBatteryOptimizations(packageName);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void showBatteryOptimizationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(SplashActivity.this);
         builder.setMessage(R.string.battery_optimizations_message)
                 .setTitle(R.string.battery_optimizations_title)
-                .setNegativeButton(R.string.ignore, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        login();
-                    }
-                })
-                .setPositiveButton(R.string.disable, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        openPowerSettings(SplashActivity.this);
-                    }
-                })
+                .setNegativeButton(R.string.ignore, (dialog, id) -> login())
+                .setPositiveButton(R.string.disable, (dialog, id) -> openPowerSettings(SplashActivity.this))
                 .show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void openPowerSettings(Context context) {
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -75,9 +67,7 @@ public class SplashActivity extends AbsBaseActivity {
 
     public void login() {
         if (PreferenceUtil.getInstance(this).getToken() == null) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+            launchLoginActivity();
         } else {
             final Context context = this;
 
@@ -93,11 +83,16 @@ public class SplashActivity extends AbsBaseActivity {
 
                 @Override
                 public void onError(Exception exception) {
-                    Intent intent = new Intent(context, LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+                    launchLoginActivity();
                 }
             });
         }
+    }
+
+    private void launchLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+        finish();
     }
 }

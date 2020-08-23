@@ -47,6 +47,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     private void setUpToolbar() {
         binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
         setSupportActionBar(binding.toolbar);
+        // noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -83,7 +84,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                 @Override
                 public void onResponse(AuthenticationResult result) {
                     if (result.getAccessToken() == null) return;
-                    check(context, binding.server.getText().toString(), result.getUser().getId(), result.getAccessToken());
+                    check(binding.server.getText().toString(), result.getUser().getId(), result.getAccessToken());
                 }
 
                 @Override
@@ -94,20 +95,21 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         }
     }
 
-    public void check(Context context, String server, String user, String token) {
+    private void check(String server, String user, String token) {
         App.getApiClient().GetSystemInfoAsync(new Response<SystemInfo>() {
             @Override
             public void onResponse(SystemInfo result) {
-                if (Integer.parseInt(result.getVersion().substring(0, 1)) == 1) {
-                    PreferenceUtil.getInstance(context).setServer(server);
-                    PreferenceUtil.getInstance(context).setUser(user);
-                    PreferenceUtil.getInstance(context).setToken(token);
+                if (result.getVersion().charAt(0) == '1') {
+                    PreferenceUtil.getInstance(LoginActivity.this).setServer(server);
+                    PreferenceUtil.getInstance(LoginActivity.this).setUser(user);
+                    PreferenceUtil.getInstance(LoginActivity.this).setToken(token);
 
-                    Intent intent = new Intent(context, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    context.startActivity(intent);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    Toast.makeText(context, context.getResources().getString(R.string.error_version), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.error_version), Toast.LENGTH_SHORT).show();
                 }
             }
         });
