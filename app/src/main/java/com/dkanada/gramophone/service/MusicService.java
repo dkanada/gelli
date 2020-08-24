@@ -132,7 +132,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private AudioManager audioManager;
     private MediaSessionCompat mediaSession;
     private PowerManager.WakeLock wakeLock;
-    private MusicServicePlaybackHandler playerHandler;
+    private MusicServiceHandler playerHandler;
 
     private final AudioManager.OnAudioFocusChangeListener audioFocusListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
@@ -146,7 +146,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private HandlerThread queueSaveHandlerThread;
     private ThrottledSeekHandler throttledSeekHandler;
 
-    public void setVolume(float volume){
+    public void setVolume(float volume) {
         playback.setVolume(volume);
     }
 
@@ -174,9 +174,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
         wakeLock.setReferenceCounted(false);
 
-        musicPlayerHandlerThread = new HandlerThread("PlaybackHandler");
-        musicPlayerHandlerThread.start();
-        playerHandler = new MusicServicePlaybackHandler(this, musicPlayerHandlerThread.getLooper());
+
+        playerHandler = new MusicServiceHandler(this);
 
         playback = new MultiPlayer(this);
         playback.setCallbacks(this);
@@ -354,10 +353,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         @Override
         public void handleMessage(@NonNull Message msg) {
             final MusicService service = mService.get();
-            switch (msg.what) {
-                case SAVE_QUEUES:
-                    service.saveQueuesImpl();
-                    break;
+            if (msg.what == SAVE_QUEUES) {
+                service.saveQueuesImpl();
             }
         }
     }
@@ -605,7 +602,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     }
 
-    public int getNextPosition(){
+    public int getNextPosition() {
         return nextPosition;
     }
 
@@ -782,13 +779,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void playSongAt(final int position) {
-        // handle this on the handlers thread to avoid blocking the ui thread
         playerHandler.removeMessages(PLAY_SONG);
         playerHandler.obtainMessage(PLAY_SONG, position, 0).sendToTarget();
     }
 
     public void setPosition(final int position) {
-        // handle this on the handlers thread to avoid blocking the ui thread
         playerHandler.removeMessages(SET_POSITION);
         playerHandler.obtainMessage(SET_POSITION, position, 0).sendToTarget();
     }

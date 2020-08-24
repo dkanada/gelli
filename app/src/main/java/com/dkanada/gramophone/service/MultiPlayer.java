@@ -2,6 +2,7 @@ package com.dkanada.gramophone.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -55,6 +56,7 @@ public class MultiPlayer implements Playback {
     private boolean isNew = false;
 
     private Handler uiThreadHandler = new Handler();
+
     public void runOnUiThread(Runnable runnable) {
         uiThreadHandler.post(runnable);
     }
@@ -63,10 +65,7 @@ public class MultiPlayer implements Playback {
 
     private void DebugToast(String msg) {
         if (!debugToast) return;
-
-        runOnUiThread(() -> {
-            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-        });
+        runOnUiThread(() -> Toast.makeText(context, msg, Toast.LENGTH_LONG).show());
     }
 
     private IntentFilter becomingNoisyReceiverIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
@@ -74,11 +73,11 @@ public class MultiPlayer implements Playback {
     private class BecomingNoisyReceiver extends BroadcastReceiver {
         private boolean registered;
 
-        public boolean isRegistered(){
+        public boolean isRegistered() {
             return registered;
         }
 
-        public void setRegistered(boolean registered){
+        public void setRegistered(boolean registered) {
             this.registered = registered;
         }
 
@@ -93,7 +92,7 @@ public class MultiPlayer implements Playback {
 
     private final BecomingNoisyReceiver becomingNoisyReceiver = new BecomingNoisyReceiver();
 
-    private void registerBecomingNoisyReceiver(){
+    private void registerBecomingNoisyReceiver() {
         if (!becomingNoisyReceiver.isRegistered()) {
             becomingNoisyReceiver.setRegistered(true);
 
@@ -102,7 +101,7 @@ public class MultiPlayer implements Playback {
         }
     }
 
-    private void unRegisterBecomingNoisyReceiver(){
+    private void unRegisterBecomingNoisyReceiver() {
         if (becomingNoisyReceiver.isRegistered()) {
             becomingNoisyReceiver.setRegistered(false);
 
@@ -114,23 +113,23 @@ public class MultiPlayer implements Playback {
     private ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
         @Override
         public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-            Log.i(TAG,"onTracksChanged");
+            Log.i(TAG, "onTracksChanged");
         }
 
         @Override
         public void onLoadingChanged(boolean isLoading) {
-            Log.i(TAG,"onLoadingChanged: isLoading = " + isLoading);
+            Log.i(TAG, "onLoadingChanged: isLoading = " + isLoading);
         }
 
         @Override
         public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-            Log.i(TAG,"onPlayerStateChanged: playWhenReady = " + playWhenReady);
-            Log.i(TAG,"onPlayerStateChanged: playbackState = " + playbackState);
+            Log.i(TAG, "onPlayerStateChanged: playWhenReady = " + playWhenReady);
+            Log.i(TAG, "onPlayerStateChanged: playbackState = " + playbackState);
         }
 
         @Override
         public void onPositionDiscontinuity(int reason) {
-            Log.i(TAG,"onPositionDiscontinuity: reason = " + reason);
+            Log.i(TAG, "onPositionDiscontinuity: reason = " + reason);
             int windowIndex = exoPlayer.getCurrentWindowIndex();
 
             if (windowIndex == 1) {
@@ -146,7 +145,7 @@ public class MultiPlayer implements Playback {
 
         @Override
         public void onPlayerError(ExoPlaybackException error) {
-            Log.i(TAG,"onPlaybackError: " + error.getMessage());
+            Log.i(TAG, "onPlaybackError: " + error.getMessage());
             if (context != null) {
                 Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
             }
@@ -197,6 +196,10 @@ public class MultiPlayer implements Playback {
         }
     }
 
+    public static final int MULTI_PLAYER_START = 1;
+
+    private final MultiPlayerHandler multiPlayerHandler = new MultiPlayerHandler(this);
+
     private void appendDataSource(String path, int position) {
         Uri uri = Uri.parse(path);
 
@@ -228,7 +231,9 @@ public class MultiPlayer implements Playback {
                     mediaSource.addMediaSource(position, source);
                 }
 
-                if (position == 0) start();
+                if (position == 0) {
+                    multiPlayerHandler.sendEmptyMessage(MULTI_PLAYER_START);
+                }
             }
         });
     }

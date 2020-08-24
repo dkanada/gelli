@@ -2,35 +2,27 @@ package com.dkanada.gramophone.service;
 
 import android.media.AudioManager;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 
 import androidx.annotation.NonNull;
 
 import com.dkanada.gramophone.util.PreferenceUtil;
 
-import java.lang.ref.WeakReference;
-
-final class MusicServicePlaybackHandler extends Handler {
+final class MusicServiceHandler extends Handler {
     @NonNull
-    private final WeakReference<MusicService> mService;
+    private final MusicService musicService;
     private float currentDuckVolume = 1.0f;
 
-    public MusicServicePlaybackHandler(final MusicService service, @NonNull final Looper looper) {
-        super(looper);
-        mService = new WeakReference<>(service);
+    public MusicServiceHandler(MusicService musicService) {
+        this.musicService = musicService;
     }
 
     @Override
     public void handleMessage(@NonNull final Message msg) {
-        final MusicService service = mService.get();
-        if (service == null) {
-            return;
-        }
 
         switch (msg.what) {
             case MusicService.DUCK:
-                if (PreferenceUtil.getInstance(service).getAudioDucking()) {
+                if (PreferenceUtil.getInstance(musicService).getAudioDucking()) {
                     currentDuckVolume -= .05f;
                     if (currentDuckVolume > .2f) {
                         sendEmptyMessageDelayed(MusicService.DUCK, 10);
@@ -40,11 +32,11 @@ final class MusicServicePlaybackHandler extends Handler {
                 } else {
                     currentDuckVolume = 1f;
                 }
-                service.setVolume(currentDuckVolume);
+                musicService.setVolume(currentDuckVolume);
                 break;
 
             case MusicService.UNDUCK:
-                if (PreferenceUtil.getInstance(service).getAudioDucking()) {
+                if (PreferenceUtil.getInstance(musicService).getAudioDucking()) {
                     currentDuckVolume += .03f;
                     if (currentDuckVolume < 1f) {
                         sendEmptyMessageDelayed(MusicService.UNDUCK, 10);
@@ -54,65 +46,65 @@ final class MusicServicePlaybackHandler extends Handler {
                 } else {
                     currentDuckVolume = 1f;
                 }
-                service.setVolume(currentDuckVolume);
+                musicService.setVolume(currentDuckVolume);
                 break;
 
             case MusicService.TRACK_WENT_TO_NEXT:
-                if (service.getRepeatMode() == MusicService.REPEAT_MODE_NONE && service.isLastTrack()) {
-                    service.pause();
-                    service.seek(0);
+                if (musicService.getRepeatMode() == MusicService.REPEAT_MODE_NONE && musicService.isLastTrack()) {
+                    musicService.pause();
+                    musicService.seek(0);
                 } else {
-                    service.setPosition(service.getNextPosition());
-                    service.prepareNextImpl();
-                    service.notifyChange(MusicService.META_CHANGED);
+                    musicService.setPosition(musicService.getNextPosition());
+                    musicService.prepareNextImpl();
+                    musicService.notifyChange(MusicService.META_CHANGED);
                 }
                 break;
 
             case MusicService.TRACK_ENDED:
                 // if there is a timer finished, don't continue
-                if (service.pendingQuit ||
-                        service.getRepeatMode() == MusicService.REPEAT_MODE_NONE && service.isLastTrack()) {
-                    service.notifyChange(MusicService.PLAY_STATE_CHANGED);
-                    service.seek(0);
-                    if (service.pendingQuit) {
-                        service.pendingQuit = false;
-                        service.quit();
+                if (musicService.pendingQuit ||
+                        musicService.getRepeatMode() == MusicService.REPEAT_MODE_NONE && musicService.isLastTrack()) {
+                    musicService.notifyChange(MusicService.PLAY_STATE_CHANGED);
+                    musicService.seek(0);
+                    if (musicService.pendingQuit) {
+                        musicService.pendingQuit = false;
+                        musicService.quit();
                         break;
                     }
                 } else {
-                    service.playNextSong(false);
+                    musicService.playNextSong(false);
                 }
 
                 sendEmptyMessage(MusicService.RELEASE_WAKELOCK);
                 break;
 
             case MusicService.RELEASE_WAKELOCK:
-                service.releaseWakeLock();
+                musicService.releaseWakeLock();
                 break;
 
             case MusicService.PLAY_SONG:
-                service.playSongAtImpl(msg.arg1);
+                musicService.playSongAtImpl(msg.arg1);
                 break;
 
             case MusicService.SET_POSITION:
-                service.openTrackAndPrepareNextAt(msg.arg1);
-                service.notifyChange(MusicService.PLAY_STATE_CHANGED);
+                musicService.openTrackAndPrepareNextAt(msg.arg1);
+                musicService.notifyChange(MusicService.PLAY_STATE_CHANGED);
                 break;
 
             case MusicService.PREPARE_NEXT:
-                service.prepareNextImpl();
+                musicService.prepareNextImpl();
                 break;
 
             case MusicService.RESTORE_QUEUES:
-                service.restoreQueuesAndPositionIfNecessary();
+                musicService.restoreQueuesAndPositionIfNecessary();
                 break;
 
             case MusicService.FOCUS_CHANGE:
                 switch (msg.arg1) {
                     case AudioManager.AUDIOFOCUS_GAIN:
-                        if (!service.isPlaying() && service.getPausedByTransientLossOfFocus()) {
-                            service.play();
-                            service.setPausedByTransientLossOfFocus(false);
+                        if (!musicService.isPlaying() && musicService.getPausedByTransientLossOfFocus()) {
+                            musicService.play();
+                            musicService.setPausedByTransientLossOfFocus(false);
                         }
                         removeMessages(MusicService.DUCK);
                         sendEmptyMessage(MusicService.UNDUCK);
@@ -120,16 +112,16 @@ final class MusicServicePlaybackHandler extends Handler {
 
                     case AudioManager.AUDIOFOCUS_LOSS:
                         // Lost focus for an unbounded amount of time: stop playback and release media playback
-                        service.pause();
+                        musicService.pause();
                         break;
 
                     case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                         // Lost focus for a short time, but we have to stop
                         // playback. We don't release the media playback because playback
                         // is likely to resume
-                        boolean wasPlaying = service.isPlaying();
-                        service.pause();
-                        service.setPausedByTransientLossOfFocus(wasPlaying);
+                        boolean wasPlaying = musicService.isPlaying();
+                        musicService.pause();
+                        musicService.setPausedByTransientLossOfFocus(wasPlaying);
                         break;
 
                     case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
