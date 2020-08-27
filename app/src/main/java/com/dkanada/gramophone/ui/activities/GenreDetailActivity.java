@@ -4,12 +4,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.afollestad.materialcab.MaterialCab;
-import com.dkanada.gramophone.databinding.ActivityGenreDetailBinding;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
@@ -30,10 +31,18 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder {
     public static final String EXTRA_GENRE = "extra_genre";
 
-    ActivityGenreDetailBinding binding;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(android.R.id.empty)
+    TextView empty;
 
     private Genre genre;
 
@@ -46,12 +55,10 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityGenreDetailBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        ButterKnife.bind(this);
 
         setDrawUnderStatusbar();
         setStatusbarColorAuto();
-
         setNavigationbarColorAuto();
         setTaskDescriptionColorAuto();
 
@@ -77,11 +84,11 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
     }
 
     private void setUpRecyclerView() {
-        ViewUtil.setUpFastScrollRecyclerViewColor(this, ((FastScrollRecyclerView) binding.recyclerView), ThemeStore.accentColor(this));
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ViewUtil.setUpFastScrollRecyclerViewColor(this, ((FastScrollRecyclerView) recyclerView), ThemeStore.accentColor(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new SongAdapter(this, new ArrayList<>(), R.layout.item_list, false, this);
-        binding.recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
 
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -93,8 +100,8 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
     }
 
     private void setUpToolBar() {
-        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
-        setSupportActionBar(binding.toolbar);
+        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setTitle(genre.name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -138,18 +145,21 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
     public void onBackPressed() {
         if (cab != null && cab.isActive()) cab.finish();
         else {
-            binding.recyclerView.stopScroll();
+            recyclerView.stopScroll();
             super.onBackPressed();
         }
     }
 
     private void checkIsEmpty() {
-        binding.empty.setVisibility(adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
+        empty.setVisibility(adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
     @Override
     protected void onDestroy() {
-        binding.recyclerView.setAdapter(null);
+        if (recyclerView != null) {
+            recyclerView.setAdapter(null);
+            recyclerView = null;
+        }
 
         if (wrappedAdapter != null) {
             WrapperAdapterUtils.releaseAll(wrappedAdapter);
