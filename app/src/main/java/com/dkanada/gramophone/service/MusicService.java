@@ -14,7 +14,6 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
-import android.media.session.MediaSession;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
@@ -39,11 +38,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.glide.CustomGlideRequest;
-import com.dkanada.gramophone.widgets.AppWidgetAlbum;
-import com.dkanada.gramophone.widgets.AppWidgetCard;
-import com.dkanada.gramophone.widgets.AppWidgetClassic;
 import com.dkanada.gramophone.glide.BlurTransformation;
+import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.helper.ShuffleHelper;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.Song;
@@ -55,6 +51,9 @@ import com.dkanada.gramophone.service.playback.Playback;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
+import com.dkanada.gramophone.widgets.AppWidgetAlbum;
+import com.dkanada.gramophone.widgets.AppWidgetCard;
+import com.dkanada.gramophone.widgets.AppWidgetClassic;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -260,7 +259,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             }
         });
 
-        mediaSession.setFlags(MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS | MediaSession.FLAG_HANDLES_MEDIA_BUTTONS);
         mediaSession.setMediaButtonReceiver(mediaButtonReceiverPendingIntent);
     }
 
