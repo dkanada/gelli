@@ -32,6 +32,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // TODO use a fragment for the splash activity
         if (App.getApiClient() == null) {
             Intent intent = new Intent(this, SplashActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
