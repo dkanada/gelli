@@ -323,7 +323,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             float density = getResources().getDisplayMetrics().density;
             playingQueueCard.setCardElevation((6 * slide + 2) * density);
-            playbackControlsFragment.playPauseFab.setElevation((2 * Math.max(0, (1 - (slide * 16))) + 2) * density);
+            playbackControlsFragment.binding.playerPlayPauseFab.setElevation((2 * Math.max(0, (1 - (slide * 16))) + 2) * density);
         }
     }
 
@@ -369,9 +369,9 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             Animator backgroundAnimator;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 //noinspection ConstantConditions
-                int x = (int) (fragment.playbackControlsFragment.playPauseFab.getX() + fragment.playbackControlsFragment.playPauseFab.getWidth() / 2 + fragment.playbackControlsFragment.getView().getX());
-                int y = (int) (fragment.playbackControlsFragment.playPauseFab.getY() + fragment.playbackControlsFragment.playPauseFab.getHeight() / 2 + fragment.playbackControlsFragment.getView().getY() + fragment.playbackControlsFragment.progressSlider.getHeight());
-                float startRadius = Math.max(fragment.playbackControlsFragment.playPauseFab.getWidth() / 2, fragment.playbackControlsFragment.playPauseFab.getHeight() / 2);
+                int x = (int) (fragment.playbackControlsFragment.binding.playerPlayPauseFab.getX() + fragment.playbackControlsFragment.binding.playerPlayPauseFab.getWidth() / 2 + fragment.playbackControlsFragment.getView().getX());
+                int y = (int) (fragment.playbackControlsFragment.binding.playerPlayPauseFab.getY() + fragment.playbackControlsFragment.binding.playerPlayPauseFab.getHeight() / 2 + fragment.playbackControlsFragment.getView().getY() + fragment.playbackControlsFragment.binding.playerProgressSlider.getHeight());
+                float startRadius = Math.max(fragment.playbackControlsFragment.binding.playerPlayPauseFab.getWidth() / 2, fragment.playbackControlsFragment.binding.playerPlayPauseFab.getHeight() / 2);
                 float endRadius = Math.max(fragment.colorBackground.getWidth(), fragment.colorBackground.getHeight());
                 fragment.colorBackground.setBackgroundColor(newColor);
                 backgroundAnimator = ViewAnimationUtils.createCircularReveal(fragment.colorBackground, x, y, startRadius, endRadius);

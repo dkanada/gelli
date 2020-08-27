@@ -124,10 +124,8 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
         updatePlayPauseColor();
         binding.playerPlayPauseButton.setOnClickListener(new PlayPauseButtonOnClickHandler());
         binding.playerPlayPauseButton.post(() -> {
-            if (binding.playerPlayPauseButton != null) {
-                binding.playerPlayPauseButton.setPivotX(binding.playerPlayPauseButton.getWidth() / 2);
-                binding.playerPlayPauseButton.setPivotY(binding.playerPlayPauseButton.getHeight() / 2);
-            }
+            binding.playerPlayPauseButton.setPivotX(binding.playerPlayPauseButton.getWidth() / 2);
+            binding.playerPlayPauseButton.setPivotY(binding.playerPlayPauseButton.getHeight() / 2);
         });
     }
 
@@ -233,6 +231,7 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
         if (musicControllerAnimationSet != null) {
             musicControllerAnimationSet.cancel();
         }
+
         prepareForAnimation(binding.playerPlayPauseButton);
         prepareForAnimation(binding.playerNextButton);
         prepareForAnimation(binding.playerPrevButton);
