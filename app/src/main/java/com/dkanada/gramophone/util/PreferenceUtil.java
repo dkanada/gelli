@@ -123,12 +123,12 @@ public final class PreferenceUtil {
         }
     }
 
-    public final boolean getRememberLastTab() {
-        return mPreferences.getBoolean(REMEMBER_LAST_TAB, true);
-    }
-
     public final int getPageSize() {
         return Integer.parseInt(mPreferences.getString(PAGE_SIZE, "100"));
+    }
+
+    public final boolean getRememberLastTab() {
+        return mPreferences.getBoolean(REMEMBER_LAST_TAB, true);
     }
 
     public final int getLastTab() {

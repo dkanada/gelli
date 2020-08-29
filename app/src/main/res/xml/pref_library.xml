@@ -3,7 +3,7 @@
 
     <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory android:title="@string/pref_header_library">
 
-        <com.dkanada.gramophone.preferences.LibraryPreference
+        <com.dkanada.gramophone.preferences.CategoryPreference
             app:iconSpaceReserved="false"
             android:key="library_categories"
             android:summary="@string/pref_summary_library_categories"

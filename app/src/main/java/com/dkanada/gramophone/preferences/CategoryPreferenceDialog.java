@@ -17,9 +17,9 @@ import com.dkanada.gramophone.util.PreferenceUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibraryPreferenceDialog extends DialogFragment {
-    public static LibraryPreferenceDialog newInstance() {
-        return new LibraryPreferenceDialog();
+public class CategoryPreferenceDialog extends DialogFragment {
+    public static CategoryPreferenceDialog newInstance() {
+        return new CategoryPreferenceDialog();
     }
 
     private CategoryInfoAdapter adapter;

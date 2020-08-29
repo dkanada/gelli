@@ -24,8 +24,8 @@ import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceFragment
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.shortcuts.DynamicShortcutManager;
-import com.dkanada.gramophone.preferences.LibraryPreference;
-import com.dkanada.gramophone.preferences.LibraryPreferenceDialog;
+import com.dkanada.gramophone.preferences.CategoryPreference;
+import com.dkanada.gramophone.preferences.CategoryPreferenceDialog;
 import com.dkanada.gramophone.preferences.NowPlayingScreenPreference;
 import com.dkanada.gramophone.preferences.NowPlayingScreenPreferenceDialog;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
@@ -120,7 +120,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             addPreferencesFromResource(R.xml.pref_library);
             addPreferencesFromResource(R.xml.pref_colors);
             addPreferencesFromResource(R.xml.pref_notification);
-            addPreferencesFromResource(R.xml.pref_now_playing_screen);
+            addPreferencesFromResource(R.xml.pref_now_playing);
             addPreferencesFromResource(R.xml.pref_lockscreen);
             addPreferencesFromResource(R.xml.pref_audio);
             addPreferencesFromResource(R.xml.pref_images);
@@ -131,8 +131,8 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         public DialogFragment onCreatePreferenceDialog(Preference preference) {
             if (preference instanceof NowPlayingScreenPreference) {
                 return NowPlayingScreenPreferenceDialog.newInstance();
-            } else if (preference instanceof LibraryPreference) {
-                return LibraryPreferenceDialog.newInstance();
+            } else if (preference instanceof CategoryPreference) {
+                return CategoryPreferenceDialog.newInstance();
             } else if (preference instanceof DirectPlayPreference) {
                 return DirectPlayPreferenceDialog.newInstance();
             }
