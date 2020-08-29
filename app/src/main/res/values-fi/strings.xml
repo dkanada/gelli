@@ -33,7 +33,7 @@
     <string name="label_file_format">Tyyppi</string>
     <string name="label_track_length">Pituus</string>
     <string name="label_bit_rate">Bittinopeus</string>
-    <string name="label_sampling_rate">Samplausnopeus</string>
+    <string name="label_sample_rate">Samplausnopeus</string>
     <string name="action_go_to_artist">Näytä artisti</string>
     <string name="action_go_to_album">Näytä albumi</string>
     <string name="no_results">Ei hakutuloksia</string>

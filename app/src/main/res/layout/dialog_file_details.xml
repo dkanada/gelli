@@ -51,7 +51,7 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/bitrate"
+        android:id="@+id/bit_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
@@ -60,7 +60,7 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/sampling_rate"
+        android:id="@+id/sample_rate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"

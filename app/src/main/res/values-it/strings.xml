@@ -33,7 +33,7 @@
     <string name="label_file_format">Formato</string>
     <string name="label_track_length">Durata</string>
     <string name="label_bit_rate">Bitrate</string>
-    <string name="label_sampling_rate">Frequenza di campionamento</string>
+    <string name="label_sample_rate">Frequenza di campionamento</string>
     <string name="action_go_to_artist">Vai all\'artista</string>
     <string name="action_go_to_album">Vai all\'album</string>
     <string name="no_results">Nessun risultato</string>

@@ -33,7 +33,7 @@
     <string name="label_file_format">Jenis</string>
     <string name="label_track_length">Panjang</string>
     <string name="label_bit_rate">Kecepatan bit</string>
-    <string name="label_sampling_rate">Batas frekuensi</string>
+    <string name="label_sample_rate">Batas frekuensi</string>
     <string name="action_go_to_artist">Pergi ke artis</string>
     <string name="action_go_to_album">Pergi ke album</string>
     <string name="no_results">Tidak ditemukan</string>

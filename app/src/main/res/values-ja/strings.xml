@@ -33,7 +33,7 @@
     <string name="label_file_format">ファイル形式</string>
     <string name="label_track_length">長さ</string>
     <string name="label_bit_rate">ビットレート</string>
-    <string name="label_sampling_rate">サンプリング周波数</string>
+    <string name="label_sample_rate">サンプリング周波数</string>
     <string name="action_go_to_artist">アーティストを表示</string>
     <string name="action_go_to_album">アルバムを表示</string>
     <string name="no_results">該当なし</string>

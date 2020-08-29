@@ -32,7 +32,7 @@
     <string name="label_file_size">Größe</string>
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Länge</string>
-    <string name="label_sampling_rate">Samplingrate</string>
+    <string name="label_sample_rate">Samplingrate</string>
     <string name="action_go_to_artist">Gehe zu Interpret</string>
     <string name="action_go_to_album">Gehe zum Album</string>
     <string name="no_results">Keine Ergebnisse</string>

@@ -33,7 +33,7 @@
     <string name="label_file_format">파일 형식</string>
     <string name="label_track_length">재생 시간</string>
     <string name="label_bit_rate">비트레이트</string>
-    <string name="label_sampling_rate">샘플링 레이트</string>
+    <string name="label_sample_rate">샘플링 레이트</string>
     <string name="action_go_to_artist">아티스트로 가기</string>
     <string name="action_go_to_album">앨범으로 가기</string>
     <string name="no_results">결과 없음</string>

@@ -33,7 +33,7 @@
     <string name="label_file_format">Formát</string>
     <string name="label_track_length">Délka</string>
     <string name="label_bit_rate">Datový tok</string>
-    <string name="label_sampling_rate">Vzorkovací frekvence</string>
+    <string name="label_sample_rate">Vzorkovací frekvence</string>
     <string name="action_go_to_artist">Přejít na interpreta</string>
     <string name="action_go_to_album">Přejít do alba</string>
     <string name="no_results">Žádné výsledky</string>

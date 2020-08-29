@@ -33,7 +33,7 @@
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Duljina</string>
     <string name="label_bit_rate">Brzina prijenosa</string>
-    <string name="label_sampling_rate">Brzina uzorkovanja</string>
+    <string name="label_sample_rate">Brzina uzorkovanja</string>
     <string name="action_go_to_artist">Idi na izvođača</string>
     <string name="action_go_to_album">Idi na album</string>
     <string name="no_results">Nema rezultata</string>

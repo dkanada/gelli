@@ -33,7 +33,7 @@
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Durată</string>
     <string name="label_bit_rate">Bitrate</string>
-    <string name="label_sampling_rate">Rată de sampling</string>
+    <string name="label_sample_rate">Rată de sampling</string>
     <string name="action_go_to_artist">Accesaţi artistul</string>
     <string name="action_go_to_album">Accesaţi albumul</string>
     <string name="no_results">Niciun rezultat</string>

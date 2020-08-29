@@ -49,21 +49,21 @@ public class SongDetailDialog extends DialogFragment {
                 .build();
 
         View dialogView = dialog.getCustomView();
-        final TextView fileName = dialogView.findViewById(R.id.file_name);
         final TextView filePath = dialogView.findViewById(R.id.file_path);
+        final TextView fileName = dialogView.findViewById(R.id.file_name);
         final TextView fileSize = dialogView.findViewById(R.id.file_size);
         final TextView fileFormat = dialogView.findViewById(R.id.file_format);
         final TextView trackLength = dialogView.findViewById(R.id.track_length);
-        final TextView bitRate = dialogView.findViewById(R.id.bitrate);
-        final TextView samplingRate = dialogView.findViewById(R.id.sampling_rate);
+        final TextView bitRate = dialogView.findViewById(R.id.bit_rate);
+        final TextView sampleRate = dialogView.findViewById(R.id.sample_rate);
 
-        fileName.setText(makeTextWithTitle(context, R.string.label_file_name, "-"));
         filePath.setText(makeTextWithTitle(context, R.string.label_file_path, "-"));
+        fileName.setText(makeTextWithTitle(context, R.string.label_file_name, "-"));
         fileSize.setText(makeTextWithTitle(context, R.string.label_file_size, "-"));
         fileFormat.setText(makeTextWithTitle(context, R.string.label_file_format, "-"));
         trackLength.setText(makeTextWithTitle(context, R.string.label_track_length, "-"));
         bitRate.setText(makeTextWithTitle(context, R.string.label_bit_rate, "-"));
-        samplingRate.setText(makeTextWithTitle(context, R.string.label_sampling_rate, "-"));
+        sampleRate.setText(makeTextWithTitle(context, R.string.label_sample_rate, "-"));
 
         if (song != null) {
             fileName.setText(makeTextWithTitle(context, R.string.label_file_name, song.title));

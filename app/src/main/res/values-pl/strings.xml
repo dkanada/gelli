@@ -33,7 +33,7 @@
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Długość</string>
     <string name="label_bit_rate">Próbkowanie</string>
-    <string name="label_sampling_rate">Częstotliwość próbkowania</string>
+    <string name="label_sample_rate">Częstotliwość próbkowania</string>
     <string name="action_go_to_artist">Przejdź do wykonawcy</string>
     <string name="action_go_to_album">Przejdź do albumu</string>
     <string name="no_results">Brak wyników</string>
