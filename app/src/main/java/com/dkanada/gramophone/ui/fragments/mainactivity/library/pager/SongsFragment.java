@@ -14,6 +14,7 @@ import com.dkanada.gramophone.util.QueryUtil;
 
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.querying.ItemFields;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
 
@@ -67,6 +68,7 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
         ItemQuery query = new ItemQuery();
 
         query.setIncludeItemTypes(new String[]{"Audio"});
+        query.setFields(new ItemFields[]{ItemFields.MediaSources});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
         query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());

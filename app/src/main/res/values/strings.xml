@@ -63,13 +63,15 @@
     <string name="album">Album</string>
 
     <string name="label_details">Details</string>
-    <string name="label_file_name">File Name</string>
-    <string name="label_file_path">File Path</string>
+    <string name="label_file_path">Path</string>
+    <string name="label_file_name">Name</string>
     <string name="label_file_size">Size</string>
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Length</string>
-    <string name="label_bit_rate">Bit Rate</string>
     <string name="label_sample_rate">Sample Rate</string>
+    <string name="label_bit_rate">Bit Rate</string>
+    <string name="label_bit_depth">Bit Depth</string>
+    <string name="label_channels">Channels</string>
 
     <string name="battery_optimizations_title">Battery Optimizations</string>
     <string name="battery_optimizations_message">Please disable battery optimizations for media playback while the screen is off.</string>

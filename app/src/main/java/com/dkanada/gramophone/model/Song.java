@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.dto.MediaSourceInfo;
+import org.jellyfin.apiclient.model.entities.MediaStream;
 
 public class Song implements Parcelable {
     public static final Song EMPTY_SONG = new Song(null, "", -1, -1, -1, -1, null, "", null, "", null, false);
@@ -23,6 +25,17 @@ public class Song implements Parcelable {
 
     public String primary;
     public boolean favorite;
+
+    public String path;
+    public long size;
+
+    public String container;
+    public String codec;
+
+    public int sampleRate;
+    public int bitRate;
+    public int bitDepth;
+    public int channels;
 
     public Song(BaseItemDto itemDto) {
         this.id = itemDto.getId();
@@ -45,6 +58,25 @@ public class Song implements Parcelable {
 
         this.primary = itemDto.getAlbumPrimaryImageTag() != null ? albumId : null;
         this.favorite = itemDto.getUserData() != null && itemDto.getUserData().getIsFavorite();
+
+        if (itemDto.getMediaSources() != null && itemDto.getMediaSources().get(0) != null) {
+            MediaSourceInfo source = itemDto.getMediaSources().get(0);
+
+            this.path = source.getPath();
+            this.size = source.getSize();
+
+            this.container = source.getContainer();
+            this.bitRate = source.getBitrate();
+
+            if (source.getMediaStreams() != null && source.getMediaStreams().get(0) != null) {
+                MediaStream stream = source.getMediaStreams().get(0);
+
+                this.codec = stream.getCodec();
+                this.sampleRate = stream.getSampleRate() != null ? stream.getSampleRate() : 0;
+                this.bitDepth = stream.getBitDepth() != null ? stream.getBitDepth() : 0;
+                this.channels = stream.getChannels() != null ? stream.getChannels() : 0;
+            }
+        }
     }
 
     public Song(String id, String title, int trackNumber, int discNumber, int year, long duration, String albumId, String albumName, String artistId, String artistName, String primary, boolean favorite) {
@@ -106,6 +138,17 @@ public class Song implements Parcelable {
 
         dest.writeString(this.primary);
         dest.writeString(Boolean.toString(favorite));
+
+        dest.writeString(this.path);
+        dest.writeLong(this.size);
+
+        dest.writeString(this.container);
+        dest.writeString(this.codec);
+
+        dest.writeInt(this.sampleRate);
+        dest.writeInt(this.bitRate);
+        dest.writeInt(this.bitDepth);
+        dest.writeInt(this.channels);
     }
 
     protected Song(Parcel in) {
@@ -123,7 +166,18 @@ public class Song implements Parcelable {
         this.artistName = in.readString();
 
         this.primary = in.readString();
-        this.favorite = Boolean.valueOf(in.readString());
+        this.favorite = Boolean.parseBoolean(in.readString());
+
+        this.path = in.readString();
+        this.size = in.readLong();
+
+        this.container = in.readString();
+        this.codec = in.readString();
+
+        this.sampleRate = in.readInt();
+        this.bitRate = in.readInt();
+        this.bitDepth = in.readInt();
+        this.channels = in.readInt();
     }
 
     public static final Creator<Song> CREATOR = new Creator<Song>() {

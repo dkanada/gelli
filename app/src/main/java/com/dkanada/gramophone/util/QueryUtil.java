@@ -90,7 +90,8 @@ public class QueryUtil {
     }
 
     public static void getItems(ItemQuery query, MediaCallback callback) {
-        query.setIncludeItemTypes(new String[]{"MusicArtist", "MusicAlbum", "Audio"});
+        query.setIncludeItemTypes(new String[]{"MusicAlbum", "Audio"});
+        query.setFields(new ItemFields[]{ItemFields.MediaSources});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(40);
         query.setRecursive(true);
@@ -163,6 +164,7 @@ public class QueryUtil {
 
     public static void getSongs(ItemQuery query, MediaCallback callback) {
         query.setIncludeItemTypes(new String[]{"Audio"});
+        query.setFields(new ItemFields[]{ItemFields.MediaSources});
         applyProperties(query);
         applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortMethod());
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
