@@ -10,6 +10,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.artist.ArtistAdapter;
 import com.dkanada.gramophone.helper.sort.SortMethod;
+import com.dkanada.gramophone.helper.sort.SortOrder;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
@@ -107,6 +108,21 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
 
     @Override
     protected void setSortMethod(String sortMethod) {
+    }
+
+    @Override
+    protected String loadSortOrder() {
+        // TODO check artist support
+        return SortOrder.ASCENDING;
+    }
+
+    @Override
+    protected void saveSortOrder(String sortOrder) {
+        // not supported through API
+    }
+
+    @Override
+    protected void setSortOrder(String sortOrder) {
     }
 
     @Override

@@ -73,7 +73,8 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 
-        QueryUtil.applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod());
+        QueryUtil.applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortMethod());
+        QueryUtil.applySortOrder(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortOrder());
         return query;
     }
 
@@ -115,6 +116,20 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
 
     @Override
     protected void setSortMethod(String sortMethod) {
+    }
+
+    @Override
+    protected String loadSortOrder() {
+        return PreferenceUtil.getInstance(getActivity()).getSongSortOrder();
+    }
+
+    @Override
+    protected void saveSortOrder(String sortOrder) {
+        PreferenceUtil.getInstance(getActivity()).setSongSortOrder(sortOrder);
+    }
+
+    @Override
+    protected void setSortOrder(String sortOrder) {
     }
 
     @Override

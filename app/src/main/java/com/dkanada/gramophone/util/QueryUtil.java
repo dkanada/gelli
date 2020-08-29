@@ -2,6 +2,7 @@ package com.dkanada.gramophone.util;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.helper.sort.SortMethod;
+import com.dkanada.gramophone.helper.sort.SortOrder;
 import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
@@ -12,7 +13,6 @@ import com.dkanada.gramophone.model.Song;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.BaseItemType;
-import org.jellyfin.apiclient.model.entities.SortOrder;
 import org.jellyfin.apiclient.model.querying.ArtistsQuery;
 import org.jellyfin.apiclient.model.querying.ItemFields;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
@@ -227,6 +227,17 @@ public class QueryUtil {
                 break;
             case SortMethod.RANDOM:
                 query.setSortBy(new String[]{"Random"});
+                break;
+        }
+    }
+
+    public static void applySortOrder(ItemQuery query, String order) {
+        switch (order) {
+            case SortOrder.ASCENDING:
+                query.setSortOrder(org.jellyfin.apiclient.model.entities.SortOrder.Ascending);
+                break;
+            case SortOrder.DESCENDING:
+                query.setSortOrder(org.jellyfin.apiclient.model.entities.SortOrder.Descending);
                 break;
         }
     }
