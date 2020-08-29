@@ -100,7 +100,7 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/app_widget_album_info" />
+                android:resource="@xml/widget_album" />
         </receiver>
         <receiver
             android:name=".widgets.AppWidgetClassic"
@@ -112,7 +112,7 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/app_widget_classic_info" />
+                android:resource="@xml/widget_classic" />
         </receiver>
         <receiver
             android:name=".widgets.AppWidgetCard"
@@ -124,7 +124,7 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/app_widget_card_info" />
+                android:resource="@xml/widget_card" />
         </receiver>
 
         <provider

@@ -25,7 +25,7 @@ public class DirectPlayCodecAdapter extends RecyclerView.Adapter<DirectPlayCodec
     @Override
     @NonNull
     public DirectPlayCodecAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preference_dialog_direct_play_codecs_listitem, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preference_dialog_direct_play_codecs_item, parent, false);
         return new ViewHolder(view);
     }
 

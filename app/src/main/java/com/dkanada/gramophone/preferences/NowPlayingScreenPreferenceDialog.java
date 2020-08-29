@@ -35,7 +35,7 @@ public class NowPlayingScreenPreferenceDialog extends DialogFragment implements 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        @SuppressLint("InflateParams") View view = LayoutInflater.from(getContext()).inflate(R.layout.preference_dialog_now_playing_screen, null);
+        @SuppressLint("InflateParams") View view = LayoutInflater.from(getContext()).inflate(R.layout.preference_dialog_now_playing, null);
         ViewPager viewPager = view.findViewById(R.id.now_playing_screen_view_pager);
         viewPager.setAdapter(new NowPlayingScreenAdapter(getContext()));
         viewPager.addOnPageChangeListener(this);
@@ -94,7 +94,7 @@ public class NowPlayingScreenPreferenceDialog extends DialogFragment implements 
             NowPlayingScreen nowPlayingScreen = NowPlayingScreen.values()[position];
 
             LayoutInflater inflater = LayoutInflater.from(context);
-            ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.preference_now_playing_screen_item, collection, false);
+            ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.preference_dialog_now_playing_item, collection, false);
             collection.addView(layout);
 
             ImageView image = layout.findViewById(R.id.image);

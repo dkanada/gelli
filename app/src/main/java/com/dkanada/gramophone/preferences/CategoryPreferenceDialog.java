@@ -27,7 +27,7 @@ public class CategoryPreferenceDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = getActivity().getLayoutInflater().inflate(R.layout.preference_dialog_library_categories, null);
+        View view = getActivity().getLayoutInflater().inflate(R.layout.preference_dialog_category, null);
 
         List<CategoryInfo> categoryInfos;
         if (savedInstanceState != null) {
