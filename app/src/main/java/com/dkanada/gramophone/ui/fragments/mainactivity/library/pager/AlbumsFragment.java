@@ -50,7 +50,7 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
         query.setIncludeItemTypes(new String[]{"MusicAlbum"});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
-        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 

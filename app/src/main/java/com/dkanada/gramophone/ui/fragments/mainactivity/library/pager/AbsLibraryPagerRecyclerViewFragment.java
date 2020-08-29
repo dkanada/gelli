@@ -152,7 +152,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
             last = layoutManager.findLastVisibleItemPosition();
         }
 
-        int page = PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize();
+        int page = PreferenceUtil.getInstance(App.getInstance()).getPageSize();
         int total = getAdapter().getItemCount();
         if (last > total - page / 2 && total < size) {
             query = createQuery();

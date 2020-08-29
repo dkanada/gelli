@@ -18,6 +18,8 @@ import com.dkanada.gramophone.model.CategoryInfo;
 import com.dkanada.gramophone.model.DirectPlayCodec;
 import com.dkanada.gramophone.ui.fragments.player.NowPlayingScreen;
 
+import org.jellyfin.apiclient.model.dto.BaseItemDto;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,9 +27,9 @@ import java.util.List;
 import java.util.Set;
 
 public final class PreferenceUtil {
-    public static final String CATEGORIES = "library_categories";
-    public static final String DIRECT_PLAY_CODECS = "direct_play_codecs";
-    public static final String MAXIMUM_LIST_SIZE = "maximum_list_size";
+    public static final String LIBRARIES = "libraries";
+    public static final String CATEGORIES = "categories";
+    public static final String PAGE_SIZE = "page_size";
     public static final String REMEMBER_LAST_TAB = "remember_last_tab";
     public static final String LAST_TAB = "last_tab";
 
@@ -54,7 +56,9 @@ public final class PreferenceUtil {
     public static final String ALBUM_ARTIST_COLORED_FOOTERS = "album_artist_colored_footers";
 
     public static final String GENERAL_THEME = "general_theme";
-    public static final String COLORED_NAVIGATION_BAR = "should_color_navigation_bar";
+    public static final String PRIMARY_COLOR = "primary_color";
+    public static final String ACCENT_COLOR = "accent_color";
+    public static final String COLORED_NAVIGATION_BAR = "colored_navigation_bar";
     public static final String COLORED_SHORTCUTS = "colored_shortcuts";
 
     public static final String CLASSIC_NOTIFICATION = "classic_notification";
@@ -64,13 +68,14 @@ public final class PreferenceUtil {
     public static final String BLUR_ALBUM_COVER = "blur_album_cover";
 
     public static final String TRANSCODE_CODEC = "transcode_codec";
+    public static final String DIRECT_PLAY_CODECS = "direct_play_codecs";
     public static final String MAXIMUM_BITRATE = "maximum_bitrate";
     public static final String AUDIO_DUCKING = "audio_ducking";
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
     public static final String REMEMBER_QUEUE = "remember_queue";
 
-    public static final String IMAGES_CACHE_SIZE = "images_cache_size";
-    public static final String IMAGES_EXTERNAL_DIRECTORY = "images_external_directory";
+    public static final String CACHE_SIZE = "cache_size";
+    public static final String EXTERNAL_DIRECTORY = "external_directory";
 
     public static final String SLEEP_TIMER_LAST_VALUE = "sleep_timer_last_value";
     public static final String SLEEP_TIMER_ELAPSED_REALTIME = "sleep_timer_elapsed_real_time";
@@ -122,16 +127,8 @@ public final class PreferenceUtil {
         return mPreferences.getBoolean(REMEMBER_LAST_TAB, true);
     }
 
-    public final int getMaximumListSize() {
-        return Integer.parseInt(mPreferences.getString(MAXIMUM_LIST_SIZE, "100"));
-    }
-
-    public final int getImagesCacheSize() {
-        return Integer.parseInt(mPreferences.getString(IMAGES_CACHE_SIZE, "400000000"));
-    }
-
-    public final boolean getImagesExternalDirectory() {
-        return mPreferences.getBoolean(IMAGES_EXTERNAL_DIRECTORY, false);
+    public final int getPageSize() {
+        return Integer.parseInt(mPreferences.getString(PAGE_SIZE, "100"));
     }
 
     public final int getLastTab() {
@@ -357,16 +354,6 @@ public final class PreferenceUtil {
         editor.apply();
     }
 
-    public final boolean getAlbumArtistColoredFooters() {
-        return mPreferences.getBoolean(ALBUM_ARTIST_COLORED_FOOTERS, true);
-    }
-
-    public void setAlbumArtistColoredFooters(final boolean value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(ALBUM_ARTIST_COLORED_FOOTERS, value);
-        editor.apply();
-    }
-
     public final boolean getSongColoredFooters() {
         return mPreferences.getBoolean(SONG_COLORED_FOOTERS, true);
     }
@@ -385,6 +372,24 @@ public final class PreferenceUtil {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putBoolean(ARTIST_COLORED_FOOTERS, value);
         editor.apply();
+    }
+
+    public final boolean getAlbumArtistColoredFooters() {
+        return mPreferences.getBoolean(ALBUM_ARTIST_COLORED_FOOTERS, true);
+    }
+
+    public void setAlbumArtistColoredFooters(final boolean value) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putBoolean(ALBUM_ARTIST_COLORED_FOOTERS, value);
+        editor.apply();
+    }
+
+    public final int getCacheSize() {
+        return Integer.parseInt(mPreferences.getString(CACHE_SIZE, "400000000"));
+    }
+
+    public final boolean getExternalDirectory() {
+        return mPreferences.getBoolean(EXTERNAL_DIRECTORY, false);
     }
 
     public List<CategoryInfo> getCategories() {

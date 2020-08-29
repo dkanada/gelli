@@ -19,11 +19,11 @@ public class CustomGlideModule implements GlideModule {
             @Override
             public File getCacheDirectory() {
                 String folder = "/Gelli/images";
-                return PreferenceUtil.getInstance(App.getInstance()).getImagesExternalDirectory()
+                return PreferenceUtil.getInstance(App.getInstance()).getExternalDirectory()
                     ? new File(Environment.getExternalStorageDirectory() + folder)
                     : new File(App.getInstance().getApplicationInfo().dataDir + folder);
             }
-        }, PreferenceUtil.getInstance(App.getInstance()).getImagesCacheSize()));
+        }, PreferenceUtil.getInstance(App.getInstance()).getCacheSize()));
     }
 
     @Override

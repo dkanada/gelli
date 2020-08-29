@@ -71,7 +71,7 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
         query.setFields(new ItemFields[]{ItemFields.MediaSources});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
-        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 

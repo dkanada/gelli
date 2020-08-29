@@ -45,7 +45,7 @@ public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAda
 
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
-        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 

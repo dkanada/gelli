@@ -189,7 +189,7 @@ public class QueryUtil {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
         if (query.getParentId() == null && query.getArtistIds().length == 0) {
-            query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+            query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         }
 
         if (currentLibrary == null || query.getParentId() != null) return;
@@ -200,7 +200,7 @@ public class QueryUtil {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
         if (query.getParentId() == null) {
-            query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+            query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         }
 
         if (currentLibrary == null || query.getParentId() != null) return;

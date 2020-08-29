@@ -135,6 +135,7 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
 
     private void search(@NonNull String query) {
         this.query = query;
+
         ItemQuery itemQuery = new ItemQuery();
         itemQuery.setSearchTerm(query);
 
