@@ -55,6 +55,7 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
         query.setParentId(QueryUtil.currentLibrary.getId());
 
         QueryUtil.applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod());
+        QueryUtil.applySortOrder(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortOrder());
         return query;
     }
 
@@ -95,6 +96,20 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
 
     @Override
     protected void setSortMethod(String sortMethod) {
+    }
+
+    @Override
+    protected String loadSortOrder() {
+        return PreferenceUtil.getInstance(getActivity()).getAlbumSortOrder();
+    }
+
+    @Override
+    protected void saveSortOrder(String sortOrder) {
+        PreferenceUtil.getInstance(getActivity()).setAlbumSortOrder(sortOrder);
+    }
+
+    @Override
+    protected void setSortOrder(String sortOrder) {
     }
 
     @Override

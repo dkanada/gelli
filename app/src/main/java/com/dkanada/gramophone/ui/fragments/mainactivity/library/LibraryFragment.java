@@ -207,12 +207,11 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             // TODO the API doesn't support artist sorting
             if (currentFragment instanceof ArtistsFragment) {
                 menu.removeItem(R.id.action_sort_method);
+                menu.removeItem(R.id.action_sort_order);
             } else {
                 setUpSortMethodMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_method).getSubMenu());
+                setUpSortOrderMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_order).getSubMenu());
             }
-
-            // TODO implement sort order
-            menu.removeItem(R.id.action_sort_order);
         } else {
             menu.removeItem(R.id.action_grid_size);
             menu.removeItem(R.id.action_colored_footers);
@@ -250,6 +249,10 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             }
 
             if (handleSortMethodMenuItem(absLibraryRecyclerViewCustomGridSizeFragment, item)) {
+                return true;
+            }
+
+            if (handleSortOrderMenuItem(absLibraryRecyclerViewCustomGridSizeFragment, item)) {
                 return true;
             }
         }
@@ -392,7 +395,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     private void setUpSortOrderMenu(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull SubMenu sortOrderMenu) {
-        String currentSortOrder = fragment.getSortMethod();
+        String currentSortOrder = fragment.getSortOrder();
         sortOrderMenu.clear();
 
         sortOrderMenu.add(0, R.id.action_sort_order_ascending, 0, R.string.sort_order_ascending)
@@ -429,6 +432,26 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         if (sortMethod != null) {
             item.setChecked(true);
             fragment.setAndSaveSortMethod(sortMethod);
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean handleSortOrderMenuItem(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull MenuItem item) {
+        String sortOrder = null;
+        switch (item.getItemId()) {
+            case R.id.action_sort_order_ascending:
+                sortOrder = SortOrder.ASCENDING;
+                break;
+            case R.id.action_sort_order_descending:
+                sortOrder = SortOrder.DESCENDING;
+                break;
+        }
+
+        if (sortOrder != null) {
+            item.setChecked(true);
+            fragment.setAndSaveSortOrder(sortOrder);
             return true;
         }
 
