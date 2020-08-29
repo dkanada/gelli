@@ -126,9 +126,6 @@
     <string name="website">Website</string>
     <string name="up_next">Als volgende</string>
     <string name="pref_title_now_playing_screen_appearance">Uiterlijk</string>
-    <string name="app_widget_big_name">Phonograph - Groot</string>
-    <string name="app_widget_classic_name">Phonograph - Klassiek</string>
-    <string name="app_widget_card_name">Phonograph - Kaart</string>
     <string name="login">Login</string>
     <string name="username">Gebruikersnaam</string>
     <string name="password">Wachtwoord</string>

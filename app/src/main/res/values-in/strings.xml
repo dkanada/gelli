@@ -129,9 +129,6 @@
     <string name="website">Situs</string>
     <string name="up_next">Berikutnya</string>
     <string name="pref_title_now_playing_screen_appearance">Tampilan</string>
-    <string name="app_widget_big_name">Phonograph - Besar</string>
-    <string name="app_widget_classic_name">Phonograph - Klasik</string>
-    <string name="app_widget_card_name">Kartu - Phonograph</string>
     <string name="login">Masuk</string>
     <string name="username">Nama pengguna</string>
     <string name="password">Kata sandi</string>

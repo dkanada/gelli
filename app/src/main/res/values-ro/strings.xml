@@ -126,9 +126,6 @@
     <string name="website">Site web</string>
     <string name="up_next">Urmează</string>
     <string name="pref_title_now_playing_screen_appearance">Aspect</string>
-    <string name="app_widget_big_name">Phonograph - Mare</string>
-    <string name="app_widget_classic_name">Phonograph - Clasic</string>
-    <string name="app_widget_card_name">Phonograph - Card</string>
     <string name="login">Logare</string>
     <string name="username">Nume utilizator</string>
     <string name="password">Parolă</string>

@@ -126,9 +126,6 @@
     <string name="website">ウェブサイト</string>
     <string name="up_next">次の曲</string>
     <string name="pref_title_now_playing_screen_appearance">外観</string>
-    <string name="app_widget_big_name">Phonograph - ビッグ</string>
-    <string name="app_widget_classic_name">Phonograph - クラシック</string>
-    <string name="app_widget_card_name">Phonograph - カード</string>
     <string name="login">ログイン</string>
     <string name="username">ユーザー名</string>
     <string name="password">パスワード</string>

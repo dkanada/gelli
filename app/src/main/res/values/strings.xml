@@ -183,9 +183,9 @@
     <string name="eugene_cheung_summary">Several amazing contributions to the source code.</string>
     <string name="adrian_summary">Designed the new album page which was then ported to other activities.</string>
 
-    <string name="app_widget_big_name">Gelli Album</string>
-    <string name="app_widget_classic_name">Gelli Classic</string>
-    <string name="app_widget_card_name">Gelli Card</string>
+    <string name="widget_big">Album</string>
+    <string name="widget_classic">Classic</string>
+    <string name="widget_card">Card</string>
 
     <string name="login">Login</string>
     <string name="disable">Disable</string>

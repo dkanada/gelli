@@ -120,9 +120,6 @@
     <string name="website">Trang web</string>
     <string name="up_next">Tiếp theo</string>
     <string name="pref_title_now_playing_screen_appearance">Giao diện</string>
-    <string name="app_widget_big_name">Phonograph - Lớn</string>
-    <string name="app_widget_classic_name">Phonograph - Cổ điển</string>
-    <string name="app_widget_card_name">Phonograph - Thẻ</string>
     <string name="login">Tài khoản GitHub</string>
     <string name="username">Tên người dùng</string>
     <string name="password">Mật khẩu</string>

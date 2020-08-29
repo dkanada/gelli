@@ -126,9 +126,6 @@
     <string name="website">Site internet</string>
     <string name="up_next">Suivant</string>
     <string name="pref_title_now_playing_screen_appearance">Apparence</string>
-    <string name="app_widget_big_name">Gelli - Album</string>
-    <string name="app_widget_classic_name">Gelli - Classique</string>
-    <string name="app_widget_card_name">Gelli - Carte</string>
     <string name="login">Connexion</string>
     <string name="username">Nom d\'utilisateur</string>
     <string name="password">Mot de passe</string>

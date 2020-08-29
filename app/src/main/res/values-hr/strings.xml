@@ -126,9 +126,6 @@
     <string name="website">Web-stranica</string>
     <string name="up_next">Sljedeće na redu</string>
     <string name="pref_title_now_playing_screen_appearance">Izgled</string>
-    <string name="app_widget_big_name">Phonograph - Veliki</string>
-    <string name="app_widget_classic_name">Phonograph - Klasični</string>
-    <string name="app_widget_card_name">Phonograph - Kartica</string>
     <string name="login">Prijava</string>
     <string name="username">Korisničko ime</string>
     <string name="password">Lozinka</string>

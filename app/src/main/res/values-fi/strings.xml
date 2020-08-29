@@ -129,9 +129,6 @@
     <string name="website">Verkkosivu</string>
     <string name="up_next">Seuraavaksi</string>
     <string name="pref_title_now_playing_screen_appearance">Ulkonäkö</string>
-    <string name="app_widget_big_name">Phonograph - Iso</string>
-    <string name="app_widget_classic_name">Phonograph - Klassikko</string>
-    <string name="app_widget_card_name">Phonograph - Kortti</string>
     <string name="login">Kirjaudu sisään</string>
     <string name="username">Käyttäjänimi</string>
     <string name="password">Salasana</string>

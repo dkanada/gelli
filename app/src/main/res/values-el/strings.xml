@@ -119,8 +119,6 @@
     <string name="website">Ιστοσελίδα</string>
     <string name="up_next">Επόμενο</string>
     <string name="pref_title_now_playing_screen_appearance">Εμφάνιση</string>
-    <string name="app_widget_big_name">Phonograph - Μεγάλο</string>
-    <string name="app_widget_classic_name">Phonograph - Κλασικό</string>
     <string name="login">Είσοδος</string>
     <string name="username">Όνομα Χρήστη</string>
     <string name="password">Κωδικός Πρόσβασης</string>

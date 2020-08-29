@@ -126,9 +126,6 @@
     <string name="website">Веб-сайт</string>
     <string name="up_next">До наступного</string>
     <string name="pref_title_now_playing_screen_appearance">Вигляд</string>
-    <string name="app_widget_big_name">Phonograph - Великий</string>
-    <string name="app_widget_classic_name">Phonograph - Класичний</string>
-    <string name="app_widget_card_name">Phonograph – Картки</string>
     <string name="login">Ім’я користувача</string>
     <string name="username">Ім‘я користувача</string>
     <string name="password">Пароль</string>

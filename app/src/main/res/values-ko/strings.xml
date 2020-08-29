@@ -126,9 +126,6 @@
     <string name="website">웹사이트</string>
     <string name="up_next">다음 곡</string>
     <string name="pref_title_now_playing_screen_appearance">스타일</string>
-    <string name="app_widget_big_name">Phonograph - 대형</string>
-    <string name="app_widget_classic_name">Phonograph - 클래식</string>
-    <string name="app_widget_card_name">Phonograph - 카드</string>
     <string name="login">로그인</string>
     <string name="username">사용자 이름</string>
     <string name="password">비밀번호</string>

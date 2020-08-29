@@ -126,9 +126,6 @@
     <string name="website">Strona internetowa</string>
     <string name="up_next">Za chwilę zagra</string>
     <string name="pref_title_now_playing_screen_appearance">Wygląd</string>
-    <string name="app_widget_big_name">Phonograph - Duży</string>
-    <string name="app_widget_classic_name">Phonograph - Klasyczny</string>
-    <string name="app_widget_card_name">Phonograph - Karta</string>
     <string name="login">Zaloguj się</string>
     <string name="username">Nazwa użytkownika</string>
     <string name="password">Hasło</string>

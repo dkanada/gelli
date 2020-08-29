@@ -126,9 +126,6 @@
     <string name="website">Web sitesi</string>
     <string name="up_next">Sırada olanlar</string>
     <string name="pref_title_now_playing_screen_appearance">Görünüm</string>
-    <string name="app_widget_big_name">Phonograph - Büyük</string>
-    <string name="app_widget_classic_name">Phonograph - Klasik</string>
-    <string name="app_widget_card_name">Phonograph - Kart</string>
     <string name="login">Oturum aç</string>
     <string name="username">Kullanıcı adı</string>
     <string name="password">Şifre</string>

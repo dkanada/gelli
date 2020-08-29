@@ -126,9 +126,6 @@
     <string name="website">الموقع</string>
     <string name="up_next">التالي</string>
     <string name="pref_title_now_playing_screen_appearance">المظهر</string>
-    <string name="app_widget_big_name">Phonograph - كبير</string>
-    <string name="app_widget_classic_name">Phonograph - كلاسيكي</string>
-    <string name="app_widget_card_name">Phonograph - بطاقة</string>
     <string name="login">تسجيل دخول</string>
     <string name="username">اسم المستخدم</string>
     <string name="password">كلمة المرور</string>

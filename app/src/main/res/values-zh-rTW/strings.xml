@@ -130,9 +130,6 @@
     <string name="website">網站</string>
     <string name="up_next">播放佇列：即將播放</string>
     <string name="pref_title_now_playing_screen_appearance">外觀</string>
-    <string name="app_widget_big_name">Phonograph - 大型</string>
-    <string name="app_widget_classic_name">Phonograph - 經典</string>
-    <string name="app_widget_card_name">Phonograph - 卡片</string>
     <string name="login">登入</string>
     <string name="username">帳號</string>
     <string name="password">密碼</string>

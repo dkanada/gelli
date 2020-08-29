@@ -91,7 +91,7 @@
         <receiver
             android:name=".widgets.AppWidgetAlbum"
             android:exported="false"
-            android:label="@string/app_widget_big_name">
+            android:label="@string/widget_big">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -103,7 +103,7 @@
         <receiver
             android:name=".widgets.AppWidgetClassic"
             android:exported="false"
-            android:label="@string/app_widget_classic_name">
+            android:label="@string/widget_classic">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -115,7 +115,7 @@
         <receiver
             android:name=".widgets.AppWidgetCard"
             android:exported="false"
-            android:label="@string/app_widget_card_name">
+            android:label="@string/widget_card">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
