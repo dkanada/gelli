@@ -20,7 +20,9 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Phonograph.Light"
         tools:ignore="UnusedAttribute">
-        <activity android:name=".ui.activities.MainActivity" />
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".ui.activities.AlbumDetailActivity" />
         <activity android:name=".ui.activities.ArtistDetailActivity" />
         <activity android:name=".ui.activities.GenreDetailActivity" />
