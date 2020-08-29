@@ -1133,6 +1133,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     } else {
                         currentDuckVolume = 1f;
                     }
+
                     service.playback.setVolume(currentDuckVolume);
                     break;
 
@@ -1147,6 +1148,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     } else {
                         currentDuckVolume = 1f;
                     }
+
                     service.playback.setVolume(currentDuckVolume);
                     break;
 
@@ -1163,8 +1165,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
                 case TRACK_ENDED:
                     // if there is a timer finished, don't continue
-                    if (service.pendingQuit ||
-                            service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
+                    if (service.pendingQuit || service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
                         service.notifyChange(PLAY_STATE_CHANGED);
                         service.seek(0);
                         if (service.pendingQuit) {

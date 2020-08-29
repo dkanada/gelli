@@ -124,7 +124,7 @@
     <string name="pref_title_remember_last_tab">Remember Tab</string>
     <string name="pref_title_remember_shuffle">Remember Shuffle</string>
     <string name="pref_title_remember_queue">Remember Queue</string>
-    <string name="pref_title_maximum_list_size">Maximum List Size</string>
+    <string name="pref_title_page_size">Page Size</string>
     <string name="pref_title_images_cache_size">Cache Size</string>
     <string name="pref_title_images_external_directory">External Directory</string>
     <string name="pref_summary_images_external_directory">Store the image cache in an external directory to keep the files between installs.</string>
