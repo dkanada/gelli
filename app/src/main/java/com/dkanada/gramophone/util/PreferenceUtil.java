@@ -18,8 +18,6 @@ import com.dkanada.gramophone.model.CategoryInfo;
 import com.dkanada.gramophone.model.DirectPlayCodec;
 import com.dkanada.gramophone.ui.fragments.player.NowPlayingScreen;
 
-import org.jellyfin.apiclient.model.dto.BaseItemDto;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,7 +25,10 @@ import java.util.List;
 import java.util.Set;
 
 public final class PreferenceUtil {
-    public static final String LIBRARIES = "libraries";
+    public static final String SERVER = "server";
+    public static final String USER = "user";
+    public static final String TOKEN = "token";
+
     public static final String CATEGORIES = "categories";
     public static final String PAGE_SIZE = "page_size";
     public static final String REMEMBER_LAST_TAB = "remember_last_tab";
@@ -458,6 +459,36 @@ public final class PreferenceUtil {
 
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putStringSet(DIRECT_PLAY_CODECS, codecNames);
+        editor.apply();
+    }
+
+    public String getServer() {
+        return mPreferences.getString(SERVER, "https://jellyfin.org");
+    }
+
+    public void setServer(String server) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(SERVER, server);
+        editor.apply();
+    }
+
+    public String getUser() {
+        return mPreferences.getString(USER, "");
+    }
+
+    public void setUser(String user) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(USER, user);
+        editor.apply();
+    }
+
+    public String getToken() {
+        return mPreferences.getString(TOKEN, "");
+    }
+
+    public void setToken(String token) {
+        final SharedPreferences.Editor editor = mPreferences.edit();
+        editor.putString(TOKEN, token);
         editor.apply();
     }
 }
