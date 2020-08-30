@@ -46,7 +46,7 @@ import com.dkanada.gramophone.util.Util;
 
 public class LibraryFragment extends AbsMainActivityFragment implements CabHolder, MainActivity.MainActivityFragmentCallbacks, ViewPager.OnPageChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
-    FragmentLibraryBinding binding;
+    private FragmentLibraryBinding binding;
 
     private MusicLibraryPagerAdapter pagerAdapter;
     private MaterialCab cab;

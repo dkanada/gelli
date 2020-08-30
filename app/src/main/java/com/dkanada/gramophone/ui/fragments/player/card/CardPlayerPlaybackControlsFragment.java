@@ -27,7 +27,7 @@ import com.dkanada.gramophone.views.PlayPauseDrawable;
 
 public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment implements MusicProgressViewUpdateHelper.Callback {
 
-    FragmentCardPlayerPlaybackControlsBinding binding;
+    private FragmentCardPlayerPlaybackControlsBinding binding;
 
     private PlayPauseDrawable playerFabPlayPauseDrawable;
 

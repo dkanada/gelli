@@ -48,7 +48,7 @@ import com.dkanada.gramophone.views.WidthFitSquareLayout;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbumCoverFragment.Callbacks, SlidingUpPanelLayout.PanelSlideListener {
-    FragmentCardPlayerBinding binding;
+    private FragmentCardPlayerBinding binding;
 
     private int lastColor;
 

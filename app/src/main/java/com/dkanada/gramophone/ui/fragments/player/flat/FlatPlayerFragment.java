@@ -47,7 +47,7 @@ import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbumCoverFragment.Callbacks, SlidingUpPanelLayout.PanelSlideListener {
 
-    FragmentFlatPlayerBinding binding;
+    private FragmentFlatPlayerBinding binding;
 
     private int lastColor;
 

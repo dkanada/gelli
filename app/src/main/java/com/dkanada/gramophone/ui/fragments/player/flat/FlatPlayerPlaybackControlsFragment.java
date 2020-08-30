@@ -30,7 +30,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment implements MusicProgressViewUpdateHelper.Callback {
-    FragmentFlatPlayerPlaybackControlsBinding binding;
+    private FragmentFlatPlayerPlaybackControlsBinding binding;
 
     private PlayPauseDrawable playPauseDrawable;
 
