@@ -11,47 +11,40 @@ import android.os.CountDownTimer;
 import android.os.SystemClock;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.internal.ThemeSingleton;
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.databinding.DialogSleepTimerBinding;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.service.MusicService;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.triggertrap.seekarc.SeekArc;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class SleepTimerDialog extends DialogFragment {
-    @BindView(R.id.seek_arc)
-    SeekArc seekArc;
+    private DialogSleepTimerBinding binding;
 
-    @BindView(R.id.timer_display)
-    TextView timerDisplay;
-
-    @BindView(R.id.should_finish_last_song)
-    CheckBox shouldFinishLastSong;
+    private TimerUpdater timerUpdater;
+    private MaterialDialog materialDialog;
 
     private int seekArcProgress;
-    private MaterialDialog materialDialog;
-    private TimerUpdater timerUpdater;
 
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
+
         timerUpdater.cancel();
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        binding = DialogSleepTimerBinding.inflate(getLayoutInflater());
+
         timerUpdater = new TimerUpdater();
         materialDialog = new MaterialDialog.Builder(getActivity())
                 .title(getActivity().getResources().getString(R.string.action_sleep_timer))
@@ -61,7 +54,7 @@ public class SleepTimerDialog extends DialogFragment {
                         return;
                     }
 
-                    PreferenceUtil.getInstance(getActivity()).setSleepTimerFinishMusic(shouldFinishLastSong.isChecked());
+                    PreferenceUtil.getInstance(getActivity()).setSleepTimerFinishMusic(binding.shouldFinishLastSong.isChecked());
 
                     final int minutes = seekArcProgress;
 
@@ -98,36 +91,34 @@ public class SleepTimerDialog extends DialogFragment {
                         timerUpdater.start();
                     }
                 })
-                .customView(R.layout.dialog_sleep_timer, false)
+                .customView(binding.getRoot(), false)
                 .build();
 
         if (getActivity() == null || materialDialog.getCustomView() == null) {
             return materialDialog;
         }
 
-        ButterKnife.bind(this, materialDialog.getCustomView());
-
         boolean finishMusic = PreferenceUtil.getInstance(getActivity()).getSleepTimerFinishMusic();
-        shouldFinishLastSong.setChecked(finishMusic);
+        binding.shouldFinishLastSong.setChecked(finishMusic);
 
-        seekArc.setProgressColor(ThemeSingleton.get().positiveColor.getDefaultColor());
-        seekArc.setThumbColor(ThemeSingleton.get().positiveColor.getDefaultColor());
+        binding.seekArc.setProgressColor(ThemeSingleton.get().positiveColor.getDefaultColor());
+        binding.seekArc.setThumbColor(ThemeSingleton.get().positiveColor.getDefaultColor());
 
-        seekArc.post(() -> {
-            int width = seekArc.getWidth();
-            int height = seekArc.getHeight();
+        binding.seekArc.post(() -> {
+            int width = binding.seekArc.getWidth();
+            int height = binding.seekArc.getHeight();
             int small = Math.min(width, height);
 
-            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(seekArc.getLayoutParams());
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(binding.seekArc.getLayoutParams());
             layoutParams.height = small;
-            seekArc.setLayoutParams(layoutParams);
+            binding.seekArc.setLayoutParams(layoutParams);
         });
 
         seekArcProgress = PreferenceUtil.getInstance(getActivity()).getLastSleepTimerValue();
         updateTimeDisplayTime();
-        seekArc.setProgress(seekArcProgress);
+        binding.seekArc.setProgress(seekArcProgress);
 
-        seekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
+        binding.seekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
             @Override
             public void onProgressChanged(@NonNull SeekArc seekArc, int i, boolean b) {
                 if (i < 1) {
@@ -153,7 +144,7 @@ public class SleepTimerDialog extends DialogFragment {
     }
 
     private void updateTimeDisplayTime() {
-        timerDisplay.setText(seekArcProgress + " min");
+        binding.timerDisplay.setText(seekArcProgress + " min");
     }
 
     private PendingIntent makeTimerPendingIntent(int flag) {
@@ -162,7 +153,7 @@ public class SleepTimerDialog extends DialogFragment {
 
     private Intent makeTimerIntent() {
         Intent intent = new Intent(getActivity(), MusicService.class);
-        if (shouldFinishLastSong.isChecked()) {
+        if (binding.shouldFinishLastSong.isChecked()) {
             return intent.setAction(MusicService.ACTION_PENDING_QUIT);
         }
 

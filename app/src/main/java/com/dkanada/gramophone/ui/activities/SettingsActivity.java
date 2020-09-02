@@ -11,11 +11,11 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.preference.TwoStatePreference;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
+import com.dkanada.gramophone.databinding.ActivitySettingsBinding;
 import com.dkanada.gramophone.preferences.DirectPlayPreference;
 import com.dkanada.gramophone.preferences.DirectPlayPreferenceDialog;
 import com.kabouzeid.appthemehelper.ThemeStore;
@@ -31,27 +31,24 @@ import com.dkanada.gramophone.preferences.NowPlayingScreenPreferenceDialog;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class SettingsActivity extends AbsBaseActivity implements ColorChooserDialog.ColorCallback {
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    private ActivitySettingsBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        setDrawUnderStatusbar();
-        ButterKnife.bind(this);
 
+        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        setDrawUnderStatusbar();
         setStatusbarColorAuto();
+
         setNavigationbarColorAuto();
         setTaskDescriptionColorAuto();
 
-        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
-        setSupportActionBar(toolbar);
+        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        setSupportActionBar(binding.toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
