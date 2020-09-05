@@ -13,12 +13,6 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.ui.activities.LoginActivity;
 
 import org.jellyfin.apiclient.interaction.EmptyResponse;
-import org.jellyfin.apiclient.interaction.VolleyHttpClient;
-import org.jellyfin.apiclient.interaction.http.IAsyncHttpClient;
-import org.jellyfin.apiclient.logging.AndroidLogger;
-import org.jellyfin.apiclient.model.logging.ILogger;
-import org.jellyfin.apiclient.model.serialization.GsonJsonSerializer;
-import org.jellyfin.apiclient.model.serialization.IJsonSerializer;
 
 public class ConfirmLogoutDialog extends DialogFragment {
     @NonNull
@@ -36,12 +30,8 @@ public class ConfirmLogoutDialog extends DialogFragment {
                 .negativeText(android.R.string.cancel)
                 .onPositive((dialog, which) -> {
                     if (getActivity() == null) return;
+                    App.getApiClient().Logout(new EmptyResponse());
 
-                    IJsonSerializer jsonSerializer = new GsonJsonSerializer();
-                    ILogger logger = new AndroidLogger(getActivity().getClass().getName());
-                    IAsyncHttpClient httpClient = new VolleyHttpClient(logger, getActivity());
-
-                    App.getConnectionManager(getActivity(), jsonSerializer, logger, httpClient).Logout(new EmptyResponse());
                     Intent intent = new Intent(getActivity(), LoginActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     this.startActivity(intent);

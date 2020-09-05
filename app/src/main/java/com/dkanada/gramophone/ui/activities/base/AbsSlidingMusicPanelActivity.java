@@ -3,6 +3,7 @@ package com.dkanada.gramophone.ui.activities.base;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.ColorInt;
@@ -14,8 +15,10 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.PathInterpolator;
 
+import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
+import com.dkanada.gramophone.ui.activities.SplashActivity;
 import com.dkanada.gramophone.ui.fragments.player.AbsPlayerFragment;
 import com.dkanada.gramophone.ui.fragments.player.MiniPlayerFragment;
 import com.dkanada.gramophone.ui.fragments.player.NowPlayingScreen;
@@ -50,6 +53,15 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
         setContentView(createContentView());
         ButterKnife.bind(this);
 
+        // TODO use a fragment for the splash activity
+        if (App.getApiClient() == null) {
+            Intent intent = new Intent(this, SplashActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         currentNowPlayingScreen = PreferenceUtil.getInstance(this).getNowPlayingScreen();
 
         // must implement AbsPlayerFragment
@@ -63,6 +75,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
                 fragment = new CardPlayerFragment();
                 break;
         }
+
         getSupportFragmentManager().beginTransaction().replace(R.id.player_fragment_container, fragment).commit();
         getSupportFragmentManager().executePendingTransactions();
 

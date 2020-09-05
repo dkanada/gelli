@@ -2,6 +2,7 @@ package com.dkanada.gramophone.util;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.helper.sort.SortMethod;
+import com.dkanada.gramophone.helper.sort.SortOrder;
 import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
@@ -12,7 +13,6 @@ import com.dkanada.gramophone.model.Song;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.BaseItemType;
-import org.jellyfin.apiclient.model.entities.SortOrder;
 import org.jellyfin.apiclient.model.querying.ArtistsQuery;
 import org.jellyfin.apiclient.model.querying.ItemFields;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
@@ -90,7 +90,8 @@ public class QueryUtil {
     }
 
     public static void getItems(ItemQuery query, MediaCallback callback) {
-        query.setIncludeItemTypes(new String[]{"MusicArtist", "MusicAlbum", "Audio"});
+        query.setIncludeItemTypes(new String[]{"MusicAlbum", "Audio"});
+        query.setFields(new ItemFields[]{ItemFields.MediaSources});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(40);
         query.setRecursive(true);
@@ -163,6 +164,7 @@ public class QueryUtil {
 
     public static void getSongs(ItemQuery query, MediaCallback callback) {
         query.setIncludeItemTypes(new String[]{"Audio"});
+        query.setFields(new ItemFields[]{ItemFields.MediaSources});
         applyProperties(query);
         applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortMethod());
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
@@ -187,7 +189,7 @@ public class QueryUtil {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
         if (query.getParentId() == null && query.getArtistIds().length == 0) {
-            query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+            query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         }
 
         if (currentLibrary == null || query.getParentId() != null) return;
@@ -198,7 +200,7 @@ public class QueryUtil {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
         if (query.getParentId() == null) {
-            query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+            query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         }
 
         if (currentLibrary == null || query.getParentId() != null) return;
@@ -227,6 +229,17 @@ public class QueryUtil {
                 break;
             case SortMethod.RANDOM:
                 query.setSortBy(new String[]{"Random"});
+                break;
+        }
+    }
+
+    public static void applySortOrder(ItemQuery query, String order) {
+        switch (order) {
+            case SortOrder.ASCENDING:
+                query.setSortOrder(org.jellyfin.apiclient.model.entities.SortOrder.Ascending);
+                break;
+            case SortOrder.DESCENDING:
+                query.setSortOrder(org.jellyfin.apiclient.model.entities.SortOrder.Descending);
                 break;
         }
     }

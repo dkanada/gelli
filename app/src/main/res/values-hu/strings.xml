@@ -33,7 +33,7 @@
     <string name="label_file_format">Formátum</string>
     <string name="label_track_length">Hossz</string>
     <string name="label_bit_rate">Bitráta</string>
-    <string name="label_sampling_rate">Mintavételezés</string>
+    <string name="label_sample_rate">Mintavételezés</string>
     <string name="action_go_to_artist">Ugrás az előadóhoz</string>
     <string name="action_go_to_album">Ugrás az albumhoz</string>
     <string name="no_results">Nincs találat</string>
@@ -126,9 +126,6 @@
     <string name="website">Weboldal</string>
     <string name="up_next">Lejátszási sor</string>
     <string name="pref_title_now_playing_screen_appearance">Megjelenés</string>
-    <string name="app_widget_big_name">Phonograph - Nagy</string>
-    <string name="app_widget_classic_name">Phonograph - Klasszikus</string>
-    <string name="app_widget_card_name">Phonograph - Kártya</string>
     <string name="login">Bejelentkezés</string>
     <string name="username">Felhasználónév</string>
     <string name="password">Jelszó</string>

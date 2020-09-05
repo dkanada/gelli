@@ -33,7 +33,7 @@
     <string name="label_file_format">Formát</string>
     <string name="label_track_length">Délka</string>
     <string name="label_bit_rate">Datový tok</string>
-    <string name="label_sampling_rate">Vzorkovací frekvence</string>
+    <string name="label_sample_rate">Vzorkovací frekvence</string>
     <string name="action_go_to_artist">Přejít na interpreta</string>
     <string name="action_go_to_album">Přejít do alba</string>
     <string name="no_results">Žádné výsledky</string>
@@ -126,9 +126,6 @@
     <string name="website">"Stránka "</string>
     <string name="up_next">"Další "</string>
     <string name="pref_title_now_playing_screen_appearance">Vzhled</string>
-    <string name="app_widget_big_name">Phonograph - Velký</string>
-    <string name="app_widget_classic_name">Phonograph - Klasický</string>
-    <string name="app_widget_card_name">Phonograph - Karta</string>
     <string name="login">Přihlášení</string>
     <string name="username">Uživatelské jméno</string>
     <string name="password">Heslo</string>

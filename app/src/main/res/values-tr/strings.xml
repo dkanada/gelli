@@ -33,7 +33,7 @@
     <string name="label_file_format">Biçim</string>
     <string name="label_track_length">Uzunluk</string>
     <string name="label_bit_rate">Bit hızı</string>
-    <string name="label_sampling_rate">Örnekleme oranı</string>
+    <string name="label_sample_rate">Örnekleme oranı</string>
     <string name="action_go_to_artist">Sanatçıya git</string>
     <string name="action_go_to_album">Albüme git</string>
     <string name="no_results">Sonuç bulunamadı</string>
@@ -126,9 +126,6 @@
     <string name="website">Web sitesi</string>
     <string name="up_next">Sırada olanlar</string>
     <string name="pref_title_now_playing_screen_appearance">Görünüm</string>
-    <string name="app_widget_big_name">Phonograph - Büyük</string>
-    <string name="app_widget_classic_name">Phonograph - Klasik</string>
-    <string name="app_widget_card_name">Phonograph - Kart</string>
     <string name="login">Oturum aç</string>
     <string name="username">Kullanıcı adı</string>
     <string name="password">Şifre</string>

@@ -33,7 +33,7 @@
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Duljina</string>
     <string name="label_bit_rate">Brzina prijenosa</string>
-    <string name="label_sampling_rate">Brzina uzorkovanja</string>
+    <string name="label_sample_rate">Brzina uzorkovanja</string>
     <string name="action_go_to_artist">Idi na izvođača</string>
     <string name="action_go_to_album">Idi na album</string>
     <string name="no_results">Nema rezultata</string>
@@ -126,9 +126,6 @@
     <string name="website">Web-stranica</string>
     <string name="up_next">Sljedeće na redu</string>
     <string name="pref_title_now_playing_screen_appearance">Izgled</string>
-    <string name="app_widget_big_name">Phonograph - Veliki</string>
-    <string name="app_widget_classic_name">Phonograph - Klasični</string>
-    <string name="app_widget_card_name">Phonograph - Kartica</string>
     <string name="login">Prijava</string>
     <string name="username">Korisničko ime</string>
     <string name="password">Lozinka</string>

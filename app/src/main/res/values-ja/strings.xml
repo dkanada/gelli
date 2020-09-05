@@ -33,7 +33,7 @@
     <string name="label_file_format">ファイル形式</string>
     <string name="label_track_length">長さ</string>
     <string name="label_bit_rate">ビットレート</string>
-    <string name="label_sampling_rate">サンプリング周波数</string>
+    <string name="label_sample_rate">サンプリング周波数</string>
     <string name="action_go_to_artist">アーティストを表示</string>
     <string name="action_go_to_album">アルバムを表示</string>
     <string name="no_results">該当なし</string>
@@ -126,9 +126,6 @@
     <string name="website">ウェブサイト</string>
     <string name="up_next">次の曲</string>
     <string name="pref_title_now_playing_screen_appearance">外観</string>
-    <string name="app_widget_big_name">Phonograph - ビッグ</string>
-    <string name="app_widget_classic_name">Phonograph - クラシック</string>
-    <string name="app_widget_card_name">Phonograph - カード</string>
     <string name="login">ログイン</string>
     <string name="username">ユーザー名</string>
     <string name="password">パスワード</string>

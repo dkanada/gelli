@@ -33,7 +33,7 @@
     <string name="label_file_format">格式</string>
     <string name="label_track_length">长度</string>
     <string name="label_bit_rate">比特率</string>
-    <string name="label_sampling_rate">采样率</string>
+    <string name="label_sample_rate">采样率</string>
     <string name="action_go_to_artist">查看艺术家</string>
     <string name="action_go_to_album">查看专辑</string>
     <string name="no_results">没有找到结果</string>
@@ -127,9 +127,6 @@
     <string name="website">网站</string>
     <string name="up_next">即将播放</string>
     <string name="pref_title_now_playing_screen_appearance">外观</string>
-    <string name="app_widget_big_name">Phonograph - 大尺寸</string>
-    <string name="app_widget_classic_name">Phonograph - 经典</string>
-    <string name="app_widget_card_name">Phonograph - 卡片</string>
     <string name="login">登录</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>

@@ -5,20 +5,20 @@ import android.util.AttributeSet;
 
 import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEDialogPreference;
 
-public class LibraryPreference extends ATEDialogPreference {
-    public LibraryPreference(Context context) {
+public class CategoryPreference extends ATEDialogPreference {
+    public CategoryPreference(Context context) {
         super(context);
     }
 
-    public LibraryPreference(Context context, AttributeSet attrs) {
+    public CategoryPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public LibraryPreference(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CategoryPreference(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public LibraryPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CategoryPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 }

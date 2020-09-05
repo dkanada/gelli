@@ -23,7 +23,7 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
 
     public static final int VISIBILITY_ANIM_DURATION = 300;
 
-    FragmentPlayerAlbumCoverBinding binding;
+    private FragmentPlayerAlbumCoverBinding binding;
 
     private Callbacks callbacks;
     private int currentPosition;

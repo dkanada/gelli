@@ -32,7 +32,7 @@
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Length</string>
     <string name="label_bit_rate">Bitrate</string>
-    <string name="label_sampling_rate">Sampling rate</string>
+    <string name="label_sample_rate">Sampling rate</string>
     <string name="action_go_to_artist">Go to artist</string>
     <string name="action_go_to_album">Go to album</string>
     <string name="no_results">No results</string>
@@ -120,9 +120,6 @@
     <string name="website">Website</string>
     <string name="up_next">Up next</string>
     <string name="pref_title_now_playing_screen_appearance">Appearance</string>
-    <string name="app_widget_big_name">Phonograph - Big</string>
-    <string name="app_widget_classic_name">Phonograph - Classic</string>
-    <string name="app_widget_card_name">Phonograph - Card</string>
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>

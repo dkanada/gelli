@@ -17,9 +17,9 @@ import com.dkanada.gramophone.util.PreferenceUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibraryPreferenceDialog extends DialogFragment {
-    public static LibraryPreferenceDialog newInstance() {
-        return new LibraryPreferenceDialog();
+public class CategoryPreferenceDialog extends DialogFragment {
+    public static CategoryPreferenceDialog newInstance() {
+        return new CategoryPreferenceDialog();
     }
 
     private CategoryInfoAdapter adapter;
@@ -27,7 +27,7 @@ public class LibraryPreferenceDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = getActivity().getLayoutInflater().inflate(R.layout.preference_dialog_library_categories, null);
+        View view = getActivity().getLayoutInflater().inflate(R.layout.preference_dialog_category, null);
 
         List<CategoryInfo> categoryInfos;
         if (savedInstanceState != null) {

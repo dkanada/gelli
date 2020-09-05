@@ -33,7 +33,7 @@
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Durée</string>
     <string name="label_bit_rate">Débit</string>
-    <string name="label_sampling_rate">Taux d\'échantillonnage</string>
+    <string name="label_sample_rate">Taux d\'échantillonnage</string>
     <string name="action_go_to_artist">Voir l\'artiste</string>
     <string name="action_go_to_album">Voir l\'album</string>
     <string name="no_results">Aucun résultat</string>
@@ -126,9 +126,6 @@
     <string name="website">Site internet</string>
     <string name="up_next">Suivant</string>
     <string name="pref_title_now_playing_screen_appearance">Apparence</string>
-    <string name="app_widget_big_name">Gelli - Album</string>
-    <string name="app_widget_classic_name">Gelli - Classique</string>
-    <string name="app_widget_card_name">Gelli - Carte</string>
     <string name="login">Connexion</string>
     <string name="username">Nom d\'utilisateur</string>
     <string name="password">Mot de passe</string>
@@ -178,7 +175,7 @@
     <string name="pref_title_images_cache_size">Taille du cache</string>
     <string name="pref_title_images_external_directory">Dossier externe</string>
     <string name="pref_title_maximum_bitrate">Débit maximum</string>
-    <string name="pref_title_maximum_list_size">Taile de liste maximum</string>
+    <string name="pref_title_page_size">Taile de liste maximum</string>
     <string name="pref_title_remember_queue">Se souvenir de la dernière liste de lecture</string>
     <string name="pref_title_remember_shuffle">Se souvenir du mode aléatoire</string>
     <string name="pref_title_transcode_codec">Codec de transcodage</string>

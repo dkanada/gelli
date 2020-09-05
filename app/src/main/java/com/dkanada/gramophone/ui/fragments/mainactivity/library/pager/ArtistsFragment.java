@@ -10,6 +10,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.artist.ArtistAdapter;
 import com.dkanada.gramophone.helper.sort.SortMethod;
+import com.dkanada.gramophone.helper.sort.SortOrder;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
@@ -53,7 +54,7 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
         query.setFields(new ItemFields[]{ItemFields.Genres});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
-        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 
@@ -107,6 +108,20 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
 
     @Override
     protected void setSortMethod(String sortMethod) {
+    }
+
+    @Override
+    protected String loadSortOrder() {
+        return SortOrder.ASCENDING;
+    }
+
+    @Override
+    protected void saveSortOrder(String sortOrder) {
+        // not supported through API
+    }
+
+    @Override
+    protected void setSortOrder(String sortOrder) {
     }
 
     @Override

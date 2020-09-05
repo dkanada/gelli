@@ -47,7 +47,7 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
         query.setIncludeItemTypes(new String[]{"Playlist"});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
-        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 

@@ -4,13 +4,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
-import com.dkanada.gramophone.databinding.ActivityPlaylistDetailBinding;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
@@ -37,10 +38,18 @@ import org.jellyfin.apiclient.model.playlists.PlaylistItemQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder {
     public static String EXTRA_PLAYLIST = "extra_playlist";
 
-    ActivityPlaylistDetailBinding binding;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(android.R.id.empty)
+    TextView empty;
 
     private Playlist playlist;
 
@@ -54,8 +63,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityPlaylistDetailBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        ButterKnife.bind(this);
 
         setDrawUnderStatusbar();
         setStatusbarColorAuto();
@@ -85,8 +93,8 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
     }
 
     private void setUpRecyclerView() {
-        ViewUtil.setUpFastScrollRecyclerViewColor(this, ((FastScrollRecyclerView) binding.recyclerView), ThemeStore.accentColor(this));
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ViewUtil.setUpFastScrollRecyclerViewColor(this, ((FastScrollRecyclerView) recyclerView), ThemeStore.accentColor(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerViewDragDropManager = new RecyclerViewDragDropManager();
         final GeneralItemAnimator animator = new RefactoredDefaultItemAnimator();
@@ -99,10 +107,10 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
 
         wrappedAdapter = recyclerViewDragDropManager.createWrappedAdapter(adapter);
 
-        binding.recyclerView.setAdapter(wrappedAdapter);
-        binding.recyclerView.setItemAnimator(animator);
+        recyclerView.setAdapter(wrappedAdapter);
+        recyclerView.setItemAnimator(animator);
 
-        recyclerViewDragDropManager.attachRecyclerView(binding.recyclerView);
+        recyclerViewDragDropManager.attachRecyclerView(recyclerView);
 
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -114,8 +122,8 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
     }
 
     private void setUpToolbar() {
-        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
-        setSupportActionBar(binding.toolbar);
+        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        setSupportActionBar(toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setToolbarTitle(playlist.name);
@@ -164,13 +172,13 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
         if (cab != null && cab.isActive()) {
             cab.finish();
         } else {
-            binding.recyclerView.stopScroll();
+            recyclerView.stopScroll();
             super.onBackPressed();
         }
     }
 
     private void checkIsEmpty() {
-        binding.empty.setVisibility(adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
+        empty.setVisibility(adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -189,8 +197,11 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
             recyclerViewDragDropManager = null;
         }
 
-        binding.recyclerView.setItemAnimator(null);
-        binding.recyclerView.setAdapter(null);
+        if (recyclerView != null) {
+            recyclerView.setItemAnimator(null);
+            recyclerView.setAdapter(null);
+            recyclerView = null;
+        }
 
         if (wrappedAdapter != null) {
             WrapperAdapterUtils.releaseAll(wrappedAdapter);

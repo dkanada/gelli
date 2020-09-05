@@ -29,8 +29,8 @@
 
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="false"
-            android:key="should_color_navigation_bar"
+            android:defaultValue="true"
+            android:key="colored_navigation_bar"
             android:persistent="false"
             android:summary="@string/pref_summary_colored_navigation_bar"
             android:title="@string/pref_title_navigation_bar" />
@@ -38,7 +38,7 @@
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="true"
-            android:key="should_color_app_shortcuts"
+            android:key="colored_shortcuts"
             android:summary="@string/pref_summary_colored_app_shortcuts"
             android:title="@string/pref_title_app_shortcuts" />
 

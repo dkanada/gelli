@@ -31,7 +31,7 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
     @Override
     @NonNull
     public CategoryInfoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preference_dialog_library_categories_listitem, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preference_dialog_category_item, parent, false);
         return new ViewHolder(view);
     }
 

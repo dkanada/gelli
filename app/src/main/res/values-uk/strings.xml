@@ -33,7 +33,7 @@
     <string name="label_file_format">Формат</string>
     <string name="label_track_length">Тривалість</string>
     <string name="label_bit_rate">Бітрейт</string>
-    <string name="label_sampling_rate">Частота дискретизації</string>
+    <string name="label_sample_rate">Частота дискретизації</string>
     <string name="action_go_to_artist">Перейти до виконавця</string>
     <string name="action_go_to_album">Перейти до альбому</string>
     <string name="no_results">Немає результатів</string>
@@ -126,9 +126,6 @@
     <string name="website">Веб-сайт</string>
     <string name="up_next">До наступного</string>
     <string name="pref_title_now_playing_screen_appearance">Вигляд</string>
-    <string name="app_widget_big_name">Phonograph - Великий</string>
-    <string name="app_widget_classic_name">Phonograph - Класичний</string>
-    <string name="app_widget_card_name">Phonograph – Картки</string>
     <string name="login">Ім’я користувача</string>
     <string name="username">Ім‘я користувача</string>
     <string name="password">Пароль</string>

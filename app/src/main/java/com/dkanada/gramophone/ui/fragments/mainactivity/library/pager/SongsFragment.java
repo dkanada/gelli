@@ -14,6 +14,7 @@ import com.dkanada.gramophone.util.QueryUtil;
 
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.querying.ItemFields;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
 
@@ -67,13 +68,15 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
         ItemQuery query = new ItemQuery();
 
         query.setIncludeItemTypes(new String[]{"Audio"});
+        query.setFields(new ItemFields[]{ItemFields.MediaSources});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
-        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getMaximumListSize());
+        query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 
-        QueryUtil.applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod());
+        QueryUtil.applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortMethod());
+        QueryUtil.applySortOrder(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortOrder());
         return query;
     }
 
@@ -115,6 +118,20 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
 
     @Override
     protected void setSortMethod(String sortMethod) {
+    }
+
+    @Override
+    protected String loadSortOrder() {
+        return PreferenceUtil.getInstance(getActivity()).getSongSortOrder();
+    }
+
+    @Override
+    protected void saveSortOrder(String sortOrder) {
+        PreferenceUtil.getInstance(getActivity()).setSongSortOrder(sortOrder);
+    }
+
+    @Override
+    protected void setSortOrder(String sortOrder) {
     }
 
     @Override

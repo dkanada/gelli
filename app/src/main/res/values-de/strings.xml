@@ -32,7 +32,7 @@
     <string name="label_file_size">Größe</string>
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Länge</string>
-    <string name="label_sampling_rate">Samplingrate</string>
+    <string name="label_sample_rate">Samplingrate</string>
     <string name="action_go_to_artist">Gehe zu Interpret</string>
     <string name="action_go_to_album">Gehe zum Album</string>
     <string name="no_results">Keine Ergebnisse</string>
@@ -130,9 +130,6 @@
     <string name="website">Website</string>
     <string name="up_next">Als nächstes</string>
     <string name="pref_title_now_playing_screen_appearance">Aussehen</string>
-    <string name="app_widget_big_name">Phonograph - Groß</string>
-    <string name="app_widget_classic_name">Phonograph - Klassisch</string>
-    <string name="app_widget_card_name">Phonograph - Karte</string>
     <string name="login">Einloggen</string>
     <string name="username">Benutzername</string>
     <string name="password">Passwort</string>
@@ -167,7 +164,7 @@
     <string name="pref_header_images">Bilder</string>
     <string name="pref_title_maximum_bitrate">Maximale Bitrate</string>
     <string name="pref_title_remember_queue">Warteschlange merken</string>
-    <string name="pref_title_maximum_list_size">Maximale Listengröße</string>
+    <string name="pref_title_page_size">Maximale Listengröße</string>
     <string name="pref_title_images_cache_size">Cache-Größe</string>
     <string name="pref_title_images_external_directory">Externes Verzeichnis</string>
     <string name="pref_summary_images_external_directory">"Bildcache in externem Verzeichnis speichern, um die Dateien zwischen Installationen aufzubewahren. "</string>

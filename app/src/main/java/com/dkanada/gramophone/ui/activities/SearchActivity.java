@@ -35,9 +35,9 @@ import java.util.Map;
 public class SearchActivity extends AbsMusicServiceActivity implements SearchView.OnQueryTextListener {
     public String QUERY = "query";
 
-    ActivitySearchBinding binding;
+    private ActivitySearchBinding binding;
 
-    SearchView searchView;
+    private SearchView searchView;
 
     private Handler handler;
 
@@ -135,6 +135,7 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
 
     private void search(@NonNull String query) {
         this.query = query;
+
         ItemQuery itemQuery = new ItemQuery();
         itemQuery.setSearchTerm(query);
 

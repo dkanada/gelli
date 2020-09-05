@@ -29,7 +29,7 @@
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Längd</string>
     <string name="label_bit_rate">Bithastighet</string>
-    <string name="label_sampling_rate">Samplingsfrekvens</string>
+    <string name="label_sample_rate">Samplingsfrekvens</string>
     <string name="action_go_to_artist">Gå till artist</string>
     <string name="action_go_to_album">Gå till album</string>
     <string name="no_results">Inga resultat</string>

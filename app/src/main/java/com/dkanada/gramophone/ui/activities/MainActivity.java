@@ -1,6 +1,5 @@
 package com.dkanada.gramophone.ui.activities;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,8 +7,8 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.dkanada.gramophone.databinding.ActivityMainDrawerLayoutBinding;
 import com.dkanada.gramophone.dialogs.ConfirmLogoutDialog;
-import com.google.android.material.navigation.NavigationView;
 import androidx.fragment.app.Fragment;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -41,16 +40,8 @@ import org.jellyfin.apiclient.model.dto.BaseItemDto;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class MainActivity extends AbsSlidingMusicPanelActivity {
-    public static final String TAG = MainActivity.class.getSimpleName();
-
-    @BindView(R.id.navigation_view)
-    NavigationView navigationView;
-    @BindView(R.id.drawer_layout)
-    DrawerLayout drawerLayout;
+    private ActivityMainDrawerLayoutBinding binding;
 
     @Nullable
     MainActivityFragmentCallbacks currentFragment;
@@ -65,13 +56,12 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setDrawUnderStatusbar();
-        ButterKnife.bind(this);
 
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-            navigationView.setFitsSystemWindows(false);
+            binding.navigationView.setFitsSystemWindows(false);
         }
 
-        Menu menu = navigationView.getMenu();
+        Menu menu = binding.navigationView.getMenu();
         QueryUtil.getLibraries(new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
@@ -118,20 +108,21 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
 
     @Override
     protected View createContentView() {
-        @SuppressLint("InflateParams")
-        View contentView = getLayoutInflater().inflate(R.layout.activity_main_drawer_layout, null);
-        ViewGroup drawerContent = contentView.findViewById(R.id.drawer_content_container);
+        binding = ActivityMainDrawerLayoutBinding.inflate(getLayoutInflater());
+
+        ViewGroup drawerContent = binding.getRoot().findViewById(R.id.drawer_content_container);
         drawerContent.addView(wrapSlidingMusicPanel(R.layout.activity_main_content));
-        return contentView;
+
+        return binding.getRoot();
     }
 
     private void setUpNavigationView() {
         int accentColor = ThemeStore.accentColor(this);
-        NavigationViewUtil.setItemIconColors(navigationView, ATHUtil.resolveColor(this, R.attr.iconColor, ThemeStore.textColorSecondary(this)), accentColor);
-        NavigationViewUtil.setItemTextColors(navigationView, ThemeStore.textColorPrimary(this), accentColor);
+        NavigationViewUtil.setItemIconColors(binding.navigationView, ATHUtil.resolveColor(this, R.attr.iconColor, ThemeStore.textColorSecondary(this)), accentColor);
+        NavigationViewUtil.setItemTextColors(binding.navigationView, ThemeStore.textColorPrimary(this), accentColor);
 
-        navigationView.setNavigationItemSelectedListener(menuItem -> {
-            drawerLayout.closeDrawers();
+        binding.navigationView.setNavigationItemSelectedListener(menuItem -> {
+            binding.drawerLayout.closeDrawers();
             switch (menuItem.getItemId()) {
                 case R.id.nav_settings:
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, SettingsActivity.class)), 200);
@@ -161,11 +152,11 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     || menuItem.getItemId() == R.id.nav_about
                     || menuItem.getItemId() == R.id.nav_logout) return true;
 
-            for (int i = 0; i < navigationView.getMenu().size(); i++) {
-                if (navigationView.getMenu().getItem(i) == menuItem) {
-                    navigationView.getMenu().getItem(i).setChecked(true);
+            for (int i = 0; i < binding.navigationView.getMenu().size(); i++) {
+                if (binding.navigationView.getMenu().getItem(i) == menuItem) {
+                    binding.navigationView.getMenu().getItem(i).setChecked(true);
                 } else {
-                    navigationView.getMenu().getItem(i).setChecked(false);
+                    binding.navigationView.getMenu().getItem(i).setChecked(false);
                 }
             }
 
@@ -181,9 +172,9 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
         if (!MusicPlayerRemote.getPlayingQueue().isEmpty()) {
             Song song = MusicPlayerRemote.getCurrentSong();
             if (navigationDrawerHeader == null) {
-                navigationDrawerHeader = navigationView.inflateHeaderView(R.layout.navigation_drawer_header);
+                navigationDrawerHeader = binding.navigationView.inflateHeaderView(R.layout.navigation_drawer_header);
                 navigationDrawerHeader.setOnClickListener(v -> {
-                    drawerLayout.closeDrawers();
+                    binding.drawerLayout.closeDrawers();
                     if (getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                         expandPanel();
                     }
@@ -198,7 +189,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     .build().into(((ImageView) navigationDrawerHeader.findViewById(R.id.image)));
         } else {
             if (navigationDrawerHeader != null) {
-                navigationView.removeHeaderView(navigationDrawerHeader);
+                binding.navigationView.removeHeaderView(navigationDrawerHeader);
                 navigationDrawerHeader = null;
             }
         }
@@ -219,10 +210,10 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            if (drawerLayout.isDrawerOpen(navigationView)) {
-                drawerLayout.closeDrawer(navigationView);
+            if (binding.drawerLayout.isDrawerOpen(binding.navigationView)) {
+                binding.drawerLayout.closeDrawer(binding.navigationView);
             } else {
-                drawerLayout.openDrawer(navigationView);
+                binding.drawerLayout.openDrawer(binding.navigationView);
             }
 
             return true;
@@ -233,8 +224,8 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
 
     @Override
     public boolean handleBackPress() {
-        if (drawerLayout.isDrawerOpen(navigationView)) {
-            drawerLayout.closeDrawers();
+        if (binding.drawerLayout.isDrawerOpen(binding.navigationView)) {
+            binding.drawerLayout.closeDrawers();
             return true;
         }
 
@@ -244,13 +235,13 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     @Override
     public void onPanelExpanded(View view) {
         super.onPanelExpanded(view);
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
     @Override
     public void onPanelCollapsed(View view) {
         super.onPanelCollapsed(view);
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
     public interface MainActivityFragmentCallbacks {

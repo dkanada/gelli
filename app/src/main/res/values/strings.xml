@@ -63,13 +63,15 @@
     <string name="album">Album</string>
 
     <string name="label_details">Details</string>
-    <string name="label_file_name">File Name</string>
-    <string name="label_file_path">File Path</string>
+    <string name="label_file_path">Path</string>
+    <string name="label_file_name">Name</string>
     <string name="label_file_size">Size</string>
     <string name="label_file_format">Format</string>
     <string name="label_track_length">Length</string>
-    <string name="label_bit_rate">Bitrate</string>
-    <string name="label_sampling_rate">Sample Rate</string>
+    <string name="label_sample_rate">Sample Rate</string>
+    <string name="label_bit_rate">Bit Rate</string>
+    <string name="label_bit_depth">Bit Depth</string>
+    <string name="label_channels">Channels</string>
 
     <string name="battery_optimizations_title">Battery Optimizations</string>
     <string name="battery_optimizations_message">Please disable battery optimizations for media playback while the screen is off.</string>
@@ -122,7 +124,7 @@
     <string name="pref_title_remember_last_tab">Remember Tab</string>
     <string name="pref_title_remember_shuffle">Remember Shuffle</string>
     <string name="pref_title_remember_queue">Remember Queue</string>
-    <string name="pref_title_maximum_list_size">Maximum List Size</string>
+    <string name="pref_title_page_size">Page Size</string>
     <string name="pref_title_images_cache_size">Cache Size</string>
     <string name="pref_title_images_external_directory">External Directory</string>
     <string name="pref_summary_images_external_directory">Store the image cache in an external directory to keep the files between installs.</string>
@@ -183,9 +185,9 @@
     <string name="eugene_cheung_summary">Several amazing contributions to the source code.</string>
     <string name="adrian_summary">Designed the new album page which was then ported to other activities.</string>
 
-    <string name="app_widget_big_name">Gelli Album</string>
-    <string name="app_widget_classic_name">Gelli Classic</string>
-    <string name="app_widget_card_name">Gelli Card</string>
+    <string name="widget_big">Album</string>
+    <string name="widget_classic">Classic</string>
+    <string name="widget_card">Card</string>
 
     <string name="login">Login</string>
     <string name="disable">Disable</string>

@@ -11,11 +11,11 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.preference.TwoStatePreference;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
+import com.dkanada.gramophone.databinding.ActivitySettingsBinding;
 import com.dkanada.gramophone.preferences.DirectPlayPreference;
 import com.dkanada.gramophone.preferences.DirectPlayPreferenceDialog;
 import com.kabouzeid.appthemehelper.ThemeStore;
@@ -24,34 +24,31 @@ import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceFragment
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.shortcuts.DynamicShortcutManager;
-import com.dkanada.gramophone.preferences.LibraryPreference;
-import com.dkanada.gramophone.preferences.LibraryPreferenceDialog;
+import com.dkanada.gramophone.preferences.CategoryPreference;
+import com.dkanada.gramophone.preferences.CategoryPreferenceDialog;
 import com.dkanada.gramophone.preferences.NowPlayingScreenPreference;
 import com.dkanada.gramophone.preferences.NowPlayingScreenPreferenceDialog;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class SettingsActivity extends AbsBaseActivity implements ColorChooserDialog.ColorCallback {
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    private ActivitySettingsBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        setDrawUnderStatusbar();
-        ButterKnife.bind(this);
 
+        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        setDrawUnderStatusbar();
         setStatusbarColorAuto();
+
         setNavigationbarColorAuto();
         setTaskDescriptionColorAuto();
 
-        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
-        setSupportActionBar(toolbar);
+        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        setSupportActionBar(binding.toolbar);
         //noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -91,6 +88,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             onBackPressed();
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -108,8 +106,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             if (preference instanceof ListPreference) {
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
-                preference.setSummary(
-                        index >= 0 ? listPreference.getEntries()[index] : null);
+                preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
             } else {
                 preference.setSummary(stringValue);
             }
@@ -118,13 +115,12 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         @Override
         public void onCreatePreferences(Bundle bundle, String s) {
             addPreferencesFromResource(R.xml.pref_library);
-            addPreferencesFromResource(R.xml.pref_colors);
+            addPreferencesFromResource(R.xml.pref_interface);
             addPreferencesFromResource(R.xml.pref_notification);
-            addPreferencesFromResource(R.xml.pref_now_playing_screen);
-            addPreferencesFromResource(R.xml.pref_lockscreen);
-            addPreferencesFromResource(R.xml.pref_audio);
+            addPreferencesFromResource(R.xml.pref_now_playing);
+            addPreferencesFromResource(R.xml.pref_lock_screen);
+            addPreferencesFromResource(R.xml.pref_playback);
             addPreferencesFromResource(R.xml.pref_images);
-            addPreferencesFromResource(R.xml.pref_direct_play);
         }
 
         @Nullable
@@ -132,8 +128,8 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         public DialogFragment onCreatePreferenceDialog(Preference preference) {
             if (preference instanceof NowPlayingScreenPreference) {
                 return NowPlayingScreenPreferenceDialog.newInstance();
-            } else if (preference instanceof LibraryPreference) {
-                return LibraryPreferenceDialog.newInstance();
+            } else if (preference instanceof CategoryPreference) {
+                return CategoryPreferenceDialog.newInstance();
             } else if (preference instanceof DirectPlayPreference) {
                 return DirectPlayPreferenceDialog.newInstance();
             }
@@ -164,7 +160,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
 
                 ThemeStore.markChanged(getActivity());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
-                    // Set the new theme so that updateAppShortcuts can pull it
+                    // set the new theme so that updateAppShortcuts can pull it
                     getActivity().setTheme(PreferenceUtil.getThemeResFromPrefValue(themeName));
                     new DynamicShortcutManager(getActivity()).updateDynamicShortcuts();
                 }
@@ -173,7 +169,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 return true;
             });
 
-            final ATEColorPreference primaryColorPref = (ATEColorPreference) findPreference("primary_color");
+            final ATEColorPreference primaryColorPref = findPreference(PreferenceUtil.PRIMARY_COLOR);
             final int primaryColor = ThemeStore.primaryColor(getActivity());
             primaryColorPref.setColor(primaryColor, ColorUtil.darkenColor(primaryColor));
             primaryColorPref.setOnPreferenceClickListener(preference -> {
@@ -186,7 +182,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 return true;
             });
 
-            final ATEColorPreference accentColorPref = (ATEColorPreference) findPreference("accent_color");
+            final ATEColorPreference accentColorPref = findPreference(PreferenceUtil.ACCENT_COLOR);
             final int accentColor = ThemeStore.accentColor(getActivity());
             accentColorPref.setColor(accentColor, ColorUtil.darkenColor(accentColor));
             accentColorPref.setOnPreferenceClickListener(preference -> {
@@ -199,7 +195,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 return true;
             });
 
-            TwoStatePreference colorNavBar = (TwoStatePreference) findPreference(PreferenceUtil.COLORED_NAVIGATION_BAR);
+            TwoStatePreference colorNavBar = findPreference(PreferenceUtil.COLORED_NAVIGATION_BAR);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 colorNavBar.setVisible(false);
             } else {
@@ -213,42 +209,38 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 });
             }
 
-            final TwoStatePreference classicNotification = (TwoStatePreference) findPreference(PreferenceUtil.CLASSIC_NOTIFICATION);
+            final TwoStatePreference classicNotification = findPreference(PreferenceUtil.CLASSIC_NOTIFICATION);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 classicNotification.setVisible(false);
             } else {
                 classicNotification.setChecked(PreferenceUtil.getInstance(getActivity()).getClassicNotification());
                 classicNotification.setOnPreferenceChangeListener((preference, newValue) -> {
-                    // Save preference
                     PreferenceUtil.getInstance(getActivity()).setClassicNotification((Boolean) newValue);
                     return true;
                 });
             }
 
-            final TwoStatePreference coloredNotification = (TwoStatePreference) findPreference(PreferenceUtil.COLORED_NOTIFICATION);
+            final TwoStatePreference coloredNotification = findPreference(PreferenceUtil.COLORED_NOTIFICATION);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 coloredNotification.setEnabled(PreferenceUtil.getInstance(getActivity()).getClassicNotification());
             } else {
                 coloredNotification.setChecked(PreferenceUtil.getInstance(getActivity()).getColoredNotification());
                 coloredNotification.setOnPreferenceChangeListener((preference, newValue) -> {
-                    // Save preference
                     PreferenceUtil.getInstance(getActivity()).setColoredNotification((Boolean) newValue);
                     return true;
                 });
             }
 
-            final TwoStatePreference colorAppShortcuts = (TwoStatePreference) findPreference("should_color_app_shortcuts");
+            final TwoStatePreference colorAppShortcuts = findPreference(PreferenceUtil.COLORED_SHORTCUTS);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
                 colorAppShortcuts.setVisible(false);
             } else {
                 colorAppShortcuts.setChecked(PreferenceUtil.getInstance(getActivity()).getColoredShortcuts());
                 colorAppShortcuts.setOnPreferenceChangeListener((preference, newValue) -> {
-                    // Save preference
                     PreferenceUtil.getInstance(getActivity()).setColoredShortcuts((Boolean) newValue);
 
-                    // Update app shortcuts
+                    // update app shortcuts
                     new DynamicShortcutManager(getActivity()).updateDynamicShortcuts();
-
                     return true;
                 });
             }

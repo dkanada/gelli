@@ -33,7 +33,7 @@
     <string name="label_file_format">Jenis</string>
     <string name="label_track_length">Panjang</string>
     <string name="label_bit_rate">Kecepatan bit</string>
-    <string name="label_sampling_rate">Batas frekuensi</string>
+    <string name="label_sample_rate">Batas frekuensi</string>
     <string name="action_go_to_artist">Pergi ke artis</string>
     <string name="action_go_to_album">Pergi ke album</string>
     <string name="no_results">Tidak ditemukan</string>
@@ -129,9 +129,6 @@
     <string name="website">Situs</string>
     <string name="up_next">Berikutnya</string>
     <string name="pref_title_now_playing_screen_appearance">Tampilan</string>
-    <string name="app_widget_big_name">Phonograph - Besar</string>
-    <string name="app_widget_classic_name">Phonograph - Klasik</string>
-    <string name="app_widget_card_name">Kartu - Phonograph</string>
     <string name="login">Masuk</string>
     <string name="username">Nama pengguna</string>
     <string name="password">Kata sandi</string>

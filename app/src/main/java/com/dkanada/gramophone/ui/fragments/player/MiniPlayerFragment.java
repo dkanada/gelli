@@ -11,9 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.dkanada.gramophone.databinding.FragmentMiniPlayerBinding;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.dkanada.gramophone.R;
@@ -23,23 +22,9 @@ import com.dkanada.gramophone.helper.PlayPauseButtonOnClickHandler;
 import com.dkanada.gramophone.ui.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.views.PlayPauseDrawable;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
-
 public class MiniPlayerFragment extends AbsMusicServiceFragment implements MusicProgressViewUpdateHelper.Callback {
 
-    private Unbinder unbinder;
-
-    @BindView(R.id.mini_player_title)
-    TextView miniPlayerTitle;
-
-    @BindView(R.id.mini_player_play_pause_button)
-    ImageView miniPlayerPlayPauseButton;
-
-    @BindView(R.id.progress_bar)
-    MaterialProgressBar progressBar;
+    private FragmentMiniPlayerBinding binding;
 
     private PlayPauseDrawable miniPlayerPlayPauseDrawable;
 
@@ -54,38 +39,33 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_mini_player, container, false);
+        binding = FragmentMiniPlayerBinding.inflate(inflater);
+
+        return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        unbinder = ButterKnife.bind(this, view);
 
         view.setOnTouchListener(new FlingPlayBackController(getActivity()));
         setUpMiniPlayer();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
     private void setUpMiniPlayer() {
         setUpPlayPauseButton();
-        progressBar.setProgressTintList(ColorStateList.valueOf(ThemeStore.accentColor(getActivity())));
+        binding.progressBar.setProgressTintList(ColorStateList.valueOf(ThemeStore.accentColor(getActivity())));
     }
 
     private void setUpPlayPauseButton() {
         miniPlayerPlayPauseDrawable = new PlayPauseDrawable(getActivity());
-        miniPlayerPlayPauseButton.setImageDrawable(miniPlayerPlayPauseDrawable);
-        miniPlayerPlayPauseButton.setColorFilter(ATHUtil.resolveColor(getActivity(), R.attr.iconColor, ThemeStore.textColorSecondary(getActivity())), PorterDuff.Mode.SRC_IN);
-        miniPlayerPlayPauseButton.setOnClickListener(new PlayPauseButtonOnClickHandler());
+        binding.miniPlayerPlayPauseButton.setImageDrawable(miniPlayerPlayPauseDrawable);
+        binding.miniPlayerPlayPauseButton.setColorFilter(ATHUtil.resolveColor(getActivity(), R.attr.iconColor, ThemeStore.textColorSecondary(getActivity())), PorterDuff.Mode.SRC_IN);
+        binding.miniPlayerPlayPauseButton.setOnClickListener(new PlayPauseButtonOnClickHandler());
     }
 
     private void updateSongTitle() {
-        miniPlayerTitle.setText(MusicPlayerRemote.getCurrentSong().title);
+        binding.miniPlayerTitle.setText(MusicPlayerRemote.getCurrentSong().title);
     }
 
     @Override
@@ -106,8 +86,8 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
 
     @Override
     public void onUpdateProgressViews(int progress, int total) {
-        progressBar.setMax(total);
-        progressBar.setProgress(progress);
+        binding.progressBar.setMax(total);
+        binding.progressBar.setProgress(progress);
     }
 
     @Override
@@ -123,7 +103,6 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
     }
 
     private static class FlingPlayBackController implements View.OnTouchListener {
-
         GestureDetector flingPlayBackController;
 
         public FlingPlayBackController(Context context) {
@@ -139,6 +118,7 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
                             return true;
                         }
                     }
+
                     return false;
                 }
             });

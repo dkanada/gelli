@@ -33,7 +33,7 @@
     <string name="label_file_format">Formato</string>
     <string name="label_track_length">Durata</string>
     <string name="label_bit_rate">Bitrate</string>
-    <string name="label_sampling_rate">Frequenza di campionamento</string>
+    <string name="label_sample_rate">Frequenza di campionamento</string>
     <string name="action_go_to_artist">Vai all\'artista</string>
     <string name="action_go_to_album">Vai all\'album</string>
     <string name="no_results">Nessun risultato</string>
@@ -129,9 +129,6 @@
     <string name="website">Sito web</string>
     <string name="up_next">A seguire</string>
     <string name="pref_title_now_playing_screen_appearance">Aspetto</string>
-    <string name="app_widget_big_name">Phonograph - Grande</string>
-    <string name="app_widget_classic_name">Phonograph - Classico</string>
-    <string name="app_widget_card_name">Phonograph - Scheda</string>
     <string name="login">Accesso</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
