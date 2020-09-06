@@ -162,6 +162,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
         if (last > total - page / 2 && total < size) {
             query = createQuery();
             loading = true;
+
             loadItems(getAdapter().getItemCount());
         }
     }

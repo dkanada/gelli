@@ -95,6 +95,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
                 if (target != null) {
                     Glide.clear(target);
                 }
+
                 target = CustomGlideRequest.Builder.from(Glide.with(appContext), song.primary)
                         .asBitmap().build()
                         .into(new SimpleTarget<Bitmap>(widgetImageSize, widgetImageSize) {
@@ -115,6 +116,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
                                 } else {
                                     appWidgetView.setImageViewBitmap(R.id.image, bitmap);
                                 }
+
                                 pushUpdate(appContext, appWidgetIds, appWidgetView);
                             }
                         });

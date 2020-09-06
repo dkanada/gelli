@@ -151,6 +151,7 @@ public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity impleme
                 onBackPressed();
                 return true;
         }
+
         return PlaylistMenuHelper.handleMenuClick(this, playlist, item);
     }
 

@@ -88,6 +88,7 @@ public class PlayingNotificationImpl extends PlayingNotification {
                 if (target != null) {
                     Glide.clear(target);
                 }
+
                 target = CustomGlideRequest.Builder.from(Glide.with(service), song.primary)
                         .generatePalette(service).build()
                         .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
@@ -159,17 +160,17 @@ public class PlayingNotificationImpl extends PlayingNotification {
 
         final ComponentName serviceName = new ComponentName(service, MusicService.class);
 
-        // Previous track
+        // previous track
         pendingIntent = buildPendingIntent(service, MusicService.ACTION_REWIND, serviceName);
         notificationLayout.setOnClickPendingIntent(R.id.action_prev, pendingIntent);
         notificationLayoutBig.setOnClickPendingIntent(R.id.action_prev, pendingIntent);
 
-        // Play and pause
+        // toggle play and pause
         pendingIntent = buildPendingIntent(service, MusicService.ACTION_TOGGLE_PAUSE, serviceName);
         notificationLayout.setOnClickPendingIntent(R.id.action_play_pause, pendingIntent);
         notificationLayoutBig.setOnClickPendingIntent(R.id.action_play_pause, pendingIntent);
 
-        // Next track
+        // next track
         pendingIntent = buildPendingIntent(service, MusicService.ACTION_SKIP, serviceName);
         notificationLayout.setOnClickPendingIntent(R.id.action_next, pendingIntent);
         notificationLayoutBig.setOnClickPendingIntent(R.id.action_next, pendingIntent);

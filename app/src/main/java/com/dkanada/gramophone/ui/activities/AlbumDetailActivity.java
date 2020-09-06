@@ -100,7 +100,6 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setUpToolbar();
         setUpViews();
 
-        if (Build.VERSION.SDK_INT > 21) postponeEnterTransition();
         Album album = getIntent().getExtras().getParcelable(EXTRA_ALBUM);
         loadAlbumCover(album.primary);
         setAlbum(album);
@@ -149,19 +148,6 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         CustomGlideRequest.Builder
                 .from(Glide.with(this), primary)
                 .generatePalette(this).build()
-                .listener(new RequestListener<Object, BitmapPaletteWrapper>() {
-                    @Override
-                    public boolean onException(Exception e, Object model, Target<BitmapPaletteWrapper> target, boolean isFirstResource) {
-                        if (Build.VERSION.SDK_INT > 21) startPostponedEnterTransition();
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(BitmapPaletteWrapper resource, Object model, Target<BitmapPaletteWrapper> target, boolean dataSource, boolean isFirstResource) {
-                        if (Build.VERSION.SDK_INT > 21) startPostponedEnterTransition();
-                        return false;
-                    }
-                })
                 .dontAnimate()
                 .into(new CustomPaletteTarget(albumArtImageView) {
                     @Override

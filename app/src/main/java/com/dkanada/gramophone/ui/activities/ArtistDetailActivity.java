@@ -100,7 +100,6 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
 
         usePalette = PreferenceUtil.getInstance(this).getAlbumArtistColoredFooters();
 
-        if (Build.VERSION.SDK_INT > 21) postponeEnterTransition();
         Artist artist = getIntent().getExtras().getParcelable(EXTRA_ARTIST);
         loadArtistImage(artist.primary);
         setArtist(artist);
@@ -181,19 +180,6 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         CustomGlideRequest.Builder
                 .from(Glide.with(this), primary)
                 .generatePalette(this).build()
-                .listener(new RequestListener<Object, BitmapPaletteWrapper>() {
-                    @Override
-                    public boolean onException(Exception e, Object model, Target<BitmapPaletteWrapper> target, boolean isFirstResource) {
-                        if (Build.VERSION.SDK_INT > 21) startPostponedEnterTransition();
-                        return false;
-                    }
-
-                    @Override
-                    public boolean onResourceReady(BitmapPaletteWrapper resource, Object model, Target<BitmapPaletteWrapper> target, boolean dataSource, boolean isFirstResource) {
-                        if (Build.VERSION.SDK_INT > 21) startPostponedEnterTransition();
-                        return false;
-                    }
-                })
                 .dontAnimate()
                 .into(new CustomPaletteTarget(artistImage) {
                     @Override

@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class MusicUtil {
-    public static Uri getSongFileUri(Song song) {
+    public static String getSongFileUri(Song song) {
         PreferenceUtil preferenceUtil = PreferenceUtil.getInstance(App.getInstance());
 
         StringBuilder builder = new StringBuilder(256);
@@ -67,7 +67,7 @@ public class MusicUtil {
         builder.append("&api_key=").append(apiClient.getAccessToken());
 
         Log.i(MusicUtil.class.getName(), "playing audio: " + builder);
-        return Uri.parse(builder.toString());
+        return builder.toString();
     }
 
     @NonNull
