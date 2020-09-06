@@ -143,17 +143,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private HandlerThread musicPlayerHandlerThread;
     private HandlerThread queueSaveHandlerThread;
     private ThrottledSeekHandler throttledSeekHandler;
-    private boolean becomingNoisyReceiverRegistered;
-    private IntentFilter becomingNoisyReceiverIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
-
-    private final BroadcastReceiver becomingNoisyReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, @NonNull Intent intent) {
-            if (intent.getAction().equals(AudioManager.ACTION_AUDIO_BECOMING_NOISY)) {
-                pause();
-            }
-        }
-    };
 
     private boolean notHandledMetaChangedForCurrentTrack;
 
@@ -325,10 +314,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     @Override
     public void onDestroy() {
         unregisterReceiver(widgetIntentReceiver);
-        if (becomingNoisyReceiverRegistered) {
-            unregisterReceiver(becomingNoisyReceiver);
-            becomingNoisyReceiverRegistered = false;
-        }
 
         mediaSession.setActive(false);
         quit();
@@ -809,10 +794,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         playSongAt(getPosition());
                     } else {
                         playback.start();
-                        if (!becomingNoisyReceiverRegistered) {
-                            registerReceiver(becomingNoisyReceiver, becomingNoisyReceiverIntentFilter);
-                            becomingNoisyReceiverRegistered = true;
-                        }
 
                         if (notHandledMetaChangedForCurrentTrack) {
                             handleChangeInternal(META_CHANGED);
