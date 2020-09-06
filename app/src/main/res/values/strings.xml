@@ -6,6 +6,7 @@
     <string name="currently_listening_to_x_by_x">Currently listening to %1$s by %2$s.</string>
     <string name="the_audio_file">The audio file</string>
     <string name="unplayable_file">Couldn\u2019t play this song.</string>
+    <string name="headphones_disconnected">Headphones disconnected.</string>
     <string name="audio_focus_denied">Audio focus denied.</string>
     <string name="error_share_file">There was an error sharing the file.</string>
     <string name="error_version">Please update your server to the latest version.</string>

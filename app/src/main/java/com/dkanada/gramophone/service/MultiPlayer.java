@@ -56,15 +56,8 @@ public class MultiPlayer implements Playback {
 
     private Handler uiThreadHandler = new Handler();
 
-    public void runOnUiThread(Runnable runnable) {
-        uiThreadHandler.post(runnable);
-    }
-
-    private boolean debugToast = false;
-
-    private void DebugToast(String msg) {
-        if (!debugToast) return;
-        runOnUiThread(() -> Toast.makeText(context, msg, Toast.LENGTH_LONG).show());
+    private void uiThreadToast(String msg) {
+        uiThreadHandler.post(() -> Toast.makeText(context, msg, Toast.LENGTH_LONG).show());
     }
 
     private IntentFilter becomingNoisyReceiverIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
@@ -83,8 +76,8 @@ public class MultiPlayer implements Playback {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(AudioManager.ACTION_AUDIO_BECOMING_NOISY)) {
-                DebugToast("Becoming noisy");
-                pause();
+                uiThreadToast(context.getResources().getString(R.string.headphones_disconnected));
+                ((MusicService)context).pause();
             }
         }
     }
@@ -94,8 +87,6 @@ public class MultiPlayer implements Playback {
     private void registerBecomingNoisyReceiver() {
         if (!becomingNoisyReceiver.isRegistered()) {
             becomingNoisyReceiver.setRegistered(true);
-
-            DebugToast("Registering");
             context.registerReceiver(becomingNoisyReceiver, becomingNoisyReceiverIntentFilter);
         }
     }
@@ -103,8 +94,6 @@ public class MultiPlayer implements Playback {
     private void unRegisterBecomingNoisyReceiver() {
         if (becomingNoisyReceiver.isRegistered()) {
             becomingNoisyReceiver.setRegistered(false);
-
-            DebugToast("Unregistering");
             context.unregisterReceiver(becomingNoisyReceiver);
         }
     }
