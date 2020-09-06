@@ -62,10 +62,14 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
     }
 
     @Override
-    protected void loadItems() {
-        App.getApiClient().GetAlbumArtistsAsync(getQuery(), new Response<ItemsResult>() {
+    protected void loadItems(int index) {
+        ArtistsQuery query = getQuery();
+        query.setStartIndex(index);
+
+        App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
+                if (index == 0) getAdapter().getDataSet().clear();
                 for (BaseItemDto itemDto : result.getItems()) {
                     getAdapter().getDataSet().add(new Artist(itemDto));
                 }

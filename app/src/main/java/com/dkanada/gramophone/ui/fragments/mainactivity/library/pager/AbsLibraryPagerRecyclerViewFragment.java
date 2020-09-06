@@ -60,14 +60,14 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
 
         initAdapter();
         initLayoutManager();
+        initQuery();
 
         initRecyclerView();
+        loadItems(0);
     }
 
     private void initAdapter() {
         adapter = createAdapter();
-        query = createQuery();
-
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
@@ -75,12 +75,14 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
                 checkIsEmpty();
             }
         });
-
-        loadItems();
     }
 
     private void initLayoutManager() {
         layoutManager = createLayoutManager();
+    }
+
+    private void initQuery() {
+        query = createQuery();
     }
 
     private void initRecyclerView() {
@@ -94,7 +96,10 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
 
     protected void invalidateAdapter() {
         initAdapter();
+        initQuery();
+
         recyclerView.setAdapter(adapter);
+        loadItems(0);
     }
 
     protected void invalidateLayoutManager() {
@@ -137,7 +142,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
     @NonNull
     protected abstract Q createQuery();
 
-    protected abstract void loadItems();
+    protected abstract void loadItems(int index);
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
@@ -157,7 +162,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
         if (last > total - page / 2 && total < size) {
             query = createQuery();
             loading = true;
-            loadItems();
+            loadItems(getAdapter().getItemCount());
         }
     }
 

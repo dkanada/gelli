@@ -59,10 +59,14 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
         return query;
     }
 
-    protected void loadItems() {
-        App.getApiClient().GetItemsAsync(getQuery(), new Response<ItemsResult>() {
+    protected void loadItems(int index) {
+        ItemQuery query = getQuery();
+        query.setStartIndex(index);
+
+        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
+                if (index == 0) getAdapter().getDataSet().clear();
                 for (BaseItemDto itemDto : result.getItems()) {
                     getAdapter().getDataSet().add(new Album(itemDto));
                 }

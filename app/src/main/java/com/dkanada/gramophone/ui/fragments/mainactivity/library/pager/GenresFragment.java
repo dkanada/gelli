@@ -53,10 +53,14 @@ public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAda
     }
 
     @Override
-    protected void loadItems() {
-        App.getApiClient().GetGenresAsync(getQuery(), new Response<ItemsResult>() {
+    protected void loadItems(int index) {
+        ItemsByNameQuery query = getQuery();
+        query.setStartIndex(index);
+
+        App.getApiClient().GetGenresAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
+                if (index == 0) getAdapter().getDataSet().clear();
                 for (BaseItemDto itemDto : result.getItems()) {
                     getAdapter().getDataSet().add(new Genre(itemDto));
                 }

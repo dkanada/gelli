@@ -26,8 +26,7 @@ public class MusicPlayerRemote {
 
     private static final WeakHashMap<Context, ServiceBinder> mConnectionMap = new WeakHashMap<>();
 
-    public static ServiceToken bindToService(@NonNull final Context context,
-                                             final ServiceConnection callback) {
+    public static ServiceToken bindToService(@NonNull final Context context, final ServiceConnection callback) {
         Activity realActivity = ((Activity) context).getParent();
         if (realActivity == null) {
             realActivity = (Activity) context;
@@ -42,6 +41,7 @@ public class MusicPlayerRemote {
             mConnectionMap.put(contextWrapper, binder);
             return new ServiceToken(contextWrapper);
         }
+
         return null;
     }
 
@@ -49,11 +49,13 @@ public class MusicPlayerRemote {
         if (token == null) {
             return;
         }
+
         final ContextWrapper mContextWrapper = token.mWrappedContext;
         final ServiceBinder mBinder = mConnectionMap.remove(mContextWrapper);
         if (mBinder == null) {
             return;
         }
+
         mContextWrapper.unbindService(mBinder);
         if (mConnectionMap.isEmpty()) {
             musicService = null;
@@ -81,6 +83,7 @@ public class MusicPlayerRemote {
             if (mCallback != null) {
                 mCallback.onServiceDisconnected(className);
             }
+
             musicService = null;
         }
     }
@@ -178,6 +181,7 @@ public class MusicPlayerRemote {
         if (musicService != null) {
             return musicService.getCurrentSong();
         }
+
         return Song.EMPTY_SONG;
     }
 
@@ -185,6 +189,7 @@ public class MusicPlayerRemote {
         if (musicService != null) {
             return musicService.getPosition();
         }
+
         return -1;
     }
 
@@ -192,6 +197,7 @@ public class MusicPlayerRemote {
         if (musicService != null) {
             return musicService.getPlayingQueue();
         }
+
         return new ArrayList<>();
     }
 
@@ -199,6 +205,7 @@ public class MusicPlayerRemote {
         if (musicService != null) {
             return musicService.getSongProgressMillis();
         }
+
         return -1;
     }
 
@@ -206,6 +213,7 @@ public class MusicPlayerRemote {
         if (musicService != null) {
             return musicService.getSongDurationMillis();
         }
+
         return -1;
     }
 
@@ -213,6 +221,7 @@ public class MusicPlayerRemote {
         if (musicService != null) {
             return musicService.getQueueDurationMillis(position);
         }
+
         return -1;
     }
 
@@ -220,6 +229,7 @@ public class MusicPlayerRemote {
         if (musicService != null) {
             return musicService.seek(millis);
         }
+
         return -1;
     }
 
@@ -227,6 +237,7 @@ public class MusicPlayerRemote {
         if (musicService != null) {
             return musicService.getRepeatMode();
         }
+
         return MusicService.REPEAT_MODE_NONE;
     }
 
@@ -234,6 +245,7 @@ public class MusicPlayerRemote {
         if (musicService != null) {
             return musicService.getShuffleMode();
         }
+
         return MusicService.SHUFFLE_MODE_NONE;
     }
 
@@ -242,6 +254,7 @@ public class MusicPlayerRemote {
             musicService.cycleRepeatMode();
             return true;
         }
+
         return false;
     }
 
@@ -250,6 +263,7 @@ public class MusicPlayerRemote {
             musicService.toggleShuffle();
             return true;
         }
+
         return false;
     }
 
