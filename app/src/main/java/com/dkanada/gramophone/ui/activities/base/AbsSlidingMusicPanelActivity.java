@@ -17,6 +17,7 @@ import android.view.animation.PathInterpolator;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.databinding.SlidingMusicPanelLayoutBinding;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.ui.activities.SplashActivity;
 import com.dkanada.gramophone.ui.fragments.player.AbsPlayerFragment;
@@ -28,13 +29,8 @@ import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.ViewUtil;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivity implements SlidingUpPanelLayout.PanelSlideListener, CardPlayerFragment.Callbacks {
-
-    @BindView(R.id.sliding_layout)
-    SlidingUpPanelLayout slidingUpPanelLayout;
+    private SlidingMusicPanelLayoutBinding binding;
 
     private int navigationbarColor;
     private int taskColor;
@@ -50,8 +46,9 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(createContentView());
-        ButterKnife.bind(this);
+        binding = SlidingMusicPanelLayoutBinding.bind(findViewById(R.id.sliding_layout));
 
         // TODO use a fragment for the splash activity
         if (App.getApiClient() == null) {
@@ -85,18 +82,18 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
         // noinspection ConstantConditions
         miniPlayerFragment.getView().setOnClickListener(v -> expandPanel());
 
-        slidingUpPanelLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        binding.slidingLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                slidingUpPanelLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                binding.slidingLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
                 switch (getPanelState()) {
                     case EXPANDED:
-                        onPanelSlide(slidingUpPanelLayout, 1);
-                        onPanelExpanded(slidingUpPanelLayout);
+                        onPanelSlide(binding.slidingLayout, 1);
+                        onPanelExpanded(binding.slidingLayout);
                         break;
                     case COLLAPSED:
-                        onPanelCollapsed(slidingUpPanelLayout);
+                        onPanelCollapsed(binding.slidingLayout);
                         break;
                     default:
                         playerFragment.onHide();
@@ -105,7 +102,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
             }
         });
 
-        slidingUpPanelLayout.addPanelSlideListener(this);
+        binding.slidingLayout.addPanelSlideListener(this);
     }
 
     @Override
@@ -117,7 +114,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
     }
 
     public void setAntiDragView(View antiDragView) {
-        slidingUpPanelLayout.setAntiDragView(antiDragView);
+        binding.slidingLayout.setAntiDragView(antiDragView);
     }
 
     protected abstract View createContentView();
@@ -126,10 +123,10 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
     public void onServiceConnected() {
         super.onServiceConnected();
         if (!MusicPlayerRemote.getPlayingQueue().isEmpty()) {
-            slidingUpPanelLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            binding.slidingLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    slidingUpPanelLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    binding.slidingLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     hideBottomBar(false);
                 }
             });
@@ -159,7 +156,8 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
                 onPanelExpanded(panel);
                 break;
             case ANCHORED:
-                collapsePanel(); // this fixes a bug where the panel would get stuck for some reason
+                // this fixes a bug where the panel would get stuck for some reason
+                collapsePanel();
                 break;
         }
     }
@@ -197,23 +195,23 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
 
 
     public SlidingUpPanelLayout.PanelState getPanelState() {
-        return slidingUpPanelLayout == null ? null : slidingUpPanelLayout.getPanelState();
+        return binding.slidingLayout.getPanelState();
     }
 
     public void collapsePanel() {
-        slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+        binding.slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
     }
 
     public void expandPanel() {
-        slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
+        binding.slidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
     }
 
     public void hideBottomBar(final boolean hide) {
         if (hide) {
-            slidingUpPanelLayout.setPanelHeight(0);
+            binding.slidingLayout.setPanelHeight(0);
             collapsePanel();
         } else {
-            slidingUpPanelLayout.setPanelHeight(getResources().getDimensionPixelSize(R.dimen.mini_player_height));
+            binding.slidingLayout.setPanelHeight(getResources().getDimensionPixelSize(R.dimen.mini_player_height));
         }
     }
 
@@ -227,12 +225,11 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
 
     @Override
     public void onBackPressed() {
-        if (!handleBackPress())
-            super.onBackPressed();
+        if (!handleBackPress()) super.onBackPressed();
     }
 
     public boolean handleBackPress() {
-        if (slidingUpPanelLayout.getPanelHeight() != 0 && playerFragment.onBackPressed())
+        if (binding.slidingLayout.getPanelHeight() != 0 && playerFragment.onBackPressed())
             return true;
         if (getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
             collapsePanel();
@@ -274,6 +271,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
             navigationBarColorAnimator = ValueAnimator
                     .ofArgb(getWindow().getNavigationBarColor(), color)
                     .setDuration(ViewUtil.PHONOGRAPH_ANIM_TIME);
+
             navigationBarColorAnimator.setInterpolator(new PathInterpolator(0.4f, 0f, 1f, 1f));
             navigationBarColorAnimator.addUpdateListener(animation -> AbsSlidingMusicPanelActivity.super.setNavigationbarColor((Integer) animation.getAnimatedValue()));
             navigationBarColorAnimator.start();
@@ -297,17 +295,5 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
     @Override
     protected View getSnackBarContainer() {
         return findViewById(R.id.content_container);
-    }
-
-    public SlidingUpPanelLayout getSlidingUpPanelLayout() {
-        return slidingUpPanelLayout;
-    }
-
-    public MiniPlayerFragment getMiniPlayerFragment() {
-        return miniPlayerFragment;
-    }
-
-    public AbsPlayerFragment getPlayerFragment() {
-        return playerFragment;
     }
 }
