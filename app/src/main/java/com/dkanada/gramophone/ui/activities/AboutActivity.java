@@ -6,22 +6,26 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.kabouzeid.appthemehelper.ThemeStore;
+import com.dkanada.gramophone.databinding.ActivityAboutBinding;
+import com.dkanada.gramophone.databinding.CardAboutAppBinding;
+import com.dkanada.gramophone.databinding.CardAuthorBinding;
+import com.dkanada.gramophone.databinding.CardSpecialThanksBinding;
+import com.dkanada.gramophone.databinding.CardSupportDevelopmentBinding;
 import com.dkanada.gramophone.R;
+import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class AboutActivity extends AbsBaseActivity implements View.OnClickListener {
+    ActivityAboutBinding binding;
+
+    CardAboutAppBinding aboutBinding;
+    CardAuthorBinding authorBinding;
+    CardSupportDevelopmentBinding supportBinding;
+    CardSpecialThanksBinding thanksBinding;
 
     private static String GITHUB = "https://github.com/dkanada/gelli";
 
@@ -44,51 +48,21 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     private static String ADRIAN_TWITTER = "https://twitter.com/froschgames";
     private static String ADRIAN_WEBSITE = "https://froschgames.com/";
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.app_version)
-    TextView appVersion;
-    @BindView(R.id.app_source)
-    LinearLayout appSource;
-    @BindView(R.id.write_an_email)
-    LinearLayout writeAnEmail;
-    @BindView(R.id.follow_on_twitter)
-    LinearLayout followOnTwitter;
-    @BindView(R.id.visit_website)
-    LinearLayout visitWebsite;
-    @BindView(R.id.report_bugs)
-    LinearLayout reportBugs;
-    @BindView(R.id.translate)
-    LinearLayout translate;
-    @BindView(R.id.donate)
-    LinearLayout donate;
-    @BindView(R.id.rate_on_google_play)
-    LinearLayout rateOnGooglePlay;
-    @BindView(R.id.aidan_follestad_google_plus)
-    AppCompatButton aidanFollestadGooglePlus;
-    @BindView(R.id.aidan_follestad_git_hub)
-    AppCompatButton aidanFollestadGitHub;
-    @BindView(R.id.maarten_corpel_google_plus)
-    AppCompatButton maartenCorpelGooglePlus;
-    @BindView(R.id.aleksandar_tesic_google_plus)
-    AppCompatButton aleksandarTesicGooglePlus;
-    @BindView(R.id.eugene_cheung_git_hub)
-    AppCompatButton eugeneCheungGitHub;
-    @BindView(R.id.eugene_cheung_website)
-    AppCompatButton eugeneCheungWebsite;
-    @BindView(R.id.adrian_twitter)
-    AppCompatButton adrianTwitter;
-    @BindView(R.id.adrian_website)
-    AppCompatButton adrianWebsite;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
-        setDrawUnderStatusbar();
-        ButterKnife.bind(this);
 
+        binding = ActivityAboutBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        aboutBinding = CardAboutAppBinding.bind(findViewById(R.id.about_layout));
+        authorBinding = CardAuthorBinding.bind(findViewById(R.id.author_layout));
+        supportBinding = CardSupportDevelopmentBinding.bind(findViewById(R.id.support_layout));
+        thanksBinding = CardSpecialThanksBinding.bind(findViewById(R.id.thanks_layout));
+
+        setDrawUnderStatusbar();
         setStatusbarColorAuto();
+
         setNavigationbarColorAuto();
         setTaskDescriptionColorAuto();
 
@@ -102,32 +76,32 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     }
 
     private void setUpToolbar() {
-        toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
-        setSupportActionBar(toolbar);
+        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setUpAppVersion() {
-        appVersion.setText(getCurrentVersionName(this));
+        aboutBinding.appVersion.setText(getCurrentVersionName(this));
     }
 
     private void setUpOnClickListeners() {
-        followOnTwitter.setOnClickListener(this);
-        appSource.setOnClickListener(this);
-        visitWebsite.setOnClickListener(this);
-        reportBugs.setOnClickListener(this);
-        writeAnEmail.setOnClickListener(this);
-        translate.setOnClickListener(this);
-        rateOnGooglePlay.setOnClickListener(this);
-        donate.setOnClickListener(this);
-        aidanFollestadGooglePlus.setOnClickListener(this);
-        aidanFollestadGitHub.setOnClickListener(this);
-        maartenCorpelGooglePlus.setOnClickListener(this);
-        aleksandarTesicGooglePlus.setOnClickListener(this);
-        eugeneCheungGitHub.setOnClickListener(this);
-        eugeneCheungWebsite.setOnClickListener(this);
-        adrianTwitter.setOnClickListener(this);
-        adrianWebsite.setOnClickListener(this);
+        authorBinding.followOnTwitter.setOnClickListener(this);
+        aboutBinding.appSource.setOnClickListener(this);
+        authorBinding.visitWebsite.setOnClickListener(this);
+        supportBinding.reportBugs.setOnClickListener(this);
+        authorBinding.writeAnEmail.setOnClickListener(this);
+        supportBinding.translate.setOnClickListener(this);
+        supportBinding.rateOnGooglePlay.setOnClickListener(this);
+        supportBinding.donate.setOnClickListener(this);
+        thanksBinding.aidanFollestadGooglePlus.setOnClickListener(this);
+        thanksBinding.aidanFollestadGitHub.setOnClickListener(this);
+        thanksBinding.maartenCorpelGooglePlus.setOnClickListener(this);
+        thanksBinding.aleksandarTesicGooglePlus.setOnClickListener(this);
+        thanksBinding.eugeneCheungGitHub.setOnClickListener(this);
+        thanksBinding.eugeneCheungWebsite.setOnClickListener(this);
+        thanksBinding.adrianTwitter.setOnClickListener(this);
+        thanksBinding.adrianWebsite.setOnClickListener(this);
     }
 
     @Override
@@ -152,41 +126,41 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if (v == followOnTwitter) {
+        if (v == authorBinding.followOnTwitter) {
             openUrl(TWITTER);
-        } else if (v == appSource) {
+        } else if (v == aboutBinding.appSource) {
             openUrl(GITHUB);
-        } else if (v == visitWebsite) {
+        } else if (v == authorBinding.visitWebsite) {
             openUrl(WEBSITE);
-        } else if (v == reportBugs) {
+        } else if (v == supportBinding.reportBugs) {
             openUrl(GITHUB);
-        } else if (v == writeAnEmail) {
+        } else if (v == authorBinding.writeAnEmail) {
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setData(Uri.parse("mailto:contact@kabouzeid.com"));
             intent.putExtra(Intent.EXTRA_EMAIL, "contact@kabouzeid.com");
             intent.putExtra(Intent.EXTRA_SUBJECT, "Phonograph");
             startActivity(Intent.createChooser(intent, "E-Mail"));
-        } else if (v == translate) {
+        } else if (v == supportBinding.translate) {
             openUrl(TRANSLATE);
-        } else if (v == rateOnGooglePlay) {
+        } else if (v == supportBinding.rateOnGooglePlay) {
             openUrl(RATE_ON_GOOGLE_PLAY);
-        } else if (v == donate) {
+        } else if (v == supportBinding.donate) {
             openUrl(RATE_ON_GOOGLE_PLAY);
-        } else if (v == aidanFollestadGooglePlus) {
+        } else if (v == thanksBinding.aidanFollestadGooglePlus) {
             openUrl(AIDAN_FOLLESTAD_GOOGLE_PLUS);
-        } else if (v == aidanFollestadGitHub) {
+        } else if (v == thanksBinding.aidanFollestadGitHub) {
             openUrl(AIDAN_FOLLESTAD_GITHUB);
-        } else if (v == maartenCorpelGooglePlus) {
+        } else if (v == thanksBinding.maartenCorpelGooglePlus) {
             openUrl(MAARTEN_CORPEL_GOOGLE_PLUS);
-        } else if (v == aleksandarTesicGooglePlus) {
+        } else if (v == thanksBinding.aleksandarTesicGooglePlus) {
             openUrl(ALEKSANDAR_TESIC_GOOGLE_PLUS);
-        } else if (v == eugeneCheungGitHub) {
+        } else if (v == thanksBinding.eugeneCheungGitHub) {
             openUrl(EUGENE_CHEUNG_GITHUB);
-        } else if (v == eugeneCheungWebsite) {
+        } else if (v == thanksBinding.eugeneCheungWebsite) {
             openUrl(EUGENE_CHEUNG_WEBSITE);
-        } else if (v == adrianTwitter) {
+        } else if (v == thanksBinding.adrianTwitter) {
             openUrl(ADRIAN_TWITTER);
-        } else if (v == adrianWebsite) {
+        } else if (v == thanksBinding.adrianWebsite) {
             openUrl(ADRIAN_WEBSITE);
         }
     }

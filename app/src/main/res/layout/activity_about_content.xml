@@ -6,23 +6,28 @@
     android:padding="8dp">
 
     <include
+        android:id="@+id/about_layout"
         layout="@layout/card_about_app"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp" />
 
     <include
+        android:id="@+id/author_layout"
         layout="@layout/card_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp" />
 
     <include
+        android:id="@+id/support_layout"
         layout="@layout/card_support_development"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp" />
 
-    <include layout="@layout/card_special_thanks" />
+    <include
+        android:id="@+id/thanks_layout"
+        layout="@layout/card_special_thanks" />
 
 </LinearLayout>

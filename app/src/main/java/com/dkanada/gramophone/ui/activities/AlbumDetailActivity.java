@@ -1,7 +1,6 @@
 package com.dkanada.gramophone.ui.activities;
 
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,8 +17,6 @@ import android.widget.TextView;
 import com.afollestad.materialcab.MaterialCab;
 import com.afollestad.materialdialogs.util.DialogUtils;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.google.android.material.appbar.AppBarLayout;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
@@ -29,7 +26,6 @@ import com.dkanada.gramophone.dialogs.AddToPlaylistDialog;
 import com.dkanada.gramophone.dialogs.SleepTimerDialog;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.CustomPaletteTarget;
-import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.interfaces.MediaCallback;
