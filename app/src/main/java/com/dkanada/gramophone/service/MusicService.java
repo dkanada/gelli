@@ -143,10 +143,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private HandlerThread musicPlayerHandlerThread;
     private HandlerThread queueSaveHandlerThread;
     private ThrottledSeekHandler throttledSeekHandler;
-
-    private boolean notHandledMetaChangedForCurrentTrack;
-
     private Handler uiThreadHandler;
+
+    private BecomingNoisyReceiver becomingNoisyReceiver;
+    private IntentFilter becomingNoisyReceiverIntentFilter;
+    
+    private boolean notHandledMetaChangedForCurrentTrack;
 
     private static final long MEDIA_SESSION_ACTIONS = PlaybackStateCompat.ACTION_PLAY
             | PlaybackStateCompat.ACTION_PAUSE
@@ -163,6 +165,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         final PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
         wakeLock.setReferenceCounted(false);
+
+        becomingNoisyReceiver = new BecomingNoisyReceiver();
+        becomingNoisyReceiverIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
 
         musicPlayerHandlerThread = new HandlerThread("PlaybackHandler");
         musicPlayerHandlerThread.start();
@@ -1218,8 +1223,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     }
 
-    private IntentFilter becomingNoisyReceiverIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
-
     private class BecomingNoisyReceiver extends BroadcastReceiver {
         private boolean registered;
 
@@ -1239,8 +1242,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             }
         }
     }
-
-    private final BecomingNoisyReceiver becomingNoisyReceiver = new BecomingNoisyReceiver();
 
     private void registerBecomingNoisyReceiver() {
         if (!becomingNoisyReceiver.isRegistered()) {
