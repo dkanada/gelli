@@ -422,6 +422,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         queueSaveHandler.removeCallbacksAndMessages(null);
         queueSaveHandlerThread.quitSafely();
 
+        unRegisterBecomingNoisyReceiver();
         playback.stop();
         playback = null;
         mediaSession.release();
@@ -461,6 +462,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             } else {
                 // set current song and start playback
                 playback.setDataSource(MusicUtil.getSongFileUri(getCurrentSong()));
+                play();
             }
         }
     }
@@ -576,6 +578,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public void runOnUiThread(Runnable runnable) {
         uiThreadHandler.post(runnable);
+    }
+
+    private void toastOnUiThread(String msg) {
+        runOnUiThread(() -> Toast.makeText(this, msg, Toast.LENGTH_LONG).show());
     }
 
     public Song getCurrentSong() {
@@ -781,6 +787,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public void pause() {
         pausedByTransientLossOfFocus = false;
         if (playback.isPlaying()) {
+            unRegisterBecomingNoisyReceiver();
             playback.pause();
             notifyChange(PLAY_STATE_CHANGED);
         }
@@ -793,6 +800,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     if (!playback.isInitialized()) {
                         playSongAt(getPosition());
                     } else {
+                        registerBecomingNoisyReceiver();
                         playback.start();
 
                         if (notHandledMetaChangedForCurrentTrack) {
@@ -1207,6 +1215,44 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         public void run() {
             saveProgress();
             notifyChange(PLAY_STATE_CHANGED);
+        }
+    }
+
+    private IntentFilter becomingNoisyReceiverIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
+
+    private class BecomingNoisyReceiver extends BroadcastReceiver {
+        private boolean registered;
+
+        public boolean isRegistered() {
+            return registered;
+        }
+
+        public void setRegistered(boolean registered) {
+            this.registered = registered;
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(AudioManager.ACTION_AUDIO_BECOMING_NOISY)) {
+                toastOnUiThread(context.getResources().getString(R.string.headphones_disconnected));
+                pause();
+            }
+        }
+    }
+
+    private final BecomingNoisyReceiver becomingNoisyReceiver = new BecomingNoisyReceiver();
+
+    private void registerBecomingNoisyReceiver() {
+        if (!becomingNoisyReceiver.isRegistered()) {
+            becomingNoisyReceiver.setRegistered(true);
+            registerReceiver(becomingNoisyReceiver, becomingNoisyReceiverIntentFilter);
+        }
+    }
+
+    private void unRegisterBecomingNoisyReceiver() {
+        if (becomingNoisyReceiver.isRegistered()) {
+            becomingNoisyReceiver.setRegistered(false);
+            unregisterReceiver(becomingNoisyReceiver);
         }
     }
 }
