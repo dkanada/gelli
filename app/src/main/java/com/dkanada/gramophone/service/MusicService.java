@@ -467,7 +467,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             } else {
                 // set current song and start playback
                 playback.setDataSource(MusicUtil.getSongFileUri(getCurrentSong()));
-                play();
             }
         }
     }
