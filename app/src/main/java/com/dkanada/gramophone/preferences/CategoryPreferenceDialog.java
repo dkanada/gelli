@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.adapter.CategoryInfoAdapter;
+import com.dkanada.gramophone.adapter.CategoryAdapter;
 import com.dkanada.gramophone.model.CategoryInfo;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
@@ -22,21 +22,21 @@ public class CategoryPreferenceDialog extends DialogFragment {
         return new CategoryPreferenceDialog();
     }
 
-    private CategoryInfoAdapter adapter;
+    private CategoryAdapter adapter;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = getActivity().getLayoutInflater().inflate(R.layout.preference_dialog_category, null);
 
-        List<CategoryInfo> categoryInfos;
+        List<CategoryInfo> categories;
         if (savedInstanceState != null) {
-            categoryInfos = savedInstanceState.getParcelableArrayList(PreferenceUtil.CATEGORIES);
+            categories = savedInstanceState.getParcelableArrayList(PreferenceUtil.CATEGORIES);
         } else {
-            categoryInfos = PreferenceUtil.getInstance(getContext()).getCategories();
+            categories = PreferenceUtil.getInstance(getContext()).getCategories();
         }
 
-        adapter = new CategoryInfoAdapter(categoryInfos);
+        adapter = new CategoryAdapter(categories);
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -51,19 +51,19 @@ public class CategoryPreferenceDialog extends DialogFragment {
                 .negativeText(android.R.string.cancel)
                 .neutralText(R.string.reset_action)
                 .autoDismiss(false)
-                .onNeutral((dialog, action) -> adapter.setCategoryInfos(PreferenceUtil.getInstance(getContext()).getDefaultCategories()))
+                .onNeutral((dialog, action) -> adapter.setCategories(PreferenceUtil.getInstance(getContext()).getDefaultCategories()))
                 .onNegative((dialog, action) -> dismiss())
                 .onPositive((dialog, action) -> {
-                    updateCategories(adapter.getCategoryInfos());
+                    updateCategories(adapter.getCategories());
                     dismiss();
                 })
                 .build();
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(PreferenceUtil.CATEGORIES, new ArrayList<>(adapter.getCategoryInfos()));
+        outState.putParcelableArrayList(PreferenceUtil.CATEGORIES, new ArrayList<>(adapter.getCategories()));
     }
 
     private void updateCategories(List<CategoryInfo> categories) {
@@ -74,9 +74,8 @@ public class CategoryPreferenceDialog extends DialogFragment {
 
     private int getSelected(List<CategoryInfo> categories) {
         int selected = 0;
-        for (CategoryInfo categoryInfo : categories) {
-            if (categoryInfo.visible)
-                selected++;
+        for (CategoryInfo category : categories) {
+            if (category.visible) selected++;
         }
 
         return selected;

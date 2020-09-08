@@ -18,35 +18,35 @@ import com.dkanada.gramophone.helper.SwipeAndDragHelper;
 
 import java.util.List;
 
-public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapter.ViewHolder> implements SwipeAndDragHelper.ActionCompletionContract {
-    private List<CategoryInfo> categoryInfos;
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> implements SwipeAndDragHelper.ActionCompletionContract {
+    private List<CategoryInfo> categories;
     private ItemTouchHelper touchHelper;
 
-    public CategoryInfoAdapter(List<CategoryInfo> categoryInfos) {
-        this.categoryInfos = categoryInfos;
+    public CategoryAdapter(List<CategoryInfo> categories) {
+        this.categories = categories;
         SwipeAndDragHelper swipeAndDragHelper = new SwipeAndDragHelper(this);
         touchHelper = new ItemTouchHelper(swipeAndDragHelper);
     }
 
     @Override
     @NonNull
-    public CategoryInfoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preference_dialog_category_item, parent, false);
         return new ViewHolder(view);
     }
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
-    public void onBindViewHolder(@NonNull CategoryInfoAdapter.ViewHolder holder, int position) {
-        CategoryInfo categoryInfo = categoryInfos.get(position);
+    public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
+        CategoryInfo category = categories.get(position);
 
-        holder.checkBox.setChecked(categoryInfo.visible);
-        holder.title.setText(holder.title.getResources().getString(categoryInfo.category.stringRes));
+        holder.checkBox.setChecked(category.visible);
+        holder.title.setText(holder.title.getResources().getString(category.category.stringRes));
 
         holder.itemView.setOnClickListener(v -> {
-            if (!(categoryInfo.visible && isLastCheckedCategory(categoryInfo))) {
-                categoryInfo.visible = !categoryInfo.visible;
-                holder.checkBox.setChecked(categoryInfo.visible);
+            if (!(category.visible && isLastCheckedCategory(category))) {
+                category.visible = !category.visible;
+                holder.checkBox.setChecked(category.visible);
             } else {
                 Toast.makeText(holder.itemView.getContext(), R.string.you_have_to_select_at_least_one_category, Toast.LENGTH_SHORT).show();
             }
@@ -56,6 +56,7 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
                     if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
                         touchHelper.startDrag(holder);
                     }
+
                     return false;
                 }
         );
@@ -63,19 +64,19 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
 
     @Override
     public int getItemCount() {
-        return categoryInfos.size();
+        return categories.size();
     }
 
-    public void setCategoryInfos(List<CategoryInfo> categoryInfos) {
-        this.categoryInfos = categoryInfos;
+    public void setCategories(List<CategoryInfo> categories) {
+        this.categories = categories;
         notifyDataSetChanged();
     }
 
     @Override
     public void onViewMoved(int oldPosition, int newPosition) {
-        CategoryInfo categoryInfo = categoryInfos.get(oldPosition);
-        categoryInfos.remove(oldPosition);
-        categoryInfos.add(newPosition, categoryInfo);
+        CategoryInfo categoryInfo = categories.get(oldPosition);
+        categories.remove(oldPosition);
+        categories.add(newPosition, categoryInfo);
         notifyItemMoved(oldPosition, newPosition);
     }
 
@@ -83,16 +84,17 @@ public class CategoryInfoAdapter extends RecyclerView.Adapter<CategoryInfoAdapte
         touchHelper.attachToRecyclerView(recyclerView);
     }
 
-    public List<CategoryInfo> getCategoryInfos() {
-        return categoryInfos;
+    public List<CategoryInfo> getCategories() {
+        return categories;
     }
 
-    private boolean isLastCheckedCategory(CategoryInfo categoryInfo) {
-        if (categoryInfo.visible) {
-            for (CategoryInfo c : categoryInfos) {
-                if (c != categoryInfo && c.visible) return false;
+    private boolean isLastCheckedCategory(CategoryInfo category) {
+        if (category.visible) {
+            for (CategoryInfo c : categories) {
+                if (c != category && c.visible) return false;
             }
         }
+
         return true;
     }
 

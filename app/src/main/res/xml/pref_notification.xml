@@ -5,7 +5,7 @@
 
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="classic_notification"
             android:summary="@string/pref_summary_classic_notification"
             android:title="@string/pref_title_classic_notification" />
