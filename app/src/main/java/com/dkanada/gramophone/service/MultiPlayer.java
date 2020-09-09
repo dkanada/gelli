@@ -165,10 +165,6 @@ public class MultiPlayer implements Playback {
                 } else {
                     mediaSource.addMediaSource(position, source);
                 }
-
-                if (position == 0) {
-                    ((MusicService)context).play();
-                }
             }
         });
     }
