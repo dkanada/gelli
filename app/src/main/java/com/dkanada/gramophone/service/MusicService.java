@@ -147,7 +147,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private BecomingNoisyReceiver becomingNoisyReceiver;
     private IntentFilter becomingNoisyReceiverIntentFilter;
-    
+
     private boolean notHandledMetaChangedForCurrentTrack;
 
     private static final long MEDIA_SESSION_ACTIONS = PlaybackStateCompat.ACTION_PLAY
@@ -458,15 +458,19 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void openCurrent(boolean queue) {
         synchronized (this) {
-            // current song will be null when queue is cleared
-            if (getCurrentSong() == null) return;
+            Song currentSong = getCurrentSong();
+
+            // current song will be Song.EMPTY_SONG when queue is cleared
+            if (currentSong.id == null) {
+                return;
+            }
+
+            String currentSongUri = MusicUtil.getSongFileUri(currentSong);
 
             if (queue) {
-                // restore queue from database
-                playback.queueDataSource(MusicUtil.getSongFileUri(getCurrentSong()));
+                playback.queueDataSource(currentSongUri);
             } else {
-                // set current song and start playback
-                playback.setDataSource(MusicUtil.getSongFileUri(getCurrentSong()));
+                playback.setDataSource(currentSongUri);
                 play();
             }
         }
