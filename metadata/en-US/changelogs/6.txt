@@ -1,0 +1,8 @@
+- add logout confirmation dialog
+- migrate most of the source to view binding
+- update build dependencies
+- fix crash on app resume due to null values
+- implement sort order for albums and songs
+- update widget names
+- add track information to song details dialog
+- open existing instance from notification
