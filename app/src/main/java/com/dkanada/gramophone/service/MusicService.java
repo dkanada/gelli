@@ -873,7 +873,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public int getSongProgressMillis() {
-        return playback.position();
+        return originalPlayingQueue.isEmpty() && playingQueue.isEmpty() ? 0 : playback.position();
     }
 
     public int getSongDurationMillis() {
