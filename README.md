@@ -18,18 +18,26 @@ This is a native music player for Android devices that connects to Jellyfin medi
 
 Since this was a small project intended mainly for myself, there are some things I haven't resolved yet. I would appreciate pull requests to fix any of these issues!
 
-* All lists are capped at 100 entries to avoid excessive load times
 * Artist sorting isn't available through the API
 * Playlists and favorites will not update automatically when changed
-* Sorting also requires a reload to take effect
 * Batch actions are not yet functional
 
 ## Future Plans
 
-I don't currently have plans to add any large features. If I ever find the time, these are some of the items I would potentially include.
+If I ever find the time, these are some of the items I would potentially include.
 
+* Interface overhaul
+* Recents caching
 * Offline downloads
+* SyncPlay
+* Smart playlists
+* Session controls
+
+These are features I wouldn't include myself, but I would accept pull requests with good code.
+
 * Support for other media types
+* Chromecast
+* Android Auto
 
 ## Screenshots
 
