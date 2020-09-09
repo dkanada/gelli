@@ -770,6 +770,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void clearQueue() {
+        pause();
+
         playingQueue.clear();
         originalPlayingQueue.clear();
 
