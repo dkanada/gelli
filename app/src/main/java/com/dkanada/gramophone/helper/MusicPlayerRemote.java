@@ -372,6 +372,8 @@ public class MusicPlayerRemote {
     public static boolean clearQueue() {
         if (musicService != null) {
             musicService.clearQueue();
+            Toast.makeText(musicService, musicService.getResources().getString(R.string.cleared_the_queue), Toast.LENGTH_SHORT).show();
+
             return true;
         }
 
