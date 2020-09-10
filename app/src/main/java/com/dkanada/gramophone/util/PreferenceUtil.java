@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 
 import androidx.annotation.StyleRes;
 
+import com.dkanada.gramophone.model.Song;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
@@ -20,6 +21,7 @@ import com.dkanada.gramophone.ui.fragments.player.NowPlayingScreen;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -81,6 +83,9 @@ public final class PreferenceUtil {
     public static final String SLEEP_TIMER_LAST_VALUE = "sleep_timer_last_value";
     public static final String SLEEP_TIMER_ELAPSED_REALTIME = "sleep_timer_elapsed_real_time";
     public static final String SLEEP_TIMER_FINISH_SONG = "sleep_timer_finish_music";
+
+    public static final String PLAYING_QUEUE = "playing_queue";
+    public static final String ORIGINAL_PLAYING_QUEUE = "original_playing_queue";
 
     private static PreferenceUtil sInstance;
 
@@ -205,6 +210,50 @@ public final class PreferenceUtil {
 
     public final boolean getRememberQueue() {
         return mPreferences.getBoolean(REMEMBER_QUEUE, true);
+    }
+
+    public void savePlayingQueue(List<Song> playingQueue) {
+        saveQueue(playingQueue, PLAYING_QUEUE);
+    }
+
+    public void saveOriginalPlayingQueue(List<Song> originalPlayingQueue) {
+        saveQueue(originalPlayingQueue, ORIGINAL_PLAYING_QUEUE);
+    }
+
+    private void saveQueue(List<Song> queue, String key) {
+        if (!getRememberQueue()) return;
+
+        Song[] queueArray = queue.toArray(new Song[queue.size()]);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(queueArray);
+
+        mPreferences.edit().putString(key, json).apply();
+    }
+
+    public List<Song> getPlayingQueue() {
+        return getQueue(PLAYING_QUEUE);
+    }
+
+    public List<Song> getOriginalPlayingQueue() {
+        return getQueue(ORIGINAL_PLAYING_QUEUE);
+    }
+
+    private List<Song> getQueue(String key) {
+        if (!getRememberQueue()) {
+            return new ArrayList<>();
+        }
+
+        String json = mPreferences.getString(key, "");
+        if (json.equals("")) {
+            return new ArrayList<>();
+        }
+
+        Gson gson = new Gson();
+        Type savedQueueType = new TypeToken<Song[]>() {}.getType();
+
+        Song[] queueArray = gson.fromJson(json, savedQueueType);
+        return Arrays.asList(queueArray);
     }
 
     public final boolean getShowAlbumCover() {
