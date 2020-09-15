@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -21,16 +22,15 @@
     </FrameLayout>
 
     <com.sothree.slidinguppanel.SlidingUpPanelLayout
-        xmlns:sothree="http://schemas.android.com/apk/res-auto"
         android:id="@+id/player_sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
         android:focusable="true"
         android:gravity="bottom"
-        sothree:umanoPanelHeight="0dp"
-        sothree:umanoScrollableView="@+id/player_recycler_view"
-        sothree:umanoShadowHeight="0dp">
+        app:umanoPanelHeight="0dp"
+        app:umanoScrollableView="@+id/player_recycler_view"
+        app:umanoShadowHeight="0dp">
 
         <FrameLayout
             android:layout_width="match_parent"

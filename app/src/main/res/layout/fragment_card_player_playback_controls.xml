@@ -16,7 +16,7 @@
             android:id="@+id/player_song_current_progress"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:fontFamily="sans-serif-medium"
             android:gravity="center_vertical|left|end"
             android:paddingLeft="8dp"
@@ -30,7 +30,7 @@
             android:id="@+id/player_song_total_time"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:fontFamily="sans-serif-medium"
             android:gravity="center_vertical|right|end"
             android:paddingRight="8dp"
@@ -44,8 +44,8 @@
             android:id="@+id/player_progress_slider"
             style="@style/MusicProgressSlider"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@id/player_song_total_time"
-            android:layout_toRightOf="@id/player_song_current_progress"
+            android:layout_toStartOf="@id/player_song_total_time"
+            android:layout_toEndOf="@id/player_song_current_progress"
             tools:ignore="RtlHardcoded,UnusedAttribute" />
 
     </RelativeLayout>

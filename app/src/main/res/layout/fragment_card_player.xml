@@ -4,20 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--The unused FrameLayout layout is necessary to prevent a crash on rotate-->
+    <!-- unused FrameLayout layout is necessary to prevent a crash on rotate -->
 
-    <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
         android:id="@+id/player_sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
         android:focusable="true"
         android:gravity="bottom"
-        sothree:umanoFadeColor="#00000000"
-        sothree:umanoOverlay="true"
-        sothree:umanoPanelHeight="0dp"
-        sothree:umanoScrollableView="@+id/player_recycler_view"
-        sothree:umanoShadowHeight="0dp">
+        app:umanoFadeColor="#00000000"
+        app:umanoOverlay="true"
+        app:umanoPanelHeight="0dp"
+        app:umanoScrollableView="@+id/player_recycler_view"
+        app:umanoShadowHeight="0dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -97,8 +97,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="-8dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginTop="8dp"
                 app:cardBackgroundColor="?cardBackgroundColor"
                 app:cardElevation="@dimen/card_elevation"

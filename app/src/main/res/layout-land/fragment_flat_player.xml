@@ -49,7 +49,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toEndOf="@+id/cover_container"
-            android:layout_toRightOf="@+id/cover_container"
             android:orientation="vertical">
 
             <fragment
