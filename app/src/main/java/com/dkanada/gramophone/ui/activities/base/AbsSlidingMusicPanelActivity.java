@@ -2,13 +2,11 @@ package com.dkanada.gramophone.ui.activities.base;
 
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
-import androidx.annotation.LayoutRes;
 import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +44,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(createContentView());
-        binding = SlidingMusicPanelLayoutBinding.bind(findViewById(R.id.sliding_layout));
 
         // TODO use a fragment for the splash activity
         if (App.getApiClient() == null) {
@@ -122,6 +118,8 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
     @Override
     public void onServiceConnected() {
         super.onServiceConnected();
+
+        // don't call hideBottomBar(true) here as it causes a bug with the SlidingUpPanelLayout
         if (!MusicPlayerRemote.getPlayingQueue().isEmpty()) {
             binding.slidingLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
@@ -130,7 +128,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
                     hideBottomBar(false);
                 }
             });
-        } // don't call hideBottomBar(true) here as it causes a bug with the SlidingUpPanelLayout
+        }
     }
 
     @Override
@@ -215,12 +213,13 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
         }
     }
 
-    protected View wrapSlidingMusicPanel(@LayoutRes int resId) {
-        @SuppressLint("InflateParams")
-        View slidingMusicPanelLayout = getLayoutInflater().inflate(R.layout.sliding_music_panel_layout, null);
-        ViewGroup contentContainer = slidingMusicPanelLayout.findViewById(R.id.content_container);
-        getLayoutInflater().inflate(resId, contentContainer);
-        return slidingMusicPanelLayout;
+    protected View wrapSlidingMusicPanel(View view) {
+        binding = SlidingMusicPanelLayoutBinding.inflate(getLayoutInflater());
+
+        ViewGroup contentContainer = binding.contentContainer;
+        contentContainer.addView(view);
+
+        return binding.getRoot();
     }
 
     @Override

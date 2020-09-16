@@ -49,7 +49,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
 
         binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
         setSupportActionBar(binding.toolbar);
-        //noinspection ConstantConditions
+        // noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {

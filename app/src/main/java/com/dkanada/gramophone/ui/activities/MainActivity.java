@@ -7,6 +7,7 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.dkanada.gramophone.databinding.ActivityMainContentBinding;
 import com.dkanada.gramophone.databinding.ActivityMainDrawerLayoutBinding;
 import com.dkanada.gramophone.dialogs.ConfirmLogoutDialog;
 import androidx.fragment.app.Fragment;
@@ -42,6 +43,7 @@ import java.util.List;
 
 public class MainActivity extends AbsSlidingMusicPanelActivity {
     private ActivityMainDrawerLayoutBinding binding;
+    private ActivityMainContentBinding contentBinding;
 
     @Nullable
     MainActivityFragmentCallbacks currentFragment;
@@ -109,9 +111,10 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     @Override
     protected View createContentView() {
         binding = ActivityMainDrawerLayoutBinding.inflate(getLayoutInflater());
+        contentBinding = ActivityMainContentBinding.inflate(getLayoutInflater());
 
-        ViewGroup drawerContent = binding.getRoot().findViewById(R.id.drawer_content_container);
-        drawerContent.addView(wrapSlidingMusicPanel(R.layout.activity_main_content));
+        ViewGroup drawerContent = binding.drawerContentContainer;
+        drawerContent.addView(wrapSlidingMusicPanel(contentBinding.getRoot()));
 
         return binding.getRoot();
     }
