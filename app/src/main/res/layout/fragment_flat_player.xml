@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <!--This is necessary for the drag sorting to work at the top-->
+                <!-- necessary for the drag sorting to work at the top -->
                 <View
                     android:id="@+id/draggable_area"
                     android:layout_width="72dp"

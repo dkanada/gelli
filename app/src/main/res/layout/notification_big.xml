@@ -14,7 +14,7 @@
   ~ limitations under the License
   -->
 
-<!-- Layout to be used with only max 3 actions. It has a much larger picture at the left side-->
+<!-- Layout to be used with only max 3 actions. It has a much larger picture at the left side -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

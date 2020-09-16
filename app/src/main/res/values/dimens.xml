@@ -33,17 +33,16 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
 
     <dimen name="notification_big_image_size">128dp</dimen>
 
-    <!-- MUST BE THE RESULT OF WIDTH PLUS INSET-->
+    <!-- MUST BE THE RESULT OF WIDTH PLUS INSET -->
 
-    <!-- ONLY 0dp WHILE THERE IS THE BUG IN DESIGN SUPPORT LIBRARY 22.2.0-->
+    <!-- ONLY 0dp WHILE THERE IS THE BUG IN DESIGN SUPPORT LIBRARY 22.2.0 -->
     <dimen name="fab_margin_top_left_right">0dp</dimen>
 
-    <!-- For use with 24dp drawables in the item_list layouts-->
+    <!-- For use with 24dp drawables in the item_list layouts -->
     <dimen name="list_item_image_icon_padding">8dp</dimen>
 
     <dimen name="mini_player_height">56dp</dimen>
 
-    <!--App Widgets-->
     <dimen name="app_widget_classic_image_size">96dp</dimen>
     <dimen name="app_widget_classic_min_width">250dp</dimen>
     <dimen name="app_widget_classic_min_height">40dp</dimen>

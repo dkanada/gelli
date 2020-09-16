@@ -8,7 +8,7 @@
     android:focusable="true"
     android:foreground="?rectSelectorStrong">
 
-    <!--suppress AndroidDomInspection -->
+    <!--suppress AndroidDomInspection-->
     <ImageView
         android:id="@+id/image"
         android:scaleType="centerCrop"

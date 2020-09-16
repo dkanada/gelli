@@ -21,10 +21,10 @@
 
         <item name="toolbarPopupTheme">@style/ThemeOverlay.AppCompat</item>
 
-        <!-- just in case-->
+        <!-- just in case -->
         <item name="colorAccent">@android:color/white</item>
 
-        <!-- necessary to find the overflow button later in the layout-->
+        <!-- necessary to find the overflow button later in the layout -->
         <item name="android:actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
@@ -50,10 +50,10 @@
 
         <item name="toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
 
-        <!-- just in case-->
+        <!-- just in case -->
         <item name="colorAccent">@android:color/black</item>
 
-        <!-- necessary to find the overflow button later in the layout-->
+        <!-- necessary to find the overflow button later in the layout -->
         <item name="android:actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
@@ -80,7 +80,7 @@
         <item name="android:thumb">@drawable/slider_thumb</item>
     </style>
 
-    <!-- content description is necessary to find the overflow button later in the layout-->
+    <!-- content description is necessary to find the overflow button later in the layout -->
     <style name="Widget.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="android:contentDescription">@string/abc_action_menu_overflow_description</item>
     </style>
