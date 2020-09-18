@@ -1,11 +1,11 @@
 package com.dkanada.gramophone.ui.fragments.mainactivity.library.pager;
 
 import android.os.Bundle;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
 import com.dkanada.gramophone.App;
+import com.dkanada.gramophone.databinding.FragmentMainActivityRecyclerViewBinding;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener;
@@ -16,27 +16,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.ViewUtil;
-import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView.Adapter, L extends RecyclerView.LayoutManager, Q> extends AbsLibraryPagerFragment implements OnOffsetChangedListener {
-
-    private Unbinder unbinder;
-
-    @BindView(R.id.container)
-    View container;
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-    @BindView(android.R.id.empty)
-    TextView empty;
+    private FragmentMainActivityRecyclerViewBinding binding;
 
     private A adapter;
     private L layoutManager;
@@ -47,13 +33,13 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(getLayoutRes(), container, false);
-        unbinder = ButterKnife.bind(this, view);
-        return view;
+        binding = FragmentMainActivityRecyclerViewBinding.inflate(getLayoutInflater(), container, false);
+
+        return binding.getRoot();
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         getLibraryFragment().addOnAppBarOffsetChangedListener(this);
@@ -86,29 +72,27 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
     }
 
     private void initRecyclerView() {
-        if (recyclerView instanceof FastScrollRecyclerView) {
-            ViewUtil.setUpFastScrollRecyclerViewColor(getActivity(), ((FastScrollRecyclerView) recyclerView), ThemeStore.accentColor(getActivity()));
-        }
+        ViewUtil.setUpFastScrollRecyclerViewColor(getActivity(), binding.recyclerView, ThemeStore.accentColor(getActivity()));
 
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        binding.recyclerView.setLayoutManager(layoutManager);
+        binding.recyclerView.setAdapter(adapter);
     }
 
     protected void invalidateAdapter() {
         initAdapter();
         initQuery();
 
-        recyclerView.setAdapter(adapter);
+        binding.recyclerView.setAdapter(adapter);
         loadItems(0);
     }
 
     protected void invalidateLayoutManager() {
         initLayoutManager();
-        recyclerView.setLayoutManager(layoutManager);
+        binding.recyclerView.setLayoutManager(layoutManager);
     }
 
     protected RecyclerView getRecyclerView() {
-        return recyclerView;
+        return binding.recyclerView;
     }
 
     protected A getAdapter() {
@@ -128,11 +112,6 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
         return R.string.empty;
     }
 
-    @LayoutRes
-    protected int getLayoutRes() {
-        return R.layout.fragment_main_activity_recycler_view;
-    }
-
     @NonNull
     protected abstract A createAdapter();
 
@@ -146,7 +125,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-        container.setPadding(container.getPaddingLeft(), container.getPaddingTop(), container.getPaddingRight(), getLibraryFragment().getTotalAppBarScrollingRange() + i);
+        binding.container.setPadding(binding.container.getPaddingLeft(), binding.container.getPaddingTop(), binding.container.getPaddingRight(), getLibraryFragment().getTotalAppBarScrollingRange() + i);
 
         int last = 0;
         if (!loading && getLayoutManager() instanceof GridLayoutManager) {
@@ -172,13 +151,10 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
         super.onDestroyView();
 
         getLibraryFragment().removeOnAppBarOffsetChangedListener(this);
-        unbinder.unbind();
     }
 
     private void checkIsEmpty() {
-        if (empty != null) {
-            empty.setText(getEmptyMessage());
-            empty.setVisibility(adapter == null || adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
-        }
+        binding.empty.setText(getEmptyMessage());
+        binding.empty.setVisibility(adapter == null || adapter.getItemCount() == 0 ? View.VISIBLE : View.GONE);
     }
 }

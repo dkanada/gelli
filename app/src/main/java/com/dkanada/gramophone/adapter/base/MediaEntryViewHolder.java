@@ -10,49 +10,46 @@ import android.widget.TextView;
 
 import com.dkanada.gramophone.R;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class MediaEntryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
     @Nullable
-    @BindView(R.id.image)
     public ImageView image;
 
     @Nullable
-    @BindView(R.id.image_text)
     public TextView imageText;
 
     @Nullable
-    @BindView(R.id.title)
     public TextView title;
 
     @Nullable
-    @BindView(R.id.text)
     public TextView text;
 
     @Nullable
-    @BindView(R.id.menu)
     public View menu;
 
     @Nullable
-    @BindView(R.id.separator)
     public View separator;
 
     @Nullable
-    @BindView(R.id.short_separator)
     public View shortSeparator;
 
     @Nullable
-    @BindView(R.id.drag_view)
     public View dragView;
 
     @Nullable
-    @BindView(R.id.palette_color_container)
     public View paletteColorContainer;
 
     public MediaEntryViewHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
+
+        image = itemView.findViewById(R.id.image);
+        imageText = itemView.findViewById(R.id.image_text);
+        title = itemView.findViewById(R.id.title);
+        text = itemView.findViewById(R.id.text);
+        menu = itemView.findViewById(R.id.menu);
+        separator = itemView.findViewById(R.id.separator);
+        shortSeparator = itemView.findViewById(R.id.short_separator);
+        dragView = itemView.findViewById(R.id.drag_view);
+        paletteColorContainer = itemView.findViewById(R.id.palette_color_container);
 
         itemView.setOnClickListener(this);
         itemView.setOnLongClickListener(this);
