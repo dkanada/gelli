@@ -63,7 +63,6 @@
     <string name="pref_header_library">Libreria</string>
     <string name="pref_header_lockscreen">Schermata di blocco</string>
     <string name="pref_header_notification">Notifica</string>
-    <string name="pref_title_navigation_bar">Barra di navigazione colorata</string>
     <string name="pref_title_app_shortcuts">Scorciatoie app colorate</string>
     <string name="pref_title_album_art_on_lockscreen">Mostra copertina album nella schermata di blocco</string>
     <string name="pref_title_blurred_album_art">Sfoca la copertina</string>
@@ -95,7 +94,6 @@
     <string name="pref_summary_classic_notification">Usa il design di notifica classico.</string>
     <string name="pref_summary_colored_notification">"La notifica \u00e8 colorata secondo la gamma di colori della copertina."</string>
     <string name="pref_summary_gapless_playback">"Può causare problemi di riproduzione su alcuni dispositivi."</string>
-    <string name="pref_summary_colored_navigation_bar">Colora la barra di navigazione del colore principale.</string>
     <string name="pref_summary_colored_app_shortcuts">Colora le scorciatoie dell\'app con il colore principale.</string>
     <string name="pref_summary_audio_ducking">Notifiche, navigazione ecc.</string>
     <string name="pref_summary_remember_last_tab">All\'avvio vai all\'ultima scheda aperta</string>

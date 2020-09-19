@@ -62,7 +62,6 @@
     <string name="pref_header_library">Bibliotecă</string>
     <string name="pref_header_lockscreen">Ecran blocat</string>
     <string name="pref_header_notification">Notificare</string>
-    <string name="pref_title_navigation_bar">Bară de navigare colorată</string>
     <string name="pref_title_app_shortcuts">Comenzi rapide colorate</string>
     <string name="pref_title_album_art_on_lockscreen">Arată coperta de album</string>
     <string name="pref_title_blurred_album_art">Blurează coperta de album</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_classic_notification">Utilizați designul clasic de notificare.</string>
     <string name="pref_summary_colored_notification">"Coloreaz\u0103 bara de notificare cu cea mai vibrant\u0103 culoare a copertei de album."</string>
     <string name="pref_summary_gapless_playback">"Poate cauza probleme de redare pe unele dispozitive."</string>
-    <string name="pref_summary_colored_navigation_bar">Colorare bară de navigare în culoarea primară.</string>
     <string name="pref_summary_colored_app_shortcuts">Colorarea comenzilor rapide ale aplicației în culoarea primară.</string>
     <string name="pref_summary_audio_ducking">Notificări, navigație etc.</string>
     <string name="pref_summary_remember_last_tab">Accesați ultima filă deschisă la lansare</string>

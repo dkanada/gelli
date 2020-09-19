@@ -63,7 +63,6 @@
     <string name="pref_header_library">Kirjasto</string>
     <string name="pref_header_lockscreen">Lukitusnäyttö</string>
     <string name="pref_header_notification">Ilmoitukset</string>
-    <string name="pref_title_navigation_bar">Värillinen navigaatiopalkki</string>
     <string name="pref_title_app_shortcuts">Värilliset sovelluksen pikavalinnat</string>
     <string name="pref_title_album_art_on_lockscreen">Näytä albumin kansi</string>
     <string name="pref_title_blurred_album_art">Sumenna albumin kansi</string>
@@ -95,7 +94,6 @@
     <string name="pref_summary_classic_notification">Käytä klassista ilmoituksen ulkonäköä.</string>
     <string name="pref_summary_colored_notification">"V\u00e4ritt\u00e4\u00e4 ilmoituksen albumin eloisalla v\u00e4rill\u00e4."</string>
     <string name="pref_summary_gapless_playback">"Saattaa aiheuttaa toisto-ongelmia joillain laitteilla."</string>
-    <string name="pref_summary_colored_navigation_bar">Värittää navigaatiopalkin päävärillä.</string>
     <string name="pref_summary_colored_app_shortcuts">Värittää sovelluksen pikavalinnat päävärillä.</string>
     <string name="pref_summary_audio_ducking">Ilmoitukset, liikkuminen jne.</string>
     <string name="pref_summary_remember_last_tab">Palauttaa käynnistyessään viimeksi avoinna olleen välilehden.</string>

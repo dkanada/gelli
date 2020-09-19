@@ -62,7 +62,6 @@
     <string name="pref_header_library">보관함</string>
     <string name="pref_header_lockscreen">잠금 화면</string>
     <string name="pref_header_notification">알림</string>
-    <string name="pref_title_navigation_bar">내비게이션 바 색상 틴트</string>
     <string name="pref_title_app_shortcuts">앱 바로가기 색칠</string>
     <string name="pref_title_album_art_on_lockscreen">앨범 커버 보이기</string>
     <string name="pref_title_blurred_album_art">앨범 커버 블러 효과</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_classic_notification">클래식 알림 디자인 사용</string>
     <string name="pref_summary_colored_notification">"\uc54c\ub9bc \ucee8\ud2b8\ub864\uc744 \uc568\ubc94 \uc544\ud2b8\uc758 \uc8fc \uc0c9\uc0c1\uc73c\ub85c \uce60\ud569\ub2c8\ub2e4."</string>
     <string name="pref_summary_gapless_playback">"일부 기기에서 곡 전환 관련 문제가 발생할 수 있습니다."</string>
-    <string name="pref_summary_colored_navigation_bar">하단바가 색깔을 주 색상으로 색칠합니다.</string>
     <string name="pref_summary_colored_app_shortcuts">주 색상으로 앱 바로가기 색칠</string>
     <string name="pref_summary_audio_ducking">알림 소리, 버튼음 등</string>
     <string name="pref_summary_remember_last_tab">마지막으로 연 탭으로 시작</string>

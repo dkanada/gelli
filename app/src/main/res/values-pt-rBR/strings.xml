@@ -63,7 +63,6 @@
     <string name="pref_header_library">Biblioteca</string>
     <string name="pref_header_lockscreen">Bloqueio de tela</string>
     <string name="pref_header_notification">Notificação</string>
-    <string name="pref_title_navigation_bar">Barra de navegação colorida</string>
     <string name="pref_title_app_shortcuts">Atalhos de app coloridos</string>
     <string name="pref_title_album_art_on_lockscreen">Visualizar capa do álbum</string>
     <string name="pref_title_blurred_album_art">Capa de álbum esmaecida</string>
@@ -95,7 +94,6 @@
     <string name="pref_summary_classic_notification">Usar o design de notificação clássico.</string>
     <string name="pref_summary_colored_notification">"A notifica\u00e7\u00e3o \u00e9 colorida com a cor mais vibrante do \u00e1lbum."</string>
     <string name="pref_summary_gapless_playback">"Pode causar problemas de reprodução em alguns dispositivos."</string>
-    <string name="pref_summary_colored_navigation_bar">Cores da barra de navegação na cor primária.</string>
     <string name="pref_summary_colored_app_shortcuts">Colore os atalhos do app com a cor primária.</string>
     <string name="pref_summary_audio_ducking">Notificações, navegação, etc.</string>
     <string name="pref_summary_remember_last_tab">Ir para a última aba aberta ao iniciar</string>

@@ -62,7 +62,6 @@
     <string name="pref_header_library">Bibliothek</string>
     <string name="pref_header_lockscreen">Sperrbildschirm</string>
     <string name="pref_header_notification">Benachrichtigung</string>
-    <string name="pref_title_navigation_bar">Farbige Navigationsleiste</string>
     <string name="pref_title_app_shortcuts">Gefärbte App-Shortcuts</string>
     <string name="pref_title_album_art_on_lockscreen">Album Cover anzeigen</string>
     <string name="pref_title_blurred_album_art">Album Cover weichzeichnen</string>
@@ -96,7 +95,6 @@
     <string name="pref_summary_classic_notification">Das klassische Benachrichtigungsdesign verwenden.</string>
     <string name="pref_summary_colored_notification">"Die Benachrichtigung ist in der Farbe des Album Covers gef\u00e4rbt."</string>
     <string name="pref_summary_gapless_playback">"Kann bei einigen Geräten Wiedergabeprobleme verursachen."</string>
-    <string name="pref_summary_colored_navigation_bar">Färbt die Navigationsleiste mit der Hauptfarbe.</string>
     <string name="pref_summary_colored_app_shortcuts">Färbt die App-Shortcuts mit der Hauptfarbe.</string>
     <string name="pref_summary_audio_ducking">Benachrichtigungen, Navigation etc.</string>
     <string name="pref_summary_remember_last_tab">Zuletzt geöffneten Tab beim Start anzeigen</string>

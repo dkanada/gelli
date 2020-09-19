@@ -62,7 +62,6 @@
     <string name="pref_header_library">Bibliotheek</string>
     <string name="pref_header_lockscreen">Vergrendelscherm</string>
     <string name="pref_header_notification">Melding</string>
-    <string name="pref_title_navigation_bar">Gekleurde navigatiebalk</string>
     <string name="pref_title_app_shortcuts">Gekleurde app-snelkoppelingen</string>
     <string name="pref_title_album_art_on_lockscreen">Toon albumhoes</string>
     <string name="pref_title_blurred_album_art">Vervaag albumhoes</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_classic_notification">Gebruik de klassieke meldingsweergave.</string>
     <string name="pref_summary_colored_notification">"Kleurt de melding met het palet van de albumhoes."</string>
     <string name="pref_summary_gapless_playback">"Verwijdert de pauzes tussen nummers. Dit kan afspeelfouten veroorzaken."</string>
-    <string name="pref_summary_colored_navigation_bar">Kleurt de navigatiebalk in de primaire kleur.</string>
     <string name="pref_summary_colored_app_shortcuts">Kleurt de app-snelkoppelingen in de primaire kleur.</string>
     <string name="pref_summary_audio_ducking">Notificaties, navigatie, etc.</string>
     <string name="pref_summary_remember_last_tab">Ga naar het laatst geopende tabblad bij opstarten</string>
