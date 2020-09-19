@@ -1,4 +1,5 @@
 <resources>
+
     <style name="Theme.Phonograph" parent="Theme.Phonograph.Base">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowSharedElementsUseOverlay">false</item>
@@ -28,4 +29,5 @@
     <style name="MusicProgressSlider" parent="MusicProgressSliderParent">
         <item name="android:padding">0dp</item>
     </style>
+
 </resources>

@@ -69,10 +69,10 @@
                 </FrameLayout>
 
                 <FrameLayout
+                    android:layout_marginTop="24dp"
                     android:id="@+id/player_panel"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp">
+                    android:layout_height="wrap_content">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/playing_queue_card"
@@ -95,8 +95,8 @@
                                 android:id="@+id/draggable_area"
                                 android:layout_width="72dp"
                                 android:layout_height="wrap_content"
-                                android:layout_alignTop="@+id/card_content"
                                 android:layout_alignBottom="@+id/card_content"
+                                android:layout_alignTop="@+id/card_content"
                                 android:layout_marginTop="48dp" />
 
                             <LinearLayout

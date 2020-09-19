@@ -26,7 +26,6 @@ import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
-import com.kabouzeid.appthemehelper.ATH;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
@@ -261,9 +260,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     public void onHide() {
         playbackControlsFragment.hide();
         onBackPressed();
-        if (!ThemeStore.coloredNavigationBar(requireContext())) {
-            ATH.setNavigationbarColor(requireActivity(), Color.TRANSPARENT);
-        }
     }
 
     @Override

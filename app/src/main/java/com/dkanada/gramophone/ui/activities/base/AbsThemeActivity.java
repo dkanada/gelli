@@ -73,11 +73,7 @@ public abstract class AbsThemeActivity extends ATHToolbarActivity {
     }
 
     public void setNavigationbarColorAuto() {
-        if (ThemeStore.coloredNavigationBar(this)) {
-            setNavigationbarColor(ThemeStore.navigationBarColor(this));
-        } else {
-            setNavigationbarColor(Color.TRANSPARENT);
-        }
+        setNavigationbarColor(ThemeStore.navigationBarColor(this));
     }
 
     public void setLightStatusbar(boolean enabled) {
