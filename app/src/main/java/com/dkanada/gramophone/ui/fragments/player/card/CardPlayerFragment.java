@@ -176,7 +176,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         }
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void updateCurrentSong() {
         impl.updateCurrentSong(MusicPlayerRemote.getCurrentSong());
     }
@@ -243,7 +242,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     @Override
     protected void toggleFavorite(Song song) {
         super.toggleFavorite(song);
-        if (song.id == MusicPlayerRemote.getCurrentSong().id) {
+        if (song.id.equals(MusicPlayerRemote.getCurrentSong().id)) {
             if (song.favorite) {
                 playerAlbumCoverFragment.showHeartAnimation();
             }

@@ -63,7 +63,6 @@
     <string name="pref_header_library">Pustaka</string>
     <string name="pref_header_lockscreen">Layar kunci</string>
     <string name="pref_header_notification">Notifikasi</string>
-    <string name="pref_title_navigation_bar">Alat Navigasi Berwarna</string>
     <string name="pref_title_app_shortcuts">Pintasan Berwarna</string>
     <string name="pref_title_album_art_on_lockscreen">Tampilkan sampul album</string>
     <string name="pref_title_blurred_album_art">Buramkan sampul album</string>
@@ -95,7 +94,6 @@
     <string name="pref_summary_classic_notification">Gunakan desain notifikasi klasik.</string>
     <string name="pref_summary_colored_notification">"Mewarnai notifikasi putar dengan warna yang cerah dari album."</string>
     <string name="pref_summary_gapless_playback">"Dapat menyebabkan masalah pemutaran pada beberapa perangkat."</string>
-    <string name="pref_summary_colored_navigation_bar">"Mewarnai bilah navigasi dengan warna primer. "</string>
     <string name="pref_summary_colored_app_shortcuts">Mewarnai pintasan-pintasan dengan warna utama.</string>
     <string name="pref_summary_audio_ducking">Pemberitahuan, navigasi dll.</string>
     <string name="pref_summary_remember_last_tab">Pergi ke tab yang terakhir saat aplikasi dibuka</string>

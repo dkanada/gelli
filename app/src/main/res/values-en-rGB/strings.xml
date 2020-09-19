@@ -62,7 +62,6 @@
     <string name="pref_header_library">Library</string>
     <string name="pref_header_lockscreen">Lockscreen</string>
     <string name="pref_header_notification">Notification</string>
-    <string name="pref_title_navigation_bar">Coloured navigation bar</string>
     <string name="pref_title_app_shortcuts">Coloured app shortcuts</string>
     <string name="pref_title_album_art_on_lockscreen">Show album cover</string>
     <string name="pref_title_blurred_album_art">Blur album cover</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_classic_notification">Use the classic notification design.</string>
     <string name="pref_summary_colored_notification">"Colours the notification in the album cover\u2019s vibrant colour."</string>
     <string name="pref_summary_gapless_playback">"Can cause playback issues on some devices."</string>
-    <string name="pref_summary_colored_navigation_bar">Colours the navigation bar in the primary colour.</string>
     <string name="pref_summary_colored_app_shortcuts">Colours the app shortcuts in the primary colour.</string>
     <string name="pref_summary_audio_ducking">Notifications, navigation etc.</string>
     <string name="pref_summary_remember_last_tab">Go to the last opened tab on launch</string>

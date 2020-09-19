@@ -62,7 +62,6 @@
     <string name="pref_header_library">Kitaplık</string>
     <string name="pref_header_lockscreen">Kilit ekranı</string>
     <string name="pref_header_notification">Bildirim</string>
-    <string name="pref_title_navigation_bar">Renkli gezinme çubuğu</string>
     <string name="pref_title_app_shortcuts">Renkli uygulama kısayolları</string>
     <string name="pref_title_album_art_on_lockscreen">Albüm kapağını göster</string>
     <string name="pref_title_blurred_album_art">Bulanık albüm kapağı</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_classic_notification">Klasik bildirim tasarımını kullan.</string>
     <string name="pref_summary_colored_notification">"Bildirimler alb\u00fcm kapa\u011f\u0131n\u0131n canl\u0131 renkleriyle renklendirilir."</string>
     <string name="pref_summary_gapless_playback">"Bazı cihazlarda oynatma sorunlarına neden olabilir."</string>
-    <string name="pref_summary_colored_navigation_bar">Gezinme çubuğunu ana renk ile renklendir.</string>
     <string name="pref_summary_colored_app_shortcuts">Uygulama kısayollarını ana renk ile renklendir.</string>
     <string name="pref_summary_audio_ducking">Bildirimler, gezinme vb.</string>
     <string name="pref_summary_remember_last_tab">Başlatıldığında son açılan sekmeye git</string>

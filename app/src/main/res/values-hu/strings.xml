@@ -62,7 +62,6 @@
     <string name="pref_header_library">Könyvtár</string>
     <string name="pref_header_lockscreen">Zárképernyő</string>
     <string name="pref_header_notification">Értesítés</string>
-    <string name="pref_title_navigation_bar">Színezett navigációs sáv</string>
     <string name="pref_title_app_shortcuts">Színezett alkalmazás hivatkozások</string>
     <string name="pref_title_album_art_on_lockscreen">Albumborító megjelenítése</string>
     <string name="pref_title_blurred_album_art">Albumborító elhomályosítása</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_classic_notification">Használja a klasszikus értesítési dizájn.</string>
     <string name="pref_summary_colored_notification">"\u00c9rtes\u00edt\u00e9sek sz\u00ednez\u00e9se az albumbor\u00edt\u00f3 sz\u00edn\u00e9vel."</string>
     <string name="pref_summary_gapless_playback">"Lejátszási problémákat okozhat néhány eszközön."</string>
-    <string name="pref_summary_colored_navigation_bar">Navigációs sáv színezése az alapértelmezett színnel.</string>
     <string name="pref_summary_colored_app_shortcuts">Az alkalmazás hivatkozások színezése az elsődleges szín szerint.</string>
     <string name="pref_summary_audio_ducking">Beérkező értesítéskor a lejátszás hangereje lecsökken, majd az értesítés végén visszaáll az eredeti hangerőre.</string>
     <string name="pref_summary_remember_last_tab">Menjen az utolsó megnyitott fülre az indításkor</string>

@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
+import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
@@ -141,7 +142,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
     public void onPanelSlide(View panel, @FloatRange(from = 0, to = 1) float slideOffset) {
         setMiniPlayerAlphaProgress(slideOffset);
         if (navigationBarColorAnimator != null) navigationBarColorAnimator.cancel();
-        super.setNavigationbarColor((int) argbEvaluator.evaluate(slideOffset, navigationbarColor, playerFragment.getPaletteColor()));
+        super.setNavigationbarColor(ColorUtils.blendARGB(navigationbarColor, playerFragment.getPaletteColor(), slideOffset));
     }
 
     @Override

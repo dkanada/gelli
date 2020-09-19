@@ -59,7 +59,6 @@ public final class PreferenceUtil {
     public static final String GENERAL_THEME = "general_theme";
     public static final String PRIMARY_COLOR = "primary_color";
     public static final String ACCENT_COLOR = "accent_color";
-    public static final String COLORED_NAVIGATION_BAR = "colored_navigation_bar";
     public static final String COLORED_SHORTCUTS = "colored_shortcuts";
 
     public static final String CLASSIC_NOTIFICATION = "classic_notification";

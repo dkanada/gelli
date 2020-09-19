@@ -111,7 +111,6 @@
     <string name="colored_footers">Colored footers</string>
     <string name="pref_title_general_theme">General Theme</string>
     <string name="pref_title_now_playing_screen_appearance">Appearance</string>
-    <string name="pref_title_navigation_bar">Colored Navigation Bar</string>
     <string name="pref_title_app_shortcuts">Colored Shortcuts</string>
     <string name="pref_title_album_art_on_lockscreen">Show Album Cover</string>
     <string name="pref_title_blurred_album_art">Blur Album Cover</string>
@@ -137,7 +136,6 @@
     <string name="pref_summary_audio_ducking">Decrease the volume for notifications and other system sounds.</string>
     <string name="pref_summary_gapless_playback">"This can cause playback issues on some devices."</string>
     <string name="pref_summary_remember_shuffle">Shuffle mode will stay on when selecting a new list of songs for the queue.</string>
-    <string name="pref_summary_colored_navigation_bar">Colors the navigation bar in the primary color.</string>
     <string name="pref_summary_remember_queue">Save the queue when closing the app so it can persist across sessions.</string>
     <string name="pref_summary_colored_app_shortcuts">Colors the app shortcuts in the primary color.</string>
     <string name="pref_summary_remember_last_tab">Go to the last opened tab on launch.</string>

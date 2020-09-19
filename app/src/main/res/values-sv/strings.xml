@@ -42,11 +42,9 @@ Vill du radera spellistan <b>%1$s</b>?
     <string name="dark_theme_name">Mörk</string>
     <string name="pref_title_general_theme">Allmänt tema</string>
     <string name="pref_header_audio">Ljud</string>
-    <string name="pref_title_navigation_bar">Färgad navigeringslist</string>
     <string name="delete_action">Radera</string>
     <string name="rename_action">Döp om</string>
     <string name="primary_color">Grundfärg</string>
     <string name="no_playlists">Inga spellistor</string>
     <string name="song">Låt</string>
-    <string name="pref_summary_colored_navigation_bar">I vilken vy navigeringslisten skall vara färgad</string>
 </resources>

@@ -60,7 +60,6 @@
     <string name="pref_header_audio">Âm thanh</string>
     <string name="pref_header_lockscreen">Màn hình khóa</string>
     <string name="pref_header_notification">Thông báo</string>
-    <string name="pref_title_navigation_bar">Màu thanh điều hướng</string>
     <string name="pref_title_app_shortcuts">Màu sắc biểu tượng ứng dụng</string>
     <string name="pref_title_album_art_on_lockscreen">Hiện bìa album</string>
     <string name="pref_title_blurred_album_art">Làm mờ bìa album</string>
@@ -88,7 +87,6 @@
     <string name="pref_summary_classic_notification">Sử dụng thiết kế thông báo cổ điển.</string>
     <string name="pref_summary_colored_notification">"M\u00e0u s\u1eafc r\u1ef1c r\u1ee1 cho c\u00e1c th\u00f4ng b\u00e1o trong b\u00eca album."</string>
     <string name="pref_summary_gapless_playback">"Có thể gây ra các vấn đề phát trên một số thiết bị."</string>
-    <string name="pref_summary_colored_navigation_bar">Màu sắc thanh điều hướng trong các màu cơ bản.</string>
     <string name="pref_summary_colored_app_shortcuts">Màu sắc chủ đạo của biểu tượng ứng dụng.</string>
     <string name="pref_summary_audio_ducking">Thông báo, điều hướng, vv.</string>
     <string name="last_added">Được thêm sau cùng</string>
