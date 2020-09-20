@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.dkanada.gramophone.databinding.ActivityMainContentBinding;
 import com.dkanada.gramophone.databinding.ActivityMainDrawerLayoutBinding;
+import com.dkanada.gramophone.databinding.NavigationDrawerHeaderBinding;
 import com.dkanada.gramophone.dialogs.ConfirmLogoutDialog;
 import androidx.fragment.app.Fragment;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -44,12 +45,10 @@ import java.util.List;
 public class MainActivity extends AbsSlidingMusicPanelActivity {
     private ActivityMainDrawerLayoutBinding binding;
     private ActivityMainContentBinding contentBinding;
+    private NavigationDrawerHeaderBinding navigationBinding;
 
     @Nullable
     MainActivityFragmentCallbacks currentFragment;
-
-    @Nullable
-    private View navigationDrawerHeader;
 
     @Nullable
     private List<BaseItemDto> libraries;
@@ -174,9 +173,11 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     private void updateNavigationDrawerHeader() {
         if (!MusicPlayerRemote.getPlayingQueue().isEmpty()) {
             Song song = MusicPlayerRemote.getCurrentSong();
-            if (navigationDrawerHeader == null) {
-                navigationDrawerHeader = binding.navigationView.inflateHeaderView(R.layout.navigation_drawer_header);
-                navigationDrawerHeader.setOnClickListener(v -> {
+            if (navigationBinding == null) {
+                navigationBinding = NavigationDrawerHeaderBinding.inflate(getLayoutInflater());
+
+                binding.navigationView.addHeaderView(navigationBinding.getRoot());
+                navigationBinding.getRoot().setOnClickListener(v -> {
                     binding.drawerLayout.closeDrawers();
                     if (getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                         expandPanel();
@@ -184,17 +185,15 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                 });
             }
 
-            ((TextView) navigationDrawerHeader.findViewById(R.id.title)).setText(song.title);
-            ((TextView) navigationDrawerHeader.findViewById(R.id.text)).setText(MusicUtil.getSongInfoString(song));
+            navigationBinding.title.setText(song.title);
+            navigationBinding.text.setText(MusicUtil.getSongInfoString(song));
 
             CustomGlideRequest.Builder
                     .from(Glide.with(this), song.primary)
-                    .build().into(((ImageView) navigationDrawerHeader.findViewById(R.id.image)));
-        } else {
-            if (navigationDrawerHeader != null) {
-                binding.navigationView.removeHeaderView(navigationDrawerHeader);
-                navigationDrawerHeader = null;
-            }
+                    .build().into(navigationBinding.image);
+        } else if (binding.navigationView.getHeaderCount() != 0) {
+            binding.navigationView.removeHeaderView(navigationBinding.getRoot());
+            navigationBinding = null;
         }
     }
 

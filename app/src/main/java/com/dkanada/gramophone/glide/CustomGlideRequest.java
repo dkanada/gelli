@@ -55,8 +55,7 @@ public class CustomGlideRequest {
             Object uri = item != null ? createUrl(item) : R.drawable.default_album_art;
 
             return requestManager.load(uri)
-                    .apply(createRequestOptions(item))
-                    .transition(new DrawableTransitionOptions().crossFade(DEFAULT_ANIMATION));
+                    .apply(createRequestOptions(item));
         }
     }
 

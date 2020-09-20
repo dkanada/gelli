@@ -107,6 +107,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     itemView.setElevation(activity.getResources().getDimensionPixelSize(R.dimen.card_elevation));
                 }
+
                 if (shortSeparator != null) {
                     shortSeparator.setVisibility(View.GONE);
                 }
@@ -132,12 +133,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     break;
                 case ARTIST:
                     setImageTransitionName(activity.getString(R.string.transition_artist_image));
+                    View description = itemView.findViewById(R.id.text);
+                    if (description != null) description.setVisibility(View.GONE);
                     break;
                 default:
                     View container = itemView.findViewById(R.id.image_container);
-                    if (container != null) {
-                        container.setVisibility(View.GONE);
-                    }
+                    if (container != null) container.setVisibility(View.GONE);
                     break;
             }
         }
