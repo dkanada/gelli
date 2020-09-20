@@ -19,6 +19,8 @@ import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.helper.StackBlur;
 import com.dkanada.gramophone.util.ImageUtil;
 
+import java.security.MessageDigest;
+
 public class BlurTransformation extends BitmapTransformation {
     public static final float DEFAULT_BLUR_RADIUS = 5f;
 
@@ -33,12 +35,12 @@ public class BlurTransformation extends BitmapTransformation {
     }
 
     private BlurTransformation(Builder builder) {
-        super(builder.context);
+        super();
         init(builder);
     }
 
     private BlurTransformation(Builder builder, BitmapPool bitmapPool) {
-        super(bitmapPool);
+        super();
         init(builder);
     }
 
@@ -138,7 +140,6 @@ public class BlurTransformation extends BitmapTransformation {
     }
 
     @Override
-    public String getId() {
-        return "BlurTransformation(radius=" + blurRadius + ", sampling=" + sampling + ")";
+    public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
     }
 }

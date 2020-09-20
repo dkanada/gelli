@@ -13,8 +13,8 @@ import androidx.media.app.NotificationCompat.MediaStyle;
 import androidx.palette.graphics.Palette;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
@@ -55,13 +55,13 @@ public class PlayingNotificationImpl24 extends PlayingNotification {
                 .generatePalette(service).build()
                 .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
                     @Override
-                    public void onResourceReady(BitmapPaletteWrapper resource, GlideAnimation<? super BitmapPaletteWrapper> glideAnimation) {
+                    public void onResourceReady(BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {
                         Palette palette = resource.getPalette();
                         update(resource.getBitmap(), palette.getVibrantColor(palette.getMutedColor(Color.TRANSPARENT)));
                     }
 
                     @Override
-                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                    public void onLoadFailed(Drawable errorDrawable) {
                         update(null, Color.TRANSPARENT);
                     }
 

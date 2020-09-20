@@ -2,25 +2,27 @@ package com.dkanada.gramophone.glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 
 import androidx.annotation.NonNull;
 
-import com.bumptech.glide.BitmapRequestBuilder;
-import com.bumptech.glide.DrawableRequestBuilder;
-import com.bumptech.glide.DrawableTypeRequest;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.Key;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.BitmapEncoder;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.transition.ViewAnimationFactory;
 import com.bumptech.glide.signature.MediaStoreSignature;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.glide.palette.BitmapPaletteTranscoder;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
 
 import org.jellyfin.apiclient.model.dto.ImageOptions;
 import org.jellyfin.apiclient.model.entities.ImageType;
+
+import static com.bumptech.glide.GenericTransitionOptions.with;
 
 public class CustomGlideRequest {
     public static final DiskCacheStrategy DEFAULT_DISK_CACHE_STRATEGY = DiskCacheStrategy.ALL;
@@ -49,13 +51,12 @@ public class CustomGlideRequest {
             return new BitmapBuilder(this);
         }
 
-        public DrawableRequestBuilder<GlideDrawable> build() {
-            // noinspection unchecked
-            return createBaseRequest(requestManager, item)
-                    .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                    .placeholder(DEFAULT_IMAGE)
-                    .animate(DEFAULT_ANIMATION)
-                    .signature(createSignature(item));
+        public RequestBuilder<Drawable> build() {
+            Object uri = item != null ? createUrl(item) : R.drawable.default_album_art;
+
+            return requestManager.load(uri)
+                    .apply(createRequestOptions(item))
+                    .transition(new DrawableTransitionOptions().crossFade(DEFAULT_ANIMATION));
         }
     }
 
@@ -66,14 +67,12 @@ public class CustomGlideRequest {
             this.builder = builder;
         }
 
-        public BitmapRequestBuilder<?, Bitmap> build() {
-            // noinspection unchecked
-            return createBaseRequest(builder.requestManager, builder.item)
-                    .asBitmap()
-                    .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                    .placeholder(DEFAULT_IMAGE)
-                    .animate(DEFAULT_ANIMATION)
-                    .signature(createSignature(builder.item));
+        public RequestBuilder<Bitmap> build() {
+            Object uri = builder.item != null ? createUrl(builder.item) : R.drawable.default_album_art;
+
+            return builder.requestManager.asBitmap().load(uri)
+                    .apply(createRequestOptions(builder.item))
+                    .transition(new BitmapTransitionOptions().crossFade(DEFAULT_ANIMATION));
         }
     }
 
@@ -86,30 +85,29 @@ public class CustomGlideRequest {
             this.context = context;
         }
 
-        public BitmapRequestBuilder<?, BitmapPaletteWrapper> build() {
-            // noinspection unchecked
-            return createBaseRequest(builder.requestManager, builder.item)
-                    .asBitmap()
-                    .transcode(new BitmapPaletteTranscoder(context), BitmapPaletteWrapper.class)
-                    .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                    .encoder(new BitmapEncoder(Bitmap.CompressFormat.PNG, 100))
-                    .placeholder(DEFAULT_IMAGE)
-                    .animate(DEFAULT_ANIMATION)
-                    .signature(createSignature(builder.item));
+        public RequestBuilder<BitmapPaletteWrapper> build() {
+            Object uri = builder.item != null ? createUrl(builder.item) : R.drawable.default_album_art;
+
+            return builder.requestManager.as(BitmapPaletteWrapper.class).load(uri)
+                    .apply(createRequestOptions(builder.item))
+                    .transition(with(new ViewAnimationFactory<>(DEFAULT_ANIMATION)));
         }
     }
 
-    public static DrawableTypeRequest createBaseRequest(RequestManager requestManager, String item) {
-        if (item == null) {
-            return requestManager.load(R.drawable.default_album_art);
-        }
+    public static RequestOptions createRequestOptions(String item) {
+        return new RequestOptions()
+                .centerCrop()
+                .error(DEFAULT_IMAGE)
+                .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
+                .signature(createSignature(item));
+    }
 
+    public static String createUrl(String item) {
         ImageOptions options = new ImageOptions();
         options.setImageType(ImageType.Primary);
         options.setMaxHeight(800);
 
-        String url = App.getApiClient().GetImageUrl(item, options);
-        return requestManager.load(url);
+        return App.getApiClient().GetImageUrl(item, options);
     }
 
     public static Key createSignature(String item) {
