@@ -8,13 +8,11 @@ import androidx.annotation.NonNull;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.load.Key;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.transition.ViewAnimationFactory;
-import com.bumptech.glide.signature.MediaStoreSignature;
+import com.bumptech.glide.signature.ObjectKey;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
@@ -98,7 +96,7 @@ public class CustomGlideRequest {
                 .centerCrop()
                 .error(DEFAULT_IMAGE)
                 .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)
-                .signature(createSignature(item));
+                .signature(new ObjectKey(item != null ? item : 0));
     }
 
     public static String createUrl(String item) {
@@ -107,9 +105,5 @@ public class CustomGlideRequest {
         options.setMaxHeight(800);
 
         return App.getApiClient().GetImageUrl(item, options);
-    }
-
-    public static Key createSignature(String item) {
-        return new MediaStoreSignature("image/jpeg", item != null ? item.hashCode() : 0, 0);
     }
 }
