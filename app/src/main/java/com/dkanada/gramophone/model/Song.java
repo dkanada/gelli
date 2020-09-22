@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.MediaSourceInfo;
+import org.jellyfin.apiclient.model.entities.ImageType;
 import org.jellyfin.apiclient.model.entities.MediaStream;
 
 public class Song implements Parcelable {
@@ -24,6 +25,7 @@ public class Song implements Parcelable {
     public String artistName;
 
     public String primary;
+    public String blurHash;
     public boolean favorite;
 
     public String path;
@@ -58,6 +60,10 @@ public class Song implements Parcelable {
 
         this.primary = itemDto.getAlbumPrimaryImageTag() != null ? albumId : null;
         this.favorite = itemDto.getUserData() != null && itemDto.getUserData().getIsFavorite();
+
+        if (itemDto.getImageBlurHashes().get(ImageType.Primary) != null) {
+            this.blurHash = (String) itemDto.getImageBlurHashes().get(ImageType.Primary).values().toArray()[0];
+        }
 
         if (itemDto.getMediaSources() != null && itemDto.getMediaSources().get(0) != null) {
             MediaSourceInfo source = itemDto.getMediaSources().get(0);

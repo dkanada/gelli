@@ -20,6 +20,7 @@ public class Album implements Parcelable {
     public String artistName;
 
     public String primary;
+    public String blurHash;
 
     public Album(BaseItemDto itemDto) {
         this.id = itemDto.getId();
@@ -35,6 +36,9 @@ public class Album implements Parcelable {
         }
 
         this.primary = itemDto.getImageTags().containsKey(ImageType.Primary) ? id : null;
+        if (itemDto.getImageBlurHashes().get(ImageType.Primary) != null) {
+            this.blurHash = (String) itemDto.getImageBlurHashes().get(ImageType.Primary).values().toArray()[0];
+        }
 
         this.songs = new ArrayList<>();
     }

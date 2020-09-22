@@ -1,5 +1,6 @@
 package com.dkanada.gramophone.service;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
@@ -520,6 +521,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         .build());
     }
 
+    @SuppressLint("CheckResult")
     private void updateMediaSessionMetaData() {
         final Song song = getCurrentSong();
 
@@ -545,7 +547,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         if (PreferenceUtil.getInstance(this).getShowAlbumCover()) {
             final Point screenSize = Util.getScreenSize(MusicService.this);
             final RequestBuilder<Bitmap> request = CustomGlideRequest.Builder
-                    .from(Glide.with(MusicService.this), song.primary)
+                    .from(MusicService.this, song.primary, song.blurHash)
                     .bitmap().build();
 
             if (PreferenceUtil.getInstance(this).getBlurAlbumCover()) {

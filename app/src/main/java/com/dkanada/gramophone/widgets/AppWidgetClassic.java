@@ -93,9 +93,9 @@ public class AppWidgetClassic extends BaseAppWidget {
                     Glide.with(appContext).clear(target);
                 }
 
-                target = CustomGlideRequest.Builder.from(Glide.with(appContext), song.primary)
-                        .palette(service).build()
-                        .centerCrop()
+                target = CustomGlideRequest.Builder
+                        .from(appContext, song.primary, song.blurHash)
+                        .palette().build()
                         .into(new SimpleTarget<BitmapPaletteWrapper>(imageSize, imageSize) {
                             @Override
                             public void onResourceReady(BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {

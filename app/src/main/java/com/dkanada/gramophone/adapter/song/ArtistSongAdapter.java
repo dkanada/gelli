@@ -85,7 +85,7 @@ public class ArtistSongAdapter extends ArrayAdapter<Song> implements MaterialCab
         songInfo.setText(song.albumName);
 
         CustomGlideRequest.Builder
-                .from(Glide.with(activity), song.primary)
+                .from(activity, song.primary, song.blurHash)
                 .build().into(albumArt);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

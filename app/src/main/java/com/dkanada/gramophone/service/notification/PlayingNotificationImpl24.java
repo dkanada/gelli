@@ -51,8 +51,8 @@ public class PlayingNotificationImpl24 extends PlayingNotification {
 
         final int bigNotificationImageSize = service.getResources().getDimensionPixelSize(R.dimen.notification_big_image_size);
         service.runOnUiThread(() -> CustomGlideRequest.Builder
-                .from(Glide.with(service), song.primary)
-                .palette(service).build()
+                .from(service, song.primary, song.blurHash)
+                .palette().build()
                 .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
                     @Override
                     public void onResourceReady(BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {

@@ -19,12 +19,16 @@ public class Artist implements Parcelable {
     public String name;
 
     public String primary;
+    public String blurHash;
 
     public Artist(BaseItemDto itemDto) {
         this.id = itemDto.getId();
         this.name = itemDto.getName();
 
         this.primary = itemDto.getImageTags().containsKey(ImageType.Primary) ? id : null;
+        if (itemDto.getImageBlurHashes().get(ImageType.Primary) != null) {
+            this.blurHash = (String) itemDto.getImageBlurHashes().get(ImageType.Primary).values().toArray()[0];
+        }
 
         this.genres = new ArrayList<>();
         this.albums = new ArrayList<>();

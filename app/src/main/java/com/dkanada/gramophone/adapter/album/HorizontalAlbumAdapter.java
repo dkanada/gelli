@@ -52,8 +52,8 @@ public class HorizontalAlbumAdapter extends AlbumAdapter {
         if (holder.image == null) return;
 
         CustomGlideRequest.Builder
-                .from(Glide.with(activity), album.primary)
-                .palette(activity).build()
+                .from(activity, album.primary, album.blurHash)
+                .palette().build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override
                     public void onLoadCleared(Drawable placeholder) {

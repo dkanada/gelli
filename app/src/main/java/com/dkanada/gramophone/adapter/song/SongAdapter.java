@@ -134,8 +134,8 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
         if (holder.image == null) return;
 
         CustomGlideRequest.Builder
-                .from(Glide.with(activity), song.primary)
-                .palette(activity).build()
+                .from(activity, song.primary, song.blurHash)
+                .palette().build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override
                     public void onLoadCleared(Drawable placeholder) {

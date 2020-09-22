@@ -123,8 +123,8 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
         if (holder.image == null) return;
 
         CustomGlideRequest.Builder
-                .from(Glide.with(activity), artist.primary)
-                .palette(activity).build()
+                .from(activity, artist.primary, artist.blurHash)
+                .palette().build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override
                     public void onLoadCleared(Drawable placeholder) {

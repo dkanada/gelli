@@ -70,7 +70,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 holder.title.setText(album.title);
                 holder.text.setText(MusicUtil.getAlbumInfoString(activity, album));
                 CustomGlideRequest.Builder
-                        .from(Glide.with(activity), album.primary)
+                        .from(activity, album.primary, album.blurHash)
                         .build().into(holder.image);
                 break;
             case ARTIST:
@@ -78,7 +78,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 holder.title.setText(artist.name);
                 holder.text.setText(MusicUtil.getArtistInfoString(activity, artist));
                 CustomGlideRequest.Builder
-                        .from(Glide.with(activity), artist.primary)
+                        .from(activity, artist.primary, artist.blurHash)
                         .build().into(holder.image);
                 break;
             case SONG:
