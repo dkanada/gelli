@@ -11,5 +11,7 @@ public class BitmapPaletteTarget extends ImageViewTarget<BitmapPaletteWrapper> {
 
     @Override
     protected void setResource(BitmapPaletteWrapper bitmapPaletteWrapper) {
+        if (bitmapPaletteWrapper == null) return;
+        view.setImageBitmap(bitmapPaletteWrapper.getBitmap());
     }
 }

@@ -27,7 +27,6 @@ public abstract class CustomPaletteTarget extends BitmapPaletteTarget {
     public void onResourceReady(@NonNull BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {
         super.onResourceReady(resource, glideAnimation);
         onColorReady(ThemeUtil.getColor(resource.getPalette(), getDefaultFooterColor()));
-        view.setImageBitmap(resource.getBitmap());
     }
 
     protected int getDefaultFooterColor() {

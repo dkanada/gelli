@@ -12,10 +12,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.transition.ViewAnimationFactory;
 import com.bumptech.glide.signature.ObjectKey;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.glide.palette.BitmapPaletteCrossFadeFactory;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
 
 import org.jellyfin.apiclient.model.dto.ImageOptions;
@@ -26,7 +26,6 @@ import static com.bumptech.glide.GenericTransitionOptions.with;
 public class CustomGlideRequest {
     public static final DiskCacheStrategy DEFAULT_DISK_CACHE_STRATEGY = DiskCacheStrategy.ALL;
     public static final int DEFAULT_IMAGE = R.drawable.default_album_art;
-    public static final int DEFAULT_ANIMATION = android.R.anim.fade_in;
 
     public static class Builder {
         final RequestManager requestManager;
@@ -55,7 +54,7 @@ public class CustomGlideRequest {
             Object uri = item != null ? createUrl(item) : DEFAULT_IMAGE;
 
             return requestManager.load(uri)
-                    .transition(new DrawableTransitionOptions().crossFade());
+                    .transition(DrawableTransitionOptions.withCrossFade());
         }
     }
 
@@ -70,7 +69,7 @@ public class CustomGlideRequest {
             Object uri = builder.item != null ? createUrl(builder.item) : DEFAULT_IMAGE;
 
             return builder.requestManager.asBitmap().load(uri)
-                    .transition(new BitmapTransitionOptions().crossFade());
+                    .transition(BitmapTransitionOptions.withCrossFade());
         }
     }
 
@@ -87,7 +86,7 @@ public class CustomGlideRequest {
             Object uri = builder.item != null ? createUrl(builder.item) : DEFAULT_IMAGE;
 
             return builder.requestManager.as(BitmapPaletteWrapper.class).load(uri)
-                    .transition(with(new ViewAnimationFactory<>(DEFAULT_ANIMATION)));
+                    .transition(with(new BitmapPaletteCrossFadeFactory()));
         }
     }
 
