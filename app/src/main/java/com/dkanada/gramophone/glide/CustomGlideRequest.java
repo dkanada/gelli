@@ -10,6 +10,7 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.transition.ViewAnimationFactory;
 import com.bumptech.glide.signature.ObjectKey;
@@ -24,7 +25,6 @@ import static com.bumptech.glide.GenericTransitionOptions.with;
 
 public class CustomGlideRequest {
     public static final DiskCacheStrategy DEFAULT_DISK_CACHE_STRATEGY = DiskCacheStrategy.ALL;
-
     public static final int DEFAULT_IMAGE = R.drawable.default_album_art;
     public static final int DEFAULT_ANIMATION = android.R.anim.fade_in;
 
@@ -32,28 +32,29 @@ public class CustomGlideRequest {
         final RequestManager requestManager;
         final String item;
 
-        public static Builder from(@NonNull RequestManager requestManager, String item) {
-            return new Builder(requestManager, item);
-        }
-
         private Builder(@NonNull RequestManager requestManager, String item) {
             this.requestManager = requestManager;
             this.item = item;
+        }
+
+        public static Builder from(@NonNull RequestManager requestManager, String item) {
+            return new Builder(requestManager, item);
         }
 
         public PaletteBuilder generatePalette(Context context) {
             return new PaletteBuilder(this, context);
         }
 
-        public BitmapBuilder asBitmap() {
+        public BitmapBuilder bitmap() {
             return new BitmapBuilder(this);
         }
 
         public RequestBuilder<Drawable> build() {
-            Object uri = item != null ? createUrl(item) : R.drawable.default_album_art;
+            Object uri = item != null ? createUrl(item) : DEFAULT_IMAGE;
 
             return requestManager.load(uri)
-                    .apply(createRequestOptions(item));
+                    .apply(createRequestOptions(item))
+                    .transition(new DrawableTransitionOptions().crossFade());
         }
     }
 
@@ -65,11 +66,11 @@ public class CustomGlideRequest {
         }
 
         public RequestBuilder<Bitmap> build() {
-            Object uri = builder.item != null ? createUrl(builder.item) : R.drawable.default_album_art;
+            Object uri = builder.item != null ? createUrl(builder.item) : DEFAULT_IMAGE;
 
             return builder.requestManager.asBitmap().load(uri)
                     .apply(createRequestOptions(builder.item))
-                    .transition(new BitmapTransitionOptions().crossFade(DEFAULT_ANIMATION));
+                    .transition(new BitmapTransitionOptions().crossFade());
         }
     }
 
@@ -83,7 +84,7 @@ public class CustomGlideRequest {
         }
 
         public RequestBuilder<BitmapPaletteWrapper> build() {
-            Object uri = builder.item != null ? createUrl(builder.item) : R.drawable.default_album_art;
+            Object uri = builder.item != null ? createUrl(builder.item) : DEFAULT_IMAGE;
 
             return builder.requestManager.as(BitmapPaletteWrapper.class).load(uri)
                     .apply(createRequestOptions(builder.item))

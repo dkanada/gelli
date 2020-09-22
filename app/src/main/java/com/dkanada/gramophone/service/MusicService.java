@@ -546,7 +546,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             final Point screenSize = Util.getScreenSize(MusicService.this);
             final RequestBuilder<Bitmap> request = CustomGlideRequest.Builder
                     .from(Glide.with(MusicService.this), song.primary)
-                    .asBitmap().build();
+                    .bitmap().build();
 
             if (PreferenceUtil.getInstance(this).getBlurAlbumCover()) {
                 request.transform(new BlurTransformation.Builder(MusicService.this).build());

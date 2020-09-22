@@ -97,7 +97,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
                 }
 
                 target = CustomGlideRequest.Builder.from(Glide.with(appContext), song.primary)
-                        .asBitmap().build()
+                        .bitmap().build()
                         .into(new SimpleTarget<Bitmap>(widgetImageSize, widgetImageSize) {
                             @Override
                             public void onResourceReady(Bitmap resource, Transition<? super Bitmap> glideAnimation) {
