@@ -94,7 +94,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
 
         CustomGlideRequest.Builder
                 .from(Glide.with(activity), playlist.id)
-                .generatePalette(activity).build()
+                .palette(activity).build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override
                     public void onLoadCleared(Drawable placeholder) {

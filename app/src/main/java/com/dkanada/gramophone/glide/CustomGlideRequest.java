@@ -33,6 +33,8 @@ public class CustomGlideRequest {
         final String item;
 
         private Builder(@NonNull RequestManager requestManager, String item) {
+            requestManager.applyDefaultRequestOptions(createRequestOptions(item));
+
             this.requestManager = requestManager;
             this.item = item;
         }
@@ -41,7 +43,7 @@ public class CustomGlideRequest {
             return new Builder(requestManager, item);
         }
 
-        public PaletteBuilder generatePalette(Context context) {
+        public PaletteBuilder palette(Context context) {
             return new PaletteBuilder(this, context);
         }
 
@@ -53,7 +55,6 @@ public class CustomGlideRequest {
             Object uri = item != null ? createUrl(item) : DEFAULT_IMAGE;
 
             return requestManager.load(uri)
-                    .apply(createRequestOptions(item))
                     .transition(new DrawableTransitionOptions().crossFade());
         }
     }
@@ -69,7 +70,6 @@ public class CustomGlideRequest {
             Object uri = builder.item != null ? createUrl(builder.item) : DEFAULT_IMAGE;
 
             return builder.requestManager.asBitmap().load(uri)
-                    .apply(createRequestOptions(builder.item))
                     .transition(new BitmapTransitionOptions().crossFade());
         }
     }
@@ -87,7 +87,6 @@ public class CustomGlideRequest {
             Object uri = builder.item != null ? createUrl(builder.item) : DEFAULT_IMAGE;
 
             return builder.requestManager.as(BitmapPaletteWrapper.class).load(uri)
-                    .apply(createRequestOptions(builder.item))
                     .transition(with(new ViewAnimationFactory<>(DEFAULT_ANIMATION)));
         }
     }

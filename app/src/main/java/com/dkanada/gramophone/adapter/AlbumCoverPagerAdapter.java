@@ -109,7 +109,7 @@ public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
         private void loadAlbumCover() {
             CustomGlideRequest.Builder
                     .from(Glide.with(getContext()), song.primary)
-                    .generatePalette(getActivity()).build()
+                    .palette(getActivity()).build()
                     .into(new CustomPaletteTarget(binding.playerImage) {
                         @Override
                         public void onColorReady(int color) {

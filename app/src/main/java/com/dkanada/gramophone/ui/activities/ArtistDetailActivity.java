@@ -147,7 +147,7 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     private void loadArtistImage(String primary) {
         CustomGlideRequest.Builder
                 .from(Glide.with(this), primary)
-                .generatePalette(this).build()
+                .palette(this).build()
                 .dontAnimate()
                 .into(new CustomPaletteTarget(binding.image) {
                     @Override

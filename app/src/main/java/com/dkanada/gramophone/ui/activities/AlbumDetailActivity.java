@@ -111,7 +111,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
     private void loadAlbumCover(String primary) {
         CustomGlideRequest.Builder
                 .from(Glide.with(this), primary)
-                .generatePalette(this).build()
+                .palette(this).build()
                 .dontAnimate()
                 .into(new CustomPaletteTarget(binding.image) {
                     @Override

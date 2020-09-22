@@ -101,7 +101,7 @@ public class AppWidgetCard extends BaseAppWidget {
                 }
 
                 target = CustomGlideRequest.Builder.from(Glide.with(service), song.primary)
-                        .generatePalette(service).build()
+                        .palette(service).build()
                         .centerCrop()
                         .into(new SimpleTarget<BitmapPaletteWrapper>(imageSize, imageSize) {
                             @Override

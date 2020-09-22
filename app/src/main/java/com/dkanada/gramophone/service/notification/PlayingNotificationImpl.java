@@ -90,7 +90,7 @@ public class PlayingNotificationImpl extends PlayingNotification {
                 }
 
                 target = CustomGlideRequest.Builder.from(Glide.with(service), song.primary)
-                        .generatePalette(service).build()
+                        .palette(service).build()
                         .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
                             @Override
                             public void onResourceReady(BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {

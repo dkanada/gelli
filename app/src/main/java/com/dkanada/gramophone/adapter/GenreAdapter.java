@@ -84,7 +84,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
 
         CustomGlideRequest.Builder
                 .from(Glide.with(activity), genre.id)
-                .generatePalette(activity).build()
+                .palette(activity).build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override
                     public void onLoadCleared(Drawable placeholder) {

@@ -94,7 +94,7 @@ public class AppWidgetClassic extends BaseAppWidget {
                 }
 
                 target = CustomGlideRequest.Builder.from(Glide.with(appContext), song.primary)
-                        .generatePalette(service).build()
+                        .palette(service).build()
                         .centerCrop()
                         .into(new SimpleTarget<BitmapPaletteWrapper>(imageSize, imageSize) {
                             @Override

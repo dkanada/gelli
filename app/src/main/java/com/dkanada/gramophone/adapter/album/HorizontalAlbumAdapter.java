@@ -53,7 +53,7 @@ public class HorizontalAlbumAdapter extends AlbumAdapter {
 
         CustomGlideRequest.Builder
                 .from(Glide.with(activity), album.primary)
-                .generatePalette(activity).build()
+                .palette(activity).build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override
                     public void onLoadCleared(Drawable placeholder) {
