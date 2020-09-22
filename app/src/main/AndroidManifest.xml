@@ -23,10 +23,10 @@
         <activity
             android:name=".ui.activities.MainActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".ui.activities.AlbumDetailActivity" />
-        <activity android:name=".ui.activities.ArtistDetailActivity" />
-        <activity android:name=".ui.activities.GenreDetailActivity" />
-        <activity android:name=".ui.activities.PlaylistDetailActivity" />
+        <activity android:name=".ui.activities.details.AlbumDetailActivity" />
+        <activity android:name=".ui.activities.details.ArtistDetailActivity" />
+        <activity android:name=".ui.activities.details.GenreDetailActivity" />
+        <activity android:name=".ui.activities.details.PlaylistDetailActivity" />
         <activity android:name=".ui.activities.SearchActivity" />
         <activity android:name=".ui.activities.SplashActivity">
             <intent-filter>

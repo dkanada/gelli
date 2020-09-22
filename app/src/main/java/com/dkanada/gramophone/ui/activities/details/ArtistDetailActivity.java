@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.activities;
+package com.dkanada.gramophone.ui.activities.details;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;

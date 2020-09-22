@@ -11,10 +11,10 @@ import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Genre;
 import com.dkanada.gramophone.model.Playlist;
-import com.dkanada.gramophone.ui.activities.AlbumDetailActivity;
-import com.dkanada.gramophone.ui.activities.ArtistDetailActivity;
-import com.dkanada.gramophone.ui.activities.GenreDetailActivity;
-import com.dkanada.gramophone.ui.activities.PlaylistDetailActivity;
+import com.dkanada.gramophone.ui.activities.details.AlbumDetailActivity;
+import com.dkanada.gramophone.ui.activities.details.ArtistDetailActivity;
+import com.dkanada.gramophone.ui.activities.details.GenreDetailActivity;
+import com.dkanada.gramophone.ui.activities.details.PlaylistDetailActivity;
 
 public class NavigationUtil {
 

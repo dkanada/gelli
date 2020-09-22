@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.activities;
+package com.dkanada.gramophone.ui.activities.details;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import android.view.View;
 
 import com.afollestad.materialcab.MaterialCab;
 import com.afollestad.materialdialogs.util.DialogUtils;
-import com.bumptech.glide.Glide;
 import com.dkanada.gramophone.databinding.ActivityAlbumDetailBinding;
 import com.google.android.material.appbar.AppBarLayout;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
