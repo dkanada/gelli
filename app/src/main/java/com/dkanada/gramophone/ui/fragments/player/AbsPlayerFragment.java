@@ -23,9 +23,9 @@ import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.NavigationUtil;
 
 public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implements Toolbar.OnMenuItemClickListener, PaletteColorHolder {
+    private static boolean isToolbarShown = true;
 
     private Callbacks callbacks;
-    private static boolean isToolbarShown = true;
 
     @Override
     public void onAttach(Context context) {
@@ -48,38 +48,38 @@ public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implemen
         final Song song = MusicPlayerRemote.getCurrentSong();
         switch (item.getItemId()) {
             case R.id.action_sleep_timer:
-                new SleepTimerDialog().show(getFragmentManager(), "SET_SLEEP_TIMER");
+                new SleepTimerDialog().show(getParentFragmentManager(), "SET_SLEEP_TIMER");
                 return true;
             case R.id.action_toggle_favorite:
                 toggleFavorite(song);
                 return true;
             case R.id.action_share:
-                SongShareDialog.create(song).show(getFragmentManager(), "SHARE_SONG");
+                SongShareDialog.create(song).show(getParentFragmentManager(), "SHARE_SONG");
                 return true;
             case R.id.action_add_to_playlist:
-                AddToPlaylistDialog.create(song).show(getFragmentManager(), "ADD_PLAYLIST");
+                AddToPlaylistDialog.create(song).show(getParentFragmentManager(), "ADD_PLAYLIST");
                 return true;
             case R.id.action_clear_queue:
                 MusicPlayerRemote.clearQueue();
                 return true;
             case R.id.action_save_queue:
-                CreatePlaylistDialog.create(MusicPlayerRemote.getPlayingQueue()).show(getActivity().getSupportFragmentManager(), "ADD_TO_PLAYLIST");
+                CreatePlaylistDialog.create(MusicPlayerRemote.getPlayingQueue()).show(getParentFragmentManager(), "ADD_TO_PLAYLIST");
                 return true;
             case R.id.action_details:
-                SongDetailDialog.create(song).show(getFragmentManager(), "SONG_DETAIL");
+                SongDetailDialog.create(song).show(getParentFragmentManager(), "SONG_DETAIL");
                 return true;
             case R.id.action_go_to_album:
-                NavigationUtil.goToAlbum(getActivity(), new Album(song));
+                NavigationUtil.goToAlbum(requireActivity(), new Album(song));
                 return true;
             case R.id.action_go_to_artist:
-                NavigationUtil.goToArtist(getActivity(), new Artist(song));
+                NavigationUtil.goToArtist(requireActivity(), new Artist(song));
                 return true;
         }
         return false;
     }
 
     protected void toggleFavorite(Song song) {
-        MusicUtil.toggleFavorite(getActivity(), song);
+        MusicUtil.toggleFavorite(requireActivity(), song);
     }
 
     protected boolean isToolbarShown() {

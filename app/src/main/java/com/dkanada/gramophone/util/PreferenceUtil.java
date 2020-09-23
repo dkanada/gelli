@@ -221,7 +221,7 @@ public final class PreferenceUtil {
     public void setAlbumSortOrder(final String sortOrder) {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putString(ALBUM_SORT_ORDER, sortOrder);
-        editor.commit();
+        editor.apply();
     }
 
     public final String getSongSortOrder() {
@@ -231,7 +231,7 @@ public final class PreferenceUtil {
     public void setSongSortOrder(final String sortOrder) {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putString(SONG_SORT_ORDER, sortOrder);
-        editor.commit();
+        editor.apply();
     }
 
     public final String getAlbumSortMethod() {
@@ -241,7 +241,7 @@ public final class PreferenceUtil {
     public void setAlbumSortMethod(final String sortMethod) {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putString(ALBUM_SORT_METHOD, sortMethod);
-        editor.commit();
+        editor.apply();
     }
 
     public final String getSongSortMethod() {
@@ -251,7 +251,7 @@ public final class PreferenceUtil {
     public void setSongSortMethod(final String sortMethod) {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putString(SONG_SORT_METHOD, sortMethod);
-        editor.commit();
+        editor.apply();
     }
 
     public int getLastSleepTimerValue() {

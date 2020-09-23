@@ -124,7 +124,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         applyRecyclerViewPaddingForLayoutRes(getRecyclerView(), currentLayoutRes);
     }
@@ -170,10 +170,10 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
 
     protected int getMaxGridSizeForList() {
         if (isLandscape()) {
-            return getActivity().getResources().getInteger(R.integer.default_list_columns_land);
+            return requireActivity().getResources().getInteger(R.integer.default_list_columns_land);
         }
 
-        return getActivity().getResources().getInteger(R.integer.default_list_columns);
+        return requireActivity().getResources().getInteger(R.integer.default_list_columns);
     }
 
     protected final boolean isLandscape() {

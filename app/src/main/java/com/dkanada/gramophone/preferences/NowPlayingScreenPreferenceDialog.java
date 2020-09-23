@@ -99,7 +99,7 @@ public class NowPlayingScreenPreferenceDialog extends DialogFragment implements 
 
             ImageView image = layout.findViewById(R.id.image);
             TextView title = layout.findViewById(R.id.title);
-            image.setImageResource(nowPlayingScreen.drawableResId);
+            image.setImageResource(nowPlayingScreen.drawableRes);
             title.setText(nowPlayingScreen.titleRes);
 
             return layout;

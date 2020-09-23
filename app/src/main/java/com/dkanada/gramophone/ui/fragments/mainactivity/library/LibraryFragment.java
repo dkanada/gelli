@@ -56,7 +56,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryFragment extends AbsMainActivityFragment implements CabHolder, MainActivity.MainActivityFragmentCallbacks, ViewPager.OnPageChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
-
     private FragmentLibraryBinding binding;
 
     private MusicLibraryPagerAdapter pagerAdapter;
@@ -70,7 +69,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentLibraryBinding.inflate(inflater);
 
         return binding.getRoot();
@@ -84,7 +83,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         PreferenceUtil.getInstance(getActivity()).registerOnSharedPreferenceChangedListener(this);
         getMainActivity().setStatusbarColorAuto();
         getMainActivity().setNavigationbarColorAuto();
@@ -110,27 +109,27 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     private void setUpToolbar() {
-        int primaryColor = ThemeStore.primaryColor(getActivity());
+        int primaryColor = ThemeStore.primaryColor(requireActivity());
         binding.appbar.setBackgroundColor(primaryColor);
         binding.toolbar.setBackgroundColor(primaryColor);
         binding.toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-        getActivity().setTitle(R.string.app_name);
+        requireActivity().setTitle(R.string.app_name);
         getMainActivity().setSupportActionBar(binding.toolbar);
     }
 
     private void setUpViewPager() {
-        pagerAdapter = new MusicLibraryPagerAdapter(getActivity(), getChildFragmentManager());
+        pagerAdapter = new MusicLibraryPagerAdapter(requireActivity(), getChildFragmentManager());
         binding.pager.setAdapter(pagerAdapter);
         binding.pager.setOffscreenPageLimit(pagerAdapter.getCount() - 1);
 
         binding.tabs.setupWithViewPager(binding.pager);
 
-        int primaryColor = ThemeStore.primaryColor(getActivity());
-        int normalColor = ToolbarContentTintHelper.toolbarSubtitleColor(getActivity(), primaryColor);
-        int selectedColor = ToolbarContentTintHelper.toolbarTitleColor(getActivity(), primaryColor);
+        int primaryColor = ThemeStore.primaryColor(requireActivity());
+        int normalColor = ToolbarContentTintHelper.toolbarSubtitleColor(requireActivity(), primaryColor);
+        int selectedColor = ToolbarContentTintHelper.toolbarTitleColor(requireActivity(), primaryColor);
         TabLayoutUtil.setTabIconColors(binding.tabs, normalColor, selectedColor);
         binding.tabs.setTabTextColors(normalColor, selectedColor);
-        binding.tabs.setSelectedTabIndicatorColor(ThemeStore.accentColor(getActivity()));
+        binding.tabs.setSelectedTabIndicatorColor(ThemeStore.accentColor(requireActivity()));
 
         updateTabVisibility();
 
@@ -161,7 +160,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         cab = new MaterialCab(getMainActivity(), R.id.cab_stub)
                 .setMenu(menuRes)
                 .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-                .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(getActivity())))
+                .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(requireActivity())))
                 .start(callback);
 
         return cab;
@@ -180,7 +179,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_main, menu);
         if (isPlaylistPage()) {
@@ -222,7 +221,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
         Activity activity = getActivity();
         if (activity == null) return;
@@ -256,7 +255,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         int id = item.getItemId();
         switch (id) {
             case R.id.action_shuffle_all:
-                MusicPlayerRemote.openAndShuffleQueue(SongLoader.getAllSongs(getActivity()), true);
+                MusicPlayerRemote.openAndShuffleQueue(SongLoader.getAllSongs(requireActivity()), true);
                 return true;
             case R.id.action_new_playlist:
                 CreatePlaylistDialog.create().show(getChildFragmentManager(), "CREATE_PLAYLIST");

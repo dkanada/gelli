@@ -1,5 +1,6 @@
 package com.dkanada.gramophone.ui.fragments.player;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
@@ -23,7 +24,6 @@ import com.dkanada.gramophone.ui.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.views.PlayPauseDrawable;
 
 public class MiniPlayerFragment extends AbsMusicServiceFragment implements MusicProgressViewUpdateHelper.Callback {
-
     private FragmentMiniPlayerBinding binding;
 
     private PlayPauseDrawable miniPlayerPlayPauseDrawable;
@@ -45,7 +45,7 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         view.setOnTouchListener(new FlingPlayBackController(getActivity()));
@@ -54,13 +54,13 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
 
     private void setUpMiniPlayer() {
         setUpPlayPauseButton();
-        binding.progressBar.setProgressTintList(ColorStateList.valueOf(ThemeStore.accentColor(getActivity())));
+        binding.progressBar.setProgressTintList(ColorStateList.valueOf(ThemeStore.accentColor(requireActivity())));
     }
 
     private void setUpPlayPauseButton() {
-        miniPlayerPlayPauseDrawable = new PlayPauseDrawable(getActivity());
+        miniPlayerPlayPauseDrawable = new PlayPauseDrawable(requireActivity());
         binding.miniPlayerPlayPauseButton.setImageDrawable(miniPlayerPlayPauseDrawable);
-        binding.miniPlayerPlayPauseButton.setColorFilter(ATHUtil.resolveColor(getActivity(), R.attr.iconColor, ThemeStore.textColorSecondary(getActivity())), PorterDuff.Mode.SRC_IN);
+        binding.miniPlayerPlayPauseButton.setColorFilter(ATHUtil.resolveColor(requireActivity(), R.attr.iconColor, ThemeStore.textColorSecondary(requireActivity())), PorterDuff.Mode.SRC_IN);
         binding.miniPlayerPlayPauseButton.setOnClickListener(new PlayPauseButtonOnClickHandler());
     }
 
@@ -125,6 +125,7 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
         }
 
         @Override
+        @SuppressLint("ClickableViewAccessibility")
         public boolean onTouch(View v, MotionEvent event) {
             return flingPlayBackController.onTouchEvent(event);
         }

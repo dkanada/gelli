@@ -72,7 +72,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
     }
 
     private void initRecyclerView() {
-        ViewUtil.setUpFastScrollRecyclerViewColor(getActivity(), binding.recyclerView, ThemeStore.accentColor(getActivity()));
+        ViewUtil.setUpFastScrollRecyclerViewColor(getActivity(), binding.recyclerView, ThemeStore.accentColor(requireActivity()));
 
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);

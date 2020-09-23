@@ -13,7 +13,7 @@ public class AbsMusicServiceFragment extends Fragment implements MusicServiceEve
     private AbsMusicServiceActivity activity;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
             activity = (AbsMusicServiceActivity) context;

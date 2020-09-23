@@ -140,7 +140,7 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
 
     @Override
     protected int loadGridSize() {
-        return PreferenceUtil.getInstance(getActivity()).getSongGridSize(getActivity());
+        return PreferenceUtil.getInstance(getActivity()).getSongGridSize(requireActivity());
     }
 
     @Override
@@ -150,7 +150,7 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
 
     @Override
     protected int loadGridSizeLand() {
-        return PreferenceUtil.getInstance(getActivity()).getSongGridSizeLand(getActivity());
+        return PreferenceUtil.getInstance(getActivity()).getSongGridSizeLand(requireActivity());
     }
 
     @Override

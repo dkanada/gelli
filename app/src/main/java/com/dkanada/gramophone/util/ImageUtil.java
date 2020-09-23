@@ -13,6 +13,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import java.io.InputStream;
@@ -87,23 +88,19 @@ public class ImageUtil {
     }
 
     public static Drawable getVectorDrawable(@NonNull Resources res, @DrawableRes int resId, @Nullable Resources.Theme theme) {
-        if (Build.VERSION.SDK_INT >= 21) {
-            return res.getDrawable(resId, theme);
-        }
-
-        return VectorDrawableCompat.create(res, resId, theme);
+        return ResourcesCompat.getDrawable(res, resId, theme);
     }
 
     public static Drawable getTintedVectorDrawable(@NonNull Resources res, @DrawableRes int resId, @Nullable Resources.Theme theme, @ColorInt int color) {
         return TintHelper.createTintedDrawable(getVectorDrawable(res, resId, theme), color);
     }
 
-    public static Drawable getTintedVectorDrawable(@NonNull Context context, @DrawableRes int id, @ColorInt int color) {
-        return TintHelper.createTintedDrawable(getVectorDrawable(context.getResources(), id, context.getTheme()), color);
+    public static Drawable getTintedVectorDrawable(@NonNull Context context, @DrawableRes int resId, @ColorInt int color) {
+        return TintHelper.createTintedDrawable(getVectorDrawable(context.getResources(), resId, context.getTheme()), color);
     }
 
-    public static Drawable getVectorDrawable(@NonNull Context context, @DrawableRes int id) {
-        return getVectorDrawable(context.getResources(), id, context.getTheme());
+    public static Drawable getVectorDrawable(@NonNull Context context, @DrawableRes int resId) {
+        return getVectorDrawable(context.getResources(), resId, context.getTheme());
     }
 
     public static Drawable resolveDrawable(@NonNull Context context, @AttrRes int drawableAttr) {

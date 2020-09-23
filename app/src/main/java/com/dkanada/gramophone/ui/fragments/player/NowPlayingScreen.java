@@ -13,12 +13,13 @@ public enum NowPlayingScreen {
     public final int titleRes;
 
     @DrawableRes
-    public final int drawableResId;
+    public final int drawableRes;
+
     public final int id;
 
-    NowPlayingScreen(@StringRes int titleRes, @DrawableRes int drawableResId, int id) {
+    NowPlayingScreen(@StringRes int titleRes, @DrawableRes int drawableRes, int id) {
         this.titleRes = titleRes;
-        this.drawableResId = drawableResId;
+        this.drawableRes = drawableRes;
         this.id = id;
     }
 }
