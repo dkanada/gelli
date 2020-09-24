@@ -165,7 +165,7 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
         public void onReceive(final Context context, @NonNull final Intent intent) {
             final String action = intent.getAction();
             AbsMusicServiceActivity activity = reference.get();
-            if (activity != null) {
+            if (activity != null && action != null) {
                 switch (action) {
                     case MusicService.META_CHANGED:
                         activity.onPlayMetadataChanged();
