@@ -2,13 +2,12 @@ package com.dkanada.gramophone.util;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;

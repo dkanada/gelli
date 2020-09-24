@@ -1,10 +1,11 @@
 package com.dkanada.gramophone.ui.fragments.mainactivity.library.pager;
 
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
 
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.Util;

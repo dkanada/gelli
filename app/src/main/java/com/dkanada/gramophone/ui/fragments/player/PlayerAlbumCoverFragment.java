@@ -3,8 +3,6 @@ package com.dkanada.gramophone.ui.fragments.player;
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.ViewPager;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -12,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
 
 import com.dkanada.gramophone.adapter.AlbumCoverPagerAdapter;
 import com.dkanada.gramophone.databinding.FragmentPlayerAlbumCoverBinding;

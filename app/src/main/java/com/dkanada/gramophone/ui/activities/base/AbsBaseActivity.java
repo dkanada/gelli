@@ -8,16 +8,17 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.google.android.material.snackbar.Snackbar;
 import androidx.core.app.ActivityCompat;
+
 import android.view.KeyEvent;
 import android.view.View;
 
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
+import com.google.android.material.snackbar.Snackbar;
 
 public abstract class AbsBaseActivity extends AbsThemeActivity {
     public static final int PERMISSION_REQUEST = 100;

@@ -5,17 +5,18 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
+import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.databinding.ActivityAboutBinding;
 import com.dkanada.gramophone.databinding.CardAboutAppBinding;
 import com.dkanada.gramophone.databinding.CardAuthorBinding;
 import com.dkanada.gramophone.databinding.CardSpecialThanksBinding;
 import com.dkanada.gramophone.databinding.CardSupportDevelopmentBinding;
 import com.dkanada.gramophone.R;
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
 
 @SuppressWarnings("FieldCanBeLocal")

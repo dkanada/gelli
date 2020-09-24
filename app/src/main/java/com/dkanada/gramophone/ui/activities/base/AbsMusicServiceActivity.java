@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements MusicServiceEventListener {
-
     private final List<MusicServiceEventListener> mMusicServiceEventListeners = new ArrayList<>();
 
     private MusicPlayerRemote.ServiceToken serviceToken;

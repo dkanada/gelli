@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
 public class HeightFitSquareLayout extends FrameLayout {
-
     private boolean forceSquare = true;
 
     public HeightFitSquareLayout(Context context) {

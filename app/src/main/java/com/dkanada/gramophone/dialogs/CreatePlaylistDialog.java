@@ -2,10 +2,11 @@ package com.dkanada.gramophone.dialogs;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.InputType;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import android.text.InputType;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dkanada.gramophone.R;

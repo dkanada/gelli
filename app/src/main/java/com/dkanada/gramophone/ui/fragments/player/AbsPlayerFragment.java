@@ -1,11 +1,11 @@
 package com.dkanada.gramophone.ui.fragments.player;
 
 import android.content.Context;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.dialogs.AddToPlaylistDialog;

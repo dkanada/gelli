@@ -3,6 +3,9 @@ package com.dkanada.gramophone.ui.activities;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,8 +14,6 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.preference.TwoStatePreference;
-import android.view.MenuItem;
-import android.view.View;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.dkanada.gramophone.databinding.ActivitySettingsBinding;

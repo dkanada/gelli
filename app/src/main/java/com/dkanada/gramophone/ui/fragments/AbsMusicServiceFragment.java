@@ -2,9 +2,10 @@ package com.dkanada.gramophone.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import android.view.View;
 
 import com.dkanada.gramophone.interfaces.MusicServiceEventListener;
 import com.dkanada.gramophone.ui.activities.base.AbsMusicServiceActivity;

@@ -2,12 +2,13 @@ package com.dkanada.gramophone.adapter;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.SparseArray;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import android.util.SparseArray;
-import android.view.ViewGroup;
 
 import com.dkanada.gramophone.model.CategoryInfo;
 import com.dkanada.gramophone.ui.fragments.mainactivity.library.pager.AlbumsFragment;

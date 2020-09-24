@@ -4,28 +4,23 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.dkanada.gramophone.databinding.ActivityMainContentBinding;
-import com.dkanada.gramophone.databinding.ActivityMainDrawerLayoutBinding;
-import com.dkanada.gramophone.databinding.NavigationDrawerHeaderBinding;
-import com.dkanada.gramophone.dialogs.ConfirmLogoutDialog;
-import androidx.fragment.app.Fragment;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
+import com.dkanada.gramophone.databinding.ActivityMainContentBinding;
+import com.dkanada.gramophone.databinding.ActivityMainDrawerLayoutBinding;
+import com.dkanada.gramophone.databinding.NavigationDrawerHeaderBinding;
+import com.dkanada.gramophone.dialogs.ConfirmLogoutDialog;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
@@ -34,7 +29,6 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.dkanada.gramophone.ui.fragments.mainactivity.library.LibraryFragment;
 import com.dkanada.gramophone.util.MusicUtil;
-
 import com.dkanada.gramophone.util.QueryUtil;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
