@@ -38,7 +38,6 @@
     <string name="no_results">Няма резултати</string>
     <string name="action_remove_from_playlist">Премахни от плейлист</string>
     <string name="action_grid_size">Големина на иконки</string>
-    <string name="action_grid_size_land">Големина на иконки (верт.)</string>
     <string name="delete_playlist_x"><![CDATA[Да бъде ли изтрит плейлистът <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[Да бъдат ли изтрити <b>%1$d</b> плейлиста?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Премахни песента <b>%1$s</b> от този плейлист?]]></string>
@@ -115,8 +114,5 @@
     <string name="login">Логин</string>
     <string name="username">Юзернейм</string>
     <string name="password">Парола</string>
-    <string name="app_shortcut_shuffle_all_short">Разбъркай</string>
-    <string name="app_shortcut_top_tracks_short">Най - често слушани</string>
-    <string name="app_shortcut_last_added_short">Последно_добавени</string>
     <string name="playlist_is_empty">Плейлистът е празен</string>
 </resources>

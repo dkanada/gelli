@@ -39,7 +39,6 @@
     <string name="no_results">Nincs találat</string>
     <string name="action_remove_from_playlist">Eltávolítás a lejátszási listából</string>
     <string name="action_grid_size">Rácsméret</string>
-    <string name="action_grid_size_land">Rácsméret</string>
     <string name="delete_playlist_x"><![CDATA[Biztosan törli a(z) <b>%1$s</b> lejátszási listát?]]></string>
     <string name="delete_x_playlists"><![CDATA[Biztosan töröl <b>%1$d</b> lejátszási listát?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Biztosan eltávolítja a(z) <b>%1$s</b> dalt a lejátszási listából?]]></string>
@@ -125,9 +124,6 @@
     <string name="login">Bejelentkezés</string>
     <string name="username">Felhasználónév</string>
     <string name="password">Jelszó</string>
-    <string name="app_shortcut_shuffle_all_short">Keverés</string>
-    <string name="app_shortcut_top_tracks_short">Top dalok</string>
-    <string name="app_shortcut_last_added_short">Legfrissebb dalok</string>
     <string name="playlist_is_empty">A lejátszási lista üres</string>
     <string name="playing_notification_description">A lejátszási értesítés lejátszási / szüneteltetési intézkedéseket tartalmaz.</string>
     <string name="playing_notification_name">Értesítés lejátszása</string>

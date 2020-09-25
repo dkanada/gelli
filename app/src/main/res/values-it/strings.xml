@@ -39,7 +39,6 @@
     <string name="no_results">Nessun risultato</string>
     <string name="action_remove_from_playlist">Rimuovi dalla playlist</string>
     <string name="action_grid_size">Dimensione griglia</string>
-    <string name="action_grid_size_land">Dimensione griglia (schermo orizzontale)</string>
     <string name="delete_playlist_x"><![CDATA[Eliminare la playlist <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[Eliminare <b>%1$d</b> playlist?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Rimuovere il brano <b>%1$s</b> dalla playlist?]]></string>
@@ -128,9 +127,6 @@
     <string name="login">Accesso</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="app_shortcut_shuffle_all_short">Casuale</string>
-    <string name="app_shortcut_top_tracks_short">Migliori tracce</string>
-    <string name="app_shortcut_last_added_short">Ultima aggiunta</string>
     <string name="playlist_is_empty">La playlist è vuota</string>
     <string name="playing_notification_description">La notifica di riproduzione offre azioni per play/pausa ecc.</string>
     <string name="playing_notification_name">Notifica di riproduzione</string>

@@ -39,7 +39,6 @@
     <string name="no_results">Нет результатов</string>
     <string name="action_remove_from_playlist">Удалить из плейлиста</string>
     <string name="action_grid_size">Размер сетки</string>
-    <string name="action_grid_size_land">Размер сетки (ландшафт)</string>
     <string name="delete_playlist_x"><![CDATA[Вы хотите удалить плейлист <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[Удалить <b>%1$d</b> плейлиста?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Удалить песню <b>%1$s</b> из плейлиста?]]></string>
@@ -128,9 +127,6 @@
     <string name="login">Войти</string>
     <string name="username">Имя пользователя</string>
     <string name="password">Пароль</string>
-    <string name="app_shortcut_shuffle_all_short">Перемешать</string>
-    <string name="app_shortcut_top_tracks_short">Популярные треки</string>
-    <string name="app_shortcut_last_added_short">Последние добавленные</string>
     <string name="playlist_is_empty">Плейлист пуст</string>
     <string name="playing_notification_description">С помощью уведомления о воспроизведении можно воспроизводить/ставить на паузу и т.д.</string>
     <string name="playing_notification_name">Уведомление о воспроизведении</string>

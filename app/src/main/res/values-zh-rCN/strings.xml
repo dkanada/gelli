@@ -39,7 +39,6 @@
     <string name="no_results">没有找到结果</string>
     <string name="action_remove_from_playlist">从播放列表中移除</string>
     <string name="action_grid_size">网格尺寸</string>
-    <string name="action_grid_size_land">网格尺寸（横屏）</string>
     <string name="delete_playlist_x"><![CDATA[是否删除播放列表 <b>%1$s</b>？]]></string>
     <string name="delete_x_playlists"><![CDATA[是否删除 <b>%1$d</b> 个播放列表？]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[是否从播放列表中移除 <b>%1$s</b>？]]></string>
@@ -126,9 +125,6 @@
     <string name="login">登录</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
-    <string name="app_shortcut_shuffle_all_short">随机播放</string>
-    <string name="app_shortcut_top_tracks_short">最喜欢的歌曲</string>
-    <string name="app_shortcut_last_added_short">最近添加</string>
     <string name="playlist_is_empty">播放列表为空</string>
     <string name="playing_notification_description">正在播放通知提供了播放/暂停等便捷操作。</string>
     <string name="playing_notification_name">正在播放通知</string>

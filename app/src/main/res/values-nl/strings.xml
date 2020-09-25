@@ -39,7 +39,6 @@
     <string name="no_results">Geen resultaten</string>
     <string name="action_remove_from_playlist">Verwijderen uit afspeellijst</string>
     <string name="action_grid_size">Rastergrootte</string>
-    <string name="action_grid_size_land">Rastergrootte (landschap)</string>
     <string name="delete_playlist_x"><![CDATA[Afspeellijst <b>%1$s</b> verwijderen?]]></string>
     <string name="delete_x_playlists"><![CDATA[<b>%1$d</b> afspeellijsten verwijderen?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Het nummer <b>%1$s</b> verwijderen uit de afspeellijst?]]></string>
@@ -125,9 +124,6 @@
     <string name="login">Login</string>
     <string name="username">Gebruikersnaam</string>
     <string name="password">Wachtwoord</string>
-    <string name="app_shortcut_shuffle_all_short">Shuffle</string>
-    <string name="app_shortcut_top_tracks_short">Top nummers</string>
-    <string name="app_shortcut_last_added_short">Laatst toegevoegd</string>
     <string name="playlist_is_empty">Afspeellijst is leeg</string>
     <string name="playing_notification_description">De afspeelmelding biedt acties voor afspelen/pauzeren etc.</string>
     <string name="playing_notification_name">Afspeelmelding</string>

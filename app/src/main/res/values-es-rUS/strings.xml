@@ -39,7 +39,6 @@
     <string name="no_results">Sin resultados</string>
     <string name="action_remove_from_playlist">Eliminar de la lista de reproducción</string>
     <string name="action_grid_size">Tamaño de la cuadrícula</string>
-    <string name="action_grid_size_land">Tamaño de la cuadrícula (horizontal)</string>
     <string name="delete_playlist_x"><![CDATA[¿Borrar la lista de reproducción <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[¿Borrar <b>%1$d</b> listas de reproducción?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[¿Eliminar la canción </b>%1$s<b> de la lista de reproducción?]]></string>
@@ -125,9 +124,6 @@
     <string name="login">Iniciar sesión</string>
     <string name="username">Nombre de usuario</string>
     <string name="password">Contraseña</string>
-    <string name="app_shortcut_shuffle_all_short">Al azar</string>
-    <string name="app_shortcut_top_tracks_short">Mejores pistas</string>
-    <string name="app_shortcut_last_added_short">Último agregado</string>
     <string name="playlist_is_empty">La lista de reproducción está vacía</string>
     <string name="playing_notification_description">La notificación de reproducción proporciona acciones para reproducir/pausar, etc.</string>
     <string name="playing_notification_name">Notificación de reproducción</string>

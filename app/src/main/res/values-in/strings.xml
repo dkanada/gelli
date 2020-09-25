@@ -39,7 +39,6 @@
     <string name="no_results">Tidak ditemukan</string>
     <string name="action_remove_from_playlist">Hapus dari daftar putar</string>
     <string name="action_grid_size">Ukuran kisi</string>
-    <string name="action_grid_size_land">Ukuran kisi (lanskap)</string>
     <string name="delete_playlist_x"><![CDATA[Hapus daftar putar {<b>}{%1$s}{</b>}?]]></string>
     <string name="delete_x_playlists"><![CDATA[Hapus <b>%1$d</b> daftar putar?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Hapus lagu <b>%1$s</b> dari daftar putar?]]></string>
@@ -128,9 +127,6 @@
     <string name="login">Masuk</string>
     <string name="username">Nama pengguna</string>
     <string name="password">Kata sandi</string>
-    <string name="app_shortcut_shuffle_all_short">Acak</string>
-    <string name="app_shortcut_top_tracks_short">Trek Teratas</string>
-    <string name="app_shortcut_last_added_short">Terakhir ditambahkan</string>
     <string name="playlist_is_empty">Daftar putar kosong</string>
     <string name="playing_notification_description">Notifikasi bermain memberi tindakan untuk putar/jeda, dll.</string>
     <string name="playing_notification_name">Notifikasi bermain</string>

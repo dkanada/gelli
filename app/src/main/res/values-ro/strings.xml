@@ -39,7 +39,6 @@
     <string name="no_results">Niciun rezultat</string>
     <string name="action_remove_from_playlist">Ștergeți din lista de redare.</string>
     <string name="action_grid_size">Mărimea grilei</string>
-    <string name="action_grid_size_land">Dimensiunea grilei (peisaj)</string>
     <string name="delete_playlist_x"><![CDATA[Doriți să ștergeți lista de redare <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[Ştergeți <b>%1$d</b> liste?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Ştergeți melodia <b>%1$s</b> din listă?]]></string>
@@ -125,9 +124,6 @@
     <string name="login">Logare</string>
     <string name="username">Nume utilizator</string>
     <string name="password">Parolă</string>
-    <string name="app_shortcut_shuffle_all_short">Amestecare</string>
-    <string name="app_shortcut_top_tracks_short">Melodii de top</string>
-    <string name="app_shortcut_last_added_short">Ultimele adăugate</string>
     <string name="playlist_is_empty">Listă de redare goală</string>
     <string name="playing_notification_description">Notificarea de redare oferă acțiuni de redare/pauză etc.</string>
     <string name="playing_notification_name">Notificare de redare</string>

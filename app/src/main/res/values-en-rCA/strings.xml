@@ -38,7 +38,6 @@
     <string name="no_results">No results</string>
     <string name="action_remove_from_playlist">Remove from playlist</string>
     <string name="action_grid_size">Grid size</string>
-    <string name="action_grid_size_land">Grid size (land)</string>
     <string name="delete_playlist_x"><![CDATA[Delete the playlist <b> %1$s </b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[<b>%1$d</b> playlists?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Remove the song <b> %1$s </b> from the playlist?]]></string>
@@ -119,9 +118,6 @@
     <string name="login">Login</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="app_shortcut_shuffle_all_short">Shuffle</string>
-    <string name="app_shortcut_top_tracks_short">Top tracks</string>
-    <string name="app_shortcut_last_added_short">Last added</string>
     <string name="playlist_is_empty">Playlist is empty</string>
     <string name="playing_notification_description">The playing notification provides actions for play/pause etc.</string>
     <string name="playing_notification_name">Playing notification</string>

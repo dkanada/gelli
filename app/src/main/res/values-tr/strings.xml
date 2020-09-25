@@ -39,7 +39,6 @@
     <string name="no_results">Sonuç bulunamadı</string>
     <string name="action_remove_from_playlist">Çalma listesinden kaldır</string>
     <string name="action_grid_size">Kılavuz boyutu</string>
-    <string name="action_grid_size_land">Kılavuz boyutu (yatay)</string>
     <string name="delete_playlist_x"><![CDATA[<b>%1$s</b> çalma listesini sil?]]></string>
     <string name="delete_x_playlists"><![CDATA[<b>%1$d</b> çalma listelerini silmek istiyor musunuz?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Çalma listesinden <b>%1$s</b> şarkıyı kaldırmak istiyor musunuz?]]></string>
@@ -125,9 +124,6 @@
     <string name="login">Oturum aç</string>
     <string name="username">Kullanıcı adı</string>
     <string name="password">Şifre</string>
-    <string name="app_shortcut_shuffle_all_short">Karıştır</string>
-    <string name="app_shortcut_top_tracks_short">En iyi parçalar</string>
-    <string name="app_shortcut_last_added_short">Son eklenen</string>
     <string name="playlist_is_empty">Çalma listesi boş</string>
     <string name="playing_notification_description">Çalma bildirimi, başlat/duraklat vb. işlemleri sağlar</string>
     <string name="playing_notification_name">Çalma bildirimi</string>

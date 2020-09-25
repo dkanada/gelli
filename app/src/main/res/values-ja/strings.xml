@@ -39,7 +39,6 @@
     <string name="no_results">該当なし</string>
     <string name="action_remove_from_playlist">プレイリストから除去</string>
     <string name="action_grid_size">グリッドサイズ</string>
-    <string name="action_grid_size_land">グリッドサイズ（横向き）</string>
     <string name="delete_playlist_x"><![CDATA[<b>%1$s</b> を削除してもよろしいですか？]]></string>
     <string name="delete_x_playlists"><![CDATA[選択された<b>%1$d</b>つのプレイリストを削除してもよろしいですか？]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[プレイリストから <b>%1$s</b> を除去してもよろしいですか？]]></string>
@@ -125,9 +124,6 @@
     <string name="login">ログイン</string>
     <string name="username">ユーザー名</string>
     <string name="password">パスワード</string>
-    <string name="app_shortcut_shuffle_all_short">シャッフル</string>
-    <string name="app_shortcut_top_tracks_short">よく聞く曲</string>
-    <string name="app_shortcut_last_added_short">最近追加された曲</string>
     <string name="playlist_is_empty">プレイリストは空です</string>
     <string name="playing_notification_description">再生の通知は再生/一時停止などを提供します。</string>
     <string name="playing_notification_name">再生中の通知</string>

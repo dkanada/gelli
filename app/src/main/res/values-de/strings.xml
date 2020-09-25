@@ -38,7 +38,6 @@
     <string name="no_results">Keine Ergebnisse</string>
     <string name="action_remove_from_playlist">Aus Wiedergabeliste entfernen</string>
     <string name="action_grid_size">Rastergröße</string>
-    <string name="action_grid_size_land">Rastergröße (Querformat)</string>
     <string name="delete_playlist_x"><![CDATA[Willst du die Wiedergabeliste <b>%1$s</b> löschen?]]></string>
     <string name="delete_x_playlists"><![CDATA[Willst du <b>%1$d</b> Wiedergabelisten löschen?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Willst du den Titel <b>%1$s</b> aus der Wiedergabeliste entfernen?]]></string>
@@ -129,9 +128,6 @@
     <string name="login">Einloggen</string>
     <string name="username">Benutzername</string>
     <string name="password">Passwort</string>
-    <string name="app_shortcut_shuffle_all_short">Zufällig</string>
-    <string name="app_shortcut_top_tracks_short">Lieblingstitel</string>
-    <string name="app_shortcut_last_added_short">Zuletzt hinzugefügt</string>
     <string name="playlist_is_empty">Die Wiedergabeliste ist leer</string>
     <string name="playing_notification_description">Die Benachrichtigung zur Steuerung von Play/Pause etc.</string>
     <string name="playing_notification_name">Wiedergabe-Benachrichtigung</string>

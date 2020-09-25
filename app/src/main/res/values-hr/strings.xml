@@ -39,7 +39,6 @@
     <string name="no_results">Nema rezultata</string>
     <string name="action_remove_from_playlist">Ukloni s popisa naslova</string>
     <string name="action_grid_size">Veličina mreže</string>
-    <string name="action_grid_size_land">Veličina mreže (vodoravno)</string>
     <string name="delete_playlist_x"><![CDATA[Izbrisati popis naslova <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[Izbrisati <b>%1$d</b> popisa naslova?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Ukloniti pjesmu <b>%1$s</b> s popisa naslova?]]></string>
@@ -125,9 +124,6 @@
     <string name="login">Prijava</string>
     <string name="username">Korisničko ime</string>
     <string name="password">Lozinka</string>
-    <string name="app_shortcut_shuffle_all_short">Nasumična reprodukcija</string>
-    <string name="app_shortcut_top_tracks_short">Najslušanije pjesme</string>
-    <string name="app_shortcut_last_added_short">Posljednje dodano</string>
     <string name="playlist_is_empty">Popis naslova je prazan</string>
     <string name="playing_notification_description">Obavijest reprodukcije pruža radnje za reprodukciju/pauzu itd.</string>
     <string name="playing_notification_name">Obavijest reprodukcije</string>

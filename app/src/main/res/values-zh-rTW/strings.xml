@@ -40,7 +40,6 @@
     <string name="no_results">沒有搜尋結果</string>
     <string name="action_remove_from_playlist">從播放清單中移除</string>
     <string name="action_grid_size">網格大小</string>
-    <string name="action_grid_size_land">網格大小</string>
     <string name="delete_playlist_x"><![CDATA[確定要刪除播放清單<b>%1$s</b>嗎？]]></string>
     <string name="delete_x_playlists"><![CDATA[確定要刪除<b>%1$d</b>個播放清單？]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[確定要將歌曲<b>%1$s</b>從播放清單中移除嗎？]]></string>
@@ -129,9 +128,6 @@
     <string name="login">登入</string>
     <string name="username">帳號</string>
     <string name="password">密碼</string>
-    <string name="app_shortcut_shuffle_all_short">隨機播放</string>
-    <string name="app_shortcut_top_tracks_short">最佳單曲</string>
-    <string name="app_shortcut_last_added_short">最後新增</string>
     <string name="playlist_is_empty">播放清單是空的</string>
     <string name="playing_notification_description">播放中通知提供了播放/暫停等操作</string>
     <string name="playing_notification_name">播放中通知</string>

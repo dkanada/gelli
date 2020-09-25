@@ -35,7 +35,6 @@
     <string name="no_results">Sem resultados</string>
     <string name="action_remove_from_playlist">Remover da lista de reprodução</string>
     <string name="action_grid_size">Tamanho de grelha</string>
-    <string name="action_grid_size_land">Tamanho de grelha (horizontal)</string>
     <string name="delete_playlist_x"><![CDATA[Eliminar a lista de reprodução <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[Eliminar <b>%1$d</b> listas de reprodução?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Remover a faixa <b>%1$s</b> da playlist?]]></string>

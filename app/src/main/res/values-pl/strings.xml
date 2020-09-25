@@ -39,7 +39,6 @@
     <string name="no_results">Brak wyników</string>
     <string name="action_remove_from_playlist">Usuń z listy odtwarzania</string>
     <string name="action_grid_size">Rozmiar siatki</string>
-    <string name="action_grid_size_land">Rozmiar siatki (poziomo)</string>
     <string name="delete_playlist_x"><![CDATA[Usunąć listę odtwarzania <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[Usunąć <b>%1$d</b> listy odtwarzania?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Usunąć <b>%1$s</b> z listy odtwarzania?]]></string>
@@ -125,9 +124,6 @@
     <string name="login">Zaloguj się</string>
     <string name="username">Nazwa użytkownika</string>
     <string name="password">Hasło</string>
-    <string name="app_shortcut_shuffle_all_short">Losowo</string>
-    <string name="app_shortcut_top_tracks_short">Najlepsze utwory</string>
-    <string name="app_shortcut_last_added_short">Ostatnio dodane</string>
     <string name="playlist_is_empty">Lista odtwarzania jest pusta</string>
     <string name="playing_notification_description">Powiadomienie odtwarzania pozwala na zatrzymywanie/wznawianie itd.</string>
     <string name="playing_notification_name">Powiadomienie o odtwarzaniu</string>

@@ -39,7 +39,6 @@
     <string name="no_results">Ei hakutuloksia</string>
     <string name="action_remove_from_playlist">Poista soittolistasta</string>
     <string name="action_grid_size">Ruudukon koko</string>
-    <string name="action_grid_size_land">Ruudukon koko (vaaka)</string>
     <string name="delete_playlist_x"><![CDATA[Haluatko poistaa soittolistan <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[Poistetaanko <b>%1$d</b> soittolistaa?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Haluatko poistaa kappaleen <b>%1$s</b> soittolistasta?]]></string>
@@ -128,9 +127,6 @@
     <string name="login">Kirjaudu sisään</string>
     <string name="username">Käyttäjänimi</string>
     <string name="password">Salasana</string>
-    <string name="app_shortcut_shuffle_all_short">Sekoita</string>
-    <string name="app_shortcut_top_tracks_short">Top raidat</string>
-    <string name="app_shortcut_last_added_short">Viimeksi lisätyt</string>
     <string name="playlist_is_empty">Soittolista on tyhjä</string>
     <string name="playing_notification_description">Toistoilmoitus sisältää nappeja musiikin toistolle/pysäyttämiselle jne.</string>
     <string name="playing_notification_name">Toistoilmoitus</string>

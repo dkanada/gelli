@@ -39,7 +39,6 @@
     <string name="no_results">אין תוצאות</string>
     <string name="action_remove_from_playlist">הסר מרשימת ההשמעה</string>
     <string name="action_grid_size">גודל הרשת</string>
-    <string name="action_grid_size_land">גודל הרשת (קרקע)</string>
     <string name="delete_playlist_x"><![CDATA[האם ברצונך למחוק את רשימת השמיעה <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[האם ברצונך למחוק  <b>%1$d</b> רשימות השמיעה?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[למחוק את השיר <b>%1$s</b> מרשימת ההשמעה?]]></string>
@@ -125,9 +124,6 @@
     <string name="login">התחבר</string>
     <string name="username">שם משתמש</string>
     <string name="password">סיסמא</string>
-    <string name="app_shortcut_shuffle_all_short">ערבב</string>
-    <string name="app_shortcut_top_tracks_short">שירים מובילים</string>
-    <string name="app_shortcut_last_added_short">נוספו לאחרונה</string>
     <string name="playlist_is_empty">רשימת ההשמעה ריקה</string>
     <string name="playing_notification_description">התראת הניגון מספקת פעולות הפעלה/השהייה וכו\'.</string>
     <string name="playing_notification_name">התראת ניגון</string>

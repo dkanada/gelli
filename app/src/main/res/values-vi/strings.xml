@@ -38,7 +38,6 @@
     <string name="no_results">Không có kết quả</string>
     <string name="action_remove_from_playlist">Xóa khỏi danh sách nhạc</string>
     <string name="action_grid_size">Kích thước lưới</string>
-    <string name="action_grid_size_land">Kích thước lưới (màn hình nằm ngang)</string>
     <string name="delete_playlist_x"><![CDATA[Xóa danh sách nhạc <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[Xóa danh sách nhạc <b>%1$d</b>? ]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Xóa bài hát <b>%1$s</b> từ danh sách nhạc này?]]></string>
@@ -119,9 +118,6 @@
     <string name="login">Tài khoản GitHub</string>
     <string name="username">Tên người dùng</string>
     <string name="password">Mật khẩu</string>
-    <string name="app_shortcut_shuffle_all_short">Xáo trộn</string>
-    <string name="app_shortcut_top_tracks_short">Bài hát hàng đầu</string>
-    <string name="app_shortcut_last_added_short">@string/last_added</string>
     <string name="playlist_is_empty">Danh sách nhạc trống</string>
     <string name="playing_notification_description">Thông báo đang phát cung cấp các hành động để phát / tạm dừng vv.</string>
     <string name="playing_notification_name">Thông báo đang phát</string>

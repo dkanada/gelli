@@ -39,7 +39,6 @@
     <string name="no_results">Κανένα αποτέλεσμα</string>
     <string name="action_remove_from_playlist">Αφαίρεση από την λίστα</string>
     <string name="action_grid_size">Μέγεθος πλέγματος</string>
-    <string name="action_grid_size_land">Μέγεθος πλέγματος</string>
     <string name="delete_playlist_x"><![CDATA[Διαγραφή της λίστας <b>%1$s</b>;]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Να αφαιρεθεί το τραγούδι <b>%1$s</b> από τη λίστα αναπαραγωγής;]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[Να αφαιρεθούν <b>%1$d</b> τα τραγούδια από την λίστα αναπαραγωγής;]]></string>
@@ -118,8 +117,5 @@
     <string name="login">Είσοδος</string>
     <string name="username">Όνομα Χρήστη</string>
     <string name="password">Κωδικός Πρόσβασης</string>
-    <string name="app_shortcut_shuffle_all_short">Τυχαία αναπαραγωγή</string>
-    <string name="app_shortcut_top_tracks_short">Κορυφαία Κομμάτια</string>
-    <string name="app_shortcut_last_added_short">@string/last_added</string>
     <string name="playlist_is_empty">Η Λίστα αναπαραγωγής είναι κενή</string>
 </resources>

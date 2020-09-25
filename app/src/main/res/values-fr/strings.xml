@@ -39,7 +39,6 @@
     <string name="no_results">Aucun résultat</string>
     <string name="action_remove_from_playlist">Retirer de la playlist</string>
     <string name="action_grid_size">Taille de la grille</string>
-    <string name="action_grid_size_land">Taille de la grille (paysage)</string>
     <string name="delete_playlist_x"><![CDATA[Supprimer la playlist <b>%1$s</b> ?]]></string>
     <string name="delete_x_playlists"><![CDATA[Supprimer les playlists <b>%1$d</b>?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Retirer le titre <b>%1$s</b> de la playlist ?]]></string>
@@ -125,9 +124,6 @@
     <string name="login">Connexion</string>
     <string name="username">Nom d\'utilisateur</string>
     <string name="password">Mot de passe</string>
-    <string name="app_shortcut_shuffle_all_short">Lecture aléatoire</string>
-    <string name="app_shortcut_top_tracks_short">Meilleurs titres</string>
-    <string name="app_shortcut_last_added_short">Ajouté dernièrement</string>
     <string name="playlist_is_empty">Liste de lecture vide</string>
     <string name="playing_notification_description">La notification de lecture fournit des actions pour la lecture / pause etc.</string>
     <string name="playing_notification_name">Notification de lecture</string>

@@ -39,7 +39,6 @@
     <string name="no_results">لا توجد نتائج</string>
     <string name="action_remove_from_playlist">إزالة من قائمة التشغيل</string>
     <string name="action_grid_size">حجم الشبكة</string>
-    <string name="action_grid_size_land">حجم الشبكة (في الوضع الأفقي)</string>
     <string name="delete_playlist_x"><![CDATA[حذف قائمة التشغيل <b>%1$s</b>؟]]></string>
     <string name="delete_x_playlists"><![CDATA[حذف <b>%1$d</b> قوائم تشغيل؟]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[إزالة الأغنية <b>%1$s</b> من قائمة التشغيل؟]]></string>
@@ -125,9 +124,6 @@
     <string name="login">تسجيل دخول</string>
     <string name="username">اسم المستخدم</string>
     <string name="password">كلمة المرور</string>
-    <string name="app_shortcut_shuffle_all_short">خلط</string>
-    <string name="app_shortcut_top_tracks_short">أفضل الأغاني</string>
-    <string name="app_shortcut_last_added_short">المضافة مؤخراً</string>
     <string name="playlist_is_empty">قائمة التشغيل فارغة</string>
     <string name="playing_notification_description">إشعار التشغيل يوفر أزرار تحكم للتشغيل/الإيقاف المؤقت إلخ.</string>
     <string name="playing_notification_name">إشعار التشغيل</string>

@@ -39,7 +39,6 @@
     <string name="no_results">Немає результатів</string>
     <string name="action_remove_from_playlist">Видалити зі списку відтворення</string>
     <string name="action_grid_size">Розмір сітки</string>
-    <string name="action_grid_size_land">Розмір сітки (ландшафт)</string>
     <string name="delete_playlist_x"><![CDATA[Видалити список відтворення <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[Видалити списки відтворення <b>%1$d</b>?]]></string>
     <string name="remove_song_x_from_playlist"><![CDATA[Видалити пісню <b>%1$s</b> зі списку відтворення?]]></string>
