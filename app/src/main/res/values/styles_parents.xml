@@ -28,6 +28,7 @@
         <item name="android:actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
     </style>
 
     <style name="Theme.Phonograph.Base.Light" parent="Theme.AppCompat.Light.NoActionBar">
@@ -57,6 +58,7 @@
         <item name="android:actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+
     </style>
 
     <style name="Theme.Phonograph.Base.Black" parent="@style/Theme.Phonograph.Base">
@@ -84,4 +86,5 @@
     <style name="Widget.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="android:contentDescription">@string/abc_action_menu_overflow_description</item>
     </style>
+
 </resources>

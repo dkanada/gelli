@@ -5,13 +5,13 @@
     <string name="confirm_logout">Are you sure you want to logout?</string>
     <string name="currently_listening_to_x_by_x">Currently listening to %1$s by %2$s.</string>
     <string name="the_audio_file">The audio file</string>
-    <string name="unplayable_file">Couldn\u2019t play this song.</string>
+    <string name="unplayable_file">Couldn\'t play this song.</string>
     <string name="audio_focus_denied">Audio focus denied.</string>
     <string name="error_share_file">There was an error sharing the file.</string>
     <string name="error_version">Please update your server to the latest version.</string>
 
     <string name="action_share">Share</string>
-    <string name="action_settings">"Settings"</string>
+    <string name="action_settings">Settings</string>
     <string name="action_grant">Grant</string>
     <string name="action_about">About</string>
     <string name="action_login">Login</string>
@@ -29,8 +29,6 @@
     <string name="action_details">Details</string>
     <string name="action_rename">Rename</string>
     <string name="action_delete">Delete</string>
-    <string name="action_sort_order">Sort order</string>
-    <string name="action_sort_method">Sort method</string>
     <string name="action_go_to_artist">Go to artist</string>
     <string name="action_go_to_album">Go to album</string>
     <string name="action_remove_from_playlist">Remove from playlist</string>
@@ -88,6 +86,10 @@
     <string name="delete_playlists_title">Delete playlists</string>
     <string name="select_all_title">Select all</string>
 
+    <string name="action_sort_order">Sort order</string>
+    <string name="action_sort_method">Sort method</string>
+    <string name="colored_footers">Colored footers</string>
+
     <string name="light_theme_name">Light</string>
     <string name="dark_theme_name">Dark</string>
     <string name="black_theme_name">Black</string>
@@ -108,7 +110,6 @@
     <string name="library_categories">Categories</string>
     <string name="primary_color">Primary Color</string>
     <string name="accent_color">Accent Color</string>
-    <string name="colored_footers">Colored footers</string>
     <string name="pref_title_general_theme">Theme</string>
     <string name="pref_title_now_playing_screen_appearance">Appearance</string>
     <string name="pref_title_app_shortcuts">Colored Shortcuts</string>
@@ -125,6 +126,7 @@
     <string name="pref_title_page_size">Page Size</string>
     <string name="pref_title_images_cache_size">Cache Size</string>
     <string name="pref_title_images_external_directory">External Directory</string>
+
     <string name="pref_summary_images_external_directory">Store the image cache in an external directory to keep the files between installs.</string>
     <string name="primary_color_desc">The primary theme color for control elements.</string>
     <string name="accent_color_desc">An alternate color used to accent elements.</string>

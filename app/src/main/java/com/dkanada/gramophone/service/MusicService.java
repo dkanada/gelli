@@ -84,11 +84,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final String REPEAT_MODE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".repeatmodechanged";
     public static final String SHUFFLE_MODE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".shufflemodechanged";
 
-    public static final String SAVED_POSITION = "POSITION";
-    public static final String SAVED_POSITION_IN_TRACK = "POSITION_IN_TRACK";
-    public static final String SAVED_SHUFFLE_MODE = "SHUFFLE_MODE";
-    public static final String SAVED_REPEAT_MODE = "REPEAT_MODE";
-
     public static final int RELEASE_WAKELOCK = 0;
     public static final int TRACK_ENDED = 1;
     public static final int TRACK_WENT_TO_NEXT = 2;
@@ -367,11 +362,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private void savePosition() {
-        PreferenceManager.getDefaultSharedPreferences(this).edit().putInt(SAVED_POSITION, getPosition()).apply();
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putInt(PreferenceUtil.POSITION, getPosition()).apply();
     }
 
     private void saveProgress() {
-        PreferenceManager.getDefaultSharedPreferences(this).edit().putInt(SAVED_POSITION_IN_TRACK, getSongProgressMillis()).apply();
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putInt(PreferenceUtil.PROGRESS, getSongProgressMillis()).apply();
     }
 
     public void saveState() {
@@ -386,8 +381,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private void restoreState() {
-        shuffleMode = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_SHUFFLE_MODE, 0);
-        repeatMode = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_REPEAT_MODE, 0);
+        shuffleMode = PreferenceManager.getDefaultSharedPreferences(this).getInt(PreferenceUtil.SHUFFLE, 0);
+        repeatMode = PreferenceManager.getDefaultSharedPreferences(this).getInt(PreferenceUtil.REPEAT, 0);
 
         notifyChange(SHUFFLE_MODE_CHANGED);
         notifyChange(REPEAT_MODE_CHANGED);
@@ -401,8 +396,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             List<Song> restoredQueue = QueueStore.getInstance(this).getSavedPlayingQueue();
             List<Song> restoredOriginalQueue = QueueStore.getInstance(this).getSavedOriginalPlayingQueue();
 
-            int restoredPosition = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_POSITION, -1);
-            int restoredPositionInTrack = PreferenceManager.getDefaultSharedPreferences(this).getInt(SAVED_POSITION_IN_TRACK, -1);
+            int restoredPosition = PreferenceManager.getDefaultSharedPreferences(this).getInt(PreferenceUtil.POSITION, -1);
+            int restoredPositionInTrack = PreferenceManager.getDefaultSharedPreferences(this).getInt(PreferenceUtil.PROGRESS, -1);
 
             if (restoredQueue.size() > 0 && restoredQueue.size() == restoredOriginalQueue.size() && restoredPosition != -1) {
                 this.originalPlayingQueue = restoredOriginalQueue;
@@ -653,7 +648,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             case REPEAT_MODE_THIS:
                 this.repeatMode = repeatMode;
                 PreferenceManager.getDefaultSharedPreferences(this).edit()
-                        .putInt(SAVED_REPEAT_MODE, repeatMode)
+                        .putInt(PreferenceUtil.REPEAT, repeatMode)
                         .apply();
                 prepareNext();
                 notifyChange(REPEAT_MODE_CHANGED);
@@ -930,7 +925,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public void setShuffleMode(final int shuffleMode) {
         PreferenceManager.getDefaultSharedPreferences(this).edit()
-                .putInt(SAVED_SHUFFLE_MODE, shuffleMode)
+                .putInt(PreferenceUtil.SHUFFLE, shuffleMode)
                 .apply();
 
         switch (shuffleMode) {

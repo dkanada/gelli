@@ -31,6 +31,7 @@ import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.internal.annotations.EverythingIsNonNull;
 
 public class MultiPlayer implements Playback {
     public static final String TAG = MultiPlayer.class.getSimpleName();
@@ -50,23 +51,23 @@ public class MultiPlayer implements Playback {
     private ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
         @Override
         public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
-            Log.i(TAG,"onTracksChanged");
+            Log.i(TAG, "onTracksChanged");
         }
 
         @Override
         public void onLoadingChanged(boolean isLoading) {
-            Log.i(TAG,"onLoadingChanged: isLoading = " + isLoading);
+            Log.i(TAG, "onLoadingChanged: " + isLoading);
         }
 
         @Override
         public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-            Log.i(TAG,"onPlayerStateChanged: playWhenReady = " + playWhenReady);
-            Log.i(TAG,"onPlayerStateChanged: playbackState = " + playbackState);
+            Log.i(TAG, "onPlayerStateChanged playWhenReady: " + playWhenReady);
+            Log.i(TAG, "onPlayerStateChanged playbackState: " + playbackState);
         }
 
         @Override
         public void onPositionDiscontinuity(int reason) {
-            Log.i(TAG,"onPositionDiscontinuity: reason = " + reason);
+            Log.i(TAG, "onPositionDiscontinuity: " + reason);
             int windowIndex = exoPlayer.getCurrentWindowIndex();
 
             if (windowIndex == 1) {
@@ -82,7 +83,7 @@ public class MultiPlayer implements Playback {
 
         @Override
         public void onPlayerError(ExoPlaybackException error) {
-            Log.i(TAG,"onPlaybackError: " + error.getMessage());
+            Log.i(TAG, "onPlaybackError: " + error.getMessage());
             if (context != null) {
                 Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
             }
@@ -140,12 +141,14 @@ public class MultiPlayer implements Playback {
         DataSource.Factory dataSource = new DefaultHttpDataSourceFactory(Util.getUserAgent(context, this.getClass().getName()));
         httpClient.newCall(new Request.Builder().url(path).head().build()).enqueue(new Callback() {
             @Override
+            @EverythingIsNonNull
             public void onFailure(Call call, IOException e) {
                 Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
 
             @Override
+            @EverythingIsNonNull
             public void onResponse(Call call, Response response) {
                 MediaSource source;
                 if (response.header("Content-Type").equals("application/x-mpegURL")) {

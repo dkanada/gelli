@@ -28,12 +28,15 @@ public final class PreferenceUtil {
     public static final String USER = "user";
     public static final String TOKEN = "token";
 
-    public static final String CATEGORIES = "categories";
-    public static final String PAGE_SIZE = "page_size";
-    public static final String REMEMBER_LAST_TAB = "remember_last_tab";
-    public static final String LAST_TAB = "last_tab";
+    public static final String SHUFFLE = "shuffle";
+    public static final String REPEAT = "repeat";
+    public static final String POSITION = "position";
+    public static final String PROGRESS = "progress";
+    public static final String TAB = "tab";
 
-    public static final String NOW_PLAYING_SCREEN = "now_playing_screen";
+    public static final String SLEEP_TIMER_LAST_VALUE = "sleep_timer_last_value";
+    public static final String SLEEP_TIMER_ELAPSED_REALTIME = "sleep_timer_elapsed_real_time";
+    public static final String SLEEP_TIMER_FINISH_SONG = "sleep_timer_finish_music";
 
     public static final String ALBUM_SORT_METHOD = "album_sort_method";
     public static final String SONG_SORT_METHOD = "song_sort_method";
@@ -55,6 +58,10 @@ public final class PreferenceUtil {
     public static final String ARTIST_COLORED_FOOTERS = "artist_colored_footers";
     public static final String ALBUM_ARTIST_COLORED_FOOTERS = "album_artist_colored_footers";
 
+    public static final String CATEGORIES = "categories";
+    public static final String PAGE_SIZE = "page_size";
+    public static final String REMEMBER_LAST_TAB = "remember_last_tab";
+
     public static final String GENERAL_THEME = "general_theme";
     public static final String PRIMARY_COLOR = "primary_color";
     public static final String ACCENT_COLOR = "accent_color";
@@ -62,6 +69,8 @@ public final class PreferenceUtil {
 
     public static final String CLASSIC_NOTIFICATION = "classic_notification";
     public static final String COLORED_NOTIFICATION = "colored_notification";
+
+    public static final String NOW_PLAYING_SCREEN = "now_playing_screen";
 
     public static final String SHOW_ALBUM_COVER = "show_album_cover";
     public static final String BLUR_ALBUM_COVER = "blur_album_cover";
@@ -75,10 +84,6 @@ public final class PreferenceUtil {
 
     public static final String CACHE_SIZE = "cache_size";
     public static final String EXTERNAL_DIRECTORY = "external_directory";
-
-    public static final String SLEEP_TIMER_LAST_VALUE = "sleep_timer_last_value";
-    public static final String SLEEP_TIMER_ELAPSED_REALTIME = "sleep_timer_elapsed_real_time";
-    public static final String SLEEP_TIMER_FINISH_SONG = "sleep_timer_finish_music";
 
     private static PreferenceUtil sInstance;
 
@@ -131,12 +136,12 @@ public final class PreferenceUtil {
     }
 
     public final int getLastTab() {
-        return mPreferences.getInt(LAST_TAB, 0);
+        return mPreferences.getInt(TAB, 0);
     }
 
     public void setLastTab(final int value) {
         final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(LAST_TAB, value);
+        editor.putInt(TAB, value);
         editor.apply();
     }
 

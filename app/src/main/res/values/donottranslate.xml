@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name" translatable="false">Gelli</string>
 
     <string name="dkanada" translatable="false">dkanada</string>
+    <string name="aachen_germany" translatable="false">Aachen, Germany</string>
+
     <string name="aidan_follestad" translatable="false">Aidan Follestad</string>
     <string name="maarten_corpel" translatable="false">Maarten Corpel</string>
     <string name="michael_cook" translatable="false">Michael Cook</string>
     <string name="aleksandar_tesic" translatable="false">Aleksandar Tešić</string>
     <string name="eugene_cheung" translatable="false">Eugene Cheung</string>
     <string name="adrian" translatable="false">Adrian</string>
-
-    <string name="aachen_germany" translatable="false">Aachen, Germany</string>
 
     <string name="google_plus" translatable="false">Google Plus</string>
     <string name="github" translatable="false">GitHub</string>
