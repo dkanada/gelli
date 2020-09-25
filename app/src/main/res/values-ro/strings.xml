@@ -67,7 +67,6 @@
     <string name="pref_title_blurred_album_art">Blurează coperta de album</string>
     <string name="pref_title_colored_notification">Notificare colorată</string>
     <string name="pref_title_classic_notification">Design clasic de notificare</string>
-    <string name="pref_title_gapless_playback">Redare fără întreruperi</string>
     <string name="pref_title_audio_ducking">Se reduce volumul la pierderea focalizării</string>
     <string name="pref_title_remember_last_tab">Rețineți ultima filă</string>
     <string name="delete_action">Șterge</string>
@@ -91,7 +90,6 @@
     <string name="pref_summary_blurred_album_art">Blurează coperta de album pentru ecranul de blocare. Poate cauza probleme cu widgeturi și aplicații terțe.</string>
     <string name="pref_summary_classic_notification">Utilizați designul clasic de notificare.</string>
     <string name="pref_summary_colored_notification">"Coloreaz\u0103 bara de notificare cu cea mai vibrant\u0103 culoare a copertei de album."</string>
-    <string name="pref_summary_gapless_playback">"Poate cauza probleme de redare pe unele dispozitive."</string>
     <string name="pref_summary_colored_app_shortcuts">Colorarea comenzilor rapide ale aplicației în culoarea primară.</string>
     <string name="pref_summary_audio_ducking">Notificări, navigație etc.</string>
     <string name="pref_summary_remember_last_tab">Accesați ultima filă deschisă la lansare</string>

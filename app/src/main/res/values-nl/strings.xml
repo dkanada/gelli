@@ -67,7 +67,6 @@
     <string name="pref_title_blurred_album_art">Vervaag albumhoes</string>
     <string name="pref_title_colored_notification">Gekleurde melding</string>
     <string name="pref_title_classic_notification">Klassieke meldingsweergave</string>
-    <string name="pref_title_gapless_playback">Afspelen zonder pauzes</string>
     <string name="pref_title_audio_ducking">Verminder volume bij focusverlies</string>
     <string name="pref_title_remember_last_tab">Laatste tabblad onthouden</string>
     <string name="delete_action">Verwijderen</string>
@@ -91,7 +90,6 @@
     <string name="pref_summary_blurred_album_art">Vervaagt de albumhoes op het vergrendelscherm. Kan problemen met andere apps of widgets veroorzaken.</string>
     <string name="pref_summary_classic_notification">Gebruik de klassieke meldingsweergave.</string>
     <string name="pref_summary_colored_notification">"Kleurt de melding met het palet van de albumhoes."</string>
-    <string name="pref_summary_gapless_playback">"Verwijdert de pauzes tussen nummers. Dit kan afspeelfouten veroorzaken."</string>
     <string name="pref_summary_colored_app_shortcuts">Kleurt de app-snelkoppelingen in de primaire kleur.</string>
     <string name="pref_summary_audio_ducking">Notificaties, navigatie, etc.</string>
     <string name="pref_summary_remember_last_tab">Ga naar het laatst geopende tabblad bij opstarten</string>

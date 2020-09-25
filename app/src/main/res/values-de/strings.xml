@@ -67,7 +67,6 @@
     <string name="pref_title_blurred_album_art">Album Cover weichzeichnen</string>
     <string name="pref_title_colored_notification">Gefärbte Benachrichtigung</string>
     <string name="pref_title_classic_notification">Klassisches Benachrichtigungsdesign</string>
-    <string name="pref_title_gapless_playback">Lückenlose Wiedergabe</string>
     <string name="pref_title_audio_ducking">Lautstärke bei Fokusverlust verringern</string>
     <string name="pref_title_remember_last_tab">Letzten Tab merken</string>
     <string name="pref_title_remember_shuffle">Shuffle-Einstellung merken</string>
@@ -94,7 +93,6 @@
     <string name="pref_summary_blurred_album_art">Lässt das Album Cover auf dem Sperrbildschirm verschwommen aussehen. Kann Probleme mit Apps und Widgets von Dritten verursachen.</string>
     <string name="pref_summary_classic_notification">Das klassische Benachrichtigungsdesign verwenden.</string>
     <string name="pref_summary_colored_notification">"Die Benachrichtigung ist in der Farbe des Album Covers gef\u00e4rbt."</string>
-    <string name="pref_summary_gapless_playback">"Kann bei einigen Geräten Wiedergabeprobleme verursachen."</string>
     <string name="pref_summary_colored_app_shortcuts">Färbt die App-Shortcuts mit der Hauptfarbe.</string>
     <string name="pref_summary_audio_ducking">Benachrichtigungen, Navigation etc.</string>
     <string name="pref_summary_remember_last_tab">Zuletzt geöffneten Tab beim Start anzeigen</string>

@@ -67,7 +67,6 @@
     <string name="pref_title_blurred_album_art">Bulanık albüm kapağı</string>
     <string name="pref_title_colored_notification">Renkli bildirim</string>
     <string name="pref_title_classic_notification">Klasik bildirim tasarımı</string>
-    <string name="pref_title_gapless_playback">Aralıksız çalma</string>
     <string name="pref_title_audio_ducking">Odak kaybına neden olacak sesi azalt</string>
     <string name="pref_title_remember_last_tab">Son sekmeyi hatırla</string>
     <string name="delete_action">Sil</string>
@@ -91,7 +90,6 @@
     <string name="pref_summary_blurred_album_art">Kilit ekranındaki albüm kapağını bulanıklaştırır. Üçüncü taraf uygulamalar ve widget\'ler ile ilgili sorunlara neden olabilir.</string>
     <string name="pref_summary_classic_notification">Klasik bildirim tasarımını kullan.</string>
     <string name="pref_summary_colored_notification">"Bildirimler alb\u00fcm kapa\u011f\u0131n\u0131n canl\u0131 renkleriyle renklendirilir."</string>
-    <string name="pref_summary_gapless_playback">"Bazı cihazlarda oynatma sorunlarına neden olabilir."</string>
     <string name="pref_summary_colored_app_shortcuts">Uygulama kısayollarını ana renk ile renklendir.</string>
     <string name="pref_summary_audio_ducking">Bildirimler, gezinme vb.</string>
     <string name="pref_summary_remember_last_tab">Başlatıldığında son açılan sekmeye git</string>

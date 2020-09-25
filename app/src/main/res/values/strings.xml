@@ -109,7 +109,7 @@
     <string name="primary_color">Primary Color</string>
     <string name="accent_color">Accent Color</string>
     <string name="colored_footers">Colored footers</string>
-    <string name="pref_title_general_theme">General Theme</string>
+    <string name="pref_title_general_theme">Theme</string>
     <string name="pref_title_now_playing_screen_appearance">Appearance</string>
     <string name="pref_title_app_shortcuts">Colored Shortcuts</string>
     <string name="pref_title_album_art_on_lockscreen">Show Album Cover</string>
@@ -118,7 +118,6 @@
     <string name="pref_title_maximum_bitrate">Maximum Bitrate</string>
     <string name="pref_title_classic_notification">Classic Design</string>
     <string name="pref_title_colored_notification">Colored Notification</string>
-    <string name="pref_title_gapless_playback">Gapless playback</string>
     <string name="pref_title_audio_ducking">Audio Ducking</string>
     <string name="pref_title_remember_last_tab">Remember Tab</string>
     <string name="pref_title_remember_shuffle">Remember Shuffle</string>
@@ -129,12 +128,11 @@
     <string name="pref_summary_images_external_directory">Store the image cache in an external directory to keep the files between installs.</string>
     <string name="primary_color_desc">The primary theme color for control elements.</string>
     <string name="accent_color_desc">An alternate color used to accent elements.</string>
-    <string name="pref_summary_album_art_on_lockscreen">Uses the current song\'s album cover as the lockscreen wallpaper.</string>
-    <string name="pref_summary_blurred_album_art">Blurs the album cover on the lockscreen. This can cause problems with third party apps and widgets.</string>
+    <string name="pref_summary_album_art_on_lockscreen">Uses the current song\'s album cover as the lock screen wallpaper.</string>
+    <string name="pref_summary_blurred_album_art">Blurs the album cover on the lock screen. This can cause problems with third party apps and widgets.</string>
     <string name="pref_summary_classic_notification">Use the classic notification design.</string>
     <string name="pref_summary_colored_notification">"Colors the notification with a vibrant color taken from the album cover."</string>
     <string name="pref_summary_audio_ducking">Decrease the volume for notifications and other system sounds.</string>
-    <string name="pref_summary_gapless_playback">"This can cause playback issues on some devices."</string>
     <string name="pref_summary_remember_shuffle">Shuffle mode will stay on when selecting a new list of songs for the queue.</string>
     <string name="pref_summary_remember_queue">Save the queue when closing the app so it can persist across sessions.</string>
     <string name="pref_summary_colored_app_shortcuts">Colors the app shortcuts in the primary color.</string>
@@ -148,8 +146,8 @@
     <string name="create_action">Create</string>
     <string name="reset_action">Reset</string>
 
-    <string name="last_added">Last added</string>
-    <string name="my_top_tracks">My top tracks</string>
+    <string name="last_added">Recent</string>
+    <string name="my_top_tracks">Top</string>
 
     <string name="grid_size_1" translatable="false">1</string>
     <string name="grid_size_2" translatable="false">2</string>
@@ -173,10 +171,11 @@
     <string name="translate">Translate</string>
     <string name="translate_summary">Help translate strings to your native language.</string>
     <string name="rate_on_google_play">Rate</string>
-    <string name="rate_on_google_play_summary">Leave a positive rating on Google Play if you like Phonograph.</string>
+    <string name="rate_on_google_play_summary">Leave a positive rating on Google Play.</string>
     <string name="donate">Donate</string>
     <string name="donate_summary">If you think I deserve to get paid for my work, you can leave me a few dollars here.</string>
     <string name="special_thanks_to">Special Thanks</string>
+
     <string name="aidan_follestad_summary">Improved theme engine and made some other excellent additions.</string>
     <string name="maarten_corpel_summary">Designed a placeholder image for albums with no cover art.</string>
     <string name="aleksandar_tesic_summary">Made great improvements to the general design.</string>

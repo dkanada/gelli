@@ -68,7 +68,6 @@
     <string name="pref_title_blurred_album_art">Sumenna albumin kansi</string>
     <string name="pref_title_colored_notification">Värillinen ilmoitus</string>
     <string name="pref_title_classic_notification">Klassinen ilmoituksen ulkonäkö</string>
-    <string name="pref_title_gapless_playback">Tauoton toisto</string>
     <string name="pref_title_audio_ducking">Hiljennä ääntä, kun kohdistus menetetään</string>
     <string name="pref_title_remember_last_tab">Muista viimeisin välilehti</string>
     <string name="pref_title_remember_shuffle">Muista sekoitus</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_blurred_album_art">Sumentaa albumin kannen lukitusnäytöllä. Saattaa aiheuttaa ongelmia kolmannen osapuolen sovellusten ja widgettien kanssa.</string>
     <string name="pref_summary_classic_notification">Käytä klassista ilmoituksen ulkonäköä.</string>
     <string name="pref_summary_colored_notification">"V\u00e4ritt\u00e4\u00e4 ilmoituksen albumin eloisalla v\u00e4rill\u00e4."</string>
-    <string name="pref_summary_gapless_playback">"Saattaa aiheuttaa toisto-ongelmia joillain laitteilla."</string>
     <string name="pref_summary_colored_app_shortcuts">Värittää sovelluksen pikavalinnat päävärillä.</string>
     <string name="pref_summary_audio_ducking">Ilmoitukset, liikkuminen jne.</string>
     <string name="pref_summary_remember_last_tab">Palauttaa käynnistyessään viimeksi avoinna olleen välilehden.</string>

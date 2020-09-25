@@ -67,7 +67,6 @@
     <string name="pref_title_blurred_album_art">Rozmywanie okładki albumu</string>
     <string name="pref_title_colored_notification">Kolorowy odtwarzacz w pasku powiadomień</string>
     <string name="pref_title_classic_notification">Klasyczny wygląd powiadomienia</string>
-    <string name="pref_title_gapless_playback">Odtwarzanie bez przerw</string>
     <string name="pref_title_audio_ducking">Zmniejszaj głośność przy powiadomieniach</string>
     <string name="pref_title_remember_last_tab">"Zapamiętaj ostatnią zakładkę "</string>
     <string name="delete_action">Usuń</string>
@@ -91,7 +90,6 @@
     <string name="pref_summary_blurred_album_art">Rozmywa okładki albumów na ekranie blokady. Mogą wystąpić problemy z aplikacjami firm trzecich oraz widżetami</string>
     <string name="pref_summary_classic_notification">Używaj klasycznego stylu powiadomienia.</string>
     <string name="pref_summary_colored_notification">"Odtwarzacz w pasku powiadomie\u0144 ma tonacj\u0119 ok\u0142adki albumu"</string>
-    <string name="pref_summary_gapless_playback">"Na niektórych urządzeniach mogą wystąpić problemy z odtwarzaniem"</string>
     <string name="pref_summary_colored_app_shortcuts">Kolory skrótów aplikacji w kolorze podstawowym</string>
     <string name="pref_summary_audio_ducking">Notyfikacje, nawigacja, itp.</string>
     <string name="pref_summary_remember_last_tab">Idź do ostatniej otwartej zakładki przy starcie</string>

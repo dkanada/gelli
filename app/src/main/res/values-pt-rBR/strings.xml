@@ -68,7 +68,6 @@
     <string name="pref_title_blurred_album_art">Capa de álbum esmaecida</string>
     <string name="pref_title_colored_notification">Notificação colorida</string>
     <string name="pref_title_classic_notification">Design de classificação clássico</string>
-    <string name="pref_title_gapless_playback">Reprodução contínua</string>
     <string name="pref_title_audio_ducking">Reduzir o volume de perda de foco</string>
     <string name="pref_title_remember_last_tab">Lembrar última aba</string>
     <string name="pref_title_remember_shuffle">Memorizar aleatorização</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_blurred_album_art">Esmaece a capa de álbum no bloqueio de tela. Pode causar problemas com aplicativos de terceiros e widgets.</string>
     <string name="pref_summary_classic_notification">Usar o design de notificação clássico.</string>
     <string name="pref_summary_colored_notification">"A notifica\u00e7\u00e3o \u00e9 colorida com a cor mais vibrante do \u00e1lbum."</string>
-    <string name="pref_summary_gapless_playback">"Pode causar problemas de reprodução em alguns dispositivos."</string>
     <string name="pref_summary_colored_app_shortcuts">Colore os atalhos do app com a cor primária.</string>
     <string name="pref_summary_audio_ducking">Notificações, navegação, etc.</string>
     <string name="pref_summary_remember_last_tab">Ir para a última aba aberta ao iniciar</string>

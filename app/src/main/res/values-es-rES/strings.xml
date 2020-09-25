@@ -68,7 +68,6 @@
     <string name="pref_title_blurred_album_art">Desenfocar carátula de álbum</string>
     <string name="pref_title_colored_notification">Notificación coloreada</string>
     <string name="pref_title_classic_notification">Diseño clásico de la notificación</string>
-    <string name="pref_title_gapless_playback">Reproducción sin interrupciones</string>
     <string name="pref_title_audio_ducking">Reducir volumen en la pérdida del enfoque</string>
     <string name="pref_title_remember_last_tab">Recordar la última pestaña</string>
     <string name="pref_title_remember_shuffle">Recordar aleatorio</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_blurred_album_art">Desenfoca la carátula del álbum en la pantalla de bloqueo. Puede causar problemas con aplicaciones de terceros y widgets.</string>
     <string name="pref_summary_classic_notification">Utilizar el diseño clásico de notificación.</string>
     <string name="pref_summary_colored_notification">"Colorea la notificaci\u00f3n con el color vibrante de la car\u00e1tula del \u00e1lbum."</string>
-    <string name="pref_summary_gapless_playback">"Puede causar problemas durante la reproducción en algunos dispositivos."</string>
     <string name="pref_summary_colored_app_shortcuts">Colorea los accesos directos con el color principal</string>
     <string name="pref_summary_audio_ducking">Notificaciones, navegación etc.</string>
     <string name="pref_summary_remember_last_tab">Ir a la última pestaña abierta en el lanzamiento</string>

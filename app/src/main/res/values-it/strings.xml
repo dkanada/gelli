@@ -68,7 +68,6 @@
     <string name="pref_title_blurred_album_art">Sfoca la copertina</string>
     <string name="pref_title_colored_notification">Notifica colorata</string>
     <string name="pref_title_classic_notification">Design di notifica classico</string>
-    <string name="pref_title_gapless_playback">Riproduzione senza intervalli</string>
     <string name="pref_title_audio_ducking">Riduci volume in caso di perdita di focus audio</string>
     <string name="pref_title_remember_last_tab">Ricorda ultima scheda</string>
     <string name="pref_title_remember_shuffle">Ricorda casuale</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_blurred_album_art">Applica una sfocatura sulla copertina nella schermata di blocco. Può causare problemi con app e widget di terze parti.</string>
     <string name="pref_summary_classic_notification">Usa il design di notifica classico.</string>
     <string name="pref_summary_colored_notification">"La notifica \u00e8 colorata secondo la gamma di colori della copertina."</string>
-    <string name="pref_summary_gapless_playback">"Può causare problemi di riproduzione su alcuni dispositivi."</string>
     <string name="pref_summary_colored_app_shortcuts">Colora le scorciatoie dell\'app con il colore principale.</string>
     <string name="pref_summary_audio_ducking">Notifiche, navigazione ecc.</string>
     <string name="pref_summary_remember_last_tab">All\'avvio vai all\'ultima scheda aperta</string>

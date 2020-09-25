@@ -65,7 +65,6 @@
     <string name="pref_title_blurred_album_art">Blur album cover</string>
     <string name="pref_title_colored_notification">Colored notification</string>
     <string name="pref_title_classic_notification">Classic notification design</string>
-    <string name="pref_title_gapless_playback">Gapless playback</string>
     <string name="pref_title_audio_ducking">Reduce volume on focus loss</string>
     <string name="delete_action">Delete</string>
     <string name="remove_action">Remove</string>
@@ -86,7 +85,6 @@
     <string name="pref_summary_blurred_album_art">Blurs the album cover on the lockscreen. Can cause problems with third party apps and widgets.</string>
     <string name="pref_summary_classic_notification">Use the classic notification design.</string>
     <string name="pref_summary_colored_notification">"Colors the notification in the album cover\u2019s vibrant color."</string>
-    <string name="pref_summary_gapless_playback">"Can cause playback issues on some devices."</string>
     <string name="pref_summary_colored_app_shortcuts">Colors the app shortcuts in the primary color.</string>
     <string name="pref_summary_audio_ducking">Notifications, navigation etc.</string>
     <string name="last_added">Last added</string>

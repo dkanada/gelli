@@ -67,7 +67,6 @@
     <string name="pref_title_blurred_album_art">Rozostřit obal alba</string>
     <string name="pref_title_colored_notification">Barevné notifikace</string>
     <string name="pref_title_classic_notification">Klasický vzhled oznámení</string>
-    <string name="pref_title_gapless_playback">Přehrávání bez mezer</string>
     <string name="pref_title_audio_ducking">Snížit hlasitost při ztrátě priority zvuku</string>
     <string name="pref_title_remember_last_tab">Pamatovat poslední kartu</string>
     <string name="delete_action">Smazat</string>
@@ -91,7 +90,6 @@
     <string name="pref_summary_blurred_album_art">Rozostří obal alba na uzamčené obrazovce. Může být problematické s aplikacemi a widgety třetích stran.</string>
     <string name="pref_summary_classic_notification">Použije klasický vzhled oznámení.</string>
     <string name="pref_summary_colored_notification">"Zbarv\u00ed ozn\u00e1men\u00ed do barev podle obalu alba."</string>
-    <string name="pref_summary_gapless_playback">"Může způsobit problémy s přehráváním u některých zařízení."</string>
     <string name="pref_summary_colored_app_shortcuts">Zbarví zkratky aplikace primární barvou</string>
     <string name="pref_summary_audio_ducking">Oznámení, navigace atd.</string>
     <string name="pref_summary_remember_last_tab">Přejděte na poslední otevřenou kartu při spuštění</string>
