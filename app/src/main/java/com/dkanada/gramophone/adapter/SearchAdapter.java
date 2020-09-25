@@ -129,7 +129,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
             switch (itemViewType) {
                 case ALBUM:
-                    setImageTransitionName(activity.getString(R.string.transition_album_art));
+                    setImageTransitionName(activity.getString(R.string.transition_album_image));
                     break;
                 case ARTIST:
                     setImageTransitionName(activity.getString(R.string.transition_artist_image));
@@ -150,7 +150,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                 case ALBUM:
                     NavigationUtil.goToAlbum(activity,
                             (Album) item,
-                            Pair.create(image, activity.getResources().getString(R.string.transition_album_art)));
+                            Pair.create(image, activity.getResources().getString(R.string.transition_album_image)));
                     break;
                 case ARTIST:
                     NavigationUtil.goToArtist(activity,

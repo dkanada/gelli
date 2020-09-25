@@ -13,7 +13,7 @@
         android:id="@+id/image"
         android:scaleType="centerCrop"
         android:src="@drawable/default_album_art"
-        android:transitionName="@string/transition_album_art"
+        android:transitionName="@string/transition_album_image"
         app:layout_aspectRatio="178%"
         app:layout_widthPercent="100%"
         tools:ignore="ContentDescription,UnusedAttribute" />

@@ -5,7 +5,6 @@
     android:layout_height="match_parent">
 
     <!-- unused FrameLayout layout is necessary to prevent a crash on rotate -->
-
     <com.sothree.slidinguppanel.SlidingUpPanelLayout
         android:id="@+id/player_sliding_layout"
         android:layout_width="match_parent"

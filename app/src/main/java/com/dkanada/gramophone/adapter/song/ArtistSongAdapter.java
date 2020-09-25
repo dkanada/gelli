@@ -89,7 +89,7 @@ public class ArtistSongAdapter extends ArrayAdapter<Song> implements MaterialCab
                 .build().into(albumArt);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            albumArt.setTransitionName(activity.getString(R.string.transition_album_art));
+            albumArt.setTransitionName(activity.getString(R.string.transition_album_image));
         }
 
         final ImageView overflowButton = convertView.findViewById(R.id.menu);
@@ -102,7 +102,7 @@ public class ArtistSongAdapter extends ArrayAdapter<Song> implements MaterialCab
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_go_to_album) {
-                    Pair[] albumPairs = new Pair[]{Pair.create(albumArt, activity.getResources().getString(R.string.transition_album_art))};
+                    Pair[] albumPairs = new Pair[]{Pair.create(albumArt, activity.getResources().getString(R.string.transition_album_image))};
                     NavigationUtil.goToAlbum(activity, new Album(song), albumPairs);
                     return true;
                 }

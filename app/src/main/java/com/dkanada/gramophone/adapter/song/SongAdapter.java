@@ -216,7 +216,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            setImageTransitionName(activity.getString(R.string.transition_album_art));
+            setImageTransitionName(activity.getString(R.string.transition_album_image));
 
             if (menu == null) {
                 return;
@@ -252,7 +252,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
             if (image != null && image.getVisibility() == View.VISIBLE) {
                 switch (item.getItemId()) {
                     case R.id.action_go_to_album:
-                        Pair[] albumPairs = new Pair[]{Pair.create(image, activity.getResources().getString(R.string.transition_album_art))};
+                        Pair[] albumPairs = new Pair[]{Pair.create(image, activity.getResources().getString(R.string.transition_album_image))};
                         NavigationUtil.goToAlbum(activity, new Album(getSong()), albumPairs);
                         return true;
                 }

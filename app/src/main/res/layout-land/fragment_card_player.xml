@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
 
     <!-- unused FrameLayout layout is necessary to prevent a crash on rotate -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
