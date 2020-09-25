@@ -21,7 +21,10 @@ public abstract class AbsThemeActivity extends ATHToolbarActivity {
         setTheme(PreferenceUtil.getInstance(this).getGeneralTheme());
         super.onCreate(savedInstanceState);
         MaterialDialogsUtil.updateMaterialDialogsThemeSingleton(this);
-        ThemeStore.coloredNavigationBar(this);
+
+        if (!ThemeStore.coloredNavigationBar(this)) {
+            ThemeStore.editTheme(this).coloredNavigationBar(true).commit();
+        }
     }
 
     protected void setDrawUnderStatusbar() {

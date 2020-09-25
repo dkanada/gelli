@@ -21,9 +21,9 @@ public interface Playback {
 
     int duration();
 
-    int seek(int position);
+    void seek(int position);
 
-    void setVolume(float volume);
+    void volume(float volume);
 
     interface PlaybackCallbacks {
         void onTrackStarted();

@@ -887,13 +887,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public int seek(int millis) {
         synchronized (this) {
-            try {
-                int newPosition = playback.seek(millis);
-                throttledSeekHandler.notifySeek();
-                return newPosition;
-            } catch (Exception e) {
-                return -1;
-            }
+            playback.seek(millis);
+            throttledSeekHandler.notifySeek();
+            return millis;
         }
     }
 
@@ -1064,22 +1060,22 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             switch (msg.what) {
                 case DUCK:
                     if (PreferenceUtil.getInstance(service).getAudioDucking()) {
-                        currentDuckVolume -= .05f;
-                        if (currentDuckVolume > .2f) {
+                        currentDuckVolume -= 0.05f;
+                        if (currentDuckVolume > 0.2f) {
                             sendEmptyMessageDelayed(DUCK, 10);
                         } else {
-                            currentDuckVolume = .2f;
+                            currentDuckVolume = 0.2f;
                         }
                     } else {
                         currentDuckVolume = 1f;
                     }
 
-                    service.playback.setVolume(currentDuckVolume);
+                    service.playback.volume(currentDuckVolume);
                     break;
 
                 case UNDUCK:
                     if (PreferenceUtil.getInstance(service).getAudioDucking()) {
-                        currentDuckVolume += .03f;
+                        currentDuckVolume += 0.03f;
                         if (currentDuckVolume < 1f) {
                             sendEmptyMessageDelayed(UNDUCK, 10);
                         } else {
@@ -1089,7 +1085,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         currentDuckVolume = 1f;
                     }
 
-                    service.playback.setVolume(currentDuckVolume);
+                    service.playback.volume(currentDuckVolume);
                     break;
 
                 case TRACK_WENT_TO_NEXT:

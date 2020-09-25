@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class ThemeUtil {
-
     @Nullable
     public static Palette generatePalette(Bitmap bitmap) {
         if (bitmap == null) return null;

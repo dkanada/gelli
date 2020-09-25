@@ -195,26 +195,20 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public void stop() {
-        exoPlayer.release();
-        isReady = false;
-    }
-
-    @Override
     public void pause() {
         isPlaying = false;
         exoPlayer.setPlayWhenReady(false);
     }
 
     @Override
-    public boolean isPlaying() {
-        return isReady && isPlaying;
+    public void stop() {
+        exoPlayer.release();
+        isReady = false;
     }
 
     @Override
-    public int duration() {
-        if (!isReady) return -1;
-        return (int) exoPlayer.getDuration();
+    public boolean isPlaying() {
+        return isReady && isPlaying;
     }
 
     @Override
@@ -224,13 +218,18 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public int seek(int position) {
-        exoPlayer.seekTo(position);
-        return position;
+    public int duration() {
+        if (!isReady) return -1;
+        return (int) exoPlayer.getDuration();
     }
 
     @Override
-    public void setVolume(float volume) {
+    public void seek(int position) {
+        exoPlayer.seekTo(position);
+    }
+
+    @Override
+    public void volume(float volume) {
         exoPlayer.setVolume(volume);
     }
 }
