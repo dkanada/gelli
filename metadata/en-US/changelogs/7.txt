@@ -1,0 +1,7 @@
+- always color the navigation bar when possible
+- use blurhash for most image views
+- improve performance in artist details activity
+- fix media progress bar on newer phones
+- finish migration to view binding
+- fix several issues with broken preferences
+- bump glide version and fix fade transitions
