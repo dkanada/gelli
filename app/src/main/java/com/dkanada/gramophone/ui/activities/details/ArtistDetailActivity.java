@@ -58,12 +58,13 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // must be loaded before album adapter
+        usePalette = PreferenceUtil.getInstance(this).getAlbumArtistColoredFooters();
+
         setDrawUnderStatusbar();
         setUpObservableListViewParams();
         setUpToolbar();
         setUpViews();
-
-        usePalette = PreferenceUtil.getInstance(this).getAlbumArtistColoredFooters();
 
         Artist artist = getIntent().getExtras().getParcelable(EXTRA_ARTIST);
         loadArtistImage(artist.primary);
