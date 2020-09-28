@@ -128,6 +128,10 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
         binding.albums.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         albumAdapter = new HorizontalAlbumAdapter(this, getArtist().albums, usePalette, this);
         binding.albums.setAdapter(albumAdapter);
+
+        // NestedScrollView will ignore horizontal RecyclerView without this line
+        binding.albums.setNestedScrollingEnabled(false);
+
         albumAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
