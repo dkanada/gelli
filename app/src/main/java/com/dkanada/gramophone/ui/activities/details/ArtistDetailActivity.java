@@ -123,6 +123,8 @@ public class ArtistDetailActivity extends AbsSlidingMusicPanelActivity implement
 
         binding.songs.setLayoutManager(new GridLayoutManager(this, 1));
         binding.songs.setAdapter(songAdapter);
+
+        binding.scrollView.setRecyclerView(binding.songs);
     }
 
     private void setUpAlbumRecyclerView() {

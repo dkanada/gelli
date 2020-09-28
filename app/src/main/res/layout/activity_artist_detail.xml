@@ -146,7 +146,8 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.core.widget.NestedScrollView
+        <com.dkanada.gramophone.views.InceptionScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -179,7 +180,7 @@
 
             </LinearLayout>
 
-        </androidx.core.widget.NestedScrollView>
+        </com.dkanada.gramophone.views.InceptionScrollView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
