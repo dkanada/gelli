@@ -16,9 +16,11 @@ public class DirectPlayCodec {
     public enum Codec {
         FLAC("FLAC","flac|flac"),
         MP3("MP3", "mp3|mp3"),
-        AAC("AAC", "m4a|aac"),
-        OGG("OGG", "ogg|vorbis"),
-        MKA("MKA", "mka|opus");
+        OPUS("Opus", "opus|opus"),
+        AAC("M4A-AAC", "m4a|aac"),
+        OGG("OGG-Vorbis", "ogg|vorbis"),
+        OOPUS("OGG-Opus", "ogg|opus"),
+        MKA("MKA-Opus", "mka|opus");
 
         public final String title;
         public final String value;
