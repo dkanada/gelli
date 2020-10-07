@@ -14,6 +14,9 @@ public class HorizontalAdapterHelper {
 
     public static void applyMarginToLayoutParams(Context context, ViewGroup.MarginLayoutParams layoutParams, int viewType) {
         int listMargin = context.getResources().getDimensionPixelSize(R.dimen.default_item_margin);
+
+        layoutParams.leftMargin = listMargin / 3;
+        layoutParams.rightMargin = listMargin / 3;
         if (viewType == TYPE_FIRST) {
             layoutParams.leftMargin = listMargin;
         } else if (viewType == TYPE_LAST) {
@@ -21,11 +24,13 @@ public class HorizontalAdapterHelper {
         }
     }
 
-    public static int getItemViewtype(int position, int itemCount) {
+    public static int getItemViewType(int position, int itemCount) {
         if (position == 0) {
             return TYPE_FIRST;
         } else if (position == itemCount - 1) {
             return TYPE_LAST;
-        } else return TYPE_MIDDLE;
+        } else {
+            return TYPE_MIDDLE;
+        }
     }
 }

@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical|start"
-        android:layout_marginStart="-8dp"
         android:tint="?attr/iconColor"
         android:tintMode="src_in"
         android:visibility="gone"

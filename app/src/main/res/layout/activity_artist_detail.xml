@@ -160,13 +160,12 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/albums"
                 android:layout_width="match_parent"
-                android:layout_height="164dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
                 android:scrollbars="none" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="?attr/dividerColor" />
 
             <androidx.recyclerview.widget.RecyclerView
