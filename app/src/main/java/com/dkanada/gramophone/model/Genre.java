@@ -3,6 +3,8 @@ package com.dkanada.gramophone.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.GenreDto;
 
@@ -37,6 +39,7 @@ public class Genre implements Parcelable {
         return id.hashCode();
     }
 
+    @NonNull
     @Override
     public String toString() {
         return id;

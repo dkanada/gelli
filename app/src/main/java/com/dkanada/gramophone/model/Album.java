@@ -3,6 +3,8 @@ package com.dkanada.gramophone.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.entities.ImageType;
 
@@ -52,6 +54,7 @@ public class Album implements Parcelable {
         this.artistName = song.artistName;
 
         this.primary = song.primary;
+        this.blurHash = song.blurHash;
     }
 
     public Album() {
@@ -72,6 +75,7 @@ public class Album implements Parcelable {
         return id.hashCode();
     }
 
+    @NonNull
     @Override
     public String toString() {
         return id;
@@ -92,6 +96,7 @@ public class Album implements Parcelable {
         dest.writeString(artistName);
 
         dest.writeString(primary);
+        dest.writeString(blurHash);
     }
 
     protected Album(Parcel in) {
@@ -105,6 +110,7 @@ public class Album implements Parcelable {
         this.artistName = in.readString();
 
         this.primary = in.readString();
+        this.blurHash = in.readString();
     }
 
     public static final Creator<Album> CREATOR = new Creator<Album>() {

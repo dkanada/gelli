@@ -61,7 +61,7 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setUpViews();
 
         Album album = getIntent().getExtras().getParcelable(EXTRA_ALBUM);
-        loadAlbumCover(album.primary);
+        loadAlbumCover(album);
         setAlbum(album);
 
         ItemQuery query = new ItemQuery();
@@ -106,9 +106,9 @@ public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements
         setColors(DialogUtils.resolveColor(this, R.attr.defaultFooterColor));
     }
 
-    private void loadAlbumCover(String primary) {
+    private void loadAlbumCover(Album album) {
         CustomGlideRequest.Builder
-                .from(this, primary, primary)
+                .from(this, album.primary, album.blurHash)
                 .palette().build().dontAnimate()
                 .into(new CustomPaletteTarget(binding.image) {
                     @Override

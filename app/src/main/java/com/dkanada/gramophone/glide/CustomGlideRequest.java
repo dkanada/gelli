@@ -99,7 +99,6 @@ public class CustomGlideRequest {
 
     public static RequestOptions createRequestOptions(String item, Drawable placeholder) {
         return new RequestOptions()
-                .centerCrop()
                 .placeholder(placeholder)
                 .error(DEFAULT_IMAGE)
                 .diskCacheStrategy(DEFAULT_DISK_CACHE_STRATEGY)

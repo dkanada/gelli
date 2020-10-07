@@ -3,6 +3,8 @@ package com.dkanada.gramophone.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.MediaSourceInfo;
 import org.jellyfin.apiclient.model.entities.ImageType;
@@ -117,6 +119,7 @@ public class Song implements Parcelable {
         return id.hashCode();
     }
 
+    @NonNull
     @Override
     public String toString() {
         return id;
@@ -144,6 +147,7 @@ public class Song implements Parcelable {
 
         dest.writeString(this.primary);
         dest.writeString(Boolean.toString(favorite));
+        dest.writeString(this.blurHash);
 
         dest.writeString(this.path);
         dest.writeLong(this.size);
@@ -173,6 +177,7 @@ public class Song implements Parcelable {
 
         this.primary = in.readString();
         this.favorite = Boolean.parseBoolean(in.readString());
+        this.blurHash = in.readString();
 
         this.path = in.readString();
         this.size = in.readLong();

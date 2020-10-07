@@ -184,7 +184,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
 
             CustomGlideRequest.Builder
                     .from(this, song.primary, song.blurHash)
-                    .build().into(navigationBinding.image);
+                    .build().centerInside().into(navigationBinding.image);
         } else if (binding.navigationView.getHeaderCount() != 0) {
             binding.navigationView.removeHeaderView(navigationBinding.getRoot());
             navigationBinding = null;
