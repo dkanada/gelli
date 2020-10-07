@@ -1,9 +1,11 @@
 package com.dkanada.gramophone.service.playback;
 
-public interface Playback {
-    void setDataSource(String path);
+import com.dkanada.gramophone.model.Song;
 
-    void queueDataSource(String path);
+public interface Playback {
+    void setDataSource(Song song);
+
+    void queueDataSource(Song song);
 
     void setCallbacks(PlaybackCallbacks callbacks);
 

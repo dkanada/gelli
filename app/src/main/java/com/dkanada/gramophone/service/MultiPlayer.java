@@ -2,14 +2,14 @@ package com.dkanada.gramophone.service;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.playback.Playback;
+import com.dkanada.gramophone.util.MusicUtil;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Player;
@@ -21,10 +21,15 @@ import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
-import com.google.android.exoplayer2.util.Util;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.upstream.FileDataSource;
+import com.google.android.exoplayer2.upstream.cache.CacheDataSink;
+import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
+import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
+import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
 import java.io.IOException;
+import java.io.File;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -43,6 +48,8 @@ public class MultiPlayer implements Playback {
 
     private ConcatenatingMediaSource mediaSource;
     private Playback.PlaybackCallbacks callbacks;
+    private DataSource.Factory dataSource;
+    private SimpleCache simpleCache;
 
     private boolean isReady = false;
     private boolean isPlaying = false;
@@ -83,7 +90,7 @@ public class MultiPlayer implements Playback {
 
         @Override
         public void onPlayerError(ExoPlaybackException error) {
-            Log.i(TAG, "onPlaybackError: " + error.getMessage());
+            Log.i(TAG, "onPlayerError: " + error.getMessage());
             if (context != null) {
                 Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
             }
@@ -98,10 +105,16 @@ public class MultiPlayer implements Playback {
         httpClient = new OkHttpClient();
         exoPlayer = new SimpleExoPlayer.Builder(context).build();
         mediaSource = new ConcatenatingMediaSource();
+
+        if (dataSource != null) return;
+        dataSource = buildDataSourceFactory();
+        if (simpleCache != null) return;
+        LeastRecentlyUsedCacheEvictor evictor = new LeastRecentlyUsedCacheEvictor(Long.MAX_VALUE);
+        simpleCache = new SimpleCache(new File(Environment.getExternalStorageDirectory() + "/Gelli/cache"), evictor);
     }
 
     @Override
-    public void setDataSource(@NonNull final String path) {
+    public void setDataSource(Song song) {
         isReady = false;
         if (context == null) {
             return;
@@ -116,16 +129,17 @@ public class MultiPlayer implements Playback {
         // queue and other information is currently handled outside exoplayer
         exoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
 
-        appendDataSource(path, 0);
+        appendDataSource(MusicUtil.getSongFileUri(song), 0);
         isReady = true;
     }
 
     @Override
-    public void queueDataSource(@Nullable final String path) {
+    public void queueDataSource(Song song) {
         if (context == null) {
             return;
         }
 
+        String path = MusicUtil.getSongFileUri(song);
         if (mediaSource.getSize() == 2 && mediaSource.getMediaSource(1).getTag() != path) {
             mediaSource.removeMediaSource(1);
         }
@@ -138,7 +152,6 @@ public class MultiPlayer implements Playback {
     private void appendDataSource(String path, int position) {
         Uri uri = Uri.parse(path);
 
-        DataSource.Factory dataSource = new DefaultHttpDataSourceFactory(Util.getUserAgent(context, this.getClass().getName()));
         httpClient.newCall(new Request.Builder().url(path).head().build()).enqueue(new Callback() {
             @Override
             @EverythingIsNonNull
@@ -173,8 +186,19 @@ public class MultiPlayer implements Playback {
         });
     }
 
+    private DataSource.Factory buildDataSourceFactory() {
+        return () -> new CacheDataSource(
+                simpleCache,
+                new DefaultDataSourceFactory(context, context.getPackageName(), null).createDataSource(),
+                new FileDataSource(),
+                new CacheDataSink(simpleCache, 10 * 1024 * 1024),
+                CacheDataSource.FLAG_BLOCK_ON_CACHE,
+                null
+        );
+    }
+
     @Override
-    public void setCallbacks(@Nullable Playback.PlaybackCallbacks callbacks) {
+    public void setCallbacks(Playback.PlaybackCallbacks callbacks) {
         this.callbacks = callbacks;
     }
 

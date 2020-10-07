@@ -467,10 +467,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
             if (queue) {
                 // restore queue from database
-                playback.queueDataSource(MusicUtil.getSongFileUri(getCurrentSong()));
+                playback.queueDataSource(getCurrentSong());
             } else {
                 // set current song and start playback
-                playback.setDataSource(MusicUtil.getSongFileUri(getCurrentSong()));
+                playback.setDataSource(getCurrentSong());
             }
         }
     }
@@ -483,7 +483,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private void prepareNextImpl() {
         synchronized (this) {
             nextPosition = getNextPosition(false);
-            playback.queueDataSource(MusicUtil.getSongFileUri(getSongAt(nextPosition)));
+            playback.queueDataSource(getSongAt(nextPosition));
         }
     }
 
