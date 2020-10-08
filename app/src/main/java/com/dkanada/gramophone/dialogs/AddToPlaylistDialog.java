@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddToPlaylistDialog extends DialogFragment {
-
     @NonNull
     public static AddToPlaylistDialog create(Song song) {
         List<Song> list = new ArrayList<>();
@@ -41,16 +40,16 @@ public class AddToPlaylistDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         List<Playlist> playlists = new ArrayList<>();
-        MaterialDialog dialog = new MaterialDialog.Builder(getActivity())
+        MaterialDialog dialog = new MaterialDialog.Builder(requireActivity())
                 .title(R.string.action_add_to_playlist)
-                .items(getActivity().getResources().getString(R.string.action_new_playlist))
+                .items(requireActivity().getResources().getString(R.string.action_new_playlist))
                 .itemsCallback((materialDialog, view, i, charSequence) -> {
                     final List<Song> songs = getArguments().getParcelableArrayList("songs");
                     if (songs == null) return;
 
                     if (i == 0) {
                         materialDialog.dismiss();
-                        CreatePlaylistDialog.create(songs).show(getActivity().getSupportFragmentManager(), "ADD_TO_PLAYLIST");
+                        CreatePlaylistDialog.create(songs).show(requireActivity().getSupportFragmentManager(), "ADD_TO_PLAYLIST");
                     } else {
                         materialDialog.dismiss();
                         PlaylistUtil.addItems(songs, playlists.get(i - 1).id);
@@ -64,7 +63,7 @@ public class AddToPlaylistDialog extends DialogFragment {
                 playlists.addAll((List<Playlist>) media);
 
                 CharSequence[] names = new CharSequence[playlists.size() + 1];
-                names[0] = getActivity().getResources().getString(R.string.action_new_playlist);
+                names[0] = requireActivity().getResources().getString(R.string.action_new_playlist);
                 for (int i = 0; i < playlists.size(); i++) {
                     names[i + 1] = playlists.get(i).name;
                 }

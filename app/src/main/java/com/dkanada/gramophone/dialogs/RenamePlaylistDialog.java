@@ -13,7 +13,6 @@ import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.util.PlaylistUtil;
 
 public class RenamePlaylistDialog extends DialogFragment {
-
     private static final String PLAYLIST_ID = "playlist_id";
 
     @NonNull
@@ -31,7 +30,7 @@ public class RenamePlaylistDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         String playlistId = getArguments().getString(PLAYLIST_ID);
-        return new MaterialDialog.Builder(getActivity())
+        return new MaterialDialog.Builder(requireContext())
                 .title(R.string.rename_playlist_title)
                 .positiveText(R.string.rename_action)
                 .negativeText(android.R.string.cancel)

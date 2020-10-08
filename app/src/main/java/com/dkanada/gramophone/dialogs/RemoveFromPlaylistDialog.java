@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RemoveFromPlaylistDialog extends DialogFragment {
-
     @NonNull
     public static RemoveFromPlaylistDialog create(Song song) {
         List<Song> list = new ArrayList<>();
@@ -51,7 +50,7 @@ public class RemoveFromPlaylistDialog extends DialogFragment {
             content = Html.fromHtml(getString(R.string.remove_song_x_from_playlist, songs.get(0).title));
         }
 
-        return new MaterialDialog.Builder(getActivity())
+        return new MaterialDialog.Builder(requireActivity())
                 .title(title)
                 .content(content)
                 .positiveText(R.string.remove_action)

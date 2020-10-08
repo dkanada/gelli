@@ -27,7 +27,7 @@ public class SongShareDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final Song song = getArguments().getParcelable("song");
         final String currentlyListening = getString(R.string.currently_listening_to_x_by_x, song.title, song.artistName);
-        return new MaterialDialog.Builder(getActivity())
+        return new MaterialDialog.Builder(requireActivity())
                 .title(R.string.what_do_you_want_to_share)
                 .items(getString(R.string.the_audio_file), "\u201C" + currentlyListening + "\u201D")
                 .itemsCallback((materialDialog, view, i, charSequence) -> {
@@ -36,7 +36,7 @@ public class SongShareDialog extends DialogFragment {
                             startActivity(Intent.createChooser(MusicUtil.createShareSongFileIntent(song, getContext()), null));
                             break;
                         case 1:
-                            getActivity().startActivity(
+                            startActivity(
                                     Intent.createChooser(
                                             new Intent()
                                                     .setAction(Intent.ACTION_SEND)

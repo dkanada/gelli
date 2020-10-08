@@ -35,7 +35,7 @@ public class SleepTimerDialog extends DialogFragment {
     private int seekArcProgress;
 
     @Override
-    public void onDismiss(DialogInterface dialog) {
+    public void onDismiss(@NonNull DialogInterface dialog) {
         super.onDismiss(dialog);
 
         timerUpdater.cancel();
@@ -47,14 +47,10 @@ public class SleepTimerDialog extends DialogFragment {
         binding = DialogSleepTimerBinding.inflate(getLayoutInflater());
 
         timerUpdater = new TimerUpdater();
-        materialDialog = new MaterialDialog.Builder(getActivity())
-                .title(getActivity().getResources().getString(R.string.action_sleep_timer))
+        materialDialog = new MaterialDialog.Builder(requireActivity())
+                .title(R.string.action_sleep_timer)
                 .positiveText(R.string.action_set)
                 .onPositive((dialog, which) -> {
-                    if (getActivity() == null) {
-                        return;
-                    }
-
                     PreferenceUtil.getInstance(getActivity()).setSleepTimerFinishMusic(binding.shouldFinishLastSong.isChecked());
 
                     final int minutes = seekArcProgress;
@@ -63,28 +59,24 @@ public class SleepTimerDialog extends DialogFragment {
 
                     final long nextSleepTimerElapsedTime = SystemClock.elapsedRealtime() + minutes * 60 * 1000;
                     PreferenceUtil.getInstance(getActivity()).setNextSleepTimerElapsedRealtime(nextSleepTimerElapsedTime);
-                    AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+                    AlarmManager am = (AlarmManager) requireActivity().getSystemService(Context.ALARM_SERVICE);
                     am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, nextSleepTimerElapsedTime, pi);
 
-                    Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.sleep_timer_set, minutes), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), requireActivity().getResources().getString(R.string.sleep_timer_set, minutes), Toast.LENGTH_SHORT).show();
                 })
                 .onNeutral((dialog, which) -> {
-                    if (getActivity() == null) {
-                        return;
-                    }
-
                     final PendingIntent previous = makeTimerPendingIntent(PendingIntent.FLAG_NO_CREATE);
                     if (previous != null) {
-                        AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+                        AlarmManager am = (AlarmManager) requireActivity().getSystemService(Context.ALARM_SERVICE);
                         am.cancel(previous);
                         previous.cancel();
-                        Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.sleep_timer_canceled), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), requireActivity().getResources().getString(R.string.sleep_timer_canceled), Toast.LENGTH_SHORT).show();
                     }
 
                     MusicService musicService = MusicPlayerRemote.musicService;
                     if (musicService != null && musicService.pendingQuit) {
                         musicService.pendingQuit = false;
-                        Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.sleep_timer_canceled), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), requireActivity().getResources().getString(R.string.sleep_timer_canceled), Toast.LENGTH_SHORT).show();
                     }
                 })
                 .showListener(dialog -> {
@@ -95,7 +87,7 @@ public class SleepTimerDialog extends DialogFragment {
                 .customView(binding.getRoot(), false)
                 .build();
 
-        if (getActivity() == null || materialDialog.getCustomView() == null) {
+        if (materialDialog.getCustomView() == null) {
             return materialDialog;
         }
 

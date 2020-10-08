@@ -23,13 +23,12 @@ public class ConfirmLogoutDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new MaterialDialog.Builder(getActivity())
+        return new MaterialDialog.Builder(requireActivity())
                 .title(R.string.logout)
                 .content(R.string.confirm_logout)
                 .positiveText(R.string.logout)
                 .negativeText(android.R.string.cancel)
                 .onPositive((dialog, which) -> {
-                    if (getActivity() == null) return;
                     App.getApiClient().Logout(new EmptyResponse());
 
                     Intent intent = new Intent(getActivity(), LoginActivity.class);

@@ -139,7 +139,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         }
 
         @Override
-        public void onViewCreated(View view, Bundle savedInstanceState) {
+        public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             getListView().setPadding(0, 0, 0, 0);
             invalidateSettings();
@@ -159,40 +159,40 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 String themeName = (String) o;
                 setSummary(generalTheme, o);
 
-                ThemeStore.markChanged(getActivity());
+                ThemeStore.markChanged(requireActivity());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
                     // set the new theme so that updateAppShortcuts can pull it
-                    getActivity().setTheme(PreferenceUtil.getThemeResFromPrefValue(themeName));
+                    requireActivity().setTheme(PreferenceUtil.getThemeResFromPrefValue(themeName));
                     new DynamicShortcutManager(getActivity()).updateDynamicShortcuts();
                 }
 
-                getActivity().recreate();
+                requireActivity().recreate();
                 return true;
             });
 
             final ATEColorPreference primaryColorPref = findPreference(PreferenceUtil.PRIMARY_COLOR);
-            final int primaryColor = ThemeStore.primaryColor(getActivity());
+            final int primaryColor = ThemeStore.primaryColor(requireActivity());
             primaryColorPref.setColor(primaryColor, ColorUtil.darkenColor(primaryColor));
             primaryColorPref.setOnPreferenceClickListener(preference -> {
-                new ColorChooserDialog.Builder(getActivity(), R.string.primary_color)
+                new ColorChooserDialog.Builder(requireActivity(), R.string.primary_color)
                         .accentMode(false)
                         .allowUserColorInput(true)
                         .allowUserColorInputAlpha(false)
                         .preselect(primaryColor)
-                        .show(getActivity());
+                        .show(requireActivity());
                 return true;
             });
 
             final ATEColorPreference accentColorPref = findPreference(PreferenceUtil.ACCENT_COLOR);
-            final int accentColor = ThemeStore.accentColor(getActivity());
+            final int accentColor = ThemeStore.accentColor(requireActivity());
             accentColorPref.setColor(accentColor, ColorUtil.darkenColor(accentColor));
             accentColorPref.setOnPreferenceClickListener(preference -> {
-                new ColorChooserDialog.Builder(getActivity(), R.string.accent_color)
+                new ColorChooserDialog.Builder(requireActivity(), R.string.accent_color)
                         .accentMode(true)
                         .allowUserColorInput(true)
                         .allowUserColorInputAlpha(false)
                         .preselect(accentColor)
-                        .show(getActivity());
+                        .show(requireActivity());
                 return true;
             });
 

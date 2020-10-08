@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreatePlaylistDialog extends DialogFragment {
-
     private static final String SONGS = "songs";
 
     @NonNull
@@ -44,7 +43,7 @@ public class CreatePlaylistDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new MaterialDialog.Builder(getActivity())
+        return new MaterialDialog.Builder(requireActivity())
                 .title(R.string.action_new_playlist)
                 .positiveText(R.string.create_action)
                 .negativeText(android.R.string.cancel)

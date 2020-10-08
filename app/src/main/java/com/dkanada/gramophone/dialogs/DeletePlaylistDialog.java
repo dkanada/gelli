@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeletePlaylistDialog extends DialogFragment {
-
     @NonNull
     public static DeletePlaylistDialog create(Playlist playlist) {
         List<Playlist> list = new ArrayList<>();
@@ -48,7 +47,7 @@ public class DeletePlaylistDialog extends DialogFragment {
             content = Html.fromHtml(getString(R.string.delete_playlist_x, playlists.get(0).name));
         }
 
-        return new MaterialDialog.Builder(getActivity())
+        return new MaterialDialog.Builder(requireActivity())
                 .title(title)
                 .content(content)
                 .positiveText(R.string.delete_action)

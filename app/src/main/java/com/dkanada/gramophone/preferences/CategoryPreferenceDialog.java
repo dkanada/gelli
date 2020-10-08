@@ -28,7 +28,7 @@ public class CategoryPreferenceDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = getActivity().getLayoutInflater().inflate(R.layout.preference_dialog_category, null);
+        View view = requireActivity().getLayoutInflater().inflate(R.layout.preference_dialog_category, null);
 
         List<CategoryInfo> categories;
         if (savedInstanceState != null) {
@@ -45,7 +45,7 @@ public class CategoryPreferenceDialog extends DialogFragment {
 
         adapter.attachToRecyclerView(recyclerView);
 
-        return new MaterialDialog.Builder(getContext())
+        return new MaterialDialog.Builder(requireActivity())
                 .title(R.string.library_categories)
                 .customView(view, false)
                 .positiveText(android.R.string.ok)

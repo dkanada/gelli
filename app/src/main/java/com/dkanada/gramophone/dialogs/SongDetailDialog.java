@@ -53,7 +53,7 @@ public class SongDetailDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final Activity context = getActivity();
+        final Activity context = requireActivity();
         final Song song = getArguments().getParcelable("song");
 
         MaterialDialog dialog = new MaterialDialog.Builder(context)
