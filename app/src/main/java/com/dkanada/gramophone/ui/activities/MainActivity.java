@@ -57,37 +57,34 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
         }
 
         Menu menu = binding.navigationView.getMenu();
-        QueryUtil.getLibraries(new MediaCallback() {
-            @Override
-            public void onLoadMedia(List<?> media) {
-                libraries = (List<BaseItemDto>) media;
-                menu.clear();
+        QueryUtil.getLibraries(media -> {
+            libraries = (List<BaseItemDto>) media;
+            menu.clear();
 
-                for (BaseItemDto itemDto : libraries) {
-                    if (menu.size() == 0) {
-                        QueryUtil.currentLibrary = itemDto;
-                    }
-
-                    if (itemDto.getCollectionType() == null || !itemDto.getCollectionType().equals("music")) continue;
-                    menu.add(R.id.navigation_drawer_menu_category_sections, itemDto.getId().hashCode(), menu.size(), itemDto.getName());
-                    menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_album_white_24dp);
+            for (BaseItemDto itemDto : libraries) {
+                if (menu.size() == 0) {
+                    QueryUtil.currentLibrary = itemDto;
                 }
 
-                menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_settings, menu.size(), R.string.action_settings);
-                menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_settings_white_24dp);
-                menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_about, menu.size(), R.string.action_about);
-                menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_info_outline_white_24dp);
-                menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_logout, menu.size(), R.string.logout);
-                menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_exit_to_app_white_48dp);
+                if (itemDto.getCollectionType() == null || !itemDto.getCollectionType().equals("music")) continue;
+                menu.add(R.id.navigation_drawer_menu_category_sections, itemDto.getId().hashCode(), menu.size(), itemDto.getName());
+                menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_album_white_24dp);
+            }
 
-                setUpDrawerLayout();
+            menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_settings, menu.size(), R.string.action_settings);
+            menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_settings_white_24dp);
+            menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_about, menu.size(), R.string.action_about);
+            menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_info_outline_white_24dp);
+            menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_logout, menu.size(), R.string.logout);
+            menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_exit_to_app_white_48dp);
 
-                menu.getItem(0).setChecked(true);
-                if (savedInstanceState == null) {
-                    setCurrentFragment(LibraryFragment.newInstance());
-                } else {
-                    restoreCurrentFragment();
-                }
+            setUpDrawerLayout();
+
+            menu.getItem(0).setChecked(true);
+            if (savedInstanceState == null) {
+                setCurrentFragment(LibraryFragment.newInstance());
+            } else {
+                restoreCurrentFragment();
             }
         });
     }
