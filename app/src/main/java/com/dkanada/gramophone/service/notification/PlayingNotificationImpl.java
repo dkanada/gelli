@@ -12,11 +12,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
@@ -93,15 +94,21 @@ public class PlayingNotificationImpl extends PlayingNotification {
                 target = CustomGlideRequest.Builder
                         .from(service, song.primary, song.blurHash)
                         .palette().build()
-                        .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
+                        .into(new CustomTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
                             @Override
-                            public void onResourceReady(BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {
+                            public void onResourceReady(@NonNull BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {
                                 update(resource.getBitmap(), ThemeUtil.getColor(resource.getPalette(), Color.TRANSPARENT));
                             }
 
                             @Override
-                            public void onLoadFailed(Drawable errorDrawable) {
-                                super.onLoadFailed(errorDrawable);
+                            public void onLoadFailed(Drawable drawable) {
+                                super.onLoadFailed(drawable);
+                                update(null, Color.WHITE);
+                            }
+
+                            @Override
+                            public void onLoadCleared(Drawable drawable) {
+                                super.onLoadFailed(drawable);
                                 update(null, Color.WHITE);
                             }
 

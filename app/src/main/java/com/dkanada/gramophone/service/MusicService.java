@@ -33,7 +33,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.BlurTransformation;
@@ -46,7 +46,6 @@ import com.dkanada.gramophone.service.notification.PlayingNotification;
 import com.dkanada.gramophone.service.notification.PlayingNotificationImpl;
 import com.dkanada.gramophone.service.notification.PlayingNotificationImpl24;
 import com.dkanada.gramophone.service.playback.Playback;
-import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
 import com.dkanada.gramophone.widgets.AppWidgetAlbum;
@@ -551,16 +550,22 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    request.into(new SimpleTarget<Bitmap>(screenSize.x, screenSize.y) {
+                    request.into(new CustomTarget<Bitmap>(screenSize.x, screenSize.y) {
                         @Override
-                        public void onLoadFailed(Drawable errorDrawable) {
-                            super.onLoadFailed(errorDrawable);
+                        public void onLoadFailed(Drawable drawable) {
+                            super.onLoadFailed(drawable);
                             mediaSession.setMetadata(metaData.build());
                         }
 
                         @Override
-                        public void onResourceReady(Bitmap resource, Transition<? super Bitmap> glideAnimation) {
+                        public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> glideAnimation) {
                             metaData.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, copy(resource));
+                            mediaSession.setMetadata(metaData.build());
+                        }
+
+                        @Override
+                        public void onLoadCleared(Drawable drawable) {
+                            super.onLoadFailed(drawable);
                             mediaSession.setMetadata(metaData.build());
                         }
                     });

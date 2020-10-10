@@ -10,11 +10,12 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.palette.graphics.Palette;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
@@ -104,16 +105,22 @@ public class AppWidgetCard extends BaseAppWidget {
                 target = CustomGlideRequest.Builder
                         .from(service, song.primary, song.blurHash)
                         .palette().build()
-                        .into(new SimpleTarget<BitmapPaletteWrapper>(imageSize, imageSize) {
+                        .into(new CustomTarget<BitmapPaletteWrapper>(imageSize, imageSize) {
                             @Override
-                            public void onResourceReady(BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {
+                            public void onResourceReady(@NonNull BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {
                                 Palette palette = resource.getPalette();
                                 update(resource.getBitmap(), palette.getVibrantColor(palette.getMutedColor(MaterialValueHelper.getSecondaryTextColor(service, true))));
                             }
 
                             @Override
-                            public void onLoadFailed(Drawable errorDrawable) {
-                                super.onLoadFailed(errorDrawable);
+                            public void onLoadFailed(Drawable drawable) {
+                                super.onLoadFailed(drawable);
+                                update(null, MaterialValueHelper.getSecondaryTextColor(service, true));
+                            }
+
+                            @Override
+                            public void onLoadCleared(Drawable drawable) {
+                                super.onLoadFailed(drawable);
                                 update(null, MaterialValueHelper.getSecondaryTextColor(service, true));
                             }
 

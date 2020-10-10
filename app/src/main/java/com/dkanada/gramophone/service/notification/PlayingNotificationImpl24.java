@@ -9,11 +9,12 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.media.app.NotificationCompat.MediaStyle;
 import androidx.palette.graphics.Palette;
 
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
@@ -53,15 +54,20 @@ public class PlayingNotificationImpl24 extends PlayingNotification {
         service.runOnUiThread(() -> CustomGlideRequest.Builder
                 .from(service, song.primary, song.blurHash)
                 .palette().build()
-                .into(new SimpleTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
+                .into(new CustomTarget<BitmapPaletteWrapper>(bigNotificationImageSize, bigNotificationImageSize) {
                     @Override
-                    public void onResourceReady(BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {
+                    public void onResourceReady(@NonNull BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {
                         Palette palette = resource.getPalette();
                         update(resource.getBitmap(), palette.getVibrantColor(palette.getMutedColor(Color.TRANSPARENT)));
                     }
 
                     @Override
-                    public void onLoadFailed(Drawable errorDrawable) {
+                    public void onLoadFailed(Drawable drawable) {
+                        update(null, Color.TRANSPARENT);
+                    }
+
+                    @Override
+                    public void onLoadCleared(Drawable drawable) {
                         update(null, Color.TRANSPARENT);
                     }
 

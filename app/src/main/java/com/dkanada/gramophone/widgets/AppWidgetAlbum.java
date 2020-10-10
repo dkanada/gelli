@@ -11,10 +11,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
@@ -100,15 +101,21 @@ public class AppWidgetAlbum extends BaseAppWidget {
                 target = CustomGlideRequest.Builder
                         .from(appContext, song.primary, song.blurHash)
                         .bitmap().build()
-                        .into(new SimpleTarget<Bitmap>(widgetImageSize, widgetImageSize) {
+                        .into(new CustomTarget<Bitmap>(widgetImageSize, widgetImageSize) {
                             @Override
-                            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> glideAnimation) {
+                            public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> glideAnimation) {
                                 update(resource);
                             }
 
                             @Override
-                            public void onLoadFailed(Drawable errorDrawable) {
-                                super.onLoadFailed(errorDrawable);
+                            public void onLoadFailed(Drawable drawable) {
+                                super.onLoadFailed(drawable);
+                                update(null);
+                            }
+
+                            @Override
+                            public void onLoadCleared(Drawable drawable) {
+                                super.onLoadFailed(drawable);
                                 update(null);
                             }
 
