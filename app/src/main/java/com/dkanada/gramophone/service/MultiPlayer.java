@@ -14,6 +14,7 @@ import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.database.ExoDatabaseProvider;
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
@@ -45,11 +46,12 @@ public class MultiPlayer implements Playback {
 
     private OkHttpClient httpClient;
     private SimpleExoPlayer exoPlayer;
-
     private ConcatenatingMediaSource mediaSource;
-    private Playback.PlaybackCallbacks callbacks;
-    private DataSource.Factory dataSource;
+
     private SimpleCache simpleCache;
+    private DataSource.Factory dataSource;
+
+    private PlaybackCallbacks callbacks;
 
     private boolean isReady = false;
     private boolean isPlaying = false;
@@ -106,11 +108,12 @@ public class MultiPlayer implements Playback {
         exoPlayer = new SimpleExoPlayer.Builder(context).build();
         mediaSource = new ConcatenatingMediaSource();
 
-        if (dataSource != null) return;
+        if (simpleCache != null) simpleCache.release();
+        LeastRecentlyUsedCacheEvictor recentlyUsedCache = new LeastRecentlyUsedCacheEvictor(Long.MAX_VALUE);
+        ExoDatabaseProvider databaseProvider = new ExoDatabaseProvider(context);
+
+        simpleCache = new SimpleCache(new File(Environment.getExternalStorageDirectory() + "/Gelli/cache"), recentlyUsedCache, databaseProvider);
         dataSource = buildDataSourceFactory();
-        if (simpleCache != null) return;
-        LeastRecentlyUsedCacheEvictor evictor = new LeastRecentlyUsedCacheEvictor(Long.MAX_VALUE);
-        simpleCache = new SimpleCache(new File(Environment.getExternalStorageDirectory() + "/Gelli/cache"), evictor);
     }
 
     @Override
