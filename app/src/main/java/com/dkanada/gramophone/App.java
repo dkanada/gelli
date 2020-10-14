@@ -6,13 +6,13 @@ import android.content.Context;
 import android.os.Build;
 import android.provider.Settings;
 
+import com.dkanada.gramophone.helper.EventListener;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.shortcuts.DynamicShortcutManager;
 
 import org.jellyfin.apiclient.interaction.AndroidDevice;
 import org.jellyfin.apiclient.interaction.ApiClient;
-import org.jellyfin.apiclient.interaction.ApiEventListener;
 import org.jellyfin.apiclient.interaction.VolleyHttpClient;
 import org.jellyfin.apiclient.interaction.device.IDevice;
 import org.jellyfin.apiclient.interaction.http.IAsyncHttpClient;
@@ -54,7 +54,7 @@ public class App extends Application {
         ILogger logger = new AndroidLogger(context.getClass().getName());
         IAsyncHttpClient httpClient = new VolleyHttpClient(logger, context);
         IDevice device = new AndroidDevice(deviceId, deviceName);
-        ApiEventListener eventListener = new ApiEventListener();
+        EventListener eventListener = new EventListener();
 
         return new ApiClient(httpClient, logger, server, appName, appVersion, device, eventListener);
     }
