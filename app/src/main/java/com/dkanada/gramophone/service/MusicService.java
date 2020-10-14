@@ -35,6 +35,7 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.BlurTransformation;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
@@ -52,10 +53,18 @@ import com.dkanada.gramophone.widgets.AppWidgetAlbum;
 import com.dkanada.gramophone.widgets.AppWidgetCard;
 import com.dkanada.gramophone.widgets.AppWidgetClassic;
 
+import org.jellyfin.apiclient.interaction.EmptyResponse;
+import org.jellyfin.apiclient.interaction.Response;
+import org.jellyfin.apiclient.model.session.PlaybackProgressInfo;
+import org.jellyfin.apiclient.model.session.PlaybackStartInfo;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks {
     public static final String PHONOGRAPH_PACKAGE_NAME = "com.dkanada.gramophone";
@@ -134,6 +143,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     };
 
     private QueueSaveHandler queueSaveHandler;
+    private ProgressHandler progressHandler;
     private HandlerThread musicPlayerHandlerThread;
     private HandlerThread queueSaveHandlerThread;
     private ThrottledSeekHandler throttledSeekHandler;
@@ -184,6 +194,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         queueSaveHandler = new QueueSaveHandler(this, queueSaveHandlerThread.getLooper());
 
         uiThreadHandler = new Handler();
+        progressHandler = new ProgressHandler(this, Looper.myLooper());
 
         registerReceiver(widgetIntentReceiver, new IntentFilter(APP_WIDGET_UPDATE));
 
@@ -324,6 +335,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             becomingNoisyReceiverRegistered = false;
         }
 
+        progressHandler.sendEmptyMessage(TRACK_ENDED);
         mediaSession.setActive(false);
         quit();
         releaseResources();
@@ -1094,6 +1106,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     break;
 
                 case TRACK_WENT_TO_NEXT:
+                    service.progressHandler.sendEmptyMessage(TRACK_WENT_TO_NEXT);
                     if (service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
                         service.pause();
                         service.seek(0);
@@ -1106,6 +1119,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     break;
 
                 case TRACK_ENDED:
+                    service.progressHandler.sendEmptyMessage(TRACK_ENDED);
                     // if there is a timer finished, don't continue
                     if (service.pendingQuit || service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
                         service.notifyChange(PLAY_STATE_CHANGED);
@@ -1127,6 +1141,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     break;
 
                 case PLAY_SONG:
+                    service.progressHandler.sendEmptyMessage(PLAY_SONG);
                     service.playSongAtImpl(msg.arg1);
                     // notification progress needs to be reset
                     service.notifyChange(PLAY_STATE_CHANGED);
@@ -1227,6 +1242,80 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         public void run() {
             saveProgress();
             notifyChange(PLAY_STATE_CHANGED);
+        }
+    }
+
+    private static final class ProgressHandler extends Handler {
+        private WeakReference<MusicService> mService;
+        private Timer mTimer;
+
+        public ProgressHandler(MusicService service, Looper looper) {
+            super(looper);
+
+            mService = new WeakReference<>(service);
+            mTimer = new Timer();
+        }
+
+        @Override
+        public void handleMessage(@NonNull final Message msg) {
+            final MusicService service = mService.get();
+            if (service == null) {
+                return;
+            }
+
+            switch (msg.what) {
+                case PLAY_SONG:
+                case TRACK_WENT_TO_NEXT:
+                    onStart();
+                    break;
+                case TRACK_ENDED:
+                    onStop();
+            }
+        }
+
+        public void onStart() {
+            PlaybackStartInfo startInfo = new PlaybackStartInfo();
+            TimerTask mTask = new TimerTask() {
+                @Override
+                public void run() {
+                    onProgress();
+                }
+            };
+
+            startInfo.setItemId(mService.get().getCurrentSong().id);
+            startInfo.setCanSeek(true);
+            startInfo.setIsPaused(false);
+
+            App.getApiClient().ReportPlaybackStartAsync(startInfo, new EmptyResponse());
+            mTimer.schedule(mTask, 10000, 10000);
+        }
+
+        public void onProgress() {
+            PlaybackProgressInfo progressInfo = new PlaybackProgressInfo();
+
+            // TODO these cause a wrong thread error
+            long progress = mService.get().getSongProgressMillis();
+            double duration = mService.get().getSongDurationMillis();
+            if (progress / duration > 0.9) onStop();
+
+            progressInfo.setItemId(mService.get().getCurrentSong().id);
+            progressInfo.setPositionTicks(progress * 10000);
+            progressInfo.setCanSeek(true);
+            progressInfo.setIsPaused(!mService.get().playback.isPlaying());
+
+            App.getApiClient().ensureWebSocket();
+            App.getApiClient().ReportPlaybackProgressAsync(progressInfo, new EmptyResponse());
+        }
+
+        public void onStop() {
+            mTimer.purge();
+
+            Song current = mService.get().getCurrentSong();
+            String user = App.getApiClient().getCurrentUserId();
+            Date time = new Date(System.currentTimeMillis());
+
+            if (current == Song.EMPTY_SONG) return;
+            App.getApiClient().MarkPlayedAsync(current.id, user, time, new Response<>());
         }
     }
 }
