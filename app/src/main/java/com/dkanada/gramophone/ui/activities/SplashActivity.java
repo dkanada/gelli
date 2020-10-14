@@ -15,7 +15,9 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
+import org.jellyfin.apiclient.interaction.EmptyResponse;
 import org.jellyfin.apiclient.interaction.Response;
+import org.jellyfin.apiclient.model.session.ClientCapabilities;
 import org.jellyfin.apiclient.model.system.SystemInfo;
 
 public class SplashActivity extends AbsBaseActivity {
@@ -76,6 +78,13 @@ public class SplashActivity extends AbsBaseActivity {
             App.getApiClient().GetSystemInfoAsync(new Response<SystemInfo>() {
                 @Override
                 public void onResponse(SystemInfo result) {
+                    ClientCapabilities clientCapabilities = new ClientCapabilities();
+                    clientCapabilities.setSupportsMediaControl(true);
+                    clientCapabilities.setSupportsPersistentIdentifier(true);
+
+                    App.getApiClient().ensureWebSocket();
+                    App.getApiClient().ReportCapabilities(clientCapabilities, new EmptyResponse());
+
                     Intent intent = new Intent(context, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     context.startActivity(intent);
