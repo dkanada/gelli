@@ -1,6 +1,5 @@
 package com.dkanada.gramophone.ui.activities.base;
 
-import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Build;
@@ -39,9 +38,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
     private NowPlayingScreen currentNowPlayingScreen;
     private AbsPlayerFragment playerFragment;
     private MiniPlayerFragment miniPlayerFragment;
-
     private ValueAnimator navigationBarColorAnimator;
-    private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
