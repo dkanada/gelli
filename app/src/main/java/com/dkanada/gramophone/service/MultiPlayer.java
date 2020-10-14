@@ -93,11 +93,15 @@ public class MultiPlayer implements Playback {
         @Override
         public void onPlayerError(ExoPlaybackException error) {
             Log.i(TAG, "onPlayerError: " + error.getMessage());
-            if (context != null) {
-                Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
+            if (context == null) {
+                return;
             }
 
-            stop();
+            Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
+            exoPlayer.release();
+
+            exoPlayer = new SimpleExoPlayer.Builder(context).build();
+            isReady = false;
         }
     };
 
@@ -105,6 +109,8 @@ public class MultiPlayer implements Playback {
         this.context = context;
 
         httpClient = new OkHttpClient();
+
+        if (exoPlayer != null) exoPlayer.release();
         exoPlayer = new SimpleExoPlayer.Builder(context).build();
         mediaSource = new ConcatenatingMediaSource();
 
@@ -230,6 +236,8 @@ public class MultiPlayer implements Playback {
     @Override
     public void stop() {
         exoPlayer.release();
+
+        exoPlayer = null;
         isReady = false;
     }
 
