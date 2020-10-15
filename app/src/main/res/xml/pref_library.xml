@@ -6,8 +6,8 @@
         <com.dkanada.gramophone.preferences.CategoryPreference
             app:iconSpaceReserved="false"
             android:key="library_categories"
-            android:summary="@string/pref_summary_library_categories"
-            android:title="@string/library_categories" />
+            android:summary="@string/pref_summary_categories"
+            android:title="@string/pref_title_categories" />
 
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
             app:iconSpaceReserved="false"
@@ -23,8 +23,8 @@
             app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:key="remember_last_tab"
-            android:summary="@string/pref_summary_remember_last_tab"
-            android:title="@string/pref_title_remember_last_tab" />
+            android:summary="@string/pref_summary_remember_tab"
+            android:title="@string/pref_title_remember_tab" />
 
     </com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
 

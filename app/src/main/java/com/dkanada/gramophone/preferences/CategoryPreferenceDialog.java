@@ -46,7 +46,7 @@ public class CategoryPreferenceDialog extends DialogFragment {
         adapter.attachToRecyclerView(recyclerView);
 
         return new MaterialDialog.Builder(requireActivity())
-                .title(R.string.library_categories)
+                .title(R.string.pref_title_categories)
                 .customView(view, false)
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)

@@ -18,7 +18,7 @@
             app:iconSpaceReserved="false"
             android:key="direct_play_codecs"
             android:summary="@string/pref_summary_direct_play_codecs"
-            android:title="@string/direct_play_codecs" />
+            android:title="@string/pref_title_direct_play_codecs" />
 
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
             app:iconSpaceReserved="false"

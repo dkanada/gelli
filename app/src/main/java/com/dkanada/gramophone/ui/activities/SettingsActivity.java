@@ -64,10 +64,10 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
     @Override
     public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int selectedColor) {
         switch (dialog.getTitle()) {
-            case R.string.primary_color:
+            case R.string.pref_title_primary_color:
                 ThemeStore.editTheme(this).primaryColor(selectedColor).commit();
                 break;
-            case R.string.accent_color:
+            case R.string.pref_title_accent_color:
                 ThemeStore.editTheme(this).accentColor(selectedColor).commit();
                 break;
         }
@@ -174,7 +174,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             final int primaryColor = ThemeStore.primaryColor(requireActivity());
             primaryColorPref.setColor(primaryColor, ColorUtil.darkenColor(primaryColor));
             primaryColorPref.setOnPreferenceClickListener(preference -> {
-                new ColorChooserDialog.Builder(requireActivity(), R.string.primary_color)
+                new ColorChooserDialog.Builder(requireActivity(), R.string.pref_title_primary_color)
                         .accentMode(false)
                         .allowUserColorInput(true)
                         .allowUserColorInputAlpha(false)
@@ -187,7 +187,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             final int accentColor = ThemeStore.accentColor(requireActivity());
             accentColorPref.setColor(accentColor, ColorUtil.darkenColor(accentColor));
             accentColorPref.setOnPreferenceClickListener(preference -> {
-                new ColorChooserDialog.Builder(requireActivity(), R.string.accent_color)
+                new ColorChooserDialog.Builder(requireActivity(), R.string.pref_title_accent_color)
                         .accentMode(true)
                         .allowUserColorInput(true)
                         .allowUserColorInputAlpha(false)

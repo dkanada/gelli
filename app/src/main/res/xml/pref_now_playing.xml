@@ -7,7 +7,7 @@
         <com.dkanada.gramophone.preferences.NowPlayingScreenPreference
             app:iconSpaceReserved="false"
             android:key="now_playing_screen"
-            android:title="@string/pref_title_now_playing_screen_appearance" />
+            android:title="@string/pref_title_now_playing_appearance" />
 
     </com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
 

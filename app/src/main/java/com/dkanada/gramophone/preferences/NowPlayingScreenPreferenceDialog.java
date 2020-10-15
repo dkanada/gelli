@@ -1,6 +1,5 @@
 package com.dkanada.gramophone.preferences;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -48,7 +47,7 @@ public class NowPlayingScreenPreferenceDialog extends DialogFragment implements 
         pageIndicator.onPageSelected(viewPager.getCurrentItem());
 
         return new MaterialDialog.Builder(requireActivity())
-                .title(R.string.pref_title_now_playing_screen_appearance)
+                .title(R.string.pref_title_now_playing_appearance)
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
                 .onAny(this)
