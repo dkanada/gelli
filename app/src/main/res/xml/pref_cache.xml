@@ -9,7 +9,7 @@
             android:defaultValue="400000000"
             android:entries="@array/pref_images_cache_size_titles"
             android:entryValues="@array/pref_images_cache_size_values"
-            android:key="cache_size"
+            android:key="image_cache_size"
             android:negativeButtonText="@null"
             android:positiveButtonText="@null"
             android:title="@string/pref_title_images_cache_size" />

@@ -124,9 +124,7 @@
     <string name="pref_title_remember_queue">Remember Queue</string>
     <string name="pref_title_page_size">Page Size</string>
     <string name="pref_title_images_cache_size">Cache Size</string>
-    <string name="pref_title_images_external_directory">External Directory</string>
 
-    <string name="pref_summary_images_external_directory">Store the image cache in an external directory to keep the files between installs.</string>
     <string name="primary_color_desc">The primary theme color for control elements.</string>
     <string name="accent_color_desc">An alternate color used to accent elements.</string>
     <string name="pref_summary_album_art_on_lockscreen">Uses the current song\'s album cover as the lock screen wallpaper.</string>
@@ -200,7 +198,7 @@
 
     <string name="playlist_is_empty">Playlist is empty</string>
     <string name="playing_notification_description">The playing notification provides actions for play/pause etc.</string>
-    <string name="playing_notification_name">Playing notification</string>
+    <string name="playing_notification_name">Playing Notification</string>
     <string name="you_have_to_select_at_least_one_category">You have to select at least one category.</string>
     <string name="permissions_denied">Permissions denied.</string>
     <string name="permission_external_storage_denied">Permission to access external storage denied.</string>
@@ -221,7 +219,7 @@
     <string name="sleep_timer_set">Sleep timer set for %d minutes from now.</string>
     <string name="error_unreachable_server">Can\'t reach server.</string>
     <string name="error_login_credentials">Invalid login credentials.</string>
-    <string name="error_login_empty_addr">Please fill in the server address.</string>
+    <string name="error_login_empty_address">Please fill in the server address.</string>
     <string name="error_unexpected">An unexpected error occurred.</string>
     <string name="error_no_username">Please fill in your username.</string>
 

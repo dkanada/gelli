@@ -70,7 +70,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         if (v == binding.login) {
             final Context context = this;
             if (binding.server.getText().toString().trim().length() == 0) {
-                Toast.makeText(context, context.getResources().getString(R.string.error_login_empty_addr), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getResources().getString(R.string.error_login_empty_address), Toast.LENGTH_SHORT).show();
                 return;
             }
 

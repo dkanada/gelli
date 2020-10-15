@@ -82,7 +82,7 @@ public final class PreferenceUtil {
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
     public static final String REMEMBER_QUEUE = "remember_queue";
 
-    public static final String CACHE_SIZE = "cache_size";
+    public static final String IMAGE_CACHE_SIZE = "image_cache_size";
 
     private static PreferenceUtil sInstance;
 
@@ -387,8 +387,8 @@ public final class PreferenceUtil {
         editor.apply();
     }
 
-    public final int getCacheSize() {
-        return Integer.parseInt(mPreferences.getString(CACHE_SIZE, "400000000"));
+    public final int getImageCacheSize() {
+        return Integer.parseInt(mPreferences.getString(IMAGE_CACHE_SIZE, "400000000"));
     }
 
     public List<CategoryInfo> getCategories() {
