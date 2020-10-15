@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemAdapter;
+import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemState;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemViewHolder;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.ItemDraggableRange;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.annotation.DraggableItemStateFlags;
@@ -166,6 +167,12 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
         @DraggableItemStateFlags
         public int getDragStateFlags() {
             return mDragStateFlags;
+        }
+
+        @NonNull
+        @Override
+        public DraggableItemState getDragState() {
+            return new DraggableItemState();
         }
     }
 }
