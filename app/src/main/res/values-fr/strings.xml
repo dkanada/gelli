@@ -163,7 +163,7 @@
     <string name="pref_header_images">Images</string>
     <string name="pref_summary_remember_queue">Enregistrer la liste de lecture à la fermeture de l\'application pour la conserver entre différentes utilisations.</string>
     <string name="pref_summary_remember_shuffle">Le mode aléatoire sera conservé au choix d\'une nouvelle liste de titres pour la liste de lecture.</string>
-    <string name="pref_title_images_cache_size">Taille du cache</string>
+    <string name="pref_title_image_cache_size">Taille du cache</string>
     <string name="pref_title_maximum_bitrate">Débit maximum</string>
     <string name="pref_title_page_size">Taile de liste maximum</string>
     <string name="pref_title_remember_queue">Se souvenir de la dernière liste de lecture</string>

@@ -1,12 +1,12 @@
 <resources>
 
-    <string-array name="pref_general_theme_list_titles">
+    <string-array name="pref_theme_titles">
         <item>@string/light_theme_name</item>
         <item>@string/dark_theme_name</item>
         <item>@string/black_theme_name</item>
     </string-array>
 
-    <string-array name="pref_general_theme_list_values">
+    <string-array name="pref_theme_values">
         <item>light</item>
         <item>dark</item>
         <item>black</item>
@@ -52,7 +52,7 @@
         <item>40</item>
     </string-array>
 
-    <string-array name="pref_images_cache_size_titles">
+    <string-array name="pref_cache_size_titles">
         <item>@string/unlimited</item>
         <item>2GB</item>
         <item>1GB</item>
@@ -60,7 +60,7 @@
         <item>200MB</item>
     </string-array>
 
-    <string-array name="pref_images_cache_size_values">
+    <string-array name="pref_cache_size_values">
         <item>2147483647</item>
         <item>2000000000</item>
         <item>1000000000</item>

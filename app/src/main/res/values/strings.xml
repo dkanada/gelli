@@ -123,7 +123,7 @@
     <string name="pref_title_remember_shuffle">Remember Shuffle</string>
     <string name="pref_title_remember_queue">Remember Queue</string>
     <string name="pref_title_page_size">Page Size</string>
-    <string name="pref_title_images_cache_size">Cache Size</string>
+    <string name="pref_title_image_cache_size">Cache Size</string>
 
     <string name="primary_color_desc">The primary theme color for control elements.</string>
     <string name="accent_color_desc">An alternate color used to accent elements.</string>

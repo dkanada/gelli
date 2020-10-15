@@ -157,7 +157,7 @@
     <string name="pref_title_maximum_bitrate">Maximale Bitrate</string>
     <string name="pref_title_remember_queue">Warteschlange merken</string>
     <string name="pref_title_page_size">Maximale Listengröße</string>
-    <string name="pref_title_images_cache_size">Cache-Größe</string>
+    <string name="pref_title_image_cache_size">Cache-Größe</string>
     <string name="pref_summary_remember_queue">Warteschlange beim Schließen der Anwendung speichen, damit sie über Sitzungen hinweg bestehen bleibt.</string>
     <string name="source">Quellcode</string>
     <string name="report_bugs">Melde Fehler</string>
