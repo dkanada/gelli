@@ -14,13 +14,6 @@
             android:positiveButtonText="@null"
             android:title="@string/pref_title_images_cache_size" />
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="false"
-            android:key="external_directory"
-            android:summary="@string/pref_summary_images_external_directory"
-            android:title="@string/pref_title_images_external_directory" />
-
     </com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

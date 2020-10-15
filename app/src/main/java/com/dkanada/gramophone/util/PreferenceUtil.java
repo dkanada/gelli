@@ -83,7 +83,6 @@ public final class PreferenceUtil {
     public static final String REMEMBER_QUEUE = "remember_queue";
 
     public static final String CACHE_SIZE = "cache_size";
-    public static final String EXTERNAL_DIRECTORY = "external_directory";
 
     private static PreferenceUtil sInstance;
 
@@ -390,10 +389,6 @@ public final class PreferenceUtil {
 
     public final int getCacheSize() {
         return Integer.parseInt(mPreferences.getString(CACHE_SIZE, "400000000"));
-    }
-
-    public final boolean getExternalDirectory() {
-        return mPreferences.getBoolean(EXTERNAL_DIRECTORY, false);
     }
 
     public List<CategoryInfo> getCategories() {

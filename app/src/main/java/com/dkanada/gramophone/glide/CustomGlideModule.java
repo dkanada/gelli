@@ -2,7 +2,6 @@ package com.dkanada.gramophone.glide;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Environment;
 
 import androidx.annotation.NonNull;
 
@@ -23,11 +22,9 @@ import java.io.File;
 public class CustomGlideModule implements GlideModule {
     @Override
     public void applyOptions(@NonNull Context context, GlideBuilder builder) {
-        File file = PreferenceUtil.getInstance(context).getExternalDirectory()
-                ? new File(Environment.getExternalStorageDirectory() + "/Gelli/images")
-                : new File(App.getInstance().getApplicationInfo().dataDir + "/glide");
-
+        File file = new File(App.getInstance().getApplicationInfo().dataDir + "/glide");
         int size = PreferenceUtil.getInstance(context).getCacheSize();
+
         builder.setDiskCache(new DiskLruCacheFactory(() -> file, size));
         builder.setDefaultRequestOptions(new RequestOptions().format(DecodeFormat.PREFER_RGB_565));
     }
