@@ -1,5 +1,7 @@
 package com.dkanada.gramophone.helper;
 
+import androidx.annotation.NonNull;
+
 import java.util.Locale;
 
 public class StopWatch {
@@ -40,6 +42,7 @@ public class StopWatch {
         }
     }
 
+    @NonNull
     @Override
     public String toString() {
         return String.format(Locale.getDefault(), "%d millis", getElapsedTime());

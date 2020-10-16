@@ -19,13 +19,13 @@ public interface Playback {
 
     boolean isPlaying();
 
-    int position();
+    int getPosition();
 
-    int duration();
+    int getDuration();
 
-    void seek(int position);
+    void setPosition(int position);
 
-    void volume(float volume);
+    void setVolume(int volume);
 
     interface PlaybackCallbacks {
         void onTrackStarted();

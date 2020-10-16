@@ -886,11 +886,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public int getSongProgressMillis() {
-        return playback.position();
+        return playback.getPosition();
     }
 
     public int getSongDurationMillis() {
-        return playback.duration();
+        return playback.getDuration();
     }
 
     public long getQueueDurationMillis(int position) {
@@ -904,7 +904,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public int seek(int millis) {
         synchronized (this) {
-            playback.seek(millis);
+            playback.setPosition(millis);
             throttledSeekHandler.notifySeek();
             return millis;
         }
@@ -1060,7 +1060,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private static final class PlaybackHandler extends Handler {
         @NonNull
         private final WeakReference<MusicService> mService;
-        private float currentDuckVolume = 1.0f;
+        private int currentDuckVolume = 100;
 
         public PlaybackHandler(final MusicService service, @NonNull final Looper looper) {
             super(looper);
@@ -1077,32 +1077,32 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             switch (msg.what) {
                 case DUCK:
                     if (PreferenceUtil.getInstance(service).getAudioDucking()) {
-                        currentDuckVolume -= 0.05f;
-                        if (currentDuckVolume > 0.2f) {
+                        currentDuckVolume -= 5;
+                        if (currentDuckVolume > 20) {
                             sendEmptyMessageDelayed(DUCK, 10);
                         } else {
-                            currentDuckVolume = 0.2f;
+                            currentDuckVolume = 20;
                         }
                     } else {
-                        currentDuckVolume = 1f;
+                        currentDuckVolume = 100;
                     }
 
-                    service.playback.volume(currentDuckVolume);
+                    service.playback.setVolume(currentDuckVolume);
                     break;
 
                 case UNDUCK:
                     if (PreferenceUtil.getInstance(service).getAudioDucking()) {
-                        currentDuckVolume += 0.03f;
-                        if (currentDuckVolume < 1f) {
+                        currentDuckVolume += 3;
+                        if (currentDuckVolume < 100) {
                             sendEmptyMessageDelayed(UNDUCK, 10);
                         } else {
-                            currentDuckVolume = 1f;
+                            currentDuckVolume = 100;
                         }
                     } else {
-                        currentDuckVolume = 1f;
+                        currentDuckVolume = 100;
                     }
 
-                    service.playback.volume(currentDuckVolume);
+                    service.playback.setVolume(currentDuckVolume);
                     break;
 
                 case TRACK_WENT_TO_NEXT:

@@ -247,24 +247,24 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public int position() {
+    public int getPosition() {
         if (!isReady) return -1;
         return (int) exoPlayer.getCurrentPosition();
     }
 
     @Override
-    public int duration() {
+    public int getDuration() {
         if (!isReady) return -1;
         return (int) exoPlayer.getDuration();
     }
 
     @Override
-    public void seek(int position) {
+    public void setPosition(int position) {
         exoPlayer.seekTo(position);
     }
 
     @Override
-    public void volume(float volume) {
-        exoPlayer.setVolume(volume);
+    public void setVolume(int volume) {
+        exoPlayer.setVolume(volume / 100f);
     }
 }
