@@ -342,15 +342,6 @@ public class MusicPlayerRemote {
         return false;
     }
 
-    public static boolean removeFromQueue(@NonNull Song song) {
-        if (musicService != null) {
-            musicService.removeSong(song);
-            return true;
-        }
-
-        return false;
-    }
-
     public static boolean removeFromQueue(int position) {
         if (musicService != null && position >= 0 && position < getPlayingQueue().size()) {
             musicService.removeSong(position);

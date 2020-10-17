@@ -24,7 +24,6 @@ import com.dkanada.gramophone.dialogs.ConfirmLogoutDialog;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
-import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
 import com.dkanada.gramophone.ui.fragments.mainactivity.library.LibraryFragment;

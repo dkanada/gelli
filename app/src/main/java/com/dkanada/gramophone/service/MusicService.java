@@ -98,9 +98,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final int PLAY_SONG = 3;
     public static final int PREPARE_NEXT = 4;
     public static final int SET_POSITION = 5;
-    private static final int FOCUS_CHANGE = 6;
-    private static final int DUCK = 7;
-    private static final int UNDUCK = 8;
+    public static final int FOCUS_CHANGE = 6;
+    public static final int DUCK = 7;
+    public static final int UNDUCK = 8;
     public static final int RESTORE_QUEUES = 9;
 
     public static final int SHUFFLE_MODE_NONE = 0;
@@ -110,9 +110,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final int REPEAT_MODE_ALL = 1;
     public static final int REPEAT_MODE_THIS = 2;
 
-    public static final int SAVE_QUEUES = 0;
+    public static final int SAVE_QUEUE = 0;
 
-    private final IBinder musicBind = new MusicBinder();
+    private final IBinder musicBinder = new MusicBinder();
 
     public boolean pendingQuit = false;
 
@@ -133,7 +133,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private AudioManager audioManager;
     private MediaSessionCompat mediaSession;
     private PowerManager.WakeLock wakeLock;
-    private PlaybackHandler playerHandler;
 
     private final AudioManager.OnAudioFocusChangeListener audioFocusListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
@@ -142,13 +141,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     };
 
+    private PlaybackHandler playerHandler;
+    private Handler uiThreadHandler;
+    private ThrottledSeekHandler throttledSeekHandler;
     private QueueSaveHandler queueSaveHandler;
     private ProgressHandler progressHandler;
-    private HandlerThread musicPlayerHandlerThread;
+    private HandlerThread playerHandlerThread;
     private HandlerThread queueSaveHandlerThread;
-    private ThrottledSeekHandler throttledSeekHandler;
-    private boolean becomingNoisyReceiverRegistered;
-    private IntentFilter becomingNoisyReceiverIntentFilter = new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
 
     private final BroadcastReceiver becomingNoisyReceiver = new BroadcastReceiver() {
         @Override
@@ -160,8 +159,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     };
 
     private boolean notHandledMetaChangedForCurrentTrack;
-
-    private Handler uiThreadHandler;
 
     private static final long MEDIA_SESSION_ACTIONS = PlaybackStateCompat.ACTION_PLAY
             | PlaybackStateCompat.ACTION_PAUSE
@@ -179,31 +176,30 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
         wakeLock.setReferenceCounted(false);
 
-        musicPlayerHandlerThread = new HandlerThread("PlaybackHandler");
-        musicPlayerHandlerThread.start();
-        playerHandler = new PlaybackHandler(this, musicPlayerHandlerThread.getLooper());
+        playerHandlerThread = new HandlerThread(PlaybackHandler.class.getName());
+        playerHandlerThread.start();
+        playerHandler = new PlaybackHandler(this, playerHandlerThread.getLooper());
 
         playback = new MultiPlayer(this);
         playback.setCallbacks(this);
 
-        setupMediaSession();
+        initMediaSession();
 
         // queue saving needs to run on a separate thread so that it doesn't block the playback handler events
-        queueSaveHandlerThread = new HandlerThread("QueueSaveHandler", Process.THREAD_PRIORITY_BACKGROUND);
+        queueSaveHandlerThread = new HandlerThread(QueueSaveHandler.class.getName(), Process.THREAD_PRIORITY_BACKGROUND);
         queueSaveHandlerThread.start();
         queueSaveHandler = new QueueSaveHandler(this, queueSaveHandlerThread.getLooper());
 
         uiThreadHandler = new Handler();
         progressHandler = new ProgressHandler(this, Looper.myLooper());
+        throttledSeekHandler = new ThrottledSeekHandler(playerHandler);
 
         registerReceiver(widgetIntentReceiver, new IntentFilter(APP_WIDGET_UPDATE));
-
-        initNotification();
-
-        throttledSeekHandler = new ThrottledSeekHandler(playerHandler);
+        registerReceiver(becomingNoisyReceiver, new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
 
         PreferenceUtil.getInstance(this).registerOnSharedPreferenceChangedListener(this);
 
+        initNotification();
         restoreState();
 
         mediaSession.setActive(true);
@@ -217,7 +213,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         return audioManager;
     }
 
-    private void setupMediaSession() {
+    private void initMediaSession() {
         ComponentName mediaButtonReceiverComponentName = new ComponentName(getApplicationContext(), MediaButtonIntentReceiver.class);
 
         Intent mediaButtonIntent = new Intent(Intent.ACTION_MEDIA_BUTTON);
@@ -330,10 +326,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     @Override
     public void onDestroy() {
         unregisterReceiver(widgetIntentReceiver);
-        if (becomingNoisyReceiverRegistered) {
-            unregisterReceiver(becomingNoisyReceiver);
-            becomingNoisyReceiverRegistered = false;
-        }
+        unregisterReceiver(becomingNoisyReceiver);
 
         progressHandler.sendEmptyMessage(TRACK_ENDED);
         mediaSession.setActive(false);
@@ -345,7 +338,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     @Override
     public IBinder onBind(Intent intent) {
-        return musicBind;
+        return musicBinder;
     }
 
     private static final class QueueSaveHandler extends Handler {
@@ -361,14 +354,14 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         public void handleMessage(@NonNull Message msg) {
             final MusicService service = mService.get();
             switch (msg.what) {
-                case SAVE_QUEUES:
-                    service.saveQueuesImpl();
+                case SAVE_QUEUE:
+                    service.saveQueue();
                     break;
             }
         }
     }
 
-    private void saveQueuesImpl() {
+    private void saveQueue() {
         QueueStore.getInstance(this).saveQueues(playingQueue, originalPlayingQueue);
     }
 
@@ -381,14 +374,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void saveState() {
-        saveQueues();
+        queueSaveHandler.removeMessages(SAVE_QUEUE);
+        queueSaveHandler.sendEmptyMessage(SAVE_QUEUE);
+
         savePosition();
         saveProgress();
-    }
-
-    private void saveQueues() {
-        queueSaveHandler.removeMessages(SAVE_QUEUES);
-        queueSaveHandler.sendEmptyMessage(SAVE_QUEUES);
     }
 
     private void restoreState() {
@@ -438,7 +428,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void releaseResources() {
         playerHandler.removeCallbacksAndMessages(null);
-        musicPlayerHandlerThread.quitSafely();
+        playerHandlerThread.quitSafely();
 
         queueSaveHandler.removeCallbacksAndMessages(null);
         queueSaveHandlerThread.quitSafely();
@@ -499,7 +489,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private boolean requestFocus() {
-        return (getAudioManager().requestAudioFocus(audioFocusListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN) == AudioManager.AUDIOFOCUS_REQUEST_GRANTED);
+        return getAudioManager().requestAudioFocus(audioFocusListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN) == AudioManager.AUDIOFOCUS_REQUEST_GRANTED;
     }
 
     public void initNotification() {
@@ -527,7 +517,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     @SuppressLint("CheckResult")
-    private void updateMediaSessionMetaData() {
+    private void updateMediaSessionMetadata() {
         final Song song = getCurrentSong();
 
         if (song.id == null) {
@@ -571,7 +561,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
                         @Override
                         public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> glideAnimation) {
-                            metaData.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, copy(resource));
+                            Bitmap.Config config = resource.getConfig();
+                            Bitmap copy = resource.copy(config, false);
+
+                            metaData.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, copy);
                             mediaSession.setMetadata(metaData.build());
                         }
 
@@ -585,20 +578,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             });
         } else {
             mediaSession.setMetadata(metaData.build());
-        }
-    }
-
-    private static Bitmap copy(Bitmap bitmap) {
-        Bitmap.Config config = bitmap.getConfig();
-        if (config == null) {
-            config = Bitmap.Config.RGB_565;
-        }
-
-        try {
-            return bitmap.copy(config, false);
-        } catch (OutOfMemoryError e) {
-            e.printStackTrace();
-            return null;
         }
     }
 
@@ -727,28 +706,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             originalPlayingQueue.remove(playingQueue.remove(position));
         }
 
-        rePosition(position);
+        reposition(position);
         notifyChange(QUEUE_CHANGED);
     }
 
-    public void removeSong(@NonNull Song song) {
-        for (int i = 0; i < playingQueue.size(); i++) {
-            if (playingQueue.get(i).id.equals(song.id)) {
-                playingQueue.remove(i);
-                rePosition(i);
-            }
-        }
-
-        for (int i = 0; i < originalPlayingQueue.size(); i++) {
-            if (originalPlayingQueue.get(i).id.equals(song.id)) {
-                originalPlayingQueue.remove(i);
-            }
-        }
-
-        notifyChange(QUEUE_CHANGED);
-    }
-
-    private void rePosition(int deletedPosition) {
+    private void reposition(int deletedPosition) {
         int currentPosition = getPosition();
         if (deletedPosition < currentPosition) {
             position = currentPosition - 1;
@@ -822,11 +784,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         playSongAt(getPosition());
                     } else {
                         playback.start();
-                        if (!becomingNoisyReceiverRegistered) {
-                            registerReceiver(becomingNoisyReceiver, becomingNoisyReceiverIntentFilter);
-                            becomingNoisyReceiverRegistered = true;
-                        }
-
                         if (notHandledMetaChangedForCurrentTrack) {
                             handleChangeInternal(META_CHANGED);
                             notHandledMetaChangedForCurrentTrack = false;
@@ -991,14 +948,14 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 break;
             case META_CHANGED:
                 updateNotification();
-                updateMediaSessionMetaData();
+                updateMediaSessionMetadata();
                 updateMediaSessionPlaybackState();
                 savePosition();
                 saveProgress();
                 break;
             case QUEUE_CHANGED:
                 // because playing queue size might have changed
-                updateMediaSessionMetaData();
+                updateMediaSessionMetadata();
                 saveState();
                 if (playingQueue.size() > 0) {
                     prepareNext();
@@ -1028,7 +985,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         switch (key) {
             case PreferenceUtil.SHOW_ALBUM_COVER:
             case PreferenceUtil.BLUR_ALBUM_COVER:
-                updateMediaSessionMetaData();
+                updateMediaSessionMetadata();
                 break;
             case PreferenceUtil.COLORED_NOTIFICATION:
                 updateNotification();
@@ -1058,7 +1015,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private static final class PlaybackHandler extends Handler {
-        @NonNull
         private final WeakReference<MusicService> mService;
         private int currentDuckVolume = 100;
 
