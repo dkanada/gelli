@@ -29,12 +29,6 @@ public class MusicProgressViewUpdateHelper extends Handler {
         this.intervalPaused = UPDATE_INTERVAL_PAUSED;
     }
 
-    public MusicProgressViewUpdateHelper(Callback callback, int intervalPlaying, int intervalPaused) {
-        this.callback = callback;
-        this.intervalPlaying = intervalPlaying;
-        this.intervalPaused = intervalPaused;
-    }
-
     @Override
     public void handleMessage(@NonNull Message msg) {
         super.handleMessage(msg);

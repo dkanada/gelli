@@ -34,6 +34,7 @@ import java.io.File;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -42,9 +43,9 @@ import okhttp3.internal.annotations.EverythingIsNonNull;
 public class MultiPlayer implements Playback {
     public static final String TAG = MultiPlayer.class.getSimpleName();
 
-    private Context context;
+    private final Context context;
+    private final OkHttpClient httpClient;
 
-    private OkHttpClient httpClient;
     private SimpleExoPlayer exoPlayer;
     private ConcatenatingMediaSource mediaSource;
 
@@ -55,7 +56,9 @@ public class MultiPlayer implements Playback {
 
     private boolean isReady = false;
     private boolean isPlaying = false;
-    private boolean isNew = false;
+
+    private boolean requestPlay = false;
+    private int requestProgress = 0;
 
     private ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
         @Override
@@ -72,6 +75,20 @@ public class MultiPlayer implements Playback {
         public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
             Log.i(TAG, "onPlayerStateChanged playWhenReady: " + playWhenReady);
             Log.i(TAG, "onPlayerStateChanged playbackState: " + playbackState);
+
+            if (callbacks == null) return;
+            if (requestProgress != 0 && playbackState == Player.STATE_READY) {
+                exoPlayer.seekTo(requestProgress);
+
+                requestProgress = 0;
+            }
+
+            if (exoPlayer.isPlaying() || requestPlay && playbackState == ExoPlayer.STATE_READY) {
+                requestPlay = false;
+
+                exoPlayer.setPlayWhenReady(true);
+                callbacks.onTrackStarted();
+            }
         }
 
         @Override
@@ -81,7 +98,7 @@ public class MultiPlayer implements Playback {
 
             if (windowIndex == 1) {
                 mediaSource.removeMediaSource(0);
-                if (mediaSource.getSize() != 0) {
+                if (exoPlayer.isPlaying()) {
                     // there are still songs left in the queue
                     callbacks.onTrackWentToNext();
                 } else {
@@ -105,14 +122,21 @@ public class MultiPlayer implements Playback {
         }
     };
 
-    public MultiPlayer(final Context context) {
+    public MultiPlayer(Context context) {
         this.context = context;
 
-        httpClient = new OkHttpClient();
+        Dispatcher dispatcher = new Dispatcher();
+        dispatcher.setMaxRequests(1);
+
+        httpClient = new OkHttpClient.Builder().dispatcher(dispatcher).build();
 
         if (exoPlayer != null) exoPlayer.release();
         exoPlayer = new SimpleExoPlayer.Builder(context).build();
         mediaSource = new ConcatenatingMediaSource();
+
+        exoPlayer.addListener(eventListener);
+        exoPlayer.prepare(mediaSource);
+        exoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
 
         if (simpleCache != null) simpleCache.release();
         LeastRecentlyUsedCacheEvictor recentlyUsedCache = new LeastRecentlyUsedCacheEvictor(Long.MAX_VALUE);
@@ -126,11 +150,6 @@ public class MultiPlayer implements Playback {
     @Override
     public void setDataSource(Song song) {
         isReady = false;
-        if (context == null) {
-            return;
-        }
-
-        isNew = true;
         mediaSource = new ConcatenatingMediaSource();
 
         exoPlayer.addListener(eventListener);
@@ -139,27 +158,22 @@ public class MultiPlayer implements Playback {
         // queue and other information is currently handled outside exoplayer
         exoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
 
-        appendDataSource(MusicUtil.getSongFileUri(song), 0);
-        isReady = true;
+        appendDataSource(MusicUtil.getSongFileUri(song));
     }
 
     @Override
     public void queueDataSource(Song song) {
-        if (context == null) {
-            return;
-        }
-
         String path = MusicUtil.getSongFileUri(song);
         if (mediaSource.getSize() == 2 && mediaSource.getMediaSource(1).getTag() != path) {
             mediaSource.removeMediaSource(1);
         }
 
         if (mediaSource.getSize() != 2) {
-            appendDataSource(path, 1);
+            appendDataSource(path);
         }
     }
 
-    private void appendDataSource(String path, int position) {
+    private void appendDataSource(String path) {
         Uri uri = Uri.parse(path);
 
         httpClient.newCall(new Request.Builder().url(path).head().build()).enqueue(new Callback() {
@@ -185,8 +199,8 @@ public class MultiPlayer implements Playback {
                             .createMediaSource(uri);
                 }
 
-                mediaSource.addMediaSource(Math.min(mediaSource.getSize(), position), source);
-                if (position == 0) start();
+                mediaSource.addMediaSource(source);
+                isReady = true;
             }
         });
     }
@@ -208,19 +222,19 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public boolean isInitialized() {
+    public boolean isReady() {
         return isReady;
     }
 
     @Override
     public void start() {
+        if (!isReady) {
+            requestPlay = true;
+            return;
+        }
+
         isPlaying = true;
         exoPlayer.setPlayWhenReady(true);
-
-        if (isNew) {
-            callbacks.onTrackStarted();
-            isNew = false;
-        }
     }
 
     @Override
@@ -256,6 +270,11 @@ public class MultiPlayer implements Playback {
 
     @Override
     public void setProgress(int position) {
+        if (!isReady) {
+            requestProgress = position;
+            return;
+        }
+
         exoPlayer.seekTo(position);
     }
 

@@ -409,7 +409,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 this.playingQueue = restoredQueue;
 
                 position = restoredPosition;
-                openCurrent(true);
+                openCurrent();
 
                 if (restoredPositionInTrack > 0) seek(restoredPositionInTrack);
 
@@ -458,25 +458,20 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         synchronized (this) {
             this.position = position;
 
-            openCurrent(false);
+            openCurrent();
+            playback.start();
 
             notifyChange(META_CHANGED);
             notHandledMetaChangedForCurrentTrack = false;
         }
     }
 
-    private void openCurrent(boolean queue) {
+    private void openCurrent() {
         synchronized (this) {
             // current song will be null when queue is cleared
             if (getCurrentSong() == null) return;
 
-            if (queue) {
-                // restore queue from database
-                playback.queueDataSource(getCurrentSong());
-            } else {
-                // set current song and start playback
-                playback.setDataSource(getCurrentSong());
-            }
+            playback.setDataSource(getCurrentSong());
         }
     }
 
@@ -784,7 +779,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         synchronized (this) {
             if (requestFocus()) {
                 if (!playback.isPlaying()) {
-                    if (!playback.isInitialized()) {
+                    if (!playback.isReady()) {
                         playSongAt(getPosition());
                     } else {
                         playback.start();
@@ -945,10 +940,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             case PLAY_STATE_CHANGED:
                 updateNotification();
                 updateMediaSessionPlaybackState();
-                final boolean isPlaying = isPlaying();
-                if (!isPlaying && getSongProgressMillis() > 0) {
-                    saveProgress();
-                }
+                if (!isPlaying()) saveProgress();
                 break;
             case META_CHANGED:
                 updateNotification();
@@ -1003,6 +995,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     @Override
     public void onTrackStarted() {
+        progressHandler.sendEmptyMessage(PLAY_SONG);
         notifyChange(PLAY_STATE_CHANGED);
         prepareNext();
     }
@@ -1244,6 +1237,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             startInfo.setCanSeek(true);
             startInfo.setIsPaused(false);
 
+            App.getApiClient().ensureWebSocket();
             App.getApiClient().ReportPlaybackStartAsync(startInfo, new EmptyResponse());
         }
 

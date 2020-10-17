@@ -15,7 +15,7 @@ public interface Playback {
 
     void stop();
 
-    boolean isInitialized();
+    boolean isReady();
 
     boolean isPlaying();
 
