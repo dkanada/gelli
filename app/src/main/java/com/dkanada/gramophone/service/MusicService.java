@@ -63,8 +63,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks {
     public static final String PHONOGRAPH_PACKAGE_NAME = "com.dkanada.gramophone";
@@ -78,7 +80,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final String ACTION_REWIND = PHONOGRAPH_PACKAGE_NAME + ".rewind";
     public static final String ACTION_QUIT = PHONOGRAPH_PACKAGE_NAME + ".quitservice";
     public static final String ACTION_PENDING_QUIT = PHONOGRAPH_PACKAGE_NAME + ".pendingquitservice";
-    public static final String INTENT_EXTRA_PLAYLIST = PHONOGRAPH_PACKAGE_NAME + "intentextra.playlist";
+    public static final String INTENT_EXTRA_PLAYLIST = PHONOGRAPH_PACKAGE_NAME + ".intentextra.playlist";
     public static final String INTENT_EXTRA_SHUFFLE_MODE = PHONOGRAPH_PACKAGE_NAME + ".intentextra.shufflemode";
 
     public static final String APP_WIDGET_UPDATE = PHONOGRAPH_PACKAGE_NAME + ".appwidgetupdate";
@@ -101,7 +103,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final int FOCUS_CHANGE = 6;
     public static final int DUCK = 7;
     public static final int UNDUCK = 8;
-    public static final int RESTORE_QUEUES = 9;
 
     public static final int SHUFFLE_MODE_NONE = 0;
     public static final int SHUFFLE_MODE_SHUFFLE = 1;
@@ -111,6 +112,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final int REPEAT_MODE_THIS = 2;
 
     public static final int SAVE_QUEUE = 0;
+    public static final int LOAD_QUEUE = 9;
 
     private final IBinder musicBinder = new MusicBinder();
 
@@ -121,10 +123,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private AppWidgetClassic appWidgetClassic = AppWidgetClassic.getInstance();
 
     private Playback playback;
+
     private List<Song> playingQueue = new ArrayList<>();
     private List<Song> originalPlayingQueue = new ArrayList<>();
+
     private int position = -1;
     private int nextPosition = -1;
+
     private int shuffleMode;
     private int repeatMode;
     private boolean queuesRestored;
@@ -146,6 +151,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private ThrottledSeekHandler throttledSeekHandler;
     private QueueSaveHandler queueSaveHandler;
     private ProgressHandler progressHandler;
+
     private HandlerThread playerHandlerThread;
     private HandlerThread queueSaveHandlerThread;
 
@@ -176,16 +182,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
         wakeLock.setReferenceCounted(false);
 
+        playback = new MultiPlayer(this);
+        playback.setCallbacks(this);
+
         playerHandlerThread = new HandlerThread(PlaybackHandler.class.getName());
         playerHandlerThread.start();
         playerHandler = new PlaybackHandler(this, playerHandlerThread.getLooper());
 
-        playback = new MultiPlayer(this);
-        playback.setCallbacks(this);
-
-        initMediaSession();
-
-        // queue saving needs to run on a separate thread so that it doesn't block the playback handler events
         queueSaveHandlerThread = new HandlerThread(QueueSaveHandler.class.getName(), Process.THREAD_PRIORITY_BACKGROUND);
         queueSaveHandlerThread.start();
         queueSaveHandler = new QueueSaveHandler(this, queueSaveHandlerThread.getLooper());
@@ -200,6 +203,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         PreferenceUtil.getInstance(this).registerOnSharedPreferenceChangedListener(this);
 
         initNotification();
+        initMediaSession();
         restoreState();
 
         mediaSession.setActive(true);
@@ -388,8 +392,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         notifyChange(SHUFFLE_MODE_CHANGED);
         notifyChange(REPEAT_MODE_CHANGED);
 
-        playerHandler.removeMessages(RESTORE_QUEUES);
-        playerHandler.sendEmptyMessage(RESTORE_QUEUES);
+        playerHandler.removeMessages(LOAD_QUEUE);
+        playerHandler.sendEmptyMessage(LOAD_QUEUE);
     }
 
     private synchronized void restoreQueuesAndPositionIfNecessary() {
@@ -843,7 +847,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public int getSongProgressMillis() {
-        return playback.getPosition();
+        return playback.getProgress();
     }
 
     public int getSongDurationMillis() {
@@ -861,7 +865,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public int seek(int millis) {
         synchronized (this) {
-            playback.setPosition(millis);
+            playback.setProgress(millis);
             throttledSeekHandler.notifySeek();
             return millis;
         }
@@ -1112,7 +1116,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     service.prepareNextImpl();
                     break;
 
-                case RESTORE_QUEUES:
+                case LOAD_QUEUE:
                     service.restoreQueuesAndPositionIfNecessary();
                     break;
 
@@ -1196,33 +1200,29 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         @Override
         public void run() {
-            saveProgress();
             notifyChange(PLAY_STATE_CHANGED);
         }
     }
 
     private static final class ProgressHandler extends Handler {
         private WeakReference<MusicService> mService;
-        private Timer mTimer;
+
+        private ScheduledExecutorService executorService;
+        private Future<?> task;
 
         public ProgressHandler(MusicService service, Looper looper) {
             super(looper);
 
             mService = new WeakReference<>(service);
-            mTimer = new Timer();
         }
 
         @Override
         public void handleMessage(@NonNull final Message msg) {
-            final MusicService service = mService.get();
-            if (service == null) {
-                return;
-            }
-
             switch (msg.what) {
                 case PLAY_SONG:
-                case TRACK_WENT_TO_NEXT:
                     onStart();
+                case TRACK_WENT_TO_NEXT:
+                    onNext();
                     break;
                 case TRACK_ENDED:
                     onStop();
@@ -1230,20 +1230,21 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
 
         public void onStart() {
+            if (executorService != null) executorService.shutdownNow();
+
+            executorService = Executors.newScheduledThreadPool(1);
+            task = executorService.scheduleAtFixedRate(this::onProgress, 10, 10, TimeUnit.SECONDS);
+        }
+
+        public void onNext() {
             PlaybackStartInfo startInfo = new PlaybackStartInfo();
-            TimerTask mTask = new TimerTask() {
-                @Override
-                public void run() {
-                    onProgress();
-                }
-            };
 
             startInfo.setItemId(mService.get().getCurrentSong().id);
+            startInfo.setVolumeLevel(mService.get().playback.getVolume());
             startInfo.setCanSeek(true);
             startInfo.setIsPaused(false);
 
             App.getApiClient().ReportPlaybackStartAsync(startInfo, new EmptyResponse());
-            mTimer.schedule(mTask, 10000, 10000);
         }
 
         public void onProgress() {
@@ -1252,26 +1253,26 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             // TODO these cause a wrong thread error
             long progress = mService.get().getSongProgressMillis();
             double duration = mService.get().getSongDurationMillis();
-            if (progress / duration > 0.9) onStop();
+            if (progress / duration > 0.9) {
+                Song current = mService.get().getCurrentSong();
+                String user = App.getApiClient().getCurrentUserId();
+                Date time = new Date(System.currentTimeMillis());
+
+                App.getApiClient().MarkPlayedAsync(current.id, user, time, new Response<>());
+            }
 
             progressInfo.setItemId(mService.get().getCurrentSong().id);
             progressInfo.setPositionTicks(progress * 10000);
-            progressInfo.setCanSeek(true);
+            progressInfo.setVolumeLevel(mService.get().playback.getVolume());
             progressInfo.setIsPaused(!mService.get().playback.isPlaying());
+            progressInfo.setCanSeek(true);
 
-            App.getApiClient().ensureWebSocket();
             App.getApiClient().ReportPlaybackProgressAsync(progressInfo, new EmptyResponse());
         }
 
         public void onStop() {
-            mTimer.purge();
-
-            Song current = mService.get().getCurrentSong();
-            String user = App.getApiClient().getCurrentUserId();
-            Date time = new Date(System.currentTimeMillis());
-
-            if (current == Song.EMPTY_SONG) return;
-            App.getApiClient().MarkPlayedAsync(current.id, user, time, new Response<>());
+            task.cancel(true);
+            executorService.shutdownNow();
         }
     }
 }

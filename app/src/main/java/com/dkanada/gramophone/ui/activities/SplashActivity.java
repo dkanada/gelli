@@ -55,16 +55,16 @@ public class SplashActivity extends AbsBaseActivity {
         builder.setMessage(R.string.battery_optimizations_message)
                 .setTitle(R.string.battery_optimizations_title)
                 .setNegativeButton(R.string.ignore, (dialog, id) -> login())
-                .setPositiveButton(R.string.disable, (dialog, id) -> openPowerSettings(SplashActivity.this))
+                .setPositiveButton(R.string.disable, (dialog, id) -> openPowerSettings())
                 .show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    private void openPowerSettings(Context context) {
+    private void openPowerSettings() {
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
-        context.startActivity(intent);
+        startActivity(intent);
     }
 
     public void login() {
@@ -102,6 +102,5 @@ public class SplashActivity extends AbsBaseActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
-        finish();
     }
 }

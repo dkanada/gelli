@@ -2,10 +2,10 @@ package com.dkanada.gramophone.service;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.playback.Playback;
@@ -118,7 +118,8 @@ public class MultiPlayer implements Playback {
         LeastRecentlyUsedCacheEvictor recentlyUsedCache = new LeastRecentlyUsedCacheEvictor(Long.MAX_VALUE);
         ExoDatabaseProvider databaseProvider = new ExoDatabaseProvider(context);
 
-        simpleCache = new SimpleCache(new File(Environment.getExternalStorageDirectory() + "/Gelli/cache"), recentlyUsedCache, databaseProvider);
+        File file = new File(App.getInstance().getApplicationInfo().dataDir + "/Gelli/exoplayer");
+        simpleCache = new SimpleCache(file, recentlyUsedCache, databaseProvider);
         dataSource = buildDataSourceFactory();
     }
 
@@ -184,12 +185,7 @@ public class MultiPlayer implements Playback {
                             .createMediaSource(uri);
                 }
 
-                if (mediaSource.getSize() < position) {
-                    mediaSource.addMediaSource(mediaSource.getSize(), source);
-                } else {
-                    mediaSource.addMediaSource(position, source);
-                }
-
+                mediaSource.addMediaSource(Math.min(mediaSource.getSize(), position), source);
                 if (position == 0) start();
             }
         });
@@ -247,7 +243,7 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public int getPosition() {
+    public int getProgress() {
         if (!isReady) return -1;
         return (int) exoPlayer.getCurrentPosition();
     }
@@ -259,12 +255,17 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public void setPosition(int position) {
+    public void setProgress(int position) {
         exoPlayer.seekTo(position);
     }
 
     @Override
     public void setVolume(int volume) {
         exoPlayer.setVolume(volume / 100f);
+    }
+
+    @Override
+    public int getVolume() {
+        return (int) (exoPlayer.getVolume() * 100);
     }
 }
