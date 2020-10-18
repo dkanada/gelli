@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Song;
@@ -60,9 +62,9 @@ public class MultiPlayer implements Playback {
     private boolean requestPlay = false;
     private int requestProgress = 0;
 
-    private ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
+    private final ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
         @Override
-        public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+        public void onTracksChanged(@NonNull TrackGroupArray trackGroups, @NonNull TrackSelectionArray trackSelections) {
             Log.i(TAG, "onTracksChanged");
         }
 
@@ -227,6 +229,11 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
+    public boolean isPlaying() {
+        return isReady && isPlaying;
+    }
+
+    @Override
     public void start() {
         if (!isReady) {
             requestPlay = true;
@@ -252,11 +259,6 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public boolean isPlaying() {
-        return isReady && isPlaying;
-    }
-
-    @Override
     public int getProgress() {
         if (!isReady) return -1;
         return (int) exoPlayer.getCurrentPosition();
@@ -269,13 +271,13 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public void setProgress(int position) {
+    public void setProgress(int progress) {
         if (!isReady) {
-            requestProgress = position;
+            requestProgress = progress;
             return;
         }
 
-        exoPlayer.seekTo(position);
+        exoPlayer.seekTo(progress);
     }
 
     @Override

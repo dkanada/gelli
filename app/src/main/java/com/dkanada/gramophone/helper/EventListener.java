@@ -21,12 +21,12 @@ public class EventListener extends ApiEventListener {
 
     @Override
     public void onRemoteLoggedOut(ApiClient client, RemoteLogoutReason reason) {
-        Log.i(TAG, "onRemoteLoggedOut");
+        Log.i(TAG, "onRemoteLoggedOut: " + reason);
     }
 
     @Override
     public void onUserUpdated(ApiClient client, UserDto userDto) {
-        Log.i(TAG, "onUserUpdated");
+        Log.i(TAG, "onUserUpdated: " + userDto.getName());
     }
 
     @Override
@@ -41,12 +41,12 @@ public class EventListener extends ApiEventListener {
 
     @Override
     public void onBrowseCommand(ApiClient client, BrowseRequest command) {
-        Log.i(TAG, "onBrowseCommand");
+        Log.i(TAG, "onBrowseCommand: " + command.getItemName());
     }
 
     @Override
     public void onPlayCommand(ApiClient client, PlayRequest command) {
-        Log.i(TAG, "onPlayCommand");
+        Log.i(TAG, "onPlayCommand: " + command.getPlayCommand());
     }
 
     @Override
@@ -92,7 +92,7 @@ public class EventListener extends ApiEventListener {
 
     @Override
     public void onGeneralCommand(ApiClient client, GeneralCommand command) {
-        Log.i(TAG, "onGeneralCommand");
+        Log.i(TAG, "onGeneralCommand: " + command.getName());
     }
 
     @Override

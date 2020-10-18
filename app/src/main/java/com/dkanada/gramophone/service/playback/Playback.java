@@ -9,21 +9,21 @@ public interface Playback {
 
     void setCallbacks(PlaybackCallbacks callbacks);
 
+    boolean isReady();
+
+    boolean isPlaying();
+
     void start();
 
     void pause();
 
     void stop();
 
-    boolean isReady();
-
-    boolean isPlaying();
-
     int getProgress();
 
     int getDuration();
 
-    void setProgress(int position);
+    void setProgress(int progress);
 
     void setVolume(int volume);
 
