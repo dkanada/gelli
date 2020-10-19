@@ -86,7 +86,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final String APP_WIDGET_UPDATE = PHONOGRAPH_PACKAGE_NAME + ".appwidgetupdate";
     public static final String EXTRA_APP_WIDGET_NAME = PHONOGRAPH_PACKAGE_NAME + "app_widget_name";
 
-    // do not change these three strings as it will break support with other apps like last.fm
     public static final String META_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".metachanged";
     public static final String QUEUE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".queuechanged";
     public static final String PLAY_STATE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".playstatechanged";
@@ -118,9 +117,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public boolean pendingQuit = false;
 
-    private AppWidgetAlbum appWidgetAlbum = AppWidgetAlbum.getInstance();
-    private AppWidgetCard appWidgetCard = AppWidgetCard.getInstance();
-    private AppWidgetClassic appWidgetClassic = AppWidgetClassic.getInstance();
+    private final AppWidgetAlbum appWidgetAlbum = AppWidgetAlbum.getInstance();
+    private final AppWidgetCard appWidgetCard = AppWidgetCard.getInstance();
+    private final AppWidgetClassic appWidgetClassic = AppWidgetClassic.getInstance();
 
     private Playback playback;
 
@@ -132,19 +131,15 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private int shuffleMode;
     private int repeatMode;
+
+    private boolean notHandledMetaChangedForCurrentTrack;
     private boolean queuesRestored;
     private boolean pausedByTransientLossOfFocus;
+
     private PlayingNotification playingNotification;
     private AudioManager audioManager;
     private MediaSessionCompat mediaSession;
     private PowerManager.WakeLock wakeLock;
-
-    private final AudioManager.OnAudioFocusChangeListener audioFocusListener = new AudioManager.OnAudioFocusChangeListener() {
-        @Override
-        public void onAudioFocusChange(final int focusChange) {
-            playerHandler.obtainMessage(FOCUS_CHANGE, focusChange, 0).sendToTarget();
-        }
-    };
 
     private PlaybackHandler playerHandler;
     private Handler uiThreadHandler;
@@ -164,7 +159,32 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     };
 
-    private boolean notHandledMetaChangedForCurrentTrack;
+    private final BroadcastReceiver widgetIntentReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+            final String command = intent.getStringExtra(EXTRA_APP_WIDGET_NAME);
+            final int[] ids = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+
+            switch (command) {
+                case AppWidgetClassic.NAME:
+                    appWidgetClassic.performUpdate(MusicService.this, ids);
+                    break;
+                case AppWidgetAlbum.NAME:
+                    appWidgetAlbum.performUpdate(MusicService.this, ids);
+                    break;
+                case AppWidgetCard.NAME:
+                    appWidgetCard.performUpdate(MusicService.this, ids);
+                    break;
+            }
+        }
+    };
+
+    private final AudioManager.OnAudioFocusChangeListener audioFocusListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(final int focusChange) {
+            playerHandler.obtainMessage(FOCUS_CHANGE, focusChange, 0).sendToTarget();
+        }
+    };
 
     private static final long MEDIA_SESSION_ACTIONS = PlaybackStateCompat.ACTION_PLAY
             | PlaybackStateCompat.ACTION_PAUSE
@@ -1156,26 +1176,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             return MusicService.this;
         }
     }
-
-    private final BroadcastReceiver widgetIntentReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(final Context context, final Intent intent) {
-            final String command = intent.getStringExtra(EXTRA_APP_WIDGET_NAME);
-            final int[] ids = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
-
-            switch (command) {
-                case AppWidgetClassic.NAME:
-                    appWidgetClassic.performUpdate(MusicService.this, ids);
-                    break;
-                case AppWidgetAlbum.NAME:
-                    appWidgetAlbum.performUpdate(MusicService.this, ids);
-                    break;
-                case AppWidgetCard.NAME:
-                    appWidgetCard.performUpdate(MusicService.this, ids);
-                    break;
-            }
-        }
-    };
 
     private class ThrottledSeekHandler implements Runnable {
         // milliseconds to throttle before calling run to aggregate events
