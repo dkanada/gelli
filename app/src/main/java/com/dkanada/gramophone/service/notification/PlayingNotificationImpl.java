@@ -175,7 +175,7 @@ public class PlayingNotificationImpl extends PlayingNotification {
         notificationLayoutBig.setOnClickPendingIntent(R.id.action_prev, pendingIntent);
 
         // toggle play and pause
-        pendingIntent = buildPendingIntent(service, MusicService.ACTION_TOGGLE_PAUSE, serviceName);
+        pendingIntent = buildPendingIntent(service, MusicService.ACTION_TOGGLE, serviceName);
         notificationLayout.setOnClickPendingIntent(R.id.action_play_pause, pendingIntent);
         notificationLayoutBig.setOnClickPendingIntent(R.id.action_play_pause, pendingIntent);
 

@@ -33,8 +33,8 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager,
                          final int[] appWidgetIds) {
         defaultAppWidget(context, appWidgetIds);
-        final Intent updateIntent = new Intent(MusicService.APP_WIDGET_UPDATE);
-        updateIntent.putExtra(MusicService.EXTRA_APP_WIDGET_NAME, NAME);
+        final Intent updateIntent = new Intent(MusicService.INTENT_EXTRA_WIDGET_UPDATE);
+        updateIntent.putExtra(MusicService.INTENT_EXTRA_WIDGET_NAME, NAME);
         updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
         updateIntent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY);
         context.sendBroadcast(updateIntent);
@@ -46,7 +46,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
      */
     public void notifyChange(final MusicService service, final String what) {
         if (hasInstances(service)) {
-            if (MusicService.META_CHANGED.equals(what) || MusicService.PLAY_STATE_CHANGED.equals(what)) {
+            if (MusicService.META_CHANGED.equals(what) || MusicService.STATE_CHANGED.equals(what)) {
                 performUpdate(service, null);
             }
         }

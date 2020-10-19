@@ -52,7 +52,7 @@ public class AppShortcutLauncherActivity extends Activity {
 
         Bundle bundle = new Bundle();
         bundle.putParcelable(MusicService.INTENT_EXTRA_PLAYLIST, playlist);
-        bundle.putInt(MusicService.INTENT_EXTRA_SHUFFLE_MODE, shuffleMode);
+        bundle.putInt(MusicService.INTENT_EXTRA_SHUFFLE, shuffleMode);
 
         intent.putExtras(bundle);
 

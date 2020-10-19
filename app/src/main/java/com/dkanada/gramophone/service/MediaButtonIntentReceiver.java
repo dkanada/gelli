@@ -59,7 +59,7 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                     if (DEBUG) Log.v(TAG, "Handling headset click, count = " + clickCount);
                     switch (clickCount) {
                         case 1:
-                            command = MusicService.ACTION_TOGGLE_PAUSE;
+                            command = MusicService.ACTION_TOGGLE;
                             break;
                         case 2:
                             command = MusicService.ACTION_SKIP;
@@ -115,7 +115,7 @@ public class MediaButtonIntentReceiver extends BroadcastReceiver {
                     break;
                 case KeyEvent.KEYCODE_HEADSETHOOK:
                 case KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE:
-                    command = MusicService.ACTION_TOGGLE_PAUSE;
+                    command = MusicService.ACTION_TOGGLE;
                     break;
                 case KeyEvent.KEYCODE_MEDIA_NEXT:
                     command = MusicService.ACTION_SKIP;

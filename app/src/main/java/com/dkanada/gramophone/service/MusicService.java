@@ -69,29 +69,29 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks {
-    public static final String PHONOGRAPH_PACKAGE_NAME = "com.dkanada.gramophone";
+    public static final String PACKAGE_NAME = "com.dkanada.gramophone";
 
-    public static final String ACTION_TOGGLE_PAUSE = PHONOGRAPH_PACKAGE_NAME + ".togglepause";
-    public static final String ACTION_PLAY = PHONOGRAPH_PACKAGE_NAME + ".play";
-    public static final String ACTION_PLAY_PLAYLIST = PHONOGRAPH_PACKAGE_NAME + ".play.playlist";
-    public static final String ACTION_PAUSE = PHONOGRAPH_PACKAGE_NAME + ".pause";
-    public static final String ACTION_STOP = PHONOGRAPH_PACKAGE_NAME + ".stop";
-    public static final String ACTION_SKIP = PHONOGRAPH_PACKAGE_NAME + ".skip";
-    public static final String ACTION_REWIND = PHONOGRAPH_PACKAGE_NAME + ".rewind";
-    public static final String ACTION_QUIT = PHONOGRAPH_PACKAGE_NAME + ".quitservice";
-    public static final String ACTION_PENDING_QUIT = PHONOGRAPH_PACKAGE_NAME + ".pendingquitservice";
-    public static final String INTENT_EXTRA_PLAYLIST = PHONOGRAPH_PACKAGE_NAME + ".intentextra.playlist";
-    public static final String INTENT_EXTRA_SHUFFLE_MODE = PHONOGRAPH_PACKAGE_NAME + ".intentextra.shufflemode";
+    public static final String ACTION_TOGGLE = PACKAGE_NAME + ".toggle";
+    public static final String ACTION_PLAY = PACKAGE_NAME + ".play";
+    public static final String ACTION_PLAY_PLAYLIST = PACKAGE_NAME + ".play.playlist";
+    public static final String ACTION_PAUSE = PACKAGE_NAME + ".pause";
+    public static final String ACTION_STOP = PACKAGE_NAME + ".stop";
+    public static final String ACTION_SKIP = PACKAGE_NAME + ".skip";
+    public static final String ACTION_REWIND = PACKAGE_NAME + ".rewind";
+    public static final String ACTION_QUIT = PACKAGE_NAME + ".quit";
+    public static final String ACTION_PENDING_QUIT = PACKAGE_NAME + ".quit.pending";
+    public static final String INTENT_EXTRA_PLAYLIST = PACKAGE_NAME + ".extra.playlist";
+    public static final String INTENT_EXTRA_SHUFFLE = PACKAGE_NAME + ".extra.shuffle";
 
-    public static final String APP_WIDGET_UPDATE = PHONOGRAPH_PACKAGE_NAME + ".appwidgetupdate";
-    public static final String EXTRA_APP_WIDGET_NAME = PHONOGRAPH_PACKAGE_NAME + "app_widget_name";
+    public static final String INTENT_EXTRA_WIDGET_UPDATE = PACKAGE_NAME + ".extra.widget.update";
+    public static final String INTENT_EXTRA_WIDGET_NAME = PACKAGE_NAME + ".extra.widget.name";
 
-    public static final String META_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".metachanged";
-    public static final String QUEUE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".queuechanged";
-    public static final String PLAY_STATE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".playstatechanged";
+    public static final String META_CHANGED = PACKAGE_NAME + ".meta.changed";
+    public static final String QUEUE_CHANGED = PACKAGE_NAME + ".queue.changed";
+    public static final String STATE_CHANGED = PACKAGE_NAME + ".state.changed";
 
-    public static final String REPEAT_MODE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".repeatmodechanged";
-    public static final String SHUFFLE_MODE_CHANGED = PHONOGRAPH_PACKAGE_NAME + ".shufflemodechanged";
+    public static final String REPEAT_MODE_CHANGED = PACKAGE_NAME + ".repeat.changed";
+    public static final String SHUFFLE_MODE_CHANGED = PACKAGE_NAME + ".shuffle.changed";
 
     public static final int RELEASE_WAKELOCK = 0;
     public static final int TRACK_ENDED = 1;
@@ -162,7 +162,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private final BroadcastReceiver widgetIntentReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(final Context context, final Intent intent) {
-            final String command = intent.getStringExtra(EXTRA_APP_WIDGET_NAME);
+            final String command = intent.getStringExtra(INTENT_EXTRA_WIDGET_NAME);
             final int[] ids = intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
 
             switch (command) {
@@ -217,7 +217,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         progressHandler = new ProgressHandler(this, Looper.myLooper());
         throttledSeekHandler = new ThrottledSeekHandler(playerHandler);
 
-        registerReceiver(widgetIntentReceiver, new IntentFilter(APP_WIDGET_UPDATE));
+        registerReceiver(widgetIntentReceiver, new IntentFilter(INTENT_EXTRA_WIDGET_UPDATE));
         registerReceiver(becomingNoisyReceiver, new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
 
         PreferenceUtil.getInstance(this).registerOnSharedPreferenceChangedListener(this);
@@ -293,7 +293,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 restoreQueuesAndPositionIfNecessary();
                 String action = intent.getAction();
                 switch (action) {
-                    case ACTION_TOGGLE_PAUSE:
+                    case ACTION_TOGGLE:
                         if (isPlaying()) {
                             pause();
                         } else {
@@ -308,7 +308,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         break;
                     case ACTION_PLAY_PLAYLIST:
                         Playlist playlist = intent.getParcelableExtra(INTENT_EXTRA_PLAYLIST);
-                        int shuffleMode = intent.getIntExtra(INTENT_EXTRA_SHUFFLE_MODE, getShuffleMode());
+                        int shuffleMode = intent.getIntExtra(INTENT_EXTRA_SHUFFLE, getShuffleMode());
                         if (playlist != null) {
                             List<Song> playlistSongs = new ArrayList<>();
                             if (!playlistSongs.isEmpty()) {
@@ -791,7 +791,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         pausedByTransientLossOfFocus = false;
         if (playback.isPlaying()) {
             playback.pause();
-            notifyChange(PLAY_STATE_CHANGED);
+            notifyChange(STATE_CHANGED);
         }
     }
 
@@ -808,7 +808,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                             notHandledMetaChangedForCurrentTrack = false;
                         }
 
-                        notifyChange(PLAY_STATE_CHANGED);
+                        notifyChange(STATE_CHANGED);
 
                         // fixes a bug where the volume would stay ducked because the AudioManager.AUDIOFOCUS_GAIN event is not sent
                         playerHandler.removeMessages(DUCK);
@@ -957,7 +957,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void handleChangeInternal(@NonNull final String what) {
         switch (what) {
-            case PLAY_STATE_CHANGED:
+            case STATE_CHANGED:
                 updateNotification();
                 updateMediaSessionPlaybackState();
                 if (!isPlaying()) saveProgress();
@@ -1016,7 +1016,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     @Override
     public void onTrackStarted() {
         progressHandler.sendEmptyMessage(PLAY_SONG);
-        notifyChange(PLAY_STATE_CHANGED);
+        notifyChange(STATE_CHANGED);
         prepareNext();
     }
 
@@ -1083,7 +1083,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     if (service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
                         service.pause();
                         service.seek(0);
-                        service.notifyChange(PLAY_STATE_CHANGED);
+                        service.notifyChange(STATE_CHANGED);
                     } else {
                         service.position = service.nextPosition;
                         service.prepareNextImpl();
@@ -1095,7 +1095,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     service.progressHandler.sendEmptyMessage(TRACK_ENDED);
                     // if there is a timer finished, don't continue
                     if (service.pendingQuit || service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
-                        service.notifyChange(PLAY_STATE_CHANGED);
+                        service.notifyChange(STATE_CHANGED);
                         service.seek(0);
                         if (service.pendingQuit) {
                             service.pendingQuit = false;
@@ -1117,12 +1117,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     service.progressHandler.sendEmptyMessage(PLAY_SONG);
                     service.playSongAtImpl(msg.arg1);
                     // notification progress needs to be reset
-                    service.notifyChange(PLAY_STATE_CHANGED);
+                    service.notifyChange(STATE_CHANGED);
                     break;
 
                 case SET_POSITION:
                     service.openTrackAndPrepareNextAt(msg.arg1);
-                    service.notifyChange(PLAY_STATE_CHANGED);
+                    service.notifyChange(STATE_CHANGED);
                     break;
 
                 case PREPARE_NEXT:
@@ -1193,7 +1193,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         @Override
         public void run() {
-            notifyChange(PLAY_STATE_CHANGED);
+            notifyChange(STATE_CHANGED);
         }
     }
 

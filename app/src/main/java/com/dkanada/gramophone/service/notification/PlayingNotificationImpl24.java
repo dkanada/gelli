@@ -26,7 +26,7 @@ import com.dkanada.gramophone.util.PreferenceUtil;
 
 import static com.dkanada.gramophone.service.MusicService.ACTION_REWIND;
 import static com.dkanada.gramophone.service.MusicService.ACTION_SKIP;
-import static com.dkanada.gramophone.service.MusicService.ACTION_TOGGLE_PAUSE;
+import static com.dkanada.gramophone.service.MusicService.ACTION_TOGGLE;
 
 public class PlayingNotificationImpl24 extends PlayingNotification {
 
@@ -76,7 +76,7 @@ public class PlayingNotificationImpl24 extends PlayingNotification {
                             bitmap = BitmapFactory.decodeResource(service.getResources(), R.drawable.default_album_art);
                         NotificationCompat.Action playPauseAction = new NotificationCompat.Action(playButtonResId,
                                 service.getString(R.string.action_play_pause),
-                                retrievePlaybackAction(ACTION_TOGGLE_PAUSE));
+                                retrievePlaybackAction(ACTION_TOGGLE));
                         NotificationCompat.Action previousAction = new NotificationCompat.Action(R.drawable.ic_skip_previous_white_24dp,
                                 service.getString(R.string.action_previous),
                                 retrievePlaybackAction(ACTION_REWIND));

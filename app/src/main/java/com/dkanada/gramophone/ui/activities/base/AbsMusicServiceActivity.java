@@ -76,7 +76,7 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
             musicStateReceiver = new MusicStateReceiver(this);
 
             final IntentFilter filter = new IntentFilter();
-            filter.addAction(MusicService.PLAY_STATE_CHANGED);
+            filter.addAction(MusicService.STATE_CHANGED);
             filter.addAction(MusicService.SHUFFLE_MODE_CHANGED);
             filter.addAction(MusicService.REPEAT_MODE_CHANGED);
             filter.addAction(MusicService.META_CHANGED);
@@ -173,7 +173,7 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
                     case MusicService.QUEUE_CHANGED:
                         activity.onQueueChanged();
                         break;
-                    case MusicService.PLAY_STATE_CHANGED:
+                    case MusicService.STATE_CHANGED:
                         activity.onPlayStateChanged();
                         break;
                     case MusicService.REPEAT_MODE_CHANGED:

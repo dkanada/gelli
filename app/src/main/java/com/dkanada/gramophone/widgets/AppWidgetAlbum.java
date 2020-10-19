@@ -153,7 +153,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
         views.setOnClickPendingIntent(R.id.button_prev, pendingIntent);
 
         // Play and pause
-        pendingIntent = buildPendingIntent(context, MusicService.ACTION_TOGGLE_PAUSE, serviceName);
+        pendingIntent = buildPendingIntent(context, MusicService.ACTION_TOGGLE, serviceName);
         views.setOnClickPendingIntent(R.id.button_toggle_play_pause, pendingIntent);
 
         // Next track
