@@ -80,9 +80,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final String ACTION_REWIND = PACKAGE_NAME + ".rewind";
     public static final String ACTION_QUIT = PACKAGE_NAME + ".quit";
     public static final String ACTION_PENDING_QUIT = PACKAGE_NAME + ".quit.pending";
+
     public static final String INTENT_EXTRA_PLAYLIST = PACKAGE_NAME + ".extra.playlist";
     public static final String INTENT_EXTRA_SHUFFLE = PACKAGE_NAME + ".extra.shuffle";
-
     public static final String INTENT_EXTRA_WIDGET_UPDATE = PACKAGE_NAME + ".extra.widget.update";
     public static final String INTENT_EXTRA_WIDGET_NAME = PACKAGE_NAME + ".extra.widget.name";
 
@@ -144,11 +144,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private PlaybackHandler playerHandler;
     private Handler uiThreadHandler;
     private ThrottledSeekHandler throttledSeekHandler;
-    private QueueSaveHandler queueSaveHandler;
+    private QueueHandler queueHandler;
     private ProgressHandler progressHandler;
 
     private HandlerThread playerHandlerThread;
-    private HandlerThread queueSaveHandlerThread;
+    private HandlerThread progressHandlerThread;
+    private HandlerThread queueHandlerThread;
 
     private final BroadcastReceiver becomingNoisyReceiver = new BroadcastReceiver() {
         @Override
@@ -209,13 +210,16 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         playerHandlerThread.start();
         playerHandler = new PlaybackHandler(this, playerHandlerThread.getLooper());
 
-        queueSaveHandlerThread = new HandlerThread(QueueSaveHandler.class.getName(), Process.THREAD_PRIORITY_BACKGROUND);
-        queueSaveHandlerThread.start();
-        queueSaveHandler = new QueueSaveHandler(this, queueSaveHandlerThread.getLooper());
+        progressHandlerThread = new HandlerThread(ProgressHandler.class.getName());
+        progressHandlerThread.start();
+        progressHandler = new ProgressHandler(this, progressHandlerThread.getLooper());
 
-        uiThreadHandler = new Handler();
-        progressHandler = new ProgressHandler(this, Looper.myLooper());
+        queueHandlerThread = new HandlerThread(QueueHandler.class.getName(), Process.THREAD_PRIORITY_BACKGROUND);
+        queueHandlerThread.start();
+        queueHandler = new QueueHandler(this, queueHandlerThread.getLooper());
+
         throttledSeekHandler = new ThrottledSeekHandler(playerHandler);
+        uiThreadHandler = new Handler();
 
         registerReceiver(widgetIntentReceiver, new IntentFilter(INTENT_EXTRA_WIDGET_UPDATE));
         registerReceiver(becomingNoisyReceiver, new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));
@@ -290,7 +294,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         if (intent != null) {
             if (intent.getAction() != null) {
-                restoreQueuesAndPositionIfNecessary();
                 String action = intent.getAction();
                 switch (action) {
                     case ACTION_TOGGLE:
@@ -365,11 +368,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         return musicBinder;
     }
 
-    private static final class QueueSaveHandler extends Handler {
+    private static final class QueueHandler extends Handler {
         @NonNull
         private final WeakReference<MusicService> mService;
 
-        public QueueSaveHandler(final MusicService service, @NonNull final Looper looper) {
+        public QueueHandler(final MusicService service, @NonNull final Looper looper) {
             super(looper);
             mService = new WeakReference<>(service);
         }
@@ -378,6 +381,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         public void handleMessage(@NonNull Message msg) {
             final MusicService service = mService.get();
             switch (msg.what) {
+                case LOAD_QUEUE:
+                    service.restoreQueuesAndPositionIfNecessary();
+                    break;
                 case SAVE_QUEUE:
                     service.saveQueue();
                     break;
@@ -398,8 +404,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void saveState() {
-        queueSaveHandler.removeMessages(SAVE_QUEUE);
-        queueSaveHandler.sendEmptyMessage(SAVE_QUEUE);
+        queueHandler.removeMessages(SAVE_QUEUE);
+        queueHandler.sendEmptyMessage(SAVE_QUEUE);
 
         savePosition();
         saveProgress();
@@ -412,8 +418,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         notifyChange(SHUFFLE_MODE_CHANGED);
         notifyChange(REPEAT_MODE_CHANGED);
 
-        playerHandler.removeMessages(LOAD_QUEUE);
-        playerHandler.sendEmptyMessage(LOAD_QUEUE);
+        queueHandler.removeMessages(LOAD_QUEUE);
+        queueHandler.sendEmptyMessage(LOAD_QUEUE);
     }
 
     private synchronized void restoreQueuesAndPositionIfNecessary() {
@@ -454,11 +460,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         playerHandler.removeCallbacksAndMessages(null);
         playerHandlerThread.quitSafely();
 
-        queueSaveHandler.removeCallbacksAndMessages(null);
-        queueSaveHandlerThread.quitSafely();
+        progressHandler.removeCallbacksAndMessages(null);
+        progressHandlerThread.quitSafely();
+
+        queueHandler.removeCallbacksAndMessages(null);
+        queueHandlerThread.quitSafely();
 
         playback.stop();
-        playback = null;
         mediaSession.release();
     }
 
@@ -527,7 +535,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     }
 
-    private void updateMediaSessionPlaybackState() {
+    private void updateMediaSessionState() {
         mediaSession.setPlaybackState(
                 new PlaybackStateCompat.Builder()
                         .setActions(MEDIA_SESSION_ACTIONS)
@@ -959,13 +967,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         switch (what) {
             case STATE_CHANGED:
                 updateNotification();
-                updateMediaSessionPlaybackState();
+                updateMediaSessionState();
                 if (!isPlaying()) saveProgress();
                 break;
             case META_CHANGED:
                 updateNotification();
                 updateMediaSessionMetadata();
-                updateMediaSessionPlaybackState();
+                updateMediaSessionState();
                 savePosition();
                 saveProgress();
                 break;
@@ -1016,6 +1024,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     @Override
     public void onTrackStarted() {
         progressHandler.sendEmptyMessage(PLAY_SONG);
+
         notifyChange(STATE_CHANGED);
         prepareNext();
     }
@@ -1023,12 +1032,15 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     @Override
     public void onTrackWentToNext() {
         playerHandler.sendEmptyMessage(TRACK_WENT_TO_NEXT);
+        progressHandler.sendEmptyMessage(TRACK_WENT_TO_NEXT);
     }
 
     @Override
     public void onTrackEnded() {
-        acquireWakeLock(30000);
         playerHandler.sendEmptyMessage(TRACK_ENDED);
+        progressHandler.sendEmptyMessage(TRACK_ENDED);
+
+        acquireWakeLock(30000);
     }
 
     private static final class PlaybackHandler extends Handler {
@@ -1079,7 +1091,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     break;
 
                 case TRACK_WENT_TO_NEXT:
-                    service.progressHandler.sendEmptyMessage(TRACK_WENT_TO_NEXT);
                     if (service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
                         service.pause();
                         service.seek(0);
@@ -1092,7 +1103,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     break;
 
                 case TRACK_ENDED:
-                    service.progressHandler.sendEmptyMessage(TRACK_ENDED);
                     // if there is a timer finished, don't continue
                     if (service.pendingQuit || service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
                         service.notifyChange(STATE_CHANGED);
@@ -1127,10 +1137,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
                 case PREPARE_NEXT:
                     service.prepareNextImpl();
-                    break;
-
-                case LOAD_QUEUE:
-                    service.restoreQueuesAndPositionIfNecessary();
                     break;
 
                 case FOCUS_CHANGE:
