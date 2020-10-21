@@ -19,7 +19,6 @@ import java.util.List;
 public class PlaylistUtil {
     public static void getPlaylist(PlaylistItemQuery query, MediaCallback callback) {
         query.setUserId(App.getApiClient().getCurrentUserId());
-        query.setLimit(100);
         App.getApiClient().GetPlaylistItems(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
