@@ -1,31 +1,31 @@
 package com.dkanada.gramophone.model;
 
 public class DirectPlayCodec {
-    public String codecName;
-    public String title;
-    public String value;
+    public Codec codec;
     public boolean selected;
 
-    public DirectPlayCodec(String codecName, String title, String value, boolean selected) {
-        this.codecName = codecName;
-        this.title = title;
-        this.value = value;
+    public DirectPlayCodec(Codec codec, boolean selected) {
+        this.codec = codec;
         this.selected = selected;
     }
 
     public enum Codec {
-        FLAC("FLAC","flac|flac"),
-        MP3("MP3", "mp3|mp3"),
-        AAC("AAC", "m4a|aac"),
-        OGG("OGG", "ogg|vorbis"),
-        MKA("MKA", "mka|opus");
+        FLAC("FLAC", "FLAC", "flac|flac"),
+        MP3("MP3", "MP3", "mp3|mp3"),
+        OPUS("Opus", "Opus", "opus|opus"),
+        AAC("M4A", "AAC", "m4a|aac"),
+        VORBIS("OGG", "Vorbis", "ogg|vorbis"),
+        OGG("OGG", "Opus", "ogg|opus"),
+        MKA("MKA", "Opus", "mka|opus");
 
-        public final String title;
+        public final String container;
+        public final String codec;
         public final String value;
 
-        Codec(String title, String value) {
+        Codec(String container, String codec, String value) {
+            this.container = container;
+            this.codec = codec;
             this.value = value;
-            this.title = title;
         }
     }
 }

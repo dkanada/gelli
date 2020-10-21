@@ -432,6 +432,7 @@ public final class PreferenceUtil {
 
         Set<String> selectedCodecNames = new HashSet<>();
         for (DirectPlayCodec.Codec codec : codecs) {
+            // this will be the default value
             selectedCodecNames.add(codec.name());
         }
 
@@ -441,7 +442,7 @@ public final class PreferenceUtil {
         for (DirectPlayCodec.Codec codec : codecs) {
             String name = codec.name();
             boolean selected = selectedCodecNames.contains(name);
-            directPlayCodecs.add(new DirectPlayCodec(name, codec.title, codec.value, selected));
+            directPlayCodecs.add(new DirectPlayCodec(codec, selected));
         }
 
         return directPlayCodecs;
@@ -451,7 +452,7 @@ public final class PreferenceUtil {
         Set<String> codecNames = new HashSet<>();
         for (DirectPlayCodec directPlayCodec : directPlayCodecs) {
             if (directPlayCodec.selected) {
-                codecNames.add(directPlayCodec.codecName);
+                codecNames.add(directPlayCodec.codec.toString());
             }
         }
 
