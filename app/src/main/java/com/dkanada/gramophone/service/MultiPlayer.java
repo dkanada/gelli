@@ -87,6 +87,7 @@ public class MultiPlayer implements Playback {
 
             if (exoPlayer.isPlaying() || requestPlay && playbackState == ExoPlayer.STATE_READY) {
                 requestPlay = false;
+                isPlaying = true;
 
                 exoPlayer.setPlayWhenReady(true);
                 callbacks.onTrackStarted();
