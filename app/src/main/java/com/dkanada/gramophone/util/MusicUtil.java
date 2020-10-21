@@ -49,7 +49,7 @@ public class MusicUtil {
                     containerAdded = true;
                 }
 
-                builder.append(directPlayCodec.value).append(',');
+                builder.append(directPlayCodec.codec.value).append(',');
             }
         }
 

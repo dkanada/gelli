@@ -1,6 +1,5 @@
 package com.dkanada.gramophone.adapter;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import com.dkanada.gramophone.model.DirectPlayCodec;
 import java.util.List;
 
 public class DirectPlayCodecAdapter extends RecyclerView.Adapter<DirectPlayCodecAdapter.ViewHolder> {
-    private List<DirectPlayCodec> directPlayCodecs;
+    private final List<DirectPlayCodec> directPlayCodecs;
 
     public DirectPlayCodecAdapter(List<DirectPlayCodec> directPlayCodecs) {
         this.directPlayCodecs = directPlayCodecs;
@@ -29,17 +28,17 @@ public class DirectPlayCodecAdapter extends RecyclerView.Adapter<DirectPlayCodec
         return new ViewHolder(view);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onBindViewHolder(@NonNull DirectPlayCodecAdapter.ViewHolder holder, int position) {
         DirectPlayCodec directPlayCodec = directPlayCodecs.get(position);
 
-        holder.checkBox.setChecked(directPlayCodec.selected);
-        holder.title.setText(directPlayCodec.title);
+        holder.checkbox.setChecked(directPlayCodec.selected);
+        holder.container.setText(directPlayCodec.codec.container);
+        holder.codec.setText(directPlayCodec.codec.codec);
 
         holder.itemView.setOnClickListener(v -> {
             directPlayCodec.selected = !directPlayCodec.selected;
-            holder.checkBox.setChecked(directPlayCodec.selected);
+            holder.checkbox.setChecked(directPlayCodec.selected);
         });
     }
 
@@ -53,13 +52,16 @@ public class DirectPlayCodecAdapter extends RecyclerView.Adapter<DirectPlayCodec
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        public CheckBox checkBox;
-        public TextView title;
+        public CheckBox checkbox;
+        public TextView container;
+        public TextView codec;
 
         public ViewHolder(View view) {
             super(view);
-            checkBox = view.findViewById(R.id.checkbox);
-            title = view.findViewById(R.id.title);
+
+            checkbox = view.findViewById(R.id.checkbox);
+            container = view.findViewById(R.id.container);
+            codec = view.findViewById(R.id.codec);
         }
     }
 }

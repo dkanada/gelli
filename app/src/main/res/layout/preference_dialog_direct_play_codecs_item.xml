@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:descendantFocusability="blocksDescendants"
     android:focusable="true"
     android:foreground="?attr/rectSelector"
-    android:minHeight="@dimen/md_listitem_height"
-    android:orientation="horizontal"
-    android:paddingEnd="@dimen/md_dialog_frame_margin"
-    android:paddingLeft="@dimen/md_dialog_frame_margin"
-    android:paddingRight="@dimen/md_dialog_frame_margin"
-    android:paddingStart="@dimen/md_dialog_frame_margin"
-    tools:gravity="start|center_vertical">
+    android:minHeight="24dp"
+    android:paddingEnd="12dp"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    android:paddingStart="20dp">
 
     <com.kabouzeid.appthemehelper.common.views.ATECheckBox
         android:id="@+id/checkbox"
@@ -21,21 +20,36 @@
         android:background="@null"
         android:clickable="false"
         android:focusable="false"
-        android:gravity="center_vertical" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_margin="8dp"
         android:ellipsize="end"
-        android:gravity="center_vertical"
-        android:minHeight="@dimen/md_listitem_height"
-        android:paddingBottom="@dimen/md_listitem_vertical_margin_choice"
-        android:paddingStart="@dimen/md_listitem_control_margin"
-        android:paddingTop="@dimen/md_listitem_vertical_margin_choice"
         android:singleLine="true"
         android:textSize="@dimen/md_listitem_textsize"
+        app:layout_constraintStart_toEndOf="@id/checkbox"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Item" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/codec"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingStart="6dp"
+        android:paddingBottom="1dp"
+        android:paddingEnd="6dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="12sp"
+        android:textColor="?android:textColorSecondary"
+        app:layout_constraintStart_toEndOf="@id/container"
+        app:layout_constraintBottom_toBottomOf="@id/container"
+        tools:text="Item" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
