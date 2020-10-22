@@ -36,15 +36,11 @@ public class SongShareDialog extends DialogFragment {
                             startActivity(Intent.createChooser(MusicUtil.createShareSongFileIntent(song, getContext()), null));
                             break;
                         case 1:
-                            startActivity(
-                                    Intent.createChooser(
-                                            new Intent()
-                                                    .setAction(Intent.ACTION_SEND)
-                                                    .putExtra(Intent.EXTRA_TEXT, currentlyListening)
-                                                    .setType("text/plain"),
-                                            null
-                                    )
-                            );
+                            Intent intent = new Intent()
+                                    .setAction(Intent.ACTION_SEND)
+                                    .putExtra(Intent.EXTRA_TEXT, currentlyListening)
+                                    .setType("text/plain");
+                            startActivity(Intent.createChooser(intent, null));
                             break;
                     }
                 })
