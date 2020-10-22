@@ -39,6 +39,12 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         setUpViews();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, R.anim.fade_quick);
+    }
+
     private void setUpViews() {
         setUpToolbar();
         setUpOnClickListeners();
@@ -104,10 +110,9 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                     PreferenceUtil.getInstance(LoginActivity.this).setUser(user);
                     PreferenceUtil.getInstance(LoginActivity.this).setToken(token);
 
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
-                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, getResources().getString(R.string.error_version), Toast.LENGTH_SHORT).show();
                 }

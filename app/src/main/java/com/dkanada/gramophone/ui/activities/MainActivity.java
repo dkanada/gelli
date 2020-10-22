@@ -39,6 +39,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
     private ActivityMainDrawerLayoutBinding binding;
     private ActivityMainContentBinding contentBinding;
     private NavigationDrawerHeaderBinding navigationBinding;
+    private boolean onLogout;
 
     @Nullable
     MainActivityFragmentCallbacks currentFragment;
@@ -88,6 +89,17 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
         });
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        // only override when logout selected
+        if (onLogout) {
+            overridePendingTransition(0, R.anim.fade_slow);
+            onLogout = false;
+        }
+    }
+
     private void setCurrentFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, null).commit();
         currentFragment = (MainActivityFragmentCallbacks) fragment;
@@ -123,6 +135,7 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, AboutActivity.class)), 200);
                     break;
                 case R.id.nav_logout:
+                    onLogout = true;
                     ConfirmLogoutDialog.create().show(getSupportFragmentManager(), "CONFIRM_LOGOUT_DIALOG");
                     break;
             }
