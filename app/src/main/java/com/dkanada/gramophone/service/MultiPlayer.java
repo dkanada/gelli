@@ -12,6 +12,7 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.playback.Playback;
 import com.dkanada.gramophone.util.MusicUtil;
+import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Player;
@@ -142,7 +143,8 @@ public class MultiPlayer implements Playback {
         exoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
 
         if (simpleCache != null) simpleCache.release();
-        LeastRecentlyUsedCacheEvictor recentlyUsedCache = new LeastRecentlyUsedCacheEvictor(Long.MAX_VALUE);
+        long cacheSize = PreferenceUtil.getInstance(context).getMediaCacheSize();
+        LeastRecentlyUsedCacheEvictor recentlyUsedCache = new LeastRecentlyUsedCacheEvictor(cacheSize);
         ExoDatabaseProvider databaseProvider = new ExoDatabaseProvider(context);
 
         File file = new File(App.getInstance().getApplicationInfo().dataDir + "/Gelli/exoplayer");

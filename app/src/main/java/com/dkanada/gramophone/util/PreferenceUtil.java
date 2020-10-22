@@ -83,6 +83,7 @@ public final class PreferenceUtil {
     public static final String REMEMBER_QUEUE = "remember_queue";
 
     public static final String IMAGE_CACHE_SIZE = "image_cache_size";
+    public static final String MEDIA_CACHE_SIZE = "media_cache_size";
 
     private static PreferenceUtil sInstance;
 
@@ -389,6 +390,10 @@ public final class PreferenceUtil {
 
     public final int getImageCacheSize() {
         return Integer.parseInt(mPreferences.getString(IMAGE_CACHE_SIZE, "400000000"));
+    }
+
+    public final int getMediaCacheSize() {
+        return Integer.parseInt(mPreferences.getString(MEDIA_CACHE_SIZE, "400000000"));
     }
 
     public List<CategoryInfo> getCategories() {

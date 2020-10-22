@@ -100,7 +100,7 @@
     <string name="pref_header_colors">Colors</string>
     <string name="pref_header_now_playing_screen">Now Playing</string>
     <string name="pref_header_audio">Audio</string>
-    <string name="pref_header_images">Images</string>
+    <string name="pref_header_cache">Cache</string>
     <string name="pref_header_library">Library</string>
     <string name="pref_header_lock_screen">Lock Screen</string>
     <string name="pref_header_notification">Notification</string>
@@ -123,7 +123,8 @@
     <string name="pref_title_remember_shuffle">Remember Shuffle</string>
     <string name="pref_title_remember_queue">Remember Queue</string>
     <string name="pref_title_page_size">Page Size</string>
-    <string name="pref_title_image_cache_size">Cache Size</string>
+    <string name="pref_title_image_cache_size">Images</string>
+    <string name="pref_title_media_cache_size">Media</string>
 
     <string name="pref_summary_primary_color">The primary theme color for control elements.</string>
     <string name="pref_summary_accent_color">An alternate color used to accent elements.</string>
