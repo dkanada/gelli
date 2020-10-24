@@ -57,6 +57,7 @@ import org.jellyfin.apiclient.interaction.EmptyResponse;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.session.PlaybackProgressInfo;
 import org.jellyfin.apiclient.model.session.PlaybackStartInfo;
+import org.jellyfin.apiclient.model.session.PlaybackStopInfo;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -86,16 +87,18 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final String INTENT_EXTRA_WIDGET_UPDATE = PACKAGE_NAME + ".extra.widget.update";
     public static final String INTENT_EXTRA_WIDGET_NAME = PACKAGE_NAME + ".extra.widget.name";
 
+    public static final String STATE_CHANGED = PACKAGE_NAME + ".state.changed";
     public static final String META_CHANGED = PACKAGE_NAME + ".meta.changed";
     public static final String QUEUE_CHANGED = PACKAGE_NAME + ".queue.changed";
-    public static final String STATE_CHANGED = PACKAGE_NAME + ".state.changed";
 
     public static final String REPEAT_MODE_CHANGED = PACKAGE_NAME + ".repeat.changed";
     public static final String SHUFFLE_MODE_CHANGED = PACKAGE_NAME + ".shuffle.changed";
 
+    public static final int TRACK_STARTED = 9;
+    public static final int TRACK_CHANGED = 1;
+    public static final int TRACK_ENDED = 2;
+
     public static final int RELEASE_WAKELOCK = 0;
-    public static final int TRACK_ENDED = 1;
-    public static final int TRACK_WENT_TO_NEXT = 2;
     public static final int PLAY_SONG = 3;
     public static final int PREPARE_NEXT = 4;
     public static final int SET_POSITION = 5;
@@ -818,7 +821,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
                         notifyChange(STATE_CHANGED);
 
-                        // fixes a bug where the volume would stay ducked because the AudioManager.AUDIOFOCUS_GAIN event is not sent
+                        // fixes a bug where the volume would stay ducked
+                        // happens when audio focus GAIN event not sent
                         playerHandler.removeMessages(DUCK);
                         playerHandler.sendEmptyMessage(UNDUCK);
                     }
@@ -1023,7 +1027,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     @Override
     public void onTrackStarted() {
-        progressHandler.sendEmptyMessage(PLAY_SONG);
+        progressHandler.sendEmptyMessage(TRACK_STARTED);
 
         notifyChange(STATE_CHANGED);
         prepareNext();
@@ -1031,8 +1035,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     @Override
     public void onTrackWentToNext() {
-        playerHandler.sendEmptyMessage(TRACK_WENT_TO_NEXT);
-        progressHandler.sendEmptyMessage(TRACK_WENT_TO_NEXT);
+        playerHandler.sendEmptyMessage(TRACK_CHANGED);
+        progressHandler.sendEmptyMessage(TRACK_CHANGED);
 
         acquireWakeLock(30000);
     }
@@ -1090,7 +1094,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     service.playback.setVolume(currentDuckVolume);
                     break;
 
-                case TRACK_WENT_TO_NEXT:
+                case TRACK_CHANGED:
                     if (service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
                         service.pause();
                         service.seek(0);
@@ -1184,7 +1188,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private class ThrottledSeekHandler implements Runnable {
         // milliseconds to throttle before calling run to aggregate events
         private static final long THROTTLE = 500;
-        private Handler mHandler;
+        private final Handler mHandler;
 
         public ThrottledSeekHandler(Handler handler) {
             mHandler = handler;
@@ -1202,7 +1206,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private static final class ProgressHandler extends Handler {
-        private WeakReference<MusicService> mService;
+        private final WeakReference<MusicService> mService;
 
         private ScheduledExecutorService executorService;
         private Future<?> task;
@@ -1216,9 +1220,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         @Override
         public void handleMessage(@NonNull final Message msg) {
             switch (msg.what) {
-                case PLAY_SONG:
+                case TRACK_STARTED:
                     onStart();
-                case TRACK_WENT_TO_NEXT:
+                case TRACK_CHANGED:
                     onNext();
                     break;
                 case TRACK_ENDED:
@@ -1269,6 +1273,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
 
         public void onStop() {
+            PlaybackStopInfo info = new PlaybackStopInfo();
+            long progress = mService.get().getSongProgressMillis();
+
+            info.setItemId(mService.get().getCurrentSong().id);
+            info.setPositionTicks(progress * 10000);
+
             task.cancel(true);
             executorService.shutdownNow();
         }
