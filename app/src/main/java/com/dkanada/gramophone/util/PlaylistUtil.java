@@ -11,6 +11,7 @@ import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.playlists.PlaylistCreationRequest;
 import org.jellyfin.apiclient.model.playlists.PlaylistItemQuery;
+import org.jellyfin.apiclient.model.querying.ItemFields;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.List;
 public class PlaylistUtil {
     public static void getPlaylist(PlaylistItemQuery query, MediaCallback callback) {
         query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setFields(new ItemFields[]{ItemFields.MediaSources});
         App.getApiClient().GetPlaylistItems(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
