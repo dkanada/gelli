@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.playback.Playback;
@@ -32,8 +31,8 @@ import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
-import java.io.IOException;
 import java.io.File;
+import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -52,8 +51,8 @@ public class MultiPlayer implements Playback {
     private SimpleExoPlayer exoPlayer;
     private ConcatenatingMediaSource mediaSource;
 
-    private SimpleCache simpleCache;
-    private DataSource.Factory dataSource;
+    private final SimpleCache simpleCache;
+    private final DataSource.Factory dataSource;
 
     private PlaybackCallbacks callbacks;
 
@@ -134,7 +133,6 @@ public class MultiPlayer implements Playback {
 
         httpClient = new OkHttpClient.Builder().dispatcher(dispatcher).build();
 
-        if (exoPlayer != null) exoPlayer.release();
         exoPlayer = new SimpleExoPlayer.Builder(context).build();
         mediaSource = new ConcatenatingMediaSource();
 
@@ -142,13 +140,12 @@ public class MultiPlayer implements Playback {
         exoPlayer.prepare(mediaSource);
         exoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
 
-        if (simpleCache != null) simpleCache.release();
         long cacheSize = PreferenceUtil.getInstance(context).getMediaCacheSize();
         LeastRecentlyUsedCacheEvictor recentlyUsedCache = new LeastRecentlyUsedCacheEvictor(cacheSize);
         ExoDatabaseProvider databaseProvider = new ExoDatabaseProvider(context);
 
-        File file = new File(App.getInstance().getApplicationInfo().dataDir + "/Gelli/exoplayer");
-        simpleCache = new SimpleCache(file, recentlyUsedCache, databaseProvider);
+        File cacheDirectory = new File(context.getCacheDir(), "exoplayer");
+        simpleCache = new SimpleCache(cacheDirectory, recentlyUsedCache, databaseProvider);
         dataSource = buildDataSourceFactory();
     }
 
