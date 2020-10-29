@@ -252,6 +252,7 @@ public class MultiPlayer implements Playback {
 
     @Override
     public void stop() {
+        simpleCache.release();
         exoPlayer.release();
 
         exoPlayer = null;
