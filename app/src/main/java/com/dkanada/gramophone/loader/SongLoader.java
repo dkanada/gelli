@@ -59,7 +59,7 @@ public class SongLoader {
         if (cursor != null && cursor.moveToFirst()) {
             song = getSongFromCursorImpl(cursor);
         } else {
-            song = Song.EMPTY_SONG;
+            song = Song.EMPTY;
         }
 
         if (cursor != null) {

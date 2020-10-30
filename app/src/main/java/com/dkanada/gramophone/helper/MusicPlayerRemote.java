@@ -182,7 +182,7 @@ public class MusicPlayerRemote {
             return musicService.getCurrentSong();
         }
 
-        return Song.EMPTY_SONG;
+        return Song.EMPTY;
     }
 
     public static int getPosition() {

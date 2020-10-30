@@ -623,7 +623,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         if (position >= 0 && position < getPlayingQueue().size()) {
             return getPlayingQueue().get(position);
         } else {
-            return Song.EMPTY_SONG;
+            return Song.EMPTY;
         }
     }
 

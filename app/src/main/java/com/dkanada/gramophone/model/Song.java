@@ -10,18 +10,20 @@ import org.jellyfin.apiclient.model.dto.MediaSourceInfo;
 import org.jellyfin.apiclient.model.entities.ImageType;
 import org.jellyfin.apiclient.model.entities.MediaStream;
 
+import java.util.UUID;
+
 public class Song implements Parcelable {
-    public static final Song EMPTY_SONG = new Song(null, "", -1, -1, -1, -1, null, "", null, "", null, false);
+    public static final Song EMPTY = new Song();
 
-    public final String id;
-    public final String title;
-    public final int trackNumber;
-    public final int discNumber;
-    public final int year;
-    public final long duration;
+    public String id;
+    public String title;
+    public int trackNumber;
+    public int discNumber;
+    public int year;
+    public long duration;
 
-    public final String albumId;
-    public final String albumName;
+    public String albumId;
+    public String albumName;
 
     public String artistId;
     public String artistName;
@@ -40,6 +42,10 @@ public class Song implements Parcelable {
     public int bitRate;
     public int bitDepth;
     public int channels;
+
+    public Song() {
+        this.id = UUID.randomUUID().toString();
+    }
 
     public Song(BaseItemDto itemDto) {
         this.id = itemDto.getId();
