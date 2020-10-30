@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -27,11 +28,9 @@ import com.kabouzeid.appthemehelper.util.ToolbarContentTintHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.MusicLibraryPagerAdapter;
 import com.dkanada.gramophone.dialogs.CreatePlaylistDialog;
-import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.helper.sort.SortMethod;
 import com.dkanada.gramophone.helper.sort.SortOrder;
 import com.dkanada.gramophone.interfaces.CabHolder;
-import com.dkanada.gramophone.loader.SongLoader;
 import com.dkanada.gramophone.ui.activities.MainActivity;
 import com.dkanada.gramophone.ui.activities.SearchActivity;
 import com.dkanada.gramophone.ui.fragments.mainactivity.AbsMainActivityFragment;
@@ -42,7 +41,6 @@ import com.dkanada.gramophone.ui.fragments.mainactivity.library.pager.PlaylistsF
 import com.dkanada.gramophone.ui.fragments.mainactivity.library.pager.SongsFragment;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
-import com.dkanada.gramophone.util.Util;
 
 public class LibraryFragment extends AbsMainActivityFragment implements CabHolder, MainActivity.MainActivityFragmentCallbacks, ViewPager.OnPageChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
     private FragmentLibraryBinding binding;
@@ -240,7 +238,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         int id = item.getItemId();
         switch (id) {
             case R.id.action_shuffle_all:
-                MusicPlayerRemote.openAndShuffleQueue(SongLoader.getAllSongs(requireActivity()), true);
+                Toast.makeText(requireActivity(), requireActivity().getResources().getString(R.string.error_unexpected), Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.action_new_playlist:
                 CreatePlaylistDialog.create().show(getChildFragmentManager(), "CREATE_PLAYLIST");
