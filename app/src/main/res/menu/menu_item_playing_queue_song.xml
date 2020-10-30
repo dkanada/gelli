@@ -26,6 +26,7 @@
         android:title="@string/action_share"
         app:showAsAction="never" />
     <item
+        android:visible="false"
         android:id="@+id/action_details"
         android:title="@string/action_details"
         app:showAsAction="never" />
