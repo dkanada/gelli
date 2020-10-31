@@ -67,22 +67,22 @@ public class Song implements Parcelable {
         }
 
         this.primary = itemDto.getAlbumPrimaryImageTag() != null ? albumId : null;
-        this.favorite = itemDto.getUserData() != null && itemDto.getUserData().getIsFavorite();
-
-        if (itemDto.getImageBlurHashes().get(ImageType.Primary) != null) {
+        if (itemDto.getImageBlurHashes() != null && itemDto.getImageBlurHashes().get(ImageType.Primary) != null) {
             this.blurHash = (String) itemDto.getImageBlurHashes().get(ImageType.Primary).values().toArray()[0];
         }
+
+        this.favorite = itemDto.getUserData() != null && itemDto.getUserData().getIsFavorite();
 
         if (itemDto.getMediaSources() != null && itemDto.getMediaSources().get(0) != null) {
             MediaSourceInfo source = itemDto.getMediaSources().get(0);
 
             this.path = source.getPath();
-            this.size = source.getSize();
+            this.size = source.getSize() != null ? source.getSize() : 0;
 
             this.container = source.getContainer();
-            this.bitRate = source.getBitrate();
+            this.bitRate = source.getBitrate() != null ? source.getBitrate() : 0;
 
-            if (source.getMediaStreams() != null && source.getMediaStreams().get(0) != null) {
+            if (source.getMediaStreams() != null && source.getMediaStreams().size() != 0) {
                 MediaStream stream = source.getMediaStreams().get(0);
 
                 this.codec = stream.getCodec();
