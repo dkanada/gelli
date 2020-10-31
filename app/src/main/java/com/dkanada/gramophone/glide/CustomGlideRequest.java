@@ -42,7 +42,7 @@ public class CustomGlideRequest {
             this.context = context;
 
             if (placeholder != null) {
-                Bitmap bitmap = BlurHashDecoder.INSTANCE.decode(placeholder, 20, 20, 1, true);
+                Bitmap bitmap = BlurHashDecoder.INSTANCE.decode(placeholder, 40, 40, 1, true);
                 BitmapDrawable drawable = new BitmapDrawable(context.getResources(), bitmap);
                 requestManager.applyDefaultRequestOptions(createRequestOptions(item, drawable));
             } else {
