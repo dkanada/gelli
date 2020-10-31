@@ -93,7 +93,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
         if (holder.image == null) return;
 
         CustomGlideRequest.Builder
-                .from(activity, playlist.id, playlist.id)
+                .from(activity, playlist.primary, playlist.blurHash)
                 .palette().build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override

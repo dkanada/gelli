@@ -82,7 +82,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
         if (holder.image == null) return;
 
         CustomGlideRequest.Builder
-                .from(activity, genre.id, genre.id)
+                .from(activity, genre.primary, genre.blurHash)
                 .palette().build()
                 .into(new CustomPaletteTarget(holder.image) {
                     @Override

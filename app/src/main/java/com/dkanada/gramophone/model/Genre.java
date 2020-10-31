@@ -7,11 +7,15 @@ import androidx.annotation.NonNull;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.GenreDto;
+import org.jellyfin.apiclient.model.entities.ImageType;
 
 public class Genre implements Parcelable {
     public final String id;
     public final String name;
     public final int songCount;
+
+    public String primary;
+    public String blurHash;
 
     public Genre(GenreDto genreDto) {
         this.id = genreDto.getId();
@@ -23,6 +27,11 @@ public class Genre implements Parcelable {
         this.id = itemDto.getId();
         this.name = itemDto.getName();
         this.songCount = itemDto.getSongCount() != null ? itemDto.getSongCount() : 0;
+
+        this.primary = itemDto.getImageTags().containsKey(ImageType.Primary) ? id : null;
+        if (itemDto.getImageBlurHashes() != null && itemDto.getImageBlurHashes().get(ImageType.Primary) != null) {
+            this.blurHash = (String) itemDto.getImageBlurHashes().get(ImageType.Primary).values().toArray()[0];
+        }
     }
 
     @Override
