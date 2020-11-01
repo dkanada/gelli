@@ -1,0 +1,8 @@
+- add local cache for recent songs
+- fix several issues regarding blurhash images
+- initial implementation of playback reporting
+- hide some buttons that were causing crashes
+- possible fix for opus transcoding
+- show all songs in playlist details page
+- support insecure and untrusted connections
+- add smooth transitions between activities
