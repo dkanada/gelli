@@ -3,7 +3,7 @@
 
 # RetroFit
 -dontwarn retrofit.**
--keep class retrofit.** { *; }
+-keep class retrofit.**.* { *; }
 -keepattributes Signature
 -keepattributes Exceptions
 
@@ -16,7 +16,7 @@
 }
 
 # Android
--keep class !android.support.v7.internal.view.menu.**,** { *; }
+-keep class !android.support.v7.internal.view.menu.**.*,**.* { *; }
 
 # Jellyfin API
 -keepclasseswithmembers class org.jellyfin.apiclient.model.**.* { *; }
