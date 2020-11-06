@@ -6,15 +6,15 @@
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="true"
-            android:key="album_art_on_lockscreen"
+            android:key="show_album_cover"
             android:summary="@string/pref_summary_show_album_art"
             android:title="@string/pref_title_show_album_art" />
 
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="false"
-            android:dependency="album_art_on_lockscreen"
-            android:key="blurred_album_art"
+            android:defaultValue="true"
+            android:dependency="show_album_cover"
+            android:key="blur_album_cover"
             android:summary="@string/pref_summary_blur_album_art"
             android:title="@string/pref_title_blur_album_art" />
 
