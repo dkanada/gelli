@@ -110,12 +110,12 @@ public final class PreferenceUtil {
     }
 
     @StyleRes
-    public int getGeneralTheme() {
-        return getThemeResFromPrefValue(mPreferences.getString(GENERAL_THEME, "dark"));
+    public int getTheme() {
+        return getThemeResource(mPreferences.getString(GENERAL_THEME, "dark"));
     }
 
     @StyleRes
-    public static int getThemeResFromPrefValue(String themePrefValue) {
+    public static int getThemeResource(String themePrefValue) {
         switch (themePrefValue) {
             case "light":
                 return R.style.Theme_Phonograph_Light;
@@ -239,7 +239,7 @@ public final class PreferenceUtil {
     }
 
     public final String getAlbumSortMethod() {
-        return mPreferences.getString(ALBUM_SORT_METHOD, SortMethod.NAME);
+        return mPreferences.getString(ALBUM_SORT_METHOD, SortMethod.RANDOM);
     }
 
     public void setAlbumSortMethod(final String sortMethod) {
@@ -249,7 +249,7 @@ public final class PreferenceUtil {
     }
 
     public final String getSongSortMethod() {
-        return mPreferences.getString(SONG_SORT_METHOD, SortMethod.NAME);
+        return mPreferences.getString(SONG_SORT_METHOD, SortMethod.RANDOM);
     }
 
     public void setSongSortMethod(final String sortMethod) {

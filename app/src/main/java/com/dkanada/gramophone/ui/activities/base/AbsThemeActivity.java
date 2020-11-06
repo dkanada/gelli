@@ -18,7 +18,7 @@ import com.dkanada.gramophone.util.Util;
 public abstract class AbsThemeActivity extends ATHToolbarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(PreferenceUtil.getInstance(this).getGeneralTheme());
+        setTheme(PreferenceUtil.getInstance(this).getTheme());
         super.onCreate(savedInstanceState);
         MaterialDialogsUtil.updateMaterialDialogsThemeSingleton(this);
 
