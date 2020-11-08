@@ -73,32 +73,30 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        if (v == binding.login) {
-            final Context context = this;
-            if (binding.server.getText().toString().trim().length() == 0) {
-                Toast.makeText(context, context.getResources().getString(R.string.error_login_empty_address), Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            if (binding.username.getText().toString().trim().length() == 0) {
-                Toast.makeText(context, context.getResources().getString(R.string.error_no_username), Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            App.getApiClient().ChangeServerLocation(binding.server.getText().toString());
-            App.getApiClient().AuthenticateUserAsync(binding.username.getText().toString(), binding.password.getText().toString(), new Response<AuthenticationResult>() {
-                @Override
-                public void onResponse(AuthenticationResult result) {
-                    if (result.getAccessToken() == null) return;
-                    check(binding.server.getText().toString(), result.getUser().getId(), result.getAccessToken());
-                }
-
-                @Override
-                public void onError(Exception exception) {
-                    Toast.makeText(context, context.getResources().getString(R.string.error_login_credentials), Toast.LENGTH_SHORT).show();
-                }
-            });
+        final Context context = this;
+        if (binding.server.getText().toString().trim().length() == 0) {
+            Toast.makeText(this, getResources().getString(R.string.error_login_empty_address), Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        if (binding.username.getText().toString().trim().length() == 0) {
+            Toast.makeText(this, getResources().getString(R.string.error_no_username), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        App.getApiClient().ChangeServerLocation(binding.server.getText().toString());
+        App.getApiClient().AuthenticateUserAsync(binding.username.getText().toString(), binding.password.getText().toString(), new Response<AuthenticationResult>() {
+            @Override
+            public void onResponse(AuthenticationResult result) {
+                if (result.getAccessToken() == null) return;
+                check(binding.server.getText().toString(), result.getUser().getId(), result.getAccessToken());
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                Toast.makeText(context, context.getResources().getString(R.string.error_login_credentials), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void check(String server, String user, String token) {
