@@ -42,7 +42,6 @@ import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.helper.ShuffleHelper;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.provider.QueueStore;
 import com.dkanada.gramophone.service.notification.PlayingNotification;
 import com.dkanada.gramophone.service.notification.PlayingNotificationImpl;
 import com.dkanada.gramophone.service.notification.PlayingNotificationImpl24;
@@ -395,7 +394,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private void saveQueue() {
-        QueueStore.getInstance(this).saveQueues(playingQueue, originalPlayingQueue);
+        App.getDatabase().songDao().deleteSongs();
+        App.getDatabase().songDao().insertSongs(playingQueue);
+
+        App.getDatabase().queueSongDao().deleteQueueSongs();
+        App.getDatabase().queueSongDao().setQueue(playingQueue, 0);
+        App.getDatabase().queueSongDao().setQueue(originalPlayingQueue, 1);
     }
 
     private void savePosition() {
@@ -427,8 +431,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private synchronized void restoreQueuesAndPositionIfNecessary() {
         if (!queuesRestored && playingQueue.isEmpty()) {
-            List<Song> restoredQueue = QueueStore.getInstance(this).getSavedPlayingQueue();
-            List<Song> restoredOriginalQueue = QueueStore.getInstance(this).getSavedOriginalPlayingQueue();
+            List<Song> restoredQueue = App.getDatabase().queueSongDao().getQueue(0);
+            List<Song> restoredOriginalQueue = App.getDatabase().queueSongDao().getQueue(1);
 
             int restoredPosition = PreferenceManager.getDefaultSharedPreferences(this).getInt(PreferenceUtil.POSITION, -1);
             int restoredPositionInTrack = PreferenceManager.getDefaultSharedPreferences(this).getInt(PreferenceUtil.PROGRESS, -1);

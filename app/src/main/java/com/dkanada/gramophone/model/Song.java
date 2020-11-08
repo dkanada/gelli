@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.MediaSourceInfo;
@@ -12,9 +14,12 @@ import org.jellyfin.apiclient.model.entities.MediaStream;
 
 import java.util.UUID;
 
+@Entity(tableName = "songs")
 public class Song implements Parcelable {
     public static final Song EMPTY = new Song();
 
+    @NonNull
+    @PrimaryKey
     public String id;
     public String title;
     public int trackNumber;
@@ -91,24 +96,6 @@ public class Song implements Parcelable {
                 this.channels = stream.getChannels() != null ? stream.getChannels() : 0;
             }
         }
-    }
-
-    public Song(String id, String title, int trackNumber, int discNumber, int year, long duration, String albumId, String albumName, String artistId, String artistName, String primary, boolean favorite) {
-        this.id = id;
-        this.title = title;
-        this.trackNumber = trackNumber;
-        this.discNumber = discNumber;
-        this.year = year;
-        this.duration = duration;
-
-        this.albumId = albumId;
-        this.albumName = albumName;
-
-        this.artistId = artistId;
-        this.artistName = artistName;
-
-        this.primary = primary;
-        this.favorite = favorite;
     }
 
     @Override

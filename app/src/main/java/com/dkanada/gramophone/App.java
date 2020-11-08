@@ -6,6 +6,9 @@ import android.content.Context;
 import android.os.Build;
 import android.provider.Settings;
 
+import androidx.room.Room;
+
+import com.dkanada.gramophone.database.JellyDatabase;
 import com.dkanada.gramophone.helper.EventListener;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
@@ -22,6 +25,7 @@ import org.jellyfin.apiclient.logging.ILogger;
 public class App extends Application {
     private static App app;
 
+    private static JellyDatabase database;
     private static ApiClient apiClient;
 
     @Override
@@ -29,6 +33,7 @@ public class App extends Application {
         super.onCreate();
 
         app = this;
+        database = createDatabase(this);
         apiClient = createApiClient(this);
 
         // default theme
@@ -40,6 +45,12 @@ public class App extends Application {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             new DynamicShortcutManager(this).initDynamicShortcuts();
         }
+    }
+
+    public static JellyDatabase createDatabase(Context context) {
+        return Room.databaseBuilder(context, JellyDatabase.class, "database")
+                .allowMainThreadQueries()
+                .build();
     }
 
     public static ApiClient createApiClient(Context context) {
@@ -57,6 +68,10 @@ public class App extends Application {
         EventListener eventListener = new EventListener();
 
         return new ApiClient(httpClient, logger, server, appName, appVersion, device, eventListener);
+    }
+
+    public static JellyDatabase getDatabase() {
+        return database;
     }
 
     public static ApiClient getApiClient() {
