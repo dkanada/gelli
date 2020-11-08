@@ -48,13 +48,13 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     private void setUpViews() {
         setUpToolbar();
         setUpOnClickListeners();
+
+        binding.login.setBackgroundColor(ThemeStore.primaryColor(this));
     }
 
     private void setUpToolbar() {
         binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
         setSupportActionBar(binding.toolbar);
-        // noinspection ConstantConditions
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setUpOnClickListeners() {
