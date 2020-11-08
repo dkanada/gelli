@@ -3,6 +3,7 @@ package com.dkanada.gramophone.ui.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import org.jellyfin.apiclient.model.users.AuthenticationResult;
 
 public class LoginActivity extends AbsBaseActivity implements View.OnClickListener {
     private ActivityLoginBinding binding;
+    private int primaryColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +48,16 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     }
 
     private void setUpViews() {
+        primaryColor = ThemeStore.primaryColor(this);
+
         setUpToolbar();
         setUpOnClickListeners();
 
-        binding.login.setBackgroundColor(ThemeStore.primaryColor(this));
+        binding.login.setBackgroundColor(primaryColor);
     }
 
     private void setUpToolbar() {
-        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        binding.toolbar.setBackgroundColor(primaryColor);
         setSupportActionBar(binding.toolbar);
     }
 
@@ -73,28 +77,42 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        final Context context = this;
-        if (binding.server.getText().toString().trim().length() == 0) {
-            Toast.makeText(this, getResources().getString(R.string.error_login_empty_address), Toast.LENGTH_SHORT).show();
+        String username = binding.username.getText().toString().trim();
+        String password = binding.password.getText().toString().trim();
+        String server = binding.server.getText().toString().trim();
+        Context context = this;
+
+        if (TextUtils.isEmpty(username)) {
+            Toast.makeText(this, getResources().getString(R.string.error_empty_username), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (binding.username.getText().toString().trim().length() == 0) {
-            Toast.makeText(this, getResources().getString(R.string.error_no_username), Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(server)) {
+            Toast.makeText(this, getResources().getString(R.string.error_empty_server), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        App.getApiClient().ChangeServerLocation(binding.server.getText().toString());
-        App.getApiClient().AuthenticateUserAsync(binding.username.getText().toString(), binding.password.getText().toString(), new Response<AuthenticationResult>() {
+        binding.login.setEnabled(false);
+        binding.login.setBackgroundColor(getResources().getColor(R.color.md_grey_800));
+
+        App.getApiClient().ChangeServerLocation(server);
+        App.getApiClient().AuthenticateUserAsync(username, password, new Response<AuthenticationResult>() {
             @Override
             public void onResponse(AuthenticationResult result) {
                 if (result.getAccessToken() == null) return;
-                check(binding.server.getText().toString(), result.getUser().getId(), result.getAccessToken());
+                check(server, result.getUser().getId(), result.getAccessToken());
             }
 
             @Override
             public void onError(Exception exception) {
-                Toast.makeText(context, context.getResources().getString(R.string.error_login_credentials), Toast.LENGTH_SHORT).show();
+                binding.login.setEnabled(true);
+                binding.login.setBackgroundColor(primaryColor);
+
+                if (exception.getMessage().contains("AuthFailureError")) {
+                    Toast.makeText(context, context.getResources().getString(R.string.error_login_credentials), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, context.getResources().getString(R.string.error_unreachable_server), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -112,6 +130,9 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
                 } else {
+                    binding.login.setEnabled(true);
+                    binding.login.setBackgroundColor(primaryColor);
+
                     Toast.makeText(LoginActivity.this, getResources().getString(R.string.error_version), Toast.LENGTH_SHORT).show();
                 }
             }
