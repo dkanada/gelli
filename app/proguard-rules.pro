@@ -1,7 +1,14 @@
 -dontwarn
 -ignorewarnings
 
-# RetroFit
+-keep class com.dkanada.gramophone.**.* { *; } # Keep all Gelli classes and attributes
+-keepnames class **.* { *; } # Keep class and attribute names
+-keepattributes SourceFile,LineNumberTable # Keep file names/line numbers
+
+# Jellyfin API
+-keepclasseswithmembers class org.jellyfin.apiclient.model.**.* { *; }
+
+# Retrofit
 -dontwarn retrofit.**
 -keep class retrofit.**.* { *; }
 -keepattributes Signature
@@ -14,9 +21,3 @@
     **[] $VALUES;
     public *;
 }
-
-# Android
--keep class !android.support.v7.internal.view.menu.**.*,**.* { *; }
-
-# Jellyfin API
--keepclasseswithmembers class org.jellyfin.apiclient.model.**.* { *; }
