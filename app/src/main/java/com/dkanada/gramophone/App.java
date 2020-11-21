@@ -13,6 +13,7 @@ import com.dkanada.gramophone.helper.EventListener;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.shortcuts.DynamicShortcutManager;
+import com.melegy.redscreenofdeath.RedScreenOfDeath;
 
 import org.jellyfin.apiclient.interaction.AndroidDevice;
 import org.jellyfin.apiclient.interaction.ApiClient;
@@ -31,6 +32,10 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if (BuildConfig.DEBUG) {
+            RedScreenOfDeath.init(this);
+        }
 
         app = this;
         database = createDatabase(this);
