@@ -189,8 +189,11 @@ public class MultiPlayer implements Playback {
             @Override
             @EverythingIsNonNull
             public void onResponse(Call call, Response response) {
+                String type = response.header("Content-Type");
+                if (type == null) return;
+
                 MediaSource source;
-                if (response.header("Content-Type").equals("application/x-mpegURL")) {
+                if (type.equals("application/x-mpegURL")) {
                     source = new HlsMediaSource.Factory(dataSource)
                             .setTag(path)
                             .setAllowChunklessPreparation(true)
