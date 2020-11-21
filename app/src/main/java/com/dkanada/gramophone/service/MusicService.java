@@ -1041,14 +1041,14 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public void onTrackWentToNext() {
         playerHandler.sendEmptyMessage(TRACK_CHANGED);
         progressHandler.sendEmptyMessage(TRACK_CHANGED);
-
-        acquireWakeLock(30000);
     }
 
     @Override
     public void onTrackEnded() {
         playerHandler.sendEmptyMessage(TRACK_ENDED);
         progressHandler.sendEmptyMessage(TRACK_ENDED);
+
+        acquireWakeLock(30000);
     }
 
     private static final class PlaybackHandler extends Handler {
@@ -1107,6 +1107,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         service.position = service.nextPosition;
                         service.prepareNextImpl();
                         service.notifyChange(META_CHANGED);
+                        service.notifyChange(QUEUE_CHANGED);
                     }
                     break;
 
