@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,23 +7,35 @@
     android:orientation="vertical"
     tools:context=".ui.activities.LoginActivity">
 
-    <include layout="@layout/status_bar" />
+    <include layout="@layout/status_bar"
+        android:id="@+id/status_bar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         style="@style/Toolbar"
         android:id="@+id/toolbar"
-        android:background="@android:color/transparent" />
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/status_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="0dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="40dp"
         app:srcCompat="@drawable/ic_launcher_nodpi"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/username_layout" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/username_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -37,7 +49,10 @@
         app:endIconMode="clear_text"
         app:endIconTint="?android:textColorSecondary"
         app:boxStrokeColor="?android:textColorSecondary"
-        app:hintTextColor="?android:textColorSecondary">
+        app:hintTextColor="?android:textColorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/password_layout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/username"
@@ -50,6 +65,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/password_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -63,7 +79,10 @@
         app:endIconMode="password_toggle"
         app:endIconTint="?android:textColorSecondary"
         app:boxStrokeColor="?android:textColorSecondary"
-        app:hintTextColor="?android:textColorSecondary">
+        app:hintTextColor="?android:textColorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/server_layout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password"
@@ -76,6 +95,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/server_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -89,7 +109,10 @@
         app:endIconMode="clear_text"
         app:endIconTint="?android:textColorSecondary"
         app:boxStrokeColor="?android:textColorSecondary"
-        app:hintTextColor="?android:textColorSecondary">
+        app:hintTextColor="?android:textColorSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/login">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/server"
@@ -106,6 +129,9 @@
         android:layout_height="64dp"
         android:layout_margin="32dp"
         android:text="@string/login"
-        app:cornerRadius="24dp" />
+        app:cornerRadius="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
