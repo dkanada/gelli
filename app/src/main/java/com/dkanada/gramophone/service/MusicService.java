@@ -60,6 +60,7 @@ import org.jellyfin.apiclient.model.session.PlaybackStopInfo;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -394,12 +395,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private void saveQueue() {
+        // copy queues by value to avoid concurrent modification exceptions from database
         App.getDatabase().songDao().deleteSongs();
-        App.getDatabase().songDao().insertSongs(playingQueue);
+        App.getDatabase().songDao().insertSongs(new ArrayList<>(playingQueue));
 
         App.getDatabase().queueSongDao().deleteQueueSongs();
-        App.getDatabase().queueSongDao().setQueue(playingQueue, 0);
-        App.getDatabase().queueSongDao().setQueue(originalPlayingQueue, 1);
+        App.getDatabase().queueSongDao().setQueue(new ArrayList<>(playingQueue), 0);
+        App.getDatabase().queueSongDao().setQueue(new ArrayList<>(originalPlayingQueue), 1);
     }
 
     private void savePosition() {
