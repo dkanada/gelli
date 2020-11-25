@@ -8,7 +8,7 @@
 # Jellyfin API
 -keepclasseswithmembers class org.jellyfin.apiclient.model.**.* { *; }
 
-# Retrofit
+# RetroFit
 -dontwarn retrofit.**
 -keep class retrofit.**.* { *; }
 -keepattributes Signature
