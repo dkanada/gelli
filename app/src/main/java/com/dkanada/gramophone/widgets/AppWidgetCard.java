@@ -24,7 +24,7 @@ import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.MusicService;
-import com.dkanada.gramophone.ui.activities.MainActivity;
+import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.util.ImageUtil;
 
 public class AppWidgetCard extends BaseAppWidget {

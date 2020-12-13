@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.dkanada.gramophone.interfaces.MusicServiceEventListener;
-import com.dkanada.gramophone.ui.activities.base.AbsMusicServiceActivity;
+import com.dkanada.gramophone.activities.base.AbsMusicServiceActivity;
 
 public class AbsMusicServiceFragment extends Fragment implements MusicServiceEventListener {
     private AbsMusicServiceActivity activity;

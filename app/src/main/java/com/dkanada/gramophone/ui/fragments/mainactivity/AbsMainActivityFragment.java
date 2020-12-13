@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import com.dkanada.gramophone.ui.activities.MainActivity;
+import com.dkanada.gramophone.activities.MainActivity;
 
 public abstract class AbsMainActivityFragment extends Fragment {
     public MainActivity getMainActivity() {

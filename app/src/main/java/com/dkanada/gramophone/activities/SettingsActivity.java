@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.activities;
+package com.dkanada.gramophone.activities;
 
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -29,7 +29,7 @@ import com.dkanada.gramophone.preferences.CategoryPreference;
 import com.dkanada.gramophone.preferences.CategoryPreferenceDialog;
 import com.dkanada.gramophone.preferences.NowPlayingScreenPreference;
 import com.dkanada.gramophone.preferences.NowPlayingScreenPreferenceDialog;
-import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
+import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
 public class SettingsActivity extends AbsBaseActivity implements ColorChooserDialog.ColorCallback {

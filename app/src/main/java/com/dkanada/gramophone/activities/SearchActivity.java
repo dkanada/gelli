@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.activities;
+package com.dkanada.gramophone.activities;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +18,7 @@ import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.ui.activities.base.AbsMusicServiceActivity;
+import com.dkanada.gramophone.activities.base.AbsMusicServiceActivity;
 import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.Util;
 import com.kabouzeid.appthemehelper.ThemeStore;

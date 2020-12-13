@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.activities.base;
+package com.dkanada.gramophone.activities.base;
 
 import android.os.Build;
 import android.os.Bundle;

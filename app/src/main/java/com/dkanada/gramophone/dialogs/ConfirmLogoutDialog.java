@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.ui.activities.LoginActivity;
+import com.dkanada.gramophone.activities.LoginActivity;
 
 import org.jellyfin.apiclient.interaction.EmptyResponse;
 

@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.activities;
+package com.dkanada.gramophone.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import com.dkanada.gramophone.databinding.CardAuthorBinding;
 import com.dkanada.gramophone.databinding.CardSpecialThanksBinding;
 import com.dkanada.gramophone.databinding.CardSupportDevelopmentBinding;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
+import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class AboutActivity extends AbsBaseActivity implements View.OnClickListener {

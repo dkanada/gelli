@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.activities.details;
+package com.dkanada.gramophone.activities.details;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,38 +10,45 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
-import com.dkanada.gramophone.databinding.ActivityGenreDetailBinding;
+import com.dkanada.gramophone.databinding.ActivityPlaylistDetailBinding;
+import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
+import com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator;
+import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.adapter.song.OrderablePlaylistSongAdapter;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
+import com.dkanada.gramophone.helper.menu.PlaylistMenuHelper;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.interfaces.MediaCallback;
-import com.dkanada.gramophone.model.Genre;
+import com.dkanada.gramophone.model.Playlist;
+import com.dkanada.gramophone.model.PlaylistSong;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.ui.activities.base.AbsSlidingMusicPanelActivity;
+import com.dkanada.gramophone.activities.base.AbsSlidingMusicPanelActivity;
 import com.dkanada.gramophone.util.ThemeUtil;
-import com.dkanada.gramophone.util.QueryUtil;
+import com.dkanada.gramophone.util.PlaylistUtil;
 import com.dkanada.gramophone.util.ViewUtil;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
-import org.jellyfin.apiclient.model.querying.ItemQuery;
+import org.jellyfin.apiclient.model.playlists.PlaylistItemQuery;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder {
-    public static final String EXTRA_GENRE = "extra_genre";
+public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder {
+    public static String EXTRA_PLAYLIST = "extra_playlist";
 
-    private ActivityGenreDetailBinding binding;
+    private ActivityPlaylistDetailBinding binding;
 
-    private Genre genre;
+    private Playlist playlist;
 
     private MaterialCab cab;
     private SongAdapter adapter;
 
     private RecyclerView.Adapter wrappedAdapter;
+    private RecyclerViewDragDropManager recyclerViewDragDropManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +60,17 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
         setNavigationbarColorAuto();
         setTaskDescriptionColorAuto();
 
-        genre = getIntent().getExtras().getParcelable(EXTRA_GENRE);
+        playlist = getIntent().getExtras().getParcelable(EXTRA_PLAYLIST);
 
         setUpRecyclerView();
-        setUpToolBar();
+        setUpToolbar();
 
-        ItemQuery query = new ItemQuery();
-        query.setGenreIds(new String[]{genre.id});
-        QueryUtil.getSongs(query, new MediaCallback() {
+        PlaylistItemQuery query = new PlaylistItemQuery();
+        query.setId(playlist.id);
+        PlaylistUtil.getPlaylist(query, new MediaCallback() {
             @Override
             public void onLoadMedia(List<?> media) {
-                adapter.getDataSet().addAll((List<Song>) media);
+                adapter.getDataSet().addAll((List<PlaylistSong>) media);
                 adapter.notifyDataSetChanged();
             }
         });
@@ -71,7 +78,7 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
 
     @Override
     protected View createContentView() {
-        binding = ActivityGenreDetailBinding.inflate(getLayoutInflater());
+        binding = ActivityPlaylistDetailBinding.inflate(getLayoutInflater());
 
         return wrapSlidingMusicPanel(binding.getRoot());
     }
@@ -80,8 +87,21 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
         ViewUtil.setUpFastScrollRecyclerViewColor(this, ((FastScrollRecyclerView) binding.recyclerView), ThemeStore.accentColor(this));
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new SongAdapter(this, new ArrayList<>(), R.layout.item_list, false, this);
-        binding.recyclerView.setAdapter(adapter);
+        recyclerViewDragDropManager = new RecyclerViewDragDropManager();
+        final GeneralItemAnimator animator = new RefactoredDefaultItemAnimator();
+        adapter = new OrderablePlaylistSongAdapter(this, new ArrayList<>(), R.layout.item_list, false, this, (fromPosition, toPosition) -> {
+            PlaylistUtil.moveItem(playlist.id, (PlaylistSong) adapter.getDataSet().get(fromPosition), toPosition);
+            Song song = adapter.getDataSet().remove(fromPosition);
+            adapter.getDataSet().add(toPosition, song);
+            adapter.notifyItemMoved(fromPosition, toPosition);
+        });
+
+        wrappedAdapter = recyclerViewDragDropManager.createWrappedAdapter(adapter);
+
+        binding.recyclerView.setAdapter(wrappedAdapter);
+        binding.recyclerView.setItemAnimator(animator);
+
+        recyclerViewDragDropManager.attachRecyclerView(binding.recyclerView);
 
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -92,17 +112,22 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
         });
     }
 
-    private void setUpToolBar() {
+    private void setUpToolbar() {
         binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
         setSupportActionBar(binding.toolbar);
         // noinspection ConstantConditions
-        getSupportActionBar().setTitle(genre.name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setToolbarTitle(playlist.name);
+    }
+
+    private void setToolbarTitle(String title) {
+        // noinspection ConstantConditions
+        getSupportActionBar().setTitle(title);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_genre_detail, menu);
+        getMenuInflater().inflate(R.menu.menu_playlist_detail, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -110,7 +135,7 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.action_shuffle_genre:
+            case R.id.action_shuffle_playlist:
                 MusicPlayerRemote.openAndShuffleQueue(adapter.getDataSet(), true);
                 return true;
             case android.R.id.home:
@@ -118,7 +143,7 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
                 return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return PlaylistMenuHelper.handleMenuClick(this, playlist, item);
     }
 
     @NonNull
@@ -136,8 +161,9 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
 
     @Override
     public void onBackPressed() {
-        if (cab != null && cab.isActive()) cab.finish();
-        else {
+        if (cab != null && cab.isActive()) {
+            cab.finish();
+        } else {
             binding.recyclerView.stopScroll();
             super.onBackPressed();
         }
@@ -148,7 +174,22 @@ public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements
     }
 
     @Override
+    public void onPause() {
+        if (recyclerViewDragDropManager != null) {
+            recyclerViewDragDropManager.cancelDrag();
+        }
+
+        super.onPause();
+    }
+
+    @Override
     protected void onDestroy() {
+        if (recyclerViewDragDropManager != null) {
+            recyclerViewDragDropManager.release();
+            recyclerViewDragDropManager = null;
+        }
+
+        binding.recyclerView.setItemAnimator(null);
         binding.recyclerView.setAdapter(null);
 
         if (wrappedAdapter != null) {

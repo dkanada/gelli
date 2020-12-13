@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.activities;
+package com.dkanada.gramophone.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
+import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
 import org.jellyfin.apiclient.interaction.EmptyResponse;

@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.activities.base;
+package com.dkanada.gramophone.activities.base;
 
 import android.animation.ValueAnimator;
 import android.content.Intent;
@@ -18,7 +18,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.databinding.SlidingMusicPanelLayoutBinding;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
-import com.dkanada.gramophone.ui.activities.SplashActivity;
+import com.dkanada.gramophone.activities.SplashActivity;
 import com.dkanada.gramophone.ui.fragments.player.AbsPlayerFragment;
 import com.dkanada.gramophone.ui.fragments.player.MiniPlayerFragment;
 import com.dkanada.gramophone.ui.fragments.player.NowPlayingScreen;

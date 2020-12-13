@@ -22,14 +22,14 @@
         android:theme="@style/Theme.Phonograph.Light"
         tools:ignore="UnusedAttribute">
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".ui.activities.details.AlbumDetailActivity" />
-        <activity android:name=".ui.activities.details.ArtistDetailActivity" />
-        <activity android:name=".ui.activities.details.GenreDetailActivity" />
-        <activity android:name=".ui.activities.details.PlaylistDetailActivity" />
-        <activity android:name=".ui.activities.SearchActivity" />
-        <activity android:name=".ui.activities.SplashActivity">
+        <activity android:name=".activities.details.AlbumDetailActivity" />
+        <activity android:name=".activities.details.ArtistDetailActivity" />
+        <activity android:name=".activities.details.GenreDetailActivity" />
+        <activity android:name=".activities.details.PlaylistDetailActivity" />
+        <activity android:name=".activities.SearchActivity" />
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.MUSIC_PLAYER" />
@@ -48,13 +48,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/action_settings" />
         <activity
-            android:name=".ui.activities.AboutActivity"
+            android:name=".activities.AboutActivity"
             android:label="@string/action_about" />
         <activity
-            android:name=".ui.activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/action_login"
             android:theme="@style/LoginScreen" />
         <activity

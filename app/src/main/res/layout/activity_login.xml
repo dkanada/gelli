@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activities.LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <include layout="@layout/status_bar"
         android:id="@+id/status_bar"

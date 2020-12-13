@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.activities;
+package com.dkanada.gramophone.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.databinding.ActivityLoginBinding;
-import com.dkanada.gramophone.ui.activities.base.AbsBaseActivity;
+import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 
