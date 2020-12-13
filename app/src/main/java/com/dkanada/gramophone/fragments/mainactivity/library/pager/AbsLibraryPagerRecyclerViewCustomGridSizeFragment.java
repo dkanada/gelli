@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.fragments.mainactivity.library.pager;
+package com.dkanada.gramophone.fragments.mainactivity.library.pager;
 
 import android.os.Bundle;
 import android.view.View;

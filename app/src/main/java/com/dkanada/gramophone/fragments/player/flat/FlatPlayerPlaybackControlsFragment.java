@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.fragments.player.flat;
+package com.dkanada.gramophone.fragments.player.flat;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -23,7 +23,7 @@ import com.dkanada.gramophone.helper.MusicProgressViewUpdateHelper;
 import com.dkanada.gramophone.helper.PlayPauseButtonOnClickHandler;
 import com.dkanada.gramophone.misc.SimpleOnSeekbarChangeListener;
 import com.dkanada.gramophone.service.MusicService;
-import com.dkanada.gramophone.ui.fragments.AbsMusicServiceFragment;
+import com.dkanada.gramophone.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.views.PlayPauseDrawable;
 

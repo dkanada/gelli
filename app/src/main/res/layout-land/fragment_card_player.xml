@@ -30,7 +30,7 @@
 
                 <fragment
                     android:id="@+id/player_album_cover_fragment"
-                    class="com.dkanada.gramophone.ui.fragments.player.PlayerAlbumCoverFragment"
+                    class="com.dkanada.gramophone.fragments.player.PlayerAlbumCoverFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -61,7 +61,7 @@
 
                     <fragment
                         android:id="@+id/playback_controls_fragment"
-                        class="com.dkanada.gramophone.ui.fragments.player.card.CardPlayerPlaybackControlsFragment"
+                        class="com.dkanada.gramophone.fragments.player.card.CardPlayerPlaybackControlsFragment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 

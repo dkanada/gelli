@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.fragments.player;
+package com.dkanada.gramophone.fragments.player;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,7 +21,7 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.helper.MusicProgressViewUpdateHelper;
 import com.dkanada.gramophone.helper.PlayPauseButtonOnClickHandler;
-import com.dkanada.gramophone.ui.fragments.AbsMusicServiceFragment;
+import com.dkanada.gramophone.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.views.PlayPauseDrawable;
 
 public class MiniPlayerFragment extends AbsMusicServiceFragment implements MusicProgressViewUpdateHelper.Callback {

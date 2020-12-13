@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.fragments.mainactivity;
+package com.dkanada.gramophone.fragments.mainactivity;
 
 import android.os.Bundle;
 

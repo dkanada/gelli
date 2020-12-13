@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.fragments.player;
+package com.dkanada.gramophone.fragments.player;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;

@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.fragments.player;
+package com.dkanada.gramophone.fragments.player;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
@@ -18,7 +18,7 @@ import com.dkanada.gramophone.adapter.AlbumCoverPagerAdapter;
 import com.dkanada.gramophone.databinding.FragmentPlayerAlbumCoverBinding;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.misc.SimpleAnimatorListener;
-import com.dkanada.gramophone.ui.fragments.AbsMusicServiceFragment;
+import com.dkanada.gramophone.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.util.ViewUtil;
 
 public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements ViewPager.OnPageChangeListener {

@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.fragments.player.card;
+package com.dkanada.gramophone.fragments.player.card;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -38,8 +38,8 @@ import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.helper.menu.SongMenuHelper;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.activities.base.AbsSlidingMusicPanelActivity;
-import com.dkanada.gramophone.ui.fragments.player.AbsPlayerFragment;
-import com.dkanada.gramophone.ui.fragments.player.PlayerAlbumCoverFragment;
+import com.dkanada.gramophone.fragments.player.AbsPlayerFragment;
+import com.dkanada.gramophone.fragments.player.PlayerAlbumCoverFragment;
 import com.dkanada.gramophone.util.ImageUtil;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.Util;

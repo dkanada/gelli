@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.fragments.player;
+package com.dkanada.gramophone.fragments.player;
 
 import android.content.Context;
 import android.view.MenuItem;
@@ -18,7 +18,7 @@ import com.dkanada.gramophone.interfaces.PaletteColorHolder;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.ui.fragments.AbsMusicServiceFragment;
+import com.dkanada.gramophone.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.NavigationUtil;
 

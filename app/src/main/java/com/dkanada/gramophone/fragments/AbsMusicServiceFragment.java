@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.ui.fragments;
+package com.dkanada.gramophone.fragments;
 
 import android.content.Context;
 import android.os.Bundle;

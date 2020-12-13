@@ -15,7 +15,7 @@ import com.dkanada.gramophone.helper.sort.SortMethod;
 import com.dkanada.gramophone.helper.sort.SortOrder;
 import com.dkanada.gramophone.model.CategoryInfo;
 import com.dkanada.gramophone.model.DirectPlayCodec;
-import com.dkanada.gramophone.ui.fragments.player.NowPlayingScreen;
+import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

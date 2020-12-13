@@ -19,7 +19,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.heinrichreimersoftware.materialintro.view.InkPageIndicator;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.ui.fragments.player.NowPlayingScreen;
+import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.ViewUtil;
 

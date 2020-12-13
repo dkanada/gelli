@@ -11,11 +11,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.dkanada.gramophone.model.CategoryInfo;
-import com.dkanada.gramophone.ui.fragments.mainactivity.library.pager.AlbumsFragment;
-import com.dkanada.gramophone.ui.fragments.mainactivity.library.pager.ArtistsFragment;
-import com.dkanada.gramophone.ui.fragments.mainactivity.library.pager.GenresFragment;
-import com.dkanada.gramophone.ui.fragments.mainactivity.library.pager.PlaylistsFragment;
-import com.dkanada.gramophone.ui.fragments.mainactivity.library.pager.SongsFragment;
+import com.dkanada.gramophone.fragments.mainactivity.library.pager.AlbumsFragment;
+import com.dkanada.gramophone.fragments.mainactivity.library.pager.ArtistsFragment;
+import com.dkanada.gramophone.fragments.mainactivity.library.pager.GenresFragment;
+import com.dkanada.gramophone.fragments.mainactivity.library.pager.PlaylistsFragment;
+import com.dkanada.gramophone.fragments.mainactivity.library.pager.SongsFragment;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
 import java.lang.ref.WeakReference;
