@@ -52,12 +52,6 @@ public class MultiPlayer implements Playback {
 
     private PlaybackCallbacks callbacks;
 
-    private boolean isReady = false;
-    private boolean isPlaying = false;
-
-    private boolean requestPlay = false;
-    private int requestProgress = 0;
-
     private final ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
         @Override
         public void onIsLoadingChanged(boolean isLoading) {
@@ -72,19 +66,7 @@ public class MultiPlayer implements Playback {
         @Override
         public void onPlaybackStateChanged(int playbackState) {
             Log.i(TAG, String.format("onPlaybackStateChanged: %d", playbackState));
-
-            if (callbacks == null) return;
-            if (requestProgress != 0 && playbackState == Player.STATE_READY) {
-                exoPlayer.seekTo(requestProgress);
-
-                requestProgress = 0;
-            }
-
-            if (exoPlayer.isPlaying() || requestPlay && playbackState == ExoPlayer.STATE_READY) {
-                requestPlay = false;
-                isPlaying = true;
-
-                exoPlayer.setPlayWhenReady(true);
+            if (callbacks != null && exoPlayer.isPlaying()) {
                 callbacks.onTrackStarted();
             }
         }
@@ -108,15 +90,7 @@ public class MultiPlayer implements Playback {
         @Override
         public void onPlayerError(ExoPlaybackException error) {
             Log.i(TAG, String.format("onPlayerError: %s", error.getMessage()));
-            if (context == null) {
-                return;
-            }
-
             Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
-            exoPlayer.release();
-
-            exoPlayer = new SimpleExoPlayer.Builder(context).build();
-            isReady = false;
         }
     };
 
@@ -146,7 +120,6 @@ public class MultiPlayer implements Playback {
 
     @Override
     public void setDataSource(Song song) {
-        isReady = false;
         mediaSource = new ConcatenatingMediaSource();
 
         exoPlayer.addListener(eventListener);
@@ -197,7 +170,6 @@ public class MultiPlayer implements Playback {
                 }
 
                 mediaSource.addMediaSource(source);
-                isReady = true;
             }
         });
     }
@@ -220,28 +192,21 @@ public class MultiPlayer implements Playback {
 
     @Override
     public boolean isReady() {
-        return isReady;
+        return true;
     }
 
     @Override
     public boolean isPlaying() {
-        return isReady && isPlaying;
+        return exoPlayer.isPlaying();
     }
 
     @Override
     public void start() {
-        if (!isReady) {
-            requestPlay = true;
-            return;
-        }
-
-        isPlaying = true;
         exoPlayer.setPlayWhenReady(true);
     }
 
     @Override
     public void pause() {
-        isPlaying = false;
         exoPlayer.setPlayWhenReady(false);
     }
 
@@ -253,23 +218,16 @@ public class MultiPlayer implements Playback {
 
     @Override
     public int getProgress() {
-        if (!isReady) return -1;
         return (int) exoPlayer.getCurrentPosition();
     }
 
     @Override
     public int getDuration() {
-        if (!isReady) return -1;
         return (int) exoPlayer.getDuration();
     }
 
     @Override
     public void setProgress(int progress) {
-        if (!isReady) {
-            requestProgress = progress;
-            return;
-        }
-
         exoPlayer.seekTo(progress);
     }
 
