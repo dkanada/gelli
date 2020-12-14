@@ -5,8 +5,6 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.playback.Playback;
@@ -20,9 +18,7 @@ import com.google.android.exoplayer2.database.ExoDatabaseProvider;
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
-import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.FileDataSource;
@@ -64,19 +60,18 @@ public class MultiPlayer implements Playback {
 
     private final ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
         @Override
-        public void onTracksChanged(@NonNull TrackGroupArray trackGroups, @NonNull TrackSelectionArray trackSelections) {
-            Log.i(TAG, "onTracksChanged");
+        public void onIsLoadingChanged(boolean isLoading) {
+            Log.i(TAG, String.format("onIsLoadingChanged: %b", isLoading));
         }
 
         @Override
-        public void onLoadingChanged(boolean isLoading) {
-            Log.i(TAG, "onLoadingChanged: " + isLoading);
+        public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
+            Log.i(TAG, String.format("onPlayWhenReadyChanged: %b %d", playWhenReady, reason));
         }
 
         @Override
-        public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-            Log.i(TAG, "onPlayerStateChanged playWhenReady: " + playWhenReady);
-            Log.i(TAG, "onPlayerStateChanged playbackState: " + playbackState);
+        public void onPlaybackStateChanged(int playbackState) {
+            Log.i(TAG, String.format("onPlaybackStateChanged: %d", playbackState));
 
             if (callbacks == null) return;
             if (requestProgress != 0 && playbackState == Player.STATE_READY) {
@@ -96,7 +91,7 @@ public class MultiPlayer implements Playback {
 
         @Override
         public void onPositionDiscontinuity(int reason) {
-            Log.i(TAG, "onPositionDiscontinuity: " + reason);
+            Log.i(TAG, String.format("onPositionDiscontinuity: %d", reason));
             int windowIndex = exoPlayer.getCurrentWindowIndex();
 
             if (windowIndex == 1) {
@@ -112,7 +107,7 @@ public class MultiPlayer implements Playback {
 
         @Override
         public void onPlayerError(ExoPlaybackException error) {
-            Log.i(TAG, "onPlayerError: " + error.getMessage());
+            Log.i(TAG, String.format("onPlayerError: %s", error.getMessage()));
             if (context == null) {
                 return;
             }
@@ -156,9 +151,6 @@ public class MultiPlayer implements Playback {
 
         exoPlayer.addListener(eventListener);
         exoPlayer.prepare(mediaSource);
-
-        // queue and other information is currently handled outside exoplayer
-        exoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
 
         appendDataSource(MusicUtil.getSongFileUri(song));
     }
@@ -257,9 +249,6 @@ public class MultiPlayer implements Playback {
     public void stop() {
         simpleCache.release();
         exoPlayer.release();
-
-        exoPlayer = null;
-        isReady = false;
     }
 
     @Override
