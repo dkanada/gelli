@@ -12,6 +12,7 @@ import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.database.ExoDatabaseProvider;
@@ -69,6 +70,11 @@ public class MultiPlayer implements Playback {
             if (callbacks != null && exoPlayer.isPlaying()) {
                 callbacks.onTrackStarted();
             }
+        }
+
+        @Override
+        public void onMediaItemTransition(MediaItem mediaItem, int reason) {
+            Log.i(TAG, String.format("onMediaItemTransition: %s %d", mediaItem, reason));
         }
 
         @Override
@@ -197,7 +203,7 @@ public class MultiPlayer implements Playback {
 
     @Override
     public boolean isPlaying() {
-        return exoPlayer.isPlaying();
+        return exoPlayer.isPlaying() || exoPlayer.getPlayWhenReady();
     }
 
     @Override
