@@ -137,7 +137,7 @@ public class MultiPlayer implements Playback {
     @Override
     public void queueDataSource(Song song) {
         String path = MusicUtil.getSongFileUri(song);
-        if (mediaSource.getSize() == 2 && mediaSource.getMediaSource(1).getTag() != path) {
+        while (mediaSource.getSize() > 1) {
             mediaSource.removeMediaSource(1);
         }
 
