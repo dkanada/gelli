@@ -122,6 +122,11 @@
             app:elevation="4dp"
             app:pressedTranslationZ="2dp" />
 
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/player_buffering_indicator"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            android:layout_centerInParent="true" />
     </RelativeLayout>
 
 </LinearLayout>

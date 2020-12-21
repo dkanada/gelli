@@ -274,6 +274,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     public void onColorChanged(int color) {
         animateColorChange(color);
         playbackControlsFragment.setDark(ColorUtil.isColorLight(color));
+        playbackControlsFragment.updateBufferingIndicatorColor(ColorUtil.invertColor(color));
         getCallbacks().onPaletteColorChanged();
     }
 

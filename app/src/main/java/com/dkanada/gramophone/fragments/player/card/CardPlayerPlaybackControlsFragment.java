@@ -1,5 +1,6 @@
 package com.dkanada.gramophone.fragments.player.card;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -11,19 +12,19 @@ import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 
-import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
-import com.kabouzeid.appthemehelper.util.TintHelper;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.databinding.FragmentCardPlayerPlaybackControlsBinding;
+import com.dkanada.gramophone.fragments.AbsMusicServiceFragment;
+import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.helper.MusicProgressViewUpdateHelper;
 import com.dkanada.gramophone.helper.PlayPauseButtonOnClickHandler;
 import com.dkanada.gramophone.misc.SimpleOnSeekbarChangeListener;
 import com.dkanada.gramophone.service.MusicService;
-import com.dkanada.gramophone.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.views.PlayPauseDrawable;
+import com.kabouzeid.appthemehelper.util.ColorUtil;
+import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
+import com.kabouzeid.appthemehelper.util.TintHelper;
 
 public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment implements MusicProgressViewUpdateHelper.Callback {
 
@@ -133,6 +134,11 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
         } else {
             playerFabPlayPauseDrawable.setPlay(animate);
         }
+        binding.playerBufferingIndicator.setVisibility(MusicPlayerRemote.isBuffering() ? View.VISIBLE : View.GONE);
+    }
+
+    public void updateBufferingIndicatorColor(int color) {
+        binding.playerBufferingIndicator.setIndeterminateTintList(ColorStateList.valueOf(color));
     }
 
     private void setUpMusicControllers() {

@@ -12,7 +12,6 @@ import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.database.ExoDatabaseProvider;
@@ -54,27 +53,13 @@ public class MultiPlayer implements Playback {
     private PlaybackCallbacks callbacks;
 
     private final ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
-        @Override
-        public void onIsLoadingChanged(boolean isLoading) {
-            Log.i(TAG, String.format("onIsLoadingChanged: %b", isLoading));
-        }
 
         @Override
-        public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
-            Log.i(TAG, String.format("onPlayWhenReadyChanged: %b %d", playWhenReady, reason));
-        }
-
-        @Override
-        public void onPlaybackStateChanged(int playbackState) {
-            Log.i(TAG, String.format("onPlaybackStateChanged: %d", playbackState));
-            if (callbacks != null && exoPlayer.isPlaying()) {
-                callbacks.onTrackStarted();
+        public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+            Log.i(TAG, String.format("onPlayerStateChanged: %b %d", playWhenReady, playbackState));
+            if (callbacks != null) {
+                callbacks.onPlayerStateChanged(playWhenReady, playbackState);
             }
-        }
-
-        @Override
-        public void onMediaItemTransition(MediaItem mediaItem, int reason) {
-            Log.i(TAG, String.format("onMediaItemTransition: %s %d", mediaItem, reason));
         }
 
         @Override
@@ -201,6 +186,11 @@ public class MultiPlayer implements Playback {
     @Override
     public boolean isPlaying() {
         return exoPlayer.isPlaying() || exoPlayer.getPlayWhenReady();
+    }
+
+    @Override
+    public boolean isBuffering() {
+        return exoPlayer.getPlaybackState() == Player.STATE_BUFFERING;
     }
 
     @Override

@@ -51,6 +51,7 @@ import com.dkanada.gramophone.util.Util;
 import com.dkanada.gramophone.widgets.AppWidgetAlbum;
 import com.dkanada.gramophone.widgets.AppWidgetCard;
 import com.dkanada.gramophone.widgets.AppWidgetClassic;
+import com.google.android.exoplayer2.Player;
 
 import org.jellyfin.apiclient.interaction.EmptyResponse;
 import org.jellyfin.apiclient.interaction.Response;
@@ -60,7 +61,6 @@ import org.jellyfin.apiclient.model.session.PlaybackStopInfo;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -481,6 +481,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public boolean isPlaying() {
         return playback != null && playback.isPlaying();
+    }
+
+    public boolean isBuffering() {
+        return playback != null && playback.isBuffering();
     }
 
     public int getPosition() {
@@ -1032,11 +1036,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     @Override
-    public void onTrackStarted() {
-        progressHandler.sendEmptyMessage(TRACK_STARTED);
-
+    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
         notifyChange(STATE_CHANGED);
-        prepareNext();
+        if (playWhenReady && playbackState == Player.STATE_READY) {
+            progressHandler.sendEmptyMessage(TRACK_STARTED);
+            prepareNext();
+        }
     }
 
     @Override
