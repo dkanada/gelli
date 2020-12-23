@@ -1286,7 +1286,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             info.setItemId(mService.get().getCurrentSong().id);
             info.setPositionTicks(progress * 10000);
 
-            task.cancel(true);
+            if (task != null) task.cancel(true);
             executorService.shutdownNow();
         }
     }
