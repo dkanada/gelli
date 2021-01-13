@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.dkanada.gramophone.databinding.FragmentLibraryBinding;
+import com.dkanada.gramophone.fragments.mainactivity.library.pager.FavoritesFragment;
 import com.google.android.material.appbar.AppBarLayout;
 import com.afollestad.materialcab.MaterialCab;
 import com.kabouzeid.appthemehelper.ThemeStore;
@@ -354,7 +355,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                     .setChecked(currentSortMethod.equals(SortMethod.ADDED));
             sortMethodMenu.add(0, R.id.action_sort_method_random, 4, R.string.sort_method_random)
                     .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
-        } else if (fragment instanceof SongsFragment) {
+        } else if (fragment instanceof SongsFragment || fragment instanceof FavoritesFragment) {
             sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_method_name)
                     .setChecked(currentSortMethod.equals(SortMethod.NAME));
             sortMethodMenu.add(0, R.id.action_sort_method_album, 1, R.string.sort_method_album)
