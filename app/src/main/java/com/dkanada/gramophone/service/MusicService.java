@@ -449,8 +449,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 if (restoredPositionInTrack > 0) seek(restoredPositionInTrack);
 
                 notHandledMetaChangedForCurrentTrack = true;
-                sendChangeInternal(META_CHANGED);
-                sendChangeInternal(QUEUE_CHANGED);
+                handleChangeInternal(META_CHANGED);
+                handleChangeInternal(QUEUE_CHANGED);
             }
         }
 
