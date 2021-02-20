@@ -1,0 +1,8 @@
+- move glide cache to the proper location
+- fix issue with lock screen cover display
+- change default sort method to random
+- replace queue store with room database
+- huge improvements for login activity style
+- add crash activity to display errors
+- refactor ExoPlayer wrapper
+- implement favorites tab on home activity
