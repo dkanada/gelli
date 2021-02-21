@@ -134,9 +134,6 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
         } else {
             playerFabPlayPauseDrawable.setPlay(animate);
         }
-
-        binding.progressBarLoading.setVisibility(MusicPlayerRemote.isBuffering() ? View.VISIBLE : View.GONE);
-        binding.progressBarPlaying.setVisibility(MusicPlayerRemote.isBuffering() ? View.GONE : View.VISIBLE);
     }
 
     public void updateBufferingIndicatorColor(int color) {
@@ -238,8 +235,11 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
 
     @Override
     public void onUpdateProgressViews(int progress, int total) {
+        binding.playerBufferingIndicator.setVisibility(MusicPlayerRemote.isBuffering() ? View.VISIBLE : View.GONE);
+
         binding.playerProgressSlider.setMax(total);
         binding.playerProgressSlider.setProgress(progress);
+
         binding.playerSongTotalTime.setText(MusicUtil.getReadableDurationString(total));
         binding.playerSongCurrentProgress.setText(MusicUtil.getReadableDurationString(progress));
     }
