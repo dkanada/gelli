@@ -6,7 +6,7 @@
     android:layout_height="@dimen/mini_player_height"
     android:background="?cardBackgroundColor"
     android:clickable="true"
-    android:focusable="false"
+    android:focusable="true"
     android:transitionName="@string/transition_mini_player"
     tools:ignore="UnusedAttribute">
 
@@ -49,11 +49,12 @@
 
     <me.zhanghai.android.materialprogressbar.MaterialProgressBar
         android:id="@+id/progress_bar"
-        style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="4dp"
         android:layout_gravity="bottom"
         app:mpb_progressStyle="horizontal"
-        app:mpb_useIntrinsicPadding="false" />
+        app:mpb_useIntrinsicPadding="false"
+        app:mpb_setBothDrawables="true"
+        style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal" />
 
 </FrameLayout>

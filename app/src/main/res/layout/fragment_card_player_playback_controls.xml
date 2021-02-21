@@ -13,14 +13,14 @@
         android:layout_height="@dimen/progress_container_height"
         android:background="@color/twenty_percent_black_overlay">
 
-    <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-        android:id="@+id/player_buffering_indicator"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/progress_container_height"
-        android:indeterminate="true"
-        app:mpb_progressStyle="horizontal"
-        app:mpb_useIntrinsicPadding="false"
-        style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal.NoPadding" />
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/player_buffering_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/progress_container_height"
+            android:indeterminate="true"
+            app:mpb_progressStyle="horizontal"
+            app:mpb_useIntrinsicPadding="false"
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal.NoPadding" />
 
     </RelativeLayout>
 
