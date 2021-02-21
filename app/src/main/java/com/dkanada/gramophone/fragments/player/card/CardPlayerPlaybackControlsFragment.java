@@ -134,10 +134,13 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
         } else {
             playerFabPlayPauseDrawable.setPlay(animate);
         }
-        binding.playerBufferingIndicator.setVisibility(MusicPlayerRemote.isBuffering() ? View.VISIBLE : View.GONE);
+
+        binding.progressBarLoading.setVisibility(MusicPlayerRemote.isBuffering() ? View.VISIBLE : View.GONE);
+        binding.progressBarPlaying.setVisibility(MusicPlayerRemote.isBuffering() ? View.GONE : View.VISIBLE);
     }
 
     public void updateBufferingIndicatorColor(int color) {
+        binding.playerBufferingIndicator.setProgressBackgroundTintList(ColorStateList.valueOf(getResources().getColor(android.R.color.transparent)));
         binding.playerBufferingIndicator.setIndeterminateTintList(ColorStateList.valueOf(color));
     }
 
