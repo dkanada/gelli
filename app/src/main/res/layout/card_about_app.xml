@@ -75,9 +75,8 @@
                     android:id="@+id/app_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0.0.0"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                    tools:ignore="HardcodedText" />
+                    tools:text="1.0.0" />
 
             </LinearLayout>
 

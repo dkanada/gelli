@@ -105,7 +105,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="0dp"
                             app:srcCompat="@drawable/ic_music_note_white_24dp"
-                            tools:ignore="ContentDescription,UnusedAttribute" />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/song_count_text"
@@ -131,7 +131,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="0dp"
                             app:srcCompat="@drawable/ic_timer_white_24dp"
-                            tools:ignore="ContentDescription,UnusedAttribute" />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/duration_text"
@@ -157,7 +157,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="0dp"
                             app:srcCompat="@drawable/ic_event_white_24dp"
-                            tools:ignore="ContentDescription,UnusedAttribute" />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/album_year_text"

@@ -21,8 +21,7 @@
         <menu>
             <group
                 android:id="@+id/group_grid_size"
-                android:checkableBehavior="single"
-                tools:ignore="HardcodedText">
+                android:checkableBehavior="single">
                 <item
                     android:id="@+id/action_grid_size_1"
                     android:title="@string/grid_size_1" />

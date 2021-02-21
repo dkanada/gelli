@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/rectSelector"
             android:clickable="true"
+            android:focusable="true"
             android:gravity="center_vertical"
             android:minHeight="@dimen/md_listitem_height"
             android:orientation="horizontal"
@@ -88,7 +89,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 app:srcCompat="@drawable/ic_flag_white_24dp"
-                tools:ignore="ContentDescription,UnusedAttribute" />
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,7 +134,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 app:srcCompat="@drawable/ic_star_white_24dp"
-                tools:ignore="ContentDescription,UnusedAttribute" />
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -178,7 +179,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 app:srcCompat="@drawable/ic_card_giftcard_white_24dp"
-                tools:ignore="ContentDescription,UnusedAttribute" />
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:layout_width="match_parent"

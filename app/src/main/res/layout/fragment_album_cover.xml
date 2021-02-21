@@ -13,6 +13,6 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/default_album_art"
-        tools:ignore="ContentDescription,UnusedAttribute" />
+        tools:ignore="ContentDescription" />
 
 </FrameLayout>
