@@ -33,13 +33,13 @@
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:fontFamily="sans-serif-medium"
-            android:gravity="center_vertical|right|end"
-            android:paddingRight="8dp"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="8dp"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/ate_primary_text_dark"
             android:textSize="12sp"
-            tools:ignore="RtlHardcoded,RtlSymmetry"
+            tools:ignore="RtlSymmetry"
             tools:text="3:14" />
 
         <SeekBar
@@ -47,8 +47,7 @@
             style="@style/MusicProgressSlider"
             android:layout_height="match_parent"
             android:layout_toStartOf="@id/player_song_total_time"
-            android:layout_toEndOf="@id/player_song_current_progress"
-            tools:ignore="RtlHardcoded,UnusedAttribute" />
+            android:layout_toEndOf="@id/player_song_current_progress" />
 
     </RelativeLayout>
 

@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
-        tools:ignore="UnusedAttribute,UselessParent">
+        tools:ignore="UselessParent">
 
         <com.dkanada.gramophone.views.WidthFitSquareLayout
             android:id="@+id/image_container"
