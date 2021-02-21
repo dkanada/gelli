@@ -13,12 +13,10 @@ import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.database.ExoDatabaseProvider;
-import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.ProgressiveMediaSource;
-import com.google.android.exoplayer2.source.hls.HlsMediaSource;
+import com.google.android.exoplayer2.source.MediaSourceFactory;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.FileDataSource;
@@ -28,27 +26,13 @@ import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvicto
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
 import java.io.File;
-import java.io.IOException;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Dispatcher;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.internal.annotations.EverythingIsNonNull;
 
 public class MultiPlayer implements Playback {
     public static final String TAG = MultiPlayer.class.getSimpleName();
 
     private final Context context;
-    private final OkHttpClient httpClient;
-
-    private SimpleExoPlayer exoPlayer;
-    private ConcatenatingMediaSource mediaSource;
-
+    private final SimpleExoPlayer exoPlayer;
     private final SimpleCache simpleCache;
-    private final DataSource.Factory dataSource;
 
     private PlaybackCallbacks callbacks;
 
@@ -68,7 +52,7 @@ public class MultiPlayer implements Playback {
             int windowIndex = exoPlayer.getCurrentWindowIndex();
 
             if (windowIndex == 1) {
-                mediaSource.removeMediaSource(0);
+                exoPlayer.removeMediaItem(0);
                 if (exoPlayer.isPlaying()) {
                     // there are still songs left in the queue
                     callbacks.onTrackWentToNext();
@@ -88,17 +72,11 @@ public class MultiPlayer implements Playback {
     public MultiPlayer(Context context) {
         this.context = context;
 
-        Dispatcher dispatcher = new Dispatcher();
-        dispatcher.setMaxRequests(1);
-
-        httpClient = new OkHttpClient.Builder().dispatcher(dispatcher).build();
-
-        exoPlayer = new SimpleExoPlayer.Builder(context).build();
-        mediaSource = new ConcatenatingMediaSource();
+        MediaSourceFactory mediaSourceFactory = new UnknownMediaSourceFactory(buildDataSourceFactory());
+        exoPlayer = new SimpleExoPlayer.Builder(context).setMediaSourceFactory(mediaSourceFactory).build();
 
         exoPlayer.addListener(eventListener);
-        exoPlayer.prepare(mediaSource);
-        exoPlayer.setRepeatMode(Player.REPEAT_MODE_OFF);
+        exoPlayer.prepare();
 
         long cacheSize = PreferenceUtil.getInstance(context).getMediaCacheSize();
         LeastRecentlyUsedCacheEvictor recentlyUsedCache = new LeastRecentlyUsedCacheEvictor(cacheSize);
@@ -106,23 +84,19 @@ public class MultiPlayer implements Playback {
 
         File cacheDirectory = new File(context.getCacheDir(), "exoplayer");
         simpleCache = new SimpleCache(cacheDirectory, recentlyUsedCache, databaseProvider);
-        dataSource = buildDataSourceFactory();
     }
 
     @Override
     public void setDataSource(Song song) {
-        mediaSource = new ConcatenatingMediaSource();
-
-        exoPlayer.addListener(eventListener);
-        exoPlayer.prepare(mediaSource);
-
+        exoPlayer.clearMediaItems();
         appendDataSource(MusicUtil.getSongFileUri(song));
+        exoPlayer.seekTo(0, 0);
     }
 
     @Override
     public void queueDataSource(Song song) {
-        while (mediaSource.getSize() > 1) {
-            mediaSource.removeMediaSource(1);
+        while (exoPlayer.getMediaItemCount() > 1) {
+            exoPlayer.removeMediaItem(1);
         }
 
         appendDataSource(MusicUtil.getSongFileUri(song));
@@ -130,36 +104,9 @@ public class MultiPlayer implements Playback {
 
     private void appendDataSource(String path) {
         Uri uri = Uri.parse(path);
+        MediaItem mediaItem = MediaItem.fromUri(uri);
 
-        httpClient.newCall(new Request.Builder().url(path).head().build()).enqueue(new Callback() {
-            @Override
-            @EverythingIsNonNull
-            public void onFailure(Call call, IOException e) {
-                Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
-
-            @Override
-            @EverythingIsNonNull
-            public void onResponse(Call call, Response response) {
-                String type = response.header("Content-Type");
-                if (type == null) return;
-
-                MediaSource source;
-                if (type.equals("application/x-mpegURL")) {
-                    source = new HlsMediaSource.Factory(dataSource)
-                            .setTag(path)
-                            .setAllowChunklessPreparation(true)
-                            .createMediaSource(uri);
-                } else {
-                    source = new ProgressiveMediaSource.Factory(dataSource)
-                            .setTag(path)
-                            .createMediaSource(uri);
-                }
-
-                mediaSource.addMediaSource(source);
-            }
-        });
+        exoPlayer.addMediaItem(mediaItem);
     }
 
     private DataSource.Factory buildDataSourceFactory() {

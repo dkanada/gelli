@@ -429,6 +429,7 @@ public final class PreferenceUtil {
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.ARTISTS, true));
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.GENRES, true));
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.PLAYLISTS, true));
+        defaultCategories.add(new CategoryInfo(CategoryInfo.Category.FAVORITES, true));
         return defaultCategories;
     }
 

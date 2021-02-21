@@ -49,6 +49,7 @@
     <string name="genres">Genres</string>
     <string name="songs">Songs</string>
     <string name="playlists">Playlists</string>
+    <string name="favorites">Favorites</string>
     <string name="no_playlists">No playlists</string>
     <string name="no_albums">No albums</string>
     <string name="no_songs">No songs</string>

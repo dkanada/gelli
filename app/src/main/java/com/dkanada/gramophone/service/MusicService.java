@@ -449,8 +449,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 if (restoredPositionInTrack > 0) seek(restoredPositionInTrack);
 
                 notHandledMetaChangedForCurrentTrack = true;
-                sendChangeInternal(META_CHANGED);
-                sendChangeInternal(QUEUE_CHANGED);
+                handleChangeInternal(META_CHANGED);
+                handleChangeInternal(QUEUE_CHANGED);
             }
         }
 
@@ -1291,7 +1291,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             info.setItemId(mService.get().getCurrentSong().id);
             info.setPositionTicks(progress * 10000);
 
-            task.cancel(true);
+            if (task != null) task.cancel(true);
             executorService.shutdownNow();
         }
     }

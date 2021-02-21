@@ -33,9 +33,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        if (BuildConfig.DEBUG) {
-            RedScreenOfDeath.init(this);
-        }
+        // enable for all builds to help with bug reports
+        RedScreenOfDeath.init(this);
 
         app = this;
         database = createDatabase(this);
