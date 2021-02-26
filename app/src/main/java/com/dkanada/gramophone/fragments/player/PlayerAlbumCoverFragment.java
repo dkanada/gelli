@@ -50,6 +50,7 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
                         callbacks.onToolbarToggled();
                         return true;
                     }
+
                     return super.onSingleTapConfirmed(e);
                 }
             });
@@ -122,8 +123,8 @@ public class PlayerAlbumCoverFragment extends AbsMusicServiceFragment implements
         binding.playerFavoriteIcon.setScaleX(0f);
         binding.playerFavoriteIcon.setScaleY(0f);
         binding.playerFavoriteIcon.setVisibility(View.VISIBLE);
-        binding.playerFavoriteIcon.setPivotX(binding.playerFavoriteIcon.getWidth() / 2);
-        binding.playerFavoriteIcon.setPivotY(binding.playerFavoriteIcon.getHeight() / 2);
+        binding.playerFavoriteIcon.setPivotX(binding.playerFavoriteIcon.getWidth() / 2f);
+        binding.playerFavoriteIcon.setPivotY(binding.playerFavoriteIcon.getHeight() / 2f);
 
         binding.playerFavoriteIcon.animate()
                 .setDuration(ViewUtil.PHONOGRAPH_ANIM_TIME / 2)

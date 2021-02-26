@@ -21,9 +21,9 @@ import java.security.MessageDigest;
 public class BlurTransformation extends BitmapTransformation {
     public static final float DEFAULT_BLUR_RADIUS = 5f;
 
-    private Context context;
-    private float blurRadius;
-    private int sampling;
+    private final Context context;
+    private final float blurRadius;
+    private final int sampling;
 
     private BlurTransformation(Builder builder) {
         super();
