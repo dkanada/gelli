@@ -44,10 +44,10 @@
 
         <SeekBar
             android:id="@+id/player_progress_slider"
-            style="@style/MusicProgressSlider"
             android:layout_height="match_parent"
             android:layout_toStartOf="@id/player_song_total_time"
-            android:layout_toEndOf="@id/player_song_current_progress" />
+            android:layout_toEndOf="@id/player_song_current_progress"
+            style="@style/MusicProgressSlider" />
 
     </RelativeLayout>
 
