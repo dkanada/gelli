@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -136,6 +137,11 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
         } else {
             playPauseDrawable.setPlay(animate);
         }
+    }
+
+    public void updateBufferingIndicatorColor(int color) {
+        binding.playerBufferingIndicator.setProgressBackgroundTintList(ColorStateList.valueOf(getResources().getColor(android.R.color.transparent)));
+        binding.playerBufferingIndicator.setIndeterminateTintList(ColorStateList.valueOf(color));
     }
 
     private void setUpMusicControllers() {
@@ -282,6 +288,8 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
 
     @Override
     public void onUpdateProgressViews(int progress, int total) {
+        binding.playerBufferingIndicator.setVisibility(MusicPlayerRemote.isBuffering() ? View.VISIBLE : View.GONE);
+
         binding.playerProgressSlider.setMax(total);
         binding.playerProgressSlider.setProgress(progress);
 
