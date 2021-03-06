@@ -51,7 +51,7 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setUpMusicControllers();
         updateProgressTextColor();
@@ -98,11 +98,11 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
 
     public void setDark(boolean dark) {
         if (dark) {
-            lastPlaybackControlsColor = MaterialValueHelper.getSecondaryTextColor(getActivity(), true);
-            lastDisabledPlaybackControlsColor = MaterialValueHelper.getSecondaryDisabledTextColor(getActivity(), true);
+            lastPlaybackControlsColor = MaterialValueHelper.getSecondaryTextColor(requireActivity(), true);
+            lastDisabledPlaybackControlsColor = MaterialValueHelper.getSecondaryDisabledTextColor(requireActivity(), true);
         } else {
-            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(getActivity(), false);
-            lastDisabledPlaybackControlsColor = MaterialValueHelper.getPrimaryDisabledTextColor(getActivity(), false);
+            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(requireActivity(), false);
+            lastDisabledPlaybackControlsColor = MaterialValueHelper.getPrimaryDisabledTextColor(requireActivity(), false);
         }
 
         updateRepeatState();
@@ -115,16 +115,14 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
         final int fabColor = Color.WHITE;
         TintHelper.setTintAuto(binding.playerPlayPauseFab, fabColor, true);
 
-        playerFabPlayPauseDrawable = new PlayPauseDrawable(getActivity());
+        playerFabPlayPauseDrawable = new PlayPauseDrawable(requireActivity());
 
         binding.playerPlayPauseFab.setImageDrawable(playerFabPlayPauseDrawable); // Note: set the drawable AFTER TintHelper.setTintAuto() was called
-        binding.playerPlayPauseFab.setColorFilter(MaterialValueHelper.getPrimaryTextColor(getContext(), ColorUtil.isColorLight(fabColor)), PorterDuff.Mode.SRC_IN);
+        binding.playerPlayPauseFab.setColorFilter(MaterialValueHelper.getPrimaryTextColor(requireContext(), ColorUtil.isColorLight(fabColor)), PorterDuff.Mode.SRC_IN);
         binding.playerPlayPauseFab.setOnClickListener(new PlayPauseButtonOnClickHandler());
         binding.playerPlayPauseFab.post(() -> {
-            if (binding.playerPlayPauseFab != null) {
-                binding.playerPlayPauseFab.setPivotX(binding.playerPlayPauseFab.getWidth() / 2);
-                binding.playerPlayPauseFab.setPivotY(binding.playerPlayPauseFab.getHeight() / 2);
-            }
+            binding.playerPlayPauseFab.setPivotX(binding.playerPlayPauseFab.getWidth() / 2f);
+            binding.playerPlayPauseFab.setPivotY(binding.playerPlayPauseFab.getHeight() / 2f);
         });
     }
 
@@ -156,7 +154,7 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     private void updateProgressTextColor() {
-        int color = MaterialValueHelper.getPrimaryTextColor(getContext(), false);
+        int color = MaterialValueHelper.getPrimaryTextColor(requireContext(), false);
         binding.playerSongTotalTime.setTextColor(color);
         binding.playerSongCurrentProgress.setTextColor(color);
     }
@@ -218,7 +216,7 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     private void setUpProgressSlider() {
-        int color = MaterialValueHelper.getPrimaryTextColor(getContext(), false);
+        int color = MaterialValueHelper.getPrimaryTextColor(requireContext(), false);
         binding.playerProgressSlider.getThumb().mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
         binding.playerProgressSlider.getProgressDrawable().mutate().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
 

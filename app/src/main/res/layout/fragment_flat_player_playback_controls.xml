@@ -18,13 +18,13 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:fontFamily="sans-serif-medium"
-            android:gravity="center_vertical|left|end"
-            android:paddingLeft="8dp"
+            android:gravity="center_vertical|start"
+            android:paddingStart="8dp"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/ate_primary_text_dark"
             android:textSize="12sp"
-            tools:ignore="RtlHardcoded,RtlSymmetry"
+            tools:ignore="RtlSymmetry"
             tools:text="0:00" />
 
         <TextView
@@ -33,22 +33,21 @@
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:fontFamily="sans-serif-medium"
-            android:gravity="center_vertical|right|end"
-            android:paddingRight="8dp"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="8dp"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/ate_primary_text_dark"
             android:textSize="12sp"
-            tools:ignore="RtlHardcoded,RtlSymmetry"
-            tools:text="3:14" />
+            tools:ignore="RtlSymmetry"
+            tools:text="4:00" />
 
         <SeekBar
             android:id="@+id/player_progress_slider"
             style="@style/MusicProgressSlider"
             android:layout_height="match_parent"
             android:layout_toStartOf="@id/player_song_total_time"
-            android:layout_toEndOf="@id/player_song_current_progress"
-            tools:ignore="RtlHardcoded,UnusedAttribute" />
+            android:layout_toEndOf="@id/player_song_current_progress" />
 
     </RelativeLayout>
 
@@ -57,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/media_controller_container_height"
         android:layoutDirection="ltr"
-        tools:ignore="ContentDescription,UnusedAttribute">
+        tools:ignore="ContentDescription">
 
         <ImageButton
             android:id="@+id/player_prev_button"
@@ -69,8 +68,7 @@
             android:background="?attr/roundSelector"
             android:padding="22dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_skip_previous_white_24dp"
-            tools:ignore="MissingPrefix" />
+            app:srcCompat="@drawable/ic_skip_previous_white_24dp" />
 
         <ImageButton
             android:id="@+id/player_next_button"
@@ -82,8 +80,7 @@
             android:background="?attr/roundSelector"
             android:padding="22dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_skip_next_white_24dp"
-            tools:ignore="MissingPrefix" />
+            app:srcCompat="@drawable/ic_skip_next_white_24dp" />
 
         <ImageButton
             android:id="@+id/player_repeat_button"
@@ -95,8 +92,7 @@
             android:background="?attr/roundSelector"
             android:padding="22dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_repeat_white_24dp"
-            tools:ignore="MissingPrefix" />
+            app:srcCompat="@drawable/ic_repeat_white_24dp" />
 
         <ImageButton
             android:id="@+id/player_shuffle_button"
@@ -108,8 +104,7 @@
             android:background="?attr/roundSelector"
             android:padding="22dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/ic_shuffle_white_24dp"
-            tools:ignore="MissingPrefix" />
+            app:srcCompat="@drawable/ic_shuffle_white_24dp" />
 
         <ImageButton
             android:id="@+id/player_play_pause__button"
@@ -119,7 +114,6 @@
             android:background="?attr/roundSelector"
             android:padding="22dp"
             android:scaleType="fitCenter"
-            tools:ignore="MissingPrefix"
             tools:src="@drawable/ic_pause_white_24dp" />
 
     </RelativeLayout>

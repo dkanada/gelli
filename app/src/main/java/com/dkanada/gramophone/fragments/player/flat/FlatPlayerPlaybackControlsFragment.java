@@ -105,11 +105,11 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
 
     public void setDark(boolean dark) {
         if (dark) {
-            lastPlaybackControlsColor = MaterialValueHelper.getSecondaryTextColor(getActivity(), true);
-            lastDisabledPlaybackControlsColor = MaterialValueHelper.getSecondaryDisabledTextColor(getActivity(), true);
+            lastPlaybackControlsColor = MaterialValueHelper.getSecondaryTextColor(requireActivity(), true);
+            lastDisabledPlaybackControlsColor = MaterialValueHelper.getSecondaryDisabledTextColor(requireActivity(), true);
         } else {
-            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(getActivity(), false);
-            lastDisabledPlaybackControlsColor = MaterialValueHelper.getPrimaryDisabledTextColor(getActivity(), false);
+            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(requireActivity(), false);
+            lastDisabledPlaybackControlsColor = MaterialValueHelper.getPrimaryDisabledTextColor(requireActivity(), false);
         }
 
         updateRepeatState();
@@ -120,13 +120,13 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     private void setUpPlayPauseButton() {
-        playPauseDrawable = new PlayPauseDrawable(getActivity());
+        playPauseDrawable = new PlayPauseDrawable(requireActivity());
         binding.playerPlayPauseButton.setImageDrawable(playPauseDrawable);
         updatePlayPauseColor();
         binding.playerPlayPauseButton.setOnClickListener(new PlayPauseButtonOnClickHandler());
         binding.playerPlayPauseButton.post(() -> {
-            binding.playerPlayPauseButton.setPivotX(binding.playerPlayPauseButton.getWidth() / 2);
-            binding.playerPlayPauseButton.setPivotY(binding.playerPlayPauseButton.getHeight() / 2);
+            binding.playerPlayPauseButton.setPivotX(binding.playerPlayPauseButton.getWidth() / 2f);
+            binding.playerPlayPauseButton.setPivotY(binding.playerPlayPauseButton.getHeight() / 2f);
         });
     }
 
@@ -153,7 +153,7 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     private void updateProgressTextColor() {
-        int color = MaterialValueHelper.getPrimaryTextColor(getContext(), false);
+        int color = MaterialValueHelper.getPrimaryTextColor(requireContext(), false);
         binding.playerSongTotalTime.setTextColor(color);
         binding.playerSongCurrentProgress.setTextColor(color);
     }
@@ -222,6 +222,7 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
             } else {
                 musicControllerAnimationSet.cancel();
             }
+
             musicControllerAnimationSet.start();
         }
 
@@ -264,7 +265,7 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     private void setUpProgressSlider() {
-        int color = MaterialValueHelper.getPrimaryTextColor(getContext(), false);
+        int color = MaterialValueHelper.getPrimaryTextColor(requireContext(), false);
         binding.playerProgressSlider.getThumb().mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
         binding.playerProgressSlider.getProgressDrawable().mutate().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
 
@@ -283,6 +284,7 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     public void onUpdateProgressViews(int progress, int total) {
         binding.playerProgressSlider.setMax(total);
         binding.playerProgressSlider.setProgress(progress);
+
         binding.playerSongTotalTime.setText(MusicUtil.getReadableDurationString(total));
         binding.playerSongCurrentProgress.setText(MusicUtil.getReadableDurationString(progress));
     }

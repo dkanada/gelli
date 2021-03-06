@@ -53,7 +53,7 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/default_artist_image"
                     android:transitionName="@string/transition_artist_image"
-                    tools:ignore="ContentDescription,UnusedAttribute" />
+                    tools:ignore="ContentDescription" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -78,7 +78,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="0dp"
                             app:srcCompat="@drawable/ic_album_white_24dp"
-                            tools:ignore="ContentDescription,UnusedAttribute" />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/album_count_text"
@@ -104,7 +104,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="0dp"
                             app:srcCompat="@drawable/ic_music_note_white_24dp"
-                            tools:ignore="ContentDescription,UnusedAttribute" />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/song_count_text"
@@ -130,7 +130,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginStart="0dp"
                             app:srcCompat="@drawable/ic_timer_white_24dp"
-                            tools:ignore="ContentDescription,UnusedAttribute" />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/duration_text"
