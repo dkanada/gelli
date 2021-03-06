@@ -222,6 +222,7 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
             } else {
                 musicControllerAnimationSet.cancel();
             }
+
             musicControllerAnimationSet.start();
         }
 
@@ -283,6 +284,7 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     public void onUpdateProgressViews(int progress, int total) {
         binding.playerProgressSlider.setMax(total);
         binding.playerProgressSlider.setProgress(progress);
+
         binding.playerSongTotalTime.setText(MusicUtil.getReadableDurationString(total));
         binding.playerSongCurrentProgress.setText(MusicUtil.getReadableDurationString(progress));
     }

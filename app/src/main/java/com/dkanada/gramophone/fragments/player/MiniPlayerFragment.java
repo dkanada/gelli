@@ -55,11 +55,13 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
 
     private void setUpMiniPlayer() {
         setUpPlayPauseButton();
+
         binding.progressBar.setProgressTintList(ColorStateList.valueOf(ThemeStore.accentColor(requireActivity())));
     }
 
     private void setUpPlayPauseButton() {
         miniPlayerPlayPauseDrawable = new PlayPauseDrawable(requireActivity());
+
         binding.miniPlayerPlayPauseButton.setImageDrawable(miniPlayerPlayPauseDrawable);
         binding.miniPlayerPlayPauseButton.setColorFilter(ATHUtil.resolveColor(requireActivity(), R.attr.iconColor, ThemeStore.textColorSecondary(requireActivity())), PorterDuff.Mode.SRC_IN);
         binding.miniPlayerPlayPauseButton.setOnClickListener(new PlayPauseButtonOnClickHandler());

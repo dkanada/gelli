@@ -229,6 +229,7 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     public void onUpdateProgressViews(int progress, int total) {
         binding.playerProgressSlider.setMax(total);
         binding.playerProgressSlider.setProgress(progress);
+
         binding.playerSongTotalTime.setText(MusicUtil.getReadableDurationString(total));
         binding.playerSongCurrentProgress.setText(MusicUtil.getReadableDurationString(progress));
     }
