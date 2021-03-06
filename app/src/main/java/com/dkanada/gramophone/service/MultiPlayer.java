@@ -65,6 +65,11 @@ public class MultiPlayer implements Playback {
         }
 
         @Override
+        public void onPositionDiscontinuity(int reason) {
+            Log.i(TAG, String.format("onPositionDiscontinuity: %d", reason));
+        }
+
+        @Override
         public void onPlayerError(ExoPlaybackException error) {
             Log.i(TAG, String.format("onPlayerError: %s", error.getMessage()));
             Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();

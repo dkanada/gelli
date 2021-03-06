@@ -1051,12 +1051,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             prepareNext();
         } else if (reason == PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM) {
             progressHandler.sendEmptyMessage(TRACK_ENDED);
-            acquireWakeLock(30000);
         }
     }
 
     @Override
     public void onTrackChanged(int reason) {
+        acquireWakeLock(30000);
+
         if (reason == MEDIA_ITEM_TRANSITION_REASON_AUTO) {
             playerHandler.sendEmptyMessage(TRACK_CHANGED);
             progressHandler.sendEmptyMessage(TRACK_CHANGED);
