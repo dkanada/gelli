@@ -37,28 +37,30 @@ public class MultiPlayer implements Playback {
     private PlaybackCallbacks callbacks;
 
     private final ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
-
         @Override
-        public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-            Log.i(TAG, String.format("onPlayerStateChanged: %b %d", playWhenReady, playbackState));
-            if (callbacks != null) {
-                callbacks.onPlayerStateChanged(playWhenReady, playbackState);
-            }
+        public void onIsLoadingChanged(boolean isLoading) {
+            Log.i(TAG, String.format("onIsLoadingChanged: %b", isLoading));
         }
 
         @Override
-        public void onPositionDiscontinuity(int reason) {
-            Log.i(TAG, String.format("onPositionDiscontinuity: %d", reason));
-            int windowIndex = exoPlayer.getCurrentWindowIndex();
+        public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
+            Log.i(TAG, String.format("onPlayWhenReadyChanged: %b %d", playWhenReady, reason));
+            if (callbacks != null) callbacks.onReadyChanged(playWhenReady, reason);
+        }
 
-            if (windowIndex == 1) {
+        @Override
+        public void onPlaybackStateChanged(int state) {
+            Log.i(TAG, String.format("onPlaybackStateChanged: %d", state));
+            if (callbacks != null) callbacks.onStateChanged(state);
+        }
+
+        @Override
+        public void onMediaItemTransition(MediaItem mediaItem, int reason) {
+            Log.i(TAG, String.format("onMediaItemTransition: %s %d", mediaItem, reason));
+
+            if (exoPlayer.getMediaItemCount() > 1) {
                 exoPlayer.removeMediaItem(0);
-                if (exoPlayer.isPlaying()) {
-                    // there are still songs left in the queue
-                    callbacks.onTrackWentToNext();
-                } else {
-                    callbacks.onTrackEnded();
-                }
+                callbacks.onTrackChanged(reason);
             }
         }
 
@@ -88,6 +90,13 @@ public class MultiPlayer implements Playback {
 
     @Override
     public void setDataSource(Song song) {
+        String uri = MusicUtil.getSongFileUri(song);
+        MediaItem mediaItem = exoPlayer.getCurrentMediaItem();
+
+        if (mediaItem != null && mediaItem.playbackProperties.uri.toString().equals(uri)) {
+            return;
+        }
+
         exoPlayer.clearMediaItems();
         appendDataSource(MusicUtil.getSongFileUri(song));
         exoPlayer.seekTo(0, 0);
@@ -127,7 +136,7 @@ public class MultiPlayer implements Playback {
 
     @Override
     public boolean isReady() {
-        return true;
+        return exoPlayer.getPlayWhenReady();
     }
 
     @Override
@@ -136,7 +145,7 @@ public class MultiPlayer implements Playback {
     }
 
     @Override
-    public boolean isBuffering() {
+    public boolean isLoading() {
         return exoPlayer.getPlaybackState() == Player.STATE_BUFFERING;
     }
 

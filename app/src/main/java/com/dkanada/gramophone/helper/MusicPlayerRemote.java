@@ -137,7 +137,7 @@ public class MusicPlayerRemote {
     }
 
     public static boolean isBuffering() {
-        return musicService != null && musicService.isBuffering();
+        return musicService != null && musicService.isLoading();
     }
 
     public static void resumePlaying() {

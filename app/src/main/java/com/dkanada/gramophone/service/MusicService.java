@@ -51,7 +51,6 @@ import com.dkanada.gramophone.util.Util;
 import com.dkanada.gramophone.widgets.AppWidgetAlbum;
 import com.dkanada.gramophone.widgets.AppWidgetCard;
 import com.dkanada.gramophone.widgets.AppWidgetClassic;
-import com.google.android.exoplayer2.Player;
 
 import org.jellyfin.apiclient.interaction.EmptyResponse;
 import org.jellyfin.apiclient.interaction.Response;
@@ -68,6 +67,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import static com.google.android.exoplayer2.Player.MEDIA_ITEM_TRANSITION_REASON_AUTO;
+import static com.google.android.exoplayer2.Player.PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM;
 
 public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks {
     public static final String PACKAGE_NAME = "com.dkanada.gramophone";
@@ -483,8 +485,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         return playback != null && playback.isPlaying();
     }
 
-    public boolean isBuffering() {
-        return playback != null && playback.isBuffering();
+    public boolean isLoading() {
+        return playback != null && playback.isLoading();
     }
 
     public int getPosition() {
@@ -1036,26 +1038,29 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     @Override
-    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+    public void onStateChanged(int state) {
         notifyChange(STATE_CHANGED);
-        if (playWhenReady && playbackState == Player.STATE_READY) {
+    }
+
+    @Override
+    public void onReadyChanged(boolean ready, int reason) {
+        notifyChange(STATE_CHANGED);
+
+        if (ready) {
             progressHandler.sendEmptyMessage(TRACK_STARTED);
             prepareNext();
+        } else if (reason == PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM) {
+            progressHandler.sendEmptyMessage(TRACK_ENDED);
+            acquireWakeLock(30000);
         }
     }
 
     @Override
-    public void onTrackWentToNext() {
-        playerHandler.sendEmptyMessage(TRACK_CHANGED);
-        progressHandler.sendEmptyMessage(TRACK_CHANGED);
-    }
-
-    @Override
-    public void onTrackEnded() {
-        playerHandler.sendEmptyMessage(TRACK_ENDED);
-        progressHandler.sendEmptyMessage(TRACK_ENDED);
-
-        acquireWakeLock(30000);
+    public void onTrackChanged(int reason) {
+        if (reason == MEDIA_ITEM_TRANSITION_REASON_AUTO) {
+            playerHandler.sendEmptyMessage(TRACK_CHANGED);
+            progressHandler.sendEmptyMessage(TRACK_CHANGED);
+        }
     }
 
     private static final class PlaybackHandler extends Handler {
@@ -1292,7 +1297,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             info.setPositionTicks(progress * 10000);
 
             if (task != null) task.cancel(true);
-            executorService.shutdownNow();
+            if (executorService != null) executorService.shutdownNow();
         }
     }
 }

@@ -13,7 +13,7 @@ public interface Playback {
 
     boolean isPlaying();
 
-    boolean isBuffering();
+    boolean isLoading();
 
     void start();
 
@@ -32,10 +32,10 @@ public interface Playback {
     int getVolume();
 
     interface PlaybackCallbacks {
-        void onPlayerStateChanged(boolean playWhenReady, int playbackState);
+        void onStateChanged(int state);
 
-        void onTrackWentToNext();
+        void onReadyChanged(boolean ready, int reason);
 
-        void onTrackEnded();
+        void onTrackChanged(int reason);
     }
 }
