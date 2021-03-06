@@ -8,7 +8,6 @@
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/progress_bar_playing"
         android:layout_width="match_parent"
         android:layout_height="@dimen/progress_container_height"
         android:background="@color/twenty_percent_black_overlay">
