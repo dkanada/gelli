@@ -54,6 +54,7 @@
         android:layout_gravity="bottom"
         app:mpb_progressStyle="horizontal"
         app:mpb_useIntrinsicPadding="false"
+        app:mpb_setBothDrawables="true"
         style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal" />
 
 </FrameLayout>

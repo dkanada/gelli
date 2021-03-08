@@ -60,7 +60,6 @@ import org.jellyfin.apiclient.model.session.PlaybackStopInfo;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -68,6 +67,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import static com.google.android.exoplayer2.Player.MEDIA_ITEM_TRANSITION_REASON_AUTO;
+import static com.google.android.exoplayer2.Player.PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM;
 
 public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks {
     public static final String PACKAGE_NAME = "com.dkanada.gramophone";
@@ -481,6 +483,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public boolean isPlaying() {
         return playback != null && playback.isPlaying();
+    }
+
+    public boolean isLoading() {
+        return playback != null && playback.isLoading();
     }
 
     public int getPosition() {
@@ -1032,25 +1038,30 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     @Override
-    public void onTrackStarted() {
-        progressHandler.sendEmptyMessage(TRACK_STARTED);
-
+    public void onStateChanged(int state) {
         notifyChange(STATE_CHANGED);
-        prepareNext();
     }
 
     @Override
-    public void onTrackWentToNext() {
-        playerHandler.sendEmptyMessage(TRACK_CHANGED);
-        progressHandler.sendEmptyMessage(TRACK_CHANGED);
+    public void onReadyChanged(boolean ready, int reason) {
+        notifyChange(STATE_CHANGED);
+
+        if (ready) {
+            progressHandler.sendEmptyMessage(TRACK_STARTED);
+            prepareNext();
+        } else if (reason == PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM) {
+            progressHandler.sendEmptyMessage(TRACK_ENDED);
+        }
     }
 
     @Override
-    public void onTrackEnded() {
-        playerHandler.sendEmptyMessage(TRACK_ENDED);
-        progressHandler.sendEmptyMessage(TRACK_ENDED);
-
+    public void onTrackChanged(int reason) {
         acquireWakeLock(30000);
+
+        if (reason == MEDIA_ITEM_TRANSITION_REASON_AUTO) {
+            playerHandler.sendEmptyMessage(TRACK_CHANGED);
+            progressHandler.sendEmptyMessage(TRACK_CHANGED);
+        }
     }
 
     private static final class PlaybackHandler extends Handler {

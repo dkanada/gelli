@@ -57,6 +57,7 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
         setUpPlayPauseButton();
 
         binding.progressBar.setProgressTintList(ColorStateList.valueOf(ThemeStore.accentColor(requireActivity())));
+        binding.progressBar.setIndeterminateTintList(ColorStateList.valueOf(ThemeStore.accentColor(requireActivity())));
     }
 
     private void setUpPlayPauseButton() {
@@ -89,6 +90,7 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
 
     @Override
     public void onUpdateProgressViews(int progress, int total) {
+        binding.progressBar.setIndeterminate(MusicPlayerRemote.isBuffering());
         binding.progressBar.setMax(total);
         binding.progressBar.setProgress(progress);
     }

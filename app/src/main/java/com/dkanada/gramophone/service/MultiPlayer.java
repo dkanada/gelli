@@ -12,6 +12,7 @@ import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.database.ExoDatabaseProvider;
@@ -44,35 +45,28 @@ public class MultiPlayer implements Playback {
         @Override
         public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
             Log.i(TAG, String.format("onPlayWhenReadyChanged: %b %d", playWhenReady, reason));
+            if (callbacks != null) callbacks.onReadyChanged(playWhenReady, reason);
         }
 
         @Override
-        public void onPlaybackStateChanged(int playbackState) {
-            Log.i(TAG, String.format("onPlaybackStateChanged: %d", playbackState));
-            if (callbacks != null && exoPlayer.isPlaying()) {
-                callbacks.onTrackStarted();
-            }
+        public void onPlaybackStateChanged(int state) {
+            Log.i(TAG, String.format("onPlaybackStateChanged: %d", state));
+            if (callbacks != null) callbacks.onStateChanged(state);
         }
 
         @Override
         public void onMediaItemTransition(MediaItem mediaItem, int reason) {
             Log.i(TAG, String.format("onMediaItemTransition: %s %d", mediaItem, reason));
+
+            if (exoPlayer.getMediaItemCount() > 1) {
+                exoPlayer.removeMediaItem(0);
+                callbacks.onTrackChanged(reason);
+            }
         }
 
         @Override
         public void onPositionDiscontinuity(int reason) {
             Log.i(TAG, String.format("onPositionDiscontinuity: %d", reason));
-            int windowIndex = exoPlayer.getCurrentWindowIndex();
-
-            if (windowIndex == 1) {
-                exoPlayer.removeMediaItem(0);
-                if (exoPlayer.isPlaying()) {
-                    // there are still songs left in the queue
-                    callbacks.onTrackWentToNext();
-                } else {
-                    callbacks.onTrackEnded();
-                }
-            }
         }
 
         @Override
@@ -101,6 +95,13 @@ public class MultiPlayer implements Playback {
 
     @Override
     public void setDataSource(Song song) {
+        String uri = MusicUtil.getSongFileUri(song);
+        MediaItem mediaItem = exoPlayer.getCurrentMediaItem();
+
+        if (mediaItem != null && mediaItem.playbackProperties.uri.toString().equals(uri)) {
+            return;
+        }
+
         exoPlayer.clearMediaItems();
         appendDataSource(MusicUtil.getSongFileUri(song));
         exoPlayer.seekTo(0, 0);
@@ -140,12 +141,17 @@ public class MultiPlayer implements Playback {
 
     @Override
     public boolean isReady() {
-        return true;
+        return exoPlayer.getPlayWhenReady();
     }
 
     @Override
     public boolean isPlaying() {
         return exoPlayer.isPlaying() || exoPlayer.getPlayWhenReady();
+    }
+
+    @Override
+    public boolean isLoading() {
+        return exoPlayer.getPlaybackState() == Player.STATE_BUFFERING;
     }
 
     @Override

@@ -12,6 +12,19 @@
         android:layout_height="@dimen/progress_container_height"
         android:background="@color/twenty_percent_black_overlay">
 
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/player_buffering_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:mpb_progressStyle="horizontal"
+            app:mpb_useIntrinsicPadding="false"
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal.NoPadding" />
+
         <TextView
             android:id="@+id/player_song_current_progress"
             android:layout_width="wrap_content"
