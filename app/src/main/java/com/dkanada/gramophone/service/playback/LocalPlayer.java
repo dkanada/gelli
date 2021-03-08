@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.service;
+package com.dkanada.gramophone.service.playback;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.service.playback.Playback;
+import com.dkanada.gramophone.service.UnknownMediaSourceFactory;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.exoplayer2.ExoPlaybackException;
@@ -27,8 +27,8 @@ import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 
 import java.io.File;
 
-public class MultiPlayer implements Playback {
-    public static final String TAG = MultiPlayer.class.getSimpleName();
+public class LocalPlayer implements Playback {
+    public static final String TAG = LocalPlayer.class.getSimpleName();
 
     private final Context context;
     private final SimpleExoPlayer exoPlayer;
@@ -76,7 +76,7 @@ public class MultiPlayer implements Playback {
         }
     };
 
-    public MultiPlayer(Context context) {
+    public LocalPlayer(Context context) {
         this.context = context;
 
         MediaSourceFactory mediaSourceFactory = new UnknownMediaSourceFactory(buildDataSourceFactory());

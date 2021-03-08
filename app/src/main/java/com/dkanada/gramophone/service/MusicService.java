@@ -45,6 +45,7 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.notification.PlayingNotification;
 import com.dkanada.gramophone.service.notification.PlayingNotificationImpl;
 import com.dkanada.gramophone.service.notification.PlayingNotificationImpl24;
+import com.dkanada.gramophone.service.playback.LocalPlayer;
 import com.dkanada.gramophone.service.playback.Playback;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
@@ -208,7 +209,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getClass().getName());
         wakeLock.setReferenceCounted(false);
 
-        playback = new MultiPlayer(this);
+        playback = new LocalPlayer(this);
         playback.setCallbacks(this);
 
         playerHandlerThread = new HandlerThread(PlaybackHandler.class.getName());
