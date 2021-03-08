@@ -136,7 +136,7 @@ public class MusicPlayerRemote {
         return musicService != null && musicService.isPlaying();
     }
 
-    public static boolean isBuffering() {
+    public static boolean isLoading() {
         return musicService != null && musicService.isLoading();
     }
 

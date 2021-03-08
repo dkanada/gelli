@@ -190,7 +190,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     private void setUpPlayerToolbar() {
         binding.playerToolbar.inflateMenu(R.menu.menu_player);
         binding.playerToolbar.setNavigationIcon(R.drawable.ic_close_white_24dp);
-        binding.playerToolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());
+        binding.playerToolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
         binding.playerToolbar.setOnMenuItemClickListener(this);
     }
 
@@ -221,8 +221,8 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     private void updateIsFavorite() {
         boolean favorite = MusicPlayerRemote.getCurrentSong().favorite;
         int res = favorite ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_favorite_border_white_24dp;
-        int color = ToolbarContentTintHelper.toolbarContentColor(getActivity(), Color.TRANSPARENT);
-        Drawable drawable = ImageUtil.getTintedVectorDrawable(getActivity(), res, color);
+        int color = ToolbarContentTintHelper.toolbarContentColor(requireActivity(), Color.TRANSPARENT);
+        Drawable drawable = ImageUtil.getTintedVectorDrawable(requireActivity(), res, color);
         binding.playerToolbar.getMenu().findItem(R.id.action_toggle_favorite)
                 .setIcon(drawable)
                 .setTitle(favorite ? getString(R.string.action_remove_from_favorites) : getString(R.string.action_add_to_favorites));
@@ -343,7 +343,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.playTogether(backgroundAnimator, statusBarAnimator);
 
-            if (!ATHUtil.isWindowBackgroundDark(fragment.getActivity())) {
+            if (!ATHUtil.isWindowBackgroundDark(fragment.requireActivity())) {
                 int adjustedLastColor = ColorUtil.isColorLight(fragment.lastColor) ? ColorUtil.darkenColor(fragment.lastColor) : fragment.lastColor;
                 int adjustedNewColor = ColorUtil.isColorLight(newColor) ? ColorUtil.darkenColor(newColor) : newColor;
                 Animator subHeaderAnimator = ViewUtil.createTextColorTransition(binding.playerQueueSubHeader, adjustedLastColor, adjustedNewColor);
@@ -356,8 +356,8 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
         @Override
         public void animateColorChange(int newColor) {
-            if (ATHUtil.isWindowBackgroundDark(fragment.getActivity())) {
-                binding.playerQueueSubHeader.setTextColor(ThemeStore.textColorSecondary(fragment.getActivity()));
+            if (ATHUtil.isWindowBackgroundDark(fragment.requireActivity())) {
+                binding.playerQueueSubHeader.setTextColor(ThemeStore.textColorSecondary(fragment.requireActivity()));
             }
         }
     }
@@ -405,7 +405,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
                             MusicPlayerRemote.removeFromQueue(MusicPlayerRemote.getPosition());
                             return true;
                         case R.id.action_share:
-                            SongShareDialog.create(getSong()).show(fragment.getFragmentManager(), "SONG_SHARE_DIALOG");
+                            SongShareDialog.create(getSong()).show(fragment.getParentFragmentManager(), "SONG_SHARE_DIALOG");
                             return true;
                     }
 

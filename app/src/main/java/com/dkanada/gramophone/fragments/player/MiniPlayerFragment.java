@@ -90,7 +90,7 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
 
     @Override
     public void onUpdateProgressViews(int progress, int total) {
-        binding.progressBar.setIndeterminate(MusicPlayerRemote.isBuffering());
+        binding.progressBar.setIndeterminate(MusicPlayerRemote.isLoading());
         binding.progressBar.setMax(total);
         binding.progressBar.setProgress(progress);
     }

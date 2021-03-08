@@ -233,7 +233,7 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
 
     @Override
     public void onUpdateProgressViews(int progress, int total) {
-        binding.playerBufferingIndicator.setVisibility(MusicPlayerRemote.isBuffering() ? View.VISIBLE : View.GONE);
+        binding.playerBufferingIndicator.setVisibility(MusicPlayerRemote.isLoading() ? View.VISIBLE : View.GONE);
 
         binding.playerProgressSlider.setMax(total);
         binding.playerProgressSlider.setProgress(progress);
