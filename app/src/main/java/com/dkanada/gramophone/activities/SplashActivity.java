@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.activities.base.AbsBaseActivity;
+import com.dkanada.gramophone.model.Server;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
 import org.jellyfin.apiclient.interaction.EmptyResponse;
@@ -75,13 +76,14 @@ public class SplashActivity extends AbsBaseActivity {
     }
 
     public void login() {
-        if (PreferenceUtil.getInstance(this).getToken() == null) {
+        if (PreferenceUtil.getInstance(this).getServer().isEmpty()) {
             launchLoginActivity();
         } else {
             final Context context = this;
+            Server server = App.getDatabase().serverDao().getServer(PreferenceUtil.getInstance(this).getServer());
 
-            App.getApiClient().ChangeServerLocation(PreferenceUtil.getInstance(this).getServer());
-            App.getApiClient().SetAuthenticationInfo(PreferenceUtil.getInstance(this).getToken(), PreferenceUtil.getInstance(this).getUser());
+            App.getApiClient().ChangeServerLocation(server.url);
+            App.getApiClient().SetAuthenticationInfo(server.token, server.user);
             App.getApiClient().GetSystemInfoAsync(new Response<SystemInfo>() {
                 @Override
                 public void onResponse(SystemInfo result) {

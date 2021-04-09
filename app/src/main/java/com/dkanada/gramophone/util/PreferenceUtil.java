@@ -25,8 +25,6 @@ import java.util.Set;
 
 public final class PreferenceUtil {
     public static final String SERVER = "server";
-    public static final String USER = "user";
-    public static final String TOKEN = "token";
 
     public static final String SHUFFLE = "shuffle";
     public static final String REPEAT = "repeat";
@@ -474,26 +472,6 @@ public final class PreferenceUtil {
     public void setServer(String server) {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putString(SERVER, server);
-        editor.apply();
-    }
-
-    public String getUser() {
-        return mPreferences.getString(USER, "");
-    }
-
-    public void setUser(String user) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(USER, user);
-        editor.apply();
-    }
-
-    public String getToken() {
-        return mPreferences.getString(TOKEN, "");
-    }
-
-    public void setToken(String token) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(TOKEN, token);
         editor.apply();
     }
 }

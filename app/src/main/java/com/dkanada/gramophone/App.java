@@ -53,6 +53,7 @@ public class App extends Application {
     public static JellyDatabase createDatabase(Context context) {
         return Room.databaseBuilder(context, JellyDatabase.class, "database")
                 .allowMainThreadQueries()
+                .addMigrations(JellyDatabase.Migration2)
                 .build();
     }
 
