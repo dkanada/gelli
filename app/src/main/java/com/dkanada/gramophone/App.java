@@ -33,19 +33,18 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // enable for all builds to help with bug reports
-        RedScreenOfDeath.init(this);
+        if (BuildConfig.DEBUG) {
+            RedScreenOfDeath.init(this);
+        }
 
         app = this;
         database = createDatabase(this);
         apiClient = createApiClient(this);
 
-        // default theme
         if (!ThemeStore.isConfigured(this, 1)) {
             ThemeStore.editTheme(this).primaryColorRes(R.color.md_indigo_500).accentColorRes(R.color.md_pink_A400).commit();
         }
 
-        // dynamic shortcuts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
             new DynamicShortcutManager(this).initDynamicShortcuts();
         }
