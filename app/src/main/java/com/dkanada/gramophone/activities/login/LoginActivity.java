@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.activities;
+package com.dkanada.gramophone.activities.login;
 
 import android.content.Context;
 import android.content.Intent;

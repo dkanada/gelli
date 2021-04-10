@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 
-import com.dkanada.gramophone.activities.LoginActivity;
+import com.dkanada.gramophone.activities.login.LoginActivity;
 import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
