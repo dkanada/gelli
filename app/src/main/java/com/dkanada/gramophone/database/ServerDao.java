@@ -8,6 +8,8 @@ import androidx.room.Query;
 
 import com.dkanada.gramophone.model.Server;
 
+import java.util.List;
+
 @Dao
 public interface ServerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -15,6 +17,9 @@ public interface ServerDao {
 
     @Delete
     void deleteServer(Server server);
+
+    @Query("SELECT * FROM servers")
+    List<Server> getServers();
 
     @Query("SELECT * FROM servers WHERE id = :id")
     Server getServer(String id);

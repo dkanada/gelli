@@ -1,6 +1,7 @@
 package com.dkanada.gramophone.util;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 
+import com.dkanada.gramophone.activities.LoginActivity;
+import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Genre;
@@ -18,6 +21,19 @@ import com.dkanada.gramophone.activities.details.GenreDetailActivity;
 import com.dkanada.gramophone.activities.details.PlaylistDetailActivity;
 
 public class NavigationUtil {
+    public static void goToLogin(@NonNull final Context context) {
+        final Intent intent = new Intent(context, LoginActivity.class);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        context.startActivity(intent);
+    }
+
+    public static void goToMain(@NonNull final Context context) {
+        final Intent intent = new Intent(context, MainActivity.class);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        context.startActivity(intent);
+    }
 
     public static void goToArtist(@NonNull final Activity activity, final Artist artist, @Nullable Pair... sharedElements) {
         final Intent intent = new Intent(activity, ArtistDetailActivity.class);

@@ -38,11 +38,6 @@ public class LocalPlayer implements Playback {
 
     private final ExoPlayer.EventListener eventListener = new ExoPlayer.EventListener() {
         @Override
-        public void onIsLoadingChanged(boolean isLoading) {
-            Log.i(TAG, String.format("onIsLoadingChanged: %b", isLoading));
-        }
-
-        @Override
         public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
             Log.i(TAG, String.format("onPlayWhenReadyChanged: %b %d", playWhenReady, reason));
             if (callbacks != null) callbacks.onReadyChanged(playWhenReady, reason);
@@ -60,6 +55,9 @@ public class LocalPlayer implements Playback {
 
             if (exoPlayer.getMediaItemCount() > 1) {
                 exoPlayer.removeMediaItem(0);
+            }
+
+            if (callbacks != null) {
                 callbacks.onTrackChanged(reason);
             }
         }

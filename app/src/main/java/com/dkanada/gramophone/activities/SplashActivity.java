@@ -14,6 +14,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.model.Server;
+import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
 import org.jellyfin.apiclient.interaction.EmptyResponse;
@@ -54,6 +55,7 @@ public class SplashActivity extends AbsBaseActivity {
     private boolean detectBatteryOptimization() {
         String packageName = getPackageName();
         PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+
         return !pm.isIgnoringBatteryOptimizations(packageName);
     }
 
@@ -77,7 +79,7 @@ public class SplashActivity extends AbsBaseActivity {
 
     public void login() {
         if (PreferenceUtil.getInstance(this).getServer().isEmpty()) {
-            launchLoginActivity();
+            NavigationUtil.goToLogin(this);
         } else {
             final Context context = this;
             Server server = App.getDatabase().serverDao().getServer(PreferenceUtil.getInstance(this).getServer());
@@ -94,22 +96,14 @@ public class SplashActivity extends AbsBaseActivity {
                     App.getApiClient().ensureWebSocket();
                     App.getApiClient().ReportCapabilities(clientCapabilities, new EmptyResponse());
 
-                    Intent intent = new Intent(context, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    context.startActivity(intent);
+                    NavigationUtil.goToMain(context);
                 }
 
                 @Override
                 public void onError(Exception exception) {
-                    launchLoginActivity();
+                    NavigationUtil.goToLogin(context);
                 }
             });
         }
-    }
-
-    private void launchLoginActivity() {
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        startActivity(intent);
     }
 }

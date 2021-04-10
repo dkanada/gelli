@@ -70,6 +70,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import static com.google.android.exoplayer2.Player.MEDIA_ITEM_TRANSITION_REASON_AUTO;
+import static com.google.android.exoplayer2.Player.MEDIA_ITEM_TRANSITION_REASON_PLAYLIST_CHANGED;
 import static com.google.android.exoplayer2.Player.PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM;
 
 public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks {
@@ -1062,6 +1063,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         if (reason == MEDIA_ITEM_TRANSITION_REASON_AUTO) {
             playerHandler.sendEmptyMessage(TRACK_CHANGED);
             progressHandler.sendEmptyMessage(TRACK_CHANGED);
+        } else if (reason == MEDIA_ITEM_TRANSITION_REASON_PLAYLIST_CHANGED) {
+            progressHandler.sendEmptyMessage(TRACK_CHANGED);
+            prepareNext();
         }
     }
 
