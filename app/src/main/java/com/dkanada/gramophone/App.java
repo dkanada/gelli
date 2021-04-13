@@ -54,6 +54,7 @@ public class App extends Application {
         return Room.databaseBuilder(context, JellyDatabase.class, "database")
                 .allowMainThreadQueries()
                 .addMigrations(JellyDatabase.Migration2)
+                .addMigrations(JellyDatabase.Migration3)
                 .build();
     }
 

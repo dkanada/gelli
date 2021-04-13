@@ -15,20 +15,14 @@ public class Server {
     public String name;
     public String url;
 
-    public String user;
-    public String token;
-
     public Server() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Server(String name, String url, String user, String token) {
+    public Server(String name, String url) {
         this.id = UUID.randomUUID().toString();
 
         this.name = name;
         this.url = url;
-
-        this.user = user;
-        this.token = token;
     }
 }

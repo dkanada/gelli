@@ -15,6 +15,7 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.databinding.ActivityLoginBinding;
 import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.model.Server;
+import com.dkanada.gramophone.model.User;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 
@@ -118,14 +119,18 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         });
     }
 
-    private void check(String url, String user, String token) {
+    private void check(String url, String name, String token) {
         App.getApiClient().GetSystemInfoAsync(new Response<SystemInfo>() {
             @Override
             public void onResponse(SystemInfo result) {
                 if (result.getVersion().charAt(0) == '1') {
-                    Server server = new Server(result.getServerName(), url, user, token);
-                    PreferenceUtil.getInstance(LoginActivity.this).setServer(server.id);
+                    Server server = new Server(result.getServerName(), url);
+                    User user = new User(server.id, name, token);
+
                     App.getDatabase().serverDao().insertServer(server);
+                    App.getDatabase().userDao().insertUser(user);
+                    PreferenceUtil.getInstance(LoginActivity.this).setServer(server.id);
+                    PreferenceUtil.getInstance(LoginActivity.this).setUser(user.id);
 
                     Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

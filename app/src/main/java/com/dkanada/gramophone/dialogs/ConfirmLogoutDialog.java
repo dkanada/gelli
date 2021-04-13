@@ -11,6 +11,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.activities.login.LoginActivity;
+import com.dkanada.gramophone.helper.MusicPlayerRemote;
+import com.dkanada.gramophone.util.NavigationUtil;
 
 import org.jellyfin.apiclient.interaction.EmptyResponse;
 
@@ -30,10 +32,9 @@ public class ConfirmLogoutDialog extends DialogFragment {
                 .negativeText(android.R.string.cancel)
                 .onPositive((dialog, which) -> {
                     App.getApiClient().Logout(new EmptyResponse());
+                    MusicPlayerRemote.clearQueue();
 
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    this.startActivity(intent);
+                    NavigationUtil.goToLogin(requireContext());
                 })
                 .build();
     }

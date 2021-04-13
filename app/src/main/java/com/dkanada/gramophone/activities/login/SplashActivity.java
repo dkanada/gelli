@@ -14,6 +14,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.model.Server;
+import com.dkanada.gramophone.model.User;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
@@ -78,32 +79,34 @@ public class SplashActivity extends AbsBaseActivity {
     }
 
     public void login() {
-        if (PreferenceUtil.getInstance(this).getServer().isEmpty()) {
+        Context context = this;
+        Server server = App.getDatabase().serverDao().getServer(PreferenceUtil.getInstance(this).getServer());
+        User user = App.getDatabase().userDao().getUser(PreferenceUtil.getInstance(this).getUser());
+
+        if (server == null || user == null) {
             NavigationUtil.goToLogin(this);
-        } else {
-            final Context context = this;
-            Server server = App.getDatabase().serverDao().getServer(PreferenceUtil.getInstance(this).getServer());
-
-            App.getApiClient().ChangeServerLocation(server.url);
-            App.getApiClient().SetAuthenticationInfo(server.token, server.user);
-            App.getApiClient().GetSystemInfoAsync(new Response<SystemInfo>() {
-                @Override
-                public void onResponse(SystemInfo result) {
-                    ClientCapabilities clientCapabilities = new ClientCapabilities();
-                    clientCapabilities.setSupportsMediaControl(true);
-                    clientCapabilities.setSupportsPersistentIdentifier(true);
-
-                    App.getApiClient().ensureWebSocket();
-                    App.getApiClient().ReportCapabilities(clientCapabilities, new EmptyResponse());
-
-                    NavigationUtil.goToMain(context);
-                }
-
-                @Override
-                public void onError(Exception exception) {
-                    NavigationUtil.goToLogin(context);
-                }
-            });
+            return;
         }
+
+        App.getApiClient().ChangeServerLocation(server.url);
+        App.getApiClient().SetAuthenticationInfo(user.token, user.name);
+        App.getApiClient().GetSystemInfoAsync(new Response<SystemInfo>() {
+            @Override
+            public void onResponse(SystemInfo result) {
+                ClientCapabilities clientCapabilities = new ClientCapabilities();
+                clientCapabilities.setSupportsMediaControl(true);
+                clientCapabilities.setSupportsPersistentIdentifier(true);
+
+                App.getApiClient().ensureWebSocket();
+                App.getApiClient().ReportCapabilities(clientCapabilities, new EmptyResponse());
+
+                NavigationUtil.goToMain(context);
+            }
+
+            @Override
+            public void onError(Exception exception) {
+                NavigationUtil.goToLogin(context);
+            }
+        });
     }
 }
