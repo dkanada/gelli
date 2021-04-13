@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import org.jellyfin.apiclient.model.users.AuthenticationResult;
+
 import java.util.UUID;
 
 @Entity(tableName = "users")
@@ -28,12 +30,12 @@ public class User {
         this.id = UUID.randomUUID().toString();
     }
 
-    public User(String serverId, String name, String token) {
-        this.id = UUID.randomUUID().toString();
+    public User(AuthenticationResult result) {
+        this.id = result.getUser().getId();
 
-        this.serverId = serverId;
+        this.serverId = result.getServerId();
 
-        this.name = name;
-        this.token = token;
+        this.name = result.getUser().getName();
+        this.token = result.getAccessToken();
     }
 }

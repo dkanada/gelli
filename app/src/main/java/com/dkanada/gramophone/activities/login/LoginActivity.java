@@ -100,9 +100,10 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         App.getApiClient().ChangeServerLocation(server);
         App.getApiClient().AuthenticateUserAsync(username, password, new Response<AuthenticationResult>() {
             @Override
-            public void onResponse(AuthenticationResult result) {
-                if (result.getAccessToken() == null) return;
-                check(server, result.getUser().getId(), result.getAccessToken());
+            public void onResponse(AuthenticationResult authenticationResult) {
+                if (authenticationResult.getAccessToken() != null) {
+                    check(authenticationResult);
+                }
             }
 
             @Override
@@ -119,13 +120,13 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         });
     }
 
-    private void check(String url, String name, String token) {
+    private void check(AuthenticationResult authenticationResult) {
         App.getApiClient().GetSystemInfoAsync(new Response<SystemInfo>() {
             @Override
             public void onResponse(SystemInfo result) {
                 if (result.getVersion().charAt(0) == '1') {
-                    Server server = new Server(result.getServerName(), url);
-                    User user = new User(server.id, name, token);
+                    Server server = new Server(result);
+                    User user = new User(authenticationResult);
 
                     App.getDatabase().serverDao().insertServer(server);
                     App.getDatabase().userDao().insertUser(user);

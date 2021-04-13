@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import org.jellyfin.apiclient.model.system.SystemInfo;
+
 import java.util.UUID;
 
 @Entity(tableName = "servers")
@@ -19,10 +21,10 @@ public class Server {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Server(String name, String url) {
-        this.id = UUID.randomUUID().toString();
+    public Server(SystemInfo systemInfo) {
+        this.id = systemInfo.getId();
 
-        this.name = name;
-        this.url = url;
+        this.name = systemInfo.getServerName();
+        this.url = systemInfo.getWanAddress();
     }
 }
