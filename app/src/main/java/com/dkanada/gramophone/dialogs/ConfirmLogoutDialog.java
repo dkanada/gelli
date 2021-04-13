@@ -1,7 +1,6 @@
 package com.dkanada.gramophone.dialogs;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,7 +9,6 @@ import androidx.fragment.app.DialogFragment;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.activities.login.LoginActivity;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.util.NavigationUtil;
 

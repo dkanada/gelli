@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.activities.login;
+package com.dkanada.gramophone.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;

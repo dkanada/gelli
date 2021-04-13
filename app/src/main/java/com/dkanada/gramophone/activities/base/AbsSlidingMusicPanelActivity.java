@@ -18,7 +18,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.databinding.SlidingMusicPanelLayoutBinding;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
-import com.dkanada.gramophone.activities.login.SplashActivity;
+import com.dkanada.gramophone.activities.SplashActivity;
 import com.dkanada.gramophone.fragments.player.AbsPlayerFragment;
 import com.dkanada.gramophone.fragments.player.MiniPlayerFragment;
 import com.dkanada.gramophone.fragments.player.NowPlayingScreen;

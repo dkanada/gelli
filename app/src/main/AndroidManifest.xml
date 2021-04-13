@@ -29,7 +29,7 @@
         <activity android:name=".activities.details.GenreDetailActivity" />
         <activity android:name=".activities.details.PlaylistDetailActivity" />
         <activity android:name=".activities.SearchActivity" />
-        <activity android:name=".activities.login.SplashActivity">
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.MUSIC_PLAYER" />
@@ -54,7 +54,7 @@
             android:name=".activities.AboutActivity"
             android:label="@string/action_about" />
         <activity
-            android:name=".activities.login.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/action_login"
             android:theme="@style/LoginScreen" />
         <activity
