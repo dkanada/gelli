@@ -5,22 +5,19 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.dkanada.gramophone.model.Server;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.model.User;
 
 @androidx.room.Database(
         entities = {
-                Server.class,
                 Song.class,
                 QueueSong.class,
                 User.class
         },
-        version = 3,
+        version = 4,
         exportSchema = false
 )
 public abstract class JellyDatabase extends RoomDatabase {
-    public abstract ServerDao serverDao();
     public abstract SongDao songDao();
     public abstract QueueSongDao queueSongDao();
     public abstract UserDao userDao();
@@ -42,6 +39,17 @@ public abstract class JellyDatabase extends RoomDatabase {
                     + "name TEXT, url TEXT)");
             database.execSQL("CREATE TABLE users (id TEXT NOT NULL PRIMARY KEY,"
                     + "serverId TEXT, name TEXT, token TEXT)");
+        }
+    };
+
+    public static final Migration Migration4 = new Migration(3, 4) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("DROP TABLE servers");
+            database.execSQL("DROP TABLE users");
+
+            database.execSQL("CREATE TABLE users (id TEXT NOT NULL PRIMARY KEY,"
+                    + "name TEXT, server TEXT, token TEXT)");
         }
     };
 }

@@ -13,7 +13,6 @@ import androidx.annotation.RequiresApi;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.activities.base.AbsBaseActivity;
-import com.dkanada.gramophone.model.Server;
 import com.dkanada.gramophone.model.User;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
@@ -80,16 +79,15 @@ public class SplashActivity extends AbsBaseActivity {
 
     public void login() {
         Context context = this;
-        Server server = App.getDatabase().serverDao().getServer(PreferenceUtil.getInstance(this).getServer());
         User user = App.getDatabase().userDao().getUser(PreferenceUtil.getInstance(this).getUser());
 
-        if (server == null || user == null) {
+        if (user == null) {
             NavigationUtil.goToLogin(this);
             return;
         }
 
-        App.getApiClient().ChangeServerLocation(server.url);
-        App.getApiClient().SetAuthenticationInfo(user.token, user.name);
+        App.getApiClient().ChangeServerLocation(user.server);
+        App.getApiClient().SetAuthenticationInfo(user.token, user.id);
         App.getApiClient().GetSystemInfoAsync(new Response<SystemInfo>() {
             @Override
             public void onResponse(SystemInfo result) {

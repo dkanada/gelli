@@ -2,7 +2,6 @@ package com.dkanada.gramophone.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import org.jellyfin.apiclient.model.users.AuthenticationResult;
@@ -14,28 +13,20 @@ public class User {
     @NonNull
     @PrimaryKey
     public String id;
-
-    @ForeignKey(
-            entity = Server.class,
-            parentColumns = {"id"},
-            childColumns = {"serverId"},
-            onDelete = ForeignKey.CASCADE
-    )
-    public String serverId;
-
     public String name;
+
+    public String server;
     public String token;
 
     public User() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public User(AuthenticationResult result) {
+    public User(AuthenticationResult result, String server) {
         this.id = result.getUser().getId();
-
-        this.serverId = result.getServerId();
-
         this.name = result.getUser().getName();
+
+        this.server = server;
         this.token = result.getAccessToken();
     }
 }

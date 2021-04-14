@@ -55,6 +55,7 @@ public class App extends Application {
                 .allowMainThreadQueries()
                 .addMigrations(JellyDatabase.Migration2)
                 .addMigrations(JellyDatabase.Migration3)
+                .addMigrations(JellyDatabase.Migration4)
                 .build();
     }
 
