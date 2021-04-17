@@ -58,6 +58,10 @@
             android:label="@string/action_login"
             android:theme="@style/LoginScreen" />
         <activity
+            android:name=".activities.SelectActivity"
+            android:label="@string/select"
+            android:theme="@style/LoginScreen" />
+        <activity
             android:name=".shortcuts.AppShortcutLauncherActivity"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />

@@ -64,6 +64,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
 
     private void setUpOnClickListeners() {
         binding.login.setOnClickListener(this);
+        binding.select.setOnClickListener(this);
     }
 
     @Override
@@ -78,6 +79,11 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        if (v == binding.select) {
+            startActivity(new Intent(this, SelectActivity.class));
+            return;
+        }
+
         String username = binding.username.getText().toString().trim();
         String password = binding.password.getText().toString().trim();
         String server = binding.server.getText().toString().trim();

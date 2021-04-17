@@ -187,6 +187,8 @@
     <string name="widget_classic">Classic</string>
     <string name="widget_card">Card</string>
 
+    <string name="select">Select</string>
+    <string name="add">Add</string>
     <string name="login">Login</string>
     <string name="disable">Disable</string>
     <string name="ignore">Ignore</string>
