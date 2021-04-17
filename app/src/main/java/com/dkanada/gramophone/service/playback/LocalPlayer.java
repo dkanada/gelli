@@ -70,6 +70,10 @@ public class LocalPlayer implements Playback {
         @Override
         public void onPlayerError(ExoPlaybackException error) {
             Log.i(TAG, String.format("onPlayerError: %s", error.getMessage()));
+
+            exoPlayer.clearMediaItems();
+            exoPlayer.prepare();
+
             Toast.makeText(context, context.getResources().getString(R.string.unplayable_file), Toast.LENGTH_SHORT).show();
         }
     };
