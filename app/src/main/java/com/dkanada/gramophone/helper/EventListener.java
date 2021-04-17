@@ -80,7 +80,6 @@ public class EventListener extends ApiEventListener {
                 MusicPlayerRemote.seekTo((int) position);
                 break;
             case Stop:
-                MusicPlayerRemote.pauseSong();
                 MusicPlayerRemote.clearQueue();
         }
     }

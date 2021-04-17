@@ -513,8 +513,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void openCurrent() {
         synchronized (this) {
-            // current song will be null when queue is cleared
-            if (getCurrentSong() == null) return;
+            // current song title will be null when queue is cleared
+            if (getCurrentSong().title == null) return;
 
             playback.setDataSource(getCurrentSong());
         }
@@ -547,7 +547,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void updateNotification() {
-        if (playingNotification != null && getCurrentSong().id != null) {
+        if (playingNotification != null && getCurrentSong().title != null) {
             playingNotification.update();
         }
     }
@@ -564,7 +564,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private void updateMediaSessionMetadata() {
         final Song song = getCurrentSong();
 
-        if (song.id == null) {
+        if (song.title == null) {
             mediaSession.setMetadata(null);
             return;
         }
@@ -1002,6 +1002,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 if (playingQueue.size() > 0) {
                     prepareNext();
                 } else {
+                    playback.pause();
                     playingNotification.stop();
                 }
                 break;
