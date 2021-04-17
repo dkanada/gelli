@@ -41,6 +41,11 @@ public class App extends Application {
         database = createDatabase(this);
         apiClient = createApiClient(this);
 
+        if (database.userDao().getUsers().size() == 0) {
+            PreferenceUtil.getInstance(this).setServer(null);
+            PreferenceUtil.getInstance(this).setUser(null);
+        }
+
         if (!ThemeStore.isConfigured(this, 1)) {
             ThemeStore.editTheme(this).primaryColorRes(R.color.md_indigo_500).accentColorRes(R.color.md_pink_A400).commit();
         }
