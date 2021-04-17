@@ -17,11 +17,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.heinrichreimersoftware.materialintro.view.InkPageIndicator;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 import com.dkanada.gramophone.util.PreferenceUtil;
-import com.dkanada.gramophone.util.ViewUtil;
+import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 public class NowPlayingScreenPreferenceDialog extends DialogFragment implements MaterialDialog.SingleButtonCallback, ViewPager.OnPageChangeListener {
 
@@ -39,7 +38,6 @@ public class NowPlayingScreenPreferenceDialog extends DialogFragment implements 
         ViewPager viewPager = view.findViewById(R.id.now_playing_screen_view_pager);
         viewPager.setAdapter(new NowPlayingScreenAdapter(getContext()));
         viewPager.addOnPageChangeListener(this);
-        viewPager.setPageMargin((int) ViewUtil.convertDpToPixel(32, getResources()));
         viewPager.setCurrentItem(PreferenceUtil.getInstance(getContext()).getNowPlayingScreen().ordinal());
 
         InkPageIndicator pageIndicator = view.findViewById(R.id.page_indicator);
@@ -82,7 +80,7 @@ public class NowPlayingScreenPreferenceDialog extends DialogFragment implements 
     }
 
     private static class NowPlayingScreenAdapter extends PagerAdapter {
-        private Context context;
+        private final Context context;
 
         public NowPlayingScreenAdapter(Context context) {
             this.context = context;
