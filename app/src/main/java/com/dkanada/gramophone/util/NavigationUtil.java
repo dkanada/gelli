@@ -3,6 +3,7 @@ package com.dkanada.gramophone.util;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,15 @@ import com.dkanada.gramophone.activities.details.GenreDetailActivity;
 import com.dkanada.gramophone.activities.details.PlaylistDetailActivity;
 
 public class NavigationUtil {
+    public static void openUrl(@NonNull final Context context, String url) {
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
+
+        intent.setData(Uri.parse(url));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        context.startActivity(intent);
+    }
+
     public static void goToLogin(@NonNull final Context context) {
         final Intent intent = new Intent(context, LoginActivity.class);
 

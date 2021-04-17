@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.dkanada.gramophone.util.NavigationUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
@@ -75,6 +76,8 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
             menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_settings_white_24dp);
             menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_about, menu.size(), R.string.action_about);
             menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_info_outline_white_24dp);
+            menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_sponsor, menu.size(), R.string.sponsor);
+            menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_favorite_white_24dp);
             menu.add(R.id.navigation_drawer_menu_category_other, R.id.nav_logout, menu.size(), R.string.logout);
             menu.getItem(menu.size() - 1).setIcon(R.drawable.ic_exit_to_app_white_48dp);
 
@@ -133,6 +136,9 @@ public class MainActivity extends AbsSlidingMusicPanelActivity {
                     break;
                 case R.id.nav_about:
                     new Handler().postDelayed(() -> startActivity(new Intent(MainActivity.this, AboutActivity.class)), 200);
+                    break;
+                case R.id.nav_sponsor:
+                    NavigationUtil.openUrl(this, "https://github.com/sponsors/dkanada");
                     break;
                 case R.id.nav_logout:
                     onLogout = true;

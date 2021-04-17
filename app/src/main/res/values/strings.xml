@@ -192,6 +192,7 @@
     <string name="login">Login</string>
     <string name="disable">Disable</string>
     <string name="ignore">Ignore</string>
+    <string name="sponsor">Sponsor</string>
     <string name="logout">Logout</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
