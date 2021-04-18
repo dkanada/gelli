@@ -41,7 +41,6 @@ public class PlayingNotificationImpl extends PlayingNotification {
         stopped = false;
 
         final Song song = service.getCurrentSong();
-
         final boolean isPlaying = service.isPlaying();
 
         final RemoteViews notificationLayout = new RemoteViews(service.getPackageName(), R.layout.notification);
@@ -124,6 +123,7 @@ public class PlayingNotificationImpl extends PlayingNotification {
                                 if (!PreferenceUtil.getInstance(service).getColoredNotification()) {
                                     bgColor = Color.WHITE;
                                 }
+
                                 setBackgroundColor(bgColor);
                                 setNotificationContent(ColorUtil.isColorLight(bgColor));
 
@@ -169,17 +169,14 @@ public class PlayingNotificationImpl extends PlayingNotification {
 
         final ComponentName serviceName = new ComponentName(service, MusicService.class);
 
-        // previous track
         pendingIntent = buildPendingIntent(service, MusicService.ACTION_REWIND, serviceName);
         notificationLayout.setOnClickPendingIntent(R.id.action_prev, pendingIntent);
         notificationLayoutBig.setOnClickPendingIntent(R.id.action_prev, pendingIntent);
 
-        // toggle play and pause
         pendingIntent = buildPendingIntent(service, MusicService.ACTION_TOGGLE, serviceName);
         notificationLayout.setOnClickPendingIntent(R.id.action_play_pause, pendingIntent);
         notificationLayoutBig.setOnClickPendingIntent(R.id.action_play_pause, pendingIntent);
 
-        // next track
         pendingIntent = buildPendingIntent(service, MusicService.ACTION_SKIP, serviceName);
         notificationLayout.setOnClickPendingIntent(R.id.action_next, pendingIntent);
         notificationLayoutBig.setOnClickPendingIntent(R.id.action_next, pendingIntent);
