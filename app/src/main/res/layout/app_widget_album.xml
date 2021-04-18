@@ -13,6 +13,11 @@
         tools:ignore="ContentDescription"
         tools:src="@drawable/default_album_art" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44000000" />
+
     <LinearLayout
         android:id="@+id/media_actions"
         android:layout_width="match_parent"
@@ -21,7 +26,7 @@
         android:background="@drawable/shadow_up_strong"
         android:layoutDirection="ltr"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="8dp">
 
         <ImageButton
             android:id="@+id/button_prev"
@@ -69,14 +74,15 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/shadow_down_strong"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@color/ate_primary_text_dark"
@@ -87,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             android:textColor="@color/ate_secondary_text_dark"

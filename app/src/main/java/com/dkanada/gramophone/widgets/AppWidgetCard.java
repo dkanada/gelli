@@ -1,10 +1,12 @@
 package com.dkanada.gramophone.widgets;
 
 import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,9 +35,6 @@ public class AppWidgetCard extends BaseAppWidget {
     private static AppWidgetCard mInstance;
     private Target<BitmapPaletteWrapper> target;
 
-    private static int imageSize = 0;
-    private static float cardRadius = 0f;
-
     public static synchronized AppWidgetCard getInstance() {
         if (mInstance == null) {
             mInstance = new AppWidgetCard();
@@ -44,11 +43,19 @@ public class AppWidgetCard extends BaseAppWidget {
         return mInstance;
     }
 
+    @Override
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        imageSize = context.getResources().getDimensionPixelSize(R.dimen.app_widget_card_image_size);
+        cardRadius = context.getResources().getDimension(R.dimen.app_widget_card_radius);
+
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
+    }
+
     protected void defaultAppWidget(final Context context, final int[] appWidgetIds) {
         final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_card);
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);
-        appWidgetView.setImageViewResource(R.id.image, R.drawable.default_album_art);
+        appWidgetView.setImageViewBitmap(R.id.image, createRoundedBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.default_album_art), imageSize, imageSize, cardRadius, 0, cardRadius, 0));
         appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_next_white_24dp, MaterialValueHelper.getSecondaryTextColor(context, true))));
         appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_previous_white_24dp, MaterialValueHelper.getSecondaryTextColor(context, true))));
         appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_play_arrow_white_24dp, MaterialValueHelper.getSecondaryTextColor(context, true))));
@@ -79,10 +86,8 @@ public class AppWidgetCard extends BaseAppWidget {
 
         linkButtons(service, appWidgetView);
 
-        if (imageSize == 0)
-            imageSize = service.getResources().getDimensionPixelSize(R.dimen.app_widget_card_image_size);
-        if (cardRadius == 0f)
-            cardRadius = service.getResources().getDimension(R.dimen.app_widget_card_radius);
+        imageSize = service.getResources().getDimensionPixelSize(R.dimen.app_widget_card_image_size);
+        cardRadius = service.getResources().getDimension(R.dimen.app_widget_card_radius) / 2;
 
         service.runOnUiThread(new Runnable() {
             @Override

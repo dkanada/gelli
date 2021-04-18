@@ -1,10 +1,12 @@
 package com.dkanada.gramophone.widgets;
 
 import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
@@ -33,9 +35,6 @@ public class AppWidgetClassic extends BaseAppWidget {
     private static AppWidgetClassic mInstance;
     private Target<BitmapPaletteWrapper> target;
 
-    private static int imageSize = 0;
-    private static float cardRadius = 0f;
-
     public static synchronized AppWidgetClassic getInstance() {
         if (mInstance == null) {
             mInstance = new AppWidgetClassic();
@@ -44,11 +43,19 @@ public class AppWidgetClassic extends BaseAppWidget {
         return mInstance;
     }
 
+    @Override
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        imageSize = context.getResources().getDimensionPixelSize(R.dimen.app_widget_classic_image_size);
+        cardRadius = context.getResources().getDimension(R.dimen.app_widget_card_radius);
+
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
+    }
+
     protected void defaultAppWidget(final Context context, final int[] appWidgetIds) {
         final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_classic);
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);
-        appWidgetView.setImageViewResource(R.id.image, R.drawable.default_album_art);
+        appWidgetView.setImageViewBitmap(R.id.image, createRoundedBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.default_album_art), imageSize, imageSize, cardRadius, 0, cardRadius, 0));
         appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_next_white_24dp, MaterialValueHelper.getSecondaryTextColor(context, true))));
         appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_previous_white_24dp, MaterialValueHelper.getSecondaryTextColor(context, true))));
         appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_play_arrow_white_24dp, MaterialValueHelper.getSecondaryTextColor(context, true))));
@@ -73,39 +80,36 @@ public class AppWidgetClassic extends BaseAppWidget {
 
         linkButtons(service, appWidgetView);
 
-        if (imageSize == 0)
-            imageSize = service.getResources().getDimensionPixelSize(R.dimen.app_widget_classic_image_size);
-        if (cardRadius == 0f)
-            cardRadius = service.getResources().getDimension(R.dimen.app_widget_card_radius);
+        imageSize = service.getResources().getDimensionPixelSize(R.dimen.app_widget_classic_image_size);
+        cardRadius = service.getResources().getDimension(R.dimen.app_widget_card_radius);
 
-        final Context appContext = service.getApplicationContext();
         service.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (target != null) {
-                    Glide.with(appContext).clear(target);
+                    Glide.with(service).clear(target);
                 }
 
                 target = CustomGlideRequest.Builder
-                        .from(appContext, song.primary, song.blurHash)
+                        .from(service, song.primary, song.blurHash)
                         .palette().build()
                         .into(new CustomTarget<BitmapPaletteWrapper>(imageSize, imageSize) {
                             @Override
                             public void onResourceReady(@NonNull BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {
                                 Palette palette = resource.getPalette();
-                                update(resource.getBitmap(), palette.getVibrantColor(palette.getMutedColor(MaterialValueHelper.getSecondaryTextColor(appContext, true))));
+                                update(resource.getBitmap(), palette.getVibrantColor(palette.getMutedColor(MaterialValueHelper.getSecondaryTextColor(service, true))));
                             }
 
                             @Override
                             public void onLoadFailed(Drawable drawable) {
                                 super.onLoadFailed(drawable);
-                                update(null, MaterialValueHelper.getSecondaryTextColor(appContext, true));
+                                update(null, MaterialValueHelper.getSecondaryTextColor(service, true));
                             }
 
                             @Override
                             public void onLoadCleared(Drawable drawable) {
                                 super.onLoadFailed(drawable);
-                                update(null, MaterialValueHelper.getSecondaryTextColor(appContext, true));
+                                update(null, MaterialValueHelper.getSecondaryTextColor(service, true));
                             }
 
                             private void update(@Nullable Bitmap bitmap, int color) {
@@ -119,7 +123,7 @@ public class AppWidgetClassic extends BaseAppWidget {
                                 final Bitmap roundedBitmap = createRoundedBitmap(image, imageSize, imageSize, cardRadius, 0, cardRadius, 0);
                                 appWidgetView.setImageViewBitmap(R.id.image, roundedBitmap);
 
-                                pushUpdate(appContext, appWidgetIds, appWidgetView);
+                                pushUpdate(service, appWidgetIds, appWidgetView);
                             }
                         });
             }

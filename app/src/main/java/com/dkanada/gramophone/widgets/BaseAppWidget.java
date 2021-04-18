@@ -16,6 +16,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import androidx.core.content.res.ResourcesCompat;
@@ -25,16 +26,25 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.MusicService;
 import com.dkanada.gramophone.util.MusicUtil;
 
+import java.util.Arrays;
+
 public abstract class BaseAppWidget extends AppWidgetProvider {
     public static final String NAME = "app_widget";
 
+    public int imageSize = 0;
+    public float cardRadius = 0f;
+
     @Override
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, final int[] appWidgetIds) {
+        Log.d(NAME, String.format("onUpdate: %s", Arrays.toString(appWidgetIds)));
         defaultAppWidget(context, appWidgetIds);
+
         final Intent updateIntent = new Intent(MusicService.INTENT_EXTRA_WIDGET_UPDATE);
+
         updateIntent.putExtra(MusicService.INTENT_EXTRA_WIDGET_NAME, NAME);
         updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
         updateIntent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY);
+
         context.sendBroadcast(updateIntent);
     }
 
@@ -73,23 +83,27 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
         }
     }
 
-    protected static Bitmap createRoundedBitmap(Drawable drawable, int width, int height, float tl, float tr, float bl, float br) {
-        if (drawable == null) return null;
-
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(bitmap);
-        drawable.setBounds(0, 0, width, height);
-        drawable.draw(c);
-
+    protected static Bitmap createRoundedBitmap(Bitmap bitmap, int width, int height, float tl, float tr, float bl, float br) {
         Bitmap rounded = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-
         Canvas canvas = new Canvas(rounded);
         Paint paint = new Paint();
+
         paint.setShader(new BitmapShader(bitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP));
         paint.setAntiAlias(true);
+
         canvas.drawPath(composeRoundedRectPath(new RectF(0, 0, width, height), tl, tr, bl, br), paint);
 
         return rounded;
+    }
+
+    protected static Bitmap createRoundedBitmap(Drawable drawable, int width, int height, float tl, float tr, float bl, float br) {
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+
+        drawable.setBounds(0, 0, width, height);
+        drawable.draw(canvas);
+
+        return createRoundedBitmap(bitmap, width, height, tl, tr, bl, br);
     }
 
     protected static Path composeRoundedRectPath(RectF rect, float tl, float tr, float bl, float br) {

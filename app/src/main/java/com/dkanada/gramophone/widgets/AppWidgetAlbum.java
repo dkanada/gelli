@@ -1,10 +1,12 @@
 package com.dkanada.gramophone.widgets;
 
 import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -41,11 +43,21 @@ public class AppWidgetAlbum extends BaseAppWidget {
         return mInstance;
     }
 
+    @Override
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        Point p = Util.getScreenSize(context);
+
+        imageSize = Math.min(p.x, p.y);
+        cardRadius = context.getResources().getDimension(R.dimen.app_widget_card_radius);
+
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
+    }
+
     protected void defaultAppWidget(final Context context, final int[] appWidgetIds) {
         final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_album);
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);
-        appWidgetView.setImageViewResource(R.id.image, R.drawable.default_album_art);
+        appWidgetView.setImageViewBitmap(R.id.image, createRoundedBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.default_album_art), imageSize, imageSize, cardRadius, cardRadius, cardRadius, cardRadius));
         appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_next_white_24dp, MaterialValueHelper.getPrimaryTextColor(context, false))));
         appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_previous_white_24dp, MaterialValueHelper.getPrimaryTextColor(context, false))));
         appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_play_arrow_white_24dp, MaterialValueHelper.getPrimaryTextColor(context, false))));
@@ -77,19 +89,20 @@ public class AppWidgetAlbum extends BaseAppWidget {
         linkButtons(service, appWidgetView);
 
         Point p = Util.getScreenSize(service);
-        final int widgetImageSize = Math.min(p.x, p.y);
-        final Context appContext = service.getApplicationContext();
+        imageSize = Math.min(p.x, p.y);
+        cardRadius = service.getResources().getDimension(R.dimen.app_widget_card_radius);
+
         service.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (target != null) {
-                    Glide.with(appContext).clear(target);
+                    Glide.with(service).clear(target);
                 }
 
                 target = CustomGlideRequest.Builder
-                        .from(appContext, song.primary, song.blurHash)
+                        .from(service, song.primary, song.blurHash)
                         .bitmap().build()
-                        .into(new CustomTarget<Bitmap>(widgetImageSize, widgetImageSize) {
+                        .into(new CustomTarget<Bitmap>(imageSize, imageSize) {
                             @Override
                             public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> glideAnimation) {
                                 update(resource);
@@ -108,13 +121,11 @@ public class AppWidgetAlbum extends BaseAppWidget {
                             }
 
                             private void update(@Nullable Bitmap bitmap) {
-                                if (bitmap == null) {
-                                    appWidgetView.setImageViewResource(R.id.image, R.drawable.default_album_art);
-                                } else {
-                                    appWidgetView.setImageViewBitmap(R.id.image, bitmap);
-                                }
+                                final Drawable image = getAlbumArtDrawable(service.getResources(), bitmap);
+                                final Bitmap roundedBitmap = createRoundedBitmap(image, imageSize, imageSize, cardRadius, cardRadius, cardRadius, cardRadius);
 
-                                pushUpdate(appContext, appWidgetIds, appWidgetView);
+                                appWidgetView.setImageViewBitmap(R.id.image, roundedBitmap);
+                                pushUpdate(service, appWidgetIds, appWidgetView);
                             }
                         });
             }
