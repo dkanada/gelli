@@ -18,6 +18,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.widget.RemoteViews;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.MusicService;
@@ -26,12 +28,8 @@ import com.dkanada.gramophone.util.MusicUtil;
 public abstract class BaseAppWidget extends AppWidgetProvider {
     public static final String NAME = "app_widget";
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public void onUpdate(final Context context, final AppWidgetManager appWidgetManager,
-                         final int[] appWidgetIds) {
+    public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, final int[] appWidgetIds) {
         defaultAppWidget(context, appWidgetIds);
         final Intent updateIntent = new Intent(MusicService.INTENT_EXTRA_WIDGET_UPDATE);
         updateIntent.putExtra(MusicService.INTENT_EXTRA_WIDGET_NAME, NAME);
@@ -40,10 +38,6 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
         context.sendBroadcast(updateIntent);
     }
 
-    /**
-     * Handle a change notification coming over from
-     * {@link MusicService}
-     */
     public void notifyChange(final MusicService service, final String what) {
         if (hasInstances(service)) {
             if (MusicService.META_CHANGED.equals(what) || MusicService.STATE_CHANGED.equals(what)) {
@@ -61,18 +55,16 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
         }
     }
 
-    /**
-     * Check against {@link AppWidgetManager} if there are any instances of this
-     * widget.
-     */
     protected boolean hasInstances(final Context context) {
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         final int[] mAppWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, getClass()));
+
         return mAppWidgetIds.length > 0;
     }
 
     protected PendingIntent buildPendingIntent(Context context, final String action, final ComponentName serviceName) {
         Intent intent = new Intent(action);
+
         intent.setComponent(serviceName);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return PendingIntent.getForegroundService(context, 0, intent, 0);
@@ -126,13 +118,11 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
     abstract public void performUpdate(final MusicService service, final int[] appWidgetIds);
 
     protected Drawable getAlbumArtDrawable(final Resources resources, final Bitmap bitmap) {
-        Drawable image;
         if (bitmap == null) {
-            image = resources.getDrawable(R.drawable.default_album_art);
+            return ResourcesCompat.getDrawable(resources, R.drawable.default_album_art, null);
         } else {
-            image = new BitmapDrawable(resources, bitmap);
+            return new BitmapDrawable(resources, bitmap);
         }
-        return image;
     }
 
     protected String getSongArtistAndAlbum(final Song song) {

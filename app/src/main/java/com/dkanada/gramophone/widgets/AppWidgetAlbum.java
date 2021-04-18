@@ -41,10 +41,6 @@ public class AppWidgetAlbum extends BaseAppWidget {
         return mInstance;
     }
 
-    /**
-     * Initialize given widgets to default state, where we launch Music on
-     * default click and hide actions if service not running.
-     */
     protected void defaultAppWidget(final Context context, final int[] appWidgetIds) {
         final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_album);
 
@@ -58,16 +54,12 @@ public class AppWidgetAlbum extends BaseAppWidget {
         pushUpdate(context, appWidgetIds, appWidgetView);
     }
 
-    /**
-     * Update all active widget instances by pushing changes
-     */
     public void performUpdate(final MusicService service, final int[] appWidgetIds) {
         final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(), R.layout.app_widget_album);
 
         final boolean isPlaying = service.isPlaying();
         final Song song = service.getCurrentSong();
 
-        // Set the titles and artwork
         if (TextUtils.isEmpty(song.title) && TextUtils.isEmpty(song.artistName)) {
             appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);
         } else {
@@ -76,18 +68,14 @@ public class AppWidgetAlbum extends BaseAppWidget {
             appWidgetView.setTextViewText(R.id.text, getSongArtistAndAlbum(song));
         }
 
-        // Set correct drawable for pause state
         int playPauseRes = isPlaying ? R.drawable.ic_pause_white_24dp : R.drawable.ic_play_arrow_white_24dp;
         appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, playPauseRes, MaterialValueHelper.getPrimaryTextColor(service, false))));
 
-        // Set prev/next button drawables
         appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_next_white_24dp, MaterialValueHelper.getPrimaryTextColor(service, false))));
         appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_previous_white_24dp, MaterialValueHelper.getPrimaryTextColor(service, false))));
 
-        // Link actions buttons to intents
         linkButtons(service, appWidgetView);
 
-        // Load the album cover async and push the update on completion
         Point p = Util.getScreenSize(service);
         final int widgetImageSize = Math.min(p.x, p.y);
         final Context appContext = service.getApplicationContext();
@@ -133,30 +121,23 @@ public class AppWidgetAlbum extends BaseAppWidget {
         });
     }
 
-    /**
-     * Link up various button actions using {@link PendingIntent}.
-     */
     private void linkButtons(final Context context, final RemoteViews views) {
         Intent action;
         PendingIntent pendingIntent;
 
         final ComponentName serviceName = new ComponentName(context, MusicService.class);
 
-        // Home
         action = new Intent(context, MainActivity.class);
         action.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         pendingIntent = PendingIntent.getActivity(context, 0, action, 0);
         views.setOnClickPendingIntent(R.id.clickable_area, pendingIntent);
 
-        // Previous track
         pendingIntent = buildPendingIntent(context, MusicService.ACTION_REWIND, serviceName);
         views.setOnClickPendingIntent(R.id.button_prev, pendingIntent);
 
-        // Play and pause
         pendingIntent = buildPendingIntent(context, MusicService.ACTION_TOGGLE, serviceName);
         views.setOnClickPendingIntent(R.id.button_toggle_play_pause, pendingIntent);
 
-        // Next track
         pendingIntent = buildPendingIntent(context, MusicService.ACTION_SKIP, serviceName);
         views.setOnClickPendingIntent(R.id.button_next, pendingIntent);
     }
