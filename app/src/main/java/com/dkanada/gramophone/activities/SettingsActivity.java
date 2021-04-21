@@ -24,7 +24,7 @@ import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEColorPreference;
 import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceFragmentCompat;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.shortcuts.DynamicShortcutManager;
+import com.dkanada.gramophone.views.shortcuts.DynamicShortcutManager;
 import com.dkanada.gramophone.preferences.CategoryPreference;
 import com.dkanada.gramophone.preferences.CategoryPreferenceDialog;
 import com.dkanada.gramophone.preferences.NowPlayingScreenPreference;

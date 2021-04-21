@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.shortcuts.shortcuttype;
+package com.dkanada.gramophone.views.shortcuts.shortcuttype;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -7,12 +7,12 @@ import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.dkanada.gramophone.shortcuts.AppShortcutLauncherActivity;
+import com.dkanada.gramophone.views.shortcuts.AppShortcutLauncherActivity;
 
 @TargetApi(Build.VERSION_CODES.N_MR1)
 public abstract class BaseShortcutType {
 
-    static final String ID_PREFIX = "com.dkanada.gramophone.shortcuts.id.";
+    static final String ID_PREFIX = "com.dkanada.gramophone.views.shortcuts.id.";
 
     Context context;
 

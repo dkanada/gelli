@@ -62,7 +62,7 @@
             android:label="@string/select"
             android:theme="@style/LoginScreen" />
         <activity
-            android:name=".shortcuts.AppShortcutLauncherActivity"
+            android:name=".views.shortcuts.AppShortcutLauncherActivity"
             android:launchMode="singleInstance"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
@@ -83,7 +83,7 @@
             android:name="com.lge.support.SPLIT_WINDOW"
             android:value="true" />
 
-        <receiver android:name=".widgets.BootReceiver">
+        <receiver android:name=".views.widgets.BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
@@ -91,7 +91,7 @@
         </receiver>
 
         <receiver
-            android:name=".widgets.AppWidgetAlbum"
+            android:name=".views.widgets.AppWidgetAlbum"
             android:exported="false"
             android:label="@string/widget_big">
             <intent-filter>
@@ -103,7 +103,7 @@
                 android:resource="@xml/widget_album" />
         </receiver>
         <receiver
-            android:name=".widgets.AppWidgetClassic"
+            android:name=".views.widgets.AppWidgetClassic"
             android:exported="false"
             android:label="@string/widget_classic">
             <intent-filter>
@@ -115,7 +115,7 @@
                 android:resource="@xml/widget_classic" />
         </receiver>
         <receiver
-            android:name=".widgets.AppWidgetCard"
+            android:name=".views.widgets.AppWidgetCard"
             android:exported="false"
             android:label="@string/widget_card">
             <intent-filter>

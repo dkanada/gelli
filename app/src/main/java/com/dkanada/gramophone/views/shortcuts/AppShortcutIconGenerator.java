@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.shortcuts;
+package com.dkanada.gramophone.views.shortcuts;
 
 import android.content.Context;
 import android.graphics.drawable.AdaptiveIconDrawable;

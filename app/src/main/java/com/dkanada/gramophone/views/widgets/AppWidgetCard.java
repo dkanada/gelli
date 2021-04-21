@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.widgets;
+package com.dkanada.gramophone.views.widgets;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -29,15 +29,15 @@ import com.dkanada.gramophone.service.MusicService;
 import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.util.ImageUtil;
 
-public class AppWidgetClassic extends BaseAppWidget {
-    public static final String NAME = "app_widget_classic";
+public class AppWidgetCard extends BaseAppWidget {
+    public static final String NAME = "app_widget_card";
 
-    private static AppWidgetClassic mInstance;
+    private static AppWidgetCard mInstance;
     private Target<BitmapPaletteWrapper> target;
 
-    public static synchronized AppWidgetClassic getInstance() {
+    public static synchronized AppWidgetCard getInstance() {
         if (mInstance == null) {
-            mInstance = new AppWidgetClassic();
+            mInstance = new AppWidgetCard();
         }
 
         return mInstance;
@@ -45,14 +45,14 @@ public class AppWidgetClassic extends BaseAppWidget {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        imageSize = context.getResources().getDimensionPixelSize(R.dimen.app_widget_classic_image_size);
+        imageSize = context.getResources().getDimensionPixelSize(R.dimen.app_widget_card_image_size);
         cardRadius = context.getResources().getDimension(R.dimen.app_widget_card_radius);
 
         super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     protected void defaultAppWidget(final Context context, final int[] appWidgetIds) {
-        final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_classic);
+        final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_card);
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);
         appWidgetView.setImageViewBitmap(R.id.image, createRoundedBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.default_album_art), imageSize, imageSize, cardRadius, 0, cardRadius, 0));
@@ -65,7 +65,7 @@ public class AppWidgetClassic extends BaseAppWidget {
     }
 
     public void performUpdate(final MusicService service, final int[] appWidgetIds) {
-        final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(), R.layout.app_widget_classic);
+        final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(), R.layout.app_widget_card);
 
         final boolean isPlaying = service.isPlaying();
         final Song song = service.getCurrentSong();
@@ -78,10 +78,16 @@ public class AppWidgetClassic extends BaseAppWidget {
             appWidgetView.setTextViewText(R.id.text, getSongArtistAndAlbum(song));
         }
 
+        int playPauseRes = isPlaying ? R.drawable.ic_pause_white_24dp : R.drawable.ic_play_arrow_white_24dp;
+        appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, playPauseRes, MaterialValueHelper.getSecondaryTextColor(service, true))));
+
+        appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_next_white_24dp, MaterialValueHelper.getSecondaryTextColor(service, true))));
+        appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_previous_white_24dp, MaterialValueHelper.getSecondaryTextColor(service, true))));
+
         linkButtons(service, appWidgetView);
 
-        imageSize = service.getResources().getDimensionPixelSize(R.dimen.app_widget_classic_image_size);
-        cardRadius = service.getResources().getDimension(R.dimen.app_widget_card_radius);
+        imageSize = service.getResources().getDimensionPixelSize(R.dimen.app_widget_card_image_size);
+        cardRadius = service.getResources().getDimension(R.dimen.app_widget_card_radius) / 2;
 
         service.runOnUiThread(new Runnable() {
             @Override

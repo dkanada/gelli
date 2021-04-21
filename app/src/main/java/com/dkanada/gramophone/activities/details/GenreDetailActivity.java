@@ -20,7 +20,7 @@ import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Genre;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.activities.base.AbsSlidingMusicPanelActivity;
+import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.ViewUtil;
@@ -31,7 +31,7 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenreDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder {
+public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHolder {
     public static final String EXTRA_GENRE = "extra_genre";
 
     private ActivityGenreDetailBinding binding;

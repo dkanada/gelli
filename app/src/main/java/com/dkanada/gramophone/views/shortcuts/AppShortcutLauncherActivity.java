@@ -1,17 +1,17 @@
-package com.dkanada.gramophone.shortcuts;
+package com.dkanada.gramophone.views.shortcuts;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.dkanada.gramophone.shortcuts.shortcuttype.LatestShortcutType;
-import com.dkanada.gramophone.shortcuts.shortcuttype.ShuffleShortcutType;
-import com.dkanada.gramophone.shortcuts.shortcuttype.FrequentShortcutType;
+import com.dkanada.gramophone.views.shortcuts.shortcuttype.LatestShortcutType;
+import com.dkanada.gramophone.views.shortcuts.shortcuttype.ShuffleShortcutType;
+import com.dkanada.gramophone.views.shortcuts.shortcuttype.FrequentShortcutType;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.service.MusicService;
 
 public class AppShortcutLauncherActivity extends Activity {
-    public static final String KEY_SHORTCUT_TYPE = "com.dkanada.gramophone.shortcuts.ShortcutType";
+    public static final String KEY_SHORTCUT_TYPE = "com.dkanada.gramophone.views.shortcuts.ShortcutType";
 
     public static final int SHORTCUT_TYPE_SHUFFLE = 0;
     public static final int SHORTCUT_TYPE_FREQUENT = 1;

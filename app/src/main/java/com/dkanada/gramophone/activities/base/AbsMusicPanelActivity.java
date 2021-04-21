@@ -28,7 +28,7 @@ import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.ViewUtil;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
-public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivity implements SlidingUpPanelLayout.PanelSlideListener, CardPlayerFragment.Callbacks {
+public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity implements SlidingUpPanelLayout.PanelSlideListener, CardPlayerFragment.Callbacks {
     private SlidingMusicPanelLayoutBinding binding;
 
     private int navigationbarColor;
@@ -271,7 +271,7 @@ public abstract class AbsSlidingMusicPanelActivity extends AbsMusicServiceActivi
                     .setDuration(ViewUtil.PHONOGRAPH_ANIM_TIME);
 
             navigationBarColorAnimator.setInterpolator(new PathInterpolator(0.4f, 0f, 1f, 1f));
-            navigationBarColorAnimator.addUpdateListener(animation -> AbsSlidingMusicPanelActivity.super.setNavigationbarColor((Integer) animation.getAnimatedValue()));
+            navigationBarColorAnimator.addUpdateListener(animation -> AbsMusicPanelActivity.super.setNavigationbarColor((Integer) animation.getAnimatedValue()));
             navigationBarColorAnimator.start();
         }
     }

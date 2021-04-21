@@ -29,7 +29,7 @@ import com.dkanada.gramophone.interfaces.PaletteColorHolder;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.activities.base.AbsSlidingMusicPanelActivity;
+import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.ThemeUtil;
@@ -39,7 +39,7 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 import java.util.List;
 
-public class AlbumDetailActivity extends AbsSlidingMusicPanelActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
+public class AlbumDetailActivity extends AbsMusicPanelActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
     public static final String EXTRA_ALBUM = "extra_album";
 
     private ActivityAlbumDetailBinding binding;

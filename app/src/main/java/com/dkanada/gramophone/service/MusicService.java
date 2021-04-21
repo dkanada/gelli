@@ -49,9 +49,9 @@ import com.dkanada.gramophone.service.playback.LocalPlayer;
 import com.dkanada.gramophone.service.playback.Playback;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
-import com.dkanada.gramophone.widgets.AppWidgetAlbum;
-import com.dkanada.gramophone.widgets.AppWidgetCard;
-import com.dkanada.gramophone.widgets.AppWidgetClassic;
+import com.dkanada.gramophone.views.widgets.AppWidgetAlbum;
+import com.dkanada.gramophone.views.widgets.AppWidgetCard;
+import com.dkanada.gramophone.views.widgets.AppWidgetClassic;
 
 import org.jellyfin.apiclient.interaction.EmptyResponse;
 import org.jellyfin.apiclient.interaction.Response;

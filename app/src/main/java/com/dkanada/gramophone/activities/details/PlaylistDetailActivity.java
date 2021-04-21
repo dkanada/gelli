@@ -26,7 +26,7 @@ import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.PlaylistSong;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.activities.base.AbsSlidingMusicPanelActivity;
+import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.PlaylistUtil;
 import com.dkanada.gramophone.util.ViewUtil;
@@ -37,7 +37,7 @@ import org.jellyfin.apiclient.model.playlists.PlaylistItemQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaylistDetailActivity extends AbsSlidingMusicPanelActivity implements CabHolder {
+public class PlaylistDetailActivity extends AbsMusicPanelActivity implements CabHolder {
     public static String EXTRA_PLAYLIST = "extra_playlist";
 
     private ActivityPlaylistDetailBinding binding;

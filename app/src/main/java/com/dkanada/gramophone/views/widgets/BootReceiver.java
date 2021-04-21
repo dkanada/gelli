@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.widgets;
+package com.dkanada.gramophone.views.widgets;
 
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;

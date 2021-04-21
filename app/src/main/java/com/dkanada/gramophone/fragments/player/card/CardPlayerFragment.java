@@ -37,7 +37,7 @@ import com.dkanada.gramophone.dialogs.SongShareDialog;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.helper.menu.SongMenuHelper;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.activities.base.AbsSlidingMusicPanelActivity;
+import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.fragments.player.AbsPlayerFragment;
 import com.dkanada.gramophone.fragments.player.PlayerAlbumCoverFragment;
 import com.dkanada.gramophone.util.ImageUtil;
@@ -439,7 +439,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             }
 
             binding.playerSlidingLayout.setPanelHeight(Math.max(minPanelHeight, availablePanelHeight));
-            ((AbsSlidingMusicPanelActivity) fragment.getActivity()).setAntiDragView(binding.playerSlidingLayout.findViewById(R.id.player_panel));
+            ((AbsMusicPanelActivity) fragment.getActivity()).setAntiDragView(binding.playerSlidingLayout.findViewById(R.id.player_panel));
         }
 
         @Override
@@ -473,7 +473,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             int panelHeight = binding.playerSlidingLayout.getHeight() - fragment.playbackControlsFragment.getView().getHeight();
             binding.playerSlidingLayout.setPanelHeight(panelHeight);
 
-            ((AbsSlidingMusicPanelActivity) fragment.getActivity()).setAntiDragView(binding.playerSlidingLayout.findViewById(R.id.player_panel));
+            ((AbsMusicPanelActivity) fragment.getActivity()).setAntiDragView(binding.playerSlidingLayout.findViewById(R.id.player_panel));
         }
 
         @Override

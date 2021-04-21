@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.shortcuts;
+package com.dkanada.gramophone.views.shortcuts;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
-import com.dkanada.gramophone.shortcuts.shortcuttype.LatestShortcutType;
-import com.dkanada.gramophone.shortcuts.shortcuttype.ShuffleShortcutType;
-import com.dkanada.gramophone.shortcuts.shortcuttype.FrequentShortcutType;
+import com.dkanada.gramophone.views.shortcuts.shortcuttype.LatestShortcutType;
+import com.dkanada.gramophone.views.shortcuts.shortcuttype.ShuffleShortcutType;
+import com.dkanada.gramophone.views.shortcuts.shortcuttype.FrequentShortcutType;
 
 import java.util.Arrays;
 import java.util.List;

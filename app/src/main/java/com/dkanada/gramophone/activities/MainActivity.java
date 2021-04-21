@@ -26,7 +26,7 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.activities.base.AbsSlidingMusicPanelActivity;
+import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.fragments.mainactivity.library.LibraryFragment;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.QueryUtil;
@@ -36,7 +36,7 @@ import org.jellyfin.apiclient.model.dto.BaseItemDto;
 
 import java.util.List;
 
-public class MainActivity extends AbsSlidingMusicPanelActivity {
+public class MainActivity extends AbsMusicPanelActivity {
     private ActivityMainDrawerLayoutBinding binding;
     private ActivityMainContentBinding contentBinding;
     private NavigationDrawerHeaderBinding navigationBinding;

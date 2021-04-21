@@ -12,7 +12,7 @@ import com.dkanada.gramophone.database.JellyDatabase;
 import com.dkanada.gramophone.helper.EventListener;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
-import com.dkanada.gramophone.shortcuts.DynamicShortcutManager;
+import com.dkanada.gramophone.views.shortcuts.DynamicShortcutManager;
 import com.melegy.redscreenofdeath.RedScreenOfDeath;
 
 import org.jellyfin.apiclient.interaction.AndroidDevice;
