@@ -1,15 +1,14 @@
 package com.dkanada.gramophone.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import com.dkanada.gramophone.util.NavigationUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.databinding.ActivityAboutBinding;
 import com.dkanada.gramophone.databinding.CardAboutAppBinding;
@@ -127,42 +126,35 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if (v == authorBinding.followOnTwitter) {
-            openUrl(TWITTER);
+            NavigationUtil.openUrl(this, TWITTER);
         } else if (v == aboutBinding.appSource) {
-            openUrl(GITHUB);
+            NavigationUtil.openUrl(this, GITHUB);
         } else if (v == authorBinding.visitWebsite) {
-            openUrl(WEBSITE);
+            NavigationUtil.openUrl(this, WEBSITE);
         } else if (v == supportBinding.reportBugs) {
-            openUrl(GITHUB);
+            NavigationUtil.openUrl(this, GITHUB);
         } else if (v == supportBinding.translate) {
-            openUrl(TRANSLATE);
+            NavigationUtil.openUrl(this, TRANSLATE);
         } else if (v == supportBinding.rateOnGooglePlay) {
-            openUrl(RATE_ON_GOOGLE_PLAY);
+            NavigationUtil.openUrl(this, RATE_ON_GOOGLE_PLAY);
         } else if (v == supportBinding.donate) {
-            openUrl(RATE_ON_GOOGLE_PLAY);
+            NavigationUtil.openUrl(this, RATE_ON_GOOGLE_PLAY);
         } else if (v == thanksBinding.aidanFollestadGooglePlus) {
-            openUrl(AIDAN_FOLLESTAD_GOOGLE_PLUS);
+            NavigationUtil.openUrl(this, AIDAN_FOLLESTAD_GOOGLE_PLUS);
         } else if (v == thanksBinding.aidanFollestadGitHub) {
-            openUrl(AIDAN_FOLLESTAD_GITHUB);
+            NavigationUtil.openUrl(this, AIDAN_FOLLESTAD_GITHUB);
         } else if (v == thanksBinding.maartenCorpelGooglePlus) {
-            openUrl(MAARTEN_CORPEL_GOOGLE_PLUS);
+            NavigationUtil.openUrl(this, MAARTEN_CORPEL_GOOGLE_PLUS);
         } else if (v == thanksBinding.aleksandarTesicGooglePlus) {
-            openUrl(ALEKSANDAR_TESIC_GOOGLE_PLUS);
+            NavigationUtil.openUrl(this, ALEKSANDAR_TESIC_GOOGLE_PLUS);
         } else if (v == thanksBinding.eugeneCheungGitHub) {
-            openUrl(EUGENE_CHEUNG_GITHUB);
+            NavigationUtil.openUrl(this, EUGENE_CHEUNG_GITHUB);
         } else if (v == thanksBinding.eugeneCheungWebsite) {
-            openUrl(EUGENE_CHEUNG_WEBSITE);
+            NavigationUtil.openUrl(this, EUGENE_CHEUNG_WEBSITE);
         } else if (v == thanksBinding.adrianTwitter) {
-            openUrl(ADRIAN_TWITTER);
+            NavigationUtil.openUrl(this, ADRIAN_TWITTER);
         } else if (v == thanksBinding.adrianWebsite) {
-            openUrl(ADRIAN_WEBSITE);
+            NavigationUtil.openUrl(this, ADRIAN_WEBSITE);
         }
-    }
-
-    private void openUrl(String url) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
     }
 }
