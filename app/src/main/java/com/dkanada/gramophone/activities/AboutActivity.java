@@ -21,33 +21,33 @@ import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class AboutActivity extends AbsBaseActivity implements View.OnClickListener {
-    ActivityAboutBinding binding;
+    private ActivityAboutBinding binding;
 
-    CardAboutAppBinding aboutBinding;
-    CardAuthorBinding authorBinding;
-    CardSupportDevelopmentBinding supportBinding;
-    CardSpecialThanksBinding thanksBinding;
+    private CardAboutAppBinding aboutBinding;
+    private CardAuthorBinding authorBinding;
+    private CardSupportDevelopmentBinding supportBinding;
+    private CardSpecialThanksBinding thanksBinding;
 
-    private static String GITHUB = "https://github.com/dkanada/gelli";
+    private final static String GITHUB = "https://github.com/dkanada/gelli";
 
-    private static String TWITTER = "https://twitter.com/karimjabouzeid";
-    private static String WEBSITE = "https://github.com/dkanada";
+    private final static String TWITTER = "https://twitter.com/karimjabouzeid";
+    private final static String WEBSITE = "https://github.com/dkanada";
 
-    private static String TRANSLATE = "https://phonograph.oneskyapp.com/collaboration/project?id=26521";
-    private static String RATE_ON_GOOGLE_PLAY = "https://play.google.com/store/apps/details?id=com.kabouzeid.gramophone";
+    private final static String TRANSLATE = "https://phonograph.oneskyapp.com/collaboration/project?id=26521";
+    private final static String RATE_ON_GOOGLE_PLAY = "https://play.google.com/store/apps/details?id=com.kabouzeid.gramophone";
 
-    private static String AIDAN_FOLLESTAD_GOOGLE_PLUS = "https://google.com/+AidanFollestad";
-    private static String AIDAN_FOLLESTAD_GITHUB = "https://github.com/afollestad";
+    private final static String AIDAN_FOLLESTAD_GOOGLE_PLUS = "https://google.com/+AidanFollestad";
+    private final static String AIDAN_FOLLESTAD_GITHUB = "https://github.com/afollestad";
 
-    private static String MAARTEN_CORPEL_GOOGLE_PLUS = "https://google.com/+MaartenCorpel";
+    private final static String MAARTEN_CORPEL_GOOGLE_PLUS = "https://google.com/+MaartenCorpel";
 
-    private static String ALEKSANDAR_TESIC_GOOGLE_PLUS = "https://google.com/+aleksandartešić";
+    private final static String ALEKSANDAR_TESIC_GOOGLE_PLUS = "https://google.com/+aleksandartešić";
 
-    private static String EUGENE_CHEUNG_GITHUB = "https://github.com/arkon";
-    private static String EUGENE_CHEUNG_WEBSITE = "https://echeung.me/";
+    private final static String EUGENE_CHEUNG_GITHUB = "https://github.com/arkon";
+    private final static String EUGENE_CHEUNG_WEBSITE = "https://echeung.me/";
 
-    private static String ADRIAN_TWITTER = "https://twitter.com/froschgames";
-    private static String ADRIAN_WEBSITE = "https://froschgames.com/";
+    private final static String ADRIAN_TWITTER = "https://twitter.com/froschgames";
+    private final static String ADRIAN_WEBSITE = "https://froschgames.com/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
         aboutBinding.appSource.setOnClickListener(this);
         authorBinding.visitWebsite.setOnClickListener(this);
         supportBinding.reportBugs.setOnClickListener(this);
-        authorBinding.writeAnEmail.setOnClickListener(this);
         supportBinding.translate.setOnClickListener(this);
         supportBinding.rateOnGooglePlay.setOnClickListener(this);
         supportBinding.donate.setOnClickListener(this);
@@ -135,12 +134,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
             openUrl(WEBSITE);
         } else if (v == supportBinding.reportBugs) {
             openUrl(GITHUB);
-        } else if (v == authorBinding.writeAnEmail) {
-            Intent intent = new Intent(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:contact@kabouzeid.com"));
-            intent.putExtra(Intent.EXTRA_EMAIL, "contact@kabouzeid.com");
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Phonograph");
-            startActivity(Intent.createChooser(intent, "E-Mail"));
         } else if (v == supportBinding.translate) {
             openUrl(TRANSLATE);
         } else if (v == supportBinding.rateOnGooglePlay) {

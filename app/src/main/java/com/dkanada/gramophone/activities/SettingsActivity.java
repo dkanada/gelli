@@ -226,7 +226,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 colorAppShortcuts.setOnPreferenceChangeListener((preference, newValue) -> {
                     PreferenceUtil.getInstance(getActivity()).setColoredShortcuts((Boolean) newValue);
 
-                    // update app shortcuts
                     new DynamicShortcutManager(getActivity()).updateDynamicShortcuts();
                     return true;
                 });
