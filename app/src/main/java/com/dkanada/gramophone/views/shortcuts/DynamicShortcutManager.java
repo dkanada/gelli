@@ -15,11 +15,11 @@ import com.dkanada.gramophone.views.shortcuts.shortcuttype.FrequentShortcutType;
 import java.util.Arrays;
 import java.util.List;
 
-@TargetApi(Build.VERSION_CODES.N_MR1)
+@TargetApi(Build.VERSION_CODES.O)
 public class DynamicShortcutManager {
 
-    private Context context;
-    private ShortcutManager shortcutManager;
+    private final Context context;
+    private final ShortcutManager shortcutManager;
 
     public DynamicShortcutManager(Context context) {
         this.context = context;
@@ -46,11 +46,11 @@ public class DynamicShortcutManager {
     }
 
     public List<ShortcutInfo> getDefaultShortcuts() {
-        return (Arrays.asList(
+        return Arrays.asList(
                 new ShuffleShortcutType(context).getShortcutInfo(),
                 new FrequentShortcutType(context).getShortcutInfo(),
                 new LatestShortcutType(context).getShortcutInfo()
-        ));
+        );
     }
 
     public static void reportShortcutUsed(Context context, String shortcutId){

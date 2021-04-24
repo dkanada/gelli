@@ -16,7 +16,7 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.ImageUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
-@RequiresApi(Build.VERSION_CODES.N_MR1)
+@RequiresApi(Build.VERSION_CODES.O)
 public final class AppShortcutIconGenerator {
 
     public static Icon generateThemedIcon(Context context, int iconId) {

@@ -9,14 +9,14 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.views.shortcuts.AppShortcutIconGenerator;
 import com.dkanada.gramophone.views.shortcuts.AppShortcutLauncherActivity;
 
-@TargetApi(Build.VERSION_CODES.N_MR1)
+@TargetApi(Build.VERSION_CODES.O)
 public final class FrequentShortcutType extends BaseShortcutType {
     public FrequentShortcutType(Context context) {
         super(context);
     }
 
     public static String getId() {
-        return ID_PREFIX + "top_tracks";
+        return PREFIX + ".frequent";
     }
 
     public ShortcutInfo getShortcutInfo() {

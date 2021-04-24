@@ -72,7 +72,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 break;
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             new DynamicShortcutManager(this).updateDynamicShortcuts();
         }
 
@@ -160,7 +160,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 setSummary(generalTheme, o);
 
                 ThemeStore.markChanged(requireActivity());
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     // set the new theme so that updateAppShortcuts can pull it
                     requireActivity().setTheme(PreferenceUtil.getThemeResource(themeName));
                     new DynamicShortcutManager(getActivity()).updateDynamicShortcuts();
@@ -219,7 +219,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             }
 
             final TwoStatePreference colorAppShortcuts = findPreference(PreferenceUtil.COLORED_SHORTCUTS);
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                 colorAppShortcuts.setVisible(false);
             } else {
                 colorAppShortcuts.setChecked(PreferenceUtil.getInstance(getActivity()).getColoredShortcuts());

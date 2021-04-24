@@ -50,7 +50,7 @@ public class App extends Application {
             ThemeStore.editTheme(this).primaryColorRes(R.color.md_indigo_500).accentColorRes(R.color.md_pink_A400).commit();
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             new DynamicShortcutManager(this).initDynamicShortcuts();
         }
     }

@@ -36,6 +36,7 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.dkanada.gramophone.App;
+import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.BlurTransformation;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
@@ -74,7 +75,7 @@ import static com.google.android.exoplayer2.Player.MEDIA_ITEM_TRANSITION_REASON_
 import static com.google.android.exoplayer2.Player.PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM;
 
 public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks {
-    public static final String PACKAGE_NAME = "com.dkanada.gramophone";
+    public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
 
     public static final String ACTION_TOGGLE = PACKAGE_NAME + ".toggle";
     public static final String ACTION_PLAY = PACKAGE_NAME + ".play";

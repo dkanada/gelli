@@ -7,12 +7,13 @@ import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.views.shortcuts.AppShortcutLauncherActivity;
 
-@TargetApi(Build.VERSION_CODES.N_MR1)
+@TargetApi(Build.VERSION_CODES.O)
 public abstract class BaseShortcutType {
 
-    static final String ID_PREFIX = "com.dkanada.gramophone.views.shortcuts.id.";
+    static final String PREFIX = BuildConfig.APPLICATION_ID + ".views.shortcut";
 
     Context context;
 
@@ -21,25 +22,19 @@ public abstract class BaseShortcutType {
     }
 
     static public String getId() {
-        return ID_PREFIX + "invalid";
+        return PREFIX + ".base";
     }
 
     abstract ShortcutInfo getShortcutInfo();
 
-    /**
-     * Creates an Intent that will launch MainActivtiy and immediately play {@param songs} in either shuffle or normal mode
-     *
-     * @param shortcutType Describes the type of shortcut to create (ShuffleAll, TopTracks, custom playlist, etc.)
-     * @return
-     */
     Intent getPlaySongsIntent(int shortcutType) {
         Intent intent = new Intent(context, AppShortcutLauncherActivity.class);
         intent.setAction(Intent.ACTION_VIEW);
 
-        Bundle b = new Bundle();
-        b.putInt(AppShortcutLauncherActivity.KEY_SHORTCUT_TYPE, shortcutType);
+        Bundle bundle = new Bundle();
+        bundle.putInt(AppShortcutLauncherActivity.EXTRA_SHORTCUT, shortcutType);
 
-        intent.putExtras(b);
+        intent.putExtras(bundle);
 
         return intent;
     }

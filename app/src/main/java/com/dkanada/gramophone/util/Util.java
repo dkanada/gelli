@@ -22,7 +22,6 @@ import androidx.annotation.Nullable;
 import com.dkanada.gramophone.R;
 
 public class Util {
-
     public static int getActionBarSize(@NonNull Context context) {
         TypedValue typedValue = new TypedValue();
         int[] textSizeAttr = new int[]{R.attr.actionBarSize};
@@ -75,13 +74,5 @@ public class Util {
         int dimensionPixelSize = a.getDimensionPixelSize(0, 0);
         a.recycle();
         return dimensionPixelSize;
-    }
-
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static boolean isRTL(@NonNull Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            Configuration config = context.getResources().getConfiguration();
-            return config.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
-        } else return false;
     }
 }
