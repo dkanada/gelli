@@ -21,9 +21,9 @@ public final class LatestShortcutType extends BaseShortcutType {
 
     public ShortcutInfo getShortcutInfo() {
         return new ShortcutInfo.Builder(context, getId())
-                .setShortLabel(context.getString(R.string.last_added))
-                .setIcon(AppShortcutIconGenerator.generateThemedIcon(context, R.drawable.ic_app_shortcut_last_added))
-                .setIntent(getPlaySongsIntent(AppShortcutLauncherActivity.SHORTCUT_TYPE_LATEST))
-                .build();
+            .setShortLabel(context.getString(R.string.last_added))
+            .setIcon(AppShortcutIconGenerator.generateThemedIcon(context, R.drawable.ic_app_shortcut_last_added))
+            .setIntent(getPlaySongsIntent(AppShortcutLauncherActivity.SHORTCUT_TYPE_LATEST))
+            .build();
     }
 }

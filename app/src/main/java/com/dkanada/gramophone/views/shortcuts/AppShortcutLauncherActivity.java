@@ -27,7 +27,6 @@ public class AppShortcutLauncherActivity extends Activity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            // noinspection WrongConstant
             shortcutType = extras.getInt(EXTRA_SHORTCUT, SHORTCUT_TYPE_DEFAULT);
         }
 

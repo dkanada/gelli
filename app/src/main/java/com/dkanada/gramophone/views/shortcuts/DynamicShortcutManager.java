@@ -28,11 +28,11 @@ public class DynamicShortcutManager {
 
     public static ShortcutInfo createShortcut(Context context, String id, String shortLabel, String longLabel, Icon icon, Intent intent) {
         return new ShortcutInfo.Builder(context, id)
-                .setShortLabel(shortLabel)
-                .setLongLabel(longLabel)
-                .setIcon(icon)
-                .setIntent(intent)
-                .build();
+            .setShortLabel(shortLabel)
+            .setLongLabel(longLabel)
+            .setIcon(icon)
+            .setIntent(intent)
+            .build();
     }
 
     public void initDynamicShortcuts() {
@@ -47,13 +47,13 @@ public class DynamicShortcutManager {
 
     public List<ShortcutInfo> getDefaultShortcuts() {
         return Arrays.asList(
-                new ShuffleShortcutType(context).getShortcutInfo(),
-                new FrequentShortcutType(context).getShortcutInfo(),
-                new LatestShortcutType(context).getShortcutInfo()
+            new ShuffleShortcutType(context).getShortcutInfo(),
+            new FrequentShortcutType(context).getShortcutInfo(),
+            new LatestShortcutType(context).getShortcutInfo()
         );
     }
 
-    public static void reportShortcutUsed(Context context, String shortcutId){
+    public static void reportShortcutUsed(Context context, String shortcutId) {
         context.getSystemService(ShortcutManager.class).reportShortcutUsed(shortcutId);
     }
 }

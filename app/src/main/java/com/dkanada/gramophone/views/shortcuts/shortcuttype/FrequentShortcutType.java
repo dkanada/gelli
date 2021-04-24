@@ -21,9 +21,9 @@ public final class FrequentShortcutType extends BaseShortcutType {
 
     public ShortcutInfo getShortcutInfo() {
         return new ShortcutInfo.Builder(context, getId())
-                .setShortLabel(context.getString(R.string.my_top_tracks))
-                .setIcon(AppShortcutIconGenerator.generateThemedIcon(context, R.drawable.ic_app_shortcut_top_tracks))
-                .setIntent(getPlaySongsIntent(AppShortcutLauncherActivity.SHORTCUT_TYPE_FREQUENT))
-                .build();
+            .setShortLabel(context.getString(R.string.my_top_tracks))
+            .setIcon(AppShortcutIconGenerator.generateThemedIcon(context, R.drawable.ic_app_shortcut_top_tracks))
+            .setIntent(getPlaySongsIntent(AppShortcutLauncherActivity.SHORTCUT_TYPE_FREQUENT))
+            .build();
     }
 }
