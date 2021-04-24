@@ -53,29 +53,11 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
         if (hasPermissions != hadPermissions) {
             hadPermissions = hasPermissions;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                onHasPermissionsChanged(hasPermissions);
+                super.recreate();
             }
         }
     }
 
-    protected void onHasPermissionsChanged(boolean hasPermissions) {
-        // implemented by sub classes
-    }
-
-    @Override
-    public boolean dispatchKeyEvent(@NonNull KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.KEYCODE_MENU && event.getAction() == KeyEvent.ACTION_UP) {
-            showOverflowMenu();
-            return true;
-        }
-
-        return super.dispatchKeyEvent(event);
-    }
-
-    protected void showOverflowMenu() {
-    }
-
-    @Nullable
     protected String[] getPermissionsToRequest() {
         return null;
     }
@@ -142,7 +124,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
             }
 
             hadPermissions = true;
-            onHasPermissionsChanged(true);
+            super.recreate();
         }
     }
 }
