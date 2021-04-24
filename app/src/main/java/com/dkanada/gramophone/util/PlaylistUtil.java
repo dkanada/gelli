@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistUtil {
-    public static void getPlaylist(PlaylistItemQuery query, MediaCallback callback) {
+    public static void getPlaylist(PlaylistItemQuery query, MediaCallback<PlaylistSong> callback) {
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setFields(new ItemFields[]{ItemFields.MediaSources});
         App.getApiClient().GetPlaylistItems(query, new Response<ItemsResult>() {

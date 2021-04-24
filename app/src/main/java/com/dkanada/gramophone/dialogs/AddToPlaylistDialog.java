@@ -57,19 +57,16 @@ public class AddToPlaylistDialog extends DialogFragment {
                 })
                 .build();
 
-        QueryUtil.getPlaylists(new MediaCallback() {
-            @Override
-            public void onLoadMedia(List<?> media) {
-                playlists.addAll((List<Playlist>) media);
+        QueryUtil.getPlaylists(media -> {
+            List<String> names = new ArrayList<>();
 
-                CharSequence[] names = new CharSequence[playlists.size() + 1];
-                names[0] = requireActivity().getResources().getString(R.string.action_new_playlist);
-                for (int i = 0; i < playlists.size(); i++) {
-                    names[i + 1] = playlists.get(i).name;
-                }
-
-                dialog.setItems(names);
+            names.add(requireActivity().getResources().getString(R.string.action_new_playlist));
+            for (Playlist playlist : media) {
+                names.add(playlist.name);
             }
+
+            playlists.addAll(media);
+            dialog.setItems(names.toArray(new String[0]));
         });
 
         return dialog;

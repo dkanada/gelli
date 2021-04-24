@@ -67,12 +67,9 @@ public class PlaylistDetailActivity extends AbsMusicPanelActivity implements Cab
 
         PlaylistItemQuery query = new PlaylistItemQuery();
         query.setId(playlist.id);
-        PlaylistUtil.getPlaylist(query, new MediaCallback() {
-            @Override
-            public void onLoadMedia(List<?> media) {
-                adapter.getDataSet().addAll((List<PlaylistSong>) media);
-                adapter.notifyDataSetChanged();
-            }
+        PlaylistUtil.getPlaylist(query, media -> {
+            adapter.getDataSet().addAll(media);
+            adapter.notifyDataSetChanged();
         });
     }
 

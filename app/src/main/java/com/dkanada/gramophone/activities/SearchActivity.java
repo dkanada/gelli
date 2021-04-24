@@ -23,14 +23,11 @@ import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.Util;
 import com.kabouzeid.appthemehelper.ThemeStore;
 
-import org.jellyfin.apiclient.model.querying.ArtistsQuery;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SearchActivity extends AbsMusicServiceActivity implements SearchView.OnQueryTextListener {
     public String QUERY = "query";
@@ -139,51 +136,36 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
         ItemQuery itemQuery = new ItemQuery();
         itemQuery.setSearchTerm(query);
 
-        ArtistsQuery artistsQuery = new ArtistsQuery();
-        artistsQuery.setSearchTerm(query);
-
-        MediaCallback callback = new MediaCallback() {
-            private final List<Object> data = new ArrayList<>();
-
-            @SuppressWarnings("ConstantConditions")
+        MediaCallback<Object> callback = new MediaCallback<Object>() {
             @Override
-            public void onLoadMedia(List<?> media) {
-                data.addAll(media);
+            public void onLoadMedia(List<Object> media) {
+                List<Artist> artists = new ArrayList<>();
+                List<Album> albums = new ArrayList<>();
+                List<Song> songs = new ArrayList<>();
 
-                Map<Class<?>, List<Object>> byClass = new HashMap<>();
-                byClass.put(Artist.class, new ArrayList<>());
-                byClass.put(Album.class, new ArrayList<>());
-                byClass.put(Song.class, new ArrayList<>());
-                byClass.put(Object.class, new ArrayList<>());
-
-                for (Object datum : data) {
-                    if (byClass.containsKey(datum.getClass())) {
-                        byClass.get(datum.getClass()).add(datum);
-                    } else {
-                        byClass.get(Object.class).add(datum);
+                for (Object result : media) {
+                    if (result instanceof Artist) {
+                        artists.add((Artist) result);
+                    } else if (result instanceof Album) {
+                        albums.add((Album) result);
+                    } else if (result instanceof Song) {
+                        songs.add((Song) result);
                     }
                 }
 
-                Collections.sort(byClass.get(Artist.class),
-                        (one, two) -> ((Artist) one).name.compareTo(((Artist) two).name));
+                Collections.sort(artists, (one, two) -> one.name.compareTo(two.name));
+                Collections.sort(albums, (one, two) -> one.title.compareTo(two.title));
+                Collections.sort(songs, (one, two) -> one.title.compareTo(two.title));
 
-                Collections.sort(byClass.get(Album.class),
-                        (one, two) -> ((Album) one).title.compareTo(((Album) two).title));
-
-                Collections.sort(byClass.get(Song.class),
-                        (one, two) -> ((Song) one).title.compareTo(((Song) two).title));
-
-
-                List<Object> sortedData = byClass.get(Artist.class);
-                sortedData.addAll(byClass.get(Album.class));
-                sortedData.addAll(byClass.get(Song.class));
-                sortedData.addAll(byClass.get(Object.class));
+                List<Object> sortedData = new ArrayList<>();
+                sortedData.addAll(artists);
+                sortedData.addAll(albums);
+                sortedData.addAll(songs);
 
                 adapter.swapDataSet(sortedData);
             }
         };
 
-        QueryUtil.getArtists(artistsQuery, callback);
         QueryUtil.getItems(itemQuery, callback);
     }
 

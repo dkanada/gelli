@@ -60,12 +60,9 @@ public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHol
 
         ItemQuery query = new ItemQuery();
         query.setGenreIds(new String[]{genre.id});
-        QueryUtil.getSongs(query, new MediaCallback() {
-            @Override
-            public void onLoadMedia(List<?> media) {
-                adapter.getDataSet().addAll((List<Song>) media);
-                adapter.notifyDataSetChanged();
-            }
+        QueryUtil.getSongs(query, media -> {
+            adapter.getDataSet().addAll(media);
+            adapter.notifyDataSetChanged();
         });
     }
 

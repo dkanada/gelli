@@ -68,12 +68,9 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
         query.setParentId(album.id);
         query.setSortBy(new String[]{"ParentIndexNumber", "IndexNumber"});
 
-        QueryUtil.getSongs(query, new MediaCallback() {
-            @Override
-            public void onLoadMedia(List<?> media) {
-                album.songs = (List<Song>) media;
-                setAlbum(album);
-            }
+        QueryUtil.getSongs(query, media -> {
+            album.songs = media;
+            setAlbum(album);
         });
     }
 

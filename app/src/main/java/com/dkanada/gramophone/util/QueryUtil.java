@@ -28,7 +28,7 @@ public class QueryUtil {
 
     // TODO return BaseItemDto everywhere
     // will simplify the code for the getPlaylists method
-    public static void getLibraries(MediaCallback callback) {
+    public static void getLibraries(MediaCallback<BaseItemDto> callback) {
         String id = App.getApiClient().getCurrentUserId();
         App.getApiClient().GetUserViews(id, new Response<ItemsResult>() {
             @Override
@@ -46,7 +46,7 @@ public class QueryUtil {
         });
     }
 
-    public static void getPlaylists(MediaCallback callback) {
+    public static void getPlaylists(MediaCallback<Playlist> callback) {
         ItemQuery query = new ItemQuery();
         query.setIncludeItemTypes(new String[]{"Playlist"});
         applyProperties(query);
@@ -68,7 +68,7 @@ public class QueryUtil {
         });
     }
 
-    public static void getGenres(MediaCallback callback) {
+    public static void getGenres(MediaCallback<Genre> callback) {
         ItemsByNameQuery query = new ItemsByNameQuery();
         applyProperties(query);
         App.getApiClient().GetGenresAsync(query, new Response<ItemsResult>() {
@@ -89,8 +89,8 @@ public class QueryUtil {
         });
     }
 
-    public static void getItems(ItemQuery query, MediaCallback callback) {
-        query.setIncludeItemTypes(new String[]{"MusicAlbum", "Audio"});
+    public static void getItems(ItemQuery query, MediaCallback<Object> callback) {
+        query.setIncludeItemTypes(new String[]{"MusicArtist", "MusicAlbum", "Audio"});
         query.setFields(new ItemFields[]{ItemFields.MediaSources});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(40);
@@ -119,7 +119,7 @@ public class QueryUtil {
         });
     }
 
-    public static void getAlbums(ItemQuery query, MediaCallback callback) {
+    public static void getAlbums(ItemQuery query, MediaCallback<Album> callback) {
         query.setIncludeItemTypes(new String[]{"MusicAlbum"});
         applyProperties(query);
         applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod());
@@ -141,7 +141,7 @@ public class QueryUtil {
         });
     }
 
-    public static void getArtists(ArtistsQuery query, MediaCallback callback) {
+    public static void getArtists(ArtistsQuery query, MediaCallback<Artist> callback) {
         query.setFields(new ItemFields[]{ItemFields.Genres});
         applyProperties(query);
         App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
@@ -162,7 +162,7 @@ public class QueryUtil {
         });
     }
 
-    public static void getSongs(ItemQuery query, MediaCallback callback) {
+    public static void getSongs(ItemQuery query, MediaCallback<Song> callback) {
         query.setIncludeItemTypes(new String[]{"Audio"});
         query.setFields(new ItemFields[]{ItemFields.MediaSources});
         applyProperties(query);
