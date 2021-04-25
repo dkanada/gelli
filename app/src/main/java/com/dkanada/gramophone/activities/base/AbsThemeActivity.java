@@ -35,12 +35,6 @@ public abstract class AbsThemeActivity extends ATHToolbarActivity {
         }
     }
 
-    /**
-     * This will set the color of the view with the id "status_bar" on KitKat and Lollipop.
-     * On Lollipop if no such view is found it will set the statusbar color using the native method.
-     *
-     * @param color the new statusbar color (will be shifted down on Lollipop and above)
-     */
     public void setStatusbarColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             final View statusBar = getWindow().getDecorView().getRootView().findViewById(R.id.status_bar);

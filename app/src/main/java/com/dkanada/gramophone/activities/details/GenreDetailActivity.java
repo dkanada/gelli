@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
+import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.databinding.ActivityGenreDetailBinding;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
@@ -28,7 +29,7 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 import java.util.ArrayList;
 
 public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHolder {
-    public static final String EXTRA_GENRE = "extra_genre";
+    public static final String EXTRA_GENRE = BuildConfig.APPLICATION_ID + ".extra.genre";
 
     private ActivityGenreDetailBinding binding;
 
@@ -39,6 +40,8 @@ public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHol
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        genre = getIntent().getParcelableExtra(EXTRA_GENRE);
+
         super.onCreate(savedInstanceState);
 
         setDrawUnderStatusbar();
@@ -46,8 +49,6 @@ public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHol
 
         setNavigationbarColorAuto();
         setTaskDescriptionColorAuto();
-
-        genre = getIntent().getExtras().getParcelable(EXTRA_GENRE);
 
         setUpRecyclerView();
         setUpToolBar();
@@ -86,7 +87,6 @@ public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHol
     private void setUpToolBar() {
         binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
         setSupportActionBar(binding.toolbar);
-        // noinspection ConstantConditions
         binding.toolbar.setTitle(genre.name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -117,10 +117,10 @@ public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHol
     public MaterialCab openCab(final int menu, final MaterialCab.Callback callback) {
         if (cab != null && cab.isActive()) cab.finish();
         cab = new MaterialCab(this, R.id.cab_stub)
-                .setMenu(menu)
-                .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-                .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(this)))
-                .start(callback);
+            .setMenu(menu)
+            .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
+            .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(this)))
+            .start(callback);
 
         return cab;
     }

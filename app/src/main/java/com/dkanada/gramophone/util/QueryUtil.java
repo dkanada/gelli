@@ -33,8 +33,7 @@ public class QueryUtil {
         App.getApiClient().GetUserViews(id, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
-                List<BaseItemDto> libraries = new ArrayList<>();
-                libraries.addAll(Arrays.asList(result.getItems()));
+                List<BaseItemDto> libraries = new ArrayList<>(Arrays.asList(result.getItems()));
 
                 callback.onLoadMedia(libraries);
             }

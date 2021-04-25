@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
 import com.afollestad.materialdialogs.util.DialogUtils;
+import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.databinding.ActivityAlbumDetailBinding;
 import com.google.android.material.appbar.AppBarLayout;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
@@ -39,7 +40,7 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 import java.util.List;
 
 public class AlbumDetailActivity extends AbsMusicPanelActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
-    public static final String EXTRA_ALBUM = "extra_album";
+    public static final String EXTRA_ALBUM = BuildConfig.APPLICATION_ID + ".extra.album";
 
     private ActivityAlbumDetailBinding binding;
 
@@ -52,6 +53,8 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        album = getIntent().getParcelableExtra(EXTRA_ALBUM);
+
         super.onCreate(savedInstanceState);
 
         setDrawUnderStatusbar();
@@ -59,7 +62,6 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
         setUpToolbar();
         setUpViews();
 
-        Album album = getIntent().getExtras().getParcelable(EXTRA_ALBUM);
         loadAlbumCover(album);
         setAlbum(album);
 
@@ -94,9 +96,7 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
         setUpRecyclerView();
         setUpSongsAdapter();
         binding.artistText.setOnClickListener(v -> {
-            if (album != null) {
-                NavigationUtil.goToArtist(AlbumDetailActivity.this, new Artist(album));
-            }
+            NavigationUtil.goToArtist(AlbumDetailActivity.this, new Artist(album));
         });
 
         setColors(DialogUtils.resolveColor(this, R.attr.defaultFooterColor));
@@ -149,13 +149,12 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
 
     private void setUpToolbar() {
         setSupportActionBar(binding.toolbar);
-        // noinspection ConstantConditions
         binding.toolbar.setTitle(null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void setUpSongsAdapter() {
-        adapter = new AlbumSongAdapter(this, getAlbum().songs, R.layout.item_list, false, this);
+        adapter = new AlbumSongAdapter(this, album.songs, R.layout.item_list, false, this);
         binding.list.setLayoutManager(new GridLayoutManager(this, 1));
         binding.list.setAdapter(adapter);
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
@@ -257,10 +256,5 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
         binding.albumYearText.setText(MusicUtil.getYearString(album.year));
 
         if (album.songs.size() != 0) adapter.swapDataSet(album.songs);
-    }
-
-    private Album getAlbum() {
-        if (album == null) album = new Album();
-        return album;
     }
 }

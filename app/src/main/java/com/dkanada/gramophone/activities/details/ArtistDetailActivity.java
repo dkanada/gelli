@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
 import com.afollestad.materialdialogs.util.DialogUtils;
+import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.databinding.ActivityArtistDetailBinding;
 import com.google.android.material.appbar.AppBarLayout;
@@ -40,7 +41,7 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 import java.util.List;
 
 public class ArtistDetailActivity extends AbsMusicPanelActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
-    public static final String EXTRA_ARTIST = "extra_artist";
+    public static final String EXTRA_ARTIST = BuildConfig.APPLICATION_ID + ".extra.artist";
 
     private ActivityArtistDetailBinding binding;
 
@@ -54,6 +55,8 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        artist = getIntent().getParcelableExtra(EXTRA_ARTIST);
+
         super.onCreate(savedInstanceState);
 
         // must be loaded before album adapter
@@ -64,7 +67,6 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
         setUpToolbar();
         setUpViews();
 
-        Artist artist = getIntent().getExtras().getParcelable(EXTRA_ARTIST);
         loadArtistImage(artist);
         setArtist(artist);
 
@@ -111,7 +113,7 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
     private void setUpSongListView() {
         binding.appBarLayout.addOnOffsetChangedListener(this);
 
-        songAdapter = new SongAdapter(this, getArtist().songs, R.layout.item_list, false, this);
+        songAdapter = new SongAdapter(this, artist.songs, R.layout.item_list, false, this);
 
         binding.songs.setLayoutManager(new GridLayoutManager(this, 1));
         binding.songs.setAdapter(songAdapter);
@@ -121,7 +123,7 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
 
     private void setUpAlbumRecyclerView() {
         binding.albums.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        albumAdapter = new HorizontalAlbumAdapter(this, getArtist().albums, usePalette, this);
+        albumAdapter = new HorizontalAlbumAdapter(this, artist.albums, usePalette, this);
         binding.albums.setAdapter(albumAdapter);
 
         // NestedScrollView will ignore horizontal RecyclerView without this line
@@ -183,7 +185,6 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
 
     private void setUpToolbar() {
         setSupportActionBar(binding.toolbar);
-        // noinspection ConstantConditions
         binding.toolbar.setTitle(null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -280,10 +281,5 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
 
         if (artist.songs.size() != 0) songAdapter.swapDataSet(artist.songs);
         if (artist.albums.size() != 0) albumAdapter.swapDataSet(artist.albums);
-    }
-
-    private Artist getArtist() {
-        if (artist == null) artist = new Artist();
-        return artist;
     }
 }

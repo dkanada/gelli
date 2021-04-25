@@ -23,14 +23,7 @@ public class AppShortcutLauncherActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int shortcutType = SHORTCUT_TYPE_DEFAULT;
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            shortcutType = extras.getInt(EXTRA_SHORTCUT, SHORTCUT_TYPE_DEFAULT);
-        }
-
-        switch (shortcutType) {
+        switch (getIntent().getIntExtra(EXTRA_SHORTCUT, SHORTCUT_TYPE_DEFAULT)) {
             case SHORTCUT_TYPE_SHUFFLE:
                 DynamicShortcutManager.reportShortcutUsed(this, ShuffleShortcutType.getId());
                 break;

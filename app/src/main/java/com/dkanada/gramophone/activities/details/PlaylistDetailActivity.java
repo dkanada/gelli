@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
+import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.databinding.ActivityPlaylistDetailBinding;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator;
@@ -29,14 +30,13 @@ import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.PlaylistUtil;
 import com.dkanada.gramophone.util.ViewUtil;
-import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
 import org.jellyfin.apiclient.model.playlists.PlaylistItemQuery;
 
 import java.util.ArrayList;
 
 public class PlaylistDetailActivity extends AbsMusicPanelActivity implements CabHolder {
-    public static String EXTRA_PLAYLIST = "extra_playlist";
+    public static String EXTRA_PLAYLIST = BuildConfig.APPLICATION_ID + ".extra.playlist";
 
     private ActivityPlaylistDetailBinding binding;
 
@@ -50,6 +50,8 @@ public class PlaylistDetailActivity extends AbsMusicPanelActivity implements Cab
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        playlist = getIntent().getParcelableExtra(EXTRA_PLAYLIST);
+
         super.onCreate(savedInstanceState);
 
         setDrawUnderStatusbar();
@@ -57,8 +59,6 @@ public class PlaylistDetailActivity extends AbsMusicPanelActivity implements Cab
 
         setNavigationbarColorAuto();
         setTaskDescriptionColorAuto();
-
-        playlist = getIntent().getExtras().getParcelable(EXTRA_PLAYLIST);
 
         setUpRecyclerView();
         setUpToolbar();
@@ -79,7 +79,7 @@ public class PlaylistDetailActivity extends AbsMusicPanelActivity implements Cab
     }
 
     private void setUpRecyclerView() {
-        ViewUtil.setUpFastScrollRecyclerViewColor(this, ((FastScrollRecyclerView) binding.recyclerView), ThemeStore.accentColor(this));
+        ViewUtil.setUpFastScrollRecyclerViewColor(this, binding.recyclerView, ThemeStore.accentColor(this));
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerViewDragDropManager = new RecyclerViewDragDropManager();
@@ -108,16 +108,11 @@ public class PlaylistDetailActivity extends AbsMusicPanelActivity implements Cab
     }
 
     private void setUpToolbar() {
+        binding.toolbar.setTitle(playlist.name);
         binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
         setSupportActionBar(binding.toolbar);
         // noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setToolbarTitle(playlist.name);
-    }
-
-    private void setToolbarTitle(String title) {
-        // noinspection ConstantConditions
-        binding.toolbar.setTitle(title);
     }
 
     @Override
@@ -146,10 +141,10 @@ public class PlaylistDetailActivity extends AbsMusicPanelActivity implements Cab
     public MaterialCab openCab(final int menu, final MaterialCab.Callback callback) {
         if (cab != null && cab.isActive()) cab.finish();
         cab = new MaterialCab(this, R.id.cab_stub)
-                .setMenu(menu)
-                .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-                .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(this)))
-                .start(callback);
+            .setMenu(menu)
+            .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
+            .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(this)))
+            .start(callback);
 
         return cab;
     }

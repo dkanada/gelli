@@ -55,12 +55,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         });
 
         holder.dragView.setOnTouchListener((view, event) -> {
-                    if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                        touchHelper.startDrag(holder);
-                    }
+            if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+                touchHelper.startDrag(holder);
+            }
 
-                    return false;
-                });
+            return false;
+        });
     }
 
     @Override
