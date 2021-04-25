@@ -96,7 +96,7 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
         setUpRecyclerView();
         setUpSongsAdapter();
         binding.artistText.setOnClickListener(v -> {
-            NavigationUtil.goToArtist(AlbumDetailActivity.this, new Artist(album));
+            NavigationUtil.startArtist(AlbumDetailActivity.this, new Artist(album));
         });
 
         setColors(DialogUtils.resolveColor(this, R.attr.defaultFooterColor));
@@ -196,7 +196,7 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
                 super.onBackPressed();
                 return true;
             case R.id.action_go_to_artist:
-                NavigationUtil.goToArtist(this, new Artist(album));
+                NavigationUtil.startArtist(this, new Artist(album));
                 return true;
         }
 

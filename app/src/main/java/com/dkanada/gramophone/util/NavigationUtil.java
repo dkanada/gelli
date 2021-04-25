@@ -41,42 +41,42 @@ public class NavigationUtil {
         context.startActivity(intent);
     }
 
-    public static void goToLogin(@NonNull final Context context) {
+    public static void startLogin(@NonNull final Context context) {
         final Intent intent = new Intent(context, LoginActivity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
 
-    public static void goToMain(@NonNull final Context context) {
+    public static void startMain(@NonNull final Context context) {
         final Intent intent = new Intent(context, MainActivity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
 
-    public static void goToArtist(@NonNull final Activity activity, final Artist artist, @Nullable Pair... sharedElements) {
+    public static void startArtist(@NonNull final Activity activity, final Artist artist, @Nullable Pair... sharedElements) {
         final Intent intent = new Intent(activity, ArtistDetailActivity.class);
         intent.putExtra(ArtistDetailActivity.EXTRA_ARTIST, artist);
 
         startActivitySharedElements(activity, intent, sharedElements);
     }
 
-    public static void goToAlbum(@NonNull final Activity activity, final Album album, @Nullable Pair... sharedElements) {
+    public static void startAlbum(@NonNull final Activity activity, final Album album, @Nullable Pair... sharedElements) {
         final Intent intent = new Intent(activity, AlbumDetailActivity.class);
         intent.putExtra(AlbumDetailActivity.EXTRA_ALBUM, album);
 
         startActivitySharedElements(activity, intent, sharedElements);
     }
 
-    public static void goToGenre(@NonNull final Activity activity, final Genre genre, @Nullable Pair... sharedElements) {
+    public static void startGenre(@NonNull final Activity activity, final Genre genre, @Nullable Pair... sharedElements) {
         final Intent intent = new Intent(activity, GenreDetailActivity.class);
         intent.putExtra(GenreDetailActivity.EXTRA_GENRE, genre);
 
         startActivitySharedElements(activity, intent, sharedElements);
     }
 
-    public static void goToPlaylist(@NonNull final Activity activity, final Playlist playlist, @Nullable Pair... sharedElements) {
+    public static void startPlaylist(@NonNull final Activity activity, final Playlist playlist, @Nullable Pair... sharedElements) {
         final Intent intent = new Intent(activity, PlaylistDetailActivity.class);
         intent.putExtra(PlaylistDetailActivity.EXTRA_PLAYLIST, playlist);
 

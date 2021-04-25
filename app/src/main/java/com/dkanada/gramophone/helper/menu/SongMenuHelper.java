@@ -39,10 +39,10 @@ public class SongMenuHelper {
                 SongDetailDialog.create(song).show(activity.getSupportFragmentManager(), "SONG_DETAILS");
                 return true;
             case R.id.action_go_to_album:
-                NavigationUtil.goToAlbum(activity, new Album(song));
+                NavigationUtil.startAlbum(activity, new Album(song));
                 return true;
             case R.id.action_go_to_artist:
-                NavigationUtil.goToArtist(activity, new Artist(song));
+                NavigationUtil.startArtist(activity, new Artist(song));
                 return true;
         }
         return false;

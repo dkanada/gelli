@@ -70,10 +70,10 @@ public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implemen
                 SongDetailDialog.create(song).show(getParentFragmentManager(), "SONG_DETAIL");
                 return true;
             case R.id.action_go_to_album:
-                NavigationUtil.goToAlbum(requireActivity(), new Album(song));
+                NavigationUtil.startAlbum(requireActivity(), new Album(song));
                 return true;
             case R.id.action_go_to_artist:
-                NavigationUtil.goToArtist(requireActivity(), new Artist(song));
+                NavigationUtil.startArtist(requireActivity(), new Artist(song));
                 return true;
         }
         return false;

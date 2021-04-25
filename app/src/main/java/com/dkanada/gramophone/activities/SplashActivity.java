@@ -82,7 +82,7 @@ public class SplashActivity extends AbsBaseActivity {
         User user = App.getDatabase().userDao().getUser(PreferenceUtil.getInstance(this).getUser());
 
         if (user == null) {
-            NavigationUtil.goToLogin(this);
+            NavigationUtil.startLogin(this);
             return;
         }
 
@@ -98,12 +98,12 @@ public class SplashActivity extends AbsBaseActivity {
                 App.getApiClient().ensureWebSocket();
                 App.getApiClient().ReportCapabilities(clientCapabilities, new EmptyResponse());
 
-                NavigationUtil.goToMain(context);
+                NavigationUtil.startMain(context);
             }
 
             @Override
             public void onError(Exception exception) {
-                NavigationUtil.goToLogin(context);
+                NavigationUtil.startLogin(context);
             }
         });
     }

@@ -254,7 +254,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
                 switch (item.getItemId()) {
                     case R.id.action_go_to_album:
                         Pair[] albumPairs = new Pair[]{Pair.create(image, activity.getResources().getString(R.string.transition_album_image))};
-                        NavigationUtil.goToAlbum(activity, new Album(getSong()), albumPairs);
+                        NavigationUtil.startAlbum(activity, new Album(getSong()), albumPairs);
                         return true;
                 }
             }

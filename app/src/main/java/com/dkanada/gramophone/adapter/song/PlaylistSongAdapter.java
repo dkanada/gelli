@@ -84,7 +84,7 @@ public class PlaylistSongAdapter extends AbsOffsetSongAdapter {
         protected boolean onSongMenuItemClick(MenuItem item) {
             if (item.getItemId() == R.id.action_go_to_album) {
                 Pair[] albumPairs = new Pair[]{Pair.create(image, activity.getString(R.string.transition_album_image))};
-                NavigationUtil.goToAlbum(activity, new Album(dataSet.get(getBindingAdapterPosition() - 1)), albumPairs);
+                NavigationUtil.startAlbum(activity, new Album(dataSet.get(getBindingAdapterPosition() - 1)), albumPairs);
                 return true;
             }
 

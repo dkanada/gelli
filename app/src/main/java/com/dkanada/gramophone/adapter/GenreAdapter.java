@@ -117,7 +117,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
         @Override
         public void onClick(View view) {
             Genre genre = dataSet.get(getBindingAdapterPosition());
-            NavigationUtil.goToGenre(activity, genre);
+            NavigationUtil.startGenre(activity, genre);
         }
     }
 }
