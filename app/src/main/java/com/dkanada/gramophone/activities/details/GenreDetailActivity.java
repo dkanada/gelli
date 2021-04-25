@@ -87,7 +87,7 @@ public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHol
         binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
         setSupportActionBar(binding.toolbar);
         // noinspection ConstantConditions
-        getSupportActionBar().setTitle(genre.name);
+        binding.toolbar.setTitle(genre.name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

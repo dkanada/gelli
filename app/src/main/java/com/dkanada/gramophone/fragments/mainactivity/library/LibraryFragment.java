@@ -101,7 +101,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         binding.appbar.setBackgroundColor(primaryColor);
         binding.toolbar.setBackgroundColor(primaryColor);
         binding.toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-        requireActivity().setTitle(R.string.app_name);
+        binding.toolbar.setTitle(R.string.app_name);
         getMainActivity().setSupportActionBar(binding.toolbar);
     }
 

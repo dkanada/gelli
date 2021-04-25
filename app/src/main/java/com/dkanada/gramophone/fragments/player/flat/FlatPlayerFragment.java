@@ -223,6 +223,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         int res = favorite ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_favorite_border_white_24dp;
         int color = ToolbarContentTintHelper.toolbarContentColor(requireActivity(), Color.TRANSPARENT);
         Drawable drawable = ImageUtil.getTintedVectorDrawable(requireActivity(), res, color);
+
         binding.playerToolbar.getMenu().findItem(R.id.action_toggle_favorite)
                 .setIcon(drawable)
                 .setTitle(favorite ? getString(R.string.action_remove_from_favorites) : getString(R.string.action_add_to_favorites));

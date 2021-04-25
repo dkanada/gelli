@@ -184,7 +184,7 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
     private void setUpToolbar() {
         setSupportActionBar(binding.toolbar);
         // noinspection ConstantConditions
-        getSupportActionBar().setTitle(null);
+        binding.toolbar.setTitle(null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -273,7 +273,7 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
     private void setArtist(Artist artist) {
         this.artist = artist;
 
-        getSupportActionBar().setTitle(artist.name);
+        binding.toolbar.setTitle(artist.name);
         binding.songCountText.setText(MusicUtil.getSongCountString(this, artist.songs.size()));
         binding.albumCountText.setText(MusicUtil.getAlbumCountString(this, artist.albums.size()));
         binding.durationText.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, artist.songs)));

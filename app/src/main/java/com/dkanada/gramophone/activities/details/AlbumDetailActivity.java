@@ -150,7 +150,7 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
     private void setUpToolbar() {
         setSupportActionBar(binding.toolbar);
         // noinspection ConstantConditions
-        getSupportActionBar().setTitle(null);
+        binding.toolbar.setTitle(null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -250,7 +250,7 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
     private void setAlbum(Album album) {
         this.album = album;
 
-        getSupportActionBar().setTitle(album.title);
+        binding.toolbar.setTitle(album.title);
         binding.artistText.setText(album.artistName);
         binding.songCountText.setText(MusicUtil.getSongCountString(this, album.songs.size()));
         binding.durationText.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, album.songs)));

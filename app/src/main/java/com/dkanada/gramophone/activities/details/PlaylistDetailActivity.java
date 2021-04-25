@@ -117,7 +117,7 @@ public class PlaylistDetailActivity extends AbsMusicPanelActivity implements Cab
 
     private void setToolbarTitle(String title) {
         // noinspection ConstantConditions
-        getSupportActionBar().setTitle(title);
+        binding.toolbar.setTitle(title);
     }
 
     @Override
