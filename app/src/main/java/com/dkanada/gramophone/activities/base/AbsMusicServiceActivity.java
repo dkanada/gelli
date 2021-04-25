@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
@@ -44,8 +43,6 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
                 AbsMusicServiceActivity.this.onServiceDisconnected();
             }
         });
-
-        setPermissionDeniedMessage(getString(R.string.permission_external_storage_denied));
     }
 
     @Override
@@ -185,6 +182,11 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
                 }
             }
         }
+    }
+
+    @Override
+    protected String getPermissionDeniedMessage() {
+        return getString(R.string.permission_external_storage_denied);
     }
 
     @Override

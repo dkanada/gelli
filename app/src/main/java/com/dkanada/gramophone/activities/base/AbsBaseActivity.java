@@ -1,46 +1,38 @@
 package com.dkanada.gramophone.activities.base;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.AudioManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
-import android.view.KeyEvent;
-import android.view.View;
-
 import com.kabouzeid.appthemehelper.ThemeStore;
+import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.R;
 import com.google.android.material.snackbar.Snackbar;
 
 public abstract class AbsBaseActivity extends AbsThemeActivity {
-    public static final int PERMISSION_REQUEST = 100;
+    private static final int PERMISSION_REQUEST = 100;
 
     private boolean hadPermissions;
     private String[] permissions;
-    private String permissionDeniedMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
         permissions = getPermissionsToRequest();
         hadPermissions = hasPermissions();
-
-        setPermissionDeniedMessage(null);
     }
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
         if (!hasPermissions()) {
             requestPermissions();
         }
@@ -49,12 +41,8 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        final boolean hasPermissions = hasPermissions();
-        if (hasPermissions != hadPermissions) {
-            hadPermissions = hasPermissions;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                super.recreate();
-            }
+        if (hasPermissions() != hadPermissions) {
+            super.recreate();
         }
     }
 
@@ -66,12 +54,8 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
         return getWindow().getDecorView();
     }
 
-    protected void setPermissionDeniedMessage(String message) {
-        permissionDeniedMessage = message;
-    }
-
-    private String getPermissionDeniedMessage() {
-        return permissionDeniedMessage == null ? getString(R.string.permissions_denied) : permissionDeniedMessage;
+    protected String getPermissionDeniedMessage() {
+        return getString(R.string.permissions_denied);
     }
 
     protected void requestPermissions() {
@@ -99,31 +83,21 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
             for (int grantResult : grantResults) {
                 if (grantResult != PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(AbsBaseActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                        // user has deny from permission dialog
-                        Snackbar.make(getSnackBarContainer(), getPermissionDeniedMessage(),
-                                Snackbar.LENGTH_INDEFINITE)
-                                .setAction(R.string.action_grant, view -> requestPermissions())
-                                .setActionTextColor(ThemeStore.accentColor(this))
-                                .show();
+                        Snackbar.make(getSnackBarContainer(), getPermissionDeniedMessage(), Snackbar.LENGTH_SHORT)
+                            .setAction(R.string.action_grant, view -> requestPermissions())
+                            .setActionTextColor(ThemeStore.accentColor(this))
+                            .show();
                     } else {
-                        // user has deny permission and checked never show permission dialog so you can redirect to application settings page
-                        Snackbar.make(getSnackBarContainer(), getPermissionDeniedMessage(),
-                                Snackbar.LENGTH_INDEFINITE)
-                                .setAction(R.string.action_settings, view -> {
-                                    Intent intent = new Intent();
-                                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                    Uri uri = Uri.fromParts("package", AbsBaseActivity.this.getPackageName(), null);
-                                    intent.setData(uri);
-                                    startActivity(intent);
-                                })
-                                .setActionTextColor(ThemeStore.accentColor(this))
-                                .show();
+                        Snackbar.make(getSnackBarContainer(), getPermissionDeniedMessage(), Snackbar.LENGTH_SHORT)
+                            .setAction(R.string.action_settings, view -> NavigationUtil.openSettings(this))
+                            .setActionTextColor(ThemeStore.accentColor(this))
+                            .show();
                     }
+
                     return;
                 }
             }
 
-            hadPermissions = true;
             super.recreate();
         }
     }
