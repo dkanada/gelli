@@ -19,6 +19,7 @@ import com.dkanada.gramophone.service.MusicService;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements MusicServiceEventListener {
@@ -32,6 +33,7 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         serviceToken = MusicPlayerRemote.bindToService(this, new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
@@ -151,7 +153,6 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
     }
 
     private static final class MusicStateReceiver extends BroadcastReceiver {
-
         private final WeakReference<AbsMusicServiceActivity> reference;
 
         public MusicStateReceiver(final AbsMusicServiceActivity activity) {
@@ -190,7 +191,7 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
     }
 
     @Override
-    protected String[] getPermissionsToRequest() {
-        return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    protected List<String> getPermissionsToRequest() {
+        return Arrays.asList(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 }

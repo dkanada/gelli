@@ -249,6 +249,7 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
     @Override
     public void setLightStatusbar(boolean enabled) {
         lightStatusbar = enabled;
+
         if (getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
             super.setLightStatusbar(enabled);
         }
@@ -257,8 +258,12 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
     @Override
     public void setNavigationbarColor(int color) {
         this.navigationbarColor = color;
+
+        if (navigationBarColorAnimator != null) {
+            navigationBarColorAnimator.cancel();
+        }
+
         if (getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
-            if (navigationBarColorAnimator != null) navigationBarColorAnimator.cancel();
             super.setNavigationbarColor(color);
         }
     }
@@ -266,9 +271,10 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
     private void animateNavigationBarColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (navigationBarColorAnimator != null) navigationBarColorAnimator.cancel();
+
             navigationBarColorAnimator = ValueAnimator
-                    .ofArgb(getWindow().getNavigationBarColor(), color)
-                    .setDuration(ViewUtil.PHONOGRAPH_ANIM_TIME);
+                .ofArgb(getWindow().getNavigationBarColor(), color)
+                .setDuration(ViewUtil.PHONOGRAPH_ANIM_TIME);
 
             navigationBarColorAnimator.setInterpolator(new PathInterpolator(0.4f, 0f, 1f, 1f));
             navigationBarColorAnimator.addUpdateListener(animation -> AbsMusicPanelActivity.super.setNavigationbarColor((Integer) animation.getAnimatedValue()));
@@ -279,19 +285,17 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (navigationBarColorAnimator != null) navigationBarColorAnimator.cancel(); // just in case
+        if (navigationBarColorAnimator != null) {
+            navigationBarColorAnimator.cancel();
+        }
     }
 
     @Override
     public void setTaskDescriptionColor(@ColorInt int color) {
         this.taskColor = color;
+
         if (getPanelState() == null || getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
             super.setTaskDescriptionColor(color);
         }
-    }
-
-    @Override
-    protected View getSnackBarContainer() {
-        return findViewById(R.id.content_container);
     }
 }

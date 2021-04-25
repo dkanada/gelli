@@ -1,32 +1,31 @@
 package com.dkanada.gramophone.activities.base;
 
-import android.Manifest;
+import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.R;
-import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 public abstract class AbsBaseActivity extends AbsThemeActivity {
     private static final int PERMISSION_REQUEST = 100;
 
-    private boolean hadPermissions;
-    private String[] permissions;
+    private List<String> permissions;
+    private boolean allowed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         permissions = getPermissionsToRequest();
-        hadPermissions = hasPermissions();
+        allowed = hasPermissions();
     }
 
     @Override
@@ -41,17 +40,13 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (hasPermissions() != hadPermissions) {
+        if (hasPermissions() != allowed) {
             super.recreate();
         }
     }
 
-    protected String[] getPermissionsToRequest() {
+    protected List<String> getPermissionsToRequest() {
         return null;
-    }
-
-    protected View getSnackBarContainer() {
-        return getWindow().getDecorView();
     }
 
     protected String getPermissionDeniedMessage() {
@@ -60,7 +55,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
 
     protected void requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && permissions != null) {
-            requestPermissions(permissions, PERMISSION_REQUEST);
+            requestPermissions(permissions.toArray(new String[0]), PERMISSION_REQUEST);
         }
     }
 
@@ -77,28 +72,32 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST) {
-            for (int grantResult : grantResults) {
-                if (grantResult != PackageManager.PERMISSION_GRANTED) {
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(AbsBaseActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                        Snackbar.make(getSnackBarContainer(), getPermissionDeniedMessage(), Snackbar.LENGTH_SHORT)
-                            .setAction(R.string.action_grant, view -> requestPermissions())
-                            .setActionTextColor(ThemeStore.accentColor(this))
-                            .show();
-                    } else {
-                        Snackbar.make(getSnackBarContainer(), getPermissionDeniedMessage(), Snackbar.LENGTH_SHORT)
-                            .setAction(R.string.action_settings, view -> NavigationUtil.openSettings(this))
-                            .setActionTextColor(ThemeStore.accentColor(this))
-                            .show();
-                    }
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] results) {
+        super.onRequestPermissionsResult(requestCode, permissions, results);
 
-                    return;
-                }
+        if (requestCode != PERMISSION_REQUEST) {
+            return;
+        }
+
+        for (int i = 0; i < permissions.length; i++) {
+            String permission = permissions[i];
+            int result = results[i];
+
+            if (result == PackageManager.PERMISSION_GRANTED) {
+                continue;
             }
 
-            super.recreate();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this)
+                .setMessage(getPermissionDeniedMessage())
+                .setTitle(R.string.permissions_denied)
+                .setNegativeButton(R.string.ignore, (dialog, which) -> { })
+                .setPositiveButton(R.string.action_settings, (dialog, id) -> NavigationUtil.openSettings(this));
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                builder.setPositiveButton(R.string.action_grant, (dialog, id) -> requestPermissions());
+            }
+
+            builder.show();
         }
     }
 }
