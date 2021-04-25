@@ -43,7 +43,7 @@ public class MainActivity extends AbsMusicPanelActivity {
     private boolean onLogout;
 
     @Nullable
-    MainActivityFragmentCallbacks currentFragment;
+    private MainActivityFragmentCallbacks currentFragment;
 
     @Nullable
     private List<BaseItemDto> libraries;
@@ -59,7 +59,7 @@ public class MainActivity extends AbsMusicPanelActivity {
 
         Menu menu = binding.navigationView.getMenu();
         QueryUtil.getLibraries(media -> {
-            libraries = (List<BaseItemDto>) media;
+            libraries = media;
             menu.clear();
 
             for (BaseItemDto itemDto : libraries) {
@@ -164,11 +164,7 @@ public class MainActivity extends AbsMusicPanelActivity {
                     || menuItem.getItemId() == R.id.nav_logout) return true;
 
             for (int i = 0; i < binding.navigationView.getMenu().size(); i++) {
-                if (binding.navigationView.getMenu().getItem(i) == menuItem) {
-                    binding.navigationView.getMenu().getItem(i).setChecked(true);
-                } else {
-                    binding.navigationView.getMenu().getItem(i).setChecked(false);
-                }
+                binding.navigationView.getMenu().getItem(i).setChecked(binding.navigationView.getMenu().getItem(i) == menuItem);
             }
 
             return true;

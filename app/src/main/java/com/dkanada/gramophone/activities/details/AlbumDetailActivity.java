@@ -24,7 +24,6 @@ import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.CustomPaletteTarget;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.interfaces.CabHolder;
-import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.interfaces.PaletteColorHolder;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;

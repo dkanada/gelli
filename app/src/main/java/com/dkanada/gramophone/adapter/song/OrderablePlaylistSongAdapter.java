@@ -56,13 +56,13 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
     }
 
     @Override
-    public boolean onCheckCanStartDrag(ViewHolder holder, int position, int x, int y) {
+    public boolean onCheckCanStartDrag(@NonNull ViewHolder holder, int position, int x, int y) {
         return onMoveItemListener != null && position > 0 &&
                 (ViewUtil.hitTest(holder.dragView, x, y) || ViewUtil.hitTest(holder.image, x, y));
     }
 
     @Override
-    public ItemDraggableRange onGetItemDraggableRange(ViewHolder holder, int position) {
+    public ItemDraggableRange onGetItemDraggableRange(@NonNull ViewHolder holder, int position) {
         return new ItemDraggableRange(1, dataSet.size());
     }
 
@@ -98,6 +98,7 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             if (dragView != null) {
                 if (onMoveItemListener != null) {
                     dragView.setVisibility(View.VISIBLE);

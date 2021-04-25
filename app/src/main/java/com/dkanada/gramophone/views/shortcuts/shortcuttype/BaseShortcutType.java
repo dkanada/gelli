@@ -13,15 +13,15 @@ import com.dkanada.gramophone.views.shortcuts.AppShortcutLauncherActivity;
 @TargetApi(Build.VERSION_CODES.O)
 public abstract class BaseShortcutType {
 
-    static final String PREFIX = BuildConfig.APPLICATION_ID + ".views.shortcut";
+    protected static final String PREFIX = BuildConfig.APPLICATION_ID + ".views.shortcut";
 
-    Context context;
+    protected final Context context;
 
     public BaseShortcutType(Context context) {
         this.context = context;
     }
 
-    static public String getId() {
+    public static String getId() {
         return PREFIX + ".base";
     }
 

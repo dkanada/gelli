@@ -35,7 +35,6 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import java.util.List;
 
 public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, Song> implements MaterialCab.Callback, FastScrollRecyclerView.SectionedAdapter {
-
     protected final AppCompatActivity activity;
     protected List<Song> dataSet;
 
@@ -56,6 +55,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
         this.itemLayoutRes = itemLayoutRes;
         this.usePalette = usePalette;
         this.showSectionName = showSectionName;
+
         setHasStableIds(true);
     }
 
@@ -78,10 +78,11 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
         return dataSet.get(position).hashCode();
     }
 
-    @Override
     @NonNull
+    @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(itemLayoutRes, parent, false);
+
         return createViewHolder(view);
     }
 
@@ -92,11 +93,10 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Song song = dataSet.get(position);
-
         boolean isChecked = isChecked(song);
         holder.itemView.setActivated(isChecked);
 
-        if (holder.getAdapterPosition() == getItemCount() - 1) {
+        if (holder.getBindingAdapterPosition() == getItemCount() - 1) {
             if (holder.shortSeparator != null) {
                 holder.shortSeparator.setVisibility(View.GONE);
             }
@@ -216,6 +216,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             setImageTransitionName(activity.getString(R.string.transition_album_image));
 
             if (menu == null) {
@@ -241,7 +242,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
         }
 
         protected Song getSong() {
-            return dataSet.get(getAdapterPosition());
+            return dataSet.get(getBindingAdapterPosition());
         }
 
         protected int getSongMenuRes() {
@@ -264,15 +265,15 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
         @Override
         public void onClick(View v) {
             if (isInQuickSelectMode()) {
-                toggleChecked(getAdapterPosition());
+                toggleChecked(getBindingAdapterPosition());
             } else {
-                MusicPlayerRemote.openQueue(dataSet, getAdapterPosition(), true);
+                MusicPlayerRemote.openQueue(dataSet, getBindingAdapterPosition(), true);
             }
         }
 
         @Override
         public boolean onLongClick(View view) {
-            return toggleChecked(getAdapterPosition());
+            return toggleChecked(getBindingAdapterPosition());
         }
     }
 }

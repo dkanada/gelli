@@ -1,5 +1,6 @@
 package com.dkanada.gramophone.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -29,8 +30,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressLint("ClickableViewAccessibility")
 public class SearchActivity extends AbsMusicServiceActivity implements SearchView.OnQueryTextListener {
-    public String QUERY = "query";
+    private String QUERY = "query";
 
     private ActivitySearchBinding binding;
 
@@ -82,6 +84,7 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+
         outState.putString(QUERY, query);
     }
 
@@ -116,7 +119,7 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
         });
 
         searchView.setQuery(query, false);
-        searchView.post(() -> searchView.setOnQueryTextListener(SearchActivity.this));
+        searchView.setOnQueryTextListener(SearchActivity.this);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -136,34 +139,31 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
         ItemQuery itemQuery = new ItemQuery();
         itemQuery.setSearchTerm(query);
 
-        MediaCallback<Object> callback = new MediaCallback<Object>() {
-            @Override
-            public void onLoadMedia(List<Object> media) {
-                List<Artist> artists = new ArrayList<>();
-                List<Album> albums = new ArrayList<>();
-                List<Song> songs = new ArrayList<>();
+        MediaCallback<Object> callback = media -> {
+            List<Artist> artists = new ArrayList<>();
+            List<Album> albums = new ArrayList<>();
+            List<Song> songs = new ArrayList<>();
 
-                for (Object result : media) {
-                    if (result instanceof Artist) {
-                        artists.add((Artist) result);
-                    } else if (result instanceof Album) {
-                        albums.add((Album) result);
-                    } else if (result instanceof Song) {
-                        songs.add((Song) result);
-                    }
+            for (Object result : media) {
+                if (result instanceof Artist) {
+                    artists.add((Artist) result);
+                } else if (result instanceof Album) {
+                    albums.add((Album) result);
+                } else if (result instanceof Song) {
+                    songs.add((Song) result);
                 }
-
-                Collections.sort(artists, (one, two) -> one.name.compareTo(two.name));
-                Collections.sort(albums, (one, two) -> one.title.compareTo(two.title));
-                Collections.sort(songs, (one, two) -> one.title.compareTo(two.title));
-
-                List<Object> sortedData = new ArrayList<>();
-                sortedData.addAll(artists);
-                sortedData.addAll(albums);
-                sortedData.addAll(songs);
-
-                adapter.swapDataSet(sortedData);
             }
+
+            Collections.sort(artists, (one, two) -> one.name.compareTo(two.name));
+            Collections.sort(albums, (one, two) -> one.title.compareTo(two.title));
+            Collections.sort(songs, (one, two) -> one.title.compareTo(two.title));
+
+            List<Object> sortedData = new ArrayList<>();
+            sortedData.addAll(artists);
+            sortedData.addAll(albums);
+            sortedData.addAll(songs);
+
+            adapter.swapDataSet(sortedData);
         };
 
         QueryUtil.getItems(itemQuery, callback);
@@ -178,12 +178,7 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
     @Override
     public boolean onQueryTextChange(String newText) {
         handler.removeCallbacksAndMessages(null);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                search(newText);
-            }
-        }, 1000);
+        handler.postDelayed(() -> search(newText), 1000);
 
         return false;
     }

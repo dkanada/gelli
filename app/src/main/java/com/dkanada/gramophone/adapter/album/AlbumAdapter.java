@@ -42,6 +42,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
 
     public AlbumAdapter(@NonNull AppCompatActivity activity, List<Album> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
         super(activity, cabHolder, R.menu.menu_media_selection);
+
         this.activity = activity;
         this.dataSet = dataSet;
         this.itemLayoutRes = itemLayoutRes;
@@ -64,10 +65,11 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
         return dataSet;
     }
 
-    @Override
     @NonNull
+    @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(itemLayoutRes, parent, false);
+
         return createViewHolder(view, viewType);
     }
 
@@ -86,11 +88,10 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final Album album = dataSet.get(position);
-
         final boolean isChecked = isChecked(album);
         holder.itemView.setActivated(isChecked);
 
-        if (holder.getAdapterPosition() == getItemCount() - 1) {
+        if (holder.getBindingAdapterPosition() == getItemCount() - 1) {
             if (holder.shortSeparator != null) {
                 holder.shortSeparator.setVisibility(View.GONE);
             }
@@ -206,8 +207,9 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
     }
 
     public class ViewHolder extends MediaEntryViewHolder {
-        public ViewHolder(@NonNull final View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             setImageTransitionName(activity.getString(R.string.transition_album_image));
             if (menu != null) {
                 menu.setVisibility(View.GONE);
@@ -217,16 +219,16 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
         @Override
         public void onClick(View v) {
             if (isInQuickSelectMode()) {
-                toggleChecked(getAdapterPosition());
+                toggleChecked(getBindingAdapterPosition());
             } else {
                 Pair[] albumPairs = new Pair[]{Pair.create(image, activity.getResources().getString(R.string.transition_album_image))};
-                NavigationUtil.goToAlbum(activity, dataSet.get(getAdapterPosition()), albumPairs);
+                NavigationUtil.goToAlbum(activity, dataSet.get(getBindingAdapterPosition()), albumPairs);
             }
         }
 
         @Override
         public boolean onLongClick(View view) {
-            toggleChecked(getAdapterPosition());
+            toggleChecked(getBindingAdapterPosition());
             return true;
         }
     }

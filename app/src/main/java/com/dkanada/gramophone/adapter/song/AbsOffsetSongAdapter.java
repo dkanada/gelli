@@ -91,22 +91,22 @@ public abstract class AbsOffsetSongAdapter extends SongAdapter {
         protected Song getSong() {
             // return empty song just to be safe
             if (getItemViewType() == OFFSET_ITEM) return Song.EMPTY;
-            return dataSet.get(getAdapterPosition() - 1);
+            return dataSet.get(getBindingAdapterPosition() - 1);
         }
 
         @Override
         public void onClick(View v) {
             if (isInQuickSelectMode() && getItemViewType() != OFFSET_ITEM) {
-                toggleChecked(getAdapterPosition());
+                toggleChecked(getBindingAdapterPosition());
             } else {
-                MusicPlayerRemote.openQueue(dataSet, getAdapterPosition() - 1, true);
+                MusicPlayerRemote.openQueue(dataSet, getBindingAdapterPosition() - 1, true);
             }
         }
 
         @Override
         public boolean onLongClick(View view) {
             if (getItemViewType() == OFFSET_ITEM) return false;
-            toggleChecked(getAdapterPosition());
+            toggleChecked(getBindingAdapterPosition());
             return true;
         }
     }

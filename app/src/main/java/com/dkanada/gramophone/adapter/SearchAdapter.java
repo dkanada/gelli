@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
-
     private static final int HEADER = 0;
     private static final int ALBUM = 1;
     private static final int ARTIST = 2;
@@ -53,8 +52,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         return HEADER;
     }
 
-    @Override
     @NonNull
+    @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == HEADER)
             return new ViewHolder(LayoutInflater.from(activity).inflate(R.layout.sub_header, parent, false), viewType);
@@ -100,6 +99,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public class ViewHolder extends MediaEntryViewHolder {
         public ViewHolder(@NonNull View itemView, int itemViewType) {
             super(itemView);
+
             itemView.setOnLongClickListener(null);
 
             if (itemViewType != HEADER) {
@@ -119,7 +119,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     menu.setOnClickListener(new SongMenuHelper.OnClickSongMenu(activity) {
                         @Override
                         public Song getSong() {
-                            return (Song) dataSet.get(getAdapterPosition());
+                            return (Song) dataSet.get(getBindingAdapterPosition());
                         }
                     });
                 } else {
@@ -145,7 +145,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
         @Override
         public void onClick(View view) {
-            Object item = dataSet.get(getAdapterPosition());
+            Object item = dataSet.get(getBindingAdapterPosition());
             switch (getItemViewType()) {
                 case ALBUM:
                     NavigationUtil.goToAlbum(activity,

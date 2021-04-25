@@ -21,10 +21,11 @@ public class DirectPlayCodecAdapter extends RecyclerView.Adapter<DirectPlayCodec
         this.directPlayCodecs = directPlayCodecs;
     }
 
-    @Override
     @NonNull
+    @Override
     public DirectPlayCodecAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preference_dialog_direct_play_codecs_item, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -51,7 +52,7 @@ public class DirectPlayCodecAdapter extends RecyclerView.Adapter<DirectPlayCodec
         return directPlayCodecs;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public CheckBox checkbox;
         public TextView container;
         public TextView codec;

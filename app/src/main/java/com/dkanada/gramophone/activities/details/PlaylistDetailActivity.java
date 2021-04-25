@@ -22,7 +22,6 @@ import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.helper.menu.PlaylistMenuHelper;
 import com.dkanada.gramophone.interfaces.CabHolder;
-import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.PlaylistSong;
 import com.dkanada.gramophone.model.Song;
@@ -35,7 +34,6 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import org.jellyfin.apiclient.model.playlists.PlaylistItemQuery;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlaylistDetailActivity extends AbsMusicPanelActivity implements CabHolder {
     public static String EXTRA_PLAYLIST = "extra_playlist";

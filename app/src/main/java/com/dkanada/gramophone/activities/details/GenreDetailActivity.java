@@ -11,15 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
 import com.dkanada.gramophone.databinding.ActivityGenreDetailBinding;
-import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.interfaces.CabHolder;
-import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Genre;
-import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.QueryUtil;
@@ -29,7 +26,6 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHolder {
     public static final String EXTRA_GENRE = "extra_genre";
@@ -40,8 +36,6 @@ public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHol
 
     private MaterialCab cab;
     private SongAdapter adapter;
-
-    private RecyclerView.Adapter wrappedAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,11 +141,6 @@ public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHol
     @Override
     protected void onDestroy() {
         binding.recyclerView.setAdapter(null);
-
-        if (wrappedAdapter != null) {
-            WrapperAdapterUtils.releaseAll(wrappedAdapter);
-            wrappedAdapter = null;
-        }
 
         adapter = null;
         super.onDestroy();

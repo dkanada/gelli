@@ -84,7 +84,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
         boolean isChecked = isChecked(artist);
         holder.itemView.setActivated(isChecked);
 
-        if (holder.getAdapterPosition() == getItemCount() - 1) {
+        if (holder.getBindingAdapterPosition() == getItemCount() - 1) {
             if (holder.shortSeparator != null) {
                 holder.shortSeparator.setVisibility(View.GONE);
             }
@@ -191,16 +191,16 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
         @Override
         public void onClick(View v) {
             if (isInQuickSelectMode()) {
-                toggleChecked(getAdapterPosition());
+                toggleChecked(getBindingAdapterPosition());
             } else {
                 Pair[] artistPairs = new Pair[]{Pair.create(image, activity.getResources().getString(R.string.transition_artist_image))};
-                NavigationUtil.goToArtist(activity, dataSet.get(getAdapterPosition()), artistPairs);
+                NavigationUtil.goToArtist(activity, dataSet.get(getBindingAdapterPosition()), artistPairs);
             }
         }
 
         @Override
         public boolean onLongClick(View view) {
-            toggleChecked(getAdapterPosition());
+            toggleChecked(getBindingAdapterPosition());
             return true;
         }
     }

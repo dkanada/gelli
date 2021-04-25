@@ -24,7 +24,7 @@ import java.util.List;
 public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAdapter<PlayingQueueAdapter.ViewHolder> {
     private static final int HISTORY = 0;
     private static final int CURRENT = 1;
-    private static final int UP_NEXT = 2;
+    private static final int NEXT = 2;
 
     private int current;
 
@@ -44,6 +44,7 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
         if (holder.imageText != null) {
             holder.imageText.setText(String.valueOf(position - current));
         }
+
         if (holder.getItemViewType() == HISTORY || holder.getItemViewType() == CURRENT) {
             setAlpha(holder, 0.5f);
         }
@@ -54,8 +55,9 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
         if (position < current) {
             return HISTORY;
         } else if (position > current) {
-            return UP_NEXT;
+            return NEXT;
         }
+
         return CURRENT;
     }
 
@@ -103,7 +105,7 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
     }
 
     @Override
-    public ItemDraggableRange onGetItemDraggableRange(ViewHolder holder, int position) {
+    public ItemDraggableRange onGetItemDraggableRange(@NonNull ViewHolder holder, int position) {
         return null;
     }
 
@@ -133,6 +135,7 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             if (imageText != null) {
                 imageText.setVisibility(View.VISIBLE);
             }
@@ -151,7 +154,7 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
         protected boolean onSongMenuItemClick(MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.action_remove_from_queue:
-                    MusicPlayerRemote.removeFromQueue(getAdapterPosition());
+                    MusicPlayerRemote.removeFromQueue(getBindingAdapterPosition());
                     return true;
             }
 

@@ -17,6 +17,7 @@ public class HorizontalAdapterHelper {
 
         layoutParams.leftMargin = listMargin / 3;
         layoutParams.rightMargin = listMargin / 3;
+
         if (viewType == TYPE_FIRST) {
             layoutParams.leftMargin = listMargin;
         } else if (viewType == TYPE_LAST) {

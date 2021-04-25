@@ -44,7 +44,7 @@ public class ThemeUtil {
     private static class SwatchComparator implements Comparator<Palette.Swatch> {
         private static SwatchComparator sInstance;
 
-        static SwatchComparator getInstance() {
+        private static SwatchComparator getInstance() {
             if (sInstance == null) {
                 sInstance = new SwatchComparator();
             }

@@ -50,7 +50,6 @@ public class AlbumSongAdapter extends SongAdapter {
     }
 
     public class ViewHolder extends SongAdapter.ViewHolder {
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 

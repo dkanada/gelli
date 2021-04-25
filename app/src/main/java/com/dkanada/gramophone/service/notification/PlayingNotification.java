@@ -15,7 +15,7 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 public abstract class PlayingNotification {
 
     private static final int NOTIFICATION_ID = 1;
-    static final String NOTIFICATION_CHANNEL_ID = "playing_notification";
+    protected static final String NOTIFICATION_CHANNEL_ID = "playing_notification";
 
     private static final int NOTIFY_MODE_FOREGROUND = 1;
     private static final int NOTIFY_MODE_BACKGROUND = 0;
@@ -24,7 +24,7 @@ public abstract class PlayingNotification {
 
     private NotificationManager notificationManager;
     protected MusicService service;
-    boolean stopped;
+    protected boolean stopped;
 
     public synchronized void init(MusicService service) {
         this.service = service;
@@ -63,9 +63,10 @@ public abstract class PlayingNotification {
         notifyMode = newNotifyMode;
     }
 
-    @RequiresApi(26)
+    @RequiresApi(Build.VERSION_CODES.O)
     private void createNotificationChannel() {
         NotificationChannel notificationChannel = notificationManager.getNotificationChannel(NOTIFICATION_CHANNEL_ID);
+
         if (notificationChannel == null) {
             notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, service.getString(R.string.playing_notification_name), NotificationManager.IMPORTANCE_LOW);
             notificationChannel.setDescription(service.getString(R.string.playing_notification_description));

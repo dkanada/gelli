@@ -19,6 +19,7 @@ import com.dkanada.gramophone.helper.SwipeAndDragHelper;
 
 import java.util.List;
 
+@SuppressLint("ClickableViewAccessibility")
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> implements SwipeAndDragHelper.ActionCompletionContract {
     private List<CategoryInfo> categories;
     private ItemTouchHelper touchHelper;
@@ -29,14 +30,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         touchHelper = new ItemTouchHelper(swipeAndDragHelper);
     }
 
-    @Override
     @NonNull
+    @Override
     public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.preference_dialog_category_item, parent, false);
+
         return new ViewHolder(view);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
         CategoryInfo category = categories.get(position);
@@ -59,8 +60,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                     }
 
                     return false;
-                }
-        );
+                });
     }
 
     @Override
@@ -99,13 +99,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return true;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public CheckBox checkBox;
         public TextView title;
         public View dragView;
 
         public ViewHolder(View view) {
             super(view);
+
             checkBox = view.findViewById(R.id.checkbox);
             title = view.findViewById(R.id.title);
             dragView = view.findViewById(R.id.drag_view);

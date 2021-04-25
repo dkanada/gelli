@@ -50,6 +50,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(itemLayoutRes, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -57,7 +58,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Genre genre = dataSet.get(position);
 
-        if (holder.getAdapterPosition() == getItemCount() - 1) {
+        if (holder.getBindingAdapterPosition() == getItemCount() - 1) {
             if (holder.shortSeparator != null) {
                 holder.shortSeparator.setVisibility(View.GONE);
             }
@@ -115,7 +116,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
 
         @Override
         public void onClick(View view) {
-            Genre genre = dataSet.get(getAdapterPosition());
+            Genre genre = dataSet.get(getBindingAdapterPosition());
             NavigationUtil.goToGenre(activity, genre);
         }
     }

@@ -59,6 +59,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(itemLayoutRes, parent, false);
+
         return createViewHolder(view, viewType);
     }
 
@@ -76,7 +77,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
             holder.title.setText(playlist.name);
         }
 
-        if (holder.getAdapterPosition() == getItemCount() - 1) {
+        if (holder.getBindingAdapterPosition() == getItemCount() - 1) {
             if (holder.shortSeparator != null) {
                 holder.shortSeparator.setVisibility(View.GONE);
             }
@@ -149,7 +150,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                     final PopupMenu popupMenu = new PopupMenu(activity, view);
 
                     popupMenu.inflate(R.menu.menu_item_playlist);
-                    popupMenu.setOnMenuItemClickListener(item -> PlaylistMenuHelper.handleMenuClick(activity, dataSet.get(getAdapterPosition()), item));
+                    popupMenu.setOnMenuItemClickListener(item -> PlaylistMenuHelper.handleMenuClick(activity, dataSet.get(getBindingAdapterPosition()), item));
 
                     popupMenu.show();
                 });
@@ -159,16 +160,16 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
         @Override
         public void onClick(View view) {
             if (isInQuickSelectMode()) {
-                toggleChecked(getAdapterPosition());
+                toggleChecked(getBindingAdapterPosition());
             } else {
-                Playlist playlist = dataSet.get(getAdapterPosition());
+                Playlist playlist = dataSet.get(getBindingAdapterPosition());
                 NavigationUtil.goToPlaylist(activity, playlist);
             }
         }
 
         @Override
         public boolean onLongClick(View view) {
-            toggleChecked(getAdapterPosition());
+            toggleChecked(getBindingAdapterPosition());
             return true;
         }
     }
