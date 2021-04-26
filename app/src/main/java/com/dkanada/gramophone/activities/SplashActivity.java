@@ -1,14 +1,7 @@
 package com.dkanada.gramophone.activities;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.provider.Settings;
-
-import androidx.annotation.RequiresApi;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
@@ -38,46 +31,13 @@ public class SplashActivity extends AbsBaseActivity {
     @Override
     public void onPause() {
         super.onPause();
-        overridePendingTransition(0, R.anim.fade_delay);
+        overridePendingTransition(0, R.anim.fade_quick);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && detectBatteryOptimization()) {
-            showBatteryOptimizationDialog();
-        } else {
-            login();
-        }
-    }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private boolean detectBatteryOptimization() {
-        String packageName = getPackageName();
-        PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
-
-        return !pm.isIgnoringBatteryOptimizations(packageName);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void showBatteryOptimizationDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(SplashActivity.this);
-        builder.setMessage(R.string.battery_optimizations_message)
-                .setTitle(R.string.battery_optimizations_title)
-                .setNegativeButton(R.string.ignore, (dialog, id) -> login())
-                .setPositiveButton(R.string.disable, (dialog, id) -> openPowerSettings())
-                .show();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private void openPowerSettings() {
-        Intent intent = new Intent();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
-        startActivity(intent);
-    }
-
-    public void login() {
         Context context = this;
         User user = App.getDatabase().userDao().getUser(PreferenceUtil.getInstance(this).getUser());
 

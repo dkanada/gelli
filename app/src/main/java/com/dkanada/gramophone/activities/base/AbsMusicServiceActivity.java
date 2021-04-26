@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -183,6 +184,11 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
                 }
             }
         }
+    }
+
+    @Override
+    protected View getPermissionWindow() {
+        return findViewById(R.id.content_container);
     }
 
     @Override
