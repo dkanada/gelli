@@ -76,6 +76,8 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
 
         query = savedInstanceState.getString(QUERY, "");
         handler = new Handler();
+
+        search(query);
     }
 
     @Override
