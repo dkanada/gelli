@@ -42,10 +42,10 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setDrawUnderStatusbar();
-        setStatusbarColorAuto();
+        setDrawUnderStatusBar();
+        setStatusBarColorAuto();
 
-        setNavigationbarColorAuto();
+        setNavigationBarColorAuto();
         setTaskDescriptionColorAuto();
 
         binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));

@@ -21,10 +21,10 @@ public class SplashActivity extends AbsBaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash);
-        setDrawUnderStatusbar();
+        setDrawUnderStatusBar();
 
-        setStatusbarColorAuto();
-        setNavigationbarColorAuto();
+        setStatusBarColorAuto();
+        setNavigationBarColorAuto();
         setTaskDescriptionColorAuto();
     }
 

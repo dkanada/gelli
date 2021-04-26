@@ -54,10 +54,10 @@ public class PlaylistDetailActivity extends AbsMusicPanelActivity implements Cab
 
         super.onCreate(savedInstanceState);
 
-        setDrawUnderStatusbar();
-        setStatusbarColorAuto();
+        setDrawUnderStatusBar();
+        setStatusBarColorAuto();
 
-        setNavigationbarColorAuto();
+        setNavigationBarColorAuto();
         setTaskDescriptionColorAuto();
 
         setUpRecyclerView();

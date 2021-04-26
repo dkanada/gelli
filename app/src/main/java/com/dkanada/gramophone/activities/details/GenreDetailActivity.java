@@ -44,10 +44,10 @@ public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHol
 
         super.onCreate(savedInstanceState);
 
-        setDrawUnderStatusbar();
-        setStatusbarColorAuto();
+        setDrawUnderStatusBar();
+        setStatusBarColorAuto();
 
-        setNavigationbarColorAuto();
+        setNavigationBarColorAuto();
         setTaskDescriptionColorAuto();
 
         setUpRecyclerView();

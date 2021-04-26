@@ -62,7 +62,7 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
         // must be loaded before album adapter
         usePalette = PreferenceUtil.getInstance(this).getAlbumArtistColoredFooters();
 
-        setDrawUnderStatusbar();
+        setDrawUnderStatusBar();
         setUpObservableListViewParams();
         setUpToolbar();
         setUpViews();
@@ -167,13 +167,13 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
         toolbarColor = color;
         binding.appBarLayout.setBackgroundColor(color);
 
-        setNavigationbarColor(color);
+        setNavigationBarColor(color);
         setTaskDescriptionColor(color);
 
         binding.toolbar.setBackgroundColor(color);
         // needed to auto readjust the toolbar content color
         setSupportActionBar(binding.toolbar);
-        setStatusbarColor(color);
+        setStatusBarColor(color);
 
         int secondaryTextColor = MaterialValueHelper.getSecondaryTextColor(this, ColorUtil.isColorLight(color));
         binding.durationIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
@@ -268,9 +268,9 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
     }
 
     @Override
-    public void setStatusbarColor(int color) {
-        super.setStatusbarColor(color);
-        setLightStatusbar(false);
+    public void setStatusBarColor(int color) {
+        super.setStatusBarColor(color);
+        setLightStatusBar(false);
     }
 
     private void setArtist(Artist artist) {

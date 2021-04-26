@@ -57,7 +57,7 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
 
         super.onCreate(savedInstanceState);
 
-        setDrawUnderStatusbar();
+        setDrawUnderStatusBar();
         setUpObservableListViewParams();
         setUpToolbar();
         setUpViews();
@@ -118,13 +118,13 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
         toolbarColor = color;
         binding.appBarLayout.setBackgroundColor(color);
 
-        setNavigationbarColor(color);
+        setNavigationBarColor(color);
         setTaskDescriptionColor(color);
 
         binding.toolbar.setBackgroundColor(color);
         // needed to auto readjust the toolbar content color
         setSupportActionBar(binding.toolbar);
-        setStatusbarColor(color);
+        setStatusBarColor(color);
 
         int secondaryTextColor = MaterialValueHelper.getSecondaryTextColor(this, ColorUtil.isColorLight(color));
         binding.artistIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
@@ -241,9 +241,9 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
     }
 
     @Override
-    public void setStatusbarColor(int color) {
-        super.setStatusbarColor(color);
-        setLightStatusbar(false);
+    public void setStatusBarColor(int color) {
+        super.setStatusBarColor(color);
+        setLightStatusBar(false);
     }
 
     private void setAlbum(Album album) {

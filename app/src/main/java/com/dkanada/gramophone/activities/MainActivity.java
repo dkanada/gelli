@@ -51,7 +51,7 @@ public class MainActivity extends AbsMusicPanelActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setDrawUnderStatusbar();
+        setDrawUnderStatusBar();
 
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             binding.navigationView.setFitsSystemWindows(false);

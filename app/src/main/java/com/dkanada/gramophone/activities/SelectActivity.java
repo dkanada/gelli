@@ -41,10 +41,10 @@ public class SelectActivity extends AbsBaseActivity {
             }
         });
 
-        setDrawUnderStatusbar();
-        setStatusbarColorAuto();
+        setDrawUnderStatusBar();
+        setStatusBarColorAuto();
 
-        setNavigationbarColorAuto();
+        setNavigationBarColorAuto();
         setTaskDescriptionColorAuto();
 
         int primaryColor = ThemeStore.primaryColor(this);

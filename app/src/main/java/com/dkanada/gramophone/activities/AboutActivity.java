@@ -60,10 +60,10 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
         supportBinding = CardSupportDevelopmentBinding.bind(findViewById(R.id.support_layout));
         thanksBinding = CardSpecialThanksBinding.bind(findViewById(R.id.thanks_layout));
 
-        setDrawUnderStatusbar();
-        setStatusbarColorAuto();
+        setDrawUnderStatusBar();
+        setStatusBarColorAuto();
 
-        setNavigationbarColorAuto();
+        setNavigationBarColorAuto();
         setTaskDescriptionColorAuto();
 
         setUpViews();

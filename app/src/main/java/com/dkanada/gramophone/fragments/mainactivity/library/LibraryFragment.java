@@ -73,8 +73,8 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         PreferenceUtil.getInstance(getActivity()).registerOnSharedPreferenceChangedListener(this);
-        getMainActivity().setStatusbarColorAuto();
-        getMainActivity().setNavigationbarColorAuto();
+        getMainActivity().setStatusBarColorAuto();
+        getMainActivity().setNavigationBarColorAuto();
         getMainActivity().setTaskDescriptionColorAuto();
 
         setUpToolbar();

@@ -50,10 +50,10 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
         binding = ActivitySearchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setDrawUnderStatusbar();
-        setStatusbarColorAuto();
+        setDrawUnderStatusBar();
+        setStatusBarColorAuto();
 
-        setNavigationbarColorAuto();
+        setNavigationBarColorAuto();
         setTaskDescriptionColorAuto();
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
