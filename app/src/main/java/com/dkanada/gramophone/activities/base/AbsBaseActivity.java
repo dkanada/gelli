@@ -36,8 +36,8 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        permissions = getPermissionsToRequest();
-        allowed = hasPermissions();
+        permissions = getPermissionRequest();
+        allowed = checkPermissions();
     }
 
     @Override
@@ -59,13 +59,13 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
 
             new Handler().postDelayed(builder::show, 2000);
         } else if (permissions.size() != 0 && ActivityCompat.shouldShowRequestPermissionRationale(this, permissions.get(0))) {
-            builder.setMessage(getPermissionDeniedMessage())
+            builder.setMessage(getPermissionMessage())
                 .setTitle(R.string.permissions_denied)
                 .setPositiveButton(R.string.action_grant, (dialog, id) -> requestPermissions());
 
             new Handler().postDelayed(builder::show, 2000);
-        } else if (!hasPermissions()) {
-            builder.setMessage(getPermissionDeniedMessage())
+        } else if (!checkPermissions()) {
+            builder.setMessage(getPermissionMessage())
                 .setTitle(R.string.permissions_denied)
                 .setPositiveButton(R.string.action_settings, (dialog, id) -> NavigationUtil.openSettings(this));
 
@@ -78,7 +78,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     protected void onResume() {
         super.onResume();
 
-        if (hasPermissions() != allowed) {
+        if (checkPermissions() != allowed) {
             super.recreate();
         }
     }
@@ -87,16 +87,16 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
         return getWindow().getDecorView();
     }
 
-    protected List<String> getPermissionsToRequest() {
+    protected List<String> getPermissionRequest() {
         return new ArrayList<>();
     }
 
-    protected String getPermissionDeniedMessage() {
+    protected String getPermissionMessage() {
         return getString(R.string.permissions_denied);
     }
 
     private void showWarning() {
-        Snackbar.make(getPermissionWindow(), getPermissionDeniedMessage(), Snackbar.LENGTH_SHORT)
+        Snackbar.make(getPermissionWindow(), getPermissionMessage(), Snackbar.LENGTH_SHORT)
             .setAction(R.string.ignore, view -> { })
             .setActionTextColor(ThemeStore.accentColor(this))
             .show();
@@ -121,12 +121,12 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    protected void requestPermissions() {
+    private void requestPermissions() {
         requestPermissions(permissions.toArray(new String[0]), PERMISSION_REQUEST);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    protected boolean hasPermissions() {
+    private boolean checkPermissions() {
         for (String permission : permissions) {
             if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
                 return false;

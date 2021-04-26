@@ -192,12 +192,12 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
     }
 
     @Override
-    protected String getPermissionDeniedMessage() {
+    protected String getPermissionMessage() {
         return getString(R.string.permission_external_storage_denied);
     }
 
     @Override
-    protected List<String> getPermissionsToRequest() {
+    protected List<String> getPermissionRequest() {
         return Arrays.asList(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 }
