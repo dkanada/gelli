@@ -1,5 +1,6 @@
 package com.dkanada.gramophone.activities.base;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -7,11 +8,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbsBaseActivity extends AbsThemeActivity {
@@ -21,6 +24,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     private boolean allowed;
 
     @Override
+    @TargetApi(Build.VERSION_CODES.M)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -29,6 +33,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     }
 
     @Override
+    @TargetApi(Build.VERSION_CODES.M)
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
@@ -38,6 +43,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     }
 
     @Override
+    @TargetApi(Build.VERSION_CODES.M)
     protected void onResume() {
         super.onResume();
         if (hasPermissions() != allowed) {
@@ -46,25 +52,23 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     }
 
     protected List<String> getPermissionsToRequest() {
-        return null;
+        return new ArrayList<>();
     }
 
     protected String getPermissionDeniedMessage() {
         return getString(R.string.permissions_denied);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     protected void requestPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && permissions != null) {
-            requestPermissions(permissions.toArray(new String[0]), PERMISSION_REQUEST);
-        }
+        requestPermissions(permissions.toArray(new String[0]), PERMISSION_REQUEST);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     protected boolean hasPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && permissions != null) {
-            for (String permission : permissions) {
-                if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
+        for (String permission : permissions) {
+            if (checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
+                return false;
             }
         }
 
@@ -72,6 +76,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     }
 
     @Override
+    @TargetApi(Build.VERSION_CODES.M)
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] results) {
         super.onRequestPermissionsResult(requestCode, permissions, results);
 
