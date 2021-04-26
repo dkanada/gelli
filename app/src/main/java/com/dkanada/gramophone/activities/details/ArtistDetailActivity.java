@@ -72,6 +72,7 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
 
         ItemQuery albums = new ItemQuery();
         albums.setArtistIds(new String[]{artist.id});
+
         QueryUtil.getAlbums(albums, media -> {
             artist.albums = media;
             setArtist(artist);
@@ -79,6 +80,7 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
 
         ItemQuery songs = new ItemQuery();
         songs.setArtistIds(new String[]{artist.id});
+
         QueryUtil.getSongs(songs, media -> {
             artist.songs = media;
             setArtist(artist);

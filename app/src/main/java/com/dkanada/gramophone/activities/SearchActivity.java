@@ -32,7 +32,7 @@ import java.util.List;
 
 @SuppressLint("ClickableViewAccessibility")
 public class SearchActivity extends AbsMusicServiceActivity implements SearchView.OnQueryTextListener {
-    private String QUERY = "query";
+    private final String QUERY = "query";
 
     private ActivitySearchBinding binding;
 
@@ -74,11 +74,8 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
 
         setUpToolBar();
 
+        query = savedInstanceState.getString(QUERY, "");
         handler = new Handler();
-        if (savedInstanceState != null) {
-            query = savedInstanceState.getString(QUERY);
-            search(query);
-        }
     }
 
     @Override

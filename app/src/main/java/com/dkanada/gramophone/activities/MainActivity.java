@@ -98,7 +98,7 @@ public class MainActivity extends AbsMusicPanelActivity {
 
         // only override when logout selected
         if (onLogout) {
-            overridePendingTransition(0, R.anim.fade_slow);
+            overridePendingTransition(0, R.anim.fade_quick);
             onLogout = false;
         }
     }
@@ -160,8 +160,8 @@ public class MainActivity extends AbsMusicPanelActivity {
             // it also applies a tacky background color for the checked item
             // this is a hack to check the current item without that
             if (menuItem.getItemId() == R.id.nav_settings
-                    || menuItem.getItemId() == R.id.nav_about
-                    || menuItem.getItemId() == R.id.nav_logout) return true;
+                || menuItem.getItemId() == R.id.nav_about
+                || menuItem.getItemId() == R.id.nav_logout) return true;
 
             for (int i = 0; i < binding.navigationView.getMenu().size(); i++) {
                 binding.navigationView.getMenu().getItem(i).setChecked(binding.navigationView.getMenu().getItem(i) == menuItem);
@@ -194,8 +194,8 @@ public class MainActivity extends AbsMusicPanelActivity {
             navigationBinding.text.setText(MusicUtil.getSongInfoString(song));
 
             CustomGlideRequest.Builder
-                    .from(this, song.primary, song.blurHash)
-                    .build().centerInside().into(navigationBinding.image);
+                .from(this, song.primary, song.blurHash)
+                .build().centerInside().into(navigationBinding.image);
         } else if (binding.navigationView.getHeaderCount() != 0) {
             binding.navigationView.removeHeaderView(navigationBinding.getRoot());
             navigationBinding = null;

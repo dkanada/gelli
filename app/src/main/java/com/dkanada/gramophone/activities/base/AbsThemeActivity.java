@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.annotation.ColorInt;
 
+import com.dkanada.gramophone.BuildConfig;
 import com.kabouzeid.appthemehelper.ATH;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.common.ATHToolbarActivity;
@@ -45,7 +46,7 @@ public abstract class AbsThemeActivity extends ATHToolbarActivity {
                 } else {
                     statusBar.setBackgroundColor(color);
                 }
-            } else if (Build.VERSION.SDK_INT >= 21) {
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().setStatusBarColor(ColorUtil.darkenColor(color));
                 setLightStatusbarAuto(color);
             }

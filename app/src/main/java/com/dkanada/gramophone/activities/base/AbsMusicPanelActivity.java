@@ -11,6 +11,7 @@ import android.view.animation.PathInterpolator;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
+import androidx.annotation.RequiresApi;
 import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
 
@@ -103,6 +104,7 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
     @Override
     protected void onResume() {
         super.onResume();
+
         if (currentNowPlayingScreen != PreferenceUtil.getInstance(this).getNowPlayingScreen()) {
             postRecreate();
         }
@@ -241,8 +243,11 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
     public void onPaletteColorChanged() {
         if (getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
             int playerFragmentColor = playerFragment.getPaletteColor();
+
             super.setTaskDescriptionColor(playerFragmentColor);
-            animateNavigationBarColor(playerFragmentColor);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                animateNavigationBarColor(playerFragmentColor);
+            }
         }
     }
 
@@ -268,23 +273,25 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void animateNavigationBarColor(int color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (navigationBarColorAnimator != null) navigationBarColorAnimator.cancel();
-
-            navigationBarColorAnimator = ValueAnimator
-                .ofArgb(getWindow().getNavigationBarColor(), color)
-                .setDuration(ViewUtil.PHONOGRAPH_ANIM_TIME);
-
-            navigationBarColorAnimator.setInterpolator(new PathInterpolator(0.4f, 0f, 1f, 1f));
-            navigationBarColorAnimator.addUpdateListener(animation -> AbsMusicPanelActivity.super.setNavigationbarColor((Integer) animation.getAnimatedValue()));
-            navigationBarColorAnimator.start();
+        if (navigationBarColorAnimator != null) {
+            navigationBarColorAnimator.cancel();
         }
+
+        navigationBarColorAnimator = ValueAnimator
+            .ofArgb(getWindow().getNavigationBarColor(), color)
+            .setDuration(ViewUtil.PHONOGRAPH_ANIM_TIME);
+
+        navigationBarColorAnimator.setInterpolator(new PathInterpolator(0.4f, 0f, 1f, 1f));
+        navigationBarColorAnimator.addUpdateListener(animation -> super.setNavigationbarColor((int) animation.getAnimatedValue()));
+        navigationBarColorAnimator.start();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
         if (navigationBarColorAnimator != null) {
             navigationBarColorAnimator.cancel();
         }

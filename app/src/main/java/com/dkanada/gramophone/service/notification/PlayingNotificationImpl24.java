@@ -29,7 +29,6 @@ import static com.dkanada.gramophone.service.MusicService.ACTION_SKIP;
 import static com.dkanada.gramophone.service.MusicService.ACTION_TOGGLE;
 
 public class PlayingNotificationImpl24 extends PlayingNotification {
-
     @Override
     public synchronized void update() {
         stopped = false;

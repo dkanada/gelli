@@ -13,7 +13,6 @@ import com.dkanada.gramophone.service.MusicService;
 import static android.content.Context.NOTIFICATION_SERVICE;
 
 public abstract class PlayingNotification {
-
     private static final int NOTIFICATION_ID = 1;
     protected static final String NOTIFICATION_CHANNEL_ID = "playing_notification";
 
