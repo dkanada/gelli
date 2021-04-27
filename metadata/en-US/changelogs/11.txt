@@ -1,0 +1,5 @@
+- fix crash on resume with asynchronous authentication
+- improve initial user experience with permission dialogs
+- fix duplicate artist entries in search activity
+- improve widget layouts and fix crash when opening from widgets
+- use login credentials exactly as provided
