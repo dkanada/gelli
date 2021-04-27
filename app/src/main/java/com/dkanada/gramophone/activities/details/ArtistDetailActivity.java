@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.afollestad.materialcab.MaterialCab;
 import com.afollestad.materialdialogs.util.DialogUtils;
 import com.dkanada.gramophone.BuildConfig;
+import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.databinding.ActivityArtistDetailBinding;
 import com.google.android.material.appbar.AppBarLayout;
@@ -30,7 +31,6 @@ import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.interfaces.PaletteColorHolder;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
@@ -40,7 +40,7 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 import java.util.List;
 
-public class ArtistDetailActivity extends AbsMusicPanelActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
+public class ArtistDetailActivity extends AbsMusicContentActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
     public static final String EXTRA_ARTIST = BuildConfig.APPLICATION_ID + ".extra.artist";
 
     private ActivityArtistDetailBinding binding;
@@ -69,7 +69,10 @@ public class ArtistDetailActivity extends AbsMusicPanelActivity implements Palet
 
         loadArtistImage(artist);
         setArtist(artist);
+    }
 
+    @Override
+    public void onStateOnline() {
         ItemQuery albums = new ItemQuery();
         albums.setArtistIds(new String[]{artist.id});
 

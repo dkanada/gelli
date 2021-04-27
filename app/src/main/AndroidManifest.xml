@@ -70,6 +70,10 @@
             android:name=".service.MusicService"
             android:enabled="true" />
 
+        <service
+            android:name=".service.LoginService"
+            android:enabled="true" />
+
         <receiver android:name=".service.MediaButtonIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />

@@ -13,6 +13,7 @@ import androidx.core.util.Pair;
 
 import com.dkanada.gramophone.activities.LoginActivity;
 import com.dkanada.gramophone.activities.MainActivity;
+import com.dkanada.gramophone.activities.SelectActivity;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Genre;
@@ -43,6 +44,13 @@ public class NavigationUtil {
 
     public static void startLogin(@NonNull final Context context) {
         final Intent intent = new Intent(context, LoginActivity.class);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        context.startActivity(intent);
+    }
+
+    public static void startSelect(@NonNull final Context context) {
+        final Intent intent = new Intent(context, SelectActivity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);

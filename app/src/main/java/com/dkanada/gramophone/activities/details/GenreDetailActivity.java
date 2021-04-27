@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
 import com.dkanada.gramophone.BuildConfig;
+import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityGenreDetailBinding;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
@@ -18,7 +19,6 @@ import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Genre;
-import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.ViewUtil;
@@ -28,7 +28,7 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 import java.util.ArrayList;
 
-public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHolder {
+public class GenreDetailActivity extends AbsMusicContentActivity implements CabHolder {
     public static final String EXTRA_GENRE = BuildConfig.APPLICATION_ID + ".extra.genre";
 
     private ActivityGenreDetailBinding binding;
@@ -52,7 +52,10 @@ public class GenreDetailActivity extends AbsMusicPanelActivity implements CabHol
 
         setUpRecyclerView();
         setUpToolBar();
+    }
 
+    @Override
+    public void onStateOnline() {
         ItemQuery query = new ItemQuery();
         query.setGenreIds(new String[]{genre.id});
 

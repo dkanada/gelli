@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
 import com.dkanada.gramophone.BuildConfig;
+import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityPlaylistDetailBinding;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator;
@@ -26,7 +27,6 @@ import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.PlaylistSong;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.PlaylistUtil;
 import com.dkanada.gramophone.util.ViewUtil;
@@ -35,7 +35,7 @@ import org.jellyfin.apiclient.model.playlists.PlaylistItemQuery;
 
 import java.util.ArrayList;
 
-public class PlaylistDetailActivity extends AbsMusicPanelActivity implements CabHolder {
+public class PlaylistDetailActivity extends AbsMusicContentActivity implements CabHolder {
     public static String EXTRA_PLAYLIST = BuildConfig.APPLICATION_ID + ".extra.playlist";
 
     private ActivityPlaylistDetailBinding binding;
@@ -62,7 +62,10 @@ public class PlaylistDetailActivity extends AbsMusicPanelActivity implements Cab
 
         setUpRecyclerView();
         setUpToolbar();
+    }
 
+    @Override
+    public void onStateOnline() {
         PlaylistItemQuery query = new PlaylistItemQuery();
         query.setId(playlist.id);
 

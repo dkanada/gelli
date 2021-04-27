@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
@@ -26,7 +27,6 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.fragments.mainactivity.library.LibraryFragment;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.QueryUtil;
@@ -36,7 +36,7 @@ import org.jellyfin.apiclient.model.dto.BaseItemDto;
 
 import java.util.List;
 
-public class MainActivity extends AbsMusicPanelActivity {
+public class MainActivity extends AbsMusicContentActivity {
     private ActivityMainDrawerLayoutBinding binding;
     private ActivityMainContentBinding contentBinding;
     private NavigationDrawerHeaderBinding navigationBinding;
@@ -48,15 +48,22 @@ public class MainActivity extends AbsMusicPanelActivity {
     @Nullable
     private List<BaseItemDto> libraries;
 
+    @Nullable
+    private Bundle state;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setDrawUnderStatusBar();
 
+        state = savedInstanceState;
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             binding.navigationView.setFitsSystemWindows(false);
         }
+    }
 
+    @Override
+    public void onStateOnline() {
         Menu menu = binding.navigationView.getMenu();
         QueryUtil.getLibraries(media -> {
             libraries = media;
@@ -84,7 +91,7 @@ public class MainActivity extends AbsMusicPanelActivity {
             setUpDrawerLayout();
 
             menu.getItem(0).setChecked(true);
-            if (savedInstanceState == null) {
+            if (state == null) {
                 setCurrentFragment(LibraryFragment.newInstance());
             } else {
                 restoreCurrentFragment();

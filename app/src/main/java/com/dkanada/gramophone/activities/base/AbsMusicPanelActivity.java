@@ -1,7 +1,6 @@
 package com.dkanada.gramophone.activities.base;
 
 import android.animation.ValueAnimator;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +14,9 @@ import androidx.annotation.RequiresApi;
 import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
 
-import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.databinding.SlidingMusicPanelLayoutBinding;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
-import com.dkanada.gramophone.activities.SplashActivity;
 import com.dkanada.gramophone.fragments.player.AbsPlayerFragment;
 import com.dkanada.gramophone.fragments.player.MiniPlayerFragment;
 import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
@@ -45,15 +42,6 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(createContentView());
-
-        // TODO use a fragment for the splash activity
-        if (App.getApiClient() == null) {
-            Intent intent = new Intent(this, SplashActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent);
-            finish();
-            return;
-        }
 
         currentNowPlayingScreen = PreferenceUtil.getInstance(this).getNowPlayingScreen();
 

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.afollestad.materialcab.MaterialCab;
 import com.afollestad.materialdialogs.util.DialogUtils;
 import com.dkanada.gramophone.BuildConfig;
+import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityAlbumDetailBinding;
 import com.google.android.material.appbar.AppBarLayout;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
@@ -29,7 +30,6 @@ import com.dkanada.gramophone.interfaces.PaletteColorHolder;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.activities.base.AbsMusicPanelActivity;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.ThemeUtil;
@@ -39,7 +39,7 @@ import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 import java.util.List;
 
-public class AlbumDetailActivity extends AbsMusicPanelActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
+public class AlbumDetailActivity extends AbsMusicContentActivity implements PaletteColorHolder, CabHolder, AppBarLayout.OnOffsetChangedListener {
     public static final String EXTRA_ALBUM = BuildConfig.APPLICATION_ID + ".extra.album";
 
     private ActivityAlbumDetailBinding binding;
@@ -64,7 +64,10 @@ public class AlbumDetailActivity extends AbsMusicPanelActivity implements Palett
 
         loadAlbumCover(album);
         setAlbum(album);
+    }
 
+    @Override
+    public void onStateOnline() {
         ItemQuery query = new ItemQuery();
         query.setParentId(album.id);
         query.setSortBy(new String[]{"ParentIndexNumber", "IndexNumber"});
