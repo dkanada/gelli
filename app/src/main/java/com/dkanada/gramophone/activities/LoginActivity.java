@@ -84,9 +84,9 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
             return;
         }
 
-        String username = binding.username.getText().toString().trim();
-        String password = binding.password.getText().toString().trim();
-        String server = binding.server.getText().toString().trim();
+        String username = binding.username.getText().toString();
+        String password = binding.password.getText().toString();
+        String server = binding.server.getText().toString();
         Context context = this;
 
         if (TextUtils.isEmpty(username)) {
