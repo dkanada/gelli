@@ -1,0 +1,1 @@
+- fix crash on search from null value
