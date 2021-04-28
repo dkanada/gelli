@@ -55,9 +55,11 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
 
         setNavigationBarColorAuto();
         setTaskDescriptionColorAuto();
+        setUpToolBar();
 
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        handler = new Handler();
         adapter = new SearchAdapter(this, Collections.emptyList());
+
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {
@@ -66,18 +68,12 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
             }
         });
 
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setOnTouchListener((v, event) -> {
             hideSoftKeyboard();
             return false;
         });
-
-        setUpToolBar();
-
-        query = savedInstanceState.getString(QUERY, "");
-        handler = new Handler();
-
-        search(query);
     }
 
     @Override
@@ -85,6 +81,13 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
         super.onSaveInstanceState(outState);
 
         outState.putString(QUERY, query);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        search(savedInstanceState.getString(QUERY, ""));
     }
 
     private void setUpToolBar() {
