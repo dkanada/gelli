@@ -11,7 +11,7 @@
 
 // Modified for Phonograph by Karim Abou Zeid (kabouzeid).
 
-package com.dkanada.gramophone.service;
+package com.dkanada.gramophone.service.receivers;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -27,6 +27,7 @@ import android.view.KeyEvent;
 import androidx.core.content.ContextCompat;
 
 import com.dkanada.gramophone.BuildConfig;
+import com.dkanada.gramophone.service.MusicService;
 
 /**
  * Used to control headset playback.

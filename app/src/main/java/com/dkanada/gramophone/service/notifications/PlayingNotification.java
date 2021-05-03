@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.service.notification;
+package com.dkanada.gramophone.service.notifications;
 
 import android.app.Notification;
 import android.app.NotificationChannel;

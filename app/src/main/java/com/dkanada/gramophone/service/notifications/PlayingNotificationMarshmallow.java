@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.service.notification;
+package com.dkanada.gramophone.service.notifications;
 
 import android.app.Notification;
 import android.app.PendingIntent;
@@ -32,7 +32,7 @@ import com.dkanada.gramophone.util.ImageUtil;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
-public class PlayingNotificationImpl extends PlayingNotification {
+public class PlayingNotificationMarshmallow extends PlayingNotification {
 
     private Target<BitmapPaletteWrapper> target;
 

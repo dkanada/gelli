@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.service.notification;
+package com.dkanada.gramophone.service.notifications;
 
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -28,7 +28,7 @@ import static com.dkanada.gramophone.service.MusicService.ACTION_REWIND;
 import static com.dkanada.gramophone.service.MusicService.ACTION_SKIP;
 import static com.dkanada.gramophone.service.MusicService.ACTION_TOGGLE;
 
-public class PlayingNotificationImpl24 extends PlayingNotification {
+public class PlayingNotificationNougat extends PlayingNotification {
     @Override
     public synchronized void update() {
         stopped = false;

@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.service
+package com.dkanada.gramophone.service.playback
 
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.drm.DrmSessionManager

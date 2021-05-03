@@ -43,11 +43,12 @@ import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.helper.ShuffleHelper;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.service.notification.PlayingNotification;
-import com.dkanada.gramophone.service.notification.PlayingNotificationImpl;
-import com.dkanada.gramophone.service.notification.PlayingNotificationImpl24;
+import com.dkanada.gramophone.service.notifications.PlayingNotification;
+import com.dkanada.gramophone.service.notifications.PlayingNotificationMarshmallow;
+import com.dkanada.gramophone.service.notifications.PlayingNotificationNougat;
 import com.dkanada.gramophone.service.playback.LocalPlayer;
 import com.dkanada.gramophone.service.playback.Playback;
+import com.dkanada.gramophone.service.receivers.MediaButtonIntentReceiver;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
 import com.dkanada.gramophone.views.widgets.AppWidgetAlbum;
@@ -539,9 +540,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public void initNotification() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !PreferenceUtil.getInstance(this).getClassicNotification()) {
-            playingNotification = new PlayingNotificationImpl24();
+            playingNotification = new PlayingNotificationNougat();
         } else {
-            playingNotification = new PlayingNotificationImpl();
+            playingNotification = new PlayingNotificationMarshmallow();
         }
 
         playingNotification.init(this);

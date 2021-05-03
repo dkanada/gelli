@@ -74,7 +74,7 @@
             android:name=".service.LoginService"
             android:enabled="true" />
 
-        <receiver android:name=".service.MediaButtonIntentReceiver">
+        <receiver android:name=".service.receivers.MediaButtonIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
