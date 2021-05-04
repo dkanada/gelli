@@ -13,6 +13,8 @@ import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
 public class ConfirmLogoutDialog extends DialogFragment {
+    public static final String TAG = ConfirmLogoutDialog.class.getSimpleName();
+
     @NonNull
     public static ConfirmLogoutDialog create() {
         return new ConfirmLogoutDialog();

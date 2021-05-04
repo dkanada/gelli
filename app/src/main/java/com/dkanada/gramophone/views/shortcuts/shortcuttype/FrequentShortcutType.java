@@ -19,6 +19,7 @@ public final class FrequentShortcutType extends BaseShortcutType {
         return PREFIX + ".frequent";
     }
 
+    @Override
     public ShortcutInfo getShortcutInfo() {
         return new ShortcutInfo.Builder(context, getId())
             .setShortLabel(context.getString(R.string.my_top_tracks))

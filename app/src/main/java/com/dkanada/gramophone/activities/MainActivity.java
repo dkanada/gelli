@@ -149,7 +149,7 @@ public class MainActivity extends AbsMusicContentActivity {
                     break;
                 case R.id.nav_logout:
                     onLogout = true;
-                    ConfirmLogoutDialog.create().show(getSupportFragmentManager(), "CONFIRM_LOGOUT_DIALOG");
+                    ConfirmLogoutDialog.create().show(getSupportFragmentManager(), ConfirmLogoutDialog.TAG);
                     break;
             }
 

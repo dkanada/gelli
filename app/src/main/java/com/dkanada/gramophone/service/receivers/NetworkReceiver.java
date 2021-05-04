@@ -12,10 +12,10 @@ public class NetworkReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
 
         // network info will be null in airplane mode
-        if (netInfo != null && netInfo.isConnected()) {
+        if (networkInfo != null && networkInfo.isConnected()) {
             context.sendBroadcast(new Intent(LoginService.STATE_ONLINE));
         } else {
             context.sendBroadcast(new Intent(LoginService.STATE_OFFLINE));

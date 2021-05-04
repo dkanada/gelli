@@ -18,6 +18,8 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
 
 public class SongDetailDialog extends DialogFragment {
+    public static final String TAG = SongDetailDialog.class.getSimpleName();
+
     @NonNull
     public static SongDetailDialog create(Song song) {
         SongDetailDialog dialog = new SongDetailDialog();

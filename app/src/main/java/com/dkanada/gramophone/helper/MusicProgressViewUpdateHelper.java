@@ -32,6 +32,7 @@ public class MusicProgressViewUpdateHelper extends Handler {
     @Override
     public void handleMessage(@NonNull Message msg) {
         super.handleMessage(msg);
+
         if (msg.what == CMD_REFRESH_PROGRESS_VIEWS) {
             queueNextRefresh(refreshProgressViews());
         }
@@ -40,14 +41,13 @@ public class MusicProgressViewUpdateHelper extends Handler {
     private int refreshProgressViews() {
         final int progressMillis = MusicPlayerRemote.getSongProgressMillis();
         final int totalMillis = MusicPlayerRemote.getSongDurationMillis();
+        final int remainingMillis = intervalPlaying - progressMillis % intervalPlaying;
 
         callback.onUpdateProgressViews(progressMillis, totalMillis);
 
         if (!MusicPlayerRemote.isPlaying()) {
             return intervalPaused;
         }
-
-        final int remainingMillis = intervalPlaying - progressMillis % intervalPlaying;
 
         return Math.max(MIN_INTERVAL, remainingMillis);
     }

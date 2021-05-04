@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.base.MediaEntryViewHolder;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.CustomPaletteTarget;
@@ -24,12 +24,9 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
     private final AppCompatActivity activity;
     private List<Genre> dataSet;
 
-    private int itemLayoutRes;
-
-    public GenreAdapter(@NonNull AppCompatActivity activity, List<Genre> dataSet, @LayoutRes int itemLayoutRes) {
+    public GenreAdapter(@NonNull AppCompatActivity activity, List<Genre> dataSet) {
         this.activity = activity;
         this.dataSet = dataSet;
-        this.itemLayoutRes = itemLayoutRes;
     }
 
     public List<Genre> getDataSet() {
@@ -49,7 +46,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(itemLayoutRes, parent, false);
+        View view = LayoutInflater.from(activity).inflate(R.layout.item_list_single_row, parent, false);
 
         return new ViewHolder(view);
     }

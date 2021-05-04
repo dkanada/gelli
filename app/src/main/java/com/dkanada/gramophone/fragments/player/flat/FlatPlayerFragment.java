@@ -406,7 +406,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
                             MusicPlayerRemote.removeFromQueue(MusicPlayerRemote.getPosition());
                             return true;
                         case R.id.action_share:
-                            SongShareDialog.create(getSong()).show(fragment.getParentFragmentManager(), "SONG_SHARE_DIALOG");
+                            SongShareDialog.create(getSong()).show(fragment.getParentFragmentManager(), SongShareDialog.TAG);
                             return true;
                     }
 

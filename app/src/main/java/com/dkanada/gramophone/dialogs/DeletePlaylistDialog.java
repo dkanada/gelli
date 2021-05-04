@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeletePlaylistDialog extends DialogFragment {
+    public static final String TAG = DeletePlaylistDialog.class.getSimpleName();
+
     @NonNull
     public static DeletePlaylistDialog create(Playlist playlist) {
         List<Playlist> list = new ArrayList<>();
@@ -52,10 +54,7 @@ public class DeletePlaylistDialog extends DialogFragment {
                 .content(content)
                 .positiveText(R.string.delete_action)
                 .negativeText(android.R.string.cancel)
-                .onPositive((dialog, which) -> {
-                    if (getActivity() == null) return;
-                    PlaylistUtil.deletePlaylist(playlists);
-                })
+                .onPositive((dialog, which) -> PlaylistUtil.deletePlaylist(playlists))
                 .build();
     }
 }

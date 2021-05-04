@@ -34,7 +34,6 @@ public class PlayingNotificationNougat extends PlayingNotification {
         stopped = false;
 
         final Song song = service.getCurrentSong();
-
         final boolean isPlaying = service.isPlaying();
 
         final int playButtonResId = isPlaying

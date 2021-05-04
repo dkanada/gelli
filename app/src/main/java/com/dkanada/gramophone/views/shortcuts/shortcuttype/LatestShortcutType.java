@@ -19,6 +19,7 @@ public final class LatestShortcutType extends BaseShortcutType {
         return PREFIX + ".latest";
     }
 
+    @Override
     public ShortcutInfo getShortcutInfo() {
         return new ShortcutInfo.Builder(context, getId())
             .setShortLabel(context.getString(R.string.last_added))

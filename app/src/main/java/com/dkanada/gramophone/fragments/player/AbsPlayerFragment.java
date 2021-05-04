@@ -55,7 +55,7 @@ public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implemen
                 toggleFavorite(song);
                 return true;
             case R.id.action_share:
-                SongShareDialog.create(song).show(getParentFragmentManager(), "SHARE_SONG");
+                SongShareDialog.create(song).show(getParentFragmentManager(), SongShareDialog.TAG);
                 return true;
             case R.id.action_add_to_playlist:
                 AddToPlaylistDialog.create(song).show(getParentFragmentManager(), "ADD_PLAYLIST");
@@ -67,7 +67,7 @@ public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implemen
                 CreatePlaylistDialog.create(MusicPlayerRemote.getPlayingQueue()).show(getParentFragmentManager(), "ADD_TO_PLAYLIST");
                 return true;
             case R.id.action_details:
-                SongDetailDialog.create(song).show(getParentFragmentManager(), "SONG_DETAIL");
+                SongDetailDialog.create(song).show(getParentFragmentManager(), SongDetailDialog.TAG);
                 return true;
             case R.id.action_go_to_album:
                 NavigationUtil.startAlbum(requireActivity(), new Album(song));

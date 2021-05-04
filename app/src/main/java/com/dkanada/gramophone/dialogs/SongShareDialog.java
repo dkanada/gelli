@@ -13,6 +13,8 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
 
 public class SongShareDialog extends DialogFragment {
+    public static final String TAG = SongShareDialog.class.getSimpleName();
+
     @NonNull
     public static SongShareDialog create(final Song song) {
         final SongShareDialog dialog = new SongShareDialog();

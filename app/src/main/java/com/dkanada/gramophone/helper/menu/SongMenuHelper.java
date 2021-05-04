@@ -1,6 +1,5 @@
 package com.dkanada.gramophone.helper.menu;
 
-import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +10,11 @@ import android.widget.PopupMenu;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.dialogs.AddToPlaylistDialog;
 import com.dkanada.gramophone.dialogs.SongDetailDialog;
+import com.dkanada.gramophone.dialogs.SongShareDialog;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.NavigationUtil;
 
 public class SongMenuHelper {
@@ -24,7 +23,7 @@ public class SongMenuHelper {
     public static boolean handleMenuClick(@NonNull FragmentActivity activity, @NonNull Song song, int menuItemId) {
         switch (menuItemId) {
             case R.id.action_share:
-                activity.startActivity(Intent.createChooser(MusicUtil.createShareSongFileIntent(song, activity), null));
+                SongShareDialog.create(song).show(activity.getSupportFragmentManager(), SongShareDialog.TAG);
                 return true;
             case R.id.action_add_to_playlist:
                 AddToPlaylistDialog.create(song).show(activity.getSupportFragmentManager(), "ADD_PLAYLIST");
@@ -36,7 +35,7 @@ public class SongMenuHelper {
                 MusicPlayerRemote.enqueue(song);
                 return true;
             case R.id.action_details:
-                SongDetailDialog.create(song).show(activity.getSupportFragmentManager(), "SONG_DETAILS");
+                SongDetailDialog.create(song).show(activity.getSupportFragmentManager(), SongDetailDialog.TAG);
                 return true;
             case R.id.action_go_to_album:
                 NavigationUtil.startAlbum(activity, new Album(song));
@@ -62,6 +61,7 @@ public class SongMenuHelper {
         @Override
         public void onClick(View v) {
             PopupMenu popupMenu = new PopupMenu(activity, v);
+
             popupMenu.inflate(getMenuRes());
             popupMenu.setOnMenuItemClickListener(this);
             popupMenu.show();

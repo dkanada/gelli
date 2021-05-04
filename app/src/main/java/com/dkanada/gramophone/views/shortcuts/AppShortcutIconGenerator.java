@@ -18,17 +18,16 @@ import com.dkanada.gramophone.util.PreferenceUtil;
 
 @RequiresApi(Build.VERSION_CODES.O)
 public final class AppShortcutIconGenerator {
-
     public static Icon generateThemedIcon(Context context, int iconId) {
         if (PreferenceUtil.getInstance(context).getColoredShortcuts()) {
-            return generateUserThemedIcon(context, iconId).toIcon();
+            return generateUserThemedIcon(context, iconId).toIcon(context);
         } else {
-            return generateDefaultThemedIcon(context, iconId).toIcon();
+            return generateDefaultThemedIcon(context, iconId).toIcon(context);
         }
     }
 
     private static IconCompat generateDefaultThemedIcon(Context context, int iconId) {
-        // Return an Icon of iconId with default colors
+        // return icon of iconId with default colors
         return generateThemedIcon(context, iconId,
                 context.getColor(R.color.app_shortcut_default_foreground),
                 context.getColor(R.color.app_shortcut_default_background)

@@ -163,7 +163,7 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
         @Override
         public void onReceive(final Context context, @NonNull final Intent intent) {
             final String action = intent.getAction();
-            AbsMusicServiceActivity activity = reference.get();
+            final AbsMusicServiceActivity activity = reference.get();
             if (activity != null && action != null) {
                 switch (action) {
                     case MusicService.META_CHANGED:

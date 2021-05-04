@@ -53,7 +53,7 @@ public abstract class AbsThemeActivity extends ATHToolbarActivity {
     }
 
     public void setStatusBarColorAuto() {
-        // we don't want to use status bar color because we are darkening the color on our own to support KitKat
+        // ignore status bar color because we are darkening the color on our own to support KitKat
         setStatusBarColor(ThemeStore.primaryColor(this));
     }
 

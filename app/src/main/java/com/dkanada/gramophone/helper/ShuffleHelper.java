@@ -13,6 +13,7 @@ public class ShuffleHelper {
 
         if (current >= 0) {
             Song song = listToShuffle.remove(current);
+
             Collections.shuffle(listToShuffle);
             listToShuffle.add(0, song);
         } else {

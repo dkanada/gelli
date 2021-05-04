@@ -16,28 +16,28 @@ public class AbsMusicServiceFragment extends Fragment implements MusicServiceEve
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        try {
-            activity = (AbsMusicServiceActivity) context;
-        } catch (ClassCastException e) {
-            throw new RuntimeException(context.getClass().getSimpleName() + " must be an instance of " + AbsMusicServiceActivity.class.getSimpleName());
-        }
+
+        activity = (AbsMusicServiceActivity) context;
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+
         activity = null;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         activity.addMusicServiceEventListener(this);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
         activity.removeMusicServiceEventListener(this);
     }
 

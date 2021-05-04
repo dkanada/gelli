@@ -161,8 +161,8 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
     }
 
     public void onPanelExpanded(View panel) {
-        // setting fragments values
         int playerFragmentColor = playerFragment.getPaletteColor();
+
         super.setLightStatusBar(false);
         super.setTaskDescriptionColor(playerFragmentColor);
         super.setNavigationBarColor(playerFragmentColor);
