@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class MusicUtil {
-    public static String getSongFileUri(Song song) {
+    public static String getTranscodeUri(Song song) {
         PreferenceUtil preferenceUtil = PreferenceUtil.getInstance(App.getInstance());
 
         StringBuilder builder = new StringBuilder(256);

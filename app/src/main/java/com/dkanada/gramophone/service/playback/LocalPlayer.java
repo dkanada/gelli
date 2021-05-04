@@ -96,7 +96,7 @@ public class LocalPlayer implements Playback {
 
     @Override
     public void setDataSource(Song song) {
-        String uri = MusicUtil.getSongFileUri(song);
+        String uri = MusicUtil.getTranscodeUri(song);
         MediaItem mediaItem = exoPlayer.getCurrentMediaItem();
 
         if (mediaItem != null && mediaItem.playbackProperties.uri.toString().equals(uri)) {
@@ -104,7 +104,7 @@ public class LocalPlayer implements Playback {
         }
 
         exoPlayer.clearMediaItems();
-        appendDataSource(MusicUtil.getSongFileUri(song));
+        appendDataSource(MusicUtil.getTranscodeUri(song));
         exoPlayer.seekTo(0, 0);
     }
 
@@ -114,7 +114,7 @@ public class LocalPlayer implements Playback {
             exoPlayer.removeMediaItem(1);
         }
 
-        appendDataSource(MusicUtil.getSongFileUri(song));
+        appendDataSource(MusicUtil.getTranscodeUri(song));
     }
 
     private void appendDataSource(String path) {
