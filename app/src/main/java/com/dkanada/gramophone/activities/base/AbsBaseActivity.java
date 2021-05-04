@@ -45,7 +45,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        if (!getClass().isInstance(MainActivity.class)) {
+        if (!(this instanceof MainActivity)) {
             return;
         }
 
