@@ -3,6 +3,8 @@ package com.dkanada.gramophone.helper.menu;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -15,6 +17,7 @@ import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
+import com.dkanada.gramophone.service.DownloadService;
 import com.dkanada.gramophone.util.NavigationUtil;
 
 public class SongMenuHelper {
@@ -36,6 +39,9 @@ public class SongMenuHelper {
                 return true;
             case R.id.action_details:
                 SongDetailDialog.create(song).show(activity.getSupportFragmentManager(), SongDetailDialog.TAG);
+                return true;
+            case R.id.action_download:
+                NavigationUtil.startDownload(activity, song);
                 return true;
             case R.id.action_go_to_album:
                 NavigationUtil.startAlbum(activity, new Album(song));

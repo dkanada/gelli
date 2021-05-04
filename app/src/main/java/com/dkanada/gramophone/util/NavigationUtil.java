@@ -22,6 +22,8 @@ import com.dkanada.gramophone.activities.details.AlbumDetailActivity;
 import com.dkanada.gramophone.activities.details.ArtistDetailActivity;
 import com.dkanada.gramophone.activities.details.GenreDetailActivity;
 import com.dkanada.gramophone.activities.details.PlaylistDetailActivity;
+import com.dkanada.gramophone.model.Song;
+import com.dkanada.gramophone.service.DownloadService;
 
 public class NavigationUtil {
     public static void openUrl(@NonNull final Context context, String url) {
@@ -98,5 +100,12 @@ public class NavigationUtil {
         } else {
             activity.startActivity(intent);
         }
+    }
+
+    public static void startDownload(@NonNull Activity activity, Song song) {
+        Intent intent = new Intent(activity, DownloadService.class);
+
+        intent.putExtra(DownloadService.EXTRA_SONG, song);
+        activity.startService(intent);
     }
 }

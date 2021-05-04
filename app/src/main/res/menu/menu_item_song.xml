@@ -29,4 +29,8 @@
         android:id="@+id/action_details"
         android:title="@string/action_details"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_download"
+        android:title="@string/action_download"
+        app:showAsAction="never" />
 </menu>

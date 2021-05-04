@@ -69,6 +69,19 @@ public class MusicUtil {
         return builder.toString();
     }
 
+    public static String getDownloadUri(Song song) {
+        StringBuilder builder = new StringBuilder(256);
+
+        builder.append(App.getApiClient().getApiUrl());
+        builder.append("/Items/");
+        builder.append(song.id);
+        builder.append("/Download");
+
+        builder.append("?ApiKey=").append(App.getApiClient().getAccessToken());
+
+        return builder.toString();
+    }
+
     @NonNull
     public static Intent createShareSongFileIntent(@NonNull final Song song, Context context) {
         try {
