@@ -41,7 +41,6 @@
     <string name="action_grid_size">Tamaño de la cuadrícula</string>
     <string name="delete_playlist_x"><![CDATA[¿Borrar la lista de reproducción <b>%1$s</b>?]]></string>
     <string name="delete_x_playlists"><![CDATA[¿Borrar <b>%1$d</b> listas de reproducción?]]></string>
-    <string name="remove_song_x_from_playlist"><![CDATA[<b>]]></string>
     <string name="remove_x_songs_from_playlist"><![CDATA[¿Eliminar </b>%1$d<b> canciones de la lista de reproducción?]]></string>
     <string name="remove_song_from_playlist_title">Eliminar canción de la lista de reproducción</string>
     <string name="remove_songs_from_playlist_title">Eliminar canciones de la lista de reproducción</string>
