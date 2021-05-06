@@ -17,14 +17,14 @@ import androidx.preference.TwoStatePreference;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.dkanada.gramophone.databinding.ActivitySettingsBinding;
-import com.dkanada.gramophone.preferences.DirectPlayPreferenceDialog;
+import com.dkanada.gramophone.dialogs.preferences.DirectPlayPreferenceDialog;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEColorPreference;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.views.shortcuts.DynamicShortcutManager;
-import com.dkanada.gramophone.preferences.CategoryPreferenceDialog;
-import com.dkanada.gramophone.preferences.NowPlayingScreenPreferenceDialog;
+import com.dkanada.gramophone.dialogs.preferences.CategoryPreferenceDialog;
+import com.dkanada.gramophone.dialogs.preferences.NowPlayingPreferenceDialog;
 import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
@@ -228,7 +228,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
 
             final Preference nowPlayingPreference = findPreference(PreferenceUtil.NOW_PLAYING_SCREEN);
             nowPlayingPreference.setOnPreferenceClickListener(preference -> {
-                NowPlayingScreenPreferenceDialog.newInstance().show(getParentFragmentManager(), NowPlayingScreenPreferenceDialog.TAG);
+                NowPlayingPreferenceDialog.newInstance().show(getParentFragmentManager(), NowPlayingPreferenceDialog.TAG);
                 return false;
             });
 

@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.preferences;
+package com.dkanada.gramophone.dialogs.preferences;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -22,14 +22,14 @@ import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
-public class NowPlayingScreenPreferenceDialog extends DialogFragment implements MaterialDialog.SingleButtonCallback, ViewPager.OnPageChangeListener {
-    public static final String TAG = NowPlayingScreenPreferenceDialog.class.getSimpleName();
+public class NowPlayingPreferenceDialog extends DialogFragment implements MaterialDialog.SingleButtonCallback, ViewPager.OnPageChangeListener {
+    public static final String TAG = NowPlayingPreferenceDialog.class.getSimpleName();
 
     private DialogAction whichButtonClicked;
     private int viewPagerPosition;
 
-    public static NowPlayingScreenPreferenceDialog newInstance() {
-        return new NowPlayingScreenPreferenceDialog();
+    public static NowPlayingPreferenceDialog newInstance() {
+        return new NowPlayingPreferenceDialog();
     }
 
     @NonNull

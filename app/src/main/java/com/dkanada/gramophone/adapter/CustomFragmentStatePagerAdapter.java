@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.misc;
+package com.dkanada.gramophone.adapter;
 
 /*
  * Copyright (C) 2011 The Android Open Source Project

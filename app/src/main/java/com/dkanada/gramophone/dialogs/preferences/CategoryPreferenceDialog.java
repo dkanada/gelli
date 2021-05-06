@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.preferences;
+package com.dkanada.gramophone.dialogs.preferences;
 
 import android.app.Dialog;
 import android.os.Bundle;

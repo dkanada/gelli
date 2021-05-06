@@ -17,7 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.dkanada.gramophone.adapter.AlbumCoverPagerAdapter;
 import com.dkanada.gramophone.databinding.FragmentPlayerAlbumCoverBinding;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
-import com.dkanada.gramophone.misc.SimpleAnimatorListener;
+import com.dkanada.gramophone.interfaces.base.SimpleAnimatorListener;
 import com.dkanada.gramophone.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.util.ViewUtil;
 

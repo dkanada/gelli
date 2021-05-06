@@ -20,7 +20,7 @@ import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.databinding.FragmentCardPlayerPlaybackControlsBinding;
 import com.dkanada.gramophone.helper.MusicProgressViewUpdateHelper;
 import com.dkanada.gramophone.helper.PlayPauseButtonOnClickHandler;
-import com.dkanada.gramophone.misc.SimpleOnSeekbarChangeListener;
+import com.dkanada.gramophone.interfaces.base.SimpleOnSeekbarChangeListener;
 import com.dkanada.gramophone.service.MusicService;
 import com.dkanada.gramophone.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.util.MusicUtil;

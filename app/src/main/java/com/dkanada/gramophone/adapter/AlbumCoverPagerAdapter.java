@@ -12,7 +12,6 @@ import androidx.fragment.app.FragmentManager;
 import com.dkanada.gramophone.databinding.FragmentAlbumCoverBinding;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.CustomPaletteTarget;
-import com.dkanada.gramophone.misc.CustomFragmentStatePagerAdapter;
 import com.dkanada.gramophone.model.Song;
 
 import java.util.List;

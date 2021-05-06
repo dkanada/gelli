@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.misc;
+package com.dkanada.gramophone.interfaces.base;
 
 import android.widget.SeekBar;
 
