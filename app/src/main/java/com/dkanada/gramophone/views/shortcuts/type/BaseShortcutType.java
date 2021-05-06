@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.views.shortcuts.shortcuttype;
+package com.dkanada.gramophone.views.shortcuts.type;
 
 import android.annotation.TargetApi;
 import android.content.Context;

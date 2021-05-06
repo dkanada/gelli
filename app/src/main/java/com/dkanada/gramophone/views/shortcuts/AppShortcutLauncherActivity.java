@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.dkanada.gramophone.BuildConfig;
-import com.dkanada.gramophone.views.shortcuts.shortcuttype.LatestShortcutType;
-import com.dkanada.gramophone.views.shortcuts.shortcuttype.ShuffleShortcutType;
-import com.dkanada.gramophone.views.shortcuts.shortcuttype.FrequentShortcutType;
+import com.dkanada.gramophone.views.shortcuts.type.LatestShortcutType;
+import com.dkanada.gramophone.views.shortcuts.type.ShuffleShortcutType;
+import com.dkanada.gramophone.views.shortcuts.type.FrequentShortcutType;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.service.MusicService;
 

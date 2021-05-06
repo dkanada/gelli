@@ -25,4 +25,5 @@
         android:orderInCategory="1"
         android:title="@string/action_sleep_timer"
         app:showAsAction="never" />
+
 </menu>

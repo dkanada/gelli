@@ -8,9 +8,9 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 
-import com.dkanada.gramophone.views.shortcuts.shortcuttype.LatestShortcutType;
-import com.dkanada.gramophone.views.shortcuts.shortcuttype.ShuffleShortcutType;
-import com.dkanada.gramophone.views.shortcuts.shortcuttype.FrequentShortcutType;
+import com.dkanada.gramophone.views.shortcuts.type.LatestShortcutType;
+import com.dkanada.gramophone.views.shortcuts.type.ShuffleShortcutType;
+import com.dkanada.gramophone.views.shortcuts.type.FrequentShortcutType;
 
 import java.util.Arrays;
 import java.util.List;
