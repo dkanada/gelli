@@ -229,6 +229,9 @@ public class QueryUtil {
             case SortMethod.RANDOM:
                 query.setSortBy(new String[]{"Random"});
                 break;
+            case SortMethod.COUNT:
+                query.setSortBy(new String[]{"PlayCount"});
+                break;
         }
     }
 

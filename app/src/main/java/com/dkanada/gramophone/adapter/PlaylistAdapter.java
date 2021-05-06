@@ -22,7 +22,6 @@ import com.dkanada.gramophone.helper.menu.PlaylistMenuHelper;
 import com.dkanada.gramophone.helper.menu.SongsMenuHelper;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Playlist;
-import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.NavigationUtil;
 
 import java.util.ArrayList;

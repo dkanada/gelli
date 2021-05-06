@@ -23,7 +23,6 @@ import com.dkanada.gramophone.helper.menu.SongsMenuHelper;
 import com.dkanada.gramophone.helper.sort.SortMethod;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Album;
-import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;

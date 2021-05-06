@@ -8,6 +8,8 @@ import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.views.shortcuts.type.LatestShortcutType;
 import com.dkanada.gramophone.views.shortcuts.type.ShuffleShortcutType;
 import com.dkanada.gramophone.views.shortcuts.type.FrequentShortcutType;
+import com.dkanada.gramophone.helper.MusicPlayerRemote;
+import com.dkanada.gramophone.util.ShortcutUtil;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.service.MusicService;
 
@@ -25,12 +27,15 @@ public class AppShortcutLauncherActivity extends Activity {
 
         switch (getIntent().getIntExtra(EXTRA_SHORTCUT, SHORTCUT_TYPE_DEFAULT)) {
             case SHORTCUT_TYPE_SHUFFLE:
+                ShortcutUtil.getShuffle((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true));
                 DynamicShortcutManager.reportShortcutUsed(this, ShuffleShortcutType.getId());
                 break;
             case SHORTCUT_TYPE_FREQUENT:
+                ShortcutUtil.getFrequent((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true));
                 DynamicShortcutManager.reportShortcutUsed(this, FrequentShortcutType.getId());
                 break;
             case SHORTCUT_TYPE_LATEST:
+                ShortcutUtil.getLatest((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true));
                 DynamicShortcutManager.reportShortcutUsed(this, LatestShortcutType.getId());
                 break;
         }

@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dkanada.gramophone.util.ShortcutUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
@@ -17,7 +18,6 @@ import com.dkanada.gramophone.model.Song;
 import java.util.List;
 
 public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
-
     public ShuffleButtonSongAdapter(AppCompatActivity activity, List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
         super(activity, dataSet, itemLayoutRes, usePalette, cabHolder);
     }
@@ -72,8 +72,7 @@ public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
         @Override
         public void onClick(View v) {
             if (getItemViewType() == OFFSET_ITEM) {
-                MusicPlayerRemote.openAndShuffleQueue(dataSet, true);
-                return;
+                ShortcutUtil.getShuffle((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true));
             }
 
             super.onClick(v);

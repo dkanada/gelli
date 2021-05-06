@@ -20,6 +20,8 @@ import androidx.annotation.Nullable;
 
 import com.dkanada.gramophone.databinding.FragmentLibraryBinding;
 import com.dkanada.gramophone.fragments.mainactivity.library.pager.FavoritesFragment;
+import com.dkanada.gramophone.helper.MusicPlayerRemote;
+import com.dkanada.gramophone.util.ShortcutUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.afollestad.materialcab.MaterialCab;
 import com.kabouzeid.appthemehelper.ThemeStore;
@@ -239,7 +241,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         int id = item.getItemId();
         switch (id) {
             case R.id.action_shuffle_all:
-                Toast.makeText(requireActivity(), requireActivity().getResources().getString(R.string.error_unexpected), Toast.LENGTH_SHORT).show();
+                ShortcutUtil.getShuffle((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true));
                 return true;
             case R.id.action_new_playlist:
                 CreatePlaylistDialog.create().show(getChildFragmentManager(), "CREATE_PLAYLIST");
