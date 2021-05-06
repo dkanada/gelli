@@ -9,25 +9,21 @@ import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import androidx.preference.TwoStatePreference;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.dkanada.gramophone.databinding.ActivitySettingsBinding;
-import com.dkanada.gramophone.preferences.DirectPlayPreference;
 import com.dkanada.gramophone.preferences.DirectPlayPreferenceDialog;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEColorPreference;
-import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceFragmentCompat;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.views.shortcuts.DynamicShortcutManager;
-import com.dkanada.gramophone.preferences.CategoryPreference;
 import com.dkanada.gramophone.preferences.CategoryPreferenceDialog;
-import com.dkanada.gramophone.preferences.NowPlayingScreenPreference;
 import com.dkanada.gramophone.preferences.NowPlayingScreenPreferenceDialog;
 import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.util.PreferenceUtil;
@@ -93,7 +89,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         return super.onOptionsItemSelected(item);
     }
 
-    public static class SettingsFragment extends ATEPreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
         private static void setSummary(@NonNull Preference preference) {
             setSummary(preference, PreferenceManager
@@ -124,20 +120,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             addPreferencesFromResource(R.xml.pref_cache);
         }
 
-        @Nullable
-        @Override
-        public DialogFragment onCreatePreferenceDialog(Preference preference) {
-            if (preference instanceof NowPlayingScreenPreference) {
-                return NowPlayingScreenPreferenceDialog.newInstance();
-            } else if (preference instanceof CategoryPreference) {
-                return CategoryPreferenceDialog.newInstance();
-            } else if (preference instanceof DirectPlayPreference) {
-                return DirectPlayPreferenceDialog.newInstance();
-            }
-
-            return super.onCreatePreferenceDialog(preference);
-        }
-
         @Override
         public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
@@ -152,6 +134,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             PreferenceUtil.getInstance(getActivity()).unregisterOnSharedPreferenceChangedListener(this);
         }
 
+        @SuppressWarnings("ConstantConditions")
         private void invalidateSettings() {
             final Preference generalTheme = findPreference(PreferenceUtil.GENERAL_THEME);
             setSummary(generalTheme);
@@ -230,6 +213,24 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                     return true;
                 });
             }
+
+            final Preference categoryPreference = findPreference(PreferenceUtil.CATEGORIES);
+            categoryPreference.setOnPreferenceClickListener(preference -> {
+                CategoryPreferenceDialog.newInstance().show(getParentFragmentManager(), CategoryPreferenceDialog.TAG);
+                return false;
+            });
+
+            final Preference directPlayPreference = findPreference(PreferenceUtil.DIRECT_PLAY_CODECS);
+            directPlayPreference.setOnPreferenceClickListener(preference -> {
+                DirectPlayPreferenceDialog.newInstance().show(getParentFragmentManager(), DirectPlayPreferenceDialog.TAG);
+                return false;
+            });
+
+            final Preference nowPlayingPreference = findPreference(PreferenceUtil.NOW_PLAYING_SCREEN);
+            nowPlayingPreference.setOnPreferenceClickListener(preference -> {
+                NowPlayingScreenPreferenceDialog.newInstance().show(getParentFragmentManager(), NowPlayingScreenPreferenceDialog.TAG);
+                return false;
+            });
 
             updateNowPlayingScreenSummary();
         }

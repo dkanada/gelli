@@ -3,9 +3,9 @@
 
     <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory android:title="@string/pref_header_library">
 
-        <com.dkanada.gramophone.preferences.CategoryPreference
+        <Preference
             app:iconSpaceReserved="false"
-            android:key="library_categories"
+            android:key="categories"
             android:summary="@string/pref_summary_categories"
             android:title="@string/pref_title_categories" />
 

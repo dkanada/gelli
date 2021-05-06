@@ -15,6 +15,8 @@ import com.dkanada.gramophone.adapter.DirectPlayCodecAdapter;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
 public class DirectPlayPreferenceDialog extends DialogFragment {
+    public static final String TAG = DirectPlayPreferenceDialog.class.getSimpleName();
+
     public static DirectPlayPreferenceDialog newInstance() {
         return new DirectPlayPreferenceDialog();
     }

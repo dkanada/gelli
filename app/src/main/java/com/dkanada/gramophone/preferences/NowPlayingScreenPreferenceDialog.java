@@ -23,6 +23,7 @@ import com.dkanada.gramophone.util.PreferenceUtil;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
 public class NowPlayingScreenPreferenceDialog extends DialogFragment implements MaterialDialog.SingleButtonCallback, ViewPager.OnPageChangeListener {
+    public static final String TAG = NowPlayingScreenPreferenceDialog.class.getSimpleName();
 
     private DialogAction whichButtonClicked;
     private int viewPagerPosition;

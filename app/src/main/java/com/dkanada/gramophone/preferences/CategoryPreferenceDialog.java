@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryPreferenceDialog extends DialogFragment {
+    public static final String TAG = CategoryPreferenceDialog.class.getSimpleName();
+
     public static CategoryPreferenceDialog newInstance() {
         return new CategoryPreferenceDialog();
     }
