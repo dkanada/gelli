@@ -160,17 +160,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
 
     @Override
     protected void onMultipleItemAction(@NonNull MenuItem menuItem, @NonNull List<Artist> selection) {
-        SongsMenuHelper.handleMenuClick(activity, getSongList(selection), menuItem.getItemId());
-    }
-
-    @NonNull
-    private List<Song> getSongList(@NonNull List<Artist> artists) {
-        final List<Song> songs = new ArrayList<>();
-        for (Artist artist : artists) {
-            songs.addAll(artist.songs);
-        }
-
-        return songs;
+        SongsMenuHelper.handleMenuClick(activity, new ArrayList<>(), menuItem.getItemId());
     }
 
     @NonNull

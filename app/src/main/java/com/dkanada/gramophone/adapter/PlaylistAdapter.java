@@ -132,15 +132,9 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                 DeletePlaylistDialog.create(selection).show(activity.getSupportFragmentManager(), DeletePlaylistDialog.TAG);
                 break;
             default:
-                SongsMenuHelper.handleMenuClick(activity, getSongList(selection), menuItem.getItemId());
+                SongsMenuHelper.handleMenuClick(activity, new ArrayList<>(), menuItem.getItemId());
                 break;
         }
-    }
-
-    @NonNull
-    private List<Song> getSongList(@NonNull List<Playlist> playlists) {
-        final List<Song> songs = new ArrayList<>();
-        return songs;
     }
 
     public class ViewHolder extends MediaEntryViewHolder {
