@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dkanada.gramophone.util.QueryUtil;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
@@ -25,6 +26,8 @@ import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
+
+import org.jellyfin.apiclient.model.querying.ItemQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -159,7 +162,17 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
 
     @Override
     protected void onMultipleItemAction(@NonNull MenuItem menuItem, @NonNull List<Artist> selection) {
-        SongsMenuHelper.handleMenuClick(activity, new ArrayList<>(), menuItem.getItemId());
+        List<String> ids = new ArrayList<>();
+        for (Artist artist : selection) {
+            ids.add(artist.id);
+        }
+
+        ItemQuery songs = new ItemQuery();
+        songs.setArtistIds(ids.toArray(new String[0]));
+
+        QueryUtil.getSongs(songs, (media) -> {
+            SongsMenuHelper.handleMenuClick(activity, media, menuItem.getItemId());
+        });
     }
 
     @NonNull

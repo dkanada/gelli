@@ -22,9 +22,11 @@ import com.dkanada.gramophone.helper.menu.PlaylistMenuHelper;
 import com.dkanada.gramophone.helper.menu.SongsMenuHelper;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Playlist;
+import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.NavigationUtil;
 
-import java.util.ArrayList;
+import org.jellyfin.apiclient.model.querying.ItemQuery;
+
 import java.util.List;
 
 public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewHolder, Playlist> {
@@ -126,13 +128,17 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
 
     @Override
     protected void onMultipleItemAction(@NonNull MenuItem menuItem, @NonNull List<Playlist> selection) {
-        switch (menuItem.getItemId()) {
-            case R.id.action_delete_playlist:
-                DeletePlaylistDialog.create(selection).show(activity.getSupportFragmentManager(), DeletePlaylistDialog.TAG);
-                break;
-            default:
-                SongsMenuHelper.handleMenuClick(activity, new ArrayList<>(), menuItem.getItemId());
-                break;
+        if (menuItem.getItemId() == R.id.action_delete_playlist) {
+            DeletePlaylistDialog.create(selection).show(activity.getSupportFragmentManager(), DeletePlaylistDialog.TAG);
+        } else {
+            for (Playlist playlist : selection) {
+                ItemQuery songs = new ItemQuery();
+                songs.setParentId(playlist.id);
+
+                QueryUtil.getSongs(songs, (media) -> {
+                    SongsMenuHelper.handleMenuClick(activity, media, menuItem.getItemId());
+                });
+            }
         }
     }
 

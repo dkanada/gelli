@@ -18,6 +18,7 @@
         android:id="@+id/action_add_to_playlist"
         android:icon="@drawable/ic_playlist_add_white_24dp"
         android:title="@string/action_add_to_playlist"
+        android:visible="false"
         app:showAsAction="ifRoom" />
 
     <item

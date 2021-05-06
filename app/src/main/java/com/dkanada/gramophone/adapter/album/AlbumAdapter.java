@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dkanada.gramophone.util.QueryUtil;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
@@ -28,7 +29,8 @@ import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
-import java.util.ArrayList;
+import org.jellyfin.apiclient.model.querying.ItemQuery;
+
 import java.util.List;
 
 public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder, Album> implements FastScrollRecyclerView.SectionedAdapter {
@@ -170,7 +172,14 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
 
     @Override
     protected void onMultipleItemAction(@NonNull MenuItem menuItem, @NonNull List<Album> selection) {
-        SongsMenuHelper.handleMenuClick(activity, new ArrayList<>(), menuItem.getItemId());
+        for (Album album : selection) {
+            ItemQuery songs = new ItemQuery();
+            songs.setParentId(album.id);
+
+            QueryUtil.getSongs(songs, (media) -> {
+                SongsMenuHelper.handleMenuClick(activity, media, menuItem.getItemId());
+            });
+        }
     }
 
     @NonNull
