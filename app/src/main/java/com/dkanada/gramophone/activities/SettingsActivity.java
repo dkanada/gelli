@@ -9,7 +9,6 @@ import android.view.View;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
@@ -46,14 +45,13 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
 
         binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
         setSupportActionBar(binding.toolbar);
-        // noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
         } else {
-            SettingsFragment frag = (SettingsFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
-            if (frag != null) frag.invalidateSettings();
+            SettingsFragment fragment = (SettingsFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
+            if (fragment != null) fragment.invalidateSettings();
         }
     }
 
@@ -90,25 +88,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
-
-        private static void setSummary(@NonNull Preference preference) {
-            setSummary(preference, PreferenceManager
-                    .getDefaultSharedPreferences(preference.getContext())
-                    .getString(preference.getKey(), ""));
-        }
-
-        private static void setSummary(Preference preference, @NonNull Object value) {
-            String stringValue = value.toString();
-
-            if (preference instanceof ListPreference) {
-                ListPreference listPreference = (ListPreference) preference;
-                int index = listPreference.findIndexOfValue(stringValue);
-                preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
-            } else {
-                preference.setSummary(stringValue);
-            }
-        }
-
         @Override
         public void onCreatePreferences(Bundle bundle, String s) {
             addPreferencesFromResource(R.xml.pref_library);
@@ -136,24 +115,15 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
 
         @SuppressWarnings("ConstantConditions")
         private void invalidateSettings() {
-            final Preference generalTheme = findPreference(PreferenceUtil.GENERAL_THEME);
-            setSummary(generalTheme);
-            generalTheme.setOnPreferenceChangeListener((preference, o) -> {
-                String themeName = (String) o;
-                setSummary(generalTheme, o);
-
-                ThemeStore.markChanged(requireActivity());
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    // set the new theme so that updateAppShortcuts can pull it
-                    requireActivity().setTheme(PreferenceUtil.getThemeResource(themeName));
-                    new DynamicShortcutManager(getActivity()).updateDynamicShortcuts();
-                }
-
-                requireActivity().recreate();
-                return true;
-            });
-
             final ATEColorPreference primaryColorPref = findPreference(PreferenceUtil.PRIMARY_COLOR);
+            final ATEColorPreference accentColorPref = findPreference(PreferenceUtil.ACCENT_COLOR);
+            final TwoStatePreference classicNotification = findPreference(PreferenceUtil.CLASSIC_NOTIFICATION);
+            final TwoStatePreference coloredNotification = findPreference(PreferenceUtil.COLORED_NOTIFICATION);
+            final TwoStatePreference colorAppShortcuts = findPreference(PreferenceUtil.COLORED_SHORTCUTS);
+            final Preference categoryPreference = findPreference(PreferenceUtil.CATEGORIES);
+            final Preference directPlayPreference = findPreference(PreferenceUtil.DIRECT_PLAY_CODECS);
+            final Preference nowPlayingPreference = findPreference(PreferenceUtil.NOW_PLAYING_SCREEN);
+
             final int primaryColor = ThemeStore.primaryColor(requireActivity());
             primaryColorPref.setColor(primaryColor, ColorUtil.darkenColor(primaryColor));
             primaryColorPref.setOnPreferenceClickListener(preference -> {
@@ -166,7 +136,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 return true;
             });
 
-            final ATEColorPreference accentColorPref = findPreference(PreferenceUtil.ACCENT_COLOR);
             final int accentColor = ThemeStore.accentColor(requireActivity());
             accentColorPref.setColor(accentColor, ColorUtil.darkenColor(accentColor));
             accentColorPref.setOnPreferenceClickListener(preference -> {
@@ -179,78 +148,64 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 return true;
             });
 
-            final TwoStatePreference classicNotification = findPreference(PreferenceUtil.CLASSIC_NOTIFICATION);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-                classicNotification.setVisible(false);
-            } else {
-                classicNotification.setChecked(PreferenceUtil.getInstance(getActivity()).getClassicNotification());
-                classicNotification.setOnPreferenceChangeListener((preference, newValue) -> {
-                    PreferenceUtil.getInstance(getActivity()).setClassicNotification((Boolean) newValue);
-                    return true;
-                });
+                classicNotification.setEnabled(false);
             }
 
-            final TwoStatePreference coloredNotification = findPreference(PreferenceUtil.COLORED_NOTIFICATION);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                coloredNotification.setEnabled(PreferenceUtil.getInstance(getActivity()).getClassicNotification());
-            } else {
-                coloredNotification.setChecked(PreferenceUtil.getInstance(getActivity()).getColoredNotification());
-                coloredNotification.setOnPreferenceChangeListener((preference, newValue) -> {
-                    PreferenceUtil.getInstance(getActivity()).setColoredNotification((Boolean) newValue);
-                    return true;
-                });
-            }
-
-            final TwoStatePreference colorAppShortcuts = findPreference(PreferenceUtil.COLORED_SHORTCUTS);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-                colorAppShortcuts.setVisible(false);
-            } else {
-                colorAppShortcuts.setChecked(PreferenceUtil.getInstance(getActivity()).getColoredShortcuts());
-                colorAppShortcuts.setOnPreferenceChangeListener((preference, newValue) -> {
-                    PreferenceUtil.getInstance(getActivity()).setColoredShortcuts((Boolean) newValue);
-
-                    new DynamicShortcutManager(getActivity()).updateDynamicShortcuts();
-                    return true;
-                });
+                coloredNotification.setEnabled(false);
+                colorAppShortcuts.setEnabled(false);
             }
 
-            final Preference categoryPreference = findPreference(PreferenceUtil.CATEGORIES);
             categoryPreference.setOnPreferenceClickListener(preference -> {
                 CategoryPreferenceDialog.newInstance().show(getParentFragmentManager(), CategoryPreferenceDialog.TAG);
                 return false;
             });
 
-            final Preference directPlayPreference = findPreference(PreferenceUtil.DIRECT_PLAY_CODECS);
             directPlayPreference.setOnPreferenceClickListener(preference -> {
                 DirectPlayPreferenceDialog.newInstance().show(getParentFragmentManager(), DirectPlayPreferenceDialog.TAG);
                 return false;
             });
 
-            final Preference nowPlayingPreference = findPreference(PreferenceUtil.NOW_PLAYING_SCREEN);
             nowPlayingPreference.setOnPreferenceClickListener(preference -> {
                 NowPlayingPreferenceDialog.newInstance().show(getParentFragmentManager(), NowPlayingPreferenceDialog.TAG);
                 return false;
             });
 
-            updateNowPlayingScreenSummary();
+            // use this to set default state for playback screen and notification style
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
+
+            onSharedPreferenceChanged(preferences, PreferenceUtil.NOW_PLAYING_SCREEN);
+            onSharedPreferenceChanged(preferences, PreferenceUtil.CLASSIC_NOTIFICATION);
         }
 
         @Override
+        @SuppressWarnings("ConstantConditions")
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             switch (key) {
+                case PreferenceUtil.COLORED_SHORTCUTS:
+                    new DynamicShortcutManager(requireContext()).updateDynamicShortcuts();
+                    break;
+                case PreferenceUtil.GENERAL_THEME:
+                    // apply theme before reloading shortcuts to apply the new icon colors
+                    requireActivity().setTheme(PreferenceUtil.getThemeResource(key));
+                    new DynamicShortcutManager(requireContext()).updateDynamicShortcuts();
+
+                    ThemeStore.markChanged(requireContext());
+                    requireActivity().recreate();
+                    break;
                 case PreferenceUtil.NOW_PLAYING_SCREEN:
-                    updateNowPlayingScreenSummary();
+                    Preference preference = findPreference(PreferenceUtil.NOW_PLAYING_SCREEN);
+
+                    preference.setSummary(PreferenceUtil.getInstance(getActivity()).getNowPlayingScreen().titleRes);
                     break;
                 case PreferenceUtil.CLASSIC_NOTIFICATION:
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        findPreference(PreferenceUtil.COLORED_NOTIFICATION).setEnabled(sharedPreferences.getBoolean(key, false));
-                    }
+                    TwoStatePreference colorNotification = findPreference(PreferenceUtil.COLORED_NOTIFICATION);
+
+                    colorNotification.setEnabled(sharedPreferences.getBoolean(key, false));
+                    colorNotification.setChecked(colorNotification.isEnabled());
                     break;
             }
-        }
-
-        private void updateNowPlayingScreenSummary() {
-            findPreference(PreferenceUtil.NOW_PLAYING_SCREEN).setSummary(PreferenceUtil.getInstance(getActivity()).getNowPlayingScreen().titleRes);
         }
     }
 }
