@@ -10,14 +10,16 @@ import com.dkanada.gramophone.model.User;
 
 @androidx.room.Database(
         entities = {
+                Cache.class,
                 Song.class,
                 QueueSong.class,
                 User.class
         },
-        version = 4,
+        version = 5,
         exportSchema = false
 )
 public abstract class JellyDatabase extends RoomDatabase {
+    public abstract CacheDao cacheDao();
     public abstract SongDao songDao();
     public abstract QueueSongDao queueSongDao();
     public abstract UserDao userDao();
@@ -50,6 +52,14 @@ public abstract class JellyDatabase extends RoomDatabase {
 
             database.execSQL("CREATE TABLE users (id TEXT NOT NULL PRIMARY KEY,"
                     + "name TEXT, server TEXT, token TEXT)");
+        }
+    };
+
+    public static final Migration Migration5 = new Migration(4, 5) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("CREATE TABLE cache (id TEXT NOT NULL PRIMARY KEY,"
+                    + "cache INTEGER NOT NULL)");
         }
     };
 }

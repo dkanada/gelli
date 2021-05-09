@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.model.Song;
@@ -22,6 +23,7 @@ public abstract class QueueSongDao {
     @Query("SELECT * from queueSongs WHERE queue = :queue ORDER BY `index`")
     public abstract List<QueueSong> getQueueSongs(int queue);
 
+    @Transaction
     public List<Song> getQueue(int queue) {
         List<QueueSong> queueSongs = getQueueSongs(queue);
         List<Song> songs = new ArrayList<>();
@@ -34,6 +36,7 @@ public abstract class QueueSongDao {
         return songs;
     }
 
+    @Transaction
     public void setQueue(List<Song> songs, int queue) {
         List<QueueSong> queueSongs = new ArrayList<>();
         for (int i = 0; i < songs.size(); i++) {

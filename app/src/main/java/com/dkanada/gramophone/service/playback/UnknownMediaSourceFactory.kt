@@ -42,6 +42,10 @@ class UnknownMediaSourceFactory(dataSourceFactory: DataSource.Factory) : MediaSo
     }
 
     override fun createMediaSource(mediaItem: MediaItem): MediaSource {
+        if (mediaItem.playbackProperties?.uri.toString().contains("file://")) {
+            return progressiveMediaSource.createMediaSource(mediaItem)
+        }
+
         val type: String? = runBlocking {
             httpGet(mediaItem.playbackProperties!!.uri.toString())
         }

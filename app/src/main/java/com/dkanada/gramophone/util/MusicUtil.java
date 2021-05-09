@@ -21,6 +21,7 @@ import org.jellyfin.apiclient.interaction.ApiClient;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.UserItemDataDto;
 
+import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
@@ -80,6 +81,15 @@ public class MusicUtil {
         builder.append("?ApiKey=").append(App.getApiClient().getAccessToken());
 
         return builder.toString();
+    }
+
+    public static String getFileUri(Song song) {
+        File root = new File(App.getInstance().getCacheDir(), "music");
+
+        String path = "/" + song.artistName + "/" + song.albumName + "/";
+        String name = song.discNumber + "." + song.trackNumber + " - " + song.title + "." + song.container;
+
+        return root + path + name;
     }
 
     @NonNull

@@ -96,15 +96,14 @@ public class LocalPlayer implements Playback {
 
     @Override
     public void setDataSource(Song song) {
-        String uri = MusicUtil.getTranscodeUri(song);
         MediaItem mediaItem = exoPlayer.getCurrentMediaItem();
 
-        if (mediaItem != null && mediaItem.playbackProperties.uri.toString().equals(uri)) {
+        if (mediaItem != null && mediaItem.mediaId.equals(song.id)) {
             return;
         }
 
         exoPlayer.clearMediaItems();
-        appendDataSource(MusicUtil.getTranscodeUri(song));
+        appendDataSource(song);
         exoPlayer.seekTo(0, 0);
     }
 
@@ -114,12 +113,19 @@ public class LocalPlayer implements Playback {
             exoPlayer.removeMediaItem(1);
         }
 
-        appendDataSource(MusicUtil.getTranscodeUri(song));
+        appendDataSource(song);
     }
 
-    private void appendDataSource(String path) {
-        Uri uri = Uri.parse(path);
+    private void appendDataSource(Song song) {
+        File audio = new File(MusicUtil.getFileUri(song));
+        Uri uri = Uri.fromFile(audio);
+
+        if (!song.cache || !audio.exists()) {
+            uri = Uri.parse(MusicUtil.getTranscodeUri(song));
+        }
+
         MediaItem mediaItem = MediaItem.fromUri(uri);
+        mediaItem = mediaItem.buildUpon().setMediaId(song.id).build();
 
         exoPlayer.addMediaItem(mediaItem);
     }

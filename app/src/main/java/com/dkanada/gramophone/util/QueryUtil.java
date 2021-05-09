@@ -170,11 +170,14 @@ public class QueryUtil {
             @Override
             public void onResponse(ItemsResult result) {
                 List<Song> songs = new ArrayList<>();
+                List<String> ids = new ArrayList<>();
                 for (BaseItemDto itemDto : result.getItems()) {
                     songs.add(new Song(itemDto));
+                    ids.add(itemDto.getId());
                 }
 
-                callback.onLoadMedia(songs);
+                App.getDatabase().songDao().insertSongs(songs);
+                callback.onLoadMedia(App.getDatabase().cacheDao().getSongs(ids));
             }
 
             @Override

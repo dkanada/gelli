@@ -2,13 +2,13 @@ package com.dkanada.gramophone.service;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.BuildConfig;
+import com.dkanada.gramophone.database.Cache;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
 
@@ -50,11 +50,7 @@ public class DownloadService extends Service {
             try {
                 URL url = new URL(MusicUtil.getDownloadUri(song));
                 URLConnection connection = url.openConnection();
-
-                File root = new File(App.getInstance().getCacheDir(), "music");
-                String path = song.artistName + "/" + song.albumName + "/";
-                String name = song.discNumber + "." + song.trackNumber + " - " + song.title + "." + song.container;
-                File audio = new File(root, path + name);
+                File audio = new File(MusicUtil.getFileUri(song));
 
                 audio.getParentFile().mkdirs();
                 audio.createNewFile();
@@ -64,7 +60,7 @@ public class DownloadService extends Service {
 
                 connection.connect();
 
-                byte[] data = new byte[4096];
+                byte[] data = new byte[262144];
                 int count;
 
                 while ((count = input.read(data)) != -1) {
@@ -73,6 +69,8 @@ public class DownloadService extends Service {
 
                 input.close();
                 output.close();
+
+                App.getDatabase().cacheDao().insertCache(new Cache(song));
             } catch (Exception e) {
                 e.printStackTrace();
             }

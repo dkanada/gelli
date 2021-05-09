@@ -48,6 +48,8 @@ public class Song implements Parcelable {
     public int bitDepth;
     public int channels;
 
+    public boolean cache;
+
     public Song() {
         this.id = UUID.randomUUID().toString();
     }
