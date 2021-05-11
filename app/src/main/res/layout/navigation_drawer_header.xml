@@ -13,7 +13,7 @@
         android:layout_height="180dp"
         android:scaleType="centerCrop"
         android:src="@drawable/default_album_art"
-        tools:ignore="ContentDescription,UnusedAttribute" />
+        tools:ignore="ContentDescription" />
 
     <View
         android:layout_width="match_parent"
@@ -33,24 +33,24 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            android:textColor="?android:textColorPrimary"
+            android:textColor="@color/overlay_text"
             android:textSize="14sp" />
 
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:fontFamily="sans-serif"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="?android:textColorSecondary"
+            android:textColor="@color/overlay_text"
             android:textSize="14sp" />
 
     </LinearLayout>
