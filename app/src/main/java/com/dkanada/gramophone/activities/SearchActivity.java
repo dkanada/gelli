@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.adapter.SearchAdapter;
 import com.dkanada.gramophone.databinding.ActivitySearchBinding;
 import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.activities.base.AbsMusicServiceActivity;
 import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.Util;
 import com.kabouzeid.appthemehelper.ThemeStore;
@@ -31,7 +31,7 @@ import java.util.Collections;
 import java.util.List;
 
 @SuppressLint("ClickableViewAccessibility")
-public class SearchActivity extends AbsMusicServiceActivity implements SearchView.OnQueryTextListener {
+public class SearchActivity extends AbsMusicContentActivity implements SearchView.OnQueryTextListener {
     private final String QUERY = "query";
 
     private ActivitySearchBinding binding;
@@ -46,9 +46,6 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivitySearchBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         setDrawUnderStatusBar();
         setStatusBarColorAuto();
@@ -88,6 +85,17 @@ public class SearchActivity extends AbsMusicServiceActivity implements SearchVie
         super.onRestoreInstanceState(savedInstanceState);
 
         search(savedInstanceState.getString(QUERY, ""));
+    }
+
+    @Override
+    protected View createContentView() {
+        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+
+        return wrapSlidingMusicPanel(binding.getRoot());
+    }
+
+    @Override
+    public void onStateOnline() {
     }
 
     private void setUpToolBar() {
