@@ -120,7 +120,7 @@ public class LocalPlayer implements Playback {
         File audio = new File(MusicUtil.getFileUri(song));
         Uri uri = Uri.fromFile(audio);
 
-        if (!song.cache || !audio.exists()) {
+        if (!audio.exists()) {
             uri = Uri.parse(MusicUtil.getTranscodeUri(song));
         }
 

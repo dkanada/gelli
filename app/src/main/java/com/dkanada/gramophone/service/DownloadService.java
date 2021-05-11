@@ -13,6 +13,7 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -50,13 +51,14 @@ public class DownloadService extends Service {
             try {
                 URL url = new URL(MusicUtil.getDownloadUri(song));
                 URLConnection connection = url.openConnection();
+                File download = new File(getCacheDir(), "download/" + song.id);
                 File audio = new File(MusicUtil.getFileUri(song));
 
-                audio.getParentFile().mkdirs();
-                audio.createNewFile();
+                download.getParentFile().mkdirs();
+                download.createNewFile();
 
                 InputStream input = connection.getInputStream();
-                OutputStream output = new FileOutputStream(audio);
+                OutputStream output = new FileOutputStream(download);
 
                 connection.connect();
 
@@ -67,6 +69,13 @@ public class DownloadService extends Service {
                     output.write(data, 0, count);
                 }
 
+                input.close();
+                output.close();
+
+                input = new FileInputStream(download);
+                output = new FileOutputStream(audio);
+
+                output.write(input.read());
                 input.close();
                 output.close();
 
