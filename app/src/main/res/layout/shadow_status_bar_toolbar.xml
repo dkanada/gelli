@@ -25,6 +25,6 @@
         android:layout_height="match_parent"
         android:layout_alignBottom="@id/status_bar"
         android:layout_alignTop="@id/status_bar"
-        android:background="@drawable/toolbar_gradient" />
+        android:background="@drawable/gradient_toolbar" />
 
 </RelativeLayout>

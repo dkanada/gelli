@@ -17,7 +17,7 @@
         android:layout_gravity="center"
         android:padding="72dp"
         android:scaleType="fitXY"
-        android:tint="@color/md_pink_A400"
+        android:tint="@color/color_favorite"
         android:tintMode="src_in"
         android:visibility="invisible"
         app:srcCompat="@drawable/ic_favorite_white_24dp"

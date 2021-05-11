@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:background="@color/md_amber_500">
+    tools:background="@android:color/darker_gray">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/progress_container_height"
-        android:background="@color/twenty_percent_black_overlay">
+        android:background="@color/overlay_light">
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/player_buffering_indicator"
@@ -34,7 +34,7 @@
             android:paddingStart="8dp"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/ate_primary_text_dark"
+            android:textColor="?android:textColorPrimary"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="RtlSymmetry"
@@ -49,7 +49,7 @@
             android:paddingEnd="8dp"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/ate_primary_text_dark"
+            android:textColor="?android:textColorPrimary"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="RtlSymmetry"

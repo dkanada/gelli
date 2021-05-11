@@ -1,5 +1,4 @@
 <androidx.percentlayout.widget.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/header"
     android:layout_width="match_parent"
@@ -8,27 +7,25 @@
     android:focusable="true"
     android:foreground="?rectSelectorStrong">
 
-    <!--suppress AndroidDomInspection-->
     <ImageView
         android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
         android:scaleType="centerCrop"
         android:src="@drawable/default_album_art"
-        android:transitionName="@string/transition_album_image"
-        app:layout_aspectRatio="178%"
-        app:layout_widthPercent="100%"
         tools:ignore="ContentDescription,UnusedAttribute" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="112dp"
+        android:layout_height="180dp"
         android:layout_gravity="bottom"
-        android:background="@drawable/shadow_up" />
+        android:background="@drawable/gradient_navigation" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="8dp"
+        android:paddingVertical="8dp"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
@@ -41,7 +38,7 @@
             android:fontFamily="sans-serif-medium"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            android:textColor="@color/ate_primary_text_dark"
+            android:textColor="?android:textColorPrimary"
             android:textSize="14sp" />
 
         <TextView
@@ -53,7 +50,7 @@
             android:fontFamily="sans-serif"
             android:singleLine="true"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/ate_secondary_text_dark"
+            android:textColor="?android:textColorSecondary"
             android:textSize="14sp" />
 
     </LinearLayout>

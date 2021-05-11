@@ -19,7 +19,7 @@
         <com.dkanada.gramophone.views.StatusBarView
             android:layout_width="match_parent"
             android:layout_height="@dimen/status_bar_padding"
-            android:background="@color/twenty_percent_black_overlay" />
+            android:background="@color/overlay_light" />
 
     </FrameLayout>
 
@@ -81,7 +81,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="4dp"
                         android:layout_marginBottom="4dp"
-                        android:background="@drawable/shadow_down" />
+                        android:background="@drawable/gradient_shadow" />
 
                     <TextView
                         android:id="@+id/player_queue_sub_header"

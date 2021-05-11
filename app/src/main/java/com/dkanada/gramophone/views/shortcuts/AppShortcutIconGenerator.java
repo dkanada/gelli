@@ -29,8 +29,8 @@ public final class AppShortcutIconGenerator {
     private static IconCompat generateDefaultThemedIcon(Context context, int iconId) {
         // return icon of iconId with default colors
         return generateThemedIcon(context, iconId,
-                context.getColor(R.color.app_shortcut_default_foreground),
-                context.getColor(R.color.app_shortcut_default_background)
+                context.getColor(R.color.color_shortcut_foreground),
+                context.getColor(R.color.color_shortcut_background)
         );
     }
 
