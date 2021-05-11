@@ -98,7 +98,7 @@ public abstract class AbsMultiSelectAdapter<VH extends RecyclerView.ViewHolder, 
 
     @Override
     public boolean onCabItemClicked(MenuItem menuItem) {
-        if (menuItem.getItemId() == R.id.action_multi_select_adapter_check_all) {
+        if (menuItem.getItemId() == R.id.action_select_all) {
             checkAll();
         } else {
             onMultipleItemAction(menuItem, new ArrayList<>(checked));

@@ -2,6 +2,7 @@
 <resources>
 
     <item name="action_new_playlist" type="id" />
+    <item name="action_select_all" type="id" />
 
     <item name="action_sort_order_ascending" type="id" />
     <item name="action_sort_order_descending" type="id" />
@@ -12,7 +13,5 @@
     <item name="action_sort_method_year" type="id" />
     <item name="action_sort_method_added" type="id" />
     <item name="action_sort_method_random" type="id" />
-
-    <item name="action_multi_select_adapter_check_all" type="id" />
 
 </resources>
