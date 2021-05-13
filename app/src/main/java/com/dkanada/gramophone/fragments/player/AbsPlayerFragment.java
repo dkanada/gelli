@@ -80,7 +80,7 @@ public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implemen
     }
 
     protected void toggleFavorite(Song song) {
-        MusicUtil.toggleFavorite(requireActivity(), song);
+        MusicUtil.toggleFavorite(song);
     }
 
     protected boolean isToolbarShown() {

@@ -23,6 +23,7 @@ import java.net.URLConnection;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class DownloadService extends Service {
     public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
     public static final String EXTRA_SONG = PACKAGE_NAME + ".extra.song";
@@ -59,6 +60,8 @@ public class DownloadService extends Service {
 
                 download.getParentFile().mkdirs();
                 download.createNewFile();
+                audio.getParentFile().mkdirs();
+                audio.createNewFile();
 
                 InputStream input = connection.getInputStream();
                 OutputStream output = new FileOutputStream(download);
@@ -78,10 +81,14 @@ public class DownloadService extends Service {
                 input = new FileInputStream(download);
                 output = new FileOutputStream(audio);
 
-                output.write(input.read());
+                while ((count = input.read(data)) != -1) {
+                    output.write(data, 0, count);
+                }
+
                 input.close();
                 output.close();
 
+                download.delete();
                 App.getDatabase().cacheDao().insertCache(new Cache(song));
             } catch (Exception e) {
                 e.printStackTrace();

@@ -86,10 +86,15 @@ public class MusicUtil {
     public static String getFileUri(Song song) {
         File root = new File(PreferenceUtil.getInstance(App.getInstance()).getLocationDownload(), "music");
 
-        String path = "/" + song.artistName + "/" + song.albumName + "/";
-        String name = song.discNumber + "." + song.trackNumber + " - " + song.title + "." + song.container;
+        String path = "/" + ascii(song.artistName) + "/" + ascii(song.albumName);
+        String name = "/" + song.discNumber + "." + song.trackNumber + " - " + ascii(song.title) + "." + song.container;
 
         return root + path + name;
+    }
+
+    @NonNull
+    public static String ascii(String string) {
+        return string.replaceAll("[^\\x20-\\x2E\\x30-\\x7E]", "");
     }
 
     @NonNull
@@ -175,10 +180,10 @@ public class MusicUtil {
 
     @NonNull
     public static String buildInfoString(@Nullable final String one, @Nullable final String two) {
-        // skip empty strings
         if (TextUtils.isEmpty(one)) {
             return TextUtils.isEmpty(two) ? "" : two;
         }
+
         if (TextUtils.isEmpty(two)) {
             return TextUtils.isEmpty(one) ? "" : one;
         }
@@ -186,7 +191,7 @@ public class MusicUtil {
         return one + "  •  " + two;
     }
 
-    public static void toggleFavorite(@NonNull final Context context, @NonNull final Song song) {
+    public static void toggleFavorite(Song song) {
         song.favorite = !song.favorite;
 
         String user = App.getApiClient().getCurrentUserId();
@@ -205,7 +210,7 @@ public class MusicUtil {
     }
 
     @NonNull
-    public static String getSectionName(@Nullable String musicMediaTitle) {
+    public static String getSectionName(String musicMediaTitle) {
         if (TextUtils.isEmpty(musicMediaTitle)) return "";
 
         musicMediaTitle = musicMediaTitle.trim().toLowerCase();
@@ -215,7 +220,10 @@ public class MusicUtil {
             musicMediaTitle = musicMediaTitle.substring(2);
         }
 
-        if (musicMediaTitle.isEmpty()) return "";
+        if (musicMediaTitle.isEmpty()) {
+            return "";
+        }
+
         return String.valueOf(musicMediaTitle.charAt(0)).toUpperCase();
     }
 }
