@@ -11,6 +11,7 @@ import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.database.Cache;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
+import com.dkanada.gramophone.util.PreferenceUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,7 +52,9 @@ public class DownloadService extends Service {
             try {
                 URL url = new URL(MusicUtil.getDownloadUri(song));
                 URLConnection connection = url.openConnection();
-                File download = new File(getCacheDir(), "download/" + song.id);
+
+                String cache = PreferenceUtil.getInstance(App.getInstance()).getLocationCache();
+                File download = new File(cache, "download/" + song.id);
                 File audio = new File(MusicUtil.getFileUri(song));
 
                 download.getParentFile().mkdirs();

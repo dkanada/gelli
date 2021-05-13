@@ -23,7 +23,7 @@ import java.io.File;
 public class CustomGlideModule extends AppGlideModule {
     @Override
     public void applyOptions(@NonNull Context context, GlideBuilder builder) {
-        File cacheDir = new File(context.getCacheDir(), "glide");
+        File cacheDir = new File(PreferenceUtil.getInstance(context).getLocationCache(), "glide");
         int size = PreferenceUtil.getInstance(context).getImageCacheSize();
 
         builder.setDiskCache(new DiskLruCacheFactory(() -> cacheDir, size));

@@ -81,23 +81,27 @@ public final class PreferenceUtil {
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
     public static final String REMEMBER_QUEUE = "remember_queue";
 
+    public static final String LOCATION_DOWNLOAD = "location_download";
+    public static final String LOCATION_CACHE = "location_cache";
     public static final String IMAGE_CACHE_SIZE = "image_cache_size";
     public static final String MEDIA_CACHE_SIZE = "media_cache_size";
 
-    private static PreferenceUtil sInstance;
+    private static PreferenceUtil instance;
 
     private final SharedPreferences mPreferences;
+    private final Context mContext;
 
     private PreferenceUtil(final Context context) {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        mContext = context;
     }
 
     public static PreferenceUtil getInstance(final Context context) {
-        if (sInstance == null) {
-            sInstance = new PreferenceUtil(context.getApplicationContext());
+        if (instance == null) {
+            instance = new PreferenceUtil(context.getApplicationContext());
         }
 
-        return sInstance;
+        return instance;
     }
 
     public void registerOnSharedPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener) {
@@ -163,30 +167,12 @@ public final class PreferenceUtil {
         return mPreferences.getBoolean(COLORED_NOTIFICATION, true);
     }
 
-    public void setColoredNotification(final boolean value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(COLORED_NOTIFICATION, value);
-        editor.apply();
-    }
-
     public final boolean getClassicNotification() {
         return mPreferences.getBoolean(CLASSIC_NOTIFICATION, Build.VERSION.SDK_INT <= Build.VERSION_CODES.O);
     }
 
-    public void setClassicNotification(final boolean value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(CLASSIC_NOTIFICATION, value);
-        editor.apply();
-    }
-
     public final boolean getColoredShortcuts() {
         return mPreferences.getBoolean(COLORED_SHORTCUTS, true);
-    }
-
-    public void setColoredShortcuts(final boolean value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(COLORED_SHORTCUTS, value);
-        editor.apply();
     }
 
     public final String getTranscodeCodec() {
@@ -385,6 +371,14 @@ public final class PreferenceUtil {
         final SharedPreferences.Editor editor = mPreferences.edit();
         editor.putBoolean(ALBUM_ARTIST_COLORED_FOOTERS, value);
         editor.apply();
+    }
+
+    public final String getLocationDownload() {
+        return mPreferences.getString(LOCATION_DOWNLOAD, mContext.getCacheDir().toString());
+    }
+
+    public final String getLocationCache() {
+        return mPreferences.getString(LOCATION_CACHE, mContext.getCacheDir().toString());
     }
 
     public final int getImageCacheSize() {

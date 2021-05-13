@@ -90,7 +90,7 @@ public class LocalPlayer implements Playback {
         LeastRecentlyUsedCacheEvictor recentlyUsedCache = new LeastRecentlyUsedCacheEvictor(cacheSize);
         ExoDatabaseProvider databaseProvider = new ExoDatabaseProvider(context);
 
-        File cacheDirectory = new File(context.getCacheDir(), "exoplayer");
+        File cacheDirectory = new File(PreferenceUtil.getInstance(context).getLocationCache(), "exoplayer");
         simpleCache = new SimpleCache(cacheDirectory, recentlyUsedCache, databaseProvider);
     }
 
