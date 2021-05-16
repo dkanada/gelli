@@ -10,6 +10,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.database.Cache;
 import com.dkanada.gramophone.model.Song;
+import com.dkanada.gramophone.service.notifications.DownloadNotification;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
@@ -30,6 +31,7 @@ public class DownloadService extends Service {
 
     private Executor executor;
     private Handler handler;
+    private DownloadNotification notification;
 
     @Override
     public void onCreate() {
@@ -42,6 +44,7 @@ public class DownloadService extends Service {
 
         executor = Executors.newFixedThreadPool(4);
         handler = new Handler(looper);
+        notification = new DownloadNotification(this);
     }
 
     @Override
@@ -68,11 +71,13 @@ public class DownloadService extends Service {
 
                 connection.connect();
 
-                byte[] data = new byte[262144];
+                byte[] data = new byte[1048576];
                 int count;
 
+                notification.start(song, connection.getContentLength());
                 while ((count = input.read(data)) != -1) {
                     output.write(data, 0, count);
+                    notification.update(count);
                 }
 
                 input.close();
@@ -90,6 +95,7 @@ public class DownloadService extends Service {
 
                 download.delete();
                 App.getDatabase().cacheDao().insertCache(new Cache(song));
+                notification.stop(song);
             } catch (Exception e) {
                 e.printStackTrace();
             }
