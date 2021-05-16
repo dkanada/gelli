@@ -16,7 +16,7 @@ public class Cache {
     public String id;
 
     @ColumnInfo(defaultValue = "1")
-    public Boolean cache;
+    public boolean cache;
 
     public Cache() {
         this.id = UUID.randomUUID().toString();
