@@ -94,7 +94,7 @@ public class MusicUtil {
 
     @NonNull
     public static String ascii(String string) {
-        return string.replaceAll("[^\\x20-\\x2E\\x30-\\x7E]", "");
+        return string.replaceAll("[\\x00-\\x1F\\x2F\\x7F]", "");
     }
 
     @NonNull
