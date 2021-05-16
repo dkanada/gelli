@@ -149,7 +149,7 @@ public class ArtistSongAdapter extends ArrayAdapter<Song> implements MaterialCab
     private void openCabIfNecessary() {
         if (cabHolder != null) {
             if (cab == null || !cab.isActive()) {
-                cab = cabHolder.openCab(R.menu.menu_media_selection, this);
+                cab = cabHolder.openCab(R.menu.menu_select_media, this);
             }
         }
     }

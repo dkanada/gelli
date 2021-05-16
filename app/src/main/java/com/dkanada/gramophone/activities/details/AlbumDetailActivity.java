@@ -171,7 +171,7 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_album_detail, menu);
+        getMenuInflater().inflate(R.menu.menu_detail_album, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

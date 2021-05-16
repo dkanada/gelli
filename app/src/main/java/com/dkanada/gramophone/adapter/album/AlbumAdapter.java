@@ -42,7 +42,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
     protected boolean usePalette;
 
     public AlbumAdapter(@NonNull AppCompatActivity activity, List<Album> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
-        super(activity, cabHolder, R.menu.menu_media_selection);
+        super(activity, cabHolder, R.menu.menu_select_media);
 
         this.activity = activity;
         this.dataSet = dataSet;

@@ -121,7 +121,7 @@ public class PlaylistDetailActivity extends AbsMusicContentActivity implements C
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_playlist_detail, menu);
+        getMenuInflater().inflate(R.menu.menu_detail_playlist, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

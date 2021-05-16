@@ -48,7 +48,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
     }
 
     public SongAdapter(AppCompatActivity activity, List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder, boolean showSectionName) {
-        super(activity, cabHolder, R.menu.menu_media_selection);
+        super(activity, cabHolder, R.menu.menu_select_media);
 
         this.activity = activity;
         this.dataSet = dataSet;

@@ -20,7 +20,7 @@ import java.util.List;
 public class PlaylistSongAdapter extends AbsOffsetSongAdapter {
     public PlaylistSongAdapter(AppCompatActivity activity, @NonNull List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
         super(activity, dataSet, itemLayoutRes, usePalette, cabHolder, false);
-        setMultiSelectMenuRes(R.menu.menu_playlists_songs_selection);
+        setMultiSelectMenuRes(R.menu.menu_select_playlist_song);
     }
 
     @Override

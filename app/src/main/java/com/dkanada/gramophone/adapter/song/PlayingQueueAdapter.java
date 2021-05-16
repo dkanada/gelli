@@ -147,7 +147,7 @@ public class PlayingQueueAdapter extends SongAdapter implements DraggableItemAda
 
         @Override
         protected int getSongMenuRes() {
-            return R.menu.menu_item_playing_queue_song;
+            return R.menu.menu_item_queue_song;
         }
 
         @Override

@@ -196,7 +196,7 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_artist_detail, menu);
+        getMenuInflater().inflate(R.menu.menu_detail_artist, menu);
         menu.findItem(R.id.action_colored_footers).setChecked(usePalette);
         return super.onCreateOptionsMenu(menu);
     }

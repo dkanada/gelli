@@ -35,7 +35,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
     protected int itemLayoutRes;
 
     public PlaylistAdapter(AppCompatActivity activity, List<Playlist> dataSet, @LayoutRes int itemLayoutRes, @Nullable CabHolder cabHolder) {
-        super(activity, cabHolder, R.menu.menu_playlists_selection);
+        super(activity, cabHolder, R.menu.menu_select_playlist);
 
         this.activity = activity;
         this.dataSet = dataSet;

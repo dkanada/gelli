@@ -97,7 +97,7 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_genre_detail, menu);
+        getMenuInflater().inflate(R.menu.menu_detail_genre, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

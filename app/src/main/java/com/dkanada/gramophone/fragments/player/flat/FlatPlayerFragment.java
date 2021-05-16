@@ -396,7 +396,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
                 }
 
                 public int getMenuRes() {
-                    return R.menu.menu_item_playing_queue_song;
+                    return R.menu.menu_item_queue_song;
                 }
 
                 @Override
