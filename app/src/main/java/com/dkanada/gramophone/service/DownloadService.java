@@ -2,9 +2,7 @@ package com.dkanada.gramophone.service;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.BuildConfig;
@@ -21,13 +19,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class DownloadService extends Service {
     public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
-    public static final String EXTRA_SONG = PACKAGE_NAME + ".extra.song";
+    public static final String EXTRA_SONGS = PACKAGE_NAME + ".extra.songs";
 
     private Executor executor;
     private DownloadNotification notification;
@@ -42,9 +41,19 @@ public class DownloadService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent == null) return super.onStartCommand(null, flags, startId);
-        Song song = intent.getParcelableExtra(EXTRA_SONG);
+        if (intent == null) {
+            return super.onStartCommand(null, flags, startId);
+        }
 
+        List<Song> songs = intent.getParcelableArrayListExtra(EXTRA_SONGS);
+        for (Song song : songs) {
+            download(song);
+        }
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    public void download(Song song) {
         executor.execute(() -> {
             try {
                 URL url = new URL(MusicUtil.getDownloadUri(song));
@@ -93,8 +102,6 @@ public class DownloadService extends Service {
                 e.printStackTrace();
             }
         });
-
-        return super.onStartCommand(intent, flags, startId);
     }
 
     @Override

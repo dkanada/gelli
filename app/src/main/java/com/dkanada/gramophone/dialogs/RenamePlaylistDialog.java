@@ -13,14 +13,14 @@ import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.util.PlaylistUtil;
 
 public class RenamePlaylistDialog extends DialogFragment {
-    private static final String PLAYLIST_ID = "playlist_id";
+    private static final String PLAYLIST = "playlist";
 
     @NonNull
     public static RenamePlaylistDialog create(Playlist playlist) {
         RenamePlaylistDialog dialog = new RenamePlaylistDialog();
 
         Bundle args = new Bundle();
-        args.putString(PLAYLIST_ID, playlist.id);
+        args.putString(PLAYLIST, playlist.id);
 
         dialog.setArguments(args);
         return dialog;
@@ -29,18 +29,16 @@ public class RenamePlaylistDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        String playlistId = getArguments().getString(PLAYLIST_ID);
         return new MaterialDialog.Builder(requireContext())
                 .title(R.string.rename_playlist_title)
                 .positiveText(R.string.rename_action)
                 .negativeText(android.R.string.cancel)
                 .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME | InputType.TYPE_TEXT_FLAG_CAP_WORDS)
-                .input(getString(R.string.name), "", false,
-                        (materialDialog, charSequence) -> {
+                .input(getString(R.string.name), "", false, (materialDialog, charSequence) -> {
                             final String name = charSequence.toString().trim();
 
                             if (!name.isEmpty()) {
-                                String id = getArguments().getString(PLAYLIST_ID);
+                                String id = getArguments().getString(PLAYLIST);
                                 PlaylistUtil.renamePlaylist(id, name);
                             }
                         })

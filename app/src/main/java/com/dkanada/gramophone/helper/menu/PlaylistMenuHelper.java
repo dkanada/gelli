@@ -38,6 +38,7 @@ public class PlaylistMenuHelper {
                 DeletePlaylistDialog.create(playlist).show(activity.getSupportFragmentManager(), DeletePlaylistDialog.TAG);
                 return true;
         }
+
         return false;
     }
 

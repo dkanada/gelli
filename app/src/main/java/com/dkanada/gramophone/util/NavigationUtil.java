@@ -23,6 +23,9 @@ import com.dkanada.gramophone.activities.details.PlaylistDetailActivity;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.DownloadService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NavigationUtil {
     public static void openUrl(Context context, String url) {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -93,17 +96,16 @@ public class NavigationUtil {
 
     public static void startActivitySharedElements(Activity activity, Intent intent, Pair sharedElements) {
         if (sharedElements != null) {
-            // noinspection unchecked
             activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity, sharedElements).toBundle());
         } else {
             activity.startActivity(intent);
         }
     }
 
-    public static void startDownload(Activity activity, Song song) {
+    public static void startDownload(Activity activity, List<Song> songs) {
         Intent intent = new Intent(activity, DownloadService.class);
 
-        intent.putExtra(DownloadService.EXTRA_SONG, song);
+        intent.putExtra(DownloadService.EXTRA_SONGS, new ArrayList<>(songs));
         activity.startService(intent);
     }
 }

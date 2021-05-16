@@ -58,8 +58,6 @@ public class RemoveFromPlaylistDialog extends DialogFragment {
                 .positiveText(R.string.remove_action)
                 .negativeText(android.R.string.cancel)
                 .onPositive((dialog, which) -> {
-                    if (getActivity() == null) return;
-
                     PlaylistSong song = songs.get(0);
                     PlaylistUtil.deleteItems(songs, song.playlistId);
                 })

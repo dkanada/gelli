@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -17,8 +16,9 @@ import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.service.DownloadService;
 import com.dkanada.gramophone.util.NavigationUtil;
+
+import java.util.Collections;
 
 public class SongMenuHelper {
     public static final int MENU_RES = R.menu.menu_item_song;
@@ -41,7 +41,7 @@ public class SongMenuHelper {
                 SongDetailDialog.create(song).show(activity.getSupportFragmentManager(), SongDetailDialog.TAG);
                 return true;
             case R.id.action_download:
-                NavigationUtil.startDownload(activity, song);
+                NavigationUtil.startDownload(activity, Collections.singletonList(song));
                 return true;
             case R.id.action_go_to_album:
                 NavigationUtil.startAlbum(activity, new Album(song), null);
