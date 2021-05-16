@@ -44,10 +44,10 @@ public class SongMenuHelper {
                 NavigationUtil.startDownload(activity, song);
                 return true;
             case R.id.action_go_to_album:
-                NavigationUtil.startAlbum(activity, new Album(song));
+                NavigationUtil.startAlbum(activity, new Album(song), null);
                 return true;
             case R.id.action_go_to_artist:
-                NavigationUtil.startArtist(activity, new Artist(song));
+                NavigationUtil.startArtist(activity, new Artist(song), null);
                 return true;
         }
         return false;

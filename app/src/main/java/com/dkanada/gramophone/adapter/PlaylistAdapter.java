@@ -164,7 +164,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                 toggleChecked(getBindingAdapterPosition());
             } else {
                 Playlist playlist = dataSet.get(getBindingAdapterPosition());
-                NavigationUtil.startPlaylist(activity, playlist);
+                NavigationUtil.startPlaylist(activity, playlist, null);
             }
         }
 

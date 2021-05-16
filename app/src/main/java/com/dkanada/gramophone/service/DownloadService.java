@@ -30,20 +30,13 @@ public class DownloadService extends Service {
     public static final String EXTRA_SONG = PACKAGE_NAME + ".extra.song";
 
     private Executor executor;
-    private Handler handler;
     private DownloadNotification notification;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        Looper looper = Looper.myLooper();
-        if (looper == null) {
-            looper = Looper.getMainLooper();
-        }
-
         executor = Executors.newFixedThreadPool(4);
-        handler = new Handler(looper);
         notification = new DownloadNotification(this);
     }
 

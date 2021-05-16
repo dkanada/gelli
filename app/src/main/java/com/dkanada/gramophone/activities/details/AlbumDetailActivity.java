@@ -99,7 +99,7 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
         setUpRecyclerView();
         setUpSongsAdapter();
         binding.artistText.setOnClickListener(v -> {
-            NavigationUtil.startArtist(AlbumDetailActivity.this, new Artist(album));
+            NavigationUtil.startArtist(AlbumDetailActivity.this, new Artist(album), null);
         });
 
         setColors(DialogUtils.resolveColor(this, R.attr.defaultFooterColor));
@@ -199,7 +199,7 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
                 super.onBackPressed();
                 return true;
             case R.id.action_go_to_artist:
-                NavigationUtil.startArtist(this, new Artist(album));
+                NavigationUtil.startArtist(this, new Artist(album), null);
                 return true;
         }
 

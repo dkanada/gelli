@@ -102,8 +102,8 @@ public class ArtistSongAdapter extends ArrayAdapter<Song> implements MaterialCab
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.action_go_to_album) {
-                    Pair[] albumPairs = new Pair[]{Pair.create(albumArt, activity.getResources().getString(R.string.transition_album_image))};
-                    NavigationUtil.startAlbum(activity, new Album(song), albumPairs);
+                    Pair transition = Pair.create(albumArt, activity.getResources().getString(R.string.transition_album_image));
+                    NavigationUtil.startAlbum(activity, new Album(song), transition);
                     return true;
                 }
 

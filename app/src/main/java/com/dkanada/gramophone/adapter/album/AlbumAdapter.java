@@ -219,8 +219,8 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
             if (isInQuickSelectMode()) {
                 toggleChecked(getBindingAdapterPosition());
             } else {
-                Pair[] albumPairs = new Pair[]{Pair.create(image, activity.getResources().getString(R.string.transition_album_image))};
-                NavigationUtil.startAlbum(activity, dataSet.get(getBindingAdapterPosition()), albumPairs);
+                Pair transition = Pair.create(image, activity.getResources().getString(R.string.transition_album_image));
+                NavigationUtil.startAlbum(activity, dataSet.get(getBindingAdapterPosition()), transition);
             }
         }
 

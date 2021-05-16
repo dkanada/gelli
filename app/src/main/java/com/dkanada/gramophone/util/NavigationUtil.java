@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 
@@ -26,7 +24,7 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.DownloadService;
 
 public class NavigationUtil {
-    public static void openUrl(@NonNull final Context context, String url) {
+    public static void openUrl(Context context, String url) {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
 
         intent.setData(Uri.parse(url));
@@ -35,7 +33,7 @@ public class NavigationUtil {
         context.startActivity(intent);
     }
 
-    public static void openSettings(@NonNull final Context context) {
+    public static void openSettings(Context context) {
         Intent intent = new Intent();
 
         intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -44,57 +42,57 @@ public class NavigationUtil {
         context.startActivity(intent);
     }
 
-    public static void startLogin(@NonNull final Context context) {
+    public static void startLogin(Context context) {
         final Intent intent = new Intent(context, LoginActivity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
 
-    public static void startSelect(@NonNull final Context context) {
+    public static void startSelect(Context context) {
         final Intent intent = new Intent(context, SelectActivity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
 
-    public static void startMain(@NonNull final Context context) {
+    public static void startMain(Context context) {
         final Intent intent = new Intent(context, MainActivity.class);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }
 
-    public static void startArtist(@NonNull final Activity activity, final Artist artist, @Nullable Pair... sharedElements) {
+    public static void startArtist(Activity activity, Artist artist, Pair sharedElements) {
         final Intent intent = new Intent(activity, ArtistDetailActivity.class);
 
         intent.putExtra(ArtistDetailActivity.EXTRA_ARTIST, artist);
         startActivitySharedElements(activity, intent, sharedElements);
     }
 
-    public static void startAlbum(@NonNull final Activity activity, final Album album, @Nullable Pair... sharedElements) {
+    public static void startAlbum(Activity activity, Album album, Pair sharedElements) {
         final Intent intent = new Intent(activity, AlbumDetailActivity.class);
 
         intent.putExtra(AlbumDetailActivity.EXTRA_ALBUM, album);
         startActivitySharedElements(activity, intent, sharedElements);
     }
 
-    public static void startGenre(@NonNull final Activity activity, final Genre genre, @Nullable Pair... sharedElements) {
+    public static void startGenre(Activity activity, Genre genre, Pair sharedElements) {
         final Intent intent = new Intent(activity, GenreDetailActivity.class);
 
         intent.putExtra(GenreDetailActivity.EXTRA_GENRE, genre);
         startActivitySharedElements(activity, intent, sharedElements);
     }
 
-    public static void startPlaylist(@NonNull final Activity activity, final Playlist playlist, @Nullable Pair... sharedElements) {
+    public static void startPlaylist(Activity activity, Playlist playlist, Pair sharedElements) {
         final Intent intent = new Intent(activity, PlaylistDetailActivity.class);
 
         intent.putExtra(PlaylistDetailActivity.EXTRA_PLAYLIST, playlist);
         startActivitySharedElements(activity, intent, sharedElements);
     }
 
-    public static void startActivitySharedElements(@NonNull final Activity activity, Intent intent, @Nullable Pair... sharedElements) {
-        if (sharedElements != null && sharedElements.length > 0) {
+    public static void startActivitySharedElements(Activity activity, Intent intent, Pair sharedElements) {
+        if (sharedElements != null) {
             // noinspection unchecked
             activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity, sharedElements).toBundle());
         } else {
@@ -102,7 +100,7 @@ public class NavigationUtil {
         }
     }
 
-    public static void startDownload(@NonNull Activity activity, Song song) {
+    public static void startDownload(Activity activity, Song song) {
         Intent intent = new Intent(activity, DownloadService.class);
 
         intent.putExtra(DownloadService.EXTRA_SONG, song);
