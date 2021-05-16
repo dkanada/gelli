@@ -53,6 +53,11 @@ public class DownloadService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
     public void download(Song song) {
         executor.execute(() -> {
             try {
@@ -102,10 +107,5 @@ public class DownloadService extends Service {
                 e.printStackTrace();
             }
         });
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
     }
 }

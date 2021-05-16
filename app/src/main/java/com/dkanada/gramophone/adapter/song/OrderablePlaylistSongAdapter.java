@@ -20,11 +20,11 @@ import com.dkanada.gramophone.util.ViewUtil;
 import java.util.List;
 
 public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements DraggableItemAdapter<OrderablePlaylistSongAdapter.ViewHolder> {
-
     private OrderableListener onMoveItemListener;
 
     public OrderablePlaylistSongAdapter(@NonNull AppCompatActivity activity, @NonNull List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder, @Nullable OrderableListener onMoveItemListener) {
         super(activity, dataSet, itemLayoutRes, usePalette, cabHolder);
+
         this.onMoveItemListener = onMoveItemListener;
     }
 

@@ -24,11 +24,6 @@ public class PlaylistSongAdapter extends AbsOffsetSongAdapter {
     }
 
     @Override
-    protected SongAdapter.ViewHolder createViewHolder(View view) {
-        return new PlaylistSongAdapter.ViewHolder(view);
-    }
-
-    @Override
     protected void onMultipleItemAction(@NonNull MenuItem menuItem, @NonNull List<Song> selection) {
         if (menuItem.getItemId() == R.id.action_remove_from_playlist) {
             RemoveFromPlaylistDialog.create(selection).show(activity.getSupportFragmentManager(), RemoveFromPlaylistDialog.TAG);
@@ -36,6 +31,11 @@ public class PlaylistSongAdapter extends AbsOffsetSongAdapter {
         }
 
         super.onMultipleItemAction(menuItem, selection);
+    }
+
+    @Override
+    protected SongAdapter.ViewHolder createViewHolder(View view) {
+        return new PlaylistSongAdapter.ViewHolder(view);
     }
 
     @Override
