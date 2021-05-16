@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RemoveFromPlaylistDialog extends DialogFragment {
+    public static final String TAG = RemoveFromPlaylistDialog.class.getSimpleName();
+
     @NonNull
     public static RemoveFromPlaylistDialog create(Song song) {
         List<Song> list = new ArrayList<>();

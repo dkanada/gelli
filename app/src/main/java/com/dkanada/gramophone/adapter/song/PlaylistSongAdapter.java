@@ -6,28 +6,36 @@ import android.view.View;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.util.Pair;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dkanada.gramophone.dialogs.RemoveFromPlaylistDialog;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.interfaces.CabHolder;
-import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
-import com.dkanada.gramophone.util.NavigationUtil;
 
 import java.util.List;
 
 public class PlaylistSongAdapter extends AbsOffsetSongAdapter {
     public PlaylistSongAdapter(AppCompatActivity activity, @NonNull List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
         super(activity, dataSet, itemLayoutRes, usePalette, cabHolder, false);
-        setMultiSelectMenuRes(R.menu.menu_cannot_delete_single_songs_playlist_songs_selection);
+        setMultiSelectMenuRes(R.menu.menu_playlists_songs_selection);
     }
 
     @Override
     protected SongAdapter.ViewHolder createViewHolder(View view) {
         return new PlaylistSongAdapter.ViewHolder(view);
+    }
+
+    @Override
+    protected void onMultipleItemAction(@NonNull MenuItem menuItem, @NonNull List<Song> selection) {
+        if (menuItem.getItemId() == R.id.action_remove_from_playlist) {
+            RemoveFromPlaylistDialog.create(selection).show(activity.getSupportFragmentManager(), RemoveFromPlaylistDialog.TAG);
+            return;
+        }
+
+        super.onMultipleItemAction(menuItem, selection);
     }
 
     @Override
@@ -77,14 +85,13 @@ public class PlaylistSongAdapter extends AbsOffsetSongAdapter {
 
         @Override
         protected int getSongMenuRes() {
-            return R.menu.menu_item_cannot_delete_single_songs_playlist_song;
+            return R.menu.menu_item_playlist_song;
         }
 
         @Override
         protected boolean onSongMenuItemClick(MenuItem item) {
-            if (item.getItemId() == R.id.action_go_to_album) {
-                Pair[] albumPairs = new Pair[]{Pair.create(image, activity.getString(R.string.transition_album_image))};
-                NavigationUtil.startAlbum(activity, new Album(dataSet.get(getBindingAdapterPosition() - 1)), albumPairs);
+            if (item.getItemId() == R.id.action_remove_from_playlist) {
+                RemoveFromPlaylistDialog.create(getSong()).show(activity.getSupportFragmentManager(), RemoveFromPlaylistDialog.TAG);
                 return true;
             }
 

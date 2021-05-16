@@ -1,6 +1,5 @@
 package com.dkanada.gramophone.adapter.song;
 
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.LayoutRes;
@@ -8,13 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dkanada.gramophone.interfaces.OrderableListener;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemAdapter;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemState;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.DraggableItemViewHolder;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.ItemDraggableRange;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.annotation.DraggableItemStateFlags;
-import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.dialogs.RemoveFromPlaylistDialog;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.ViewUtil;
@@ -23,11 +21,10 @@ import java.util.List;
 
 public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements DraggableItemAdapter<OrderablePlaylistSongAdapter.ViewHolder> {
 
-    private OnMoveItemListener onMoveItemListener;
+    private OrderableListener onMoveItemListener;
 
-    public OrderablePlaylistSongAdapter(@NonNull AppCompatActivity activity, @NonNull List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder, @Nullable OnMoveItemListener onMoveItemListener) {
+    public OrderablePlaylistSongAdapter(@NonNull AppCompatActivity activity, @NonNull List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder, @Nullable OrderableListener onMoveItemListener) {
         super(activity, dataSet, itemLayoutRes, usePalette, cabHolder);
-        setMultiSelectMenuRes(R.menu.menu_playlists_songs_selection);
         this.onMoveItemListener = onMoveItemListener;
     }
 
@@ -42,17 +39,6 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
 
         if (position < 0) return -2;
         return dataSet.get(position).id.hashCode();
-    }
-
-    @Override
-    protected void onMultipleItemAction(@NonNull MenuItem menuItem, @NonNull List<Song> selection) {
-        switch (menuItem.getItemId()) {
-            case R.id.action_remove_from_playlist:
-                RemoveFromPlaylistDialog.create(selection).show(activity.getSupportFragmentManager(), "ADD_PLAYLIST");
-                return;
-        }
-
-        super.onMultipleItemAction(menuItem, selection);
     }
 
     @Override
@@ -88,10 +74,6 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
         notifyDataSetChanged();
     }
 
-    public interface OnMoveItemListener {
-        void onMoveItem(int fromPosition, int toPosition);
-    }
-
     public class ViewHolder extends PlaylistSongAdapter.ViewHolder implements DraggableItemViewHolder {
         @DraggableItemStateFlags
         private int mDragStateFlags;
@@ -106,22 +88,6 @@ public class OrderablePlaylistSongAdapter extends PlaylistSongAdapter implements
                     dragView.setVisibility(View.GONE);
                 }
             }
-        }
-
-        @Override
-        protected int getSongMenuRes() {
-            return R.menu.menu_item_playlist_song;
-        }
-
-        @Override
-        protected boolean onSongMenuItemClick(MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.action_remove_from_playlist:
-                    RemoveFromPlaylistDialog.create(getSong()).show(activity.getSupportFragmentManager(), "REMOVE_FROM_PLAYLIST");
-                    return true;
-            }
-
-            return super.onSongMenuItemClick(item);
         }
 
         @Override
