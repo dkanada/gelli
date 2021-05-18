@@ -58,8 +58,10 @@ public abstract class JellyDatabase extends RoomDatabase {
     public static final Migration Migration5 = new Migration(4, 5) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE songs ADD COLUMN cache INTEGER NOT NULL DEFAULT 1");
+
             database.execSQL("CREATE TABLE cache (id TEXT NOT NULL PRIMARY KEY,"
-                    + "cache INTEGER NOT NULL DEFAULT '1')");
+                    + "cache INTEGER NOT NULL DEFAULT 1)");
         }
     };
 }
