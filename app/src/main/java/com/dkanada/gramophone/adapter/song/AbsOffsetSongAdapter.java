@@ -90,7 +90,7 @@ public abstract class AbsOffsetSongAdapter extends SongAdapter {
         @Override
         protected Song getSong() {
             // return empty song just to be safe
-            if (getItemViewType() == OFFSET_ITEM) return Song.EMPTY;
+            if (getItemViewType() == OFFSET_ITEM) return null;
             return dataSet.get(getBindingAdapterPosition() - 1);
         }
 

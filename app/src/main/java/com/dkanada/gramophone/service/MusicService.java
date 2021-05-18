@@ -177,13 +177,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
             switch (command) {
                 case AppWidgetClassic.NAME:
-                    appWidgetClassic.performUpdate(MusicService.this, ids);
+                    appWidgetClassic.notifyChange(MusicService.this, META_CHANGED, ids);
                     break;
                 case AppWidgetAlbum.NAME:
-                    appWidgetAlbum.performUpdate(MusicService.this, ids);
+                    appWidgetAlbum.notifyChange(MusicService.this, META_CHANGED, ids);
                     break;
                 case AppWidgetCard.NAME:
-                    appWidgetCard.performUpdate(MusicService.this, ids);
+                    appWidgetCard.notifyChange(MusicService.this, META_CHANGED, ids);
                     break;
             }
         }
@@ -515,8 +515,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void openCurrent() {
         synchronized (this) {
-            // current song title will be null when queue is cleared
-            if (getCurrentSong().title == null) return;
+            if (getCurrentSong() == null) return;
 
             playback.setDataSource(getCurrentSong());
         }
@@ -529,6 +528,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void prepareNextImpl() {
         synchronized (this) {
+            if (getCurrentSong() == null) return;
+
             nextPosition = getNextPosition(false);
             playback.queueDataSource(getSongAt(nextPosition));
         }
@@ -549,37 +550,37 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void updateNotification() {
-        if (playingNotification != null && getCurrentSong().title != null) {
+        if (playingNotification != null && getCurrentSong() != null) {
             playingNotification.update();
         }
     }
 
     private void updateMediaSessionState() {
         mediaSession.setPlaybackState(
-                new PlaybackStateCompat.Builder()
-                        .setActions(MEDIA_SESSION_ACTIONS)
-                        .setState(isPlaying() ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED, getSongProgressMillis(), 1)
-                        .build());
+            new PlaybackStateCompat.Builder()
+                .setActions(MEDIA_SESSION_ACTIONS)
+                .setState(isPlaying() ? PlaybackStateCompat.STATE_PLAYING : PlaybackStateCompat.STATE_PAUSED, getSongProgressMillis(), 1)
+                .build());
     }
 
     @SuppressLint("CheckResult")
     private void updateMediaSessionMetadata() {
         final Song song = getCurrentSong();
 
-        if (song.title == null) {
+        if (song == null) {
             mediaSession.setMetadata(null);
             return;
         }
 
         final MediaMetadataCompat.Builder metaData = new MediaMetadataCompat.Builder()
-                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, song.artistName)
-                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ARTIST, song.artistName)
-                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, song.albumName)
-                .putString(MediaMetadataCompat.METADATA_KEY_TITLE, song.title)
-                .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, song.duration)
-                .putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, getPosition() + 1)
-                .putLong(MediaMetadataCompat.METADATA_KEY_YEAR, song.year)
-                .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, null);
+            .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, song.artistName)
+            .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ARTIST, song.artistName)
+            .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, song.albumName)
+            .putString(MediaMetadataCompat.METADATA_KEY_TITLE, song.title)
+            .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, song.duration)
+            .putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, getPosition() + 1)
+            .putLong(MediaMetadataCompat.METADATA_KEY_YEAR, song.year)
+            .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, null);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             metaData.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, getPlayingQueue().size());
@@ -588,8 +589,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         if (PreferenceUtil.getInstance(this).getShowAlbumCover()) {
             final Point screenSize = Util.getScreenSize(MusicService.this);
             final RequestBuilder<Bitmap> request = CustomGlideRequest.Builder
-                    .from(MusicService.this, song.primary, song.blurHash)
-                    .bitmap().build();
+                .from(MusicService.this, song.primary, song.blurHash)
+                .bitmap().build();
 
             if (PreferenceUtil.getInstance(this).getBlurAlbumCover()) {
                 request.transform(new BlurTransformation.Builder(MusicService.this).build());
@@ -638,9 +639,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public Song getSongAt(int position) {
         if (position >= 0 && position < getPlayingQueue().size()) {
             return getPlayingQueue().get(position);
-        } else {
-            return Song.EMPTY;
         }
+
+        return null;
     }
 
     public int getNextPosition(boolean force) {
@@ -978,9 +979,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private void sendChangeInternal(final String what) {
         sendBroadcast(new Intent(what));
 
-        appWidgetAlbum.notifyChange(this, what);
-        appWidgetClassic.notifyChange(this, what);
-        appWidgetCard.notifyChange(this, what);
+        appWidgetAlbum.notifyChange(this, what, null);
+        appWidgetClassic.notifyChange(this, what, null);
+        appWidgetCard.notifyChange(this, what, null);
     }
 
     private void handleChangeInternal(@NonNull final String what) {
@@ -1245,6 +1246,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         @Override
         public void handleMessage(@NonNull final Message msg) {
+            Song song = mService.get().getCurrentSong();
+            if (song == null) return;
+
             switch (msg.what) {
                 case TRACK_STARTED:
                     onStart();
@@ -1277,19 +1281,22 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         public void onProgress() {
             PlaybackProgressInfo progressInfo = new PlaybackProgressInfo();
+            Song current = mService.get().getCurrentSong();
+            String user = App.getApiClient().getCurrentUserId();
+            Date time = new Date(System.currentTimeMillis());
+
+            if (current == null) {
+                return;
+            }
 
             // TODO these cause a wrong thread error
             long progress = mService.get().getSongProgressMillis();
             double duration = mService.get().getSongDurationMillis();
             if (progress / duration > 0.9) {
-                Song current = mService.get().getCurrentSong();
-                String user = App.getApiClient().getCurrentUserId();
-                Date time = new Date(System.currentTimeMillis());
-
                 App.getApiClient().MarkPlayedAsync(current.id, user, time, new Response<>());
             }
 
-            progressInfo.setItemId(mService.get().getCurrentSong().id);
+            progressInfo.setItemId(current.id);
             progressInfo.setPositionTicks(progress * 10000);
             progressInfo.setVolumeLevel(mService.get().playback.getVolume());
             progressInfo.setIsPaused(!mService.get().playback.isPlaying());

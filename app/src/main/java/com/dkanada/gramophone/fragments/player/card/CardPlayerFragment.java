@@ -143,6 +143,8 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
     @Override
     public void onServiceConnected() {
+        if (MusicPlayerRemote.getCurrentSong() == null) return;
+
         updateQueue();
         updateCurrentSong();
         updateIsFavorite();
@@ -150,6 +152,8 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
     @Override
     public void onPlayMetadataChanged() {
+        if (MusicPlayerRemote.getCurrentSong() == null) return;
+
         updateCurrentSong();
         updateIsFavorite();
         updateQueuePosition();
@@ -329,6 +333,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         void setUpPanelAndAlbumCoverHeight();
     }
 
+    @SuppressWarnings("ConstantConditions")
     private static abstract class BaseImpl implements Impl {
         protected CardPlayerFragment fragment;
         protected FragmentCardPlayerBinding binding;
@@ -341,7 +346,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         public AnimatorSet createDefaultColorChangeAnimatorSet(int newColor) {
             Animator backgroundAnimator;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                // noinspection ConstantConditions
                 int x = (int) (fragment.playbackControlsFragment.binding.playerPlayPauseFab.getX() + fragment.playbackControlsFragment.binding.playerPlayPauseFab.getWidth() / 2 + fragment.playbackControlsFragment.getView().getX());
                 int y = (int) (fragment.playbackControlsFragment.binding.playerPlayPauseFab.getY() + fragment.playbackControlsFragment.binding.playerPlayPauseFab.getHeight() / 2 + fragment.playbackControlsFragment.getView().getY() + fragment.playbackControlsFragment.binding.playerProgressSlider.getHeight());
                 float startRadius = Math.max(fragment.playbackControlsFragment.binding.playerPlayPauseFab.getWidth() / 2, fragment.playbackControlsFragment.binding.playerPlayPauseFab.getHeight() / 2);
@@ -378,7 +382,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     @SuppressWarnings("ConstantConditions")
     private static class PortraitImpl extends BaseImpl {
         MediaEntryViewHolder currentSongViewHolder;
-        Song currentSong = Song.EMPTY;
+        Song currentSong;
 
         public PortraitImpl(CardPlayerFragment fragment, FragmentCardPlayerBinding binding) {
             super(fragment, binding);
@@ -394,7 +398,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             currentSongViewHolder.image.setColorFilter(ATHUtil.resolveColor(fragment.getActivity(), R.attr.iconColor, ThemeStore.textColorSecondary(fragment.getActivity())), PorterDuff.Mode.SRC_IN);
             currentSongViewHolder.image.setImageResource(R.drawable.ic_volume_up_white_24dp);
             currentSongViewHolder.itemView.setOnClickListener(v -> {
-                // toggle the panel
                 if (binding.playerSlidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                     binding.playerSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
                 } else if (binding.playerSlidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {

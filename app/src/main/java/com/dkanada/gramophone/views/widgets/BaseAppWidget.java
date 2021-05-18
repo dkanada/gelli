@@ -48,28 +48,29 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
         context.sendBroadcast(updateIntent);
     }
 
-    public void notifyChange(final MusicService service, final String what) {
-        if (hasInstances(service)) {
-            if (MusicService.META_CHANGED.equals(what) || MusicService.STATE_CHANGED.equals(what)) {
-                performUpdate(service, null);
-            }
+    public void notifyChange(final MusicService service, final String what, int[] appWidgetIds) {
+        final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(service);
+        final ComponentName componentName = new ComponentName(service, getClass());
+
+        // will only find widgets for the current class to avoid updating other styles
+        if (appWidgetIds == null) {
+            appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
+        }
+
+        Song song = service.getCurrentSong();
+        if (song != null && (what.equals(MusicService.STATE_CHANGED) || what.equals(MusicService.META_CHANGED))) {
+            performUpdate(service, appWidgetIds);
         }
     }
 
     protected void pushUpdate(final Context context, final int[] appWidgetIds, final RemoteViews views) {
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
         if (appWidgetIds != null) {
             appWidgetManager.updateAppWidget(appWidgetIds, views);
         } else {
             appWidgetManager.updateAppWidget(new ComponentName(context, getClass()), views);
         }
-    }
-
-    protected boolean hasInstances(final Context context) {
-        final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        final int[] mAppWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, getClass()));
-
-        return mAppWidgetIds.length > 0;
     }
 
     protected PendingIntent buildPendingIntent(Context context, final String action, final ComponentName serviceName) {
@@ -83,7 +84,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
         }
     }
 
-    protected static Bitmap createRoundedBitmap(Bitmap bitmap, int width, int height, float tl, float tr, float bl, float br) {
+    protected Bitmap createRoundedBitmap(Bitmap bitmap, int width, int height, float tl, float tr, float bl, float br) {
         Bitmap rounded = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(rounded);
         Paint paint = new Paint();
@@ -96,7 +97,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
         return rounded;
     }
 
-    protected static Bitmap createRoundedBitmap(Drawable drawable, int width, int height, float tl, float tr, float bl, float br) {
+    protected Bitmap createRoundedBitmap(Drawable drawable, int width, int height, float tl, float tr, float bl, float br) {
         Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
 
@@ -106,7 +107,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
         return createRoundedBitmap(bitmap, width, height, tl, tr, bl, br);
     }
 
-    protected static Path composeRoundedRectPath(RectF rect, float tl, float tr, float bl, float br) {
+    protected Path composeRoundedRectPath(RectF rect, float tl, float tr, float bl, float br) {
         Path path = new Path();
         tl = tl < 0 ? 0 : tl;
         tr = tr < 0 ? 0 : tr;
@@ -129,7 +130,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
 
     abstract protected void defaultAppWidget(final Context context, final int[] appWidgetIds);
 
-    abstract public void performUpdate(final MusicService service, final int[] appWidgetIds);
+    abstract protected void performUpdate(final MusicService service, final int[] appWidgetIds);
 
     protected Drawable getAlbumArtDrawable(final Resources resources, final Bitmap bitmap) {
         if (bitmap == null) {

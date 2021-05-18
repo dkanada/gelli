@@ -16,8 +16,6 @@ import java.util.UUID;
 
 @Entity(tableName = "songs")
 public class Song implements Parcelable {
-    public static final Song EMPTY = new Song();
-
     @NonNull
     @PrimaryKey
     public String id;

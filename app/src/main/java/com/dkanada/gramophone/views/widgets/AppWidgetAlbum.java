@@ -53,6 +53,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
+    @Override
     protected void defaultAppWidget(final Context context, final int[] appWidgetIds) {
         final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_album);
 
@@ -66,6 +67,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
         pushUpdate(context, appWidgetIds, appWidgetView);
     }
 
+    @Override
     public void performUpdate(final MusicService service, final int[] appWidgetIds) {
         final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(), R.layout.app_widget_album);
 

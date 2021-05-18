@@ -143,6 +143,8 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
     @Override
     public void onServiceConnected() {
+        if (MusicPlayerRemote.getCurrentSong() == null) return;
+
         updateQueue();
         updateCurrentSong();
         updateIsFavorite();
@@ -150,6 +152,8 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
     @Override
     public void onPlayMetadataChanged() {
+        if (MusicPlayerRemote.getCurrentSong() == null) return;
+
         updateCurrentSong();
         updateIsFavorite();
         updateQueuePosition();
@@ -225,8 +229,8 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
         Drawable drawable = ImageUtil.getTintedVectorDrawable(requireActivity(), res, color);
 
         binding.playerToolbar.getMenu().findItem(R.id.action_toggle_favorite)
-                .setIcon(drawable)
-                .setTitle(favorite ? getString(R.string.action_remove_from_favorites) : getString(R.string.action_add_to_favorites));
+            .setIcon(drawable)
+            .setTitle(favorite ? getString(R.string.action_remove_from_favorites) : getString(R.string.action_add_to_favorites));
     }
 
     @Override
@@ -366,7 +370,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     @SuppressWarnings("ConstantConditions")
     private static class PortraitImpl extends BaseImpl {
         MediaEntryViewHolder currentSongViewHolder;
-        Song currentSong = Song.EMPTY;
+        Song currentSong;
 
         public PortraitImpl(FlatPlayerFragment fragment, FragmentFlatPlayerBinding binding) {
             super(fragment, binding);
@@ -382,13 +386,13 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
             currentSongViewHolder.image.setColorFilter(ATHUtil.resolveColor(fragment.getActivity(), R.attr.iconColor, ThemeStore.textColorSecondary(fragment.getActivity())), PorterDuff.Mode.SRC_IN);
             currentSongViewHolder.image.setImageResource(R.drawable.ic_volume_up_white_24dp);
             currentSongViewHolder.itemView.setOnClickListener(v -> {
-                // toggle the panel
                 if (binding.playerSlidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
                     binding.playerSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
                 } else if (binding.playerSlidingLayout.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
                     binding.playerSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 }
             });
+
             currentSongViewHolder.menu.setOnClickListener(new SongMenuHelper.OnClickSongMenu((AppCompatActivity) fragment.getActivity()) {
                 @Override
                 public Song getSong() {
@@ -417,10 +421,11 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
         @Override
         public void setUpPanelAndAlbumCoverHeight() {
-            WidthFitSquareLayout albumCoverContainer = fragment.getView().findViewById(R.id.album_cover_container);
+            final WidthFitSquareLayout albumCoverContainer = fragment.getView().findViewById(R.id.album_cover_container);
 
             final int availablePanelHeight = binding.playerSlidingLayout.getHeight() - fragment.getView().findViewById(R.id.player_content).getHeight();
             final int minPanelHeight = (int) ViewUtil.convertDpToPixel(8 + 72 + 24, fragment.getResources()) + fragment.getResources().getDimensionPixelSize(R.dimen.progress_container_height) + fragment.getResources().getDimensionPixelSize(R.dimen.media_controller_container_height);
+
             if (availablePanelHeight < minPanelHeight) {
                 albumCoverContainer.getLayoutParams().height = albumCoverContainer.getHeight() - (minPanelHeight - availablePanelHeight);
                 albumCoverContainer.forceSquare(false);
