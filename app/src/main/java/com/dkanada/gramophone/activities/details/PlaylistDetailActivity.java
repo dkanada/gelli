@@ -13,6 +13,7 @@ import com.afollestad.materialcab.MaterialCab;
 import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityPlaylistDetailBinding;
+import com.dkanada.gramophone.util.NavigationUtil;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
@@ -131,6 +132,9 @@ public class PlaylistDetailActivity extends AbsMusicContentActivity implements C
         switch (id) {
             case R.id.action_shuffle_playlist:
                 MusicPlayerRemote.openAndShuffleQueue(adapter.getDataSet(), true);
+                return true;
+            case R.id.action_download:
+                NavigationUtil.startDownload(this, adapter.getDataSet());
                 return true;
             case android.R.id.home:
                 onBackPressed();

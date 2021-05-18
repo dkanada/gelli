@@ -37,4 +37,9 @@
         android:title="@string/action_delete"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_download"
+        android:title="@string/action_download"
+        app:showAsAction="never" />
+
 </menu>

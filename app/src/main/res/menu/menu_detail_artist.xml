@@ -28,4 +28,9 @@
         android:title="@string/colored_footers"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_download"
+        android:title="@string/action_download"
+        app:showAsAction="never" />
+
 </menu>

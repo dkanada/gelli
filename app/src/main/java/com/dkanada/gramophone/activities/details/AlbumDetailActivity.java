@@ -21,7 +21,6 @@ import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.song.AlbumSongAdapter;
 import com.dkanada.gramophone.dialogs.AddToPlaylistDialog;
-import com.dkanada.gramophone.dialogs.SleepTimerDialog;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.CustomPaletteTarget;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
@@ -180,9 +179,6 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
         int id = item.getItemId();
         final List<Song> songs = adapter.getDataSet();
         switch (id) {
-            case R.id.action_sleep_timer:
-                new SleepTimerDialog().show(getSupportFragmentManager(), "SET_SLEEP_TIMER");
-                return true;
             case R.id.action_shuffle_album:
                 MusicPlayerRemote.openAndShuffleQueue(songs, true);
                 return true;
@@ -200,6 +196,9 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
                 return true;
             case R.id.action_go_to_artist:
                 NavigationUtil.startArtist(this, new Artist(album), null);
+                return true;
+            case R.id.action_download:
+                NavigationUtil.startDownload(this, songs);
                 return true;
         }
 

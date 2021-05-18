@@ -13,6 +13,7 @@ import com.afollestad.materialcab.MaterialCab;
 import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityGenreDetailBinding;
+import com.dkanada.gramophone.util.NavigationUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
@@ -107,6 +108,9 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
         switch (id) {
             case R.id.action_shuffle_genre:
                 MusicPlayerRemote.openAndShuffleQueue(adapter.getDataSet(), true);
+                return true;
+            case R.id.action_download:
+                NavigationUtil.startDownload(this, adapter.getDataSet());
                 return true;
             case android.R.id.home:
                 onBackPressed();

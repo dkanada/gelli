@@ -17,13 +17,13 @@ import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.databinding.ActivityArtistDetailBinding;
+import com.dkanada.gramophone.util.NavigationUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.album.HorizontalAlbumAdapter;
 import com.dkanada.gramophone.dialogs.AddToPlaylistDialog;
-import com.dkanada.gramophone.dialogs.SleepTimerDialog;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.CustomPaletteTarget;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
@@ -206,9 +206,6 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
         int id = item.getItemId();
         final List<Song> songs = songAdapter.getDataSet();
         switch (id) {
-            case R.id.action_sleep_timer:
-                new SleepTimerDialog().show(getSupportFragmentManager(), "SET_SLEEP_TIMER");
-                return true;
             case R.id.action_shuffle_artist:
                 MusicPlayerRemote.openAndShuffleQueue(songs, true);
                 return true;
@@ -220,6 +217,9 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
                 return true;
             case R.id.action_add_to_playlist:
                 AddToPlaylistDialog.create(songs).show(getSupportFragmentManager(), "ADD_PLAYLIST");
+                return true;
+            case R.id.action_download:
+                NavigationUtil.startDownload(this, songs);
                 return true;
             case android.R.id.home:
                 super.onBackPressed();

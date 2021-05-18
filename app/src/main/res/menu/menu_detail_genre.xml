@@ -7,4 +7,9 @@
         android:title="@string/action_shuffle_all"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_download"
+        android:title="@string/action_download"
+        app:showAsAction="never" />
+
 </menu>
