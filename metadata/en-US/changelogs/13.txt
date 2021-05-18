@@ -1,0 +1,9 @@
+- add download feature throughout the client
+- shuffle all will always shuffle regardless of sort method
+- add shuffle option back to menu on main activity
+- implement shortcuts for common dynamic playlists such as recents
+- support batch actions through the multi-select menu
+- add mini-player and queue to search activity for convenience
+- hide unused menu items for now
+- use cached or downloaded songs when available during playback
+- fix permission check on main activity
