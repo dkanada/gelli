@@ -1,7 +1,7 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory android:title="@string/pref_header_library">
+    <com.dkanada.gramophone.views.settings.JellyPreferenceCategory android:title="@string/pref_header_library">
 
         <Preference
             app:iconSpaceReserved="false"
@@ -26,6 +26,6 @@
             android:summary="@string/pref_summary_remember_tab"
             android:title="@string/pref_title_remember_tab" />
 
-    </com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
+    </com.dkanada.gramophone.views.settings.JellyPreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

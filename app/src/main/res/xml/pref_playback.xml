@@ -2,7 +2,7 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory android:title="@string/pref_header_audio">
+    <com.dkanada.gramophone.views.settings.JellyPreferenceCategory android:title="@string/pref_header_audio">
 
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
             app:iconSpaceReserved="false"
@@ -51,6 +51,6 @@
             android:summary="@string/pref_summary_remember_queue"
             android:title="@string/pref_title_remember_queue" />
 
-    </com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
+    </com.dkanada.gramophone.views.settings.JellyPreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="color_primary">#3F51B5</color>
+    <color name="color_accent">#F50057</color>
+
     <!-- Pink A400 -->
     <color name="color_favorite">#F50057</color>
 

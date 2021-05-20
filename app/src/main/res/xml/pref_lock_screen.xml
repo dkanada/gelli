@@ -1,7 +1,7 @@
 <androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory android:title="@string/pref_header_lock_screen">
+    <com.dkanada.gramophone.views.settings.JellyPreferenceCategory android:title="@string/pref_header_lock_screen">
 
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
             app:iconSpaceReserved="false"
@@ -18,6 +18,6 @@
             android:summary="@string/pref_summary_blur_album_art"
             android:title="@string/pref_title_blur_album_art" />
 
-    </com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEPreferenceCategory>
+    </com.dkanada.gramophone.views.settings.JellyPreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

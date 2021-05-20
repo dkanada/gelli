@@ -130,6 +130,14 @@ public final class PreferenceUtil {
         }
     }
 
+    public void setPrimaryColor(int color) {
+        mPreferences.edit().putInt(PRIMARY_COLOR, color).apply();
+    }
+
+    public void setAccentColor(int color) {
+        mPreferences.edit().putInt(ACCENT_COLOR, color).apply();
+    }
+
     public final int getPageSize() {
         return Integer.parseInt(mPreferences.getString(PAGE_SIZE, "100"));
     }

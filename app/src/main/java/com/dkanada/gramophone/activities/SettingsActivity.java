@@ -59,9 +59,11 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         switch (dialog.getTitle()) {
             case R.string.pref_title_primary_color:
                 ThemeStore.editTheme(this).primaryColor(selectedColor).commit();
+                PreferenceUtil.getInstance(this).setPrimaryColor(selectedColor);
                 break;
             case R.string.pref_title_accent_color:
                 ThemeStore.editTheme(this).accentColor(selectedColor).commit();
+                PreferenceUtil.getInstance(this).setAccentColor(selectedColor);
                 break;
         }
 
@@ -175,6 +177,8 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 case PreferenceUtil.COLORED_SHORTCUTS:
                     new DynamicShortcutManager(requireContext()).updateDynamicShortcuts();
                     break;
+                case PreferenceUtil.PRIMARY_COLOR:
+                case PreferenceUtil.ACCENT_COLOR:
                 case PreferenceUtil.GENERAL_THEME:
                     // apply theme before reloading shortcuts to apply the new icon colors
                     requireActivity().setTheme(PreferenceUtil.getThemeResource(key));
