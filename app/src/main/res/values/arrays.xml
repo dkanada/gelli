@@ -61,7 +61,7 @@
     </string-array>
 
     <string-array name="pref_cache_size_values">
-        <item>2147483647</item>
+        <item>10000000000</item>
         <item>2000000000</item>
         <item>1000000000</item>
         <item>400000000</item>

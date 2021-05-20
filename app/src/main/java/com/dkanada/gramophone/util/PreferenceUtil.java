@@ -381,11 +381,11 @@ public final class PreferenceUtil {
         return mPreferences.getString(LOCATION_CACHE, mContext.getCacheDir().toString());
     }
 
-    public final int getImageCacheSize() {
+    public final long getImageCacheSize() {
         return Integer.parseInt(mPreferences.getString(IMAGE_CACHE_SIZE, "400000000"));
     }
 
-    public final int getMediaCacheSize() {
+    public final long getMediaCacheSize() {
         return Integer.parseInt(mPreferences.getString(MEDIA_CACHE_SIZE, "400000000"));
     }
 
