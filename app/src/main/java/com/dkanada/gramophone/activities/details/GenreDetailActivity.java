@@ -112,9 +112,6 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
             case R.id.action_download:
                 NavigationUtil.startDownload(this, adapter.getDataSet());
                 return true;
-            case android.R.id.home:
-                onBackPressed();
-                return true;
         }
 
         return super.onOptionsItemSelected(item);

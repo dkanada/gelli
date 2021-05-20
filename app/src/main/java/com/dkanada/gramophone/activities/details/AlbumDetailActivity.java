@@ -191,9 +191,6 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
             case R.id.action_add_to_playlist:
                 AddToPlaylistDialog.create(songs).show(getSupportFragmentManager(), "ADD_PLAYLIST");
                 return true;
-            case android.R.id.home:
-                super.onBackPressed();
-                return true;
             case R.id.action_go_to_artist:
                 NavigationUtil.startArtist(this, new Artist(album), null);
                 return true;

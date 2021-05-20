@@ -3,7 +3,6 @@ package com.dkanada.gramophone.activities;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
@@ -75,16 +74,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
 
     @Override
     public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) {
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {

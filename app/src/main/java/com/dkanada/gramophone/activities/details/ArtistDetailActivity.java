@@ -221,9 +221,6 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
             case R.id.action_download:
                 NavigationUtil.startDownload(this, songs);
                 return true;
-            case android.R.id.home:
-                super.onBackPressed();
-                return true;
             case R.id.action_colored_footers:
                 item.setChecked(!item.isChecked());
                 setUsePalette(item.isChecked());

@@ -134,15 +134,6 @@ public class SearchActivity extends AbsMusicContentActivity implements SearchVie
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     private void search(@NonNull String query) {
         this.query = query;
 

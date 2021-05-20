@@ -68,16 +68,6 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public void onClick(View v) {
         if (v == binding.select) {
             startActivity(new Intent(this, SelectActivity.class));

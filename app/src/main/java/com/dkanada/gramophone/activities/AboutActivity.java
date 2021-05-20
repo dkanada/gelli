@@ -103,16 +103,6 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
         thanksBinding.adrianWebsite.setOnClickListener(this);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     private static String getCurrentVersionName(@NonNull final Context context) {
         try {
             return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;

@@ -136,9 +136,6 @@ public class PlaylistDetailActivity extends AbsMusicContentActivity implements C
             case R.id.action_download:
                 NavigationUtil.startDownload(this, adapter.getDataSet());
                 return true;
-            case android.R.id.home:
-                onBackPressed();
-                return true;
         }
 
         return PlaylistMenuHelper.handleMenuClick(this, playlist, item);
