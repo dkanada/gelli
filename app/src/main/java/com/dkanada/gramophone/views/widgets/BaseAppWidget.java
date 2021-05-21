@@ -22,6 +22,7 @@ import android.widget.RemoteViews;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.MusicService;
 import com.dkanada.gramophone.util.MusicUtil;
@@ -37,7 +38,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
     @Override
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, final int[] appWidgetIds) {
         Log.d(NAME, String.format("onUpdate: %s", Arrays.toString(appWidgetIds)));
-        defaultAppWidget(context, appWidgetIds);
+        reset(context, appWidgetIds);
 
         final Intent updateIntent = new Intent(MusicService.INTENT_EXTRA_WIDGET_UPDATE);
 
@@ -47,6 +48,10 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
 
         context.sendBroadcast(updateIntent);
     }
+
+    abstract protected void reset(final Context context, final int[] appWidgetIds);
+
+    abstract protected void updateMeta(final MusicService service, final int[] appWidgetIds);
 
     public void notifyChange(final MusicService service, final String what, int[] appWidgetIds) {
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(service);
@@ -59,7 +64,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
 
         Song song = service.getCurrentSong();
         if (song != null && (what.equals(MusicService.STATE_CHANGED) || what.equals(MusicService.META_CHANGED))) {
-            performUpdate(service, appWidgetIds);
+            updateMeta(service, appWidgetIds);
         }
     }
 
@@ -71,6 +76,26 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
         } else {
             appWidgetManager.updateAppWidget(new ComponentName(context, getClass()), views);
         }
+    }
+
+    protected void linkButtons(Context context, RemoteViews views, Integer... clickableViews) {
+        ComponentName serviceName = new ComponentName(context, MusicService.class);
+
+        Intent action = new Intent(context, MainActivity.class);
+        PendingIntent open = PendingIntent.getActivity(context, 0, action, 0);
+
+        for (int id : clickableViews) {
+            views.setOnClickPendingIntent(id, open);
+        }
+
+        PendingIntent previous = buildPendingIntent(context, MusicService.ACTION_REWIND, serviceName);
+        views.setOnClickPendingIntent(R.id.button_prev, previous);
+
+        PendingIntent toggle = buildPendingIntent(context, MusicService.ACTION_TOGGLE, serviceName);
+        views.setOnClickPendingIntent(R.id.button_toggle_play_pause, toggle);
+
+        PendingIntent next = buildPendingIntent(context, MusicService.ACTION_SKIP, serviceName);
+        views.setOnClickPendingIntent(R.id.button_next, next);
     }
 
     protected PendingIntent buildPendingIntent(Context context, final String action, final ComponentName serviceName) {
@@ -127,10 +152,6 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
 
         return path;
     }
-
-    abstract protected void defaultAppWidget(final Context context, final int[] appWidgetIds);
-
-    abstract protected void performUpdate(final MusicService service, final int[] appWidgetIds);
 
     protected Drawable getAlbumArtDrawable(final Resources resources, final Bitmap bitmap) {
         if (bitmap == null) {

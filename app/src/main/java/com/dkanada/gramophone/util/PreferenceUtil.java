@@ -390,11 +390,11 @@ public final class PreferenceUtil {
     }
 
     public final long getImageCacheSize() {
-        return Integer.parseInt(mPreferences.getString(IMAGE_CACHE_SIZE, "400000000"));
+        return Long.parseLong(mPreferences.getString(IMAGE_CACHE_SIZE, "400000000"));
     }
 
     public final long getMediaCacheSize() {
-        return Integer.parseInt(mPreferences.getString(MEDIA_CACHE_SIZE, "400000000"));
+        return Long.parseLong(mPreferences.getString(MEDIA_CACHE_SIZE, "400000000"));
     }
 
     public List<CategoryInfo> getCategories() {

@@ -30,7 +30,7 @@ import com.dkanada.gramophone.util.ImageUtil;
 import com.dkanada.gramophone.util.Util;
 
 public class AppWidgetAlbum extends BaseAppWidget {
-    public static final String NAME = "app_widget_album";
+    public static final String NAME = "widget.album";
 
     private static AppWidgetAlbum mInstance;
     private Target<Bitmap> target;
@@ -54,7 +54,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
     }
 
     @Override
-    protected void defaultAppWidget(final Context context, final int[] appWidgetIds) {
+    protected void reset(final Context context, final int[] appWidgetIds) {
         final RemoteViews appWidgetView = new RemoteViews(context.getPackageName(), R.layout.app_widget_album);
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);
@@ -63,12 +63,12 @@ public class AppWidgetAlbum extends BaseAppWidget {
         appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_previous_white_24dp, MaterialValueHelper.getPrimaryTextColor(context, false))));
         appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_play_arrow_white_24dp, MaterialValueHelper.getPrimaryTextColor(context, false))));
 
-        linkButtons(context, appWidgetView);
+        linkButtons(context, appWidgetView, R.id.clickable_area);
         pushUpdate(context, appWidgetIds, appWidgetView);
     }
 
     @Override
-    public void performUpdate(final MusicService service, final int[] appWidgetIds) {
+    public void updateMeta(final MusicService service, final int[] appWidgetIds) {
         final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(), R.layout.app_widget_album);
 
         final boolean isPlaying = service.isPlaying();
@@ -88,7 +88,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
         appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_next_white_24dp, MaterialValueHelper.getPrimaryTextColor(service, false))));
         appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_previous_white_24dp, MaterialValueHelper.getPrimaryTextColor(service, false))));
 
-        linkButtons(service, appWidgetView);
+        linkButtons(service, appWidgetView, R.id.clickable_area);
 
         Point p = Util.getScreenSize(service);
         imageSize = Math.min(p.x, p.y);
@@ -132,26 +132,5 @@ public class AppWidgetAlbum extends BaseAppWidget {
                         });
             }
         });
-    }
-
-    private void linkButtons(final Context context, final RemoteViews views) {
-        Intent action;
-        PendingIntent pendingIntent;
-
-        final ComponentName serviceName = new ComponentName(context, MusicService.class);
-
-        action = new Intent(context, MainActivity.class);
-        action.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        pendingIntent = PendingIntent.getActivity(context, 0, action, 0);
-        views.setOnClickPendingIntent(R.id.clickable_area, pendingIntent);
-
-        pendingIntent = buildPendingIntent(context, MusicService.ACTION_REWIND, serviceName);
-        views.setOnClickPendingIntent(R.id.button_prev, pendingIntent);
-
-        pendingIntent = buildPendingIntent(context, MusicService.ACTION_TOGGLE, serviceName);
-        views.setOnClickPendingIntent(R.id.button_toggle_play_pause, pendingIntent);
-
-        pendingIntent = buildPendingIntent(context, MusicService.ACTION_SKIP, serviceName);
-        views.setOnClickPendingIntent(R.id.button_next, pendingIntent);
     }
 }
