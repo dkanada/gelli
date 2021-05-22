@@ -181,7 +181,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
                 case PreferenceUtil.ACCENT_COLOR:
                 case PreferenceUtil.GENERAL_THEME:
                     // apply theme before reloading shortcuts to apply the new icon colors
-                    requireActivity().setTheme(PreferenceUtil.getThemeResource(key));
+                    requireActivity().setTheme(PreferenceUtil.getInstance(getContext()).getTheme().style);
                     new DynamicShortcutManager(requireContext()).updateDynamicShortcuts();
 
                     ThemeStore.markChanged(requireContext());

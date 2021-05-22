@@ -1,29 +1,34 @@
 package com.dkanada.gramophone.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
-import androidx.annotation.StyleRes;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.dkanada.gramophone.model.Theme;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.sort.SortMethod;
 import com.dkanada.gramophone.helper.sort.SortOrder;
 import com.dkanada.gramophone.model.CategoryInfo;
 import com.dkanada.gramophone.model.DirectPlayCodec;
+import com.dkanada.gramophone.interfaces.base.PreferenceMigration;
 import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@SuppressLint("ApplySharedPref")
 public final class PreferenceUtil {
+    public static final String VERSION = "version";
+
     public static final String SERVER = "server";
     public static final String USER = "user";
 
@@ -86,6 +91,22 @@ public final class PreferenceUtil {
     public static final String IMAGE_CACHE_SIZE = "image_cache_size";
     public static final String MEDIA_CACHE_SIZE = "media_cache_size";
 
+    @SuppressWarnings("ConstantConditions")
+    private static final PreferenceMigration Migration1 = new PreferenceMigration(0, 1) {
+        @Override
+        public void migrate(SharedPreferences preferences) {
+            String theme = preferences.getString(GENERAL_THEME, "DARK");
+            String imageSize = preferences.getString(IMAGE_CACHE_SIZE, "400");
+            String mediaSize = preferences.getString(MEDIA_CACHE_SIZE, "400");
+
+            preferences.edit().putString(GENERAL_THEME, Theme.valueOf(theme.toUpperCase()).toString()).commit();
+            preferences.edit().putString(IMAGE_CACHE_SIZE, imageSize.substring(0, imageSize.length() - 6)).commit();
+            preferences.edit().putString(MEDIA_CACHE_SIZE, mediaSize.substring(0, imageSize.length() - 6)).commit();
+        }
+    };
+
+    private static final List<PreferenceMigration> migrations = Collections.singletonList(Migration1);
+
     private static PreferenceUtil instance;
 
     private final SharedPreferences mPreferences;
@@ -94,6 +115,13 @@ public final class PreferenceUtil {
     private PreferenceUtil(final Context context) {
         mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         mContext = context;
+
+        for (PreferenceMigration migration : migrations) {
+            if (mPreferences.getInt(VERSION, 0) == migration.startVersion) {
+                migration.migrate(mPreferences);
+                mPreferences.edit().putInt(VERSION, migration.endVersion).commit();
+            }
+        }
     }
 
     public static PreferenceUtil getInstance(final Context context) {
@@ -112,22 +140,8 @@ public final class PreferenceUtil {
         mPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
     }
 
-    @StyleRes
-    public int getTheme() {
-        return getThemeResource(mPreferences.getString(GENERAL_THEME, "dark"));
-    }
-
-    @StyleRes
-    public static int getThemeResource(String themePrefValue) {
-        switch (themePrefValue) {
-            case "light":
-                return R.style.Theme_Phonograph_Light;
-            case "black":
-                return R.style.Theme_Phonograph_Black;
-            case "dark":
-            default:
-                return R.style.Theme_Phonograph;
-        }
+    public Theme getTheme() {
+        return Theme.valueOf(mPreferences.getString(GENERAL_THEME, Theme.DARK.toString()));
     }
 
     public void setPrimaryColor(int color) {
@@ -138,6 +152,7 @@ public final class PreferenceUtil {
         mPreferences.edit().putInt(ACCENT_COLOR, color).apply();
     }
 
+    @SuppressWarnings("ConstantConditions")
     public final int getPageSize() {
         return Integer.parseInt(mPreferences.getString(PAGE_SIZE, "100"));
     }
@@ -389,12 +404,14 @@ public final class PreferenceUtil {
         return mPreferences.getString(LOCATION_CACHE, mContext.getCacheDir().toString());
     }
 
+    @SuppressWarnings("ConstantConditions")
     public final long getImageCacheSize() {
-        return Long.parseLong(mPreferences.getString(IMAGE_CACHE_SIZE, "400000000"));
+        return Long.parseLong(mPreferences.getString(IMAGE_CACHE_SIZE, "400")) * 100000;
     }
 
+    @SuppressWarnings("ConstantConditions")
     public final long getMediaCacheSize() {
-        return Long.parseLong(mPreferences.getString(MEDIA_CACHE_SIZE, "400000000"));
+        return Long.parseLong(mPreferences.getString(MEDIA_CACHE_SIZE, "400")) * 100000;
     }
 
     public List<CategoryInfo> getCategories() {

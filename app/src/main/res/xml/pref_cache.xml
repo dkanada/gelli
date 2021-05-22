@@ -6,7 +6,7 @@
 
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="400000000"
+            android:defaultValue="400"
             android:entries="@array/pref_cache_size_titles"
             android:entryValues="@array/pref_cache_size_values"
             android:key="image_cache_size"
@@ -16,7 +16,7 @@
 
         <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="400000000"
+            android:defaultValue="400"
             android:entries="@array/pref_cache_size_titles"
             android:entryValues="@array/pref_cache_size_values"
             android:key="media_cache_size"

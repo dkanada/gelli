@@ -7,9 +7,9 @@
     </string-array>
 
     <string-array name="pref_theme_values">
-        <item>light</item>
-        <item>dark</item>
-        <item>black</item>
+        <item>LIGHT</item>
+        <item>DARK</item>
+        <item>BLACK</item>
     </string-array>
 
     <string-array name="pref_transcode_codec_titles">
@@ -61,11 +61,11 @@
     </string-array>
 
     <string-array name="pref_cache_size_values">
-        <item>10000000000</item>
-        <item>2000000000</item>
-        <item>1000000000</item>
-        <item>400000000</item>
-        <item>200000000</item>
+        <item>10000</item>
+        <item>2000</item>
+        <item>1000</item>
+        <item>400</item>
+        <item>200</item>
     </string-array>
 
 </resources>

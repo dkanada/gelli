@@ -1,10 +1,7 @@
 package com.dkanada.gramophone.views.widgets;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -26,7 +23,6 @@ import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.MusicService;
-import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.util.ImageUtil;
 
 public class AppWidgetClassic extends BaseAppWidget {

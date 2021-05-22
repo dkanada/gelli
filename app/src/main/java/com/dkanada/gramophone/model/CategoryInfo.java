@@ -3,6 +3,8 @@ package com.dkanada.gramophone.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.StringRes;
+
 import com.dkanada.gramophone.R;
 
 public class CategoryInfo implements Parcelable {
@@ -47,6 +49,7 @@ public class CategoryInfo implements Parcelable {
         PLAYLISTS(R.string.playlists),
         FAVORITES(R.string.favorites);
 
+        @StringRes
         public final int stringRes;
 
         Category(int stringRes) {
