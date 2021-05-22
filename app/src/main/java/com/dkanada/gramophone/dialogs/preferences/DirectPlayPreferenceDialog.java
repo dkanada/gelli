@@ -42,7 +42,7 @@ public class DirectPlayPreferenceDialog extends DialogFragment {
                 .autoDismiss(false)
                 .onNegative((dialog, action) -> dismiss())
                 .onPositive((dialog, action) -> {
-                    PreferenceUtil.getInstance(getContext()).setDirectPlayCodecs(adapter.getDirectPlayCodecs());
+                    PreferenceUtil.getInstance(getContext()).setDirectPlayCodecs(adapter.getCodecs());
                     dismiss();
                 })
                 .build();

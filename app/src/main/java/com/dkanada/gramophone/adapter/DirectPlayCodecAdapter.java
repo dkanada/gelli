@@ -10,15 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.model.DirectPlayCodec;
+import com.dkanada.gramophone.model.Codec;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DirectPlayCodecAdapter extends RecyclerView.Adapter<DirectPlayCodecAdapter.ViewHolder> {
-    private final List<DirectPlayCodec> directPlayCodecs;
+    private final List<Codec> codecs;
 
-    public DirectPlayCodecAdapter(List<DirectPlayCodec> directPlayCodecs) {
-        this.directPlayCodecs = directPlayCodecs;
+    public DirectPlayCodecAdapter(List<Codec> codecs) {
+        this.codecs = Arrays.stream(Codec.values())
+            .peek(codec -> codec.select = codecs.contains(codec))
+            .collect(Collectors.toList());
     }
 
     @NonNull
@@ -31,25 +35,25 @@ public class DirectPlayCodecAdapter extends RecyclerView.Adapter<DirectPlayCodec
 
     @Override
     public void onBindViewHolder(@NonNull DirectPlayCodecAdapter.ViewHolder holder, int position) {
-        DirectPlayCodec directPlayCodec = directPlayCodecs.get(position);
+        Codec codec = codecs.get(position);
 
-        holder.checkbox.setChecked(directPlayCodec.selected);
-        holder.container.setText(directPlayCodec.codec.container);
-        holder.codec.setText(directPlayCodec.codec.codec);
+        holder.checkbox.setChecked(codec.select);
+        holder.container.setText(codec.container);
+        holder.codec.setText(codec.codec);
 
         holder.itemView.setOnClickListener(v -> {
-            directPlayCodec.selected = !directPlayCodec.selected;
-            holder.checkbox.setChecked(directPlayCodec.selected);
+            codec.select = !codec.select;
+            holder.checkbox.setChecked(codec.select);
         });
     }
 
     @Override
     public int getItemCount() {
-        return directPlayCodecs.size();
+        return codecs.size();
     }
 
-    public List<DirectPlayCodec> getDirectPlayCodecs() {
-        return directPlayCodecs;
+    public List<Codec> getCodecs() {
+        return codecs.stream().filter(codec -> codec.select).collect(Collectors.toList());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

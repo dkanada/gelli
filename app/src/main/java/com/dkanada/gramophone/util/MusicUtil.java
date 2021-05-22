@@ -13,7 +13,7 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
-import com.dkanada.gramophone.model.DirectPlayCodec;
+import com.dkanada.gramophone.model.Codec;
 import com.dkanada.gramophone.model.Genre;
 import com.dkanada.gramophone.model.Song;
 
@@ -24,6 +24,8 @@ import org.jellyfin.apiclient.model.dto.UserItemDataDto;
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class MusicUtil {
     public static String getTranscodeUri(Song song) {
@@ -42,21 +44,11 @@ public class MusicUtil {
         // web client maximum is 12444445 and 320kbps is 320000
         builder.append("&MaxStreamingBitrate=").append(preferenceUtil.getMaximumBitrate());
 
-        boolean containerAdded = false;
-        for (DirectPlayCodec directPlayCodec : preferenceUtil.getDirectPlayCodecs()) {
-            if (directPlayCodec.selected) {
-                if (!containerAdded) {
-                    builder.append("&Container=");
-                    containerAdded = true;
-                }
+        List<Codec> codecs = preferenceUtil.getDirectPlayCodecs();
+        Stream<String> values = codecs.stream().map(codec -> codec.value);
 
-                builder.append(directPlayCodec.codec.value).append(',');
-            }
-        }
-
-        if (containerAdded) {
-            // remove last comma
-            builder.deleteCharAt(builder.length() - 1);
+        if (codecs.size() != 0) {
+            builder.append("&Container=").append(values.collect(Collectors.joining(",")));
         }
 
         builder.append("&TranscodingContainer=ts");

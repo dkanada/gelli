@@ -14,16 +14,17 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.sort.SortMethod;
 import com.dkanada.gramophone.helper.sort.SortOrder;
 import com.dkanada.gramophone.model.CategoryInfo;
-import com.dkanada.gramophone.model.DirectPlayCodec;
+import com.dkanada.gramophone.model.Codec;
 import com.dkanada.gramophone.interfaces.base.PreferenceMigration;
 import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @SuppressLint("ApplySharedPref")
 public final class PreferenceUtil {
@@ -451,38 +452,18 @@ public final class PreferenceUtil {
         return defaultCategories;
     }
 
-    public List<DirectPlayCodec> getDirectPlayCodecs() {
-        DirectPlayCodec.Codec[] codecs = DirectPlayCodec.Codec.values();
+    @SuppressWarnings("ConstantConditions")
+    public List<Codec> getDirectPlayCodecs() {
+        Set<String> defaultValues = Arrays.stream(Codec.values()).map(Enum::toString).collect(Collectors.toSet());
+        Set<String> values = mPreferences.getStringSet(DIRECT_PLAY_CODECS, defaultValues);
 
-        Set<String> selectedCodecNames = new HashSet<>();
-        for (DirectPlayCodec.Codec codec : codecs) {
-            // this will be the default value
-            selectedCodecNames.add(codec.name());
-        }
-
-        selectedCodecNames = mPreferences.getStringSet(DIRECT_PLAY_CODECS, selectedCodecNames);
-
-        ArrayList<DirectPlayCodec> directPlayCodecs = new ArrayList<>();
-        for (DirectPlayCodec.Codec codec : codecs) {
-            String name = codec.name();
-            boolean selected = selectedCodecNames.contains(name);
-            directPlayCodecs.add(new DirectPlayCodec(codec, selected));
-        }
-
-        return directPlayCodecs;
+        return values.stream().map(Codec::valueOf).collect(Collectors.toList());
     }
 
-    public void setDirectPlayCodecs(List<DirectPlayCodec> directPlayCodecs) {
-        Set<String> codecNames = new HashSet<>();
-        for (DirectPlayCodec directPlayCodec : directPlayCodecs) {
-            if (directPlayCodec.selected) {
-                codecNames.add(directPlayCodec.codec.toString());
-            }
-        }
+    public void setDirectPlayCodecs(List<Codec> codecs) {
+        Set<String> values = codecs.stream().map(Enum::toString).collect(Collectors.toSet());
 
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putStringSet(DIRECT_PLAY_CODECS, codecNames);
-        editor.apply();
+        mPreferences.edit().putStringSet(DIRECT_PLAY_CODECS, values).apply();
     }
 
     public String getServer() {
