@@ -48,11 +48,11 @@ public class CategoryPreferenceDialog extends DialogFragment {
         adapter.attachToRecyclerView(recyclerView);
 
         return new MaterialDialog.Builder(requireActivity())
-                .title(R.string.pref_title_categories)
                 .customView(view, false)
+                .title(R.string.pref_title_categories)
                 .positiveText(android.R.string.ok)
-                .negativeText(android.R.string.cancel)
                 .neutralText(R.string.reset_action)
+                .negativeText(android.R.string.cancel)
                 .autoDismiss(false)
                 .onNeutral((dialog, action) -> adapter.setCategories(PreferenceUtil.getInstance(getContext()).getDefaultCategories()))
                 .onNegative((dialog, action) -> dismiss())

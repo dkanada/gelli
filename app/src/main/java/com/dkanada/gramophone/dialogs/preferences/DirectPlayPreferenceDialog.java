@@ -35,16 +35,11 @@ public class DirectPlayPreferenceDialog extends DialogFragment {
         recyclerView.setAdapter(adapter);
 
         return new MaterialDialog.Builder(requireActivity())
-                .title(R.string.pref_title_direct_play_codecs)
                 .customView(view, false)
+                .title(R.string.pref_title_direct_play_codecs)
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
-                .autoDismiss(false)
-                .onNegative((dialog, action) -> dismiss())
-                .onPositive((dialog, action) -> {
-                    PreferenceUtil.getInstance(getContext()).setDirectPlayCodecs(adapter.getCodecs());
-                    dismiss();
-                })
+                .onPositive((dialog, action) -> PreferenceUtil.getInstance(getContext()).setDirectPlayCodecs(adapter.getCodecs()))
                 .build();
     }
 }

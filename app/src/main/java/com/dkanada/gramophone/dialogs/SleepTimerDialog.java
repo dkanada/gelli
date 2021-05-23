@@ -48,6 +48,7 @@ public class SleepTimerDialog extends DialogFragment {
 
         timerUpdater = new TimerUpdater();
         materialDialog = new MaterialDialog.Builder(requireActivity())
+                .customView(binding.getRoot(), false)
                 .title(R.string.action_sleep_timer)
                 .positiveText(R.string.action_set)
                 .onPositive((dialog, which) -> {
@@ -84,7 +85,6 @@ public class SleepTimerDialog extends DialogFragment {
                         timerUpdater.start();
                     }
                 })
-                .customView(binding.getRoot(), false)
                 .build();
 
         if (materialDialog.getCustomView() == null) {

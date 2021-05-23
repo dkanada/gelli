@@ -2,7 +2,6 @@ package com.dkanada.gramophone.dialogs.preferences;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +14,15 @@ import androidx.fragment.app.DialogFragment;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.pixelcan.inkpageindicator.InkPageIndicator;
 
-public class NowPlayingPreferenceDialog extends DialogFragment implements MaterialDialog.SingleButtonCallback, ViewPager.OnPageChangeListener {
+public class NowPlayingPreferenceDialog extends DialogFragment implements ViewPager.OnPageChangeListener {
     public static final String TAG = NowPlayingPreferenceDialog.class.getSimpleName();
 
-    private DialogAction whichButtonClicked;
     private int viewPagerPosition;
 
     public static NowPlayingPreferenceDialog newInstance() {
@@ -46,25 +43,12 @@ public class NowPlayingPreferenceDialog extends DialogFragment implements Materi
         pageIndicator.onPageSelected(viewPager.getCurrentItem());
 
         return new MaterialDialog.Builder(requireActivity())
+                .customView(view, false)
                 .title(R.string.pref_title_now_playing_appearance)
                 .positiveText(android.R.string.ok)
                 .negativeText(android.R.string.cancel)
-                .onAny(this)
-                .customView(view, false)
+                .onPositive((dialog, action) -> PreferenceUtil.getInstance(getContext()).setNowPlayingScreen(NowPlayingScreen.values()[viewPagerPosition]))
                 .build();
-    }
-
-    @Override
-    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-        whichButtonClicked = which;
-    }
-
-    @Override
-    public void onDismiss(@NonNull DialogInterface dialog) {
-        super.onDismiss(dialog);
-        if (whichButtonClicked == DialogAction.POSITIVE) {
-            PreferenceUtil.getInstance(getContext()).setNowPlayingScreen(NowPlayingScreen.values()[viewPagerPosition]);
-        }
     }
 
     @Override
