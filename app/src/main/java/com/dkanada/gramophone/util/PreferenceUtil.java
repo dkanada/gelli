@@ -141,6 +141,38 @@ public final class PreferenceUtil {
         mPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
     }
 
+    public int getShuffle() {
+        return mPreferences.getInt(SHUFFLE, 0);
+    }
+
+    public void setShuffle(int shuffle) {
+        mPreferences.edit().putInt(SHUFFLE, shuffle).apply();
+    }
+
+    public int getRepeat() {
+        return mPreferences.getInt(REPEAT, 0);
+    }
+
+    public void setRepeat(int repeat) {
+        mPreferences.edit().putInt(REPEAT, repeat).apply();
+    }
+
+    public int getPosition() {
+        return mPreferences.getInt(POSITION, -1);
+    }
+
+    public void setPosition(int position) {
+        mPreferences.edit().putInt(POSITION, position).apply();
+    }
+
+    public int getProgress() {
+        return mPreferences.getInt(PROGRESS, -1);
+    }
+
+    public void setProgress(int progress) {
+        mPreferences.edit().putInt(PROGRESS, progress).apply();
+    }
+
     public Theme getTheme() {
         return Theme.valueOf(mPreferences.getString(GENERAL_THEME, Theme.DARK.toString()));
     }
@@ -167,9 +199,7 @@ public final class PreferenceUtil {
     }
 
     public void setLastTab(final int value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(TAB, value);
-        editor.apply();
+        mPreferences.edit().putInt(TAB, value).apply();
     }
 
     public final NowPlayingScreen getNowPlayingScreen() {
@@ -182,9 +212,7 @@ public final class PreferenceUtil {
     }
 
     public void setNowPlayingScreen(NowPlayingScreen nowPlayingScreen) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(NOW_PLAYING_SCREEN, nowPlayingScreen.id);
-        editor.apply();
+        mPreferences.edit().putInt(NOW_PLAYING_SCREEN, nowPlayingScreen.id).apply();
     }
 
     public final boolean getColoredNotification() {
@@ -232,9 +260,7 @@ public final class PreferenceUtil {
     }
 
     public void setAlbumSortOrder(SortOrder sortOrder) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(ALBUM_SORT_ORDER, sortOrder.toString());
-        editor.apply();
+        mPreferences.edit().putString(ALBUM_SORT_ORDER, sortOrder.toString()).apply();
     }
 
     public final SortOrder getSongSortOrder() {
@@ -242,9 +268,7 @@ public final class PreferenceUtil {
     }
 
     public void setSongSortOrder(SortOrder sortOrder) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(SONG_SORT_ORDER, sortOrder.toString());
-        editor.apply();
+        mPreferences.edit().putString(SONG_SORT_ORDER, sortOrder.toString()).apply();
     }
 
     public final SortMethod getAlbumSortMethod() {
@@ -252,9 +276,7 @@ public final class PreferenceUtil {
     }
 
     public void setAlbumSortMethod(SortMethod sortMethod) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(ALBUM_SORT_METHOD, sortMethod.toString());
-        editor.apply();
+        mPreferences.edit().putString(ALBUM_SORT_METHOD, sortMethod.toString()).apply();
     }
 
     public final SortMethod getSongSortMethod() {
@@ -262,9 +284,7 @@ public final class PreferenceUtil {
     }
 
     public void setSongSortMethod(SortMethod sortMethod) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(SONG_SORT_METHOD, sortMethod.toString());
-        editor.apply();
+        mPreferences.edit().putString(SONG_SORT_METHOD, sortMethod.toString()).apply();
     }
 
     public int getLastSleepTimerValue() {
@@ -272,9 +292,7 @@ public final class PreferenceUtil {
     }
 
     public void setLastSleepTimerValue(final int value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(SLEEP_TIMER_LAST_VALUE, value);
-        editor.apply();
+        mPreferences.edit().putInt(SLEEP_TIMER_LAST_VALUE, value).apply();
     }
 
     public long getNextSleepTimerElapsedRealTime() {
@@ -282,9 +300,7 @@ public final class PreferenceUtil {
     }
 
     public void setNextSleepTimerElapsedRealtime(final long value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putLong(SLEEP_TIMER_ELAPSED_REALTIME, value);
-        editor.apply();
+        mPreferences.edit().putLong(SLEEP_TIMER_ELAPSED_REALTIME, value).apply();
     }
 
     public boolean getSleepTimerFinishMusic() {
@@ -292,9 +308,7 @@ public final class PreferenceUtil {
     }
 
     public void setSleepTimerFinishMusic(final boolean value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(SLEEP_TIMER_FINISH_SONG, value);
-        editor.apply();
+        mPreferences.edit().putBoolean(SLEEP_TIMER_FINISH_SONG, value).apply();
     }
 
     public final int getAlbumGridSize(Context context) {
@@ -302,9 +316,7 @@ public final class PreferenceUtil {
     }
 
     public void setAlbumGridSize(final int gridSize) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(ALBUM_GRID_SIZE, gridSize);
-        editor.apply();
+        mPreferences.edit().putInt(ALBUM_GRID_SIZE, gridSize).apply();
     }
 
     public final int getSongGridSize(Context context) {
@@ -312,9 +324,7 @@ public final class PreferenceUtil {
     }
 
     public void setSongGridSize(final int gridSize) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(SONG_GRID_SIZE, gridSize);
-        editor.apply();
+        mPreferences.edit().putInt(SONG_GRID_SIZE, gridSize).apply();
     }
 
     public final int getArtistGridSize(Context context) {
@@ -322,9 +332,7 @@ public final class PreferenceUtil {
     }
 
     public void setArtistGridSize(final int gridSize) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(ARTIST_GRID_SIZE, gridSize);
-        editor.apply();
+        mPreferences.edit().putInt(ARTIST_GRID_SIZE, gridSize).apply();
     }
 
     public final int getAlbumGridSizeLand(Context context) {
@@ -332,9 +340,7 @@ public final class PreferenceUtil {
     }
 
     public void setAlbumGridSizeLand(final int gridSize) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(ALBUM_GRID_SIZE_LAND, gridSize);
-        editor.apply();
+        mPreferences.edit().putInt(ALBUM_GRID_SIZE_LAND, gridSize).apply();
     }
 
     public final int getSongGridSizeLand(Context context) {
@@ -342,9 +348,7 @@ public final class PreferenceUtil {
     }
 
     public void setSongGridSizeLand(final int gridSize) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(SONG_GRID_SIZE_LAND, gridSize);
-        editor.apply();
+        mPreferences.edit().putInt(SONG_GRID_SIZE_LAND, gridSize).apply();
     }
 
     public final int getArtistGridSizeLand(Context context) {
@@ -352,9 +356,7 @@ public final class PreferenceUtil {
     }
 
     public void setArtistGridSizeLand(final int gridSize) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putInt(ARTIST_GRID_SIZE_LAND, gridSize);
-        editor.apply();
+        mPreferences.edit().putInt(ARTIST_GRID_SIZE_LAND, gridSize).apply();
     }
 
     public final boolean getAlbumColoredFooters() {
@@ -362,9 +364,7 @@ public final class PreferenceUtil {
     }
 
     public void setAlbumColoredFooters(final boolean value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(ALBUM_COLORED_FOOTERS, value);
-        editor.apply();
+        mPreferences.edit().putBoolean(ALBUM_COLORED_FOOTERS, value).apply();
     }
 
     public final boolean getSongColoredFooters() {
@@ -372,9 +372,7 @@ public final class PreferenceUtil {
     }
 
     public void setSongColoredFooters(final boolean value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(SONG_COLORED_FOOTERS, value);
-        editor.apply();
+        mPreferences.edit().putBoolean(SONG_COLORED_FOOTERS, value).apply();
     }
 
     public final boolean getArtistColoredFooters() {
@@ -382,9 +380,7 @@ public final class PreferenceUtil {
     }
 
     public void setArtistColoredFooters(final boolean value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(ARTIST_COLORED_FOOTERS, value);
-        editor.apply();
+        mPreferences.edit().putBoolean(ARTIST_COLORED_FOOTERS, value).apply();
     }
 
     public final boolean getAlbumArtistColoredFooters() {
@@ -392,9 +388,7 @@ public final class PreferenceUtil {
     }
 
     public void setAlbumArtistColoredFooters(final boolean value) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putBoolean(ALBUM_ARTIST_COLORED_FOOTERS, value);
-        editor.apply();
+        mPreferences.edit().putBoolean(ALBUM_ARTIST_COLORED_FOOTERS, value).apply();
     }
 
     public final String getLocationDownload() {
@@ -436,9 +430,7 @@ public final class PreferenceUtil {
         Gson gson = new Gson();
         Type collectionType = new TypeToken<List<CategoryInfo>>() {}.getType();
 
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(CATEGORIES, gson.toJson(categories, collectionType));
-        editor.apply();
+        mPreferences.edit().putString(CATEGORIES, gson.toJson(categories, collectionType)).apply();
     }
 
     public List<CategoryInfo> getDefaultCategories() {
@@ -471,9 +463,7 @@ public final class PreferenceUtil {
     }
 
     public void setServer(String server) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(SERVER, server);
-        editor.apply();
+        mPreferences.edit().putString(SERVER, server).apply();
     }
 
     public String getUser() {
@@ -481,8 +471,6 @@ public final class PreferenceUtil {
     }
 
     public void setUser(String user) {
-        final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(USER, user);
-        editor.apply();
+        mPreferences.edit().putString(USER, user).apply();
     }
 }
