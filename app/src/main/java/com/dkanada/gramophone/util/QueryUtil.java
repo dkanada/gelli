@@ -1,8 +1,6 @@
 package com.dkanada.gramophone.util;
 
 import com.dkanada.gramophone.App;
-import com.dkanada.gramophone.helper.sort.SortMethod;
-import com.dkanada.gramophone.helper.sort.SortOrder;
 import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
@@ -121,7 +119,6 @@ public class QueryUtil {
     public static void getAlbums(ItemQuery query, MediaCallback<Album> callback) {
         query.setIncludeItemTypes(new String[]{"MusicAlbum"});
         applyProperties(query);
-        applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod());
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
@@ -165,7 +162,6 @@ public class QueryUtil {
         query.setIncludeItemTypes(new String[]{"Audio"});
         query.setFields(new ItemFields[]{ItemFields.MediaSources});
         applyProperties(query);
-        applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortMethod());
         App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
@@ -204,45 +200,5 @@ public class QueryUtil {
 
         if (currentLibrary == null || query.getParentId() != null) return;
         query.setParentId(currentLibrary.getId());
-    }
-
-    public static void applySortMethod(ItemQuery query, String method) {
-        // album activity will always sort by track number
-        if (query.getSortBy().length != 0) return;
-
-        switch (method) {
-            case SortMethod.NAME:
-                query.setSortBy(new String[]{"SortName"});
-                break;
-            case SortMethod.ALBUM:
-                query.setSortBy(new String[]{"Album"});
-                break;
-            case SortMethod.ARTIST:
-                query.setSortBy(new String[]{"AlbumArtist"});
-                break;
-            case SortMethod.YEAR:
-                query.setSortBy(new String[]{"ProductionYear"});
-                break;
-            case SortMethod.ADDED:
-                query.setSortBy(new String[]{"DateCreated"});
-                break;
-            case SortMethod.RANDOM:
-                query.setSortBy(new String[]{"Random"});
-                break;
-            case SortMethod.COUNT:
-                query.setSortBy(new String[]{"PlayCount"});
-                break;
-        }
-    }
-
-    public static void applySortOrder(ItemQuery query, String order) {
-        switch (order) {
-            case SortOrder.ASCENDING:
-                query.setSortOrder(org.jellyfin.apiclient.model.entities.SortOrder.Ascending);
-                break;
-            case SortOrder.DESCENDING:
-                query.setSortOrder(org.jellyfin.apiclient.model.entities.SortOrder.Descending);
-                break;
-        }
     }
 }

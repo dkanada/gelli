@@ -23,7 +23,6 @@ import com.dkanada.gramophone.glide.CustomPaletteTarget;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.helper.menu.SongMenuHelper;
 import com.dkanada.gramophone.helper.menu.SongsMenuHelper;
-import com.dkanada.gramophone.helper.sort.SortMethod;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Song;
@@ -191,20 +190,20 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
 
         @Nullable String sectionName = null;
         switch (PreferenceUtil.getInstance(activity).getSongSortMethod()) {
-            case SortMethod.NAME:
+            case NAME:
                 sectionName = dataSet.get(position).title;
                 break;
-            case SortMethod.ALBUM:
+            case ALBUM:
                 sectionName = dataSet.get(position).albumName;
                 break;
-            case SortMethod.ARTIST:
+            case ARTIST:
                 sectionName = dataSet.get(position).artistName;
                 break;
-            case SortMethod.YEAR:
+            case YEAR:
                 return MusicUtil.getYearString(dataSet.get(position).year);
-            case SortMethod.ADDED:
+            case ADDED:
                 return "";
-            case SortMethod.RANDOM:
+            case RANDOM:
                 return activity.getResources().getString(R.string.random);
         }
 

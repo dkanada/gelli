@@ -10,6 +10,8 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.song.ShuffleButtonSongAdapter;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.model.Song;
+import com.dkanada.gramophone.model.SortMethod;
+import com.dkanada.gramophone.model.SortOrder;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 
@@ -76,8 +78,8 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 
-        QueryUtil.applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortMethod());
-        QueryUtil.applySortOrder(query, PreferenceUtil.getInstance(App.getInstance()).getSongSortOrder());
+        query.setSortBy(new String[]{PreferenceUtil.getInstance(App.getInstance()).getSongSortMethod().getApi()});
+        query.setSortOrder(PreferenceUtil.getInstance(App.getInstance()).getSongSortOrder().getApi());
         return query;
     }
 
@@ -112,31 +114,31 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
     }
 
     @Override
-    protected String loadSortMethod() {
+    protected SortMethod loadSortMethod() {
         return PreferenceUtil.getInstance(getActivity()).getSongSortMethod();
     }
 
     @Override
-    protected void saveSortMethod(String sortMethod) {
+    protected void saveSortMethod(SortMethod sortMethod) {
         PreferenceUtil.getInstance(getActivity()).setSongSortMethod(sortMethod);
     }
 
     @Override
-    protected void setSortMethod(String sortMethod) {
+    protected void setSortMethod(SortMethod sortMethod) {
     }
 
     @Override
-    protected String loadSortOrder() {
+    protected SortOrder loadSortOrder() {
         return PreferenceUtil.getInstance(getActivity()).getSongSortOrder();
     }
 
     @Override
-    protected void saveSortOrder(String sortOrder) {
+    protected void saveSortOrder(SortOrder sortOrder) {
         PreferenceUtil.getInstance(getActivity()).setSongSortOrder(sortOrder);
     }
 
     @Override
-    protected void setSortOrder(String sortOrder) {
+    protected void setSortOrder(SortOrder sortOrder) {
     }
 
     @Override

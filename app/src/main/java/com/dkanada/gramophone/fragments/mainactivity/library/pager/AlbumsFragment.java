@@ -9,6 +9,8 @@ import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.album.AlbumAdapter;
 import com.dkanada.gramophone.model.Album;
+import com.dkanada.gramophone.model.SortMethod;
+import com.dkanada.gramophone.model.SortOrder;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 
@@ -54,8 +56,8 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 
-        QueryUtil.applySortMethod(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod());
-        QueryUtil.applySortOrder(query, PreferenceUtil.getInstance(App.getInstance()).getAlbumSortOrder());
+        query.setSortBy(new String[]{PreferenceUtil.getInstance(App.getInstance()).getAlbumSortMethod().getApi()});
+        query.setSortOrder(PreferenceUtil.getInstance(App.getInstance()).getAlbumSortOrder().getApi());
         return query;
     }
 
@@ -89,31 +91,31 @@ public class AlbumsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFra
     }
 
     @Override
-    protected String loadSortMethod() {
+    protected SortMethod loadSortMethod() {
         return PreferenceUtil.getInstance(getActivity()).getAlbumSortMethod();
     }
 
     @Override
-    protected void saveSortMethod(String sortMethod) {
+    protected void saveSortMethod(SortMethod sortMethod) {
         PreferenceUtil.getInstance(getActivity()).setAlbumSortMethod(sortMethod);
     }
 
     @Override
-    protected void setSortMethod(String sortMethod) {
+    protected void setSortMethod(SortMethod sortMethod) {
     }
 
     @Override
-    protected String loadSortOrder() {
+    protected SortOrder loadSortOrder() {
         return PreferenceUtil.getInstance(getActivity()).getAlbumSortOrder();
     }
 
     @Override
-    protected void saveSortOrder(String sortOrder) {
+    protected void saveSortOrder(SortOrder sortOrder) {
         PreferenceUtil.getInstance(getActivity()).setAlbumSortOrder(sortOrder);
     }
 
     @Override
-    protected void setSortOrder(String sortOrder) {
+    protected void setSortOrder(SortOrder sortOrder) {
     }
 
     @Override

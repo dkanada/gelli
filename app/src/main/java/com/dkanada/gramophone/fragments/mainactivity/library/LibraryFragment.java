@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -19,7 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.dkanada.gramophone.databinding.FragmentLibraryBinding;
-import com.dkanada.gramophone.fragments.mainactivity.library.pager.FavoritesFragment;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.util.ShortcutUtil;
 import com.google.android.material.appbar.AppBarLayout;
@@ -31,8 +29,8 @@ import com.kabouzeid.appthemehelper.util.ToolbarContentTintHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.MusicLibraryPagerAdapter;
 import com.dkanada.gramophone.dialogs.CreatePlaylistDialog;
-import com.dkanada.gramophone.helper.sort.SortMethod;
-import com.dkanada.gramophone.helper.sort.SortOrder;
+import com.dkanada.gramophone.model.SortMethod;
+import com.dkanada.gramophone.model.SortOrder;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.activities.SearchActivity;
@@ -343,7 +341,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     private void setUpSortMethodMenu(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull SubMenu sortMethodMenu) {
-        String currentSortMethod = fragment.getSortMethod();
+        SortMethod currentSortMethod = fragment.getSortMethod();
         sortMethodMenu.clear();
 
         if (fragment instanceof AlbumsFragment) {
@@ -357,7 +355,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
                     .setChecked(currentSortMethod.equals(SortMethod.ADDED));
             sortMethodMenu.add(0, R.id.action_sort_method_random, 4, R.string.sort_method_random)
                     .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
-        } else if (fragment instanceof SongsFragment || fragment instanceof FavoritesFragment) {
+        } else if (fragment instanceof SongsFragment) {
             sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_method_name)
                     .setChecked(currentSortMethod.equals(SortMethod.NAME));
             sortMethodMenu.add(0, R.id.action_sort_method_album, 1, R.string.sort_method_album)
@@ -376,7 +374,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     private void setUpSortOrderMenu(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull SubMenu sortOrderMenu) {
-        String currentSortOrder = fragment.getSortOrder();
+        SortOrder currentSortOrder = fragment.getSortOrder();
         sortOrderMenu.clear();
 
         sortOrderMenu.add(0, R.id.action_sort_order_ascending, 0, R.string.sort_order_ascending)
@@ -388,7 +386,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     private boolean handleSortMethodMenuItem(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull MenuItem item) {
-        String sortMethod = null;
+        SortMethod sortMethod = null;
         switch (item.getItemId()) {
             case R.id.action_sort_method_name:
                 sortMethod = SortMethod.NAME;
@@ -420,7 +418,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     private boolean handleSortOrderMenuItem(@NonNull AbsLibraryPagerRecyclerViewCustomGridSizeFragment fragment, @NonNull MenuItem item) {
-        String sortOrder = null;
+        SortOrder sortOrder = null;
         switch (item.getItemId()) {
             case R.id.action_sort_order_ascending:
                 sortOrder = SortOrder.ASCENDING;

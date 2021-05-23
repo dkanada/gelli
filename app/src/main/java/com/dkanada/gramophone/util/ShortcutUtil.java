@@ -1,8 +1,8 @@
 package com.dkanada.gramophone.util;
 
 import com.dkanada.gramophone.App;
-import com.dkanada.gramophone.helper.sort.SortMethod;
-import com.dkanada.gramophone.helper.sort.SortOrder;
+import com.dkanada.gramophone.model.SortMethod;
+import com.dkanada.gramophone.model.SortOrder;
 import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Song;
 
@@ -19,8 +19,8 @@ public class ShortcutUtil {
     public static void getFrequent(MediaCallback<Song> callback) {
         ItemQuery query = new ItemQuery();
 
-        QueryUtil.applySortMethod(query, SortMethod.COUNT);
-        QueryUtil.applySortOrder(query, SortOrder.DESCENDING);
+        query.setSortBy(new String[]{SortMethod.COUNT.getApi()});
+        query.setSortOrder(SortOrder.DESCENDING.getApi());
 
         getSongs(query, callback);
     }
@@ -28,8 +28,8 @@ public class ShortcutUtil {
     public static void getLatest(MediaCallback<Song> callback) {
         ItemQuery query = new ItemQuery();
 
-        QueryUtil.applySortMethod(query, SortMethod.ADDED);
-        QueryUtil.applySortOrder(query, SortOrder.DESCENDING);
+        query.setSortBy(new String[]{SortMethod.ADDED.getApi()});
+        query.setSortOrder(SortOrder.DESCENDING.getApi());
 
         getSongs(query, callback);
     }
@@ -37,8 +37,8 @@ public class ShortcutUtil {
     public static void getShuffle(MediaCallback<Song> callback) {
         ItemQuery query = new ItemQuery();
 
-        QueryUtil.applySortMethod(query, SortMethod.RANDOM);
-        QueryUtil.applySortOrder(query, SortOrder.DESCENDING);
+        query.setSortBy(new String[]{SortMethod.RANDOM.getApi()});
+        query.setSortOrder(SortOrder.DESCENDING.getApi());
 
         getSongs(query, callback);
     }

@@ -8,12 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.model.SortMethod;
+import com.dkanada.gramophone.model.SortOrder;
 import com.dkanada.gramophone.util.Util;
 
 public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extends RecyclerView.Adapter, L extends RecyclerView.LayoutManager, Q> extends AbsLibraryPagerRecyclerViewFragment<A, L, Q> {
     private int gridSize;
-    private String sortMethod;
-    private String sortOrder;
+    private SortMethod sortMethod;
+    private SortOrder sortOrder;
 
     private boolean usePaletteInitialized;
     private boolean usePalette;
@@ -48,7 +50,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         return usePalette;
     }
 
-    public final String getSortMethod() {
+    public final SortMethod getSortMethod() {
         if (sortMethod == null) {
             sortMethod = loadSortMethod();
         }
@@ -56,7 +58,7 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         return sortMethod;
     }
 
-    public final String getSortOrder() {
+    public final SortOrder getSortOrder() {
         if (sortOrder == null) {
             sortOrder = loadSortOrder();
         }
@@ -88,14 +90,14 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
         setUsePalette(usePalette);
     }
 
-    public void setAndSaveSortMethod(final String sortMethod) {
+    public void setAndSaveSortMethod(final SortMethod sortMethod) {
         this.sortMethod = sortMethod;
         saveSortMethod(sortMethod);
         setSortMethod(sortMethod);
         invalidateAdapter();
     }
 
-    public void setAndSaveSortOrder(final String sortOrder) {
+    public void setAndSaveSortOrder(final SortOrder sortOrder) {
         this.sortOrder = sortOrder;
         saveSortOrder(sortOrder);
         setSortOrder(sortOrder);
@@ -157,17 +159,17 @@ public abstract class AbsLibraryPagerRecyclerViewCustomGridSizeFragment<A extend
 
     protected abstract void setGridSize(int gridSize);
 
-    protected abstract String loadSortMethod();
+    protected abstract SortMethod loadSortMethod();
 
-    protected abstract void saveSortMethod(String sortMethod);
+    protected abstract void saveSortMethod(SortMethod sortMethod);
 
-    protected abstract void setSortMethod(String sortMethod);
+    protected abstract void setSortMethod(SortMethod sortMethod);
 
-    protected abstract String loadSortOrder();
+    protected abstract SortOrder loadSortOrder();
 
-    protected abstract void saveSortOrder(String sortOrder);
+    protected abstract void saveSortOrder(SortOrder sortOrder);
 
-    protected abstract void setSortOrder(String sortOrder);
+    protected abstract void setSortOrder(SortOrder sortOrder);
 
     protected int getMaxGridSizeForList() {
         if (isLandscape()) {

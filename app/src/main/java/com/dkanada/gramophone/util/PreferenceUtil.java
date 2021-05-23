@@ -11,8 +11,8 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.dkanada.gramophone.model.Theme;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.helper.sort.SortMethod;
-import com.dkanada.gramophone.helper.sort.SortOrder;
+import com.dkanada.gramophone.model.SortMethod;
+import com.dkanada.gramophone.model.SortOrder;
 import com.dkanada.gramophone.model.CategoryInfo;
 import com.dkanada.gramophone.model.Codec;
 import com.dkanada.gramophone.interfaces.base.PreferenceMigration;
@@ -227,43 +227,43 @@ public final class PreferenceUtil {
         return mPreferences.getBoolean(BLUR_ALBUM_COVER, true);
     }
 
-    public final String getAlbumSortOrder() {
-        return mPreferences.getString(ALBUM_SORT_ORDER, SortOrder.DESCENDING);
+    public final SortOrder getAlbumSortOrder() {
+        return SortOrder.valueOf(mPreferences.getString(ALBUM_SORT_ORDER, SortOrder.DESCENDING.toString()));
     }
 
-    public void setAlbumSortOrder(final String sortOrder) {
+    public void setAlbumSortOrder(SortOrder sortOrder) {
         final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(ALBUM_SORT_ORDER, sortOrder);
+        editor.putString(ALBUM_SORT_ORDER, sortOrder.toString());
         editor.apply();
     }
 
-    public final String getSongSortOrder() {
-        return mPreferences.getString(SONG_SORT_ORDER, SortOrder.DESCENDING);
+    public final SortOrder getSongSortOrder() {
+        return SortOrder.valueOf(mPreferences.getString(SONG_SORT_ORDER, SortOrder.DESCENDING.toString()));
     }
 
-    public void setSongSortOrder(final String sortOrder) {
+    public void setSongSortOrder(SortOrder sortOrder) {
         final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(SONG_SORT_ORDER, sortOrder);
+        editor.putString(SONG_SORT_ORDER, sortOrder.toString());
         editor.apply();
     }
 
-    public final String getAlbumSortMethod() {
-        return mPreferences.getString(ALBUM_SORT_METHOD, SortMethod.RANDOM);
+    public final SortMethod getAlbumSortMethod() {
+        return SortMethod.valueOf(mPreferences.getString(ALBUM_SORT_METHOD, SortMethod.RANDOM.toString()));
     }
 
-    public void setAlbumSortMethod(final String sortMethod) {
+    public void setAlbumSortMethod(SortMethod sortMethod) {
         final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(ALBUM_SORT_METHOD, sortMethod);
+        editor.putString(ALBUM_SORT_METHOD, sortMethod.toString());
         editor.apply();
     }
 
-    public final String getSongSortMethod() {
-        return mPreferences.getString(SONG_SORT_METHOD, SortMethod.RANDOM);
+    public final SortMethod getSongSortMethod() {
+        return SortMethod.valueOf(mPreferences.getString(SONG_SORT_METHOD, SortMethod.RANDOM.toString()));
     }
 
-    public void setSongSortMethod(final String sortMethod) {
+    public void setSongSortMethod(SortMethod sortMethod) {
         final SharedPreferences.Editor editor = mPreferences.edit();
-        editor.putString(SONG_SORT_METHOD, sortMethod);
+        editor.putString(SONG_SORT_METHOD, sortMethod.toString());
         editor.apply();
     }
 
