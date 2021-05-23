@@ -3,7 +3,6 @@ package com.dkanada.gramophone.activities;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,6 @@ import com.dkanada.gramophone.databinding.CardSupportDevelopmentBinding;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 
-@SuppressWarnings("FieldCanBeLocal")
 public class AboutActivity extends AbsBaseActivity implements View.OnClickListener {
     private ActivityAboutBinding binding;
 

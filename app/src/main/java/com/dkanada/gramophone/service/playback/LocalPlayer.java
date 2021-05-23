@@ -35,6 +35,7 @@ public class LocalPlayer implements Playback {
 
     private PlaybackCallbacks callbacks;
 
+    @SuppressWarnings("FieldCanBeLocal")
     private final EventListener eventListener = new EventListener() {
         @Override
         public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {

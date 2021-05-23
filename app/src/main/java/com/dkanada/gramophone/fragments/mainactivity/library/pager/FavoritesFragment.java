@@ -1,10 +1,6 @@
 package com.dkanada.gramophone.fragments.mainactivity.library.pager;
 
 import androidx.annotation.NonNull;
-import com.dkanada.gramophone.App;
-import com.dkanada.gramophone.util.PreferenceUtil;
-import com.dkanada.gramophone.util.QueryUtil;
-import org.jellyfin.apiclient.model.querying.ItemFields;
 import org.jellyfin.apiclient.model.querying.ItemFilter;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 

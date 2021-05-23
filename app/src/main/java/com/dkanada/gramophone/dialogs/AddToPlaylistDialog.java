@@ -8,7 +8,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.PlaylistUtil;

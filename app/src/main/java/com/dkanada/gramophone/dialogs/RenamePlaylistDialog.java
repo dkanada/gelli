@@ -29,7 +29,7 @@ public class RenamePlaylistDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        return new MaterialDialog.Builder(requireContext())
+        return new MaterialDialog.Builder(requireActivity())
             .title(R.string.rename_playlist_title)
             .positiveText(R.string.rename_action)
             .negativeText(android.R.string.cancel)

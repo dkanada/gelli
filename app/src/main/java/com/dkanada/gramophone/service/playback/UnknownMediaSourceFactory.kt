@@ -59,6 +59,7 @@ class UnknownMediaSourceFactory(dataSourceFactory: DataSource.Factory) : MediaSo
         return sourceFactory.createMediaSource(mediaItem)
     }
 
+    @Suppress("BlockingMethodInNonBlockingContext")
     private suspend fun httpGet(url: String?): String? {
         return withContext(Dispatchers.IO) {
             val request = URL(url)

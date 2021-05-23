@@ -3,10 +3,7 @@ package com.dkanada.gramophone.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dkanada.gramophone.App;
@@ -34,11 +31,8 @@ public class SelectActivity extends AbsBaseActivity {
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        binding.add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(context, LoginActivity.class));
-            }
+        binding.add.setOnClickListener(v -> {
+            startActivity(new Intent(context, LoginActivity.class));
         });
 
         setDrawUnderStatusBar();

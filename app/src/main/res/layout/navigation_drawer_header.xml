@@ -1,4 +1,4 @@
-<androidx.percentlayout.widget.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/header"
     android:layout_width="match_parent"
@@ -55,4 +55,4 @@
 
     </LinearLayout>
 
-</androidx.percentlayout.widget.PercentFrameLayout>
+</FrameLayout>

@@ -1,7 +1,5 @@
 package com.dkanada.gramophone.fragments.mainactivity.library.pager;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -21,11 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAdapter, LinearLayoutManager, ItemsByNameQuery> {
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
     @NonNull
     @Override
     protected LinearLayoutManager createLayoutManager() {

@@ -182,6 +182,7 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
             case MusicService.SHUFFLE_MODE_SHUFFLE:
                 binding.playerShuffleButton.setColorFilter(lastPlaybackControlsColor, PorterDuff.Mode.SRC_IN);
                 break;
+            case MusicService.SHUFFLE_MODE_NONE:
             default:
                 binding.playerShuffleButton.setColorFilter(lastDisabledPlaybackControlsColor, PorterDuff.Mode.SRC_IN);
                 break;

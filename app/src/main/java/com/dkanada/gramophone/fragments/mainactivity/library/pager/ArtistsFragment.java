@@ -1,7 +1,5 @@
 package com.dkanada.gramophone.fragments.mainactivity.library.pager;
 
-import android.os.Bundle;
-
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -25,11 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<ArtistAdapter, GridLayoutManager, ArtistsQuery> {
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
     @NonNull
     @Override
     protected GridLayoutManager createLayoutManager() {
