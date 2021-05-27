@@ -19,8 +19,9 @@
 
         <item name="toolbarPopupTheme">@style/ThemeOverlay.AppCompat</item>
 
-        <!-- just in case -->
+        <!-- TextInputLayout uses colorPrimary for the cursor line and bubble -->
         <item name="colorAccent">@android:color/white</item>
+        <item name="colorPrimary">@android:color/white</item>
 
         <!-- necessary to find the overflow button later in the layout -->
         <item name="android:actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
@@ -47,8 +48,9 @@
 
         <item name="toolbarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
 
-        <!-- just in case -->
+        <!-- TextInputLayout uses colorPrimary for the cursor line and bubble -->
         <item name="colorAccent">@android:color/black</item>
+        <item name="colorPrimary">@android:color/black</item>
 
         <!-- necessary to find the overflow button later in the layout -->
         <item name="android:actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
