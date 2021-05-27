@@ -158,7 +158,13 @@ public class LocalPlayer implements Playback {
     }
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public boolean isLoading() {
+        MediaItem current = exoPlayer.getCurrentMediaItem();
+        if (current != null && current.playbackProperties.uri.toString().contains("file://")) {
+            return false;
+        }
+
         return exoPlayer.getPlaybackState() == Player.STATE_BUFFERING;
     }
 

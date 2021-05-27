@@ -47,7 +47,7 @@ public class CreatePlaylistDialog extends DialogFragment {
                 .title(R.string.action_new_playlist)
                 .positiveText(R.string.create_action)
                 .negativeText(android.R.string.cancel)
-                .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME | InputType.TYPE_TEXT_FLAG_CAP_WORDS)
+                .inputType(InputType.TYPE_CLASS_TEXT)
                 .input(R.string.name, 0, false, (materialDialog, charSequence) -> {
                     final String name = charSequence.toString().trim();
                     if (getActivity() == null || getArguments() == null || name.isEmpty()) return;
