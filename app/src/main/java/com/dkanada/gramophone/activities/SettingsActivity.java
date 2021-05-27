@@ -94,6 +94,7 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
         public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
             getListView().setPadding(0, 0, 0, 0);
+            setDivider(null);
             invalidateSettings();
             PreferenceUtil.getInstance(getActivity()).registerOnSharedPreferenceChangedListener(this);
         }
