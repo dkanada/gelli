@@ -10,6 +10,14 @@ import com.dkanada.gramophone.model.Song;
         primaryKeys = {
                 "index",
                 "queue"
+        },
+        foreignKeys = {
+            @ForeignKey(
+                entity = Song.class,
+                parentColumns = {"id"},
+                childColumns = {"songId"},
+                onDelete = ForeignKey.CASCADE
+            )
         }
 )
 public class QueueSong {
@@ -17,12 +25,6 @@ public class QueueSong {
 
     public int queue;
 
-    @ForeignKey(
-            entity = Song.class,
-            parentColumns = {"id"},
-            childColumns = {"songId"},
-            onDelete = ForeignKey.CASCADE
-    )
     public String songId;
 
     public QueueSong(String songId, int index, int queue) {
