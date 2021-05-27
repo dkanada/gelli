@@ -56,7 +56,7 @@ public class MusicUtil {
 
         // preferred codec when transcoding
         builder.append("&AudioCodec=").append(preferenceUtil.getTranscodeCodec());
-        builder.append("&ApiKey=").append(apiClient.getAccessToken());
+        builder.append("&api_key=").append(apiClient.getAccessToken());
 
         Log.i(MusicUtil.class.getName(), "playing audio: " + builder);
         return builder.toString();
@@ -70,7 +70,7 @@ public class MusicUtil {
         builder.append(song.id);
         builder.append("/Download");
 
-        builder.append("?ApiKey=").append(App.getApiClient().getAccessToken());
+        builder.append("?api_key=").append(App.getApiClient().getAccessToken());
 
         return builder.toString();
     }
