@@ -7,7 +7,6 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.dkanada.gramophone.model.Theme;
 import com.dkanada.gramophone.R;
@@ -92,7 +91,6 @@ public final class PreferenceUtil {
     public static final String IMAGE_CACHE_SIZE = "image_cache_size";
     public static final String MEDIA_CACHE_SIZE = "media_cache_size";
 
-    @SuppressWarnings("ConstantConditions")
     private static final PreferenceMigration Migration1 = new PreferenceMigration(0, 1) {
         @Override
         public void migrate(SharedPreferences preferences) {
@@ -185,7 +183,6 @@ public final class PreferenceUtil {
         mPreferences.edit().putInt(ACCENT_COLOR, color).apply();
     }
 
-    @SuppressWarnings("ConstantConditions")
     public final int getPageSize() {
         return Integer.parseInt(mPreferences.getString(PAGE_SIZE, "100"));
     }
@@ -399,12 +396,10 @@ public final class PreferenceUtil {
         return mPreferences.getString(LOCATION_CACHE, mContext.getCacheDir().toString());
     }
 
-    @SuppressWarnings("ConstantConditions")
     public final long getImageCacheSize() {
         return Long.parseLong(mPreferences.getString(IMAGE_CACHE_SIZE, "400")) * 100000;
     }
 
-    @SuppressWarnings("ConstantConditions")
     public final long getMediaCacheSize() {
         return Long.parseLong(mPreferences.getString(MEDIA_CACHE_SIZE, "400")) * 100000;
     }
@@ -412,15 +407,7 @@ public final class PreferenceUtil {
     public List<CategoryInfo> getCategories() {
         String data = mPreferences.getString(CATEGORIES, null);
         if (data != null) {
-            Gson gson = new Gson();
-            Type collectionType = new TypeToken<List<CategoryInfo>>() {
-            }.getType();
-
-            try {
-                return gson.fromJson(data, collectionType);
-            } catch (JsonSyntaxException e) {
-                e.printStackTrace();
-            }
+            return new Gson().fromJson(data, new TypeToken<List<CategoryInfo>>(){}.getType());
         }
 
         return getDefaultCategories();
@@ -428,23 +415,24 @@ public final class PreferenceUtil {
 
     public void setCategories(List<CategoryInfo> categories) {
         Gson gson = new Gson();
-        Type collectionType = new TypeToken<List<CategoryInfo>>() {}.getType();
+        Type type = new TypeToken<List<CategoryInfo>>(){}.getType();
 
-        mPreferences.edit().putString(CATEGORIES, gson.toJson(categories, collectionType)).apply();
+        mPreferences.edit().putString(CATEGORIES, gson.toJson(categories, type)).apply();
     }
 
     public List<CategoryInfo> getDefaultCategories() {
         List<CategoryInfo> defaultCategories = new ArrayList<>(5);
+
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.SONGS, true));
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.ALBUMS, true));
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.ARTISTS, true));
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.GENRES, true));
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.PLAYLISTS, true));
         defaultCategories.add(new CategoryInfo(CategoryInfo.Category.FAVORITES, true));
+
         return defaultCategories;
     }
 
-    @SuppressWarnings("ConstantConditions")
     public List<Codec> getDirectPlayCodecs() {
         Set<String> defaultValues = Arrays.stream(Codec.values()).map(Enum::toString).collect(Collectors.toSet());
         Set<String> values = mPreferences.getStringSet(DIRECT_PLAY_CODECS, defaultValues);

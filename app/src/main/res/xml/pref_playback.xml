@@ -14,9 +14,8 @@
             android:positiveButtonText="@null"
             android:title="@string/pref_title_transcode_codec" />
 
-        <Preference
+        <com.dkanada.gramophone.views.settings.DirectPlayPreference
             app:iconSpaceReserved="false"
-            android:key="direct_play_codecs"
             android:summary="@string/pref_summary_direct_play_codecs"
             android:title="@string/pref_title_direct_play_codecs" />
 

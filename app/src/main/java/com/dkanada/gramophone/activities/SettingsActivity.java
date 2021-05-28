@@ -15,7 +15,6 @@ import androidx.preference.TwoStatePreference;
 
 import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.dkanada.gramophone.databinding.ActivitySettingsBinding;
-import com.dkanada.gramophone.dialogs.preferences.DirectPlayPreferenceDialog;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEColorPreference;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
@@ -113,7 +112,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             final TwoStatePreference coloredNotification = findPreference(PreferenceUtil.COLORED_NOTIFICATION);
             final TwoStatePreference colorAppShortcuts = findPreference(PreferenceUtil.COLORED_SHORTCUTS);
             final Preference categoryPreference = findPreference(PreferenceUtil.CATEGORIES);
-            final Preference directPlayPreference = findPreference(PreferenceUtil.DIRECT_PLAY_CODECS);
             final Preference nowPlayingPreference = findPreference(PreferenceUtil.NOW_PLAYING_SCREEN);
 
             final int primaryColor = ThemeStore.primaryColor(requireActivity());
@@ -151,11 +149,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
 
             categoryPreference.setOnPreferenceClickListener(preference -> {
                 CategoryPreferenceDialog.newInstance().show(getParentFragmentManager(), CategoryPreferenceDialog.TAG);
-                return false;
-            });
-
-            directPlayPreference.setOnPreferenceClickListener(preference -> {
-                DirectPlayPreferenceDialog.newInstance().show(getParentFragmentManager(), DirectPlayPreferenceDialog.TAG);
                 return false;
             });
 
