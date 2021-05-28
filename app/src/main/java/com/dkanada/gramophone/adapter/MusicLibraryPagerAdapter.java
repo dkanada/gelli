@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.dkanada.gramophone.fragments.mainactivity.library.pager.FavoritesFragment;
-import com.dkanada.gramophone.model.CategoryInfo;
+import com.dkanada.gramophone.model.Category;
 import com.dkanada.gramophone.fragments.mainactivity.library.pager.AlbumsFragment;
 import com.dkanada.gramophone.fragments.mainactivity.library.pager.ArtistsFragment;
 import com.dkanada.gramophone.fragments.mainactivity.library.pager.GenresFragment;
@@ -23,7 +23,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
 
@@ -36,23 +36,25 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
 
     public MusicLibraryPagerAdapter(@NonNull final Context context, final FragmentManager fragmentManager) {
         super(fragmentManager);
+
         mContext = context;
-        setCategoryInfos(PreferenceUtil.getInstance(context).getCategories());
+        setCategories(PreferenceUtil.getInstance(context).getCategories()
+            .stream()
+            .filter(category -> category.select)
+            .collect(Collectors.toList()));
     }
 
-    public void setCategoryInfos(@NonNull List<CategoryInfo> categoryInfos) {
+    public void setCategories(@NonNull List<Category> categories) {
         mHolderList.clear();
 
-        for (CategoryInfo categoryInfo : categoryInfos) {
-            if (categoryInfo.visible) {
-                MusicFragments fragment = MusicFragments.valueOf(categoryInfo.category.toString());
-                Holder holder = new Holder();
-                holder.mClassName = fragment.getFragmentClass().getName();
-                holder.title = mContext.getResources()
-                        .getString(categoryInfo.category.stringRes)
-                        .toUpperCase(Locale.getDefault());
-                mHolderList.add(holder);
-            }
+        for (Category category : categories) {
+            MusicFragments fragment = MusicFragments.valueOf(category.toString());
+            Holder holder = new Holder();
+
+            holder.mClassName = fragment.getFragmentClass().getName();
+            holder.title = mContext.getResources().getString(category.title).toUpperCase();
+
+            mHolderList.add(holder);
         }
 
         alignCache();

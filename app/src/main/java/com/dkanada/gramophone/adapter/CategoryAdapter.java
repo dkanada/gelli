@@ -14,20 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.model.CategoryInfo;
+import com.dkanada.gramophone.model.Category;
 import com.dkanada.gramophone.helper.SwipeAndDragHelper;
 
 import java.util.List;
 
 @SuppressLint("ClickableViewAccessibility")
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> implements SwipeAndDragHelper.ActionCompletionContract {
-    private List<CategoryInfo> categories;
+    private List<Category> categories;
     private ItemTouchHelper touchHelper;
 
-    public CategoryAdapter(List<CategoryInfo> categories) {
+    public CategoryAdapter(List<Category> categories) {
         this.categories = categories;
         SwipeAndDragHelper swipeAndDragHelper = new SwipeAndDragHelper(this);
-        touchHelper = new ItemTouchHelper(swipeAndDragHelper);
+        this.touchHelper = new ItemTouchHelper(swipeAndDragHelper);
     }
 
     @NonNull
@@ -40,17 +40,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
-        CategoryInfo category = categories.get(position);
+        Category category = categories.get(position);
 
-        holder.checkBox.setChecked(category.visible);
-        holder.title.setText(holder.title.getResources().getString(category.category.stringRes));
+        holder.checkBox.setChecked(category.select);
+        holder.title.setText(holder.title.getResources().getString(category.title));
 
         holder.itemView.setOnClickListener(v -> {
-            if (!(category.visible && isLastCheckedCategory(category))) {
-                category.visible = !category.visible;
-                holder.checkBox.setChecked(category.visible);
-            } else {
+            if (category.select && categories.stream().filter(c -> c.select).count() == 1) {
                 Toast.makeText(holder.itemView.getContext(), R.string.you_have_to_select_at_least_one_category, Toast.LENGTH_SHORT).show();
+            } else {
+                category.select = !category.select;
+                holder.checkBox.setChecked(category.select);
             }
         });
 
@@ -68,16 +68,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return categories.size();
     }
 
-    public void setCategories(List<CategoryInfo> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
         notifyDataSetChanged();
     }
 
     @Override
     public void onViewMoved(int oldPosition, int newPosition) {
-        CategoryInfo categoryInfo = categories.get(oldPosition);
+        Category category = categories.get(oldPosition);
         categories.remove(oldPosition);
-        categories.add(newPosition, categoryInfo);
+        categories.add(newPosition, category);
         notifyItemMoved(oldPosition, newPosition);
     }
 
@@ -85,18 +85,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         touchHelper.attachToRecyclerView(recyclerView);
     }
 
-    public List<CategoryInfo> getCategories() {
+    public List<Category> getCategories() {
         return categories;
-    }
-
-    private boolean isLastCheckedCategory(CategoryInfo category) {
-        if (category.visible) {
-            for (CategoryInfo c : categories) {
-                if (c != category && c.visible) return false;
-            }
-        }
-
-        return true;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

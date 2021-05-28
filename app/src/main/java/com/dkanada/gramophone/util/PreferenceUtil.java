@@ -12,13 +12,12 @@ import com.dkanada.gramophone.model.Theme;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.SortMethod;
 import com.dkanada.gramophone.model.SortOrder;
-import com.dkanada.gramophone.model.CategoryInfo;
+import com.dkanada.gramophone.model.Category;
 import com.dkanada.gramophone.model.Codec;
 import com.dkanada.gramophone.interfaces.base.PreferenceMigration;
 import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -95,8 +94,8 @@ public final class PreferenceUtil {
         @Override
         public void migrate(SharedPreferences preferences) {
             String theme = preferences.getString(GENERAL_THEME, "DARK");
-            String imageSize = preferences.getString(IMAGE_CACHE_SIZE, "400");
-            String mediaSize = preferences.getString(MEDIA_CACHE_SIZE, "400");
+            String imageSize = preferences.getString(IMAGE_CACHE_SIZE, "400000000");
+            String mediaSize = preferences.getString(MEDIA_CACHE_SIZE, "400000000");
 
             preferences.edit().putString(GENERAL_THEME, Theme.valueOf(theme.toUpperCase()).toString()).commit();
             preferences.edit().putString(IMAGE_CACHE_SIZE, imageSize.substring(0, imageSize.length() - 6)).commit();
@@ -404,33 +403,20 @@ public final class PreferenceUtil {
         return Long.parseLong(mPreferences.getString(MEDIA_CACHE_SIZE, "400")) * 100000;
     }
 
-    public List<CategoryInfo> getCategories() {
+    public List<Category> getCategories() {
         String data = mPreferences.getString(CATEGORIES, null);
         if (data != null) {
-            return new Gson().fromJson(data, new TypeToken<List<CategoryInfo>>(){}.getType());
+            return new Gson().fromJson(data, new TypeToken<List<Category>>(){}.getType());
         }
 
-        return getDefaultCategories();
+        return Arrays.stream(Category.values()).peek(category -> category.select = true).collect(Collectors.toList());
     }
 
-    public void setCategories(List<CategoryInfo> categories) {
+    public void setCategories(List<Category> categories) {
         Gson gson = new Gson();
-        Type type = new TypeToken<List<CategoryInfo>>(){}.getType();
+        Type type = new TypeToken<List<Category>>(){}.getType();
 
         mPreferences.edit().putString(CATEGORIES, gson.toJson(categories, type)).apply();
-    }
-
-    public List<CategoryInfo> getDefaultCategories() {
-        List<CategoryInfo> defaultCategories = new ArrayList<>(5);
-
-        defaultCategories.add(new CategoryInfo(CategoryInfo.Category.SONGS, true));
-        defaultCategories.add(new CategoryInfo(CategoryInfo.Category.ALBUMS, true));
-        defaultCategories.add(new CategoryInfo(CategoryInfo.Category.ARTISTS, true));
-        defaultCategories.add(new CategoryInfo(CategoryInfo.Category.GENRES, true));
-        defaultCategories.add(new CategoryInfo(CategoryInfo.Category.PLAYLISTS, true));
-        defaultCategories.add(new CategoryInfo(CategoryInfo.Category.FAVORITES, true));
-
-        return defaultCategories;
     }
 
     public List<Codec> getDirectPlayCodecs() {
