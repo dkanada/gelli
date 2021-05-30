@@ -51,6 +51,9 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 
+        query.setSortBy(new String[]{PreferenceUtil.getInstance(App.getInstance()).getArtistSortMethod().getApi()});
+        query.setSortOrder(PreferenceUtil.getInstance(App.getInstance()).getArtistSortOrder().getApi());
+
         return query;
     }
 
@@ -95,12 +98,12 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
 
     @Override
     protected SortMethod loadSortMethod() {
-        return SortMethod.NAME;
+        return PreferenceUtil.getInstance(getActivity()).getArtistSortMethod();
     }
 
     @Override
     protected void saveSortMethod(SortMethod sortMethod) {
-        // not supported through API
+        PreferenceUtil.getInstance(getActivity()).setArtistSortMethod(sortMethod);
     }
 
     @Override
@@ -109,12 +112,12 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
 
     @Override
     protected SortOrder loadSortOrder() {
-        return SortOrder.ASCENDING;
+        return PreferenceUtil.getInstance(getActivity()).getArtistSortOrder();
     }
 
     @Override
     protected void saveSortOrder(SortOrder sortOrder) {
-        // not supported through API
+        PreferenceUtil.getInstance(getActivity()).setArtistSortOrder(sortOrder);
     }
 
     @Override

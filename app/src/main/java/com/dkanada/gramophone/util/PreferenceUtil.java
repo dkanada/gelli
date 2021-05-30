@@ -43,9 +43,11 @@ public final class PreferenceUtil {
 
     public static final String ALBUM_SORT_METHOD = "album_sort_method";
     public static final String SONG_SORT_METHOD = "song_sort_method";
+    public static final String ARTIST_SORT_METHOD = "artist_sort_method";
 
     public static final String ALBUM_SORT_ORDER = "album_sort_order";
     public static final String SONG_SORT_ORDER = "song_sort_order";
+    public static final String ARTIST_SORT_ORDER = "artist_sort_order";
 
     public static final String ALBUM_GRID_SIZE = "album_grid_size";
     public static final String ALBUM_GRID_SIZE_LAND = "album_grid_size_land";
@@ -271,6 +273,14 @@ public final class PreferenceUtil {
         mPreferences.edit().putString(SONG_SORT_ORDER, sortOrder.toString()).apply();
     }
 
+    public final SortOrder getArtistSortOrder() {
+        return SortOrder.valueOf(mPreferences.getString(ARTIST_SORT_ORDER, SortOrder.ASCENDING.toString()));
+    }
+
+    public void setArtistSortOrder(SortOrder sortOrder) {
+        mPreferences.edit().putString(ARTIST_SORT_ORDER, sortOrder.toString()).apply();
+    }
+
     public final SortMethod getAlbumSortMethod() {
         return SortMethod.valueOf(mPreferences.getString(ALBUM_SORT_METHOD, SortMethod.RANDOM.toString()));
     }
@@ -285,6 +295,14 @@ public final class PreferenceUtil {
 
     public void setSongSortMethod(SortMethod sortMethod) {
         mPreferences.edit().putString(SONG_SORT_METHOD, sortMethod.toString()).apply();
+    }
+
+    public final SortMethod getArtistSortMethod() {
+        return SortMethod.valueOf(mPreferences.getString(ARTIST_SORT_METHOD, SortMethod.NAME.toString()));
+    }
+
+    public void setArtistSortMethod(SortMethod sortMethod) {
+        mPreferences.edit().putString(ARTIST_SORT_METHOD, sortMethod.toString()).apply();
     }
 
     public int getLastSleepTimerValue() {

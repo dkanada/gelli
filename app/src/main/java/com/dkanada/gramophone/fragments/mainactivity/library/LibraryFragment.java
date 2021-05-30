@@ -184,14 +184,8 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             menu.findItem(R.id.action_colored_footers).setChecked(absLibraryRecyclerViewCustomGridSizeFragment.usePalette());
             menu.findItem(R.id.action_colored_footers).setEnabled(absLibraryRecyclerViewCustomGridSizeFragment.canUsePalette());
 
-            // TODO the API doesn't support artist sorting
-            if (currentFragment instanceof ArtistsFragment) {
-                menu.removeItem(R.id.action_sort_method);
-                menu.removeItem(R.id.action_sort_order);
-            } else {
-                setUpSortMethodMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_method).getSubMenu());
-                setUpSortOrderMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_order).getSubMenu());
-            }
+            setUpSortMethodMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_method).getSubMenu());
+            setUpSortOrderMenu(absLibraryRecyclerViewCustomGridSizeFragment, menu.findItem(R.id.action_sort_order).getSubMenu());
         } else {
             menu.removeItem(R.id.action_grid_size);
             menu.removeItem(R.id.action_colored_footers);
@@ -344,31 +338,27 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         SortMethod currentSortMethod = fragment.getSortMethod();
         sortMethodMenu.clear();
 
+        sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_method_name)
+            .setChecked(currentSortMethod.equals(SortMethod.NAME));
+
         if (fragment instanceof AlbumsFragment) {
-            sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_method_name)
-                    .setChecked(currentSortMethod.equals(SortMethod.NAME));
             sortMethodMenu.add(0, R.id.action_sort_method_artist, 1, R.string.sort_method_artist)
                     .setChecked(currentSortMethod.equals(SortMethod.ARTIST));
             sortMethodMenu.add(0, R.id.action_sort_method_year, 2, R.string.sort_method_year)
                     .setChecked(currentSortMethod.equals(SortMethod.YEAR));
-            sortMethodMenu.add(0, R.id.action_sort_method_added, 3, R.string.sort_method_added)
-                    .setChecked(currentSortMethod.equals(SortMethod.ADDED));
-            sortMethodMenu.add(0, R.id.action_sort_method_random, 4, R.string.sort_method_random)
-                    .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
         } else if (fragment instanceof SongsFragment) {
-            sortMethodMenu.add(0, R.id.action_sort_method_name, 0, R.string.sort_method_name)
-                    .setChecked(currentSortMethod.equals(SortMethod.NAME));
             sortMethodMenu.add(0, R.id.action_sort_method_album, 1, R.string.sort_method_album)
                     .setChecked(currentSortMethod.equals(SortMethod.ALBUM));
             sortMethodMenu.add(0, R.id.action_sort_method_artist, 2, R.string.sort_method_artist)
                     .setChecked(currentSortMethod.equals(SortMethod.ARTIST));
             sortMethodMenu.add(0, R.id.action_sort_method_year, 3, R.string.sort_method_year)
                     .setChecked(currentSortMethod.equals(SortMethod.YEAR));
-            sortMethodMenu.add(0, R.id.action_sort_method_added, 4, R.string.sort_method_added)
-                    .setChecked(currentSortMethod.equals(SortMethod.ADDED));
-            sortMethodMenu.add(0, R.id.action_sort_method_random, 5, R.string.sort_method_random)
-                    .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
         }
+
+        sortMethodMenu.add(0, R.id.action_sort_method_added, 4, R.string.sort_method_added)
+            .setChecked(currentSortMethod.equals(SortMethod.ADDED));
+        sortMethodMenu.add(0, R.id.action_sort_method_random, 5, R.string.sort_method_random)
+            .setChecked(currentSortMethod.equals(SortMethod.RANDOM));
 
         sortMethodMenu.setGroupCheckable(0, true, true);
     }
