@@ -130,6 +130,10 @@ public final class PreferenceUtil {
         return instance;
     }
 
+    public SharedPreferences getPreferences() {
+        return mPreferences;
+    }
+
     public void registerOnSharedPreferenceChangedListener(SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener) {
         mPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
     }

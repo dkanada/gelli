@@ -126,6 +126,7 @@
     <string name="pref_title_remember_shuffle">Remember Shuffle</string>
     <string name="pref_title_remember_queue">Remember Queue</string>
     <string name="pref_title_page_size">Page Size</string>
+    <string name="pref_title_download_location">Download Location</string>
     <string name="pref_title_image_cache_size">Images</string>
     <string name="pref_title_media_cache_size">Media</string>
 
