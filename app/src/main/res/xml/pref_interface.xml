@@ -13,21 +13,21 @@
             android:positiveButtonText="@null"
             android:title="@string/pref_title_theme" />
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEColorPreference
+        <com.dkanada.gramophone.views.settings.ColorPreference
             app:iconSpaceReserved="false"
+            android:defaultValue="@color/color_primary"
             android:key="primary_color"
-            android:persistent="false"
             android:summary="@string/pref_summary_primary_color"
             android:title="@string/pref_title_primary_color" />
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEColorPreference
+        <com.dkanada.gramophone.views.settings.ColorPreference
             app:iconSpaceReserved="false"
+            android:defaultValue="@color/color_accent"
             android:key="accent_color"
-            android:persistent="false"
             android:summary="@string/pref_summary_accent_color"
             android:title="@string/pref_title_accent_color" />
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+        <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:key="colored_shortcuts"

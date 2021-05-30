@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
@@ -13,11 +12,8 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import androidx.preference.TwoStatePreference;
 
-import com.afollestad.materialdialogs.color.ColorChooserDialog;
 import com.dkanada.gramophone.databinding.ActivitySettingsBinding;
 import com.kabouzeid.appthemehelper.ThemeStore;
-import com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEColorPreference;
-import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.views.shortcuts.DynamicShortcutManager;
 import com.dkanada.gramophone.dialogs.preferences.CategoryPreferenceDialog;
@@ -25,7 +21,7 @@ import com.dkanada.gramophone.dialogs.preferences.NowPlayingPreferenceDialog;
 import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
-public class SettingsActivity extends AbsBaseActivity implements ColorChooserDialog.ColorCallback {
+public class SettingsActivity extends AbsBaseActivity {
     private ActivitySettingsBinding binding;
 
     @Override
@@ -51,30 +47,6 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
             SettingsFragment fragment = (SettingsFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
             if (fragment != null) fragment.invalidateSettings();
         }
-    }
-
-    @Override
-    public void onColorSelection(@NonNull ColorChooserDialog dialog, @ColorInt int selectedColor) {
-        switch (dialog.getTitle()) {
-            case R.string.pref_title_primary_color:
-                ThemeStore.editTheme(this).primaryColor(selectedColor).commit();
-                PreferenceUtil.getInstance(this).setPrimaryColor(selectedColor);
-                break;
-            case R.string.pref_title_accent_color:
-                ThemeStore.editTheme(this).accentColor(selectedColor).commit();
-                PreferenceUtil.getInstance(this).setAccentColor(selectedColor);
-                break;
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            new DynamicShortcutManager(this).updateDynamicShortcuts();
-        }
-
-        recreate();
-    }
-
-    @Override
-    public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) {
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -106,37 +78,11 @@ public class SettingsActivity extends AbsBaseActivity implements ColorChooserDia
 
         @SuppressWarnings("ConstantConditions")
         private void invalidateSettings() {
-            final ATEColorPreference primaryColorPref = findPreference(PreferenceUtil.PRIMARY_COLOR);
-            final ATEColorPreference accentColorPref = findPreference(PreferenceUtil.ACCENT_COLOR);
             final TwoStatePreference classicNotification = findPreference(PreferenceUtil.CLASSIC_NOTIFICATION);
             final TwoStatePreference coloredNotification = findPreference(PreferenceUtil.COLORED_NOTIFICATION);
             final TwoStatePreference colorAppShortcuts = findPreference(PreferenceUtil.COLORED_SHORTCUTS);
             final Preference categoryPreference = findPreference(PreferenceUtil.CATEGORIES);
             final Preference nowPlayingPreference = findPreference(PreferenceUtil.NOW_PLAYING_SCREEN);
-
-            final int primaryColor = ThemeStore.primaryColor(requireActivity());
-            primaryColorPref.setColor(primaryColor, ColorUtil.darkenColor(primaryColor));
-            primaryColorPref.setOnPreferenceClickListener(preference -> {
-                new ColorChooserDialog.Builder(requireActivity(), R.string.pref_title_primary_color)
-                        .accentMode(false)
-                        .allowUserColorInput(true)
-                        .allowUserColorInputAlpha(false)
-                        .preselect(primaryColor)
-                        .show(requireActivity());
-                return true;
-            });
-
-            final int accentColor = ThemeStore.accentColor(requireActivity());
-            accentColorPref.setColor(accentColor, ColorUtil.darkenColor(accentColor));
-            accentColorPref.setOnPreferenceClickListener(preference -> {
-                new ColorChooserDialog.Builder(requireActivity(), R.string.pref_title_accent_color)
-                        .accentMode(true)
-                        .allowUserColorInput(true)
-                        .allowUserColorInputAlpha(false)
-                        .preselect(accentColor)
-                        .show(requireActivity());
-                return true;
-            });
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 classicNotification.setEnabled(false);

@@ -19,7 +19,7 @@
             android:positiveButtonText="@null"
             android:title="@string/pref_title_page_size" />
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+        <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:key="remember_last_tab"

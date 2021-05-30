@@ -178,12 +178,12 @@ public final class PreferenceUtil {
         return Theme.valueOf(mPreferences.getString(GENERAL_THEME, Theme.DARK.toString()));
     }
 
-    public void setPrimaryColor(int color) {
-        mPreferences.edit().putInt(PRIMARY_COLOR, color).apply();
+    public int getPrimaryColor() {
+        return mPreferences.getInt(PRIMARY_COLOR, mContext.getResources().getColor(R.color.color_primary));
     }
 
-    public void setAccentColor(int color) {
-        mPreferences.edit().putInt(ACCENT_COLOR, color).apply();
+    public int getAccentColor() {
+        return mPreferences.getInt(ACCENT_COLOR, mContext.getResources().getColor(R.color.color_accent));
     }
 
     public final int getPageSize() {

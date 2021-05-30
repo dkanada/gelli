@@ -3,14 +3,14 @@
 
     <com.dkanada.gramophone.views.settings.JellyPreferenceCategory android:title="@string/pref_header_lock_screen">
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+        <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:key="show_album_cover"
             android:summary="@string/pref_summary_show_album_art"
             android:title="@string/pref_title_show_album_art" />
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATESwitchPreference
+        <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="true"
             android:dependency="show_album_cover"
