@@ -6,8 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.dkanada.gramophone.model.Theme;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.SortMethod;
@@ -17,9 +15,7 @@ import com.dkanada.gramophone.model.Codec;
 import com.dkanada.gramophone.interfaces.base.PreferenceMigration;
 import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 
-import java.lang.reflect.Type;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -105,7 +101,21 @@ public final class PreferenceUtil {
         }
     };
 
-    private static final List<PreferenceMigration> migrations = Collections.singletonList(Migration1);
+    private static final PreferenceMigration Migration2 = new PreferenceMigration(1, 2) {
+        @Override
+        public void migrate(SharedPreferences preferences) {
+            String defaultCategories = Arrays.stream(Category.values())
+                .map(Enum::toString)
+                .collect(Collectors.joining("."));
+
+            preferences.edit().putString(CATEGORIES, defaultCategories).commit();
+        }
+    };
+
+    private static final List<PreferenceMigration> migrations = Arrays.asList(
+        Migration1,
+        Migration2
+    );
 
     private static PreferenceUtil instance;
 
@@ -426,19 +436,27 @@ public final class PreferenceUtil {
     }
 
     public List<Category> getCategories() {
-        String data = mPreferences.getString(CATEGORIES, null);
-        if (data != null) {
-            return new Gson().fromJson(data, new TypeToken<List<Category>>(){}.getType());
-        }
+        String defaultValues = Arrays.stream(Category.values()).map(Category::toString).collect(Collectors.joining("."));
+        String values = mPreferences.getString(CATEGORIES, defaultValues);
 
-        return Arrays.stream(Category.values()).peek(category -> category.select = true).collect(Collectors.toList());
+        return Arrays.stream(values.split("\\.")).map(category -> {
+            Category item = Category.valueOf(category.toUpperCase());
+
+            // this is kind of a hack but avoids any annoying json serialization
+            // lowercase enum means the category is not enabled on the main activity
+            item.select = Character.isUpperCase(category.charAt(0));
+
+            return item;
+        }).collect(Collectors.toList());
     }
 
+    @SuppressWarnings("SimplifyStreamApiCallChains")
     public void setCategories(List<Category> categories) {
-        Gson gson = new Gson();
-        Type type = new TypeToken<List<Category>>(){}.getType();
+        List<String> values = categories.stream().map(category -> {
+            return category.select ? category.toString() : category.toString().toLowerCase();
+        }).collect(Collectors.toList());
 
-        mPreferences.edit().putString(CATEGORIES, gson.toJson(categories, type)).apply();
+        mPreferences.edit().putString(CATEGORIES, values.stream().collect(Collectors.joining("."))).apply();
     }
 
     public List<Codec> getDirectPlayCodecs() {
