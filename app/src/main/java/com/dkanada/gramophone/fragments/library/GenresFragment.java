@@ -1,24 +1,24 @@
-package com.dkanada.gramophone.fragments.mainactivity.library.pager;
+package com.dkanada.gramophone.fragments.library;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.adapter.PlaylistAdapter;
-import com.dkanada.gramophone.model.Playlist;
+import com.dkanada.gramophone.adapter.GenreAdapter;
+import com.dkanada.gramophone.model.Genre;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
-import org.jellyfin.apiclient.model.querying.ItemQuery;
+import org.jellyfin.apiclient.model.querying.ItemsByNameQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<PlaylistAdapter, LinearLayoutManager, ItemQuery> {
+public class GenresFragment extends AbsLibraryPagerRecyclerViewFragment<GenreAdapter, LinearLayoutManager, ItemsByNameQuery> {
     @NonNull
     @Override
     protected LinearLayoutManager createLayoutManager() {
@@ -27,17 +27,16 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
 
     @NonNull
     @Override
-    protected PlaylistAdapter createAdapter() {
-        List<Playlist> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
-        return new PlaylistAdapter(getLibraryFragment().getMainActivity(), dataSet, R.layout.item_list_single_row, getLibraryFragment());
+    protected GenreAdapter createAdapter() {
+        List<Genre> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
+        return new GenreAdapter(getLibraryFragment().getMainActivity(), dataSet);
     }
 
     @NonNull
     @Override
-    protected ItemQuery createQuery() {
-        ItemQuery query = new ItemQuery();
+    protected ItemsByNameQuery createQuery() {
+        ItemsByNameQuery query = new ItemsByNameQuery();
 
-        query.setIncludeItemTypes(new String[]{"Playlist"});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
         query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
@@ -49,15 +48,15 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
 
     @Override
     protected void loadItems(int index) {
-        ItemQuery query = getQuery();
+        ItemsByNameQuery query = getQuery();
         query.setStartIndex(index);
 
-        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
+        App.getApiClient().GetGenresAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
                 if (index == 0) getAdapter().getDataSet().clear();
                 for (BaseItemDto itemDto : result.getItems()) {
-                    getAdapter().getDataSet().add(new Playlist(itemDto));
+                    getAdapter().getDataSet().add(new Genre(itemDto));
                 }
 
                 size = result.getTotalRecordCount();
@@ -74,6 +73,6 @@ public class PlaylistsFragment extends AbsLibraryPagerRecyclerViewFragment<Playl
 
     @Override
     protected int getEmptyMessage() {
-        return R.string.no_playlists;
+        return R.string.no_genres;
     }
 }

@@ -1,28 +1,28 @@
-package com.dkanada.gramophone.fragments.mainactivity.library.pager;
+package com.dkanada.gramophone.fragments.library;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
-import com.dkanada.gramophone.adapter.song.ShuffleButtonSongAdapter;
-import com.dkanada.gramophone.adapter.song.SongAdapter;
-import com.dkanada.gramophone.model.Song;
+import com.dkanada.gramophone.adapter.artist.ArtistAdapter;
 import com.dkanada.gramophone.model.SortMethod;
 import com.dkanada.gramophone.model.SortOrder;
+import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
+import org.jellyfin.apiclient.model.querying.ArtistsQuery;
 import org.jellyfin.apiclient.model.querying.ItemFields;
-import org.jellyfin.apiclient.model.querying.ItemQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<SongAdapter, GridLayoutManager, ItemQuery> {
+public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFragment<ArtistAdapter, GridLayoutManager, ArtistsQuery> {
     @NonNull
     @Override
     protected GridLayoutManager createLayoutManager() {
@@ -31,62 +31,43 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
 
     @NonNull
     @Override
-    protected SongAdapter createAdapter() {
+    protected ArtistAdapter createAdapter() {
         int itemLayoutRes = getItemLayoutRes();
         notifyLayoutResChanged(itemLayoutRes);
-        boolean usePalette = loadUsePalette();
 
-        List<Song> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
-        SongAdapter adapter;
-
-        if (getGridSize() <= getMaxGridSizeForList()) {
-            adapter = new ShuffleButtonSongAdapter(
-                    getLibraryFragment().getMainActivity(),
-                    dataSet,
-                    itemLayoutRes,
-                    usePalette,
-                    getLibraryFragment());
-        } else {
-            adapter = new SongAdapter(
-                    getLibraryFragment().getMainActivity(),
-                    dataSet,
-                    itemLayoutRes,
-                    usePalette,
-                    getLibraryFragment());
-        }
-
-        return adapter;
+        List<Artist> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
+        return new ArtistAdapter(getLibraryFragment().getMainActivity(), dataSet, itemLayoutRes, loadUsePalette(), getLibraryFragment());
     }
 
     @NonNull
     @Override
-    protected ItemQuery createQuery() {
-        ItemQuery query = new ItemQuery();
+    protected ArtistsQuery createQuery() {
+        ArtistsQuery query = new ArtistsQuery();
 
-        query.setIncludeItemTypes(new String[]{"Audio"});
-        query.setFields(new ItemFields[]{ItemFields.MediaSources});
+        query.setFields(new ItemFields[]{ItemFields.Genres});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setRecursive(true);
         query.setLimit(PreferenceUtil.getInstance(App.getInstance()).getPageSize());
         query.setStartIndex(getAdapter().getItemCount());
         query.setParentId(QueryUtil.currentLibrary.getId());
 
-        query.setSortBy(new String[]{PreferenceUtil.getInstance(App.getInstance()).getSongSortMethod().getApi()});
-        query.setSortOrder(PreferenceUtil.getInstance(App.getInstance()).getSongSortOrder().getApi());
+        query.setSortBy(new String[]{PreferenceUtil.getInstance(App.getInstance()).getArtistSortMethod().getApi()});
+        query.setSortOrder(PreferenceUtil.getInstance(App.getInstance()).getArtistSortOrder().getApi());
+
         return query;
     }
 
     @Override
     protected void loadItems(int index) {
-        ItemQuery query = getQuery();
+        ArtistsQuery query = getQuery();
         query.setStartIndex(index);
 
-        App.getApiClient().GetItemsAsync(query, new Response<ItemsResult>() {
+        App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
                 if (index == 0) getAdapter().getDataSet().clear();
                 for (BaseItemDto itemDto : result.getItems()) {
-                    getAdapter().getDataSet().add(new Song(itemDto));
+                    getAdapter().getDataSet().add(new Artist(itemDto));
                 }
 
                 size = result.getTotalRecordCount();
@@ -103,17 +84,26 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
 
     @Override
     protected int getEmptyMessage() {
-        return R.string.no_songs;
+        return R.string.no_artists;
+    }
+
+    @LayoutRes
+    protected int getItemLayoutRes() {
+        if (getGridSize() > getMaxGridSizeForList()) {
+            return R.layout.item_grid;
+        }
+
+        return R.layout.item_list_single_row;
     }
 
     @Override
     protected SortMethod loadSortMethod() {
-        return PreferenceUtil.getInstance(getActivity()).getSongSortMethod();
+        return PreferenceUtil.getInstance(getActivity()).getArtistSortMethod();
     }
 
     @Override
     protected void saveSortMethod(SortMethod sortMethod) {
-        PreferenceUtil.getInstance(getActivity()).setSongSortMethod(sortMethod);
+        PreferenceUtil.getInstance(getActivity()).setArtistSortMethod(sortMethod);
     }
 
     @Override
@@ -122,12 +112,12 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
 
     @Override
     protected SortOrder loadSortOrder() {
-        return PreferenceUtil.getInstance(getActivity()).getSongSortOrder();
+        return PreferenceUtil.getInstance(getActivity()).getArtistSortOrder();
     }
 
     @Override
     protected void saveSortOrder(SortOrder sortOrder) {
-        PreferenceUtil.getInstance(getActivity()).setSongSortOrder(sortOrder);
+        PreferenceUtil.getInstance(getActivity()).setArtistSortOrder(sortOrder);
     }
 
     @Override
@@ -136,36 +126,36 @@ public class SongsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFrag
 
     @Override
     protected int loadGridSize() {
-        return PreferenceUtil.getInstance(getActivity()).getSongGridSize(requireActivity());
+        return PreferenceUtil.getInstance(getActivity()).getArtistGridSize(requireActivity());
     }
 
     @Override
     protected void saveGridSize(int gridSize) {
-        PreferenceUtil.getInstance(getActivity()).setSongGridSize(gridSize);
+        PreferenceUtil.getInstance(getActivity()).setArtistGridSize(gridSize);
     }
 
     @Override
     protected int loadGridSizeLand() {
-        return PreferenceUtil.getInstance(getActivity()).getSongGridSizeLand(requireActivity());
+        return PreferenceUtil.getInstance(getActivity()).getArtistGridSizeLand(requireActivity());
     }
 
     @Override
     protected void saveGridSizeLand(int gridSize) {
-        PreferenceUtil.getInstance(getActivity()).setSongGridSizeLand(gridSize);
+        PreferenceUtil.getInstance(getActivity()).setArtistGridSizeLand(gridSize);
     }
 
     @Override
-    public void saveUsePalette(boolean usePalette) {
-        PreferenceUtil.getInstance(getActivity()).setSongColoredFooters(usePalette);
+    protected void saveUsePalette(boolean usePalette) {
+        PreferenceUtil.getInstance(getActivity()).setArtistColoredFooters(usePalette);
     }
 
     @Override
     public boolean loadUsePalette() {
-        return PreferenceUtil.getInstance(getActivity()).getSongColoredFooters();
+        return PreferenceUtil.getInstance(getActivity()).getArtistColoredFooters();
     }
 
     @Override
-    public void setUsePalette(boolean usePalette) {
+    protected void setUsePalette(boolean usePalette) {
         getAdapter().usePalette(usePalette);
     }
 

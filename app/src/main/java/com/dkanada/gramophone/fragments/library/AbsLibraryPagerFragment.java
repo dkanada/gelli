@@ -1,9 +1,9 @@
-package com.dkanada.gramophone.fragments.mainactivity.library.pager;
+package com.dkanada.gramophone.fragments.library;
 
 import android.os.Bundle;
 
 import com.dkanada.gramophone.fragments.AbsMusicServiceFragment;
-import com.dkanada.gramophone.fragments.mainactivity.library.LibraryFragment;
+import com.dkanada.gramophone.fragments.main.LibraryFragment;
 
 public class AbsLibraryPagerFragment extends AbsMusicServiceFragment {
     public LibraryFragment getLibraryFragment() {

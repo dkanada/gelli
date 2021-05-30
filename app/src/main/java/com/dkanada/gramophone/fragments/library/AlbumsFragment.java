@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.fragments.mainactivity.library.pager;
+package com.dkanada.gramophone.fragments.library;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;

@@ -1,4 +1,4 @@
-package com.dkanada.gramophone.fragments.mainactivity.library;
+package com.dkanada.gramophone.fragments.main;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -34,12 +34,10 @@ import com.dkanada.gramophone.model.SortOrder;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.activities.SearchActivity;
-import com.dkanada.gramophone.fragments.mainactivity.AbsMainActivityFragment;
-import com.dkanada.gramophone.fragments.mainactivity.library.pager.AbsLibraryPagerRecyclerViewCustomGridSizeFragment;
-import com.dkanada.gramophone.fragments.mainactivity.library.pager.AlbumsFragment;
-import com.dkanada.gramophone.fragments.mainactivity.library.pager.ArtistsFragment;
-import com.dkanada.gramophone.fragments.mainactivity.library.pager.PlaylistsFragment;
-import com.dkanada.gramophone.fragments.mainactivity.library.pager.SongsFragment;
+import com.dkanada.gramophone.fragments.library.AbsLibraryPagerRecyclerViewCustomGridSizeFragment;
+import com.dkanada.gramophone.fragments.library.AlbumsFragment;
+import com.dkanada.gramophone.fragments.library.PlaylistsFragment;
+import com.dkanada.gramophone.fragments.library.SongsFragment;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 

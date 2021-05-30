@@ -27,7 +27,7 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.fragments.mainactivity.library.LibraryFragment;
+import com.dkanada.gramophone.fragments.main.LibraryFragment;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
