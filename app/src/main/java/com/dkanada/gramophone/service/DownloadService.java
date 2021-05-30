@@ -48,6 +48,7 @@ public class DownloadService extends Service {
         List<Song> songs = intent.getParcelableArrayListExtra(EXTRA_SONGS);
         for (Song song : songs) {
             download(song);
+            notification.start(song);
         }
 
         return super.onStartCommand(intent, flags, startId);
@@ -58,6 +59,7 @@ public class DownloadService extends Service {
         return null;
     }
 
+    @SuppressWarnings("ConstantConditions")
     public void download(Song song) {
         executor.execute(() -> {
             try {
@@ -81,10 +83,10 @@ public class DownloadService extends Service {
                 byte[] data = new byte[1048576];
                 int count;
 
-                notification.start(song, connection.getContentLength());
+                notification.update(0, connection.getContentLength());
                 while ((count = input.read(data)) != -1) {
                     output.write(data, 0, count);
-                    notification.update(count);
+                    notification.update(count, 0);
                 }
 
                 input.close();

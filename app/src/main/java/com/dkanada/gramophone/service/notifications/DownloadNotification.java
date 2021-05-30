@@ -39,18 +39,17 @@ public class DownloadNotification {
         this.songs = new ArrayList<>();
     }
 
-    public synchronized void start(Song song, int maximum) {
+    public synchronized void start(Song song) {
         this.songs.add(song);
-
-        this.maximum += maximum;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             createNotificationChannel();
         }
     }
 
-    public synchronized void update(int current) {
+    public synchronized void update(int current, int maximum) {
         this.current += current;
+        this.maximum += maximum;
 
         Intent action = new Intent(context, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent clickIntent = PendingIntent.getActivity(context, 0, action, 0);
@@ -64,7 +63,7 @@ public class DownloadNotification {
             .setSmallIcon(R.drawable.ic_notification)
             .setContentIntent(clickIntent)
             .setContentTitle(String.format(context.getString(R.string.downloading_x_songs), songs.size()))
-            .setProgress(maximum, this.current, false)
+            .setProgress(this.maximum, this.current, false)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
             .setStyle(style)
             .setShowWhen(false);
