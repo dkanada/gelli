@@ -17,6 +17,7 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.interfaces.MusicServiceEventListener;
 import com.dkanada.gramophone.service.MusicService;
+import com.dkanada.gramophone.util.PreferenceUtil;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -198,6 +199,13 @@ public abstract class AbsMusicServiceActivity extends AbsBaseActivity implements
 
     @Override
     protected List<String> getPermissionRequest() {
+        Context context = getApplicationContext();
+        String downloadLocation = PreferenceUtil.getInstance(context).getLocationDownload();
+
+        if (downloadLocation.equals(context.getCacheDir().toString())) {
+            return new ArrayList<>();
+        }
+
         return Arrays.asList(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
 }
