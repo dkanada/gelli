@@ -67,7 +67,6 @@
     <string name="pref_title_blur_album_art">Buramkan sampul album</string>
     <string name="pref_title_colored_notification">Notifikasi berwarna</string>
     <string name="pref_title_classic_notification">Desain notifikasi klasik</string>
-    <string name="pref_title_audio_ducking">Kurangi suara saat ada pemberitahuan</string>
     <string name="pref_title_remember_tab">Ingat tab terakhir</string>
     <string name="pref_title_remember_shuffle">Ingat putar acak</string>
     <string name="delete_action">Hapus</string>
@@ -92,7 +91,6 @@
     <string name="pref_summary_classic_notification">Gunakan desain notifikasi klasik.</string>
     <string name="pref_summary_colored_notification">"Mewarnai notifikasi putar dengan warna yang cerah dari album."</string>
     <string name="pref_summary_colored_shortcuts">Mewarnai pintasan-pintasan dengan warna utama.</string>
-    <string name="pref_summary_audio_ducking">Pemberitahuan, navigasi dll.</string>
     <string name="pref_summary_remember_tab">Pergi ke tab yang terakhir saat aplikasi dibuka</string>
     <string name="pref_summary_remember_shuffle">Mode putar acak akan tetap aktif saat memilih daftar lagu baru</string>
     <string name="last_added">Terakhir ditambahkan</string>

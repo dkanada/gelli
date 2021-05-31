@@ -66,7 +66,6 @@
     <string name="pref_title_blur_album_art">Desenfocar carátula de álbum</string>
     <string name="pref_title_colored_notification">Notificación coloreada</string>
     <string name="pref_title_classic_notification">Diseño clásico de la notificación</string>
-    <string name="pref_title_audio_ducking">Reducir volumen en la pérdida del enfoque</string>
     <string name="pref_title_remember_tab">Recordar la última pestaña</string>
     <string name="pref_title_remember_shuffle">Recordar aleatorio</string>
     <string name="delete_action">Borrar</string>
@@ -91,7 +90,6 @@
     <string name="pref_summary_classic_notification">Utilizar el diseño clásico de notificación.</string>
     <string name="pref_summary_colored_notification">"Colorea la notificaci\u00f3n con el color vibrante de la car\u00e1tula del \u00e1lbum."</string>
     <string name="pref_summary_colored_shortcuts">Colorea los accesos directos con el color principal</string>
-    <string name="pref_summary_audio_ducking">Notificaciones, navegación etc.</string>
     <string name="pref_summary_remember_tab">Ir a la última pestaña abierta en el lanzamiento</string>
     <string name="pref_summary_remember_shuffle">Modo aleatorio estará activado cuando se seleccione una nueva lista de canciones</string>
     <string name="last_added">Último agregado</string>

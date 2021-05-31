@@ -66,7 +66,6 @@
     <string name="pref_title_blur_album_art">Bulanık albüm kapağı</string>
     <string name="pref_title_colored_notification">Renkli bildirim</string>
     <string name="pref_title_classic_notification">Klasik bildirim tasarımı</string>
-    <string name="pref_title_audio_ducking">Odak kaybına neden olacak sesi azalt</string>
     <string name="pref_title_remember_tab">Son sekmeyi hatırla</string>
     <string name="delete_action">Sil</string>
     <string name="remove_action">Kaldır</string>
@@ -90,7 +89,6 @@
     <string name="pref_summary_classic_notification">Klasik bildirim tasarımını kullan.</string>
     <string name="pref_summary_colored_notification">"Bildirimler alb\u00fcm kapa\u011f\u0131n\u0131n canl\u0131 renkleriyle renklendirilir."</string>
     <string name="pref_summary_colored_shortcuts">Uygulama kısayollarını ana renk ile renklendir.</string>
-    <string name="pref_summary_audio_ducking">Bildirimler, gezinme vb.</string>
     <string name="pref_summary_remember_tab">Başlatıldığında son açılan sekmeye git</string>
     <string name="last_added">Son eklenen</string>
     <string name="my_top_tracks">En iyi parçalarım</string>

@@ -76,7 +76,6 @@
     <string name="pref_summary_show_album_art">Usa a capa de álbum da faixa atual como papel de parede da tela de bloqueio.</string>
     <string name="pref_summary_blur_album_art">Desfoca a capa do álbum no ecrã de bloqueio. Pode causar problemas com aplicações de terceiros e widgets.</string>
     <string name="pref_summary_colored_notification">"Colorir a notifica\u00e7\u00e3o na cor viva da capa de \u00e1lbum."</string>
-    <string name="pref_summary_audio_ducking">Notificações, navegação etc.</string>
     <string name="last_added">Últimas adições</string>
     <string name="my_top_tracks">As minhas faixas favoritas</string>
     <string name="action_sleep_timer">Temporizador para dormir</string>

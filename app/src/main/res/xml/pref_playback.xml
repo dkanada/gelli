@@ -32,13 +32,6 @@
         <SwitchPreference
             app:iconSpaceReserved="false"
             android:defaultValue="true"
-            android:key="audio_ducking"
-            android:summary="@string/pref_summary_audio_ducking"
-            android:title="@string/pref_title_audio_ducking" />
-
-        <SwitchPreference
-            app:iconSpaceReserved="false"
-            android:defaultValue="true"
             android:key="remember_shuffle"
             android:summary="@string/pref_summary_remember_shuffle"
             android:title="@string/pref_title_remember_shuffle" />

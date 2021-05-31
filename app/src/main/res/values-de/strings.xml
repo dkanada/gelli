@@ -66,7 +66,6 @@
     <string name="pref_title_blur_album_art">Album Cover weichzeichnen</string>
     <string name="pref_title_colored_notification">Gefärbte Benachrichtigung</string>
     <string name="pref_title_classic_notification">Klassisches Benachrichtigungsdesign</string>
-    <string name="pref_title_audio_ducking">Lautstärke bei Fokusverlust verringern</string>
     <string name="pref_title_remember_tab">Letzten Tab merken</string>
     <string name="pref_title_remember_shuffle">Shuffle-Einstellung merken</string>
     <string name="delete_action">Löschen</string>
@@ -93,7 +92,6 @@
     <string name="pref_summary_classic_notification">Das klassische Benachrichtigungsdesign verwenden.</string>
     <string name="pref_summary_colored_notification">"Die Benachrichtigung ist in der Farbe des Album Covers gef\u00e4rbt."</string>
     <string name="pref_summary_colored_shortcuts">Färbt die App-Shortcuts mit der Hauptfarbe.</string>
-    <string name="pref_summary_audio_ducking">Benachrichtigungen, Navigation etc.</string>
     <string name="pref_summary_remember_tab">Zuletzt geöffneten Tab beim Start anzeigen</string>
     <string name="pref_summary_remember_shuffle">Shuffle bleibt aktiviert, wenn neue Songs ausgewählt werden</string>
     <string name="last_added">Zuletzt hinzugefügt</string>

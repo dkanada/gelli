@@ -65,7 +65,6 @@
     <string name="pref_title_blur_album_art">Θάμπωμα πορτρέτων καλλιτεχνών</string>
     <string name="pref_title_colored_notification">Χρωματισμένη ειδοποίηση</string>
     <string name="pref_title_classic_notification">Κλασικός σχεδιασμός ειδοποιήσεων</string>
-    <string name="pref_title_audio_ducking">Μειώστε την ένταση στην απώλεια εστίασης</string>
     <string name="delete_action">Διαγραφή</string>
     <string name="remove_action">Αφαίρεση</string>
     <string name="rename_action">Μετονομασία</string>
@@ -85,7 +84,6 @@
     <string name="pref_summary_blur_album_art">Το θωριασμένο album εξώφυλλο στην οθόνη κλειδώματος μπορεί να δημιουργήσει προβλήματα με τρίτες εφαρμογές και συντομιεύσεις.</string>
     <string name="pref_summary_colored_notification">"\u03a7\u03c1\u03c9\u03bc\u03b1\u03c4\u03af\u03b6\u03b5\u03b9 \u03c4\u03b7\u03bd \u03bc\u03c0\u03ac\u03c1\u03b1 \u03b5\u03b9\u03b4\u03bf\u03c0\u03bf\u03b9\u03ae\u03c3\u03b5\u03c9\u03bd \u03c3\u03c4\u03bf \u03c7\u03c1\u03ce\u03bc\u03b1 \u03c4\u03bf\u03c5 album art \u03c4\u03bf\u03c5 \u03c4\u03c1\u03b1\u03b3\u03bf\u03c5\u03b4\u03b9\u03bf\u03cd"</string>
     <string name="pref_summary_colored_shortcuts">Χρωματίζει τις συντομεύσεις της εφαρμογής στο κυρίως χρώμα.</string>
-    <string name="pref_summary_audio_ducking">Ειδοποιήσεις, πλοήγηση κ.λπ.</string>
     <string name="last_added">Προστέθηκαν τελευταία</string>
     <string name="my_top_tracks">Τα κορυφαία κομμάτια μου</string>
     <string name="action_sleep_timer">Χρονοδιακόπτης ύπνου</string>

@@ -64,7 +64,6 @@
     <string name="pref_title_blur_album_art">Làm mờ bìa album</string>
     <string name="pref_title_colored_notification">Màu thông báo</string>
     <string name="pref_title_classic_notification">Thiết kế thông báo cổ điển</string>
-    <string name="pref_title_audio_ducking">Giảm âm lượng khi mất tập trung</string>
     <string name="delete_action">Xóa</string>
     <string name="remove_action">Di chuyển</string>
     <string name="rename_action">Đổi tên</string>
@@ -85,7 +84,6 @@
     <string name="pref_summary_classic_notification">Sử dụng thiết kế thông báo cổ điển.</string>
     <string name="pref_summary_colored_notification">"M\u00e0u s\u1eafc r\u1ef1c r\u1ee1 cho c\u00e1c th\u00f4ng b\u00e1o trong b\u00eca album."</string>
     <string name="pref_summary_colored_shortcuts">Màu sắc chủ đạo của biểu tượng ứng dụng.</string>
-    <string name="pref_summary_audio_ducking">Thông báo, điều hướng, vv.</string>
     <string name="last_added">Được thêm sau cùng</string>
     <string name="my_top_tracks">Bài hát hàng đầu</string>
     <string name="action_sleep_timer">Hẹn giờ ngủ</string>

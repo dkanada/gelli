@@ -66,7 +66,6 @@
     <string name="pref_title_blur_album_art">Zamagli omot albuma</string>
     <string name="pref_title_colored_notification">Obojene obavijesti</string>
     <string name="pref_title_classic_notification">Klasični dizajn obavijesti</string>
-    <string name="pref_title_audio_ducking">Smanji glasn. prilikom drugih zvukova</string>
     <string name="pref_title_remember_tab">Zapamti zadnju karticu</string>
     <string name="delete_action">Izbriši</string>
     <string name="remove_action">Ukloni</string>
@@ -90,7 +89,6 @@
     <string name="pref_summary_classic_notification">Koristi klasični dizajn obavijesti.</string>
     <string name="pref_summary_colored_notification">"Obavijesti su obojene istaknutom bojom omota albuma."</string>
     <string name="pref_summary_colored_shortcuts">Boja prečace aplikacije u primarnu boju.</string>
-    <string name="pref_summary_audio_ducking">Obavijesti, navigacija itd.</string>
     <string name="pref_summary_remember_tab">Pri pokretanju otvori zadnje otvorenu karticu</string>
     <string name="last_added">Posljednje dodano</string>
     <string name="my_top_tracks">Najslušanije</string>

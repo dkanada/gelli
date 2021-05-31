@@ -66,7 +66,6 @@
     <string name="pref_title_blur_album_art">アルバムアートにぼかし効果をかける</string>
     <string name="pref_title_colored_notification">通知に色を付ける</string>
     <string name="pref_title_classic_notification">古い通知デザイン</string>
-    <string name="pref_title_audio_ducking">音声フォーカス喪失時に音量を下げる</string>
     <string name="pref_title_remember_tab">最後のタブの記憶</string>
     <string name="delete_action">削除</string>
     <string name="remove_action">除去</string>
@@ -90,7 +89,6 @@
     <string name="pref_summary_classic_notification">旧式の通知デザインを使用します。</string>
     <string name="pref_summary_colored_notification">"\u901a\u77e5\u306e\u8272\u3092\u30a2\u30eb\u30d0\u30e0\u30a2\u30fc\u30c8\u304b\u3089\u62bd\u51fa\u3057\u305f\u8272\u306b\u5909\u66f4\u3057\u307e\u3059\u3002"</string>
     <string name="pref_summary_colored_shortcuts">アプリのショートカットの色をメインカラーに変更します。</string>
-    <string name="pref_summary_audio_ducking">通知やナビなどです。</string>
     <string name="pref_summary_remember_tab">アプリ起動時に最後に開いていたタブを開く</string>
     <string name="last_added">最近追加された曲</string>
     <string name="my_top_tracks">よく聞く曲</string>
