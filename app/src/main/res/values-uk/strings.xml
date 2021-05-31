@@ -24,7 +24,6 @@
     <string name="songs">Пісні</string>
     <string name="playlists">Списки відтворення</string>
     <string name="unplayable_file">\u041d\u0435 \u0432\u0434\u0430\u043b\u043e\u0441\u044f \u0432\u0456\u0434\u0442\u0432\u043e\u0440\u0438\u0442\u0438 \u043f\u0456\u0441\u043d\u044e.</string>
-    <string name="audio_focus_denied">В отриманні аудіофокусу відмовлено.</string>
     <string name="album">Альбом</string>
     <string name="label_details">Подробиці</string>
     <string name="label_file_name">Назва файлу</string>

@@ -25,7 +25,6 @@
     <string name="songs">歌曲</string>
     <string name="playlists">播放清單</string>
     <string name="unplayable_file">\u7121\u6cd5\u64ad\u653e\u9019\u9996\u6b4c\u3002</string>
-    <string name="audio_focus_denied">無法獲得音訊焦點。</string>
     <string name="album">專輯</string>
     <string name="label_details">詳細資訊</string>
     <string name="label_file_name">檔案名稱</string>

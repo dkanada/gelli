@@ -10,7 +10,6 @@
     <string name="songs">Songar</string>
     <string name="playlists">Spelelister</string>
     <string name="unplayable_file">Orsak - ein feil oppstod medan spelaren pr\u00f8vde \u00e5 spele denne songen</string>
-    <string name="audio_focus_denied">We were not able to gain audio focus.</string>
     <string name="album">Album</string>
     <string name="label_details">Detaljar</string>
     <string name="label_file_name">Filnamn</string>

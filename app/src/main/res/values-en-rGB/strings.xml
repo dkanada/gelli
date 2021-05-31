@@ -24,7 +24,6 @@
     <string name="songs">Songs</string>
     <string name="playlists">Playlists</string>
     <string name="unplayable_file">Couldn\'t play this song.</string>
-    <string name="audio_focus_denied">Audio focus denied.</string>
     <string name="album">Album</string>
     <string name="label_details">Details</string>
     <string name="label_file_name">File name</string>

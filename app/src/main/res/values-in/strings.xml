@@ -24,7 +24,6 @@
     <string name="songs">Lagu</string>
     <string name="playlists">Daftar putar</string>
     <string name="unplayable_file">Tidak dapat memutar lagu ini.</string>
-    <string name="audio_focus_denied">Fokus audio ditolak.</string>
     <string name="album">Album</string>
     <string name="label_details">Rincian</string>
     <string name="label_file_name">Nama berkas</string>

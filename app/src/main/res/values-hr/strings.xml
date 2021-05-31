@@ -24,7 +24,6 @@
     <string name="songs">Pjesme</string>
     <string name="playlists">Popisi naslova</string>
     <string name="unplayable_file">Nije mogu\u0107e reproducirati ovu pjesmu.</string>
-    <string name="audio_focus_denied">Zvučni fokus je odbijen.</string>
     <string name="album">Album</string>
     <string name="label_details">Detalji</string>
     <string name="label_file_name">Naziv datoteke</string>

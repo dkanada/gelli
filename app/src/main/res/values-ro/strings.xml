@@ -24,7 +24,6 @@
     <string name="songs">Melodii</string>
     <string name="playlists">Liste de redare</string>
     <string name="unplayable_file">Nu se poate reda.</string>
-    <string name="audio_focus_denied">Focus audio respins.</string>
     <string name="album">Album</string>
     <string name="label_details">Detalii</string>
     <string name="label_file_name">Nume fișier</string>

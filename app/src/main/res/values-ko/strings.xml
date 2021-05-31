@@ -24,7 +24,6 @@
     <string name="songs">노래</string>
     <string name="playlists">재생 목록</string>
     <string name="unplayable_file">\uc74c\uc545 \ud30c\uc77c \uc624\ub958\ub85c \uc7ac\uc0dd\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.</string>
-    <string name="audio_focus_denied">오디오 포커스 권한이 거부되었습니다.</string>
     <string name="album">앨범</string>
     <string name="label_details">세부 정보</string>
     <string name="label_file_name">파일 이름</string>

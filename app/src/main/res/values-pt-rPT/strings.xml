@@ -20,7 +20,6 @@
     <string name="songs">Músicas</string>
     <string name="playlists">Listas de reprodução</string>
     <string name="unplayable_file">Ocorreu um erro ao tentar reproduzir esta faixa.</string>
-    <string name="audio_focus_denied">Foco de áudio negado.</string>
     <string name="album">Álbum</string>
     <string name="label_details">Detalhes</string>
     <string name="label_file_name">Nome do ficheiro</string>

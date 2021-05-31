@@ -24,7 +24,6 @@
     <string name="songs">Skladby</string>
     <string name="playlists">Playlisty</string>
     <string name="unplayable_file">Omlouv\u00e1me se, p\u0159i pokusu p\u0159ehr\u00e1t tuto skladbu do\u0161lo k chyb\u011b</string>
-    <string name="audio_focus_denied">Nebylo možné získat ohnisko zvuku.</string>
     <string name="album">Album</string>
     <string name="label_details">Podrobnosti</string>
     <string name="label_file_name">Název souboru</string>

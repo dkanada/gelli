@@ -24,7 +24,6 @@
     <string name="songs">Dalok</string>
     <string name="playlists">Lejátszási listák</string>
     <string name="unplayable_file">Nem lehet lej\u00e1tszani ezt a dalt.</string>
-    <string name="audio_focus_denied">Audiofókusz megtagadva.</string>
     <string name="album">Album</string>
     <string name="label_details">Részletek</string>
     <string name="label_file_name">Fájlnév</string>

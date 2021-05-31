@@ -24,7 +24,6 @@
     <string name="songs">Utwory</string>
     <string name="playlists">Listy odtwarzania</string>
     <string name="unplayable_file">Utw\u00f3r nie mo\u017ce zosta\u0107 odegrany</string>
-    <string name="audio_focus_denied">Nie można teraz odtworzyć dźwięku</string>
     <string name="album">Album</string>
     <string name="label_details">Szczegóły</string>
     <string name="label_file_name">Nazwa pliku</string>

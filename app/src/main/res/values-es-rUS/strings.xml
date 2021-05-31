@@ -24,7 +24,6 @@
     <string name="songs">Canciones</string>
     <string name="playlists">Listas de reproducción</string>
     <string name="unplayable_file">No se ha podido reproducir esta canci\u00f3n.</string>
-    <string name="audio_focus_denied">Enfoque de audio denegado.</string>
     <string name="album">Álbum</string>
     <string name="label_details">Detalles</string>
     <string name="label_file_name">Nombre del archivo</string>

@@ -24,7 +24,6 @@
     <string name="songs">Brani</string>
     <string name="playlists">Playlist</string>
     <string name="unplayable_file">Impossibile riprodurre questo brano.</string>
-    <string name="audio_focus_denied">Focus audio negato.</string>
     <string name="album">Album</string>
     <string name="label_details">Dettagli</string>
     <string name="label_file_name">Nome file</string>

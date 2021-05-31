@@ -24,7 +24,6 @@
     <string name="songs">Kappaleet</string>
     <string name="playlists">Soittolistat</string>
     <string name="unplayable_file">Virhe toistettaessa kappaletta.</string>
-    <string name="audio_focus_denied">Ääntä ei voitu toistaa.</string>
     <string name="album">Albumi</string>
     <string name="label_details">Yksityiskohdat</string>
     <string name="label_file_name">Tiedostonimi</string>

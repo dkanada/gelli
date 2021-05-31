@@ -24,7 +24,6 @@
     <string name="songs">Titres</string>
     <string name="playlists">Playlists</string>
     <string name="unplayable_file">Impossible de lire ce titre.</string>
-    <string name="audio_focus_denied">Accès à l\'Audio Focus refusé.</string>
     <string name="album">Album</string>
     <string name="label_details">Détails</string>
     <string name="label_file_name">Nom du fichier</string>

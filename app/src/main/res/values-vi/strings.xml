@@ -23,7 +23,6 @@
     <string name="songs">Bài hát</string>
     <string name="playlists">Danh sách nhạc</string>
     <string name="unplayable_file">Kh\u00f4ng th\u1ec3 ph\u00e1t b\u00e0i h\u00e1t n\u00e0y.</string>
-    <string name="audio_focus_denied">Âm thanh trọng tâm bị từ chối.</string>
     <string name="album">Album</string>
     <string name="label_details">Chi tiết</string>
     <string name="label_file_name">Tên tập tin</string>
