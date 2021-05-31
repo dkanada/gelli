@@ -1,0 +1,8 @@
+- add custom location for media downloads
+- implement sort method for artist fragment
+- fix issue with older server versions
+- update all dependencies
+- only request storage permission for custom download folders
+- fix contrast issue with input elements on login activity
+- interface changes on settings activity
+- only show loading indicator when streaming
