@@ -85,11 +85,14 @@ public class LocalPlayer implements Playback {
 
         MediaSourceFactory mediaSourceFactory = new UnknownMediaSourceFactory(buildDataSourceFactory());
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                .setUsage(C.USAGE_MEDIA)
-                .setContentType(C.CONTENT_TYPE_MUSIC)
-                .build();
+            .setUsage(C.USAGE_MEDIA)
+            .setContentType(C.CONTENT_TYPE_MUSIC)
+            .build();
 
-        exoPlayer = new SimpleExoPlayer.Builder(context).setMediaSourceFactory(mediaSourceFactory).setAudioAttributes(audioAttributes, true).build();
+        exoPlayer = new SimpleExoPlayer.Builder(context)
+            .setMediaSourceFactory(mediaSourceFactory)
+            .setAudioAttributes(audioAttributes, true)
+            .build();
 
         exoPlayer.addListener(eventListener);
         exoPlayer.prepare();
