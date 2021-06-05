@@ -74,7 +74,7 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
     }
 
     private void setUpRecyclerView() {
-        ViewUtil.setUpFastScrollRecyclerViewColor(this, ((FastScrollRecyclerView) binding.recyclerView), ThemeStore.accentColor(this));
+        ViewUtil.setUpFastScrollRecyclerViewColor(this, binding.recyclerView, ThemeStore.accentColor(this));
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new SongAdapter(this, new ArrayList<>(), R.layout.item_list, false, this);

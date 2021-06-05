@@ -50,6 +50,7 @@ public class SongMenuHelper {
                 NavigationUtil.startArtist(activity, new Artist(song), null);
                 return true;
         }
+
         return false;
     }
 

@@ -140,7 +140,6 @@
     <string name="sort_method_year">Année</string>
     <string name="error_unreachable_server">Impossible de contacter le serveur.</string>
     <string name="error_login_credentials">Identifiants de connexion invalides.</string>
-    <string name="error_login_empty_address">Veuillez saisir l\'adresse du serveur.</string>
     <string name="error_unexpected">Une erreur inattendue s\'est produite.</string>
     <string name="action_add_to_playlist">Ajouter à une playlist</string>
     <string name="action_add_to_queue">Ajouter à la liste de lecture</string>
@@ -160,7 +159,6 @@
     <string name="flat">Flat</string>
     <string name="logout">Déconnexion</string>
     <string name="name">Nom</string>
-    <string name="pref_header_images">Images</string>
     <string name="pref_summary_remember_queue">Enregistrer la liste de lecture à la fermeture de l\'application pour la conserver entre différentes utilisations.</string>
     <string name="pref_summary_remember_shuffle">Le mode aléatoire sera conservé au choix d\'une nouvelle liste de titres pour la liste de lecture.</string>
     <string name="pref_title_image_cache_size">Taille du cache</string>
@@ -177,5 +175,4 @@
     <string name="source">Source</string>
     <string name="unlimited">Illimité</string>
     <string name="select_all_title">Sélectionner tout</string>
-    <string name="error_no_username">Veuillez saisir votre nom d\'utilisateur.</string>
 </resources>
