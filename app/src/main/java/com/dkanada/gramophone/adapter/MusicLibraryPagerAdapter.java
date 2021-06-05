@@ -38,16 +38,14 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
         super(fragmentManager);
 
         mContext = context;
-        setCategories(PreferenceUtil.getInstance(context).getCategories()
-            .stream()
-            .filter(category -> category.select)
-            .collect(Collectors.toList()));
+        setCategories(PreferenceUtil.getInstance(context).getCategories());
     }
 
     public void setCategories(@NonNull List<Category> categories) {
+        List<Category> select = categories.stream().filter(category -> category.select).collect(Collectors.toList());
         mHolderList.clear();
 
-        for (Category category : categories) {
+        for (Category category : select) {
             MusicFragments fragment = MusicFragments.valueOf(category.toString());
             Holder holder = new Holder();
 
