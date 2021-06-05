@@ -129,7 +129,6 @@ public class SettingsActivity extends AbsBaseActivity {
                     requireActivity().setTheme(PreferenceUtil.getInstance(getContext()).getTheme().style);
                     new DynamicShortcutManager(requireContext()).updateDynamicShortcuts();
 
-                    ThemeStore.markChanged(requireContext());
                     requireActivity().recreate();
                     break;
                 case PreferenceUtil.NOW_PLAYING_SCREEN:

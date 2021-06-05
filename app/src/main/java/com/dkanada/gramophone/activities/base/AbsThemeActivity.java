@@ -6,6 +6,7 @@ import android.view.View;
 
 import androidx.annotation.ColorInt;
 
+import com.dkanada.gramophone.util.NavigationUtil;
 import com.kabouzeid.appthemehelper.ATH;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.common.ATHToolbarActivity;
@@ -16,6 +17,8 @@ import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
 
 public abstract class AbsThemeActivity extends ATHToolbarActivity {
+    private int currentTheme;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,25 @@ public abstract class AbsThemeActivity extends ATHToolbarActivity {
         if (!ThemeStore.coloredNavigationBar(this)) {
             ThemeStore.editTheme(this).coloredNavigationBar(true).commit();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // for some reason the recreate method has issues here
+        if (PreferenceUtil.getInstance(this).getTheme().style != currentTheme) {
+            NavigationUtil.startMain(this);
+            overridePendingTransition(0, android.R.anim.fade_out);
+            finish();
+        }
+    }
+
+    @Override
+    public void setTheme(int resId) {
+        currentTheme = resId;
+
+        super.setTheme(resId);
     }
 
     protected void setDrawUnderStatusBar() {
