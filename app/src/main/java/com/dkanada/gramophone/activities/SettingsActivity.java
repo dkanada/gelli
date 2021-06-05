@@ -83,6 +83,7 @@ public class SettingsActivity extends AbsBaseActivity {
             final TwoStatePreference colorAppShortcuts = findPreference(PreferenceUtil.COLORED_SHORTCUTS);
             final Preference categoryPreference = findPreference(PreferenceUtil.CATEGORIES);
             final Preference nowPlayingPreference = findPreference(PreferenceUtil.NOW_PLAYING_SCREEN);
+            final Preference downloadLocationPreference = findPreference(PreferenceUtil.LOCATION_DOWNLOAD);
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 classicNotification.setEnabled(false);
@@ -91,6 +92,10 @@ public class SettingsActivity extends AbsBaseActivity {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                 coloredNotification.setEnabled(false);
                 colorAppShortcuts.setEnabled(false);
+            }
+
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
+                downloadLocationPreference.setEnabled(false);
             }
 
             categoryPreference.setOnPreferenceClickListener(preference -> {
