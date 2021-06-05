@@ -25,4 +25,8 @@
         android:id="@+id/action_delete_playlist"
         android:title="@string/action_delete" />
 
+    <item
+        android:id="@+id/action_download"
+        android:title="@string/action_download" />
+
 </menu>

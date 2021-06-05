@@ -13,7 +13,9 @@ import com.afollestad.materialcab.MaterialCab;
 import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityPlaylistDetailBinding;
-import com.dkanada.gramophone.util.NavigationUtil;
+import com.dkanada.gramophone.dialogs.DeletePlaylistDialog;
+import com.dkanada.gramophone.dialogs.RenamePlaylistDialog;
+import com.dkanada.gramophone.helper.menu.SongsMenuHelper;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
@@ -23,7 +25,6 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.song.OrderablePlaylistSongAdapter;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
-import com.dkanada.gramophone.helper.menu.PlaylistMenuHelper;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.PlaylistSong;
@@ -128,17 +129,17 @@ public class PlaylistDetailActivity extends AbsMusicContentActivity implements C
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.action_shuffle_playlist:
-                MusicPlayerRemote.openAndShuffleQueue(adapter.getDataSet(), true);
-                return true;
-            case R.id.action_download:
-                NavigationUtil.startDownload(this, adapter.getDataSet());
-                return true;
+        if (item.getItemId() == R.id.action_shuffle_playlist) {
+            MusicPlayerRemote.openAndShuffleQueue(adapter.getDataSet(), true);
+        } else if (item.getItemId() == R.id.action_rename_playlist) {
+            RenamePlaylistDialog.create(playlist).show(getSupportFragmentManager(), "RENAME_PLAYLIST");
+        } else if (item.getItemId() == R.id.action_delete_playlist) {
+            DeletePlaylistDialog.create(playlist).show(getSupportFragmentManager(), DeletePlaylistDialog.TAG);
         }
 
-        return PlaylistMenuHelper.handleMenuClick(this, playlist, item);
+        // TODO move SongsMenuHelper into AbsMediaDetailActivity
+        return SongsMenuHelper.handleMenuClick(this, adapter.getDataSet(), item.getItemId())
+            || super.onOptionsItemSelected(item);
     }
 
     @NonNull
