@@ -14,6 +14,9 @@ import java.util.List;
 public class SongsMenuHelper {
     public static boolean handleMenuClick(@NonNull FragmentActivity activity, @NonNull List<Song> songs, int menuItemId) {
         switch (menuItemId) {
+            case R.id.action_play:
+                MusicPlayerRemote.openQueue(songs, 0, true);
+                return true;
             case R.id.action_play_next:
                 MusicPlayerRemote.playNext(songs);
                 return true;

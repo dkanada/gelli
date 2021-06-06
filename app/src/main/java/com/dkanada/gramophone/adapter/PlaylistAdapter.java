@@ -16,9 +16,9 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.base.AbsMultiSelectAdapter;
 import com.dkanada.gramophone.adapter.base.MediaEntryViewHolder;
 import com.dkanada.gramophone.dialogs.DeletePlaylistDialog;
+import com.dkanada.gramophone.dialogs.RenamePlaylistDialog;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.CustomPaletteTarget;
-import com.dkanada.gramophone.helper.menu.PlaylistMenuHelper;
 import com.dkanada.gramophone.helper.menu.SongsMenuHelper;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Playlist;
@@ -142,7 +142,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
         }
     }
 
-    public class ViewHolder extends MediaEntryViewHolder {
+    public class ViewHolder extends MediaEntryViewHolder implements PopupMenu.OnMenuItemClickListener {
         public ViewHolder(@NonNull View itemView, int itemViewType) {
             super(itemView);
 
@@ -151,11 +151,33 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
                     final PopupMenu popupMenu = new PopupMenu(activity, view);
 
                     popupMenu.inflate(R.menu.menu_item_playlist);
-                    popupMenu.setOnMenuItemClickListener(item -> PlaylistMenuHelper.handleMenuClick(activity, dataSet.get(getBindingAdapterPosition()), item));
+                    popupMenu.setOnMenuItemClickListener(this);
 
                     popupMenu.show();
                 });
             }
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            Playlist playlist = dataSet.get(getBindingAdapterPosition());
+
+            if (item.getItemId() == R.id.action_rename_playlist) {
+                RenamePlaylistDialog.create(playlist).show(activity.getSupportFragmentManager(), RenamePlaylistDialog.TAG);
+                return true;
+            } else if (item.getItemId() == R.id.action_delete_playlist) {
+                DeletePlaylistDialog.create(playlist).show(activity.getSupportFragmentManager(), DeletePlaylistDialog.TAG);
+                return true;
+            }
+
+            ItemQuery songs = new ItemQuery();
+            songs.setParentId(playlist.id);
+
+            QueryUtil.getSongs(songs, (media) -> {
+                SongsMenuHelper.handleMenuClick(activity, media, item.getItemId());
+            });
+
+            return true;
         }
 
         @Override

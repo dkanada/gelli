@@ -13,6 +13,8 @@ import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.util.PlaylistUtil;
 
 public class RenamePlaylistDialog extends DialogFragment {
+    public static final String TAG = RenamePlaylistDialog.class.getSimpleName();
+
     private static final String PLAYLIST = "playlist";
 
     @NonNull
