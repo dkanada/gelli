@@ -19,6 +19,8 @@ import com.dkanada.gramophone.fragments.library.PlaylistsFragment;
 import com.dkanada.gramophone.fragments.library.SongsFragment;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +33,6 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
 
     private final List<Holder> mHolderList = new ArrayList<>();
 
-    @NonNull
     private final Context mContext;
 
     public MusicLibraryPagerAdapter(@NonNull final Context context, final FragmentManager fragmentManager) {
@@ -99,15 +100,18 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
         return mFragment;
     }
 
+    @NotNull
     @Override
     public Fragment getItem(final int position) {
         final Holder mCurrentHolder = mHolderList.get(position);
+
         return Fragment.instantiate(mContext, mCurrentHolder.mClassName, mCurrentHolder.mParams);
     }
 
     @Override
-    public void destroyItem(final ViewGroup container, final int position, final Object object) {
+    public void destroyItem(@NotNull ViewGroup container, int position, @NotNull Object object) {
         super.destroyItem(container, position, object);
+
         final WeakReference<Fragment> mWeakFragment = mFragmentArray.get(position);
         if (mWeakFragment != null) {
             mWeakFragment.clear();
@@ -125,9 +129,6 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
         return mHolderList.get(position).title;
     }
 
-    /**
-     * Aligns the fragment cache with the current category layout.
-     */
     private void alignCache() {
         if (mFragmentArray.size() == 0) return;
 
@@ -176,7 +177,7 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
                 }
             }
 
-            throw new IllegalArgumentException("Unknown music fragment " + cl);
+            throw new IllegalArgumentException(String.format("unknown music fragment: %s", cl));
         }
 
         private static class All {

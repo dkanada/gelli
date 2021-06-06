@@ -153,7 +153,6 @@
     <string name="action_sort_method">Sortierungsmethode</string>
     <string name="action_new_playlist">Neue Wiedergabeliste</string>
     <string name="black_theme_name">Schwarz</string>
-    <string name="pref_header_images">Bilder</string>
     <string name="pref_title_maximum_bitrate">Maximale Bitrate</string>
     <string name="pref_title_remember_queue">Warteschlange merken</string>
     <string name="pref_title_page_size">Maximale Listengröße</string>
@@ -170,8 +169,4 @@
     <string name="error_version">Bitte update den Server auf die aktuellste Version.</string>
     <string name="error_share_file">Die Datei konnte nicht geteilt werden.</string>
     <string name="pref_title_transcode_codec">Transkodierungs-Codec</string>
-    <string name="field_cannot_be_empty">Das Feld darf nicht leer sein.</string>
-    <string name="server_is_unreachable">Server nicht erreichbar.</string>
-    <string name="authentication_failed">Authentifizierung fehlgeschlagen.</string>
-    <string name="no_network_connection_available">Keine Netzwerkverbindung verfügbar.</string>
 </resources>

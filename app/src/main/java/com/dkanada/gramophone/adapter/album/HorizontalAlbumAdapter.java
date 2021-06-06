@@ -29,6 +29,7 @@ public class HorizontalAlbumAdapter extends AlbumAdapter {
     protected ViewHolder createViewHolder(View view, int viewType) {
         ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
         HorizontalAdapterHelper.applyMarginToLayoutParams(activity, params, viewType);
+
         return new ViewHolder(view);
     }
 

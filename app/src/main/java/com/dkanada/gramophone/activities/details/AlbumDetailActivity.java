@@ -210,22 +210,7 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
                 .setMenu(menuRes)
                 .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
                 .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(getPaletteColor()))
-                .start(new MaterialCab.Callback() {
-                    @Override
-                    public boolean onCabCreated(MaterialCab materialCab, Menu menu) {
-                        return callback.onCabCreated(materialCab, menu);
-                    }
-
-                    @Override
-                    public boolean onCabItemClicked(MenuItem menuItem) {
-                        return callback.onCabItemClicked(menuItem);
-                    }
-
-                    @Override
-                    public boolean onCabFinished(MaterialCab materialCab) {
-                        return callback.onCabFinished(materialCab);
-                    }
-                });
+                .start(callback);
         return cab;
     }
 

@@ -17,7 +17,7 @@ import com.dkanada.gramophone.model.Song;
 import java.util.List;
 
 public class AlbumCoverPagerAdapter extends CustomFragmentStatePagerAdapter {
-    private List<Song> dataSet;
+    private final List<Song> dataSet;
 
     private AlbumCoverFragment.ColorReceiver currentColorReceiver;
     private int currentColorReceiverPosition = -1;

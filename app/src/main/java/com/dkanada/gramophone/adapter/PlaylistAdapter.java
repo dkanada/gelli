@@ -63,11 +63,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(itemLayoutRes, parent, false);
 
-        return createViewHolder(view, viewType);
-    }
-
-    protected ViewHolder createViewHolder(View view, int viewType) {
-        return new ViewHolder(view, viewType);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -143,7 +139,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
     }
 
     public class ViewHolder extends MediaEntryViewHolder implements PopupMenu.OnMenuItemClickListener {
-        public ViewHolder(@NonNull View itemView, int itemViewType) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             if (menu != null) {

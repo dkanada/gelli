@@ -72,10 +72,7 @@ public class ArtistAdapter extends AbsMultiSelectAdapter<ArtistAdapter.ViewHolde
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(itemLayoutRes, parent, false);
-        return createViewHolder(view);
-    }
 
-    protected ViewHolder createViewHolder(View view) {
         return new ViewHolder(view);
     }
 
