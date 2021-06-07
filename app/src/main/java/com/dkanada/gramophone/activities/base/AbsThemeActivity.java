@@ -5,18 +5,18 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.ColorInt;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.kabouzeid.appthemehelper.ATH;
 import com.kabouzeid.appthemehelper.ThemeStore;
-import com.kabouzeid.appthemehelper.common.ATHToolbarActivity;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialDialogsUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
 
-public abstract class AbsThemeActivity extends ATHToolbarActivity {
+public abstract class AbsThemeActivity extends AppCompatActivity {
     private int currentTheme;
 
     @Override

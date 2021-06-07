@@ -94,7 +94,7 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
         super.onResume();
 
         if (currentNowPlayingScreen != PreferenceUtil.getInstance(this).getNowPlayingScreen()) {
-            postRecreate();
+            recreate();
         }
     }
 
@@ -150,7 +150,6 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
     }
 
     public void onPanelCollapsed(View panel) {
-        // restore values
         super.setLightStatusBar(lightStatusbar);
         super.setTaskDescriptionColor(taskColor);
         super.setNavigationBarColor(navigationbarColor);
