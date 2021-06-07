@@ -24,7 +24,6 @@
     <string name="songs">Nummers</string>
     <string name="playlists">Afspeellijsten</string>
     <string name="unplayable_file">Kan dit nummer niet afspelen.</string>
-    <string name="audio_focus_denied">Audiofocus geweigerd.</string>
     <string name="album">Album</string>
     <string name="label_details">Details</string>
     <string name="label_file_name">Bestandsnaam</string>
@@ -66,7 +65,6 @@
     <string name="pref_title_blur_album_art">Vervaag albumhoes</string>
     <string name="pref_title_colored_notification">Gekleurde melding</string>
     <string name="pref_title_classic_notification">Klassieke meldingsweergave</string>
-    <string name="pref_title_audio_ducking">Verminder volume bij focusverlies</string>
     <string name="pref_title_remember_tab">Laatste tabblad onthouden</string>
     <string name="delete_action">Verwijderen</string>
     <string name="remove_action">Verwijderen</string>
@@ -90,7 +88,6 @@
     <string name="pref_summary_classic_notification">Gebruik de klassieke meldingsweergave.</string>
     <string name="pref_summary_colored_notification">"Kleurt de melding met het palet van de albumhoes."</string>
     <string name="pref_summary_colored_shortcuts">Kleurt de app-snelkoppelingen in de primaire kleur.</string>
-    <string name="pref_summary_audio_ducking">Notificaties, navigatie, etc.</string>
     <string name="pref_summary_remember_tab">Ga naar het laatst geopende tabblad bij opstarten</string>
     <string name="last_added">Laatst toegevoegd</string>
     <string name="my_top_tracks">Mijn top nummers</string>

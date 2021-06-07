@@ -9,6 +9,8 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.audio.AudioAttributes;
 import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.Player.EventListener;
@@ -82,7 +84,15 @@ public class LocalPlayer implements Playback {
         this.context = context;
 
         MediaSourceFactory mediaSourceFactory = new UnknownMediaSourceFactory(buildDataSourceFactory());
-        exoPlayer = new SimpleExoPlayer.Builder(context).setMediaSourceFactory(mediaSourceFactory).build();
+        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+            .setUsage(C.USAGE_MEDIA)
+            .setContentType(C.CONTENT_TYPE_MUSIC)
+            .build();
+
+        exoPlayer = new SimpleExoPlayer.Builder(context)
+            .setMediaSourceFactory(mediaSourceFactory)
+            .setAudioAttributes(audioAttributes, true)
+            .build();
 
         exoPlayer.addListener(eventListener);
         exoPlayer.prepare();

@@ -24,7 +24,6 @@
     <string name="songs">Brani</string>
     <string name="playlists">Playlist</string>
     <string name="unplayable_file">Impossibile riprodurre questo brano.</string>
-    <string name="audio_focus_denied">Focus audio negato.</string>
     <string name="album">Album</string>
     <string name="label_details">Dettagli</string>
     <string name="label_file_name">Nome file</string>
@@ -67,7 +66,6 @@
     <string name="pref_title_blur_album_art">Sfoca la copertina</string>
     <string name="pref_title_colored_notification">Notifica colorata</string>
     <string name="pref_title_classic_notification">Design di notifica classico</string>
-    <string name="pref_title_audio_ducking">Riduci volume in caso di perdita di focus audio</string>
     <string name="pref_title_remember_tab">Ricorda ultima scheda</string>
     <string name="pref_title_remember_shuffle">Ricorda casuale</string>
     <string name="delete_action">Elimina</string>
@@ -92,7 +90,6 @@
     <string name="pref_summary_classic_notification">Usa il design di notifica classico.</string>
     <string name="pref_summary_colored_notification">"La notifica \u00e8 colorata secondo la gamma di colori della copertina."</string>
     <string name="pref_summary_colored_shortcuts">Colora le scorciatoie dell\'app con il colore principale.</string>
-    <string name="pref_summary_audio_ducking">Notifiche, navigazione ecc.</string>
     <string name="pref_summary_remember_tab">All\'avvio vai all\'ultima scheda aperta</string>
     <string name="pref_summary_remember_shuffle">La modalità casuale rimarrà attiva quando si seleziona un nuovo elenco di brani</string>
     <string name="last_added">Aggiunti di recente</string>

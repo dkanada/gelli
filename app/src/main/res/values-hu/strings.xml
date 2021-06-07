@@ -24,7 +24,6 @@
     <string name="songs">Dalok</string>
     <string name="playlists">Lejátszási listák</string>
     <string name="unplayable_file">Nem lehet lej\u00e1tszani ezt a dalt.</string>
-    <string name="audio_focus_denied">Audiofókusz megtagadva.</string>
     <string name="album">Album</string>
     <string name="label_details">Részletek</string>
     <string name="label_file_name">Fájlnév</string>
@@ -66,7 +65,6 @@
     <string name="pref_title_blur_album_art">Albumborító elhomályosítása</string>
     <string name="pref_title_colored_notification">Színezett értesítés</string>
     <string name="pref_title_classic_notification">Klasszikus értesítési dízájn</string>
-    <string name="pref_title_audio_ducking">Hangerő csökkentése</string>
     <string name="pref_title_remember_tab">Emlékezz az utolsó fülre</string>
     <string name="delete_action">Törlés</string>
     <string name="remove_action">Eltávolítás</string>
@@ -90,7 +88,6 @@
     <string name="pref_summary_classic_notification">Használja a klasszikus értesítési dizájn.</string>
     <string name="pref_summary_colored_notification">"\u00c9rtes\u00edt\u00e9sek sz\u00ednez\u00e9se az albumbor\u00edt\u00f3 sz\u00edn\u00e9vel."</string>
     <string name="pref_summary_colored_shortcuts">Az alkalmazás hivatkozások színezése az elsődleges szín szerint.</string>
-    <string name="pref_summary_audio_ducking">Beérkező értesítéskor a lejátszás hangereje lecsökken, majd az értesítés végén visszaáll az eredeti hangerőre.</string>
     <string name="pref_summary_remember_tab">Menjen az utolsó megnyitott fülre az indításkor</string>
     <string name="last_added">Legfrissebb dalok</string>
     <string name="my_top_tracks">Toplista</string>

@@ -24,7 +24,6 @@
     <string name="songs">Melodii</string>
     <string name="playlists">Liste de redare</string>
     <string name="unplayable_file">Nu se poate reda.</string>
-    <string name="audio_focus_denied">Focus audio respins.</string>
     <string name="album">Album</string>
     <string name="label_details">Detalii</string>
     <string name="label_file_name">Nume fișier</string>
@@ -66,7 +65,6 @@
     <string name="pref_title_blur_album_art">Blurează coperta de album</string>
     <string name="pref_title_colored_notification">Notificare colorată</string>
     <string name="pref_title_classic_notification">Design clasic de notificare</string>
-    <string name="pref_title_audio_ducking">Se reduce volumul la pierderea focalizării</string>
     <string name="pref_title_remember_tab">Rețineți ultima filă</string>
     <string name="delete_action">Șterge</string>
     <string name="remove_action">Ștergeți</string>
@@ -90,7 +88,6 @@
     <string name="pref_summary_classic_notification">Utilizați designul clasic de notificare.</string>
     <string name="pref_summary_colored_notification">"Coloreaz\u0103 bara de notificare cu cea mai vibrant\u0103 culoare a copertei de album."</string>
     <string name="pref_summary_colored_shortcuts">Colorarea comenzilor rapide ale aplicației în culoarea primară.</string>
-    <string name="pref_summary_audio_ducking">Notificări, navigație etc.</string>
     <string name="pref_summary_remember_tab">Accesați ultima filă deschisă la lansare</string>
     <string name="last_added">Ultimele adăugate</string>
     <string name="my_top_tracks">Melodiile mele favorite</string>

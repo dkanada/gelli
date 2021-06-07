@@ -24,7 +24,6 @@
     <string name="songs">Kappaleet</string>
     <string name="playlists">Soittolistat</string>
     <string name="unplayable_file">Virhe toistettaessa kappaletta.</string>
-    <string name="audio_focus_denied">Ääntä ei voitu toistaa.</string>
     <string name="album">Albumi</string>
     <string name="label_details">Yksityiskohdat</string>
     <string name="label_file_name">Tiedostonimi</string>
@@ -67,7 +66,6 @@
     <string name="pref_title_blur_album_art">Sumenna albumin kansi</string>
     <string name="pref_title_colored_notification">Värillinen ilmoitus</string>
     <string name="pref_title_classic_notification">Klassinen ilmoituksen ulkonäkö</string>
-    <string name="pref_title_audio_ducking">Hiljennä ääntä, kun kohdistus menetetään</string>
     <string name="pref_title_remember_tab">Muista viimeisin välilehti</string>
     <string name="pref_title_remember_shuffle">Muista sekoitus</string>
     <string name="delete_action">Poista</string>
@@ -92,7 +90,6 @@
     <string name="pref_summary_classic_notification">Käytä klassista ilmoituksen ulkonäköä.</string>
     <string name="pref_summary_colored_notification">"V\u00e4ritt\u00e4\u00e4 ilmoituksen albumin eloisalla v\u00e4rill\u00e4."</string>
     <string name="pref_summary_colored_shortcuts">Värittää sovelluksen pikavalinnat päävärillä.</string>
-    <string name="pref_summary_audio_ducking">Ilmoitukset, liikkuminen jne.</string>
     <string name="pref_summary_remember_tab">Palauttaa käynnistyessään viimeksi avoinna olleen välilehden.</string>
     <string name="pref_summary_remember_shuffle">Sekoitus-tila pysyy päällä, kun valitset uuden listan kappaleita</string>
     <string name="last_added">Viimeksi lisätyt</string>

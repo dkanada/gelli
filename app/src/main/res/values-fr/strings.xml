@@ -24,7 +24,6 @@
     <string name="songs">Titres</string>
     <string name="playlists">Playlists</string>
     <string name="unplayable_file">Impossible de lire ce titre.</string>
-    <string name="audio_focus_denied">Accès à l\'Audio Focus refusé.</string>
     <string name="album">Album</string>
     <string name="label_details">Détails</string>
     <string name="label_file_name">Nom du fichier</string>
@@ -66,7 +65,6 @@
     <string name="pref_title_blur_album_art">Flouter la pochette d\'album</string>
     <string name="pref_title_colored_notification">Notification colorée</string>
     <string name="pref_title_classic_notification">Style de notification classique</string>
-    <string name="pref_title_audio_ducking">Réduction du volume</string>
     <string name="pref_title_remember_tab">Se souvenir de la dernière fenêtre</string>
     <string name="delete_action">Supprimer</string>
     <string name="remove_action">Retirer</string>
@@ -90,7 +88,6 @@
     <string name="pref_summary_classic_notification">Utiliser le style de notification classique.</string>
     <string name="pref_summary_colored_notification">"Colore la notification en fonction de la pochette de l'album."</string>
     <string name="pref_summary_colored_shortcuts">Colore les raccourcis de l\'application selon la couleur primaire.</string>
-    <string name="pref_summary_audio_ducking">Réduire le volume pour les notifications et autre sons système.</string>
     <string name="pref_summary_remember_tab">Aller à la dernière catégorie ouverte lors du lancement.</string>
     <string name="last_added">Derniers ajouts</string>
     <string name="my_top_tracks">Mes meilleurs titres</string>

@@ -20,7 +20,6 @@
     <string name="songs">Låtar</string>
     <string name="playlists">Spellistor</string>
     <string name="unplayable_file">Ett problem uppstod vid spelningen av denna l\u00e5t.</string>
-    <string name="audio_focus_denied">Kunde inte hitta ljudfokus</string>
     <string name="album">Album</string>
     <string name="label_details">Detaljer</string>
     <string name="label_file_name">Filnamn</string>

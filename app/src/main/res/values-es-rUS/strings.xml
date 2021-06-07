@@ -24,7 +24,6 @@
     <string name="songs">Canciones</string>
     <string name="playlists">Listas de reproducción</string>
     <string name="unplayable_file">No se ha podido reproducir esta canci\u00f3n.</string>
-    <string name="audio_focus_denied">Enfoque de audio denegado.</string>
     <string name="album">Álbum</string>
     <string name="label_details">Detalles</string>
     <string name="label_file_name">Nombre del archivo</string>
@@ -66,7 +65,6 @@
     <string name="pref_title_blur_album_art">Desenfocar imagen de álbum</string>
     <string name="pref_title_colored_notification">Notificación coloreada</string>
     <string name="pref_title_classic_notification">Diseño de notificación clásico</string>
-    <string name="pref_title_audio_ducking">Reducir volumen al recibir notificaciones</string>
     <string name="pref_title_remember_tab">Recordar la última pestaña</string>
     <string name="delete_action">Eliminar</string>
     <string name="remove_action">Eliminar</string>
@@ -90,7 +88,6 @@
     <string name="pref_summary_classic_notification">Usar el diseño de notificación clásico.</string>
     <string name="pref_summary_colored_notification">"Colorea la notificaci\u00f3n con el color vibrante de la car\u00e1tula del \u00e1lbum."</string>
     <string name="pref_summary_colored_shortcuts">Colorea los accesos directos con el color principal.</string>
-    <string name="pref_summary_audio_ducking">Notificaciones, navegación, etc.</string>
     <string name="pref_summary_remember_tab">Ir a la última pestaña abierta al iniciar</string>
     <string name="last_added">Agregadas recientemente</string>
     <string name="my_top_tracks">Más reproducidas</string>

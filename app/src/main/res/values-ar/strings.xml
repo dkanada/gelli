@@ -24,7 +24,6 @@
     <string name="songs">الأغاني</string>
     <string name="playlists">قوائم التشغيل</string>
     <string name="unplayable_file">\u0644\u0645 \u064a\u062a\u0645 \u0627\u0644\u062a\u0645\u0643\u0646 \u0645\u0646 \u062a\u0634\u063a\u064a\u0644 \u0627\u0644\u0623\u063a\u0646\u064a\u0629.</string>
-    <string name="audio_focus_denied">تم رفض Audio focus.</string>
     <string name="album">الألبوم</string>
     <string name="label_details">التفاصيل</string>
     <string name="label_file_name">اسم الملف</string>
@@ -66,7 +65,6 @@
     <string name="pref_title_blur_album_art">تغييم صورة الألبوم</string>
     <string name="pref_title_colored_notification">إشعار ملون</string>
     <string name="pref_title_classic_notification">تصميم الإشعار الكلاسيكي</string>
-    <string name="pref_title_audio_ducking">خفض الصوت عند فقدان التركيز</string>
     <string name="pref_title_remember_tab">تذكر آخر لسان</string>
     <string name="delete_action">حذف</string>
     <string name="remove_action">إزالة</string>
@@ -90,7 +88,6 @@
     <string name="pref_summary_classic_notification">استعمال تصميم الإشعار الكلاسيكي.</string>
     <string name="pref_summary_colored_notification">"\u062a\u0644\u0648\u064a\u0646 \u0627\u0644\u0625\u0634\u0639\u0627\u0631 \u0628\u0644\u0648\u0646 \u063a\u0644\u0627\u0641 \u0627\u0644\u0623\u0644\u0628\u0648\u0645 \u0627\u0644\u0628\u0627\u0631\u0632."</string>
     <string name="pref_summary_colored_shortcuts">تلوين اختصارات التطبيق باللون الأساسي.</string>
-    <string name="pref_summary_audio_ducking">الإشعارات، التنقل، إلخ.</string>
     <string name="pref_summary_remember_tab">الذهاب إلى آخر لسان مفتوح عند التشغيل</string>
     <string name="last_added">المضافة مؤخراً</string>
     <string name="my_top_tracks">أفضل الأغاني</string>

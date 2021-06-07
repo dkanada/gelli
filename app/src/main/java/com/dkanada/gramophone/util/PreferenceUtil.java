@@ -79,7 +79,6 @@ public final class PreferenceUtil {
     public static final String TRANSCODE_CODEC = "transcode_codec";
     public static final String DIRECT_PLAY_CODECS = "direct_play_codecs";
     public static final String MAXIMUM_BITRATE = "maximum_bitrate";
-    public static final String AUDIO_DUCKING = "audio_ducking";
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
     public static final String REMEMBER_QUEUE = "remember_queue";
 
@@ -245,10 +244,6 @@ public final class PreferenceUtil {
 
     public final String getMaximumBitrate() {
         return mPreferences.getString(MAXIMUM_BITRATE, "10000000");
-    }
-
-    public final boolean getAudioDucking() {
-        return mPreferences.getBoolean(AUDIO_DUCKING, true);
     }
 
     public final boolean getRememberShuffle() {

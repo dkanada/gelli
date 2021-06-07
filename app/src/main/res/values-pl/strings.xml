@@ -24,7 +24,6 @@
     <string name="songs">Utwory</string>
     <string name="playlists">Listy odtwarzania</string>
     <string name="unplayable_file">Utw\u00f3r nie mo\u017ce zosta\u0107 odegrany</string>
-    <string name="audio_focus_denied">Nie można teraz odtworzyć dźwięku</string>
     <string name="album">Album</string>
     <string name="label_details">Szczegóły</string>
     <string name="label_file_name">Nazwa pliku</string>
@@ -66,7 +65,6 @@
     <string name="pref_title_blur_album_art">Rozmywanie okładki albumu</string>
     <string name="pref_title_colored_notification">Kolorowy odtwarzacz w pasku powiadomień</string>
     <string name="pref_title_classic_notification">Klasyczny wygląd powiadomienia</string>
-    <string name="pref_title_audio_ducking">Zmniejszaj głośność przy powiadomieniach</string>
     <string name="pref_title_remember_tab">"Zapamiętaj ostatnią zakładkę "</string>
     <string name="delete_action">Usuń</string>
     <string name="remove_action">Usuń</string>
@@ -90,7 +88,6 @@
     <string name="pref_summary_classic_notification">Używaj klasycznego stylu powiadomienia.</string>
     <string name="pref_summary_colored_notification">"Odtwarzacz w pasku powiadomie\u0144 ma tonacj\u0119 ok\u0142adki albumu"</string>
     <string name="pref_summary_colored_shortcuts">Kolory skrótów aplikacji w kolorze podstawowym</string>
-    <string name="pref_summary_audio_ducking">Notyfikacje, nawigacja, itp.</string>
     <string name="pref_summary_remember_tab">Idź do ostatniej otwartej zakładki przy starcie</string>
     <string name="last_added">Ostatnio dodane</string>
     <string name="my_top_tracks">Moja Top Lista</string>

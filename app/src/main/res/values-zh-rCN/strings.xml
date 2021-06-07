@@ -24,7 +24,6 @@
     <string name="songs">歌曲</string>
     <string name="playlists">播放列表</string>
     <string name="unplayable_file">\u65e0\u6cd5\u64ad\u653e\u8be5\u6b4c\u66f2\u3002</string>
-    <string name="audio_focus_denied">无法获取音频焦点。</string>
     <string name="album">专辑</string>
     <string name="label_details">详情</string>
     <string name="label_file_name">文件名</string>
@@ -67,7 +66,6 @@
     <string name="pref_title_blur_album_art">专辑封面模糊化</string>
     <string name="pref_title_colored_notification">启用通知背景着色</string>
     <string name="pref_title_classic_notification">经典通知样式</string>
-    <string name="pref_title_audio_ducking">音频焦点丢失时降低音量</string>
     <string name="pref_title_remember_tab">记住最后打开页面</string>
     <string name="delete_action">删除</string>
     <string name="remove_action">移除</string>
@@ -91,7 +89,6 @@
     <string name="pref_summary_classic_notification">使用经典通知样式。</string>
     <string name="pref_summary_colored_notification">"\u4f7f\u7528\u4e0e\u4e13\u8f91\u5c01\u9762\u76f8\u5339\u914d\u7684\u989c\u8272\u7740\u8272\u901a\u77e5\u80cc\u666f\u8272\u3002"</string>
     <string name="pref_summary_colored_shortcuts">用主色调着色应用快捷方式。</string>
-    <string name="pref_summary_audio_ducking">通知、导航等</string>
     <string name="pref_summary_remember_tab">启动时跳转到最后打开页面</string>
     <string name="last_added">最近添加</string>
     <string name="my_top_tracks">最喜爱的歌曲</string>

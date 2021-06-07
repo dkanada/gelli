@@ -24,7 +24,6 @@
     <string name="songs">Songs</string>
     <string name="playlists">Playlists</string>
     <string name="unplayable_file">Couldn\'t play this song.</string>
-    <string name="audio_focus_denied">Audio focus denied.</string>
     <string name="album">Album</string>
     <string name="label_details">Details</string>
     <string name="label_file_name">File name</string>
@@ -66,7 +65,6 @@
     <string name="pref_title_blur_album_art">Blur album cover</string>
     <string name="pref_title_colored_notification">Coloured notification</string>
     <string name="pref_title_classic_notification">Classic notification design</string>
-    <string name="pref_title_audio_ducking">Reduce volume on focus loss</string>
     <string name="pref_title_remember_tab">Remember last tab</string>
     <string name="delete_action">Delete</string>
     <string name="remove_action">Remove</string>
@@ -90,7 +88,6 @@
     <string name="pref_summary_classic_notification">Use the classic notification design.</string>
     <string name="pref_summary_colored_notification">"Colours the notification in the album cover\u2019s vibrant colour."</string>
     <string name="pref_summary_colored_shortcuts">Colours the app shortcuts in the primary colour.</string>
-    <string name="pref_summary_audio_ducking">Notifications, navigation etc.</string>
     <string name="pref_summary_remember_tab">Go to the last opened tab on launch</string>
     <string name="last_added">Last added</string>
     <string name="my_top_tracks">My top tracks</string>
