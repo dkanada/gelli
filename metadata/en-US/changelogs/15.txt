@@ -1,0 +1,6 @@
+- migrate build pipeline to improve reliability
+- disable custom download location when unsupported
+- fix theme updates on main activity
+- resolve all outstanding issues with playlist menus
+- fix category refresh without restart
+- possible solution for crash on music playback
