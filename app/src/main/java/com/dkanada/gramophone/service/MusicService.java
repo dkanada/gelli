@@ -106,7 +106,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final int RELEASE_WAKELOCK = 0;
     public static final int PLAY_SONG = 3;
     public static final int PREPARE_NEXT = 4;
-    public static final int SET_POSITION = 5;
 
     public static final int SAVE_QUEUE = 0;
     public static final int LOAD_QUEUE = 9;
@@ -638,11 +637,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 position = 0;
             }
 
-            if (startPlaying) {
-                playSongAt(position);
-            } else {
-                setPosition(position);
-            }
+            playSongAt(position);
 
             notifyChange(QUEUE_CHANGED);
         }
@@ -652,16 +647,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         // handle this on the handlers thread to avoid blocking the ui thread
         playerHandler.removeMessages(PLAY_SONG);
         playerHandler.obtainMessage(PLAY_SONG, position, 0).sendToTarget();
-    }
-
-    public void setPosition(final int position) {
-        // handle this on the handlers thread to avoid blocking the ui thread
-        playerHandler.removeMessages(SET_POSITION);
-        playerHandler.obtainMessage(SET_POSITION, position, 0).sendToTarget();
-    }
-
-    private void playSongAtImpl(int position) {
-        openTrackAndPrepareNextAt(position);
     }
 
     public void pause() {
@@ -843,11 +828,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     break;
 
                 case PLAY_SONG:
-                    service.playSongAtImpl(msg.arg1);
-                    service.notifyChange(STATE_CHANGED);
-                    break;
-
-                case SET_POSITION:
                     service.openTrackAndPrepareNextAt(msg.arg1);
                     service.notifyChange(STATE_CHANGED);
                     break;
