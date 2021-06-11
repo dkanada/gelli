@@ -74,7 +74,7 @@ import static com.google.android.exoplayer2.Player.MEDIA_ITEM_TRANSITION_REASON_
 import static com.google.android.exoplayer2.Player.MEDIA_ITEM_TRANSITION_REASON_PLAYLIST_CHANGED;
 import static com.google.android.exoplayer2.Player.PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM;
 
-public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener, Playback.PlaybackCallbacks {
+public class MusicService extends Service implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
 
     public static final String ACTION_TOGGLE = PACKAGE_NAME + ".toggle";
@@ -159,6 +159,38 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     };
 
+    private final Playback.PlaybackCallbacks playbackCallbacks = new Playback.PlaybackCallbacks() {
+        @Override
+        public void onStateChanged(int state) {
+            notifyChange(STATE_CHANGED);
+        }
+
+        @Override
+        public void onReadyChanged(boolean ready, int reason) {
+            notifyChange(STATE_CHANGED);
+
+            if (ready) {
+                progressHandler.sendEmptyMessage(TRACK_STARTED);
+                prepareNext();
+            } else if (reason == PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM) {
+                progressHandler.sendEmptyMessage(TRACK_ENDED);
+            }
+        }
+
+        @Override
+        public void onTrackChanged(int reason) {
+            acquireWakeLock(30000);
+
+            if (reason == MEDIA_ITEM_TRANSITION_REASON_AUTO) {
+                playerHandler.sendEmptyMessage(TRACK_CHANGED);
+                progressHandler.sendEmptyMessage(TRACK_CHANGED);
+            } else if (reason == MEDIA_ITEM_TRANSITION_REASON_PLAYLIST_CHANGED) {
+                progressHandler.sendEmptyMessage(TRACK_CHANGED);
+                prepareNext();
+            }
+        }
+    };
+
     private final BroadcastReceiver becomingNoisyReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, @NonNull Intent intent) {
@@ -205,7 +237,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         wakeLock.setReferenceCounted(false);
 
         playback = new LocalPlayer(this);
-        playback.setCallbacks(this);
+        playback.setCallbacks(playbackCallbacks);
 
         queueManager = new QueueManager(this, queueCallbacks);
 
@@ -757,36 +789,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 initNotification();
                 updateNotification();
                 break;
-        }
-    }
-
-    @Override
-    public void onStateChanged(int state) {
-        notifyChange(STATE_CHANGED);
-    }
-
-    @Override
-    public void onReadyChanged(boolean ready, int reason) {
-        notifyChange(STATE_CHANGED);
-
-        if (ready) {
-            progressHandler.sendEmptyMessage(TRACK_STARTED);
-            prepareNext();
-        } else if (reason == PLAY_WHEN_READY_CHANGE_REASON_END_OF_MEDIA_ITEM) {
-            progressHandler.sendEmptyMessage(TRACK_ENDED);
-        }
-    }
-
-    @Override
-    public void onTrackChanged(int reason) {
-        acquireWakeLock(30000);
-
-        if (reason == MEDIA_ITEM_TRANSITION_REASON_AUTO) {
-            playerHandler.sendEmptyMessage(TRACK_CHANGED);
-            progressHandler.sendEmptyMessage(TRACK_CHANGED);
-        } else if (reason == MEDIA_ITEM_TRANSITION_REASON_PLAYLIST_CHANGED) {
-            progressHandler.sendEmptyMessage(TRACK_CHANGED);
-            prepareNext();
         }
     }
 
