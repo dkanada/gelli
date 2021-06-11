@@ -52,6 +52,12 @@ public class LocalPlayer implements Playback {
         }
 
         @Override
+        public void onPlaybackSuppressionReasonChanged(@Player.PlaybackSuppressionReason int playbackSuppressionReason) {
+            Log.i(TAG, String.format("onPlaybackSuppressionReasonChanged: %d", playbackSuppressionReason));
+            if (callbacks != null) callbacks.onStateChanged(Player.STATE_READY);
+        }
+
+        @Override
         public void onMediaItemTransition(MediaItem mediaItem, int reason) {
             Log.i(TAG, String.format("onMediaItemTransition: %s %d", mediaItem, reason));
 
@@ -164,7 +170,7 @@ public class LocalPlayer implements Playback {
 
     @Override
     public boolean isPlaying() {
-        return exoPlayer.isPlaying() || exoPlayer.getPlayWhenReady();
+        return exoPlayer.getPlayWhenReady() && exoPlayer.getPlaybackSuppressionReason() == Player.PLAYBACK_SUPPRESSION_REASON_NONE;
     }
 
     @Override
