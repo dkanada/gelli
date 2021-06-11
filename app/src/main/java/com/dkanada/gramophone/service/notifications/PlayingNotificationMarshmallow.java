@@ -39,7 +39,7 @@ public class PlayingNotificationMarshmallow extends PlayingNotification {
     public synchronized void update() {
         stopped = false;
 
-        final Song song = service.getCurrentSong();
+        final Song song = service.queueManager.getCurrentSong();
         final boolean isPlaying = service.isPlaying();
 
         final RemoteViews notificationLayout = new RemoteViews(service.getPackageName(), R.layout.notification);

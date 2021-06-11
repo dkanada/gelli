@@ -13,13 +13,13 @@ import android.widget.SeekBar;
 import androidx.annotation.NonNull;
 
 import com.dkanada.gramophone.util.ThemeUtil;
+import com.dkanada.gramophone.service.QueueManager;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.databinding.FragmentCardPlayerPlaybackControlsBinding;
 import com.dkanada.gramophone.helper.MusicProgressViewUpdateHelper;
 import com.dkanada.gramophone.helper.PlayPauseButtonOnClickHandler;
 import com.dkanada.gramophone.interfaces.base.SimpleOnSeekbarChangeListener;
-import com.dkanada.gramophone.service.MusicService;
 import com.dkanada.gramophone.fragments.AbsMusicServiceFragment;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.views.PlayPauseDrawable;
@@ -165,10 +165,10 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
 
     private void updateShuffleState() {
         switch (MusicPlayerRemote.getShuffleMode()) {
-            case MusicService.SHUFFLE_MODE_SHUFFLE:
+            case QueueManager.SHUFFLE_MODE_SHUFFLE:
                 binding.playerShuffleButton.setColorFilter(lastPlaybackControlsColor, PorterDuff.Mode.SRC_IN);
                 break;
-            case MusicService.SHUFFLE_MODE_NONE:
+            case QueueManager.SHUFFLE_MODE_NONE:
             default:
                 binding.playerShuffleButton.setColorFilter(lastDisabledPlaybackControlsColor, PorterDuff.Mode.SRC_IN);
                 break;
@@ -181,15 +181,15 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
 
     private void updateRepeatState() {
         switch (MusicPlayerRemote.getRepeatMode()) {
-            case MusicService.REPEAT_MODE_NONE:
+            case QueueManager.REPEAT_MODE_NONE:
                 binding.playerRepeatButton.setImageResource(R.drawable.ic_repeat_white_24dp);
                 binding.playerRepeatButton.setColorFilter(lastDisabledPlaybackControlsColor, PorterDuff.Mode.SRC_IN);
                 break;
-            case MusicService.REPEAT_MODE_ALL:
+            case QueueManager.REPEAT_MODE_ALL:
                 binding.playerRepeatButton.setImageResource(R.drawable.ic_repeat_white_24dp);
                 binding.playerRepeatButton.setColorFilter(lastPlaybackControlsColor, PorterDuff.Mode.SRC_IN);
                 break;
-            case MusicService.REPEAT_MODE_THIS:
+            case QueueManager.REPEAT_MODE_THIS:
                 binding.playerRepeatButton.setImageResource(R.drawable.ic_repeat_one_white_24dp);
                 binding.playerRepeatButton.setColorFilter(lastPlaybackControlsColor, PorterDuff.Mode.SRC_IN);
                 break;
