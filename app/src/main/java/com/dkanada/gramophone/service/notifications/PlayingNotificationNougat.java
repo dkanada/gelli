@@ -33,7 +33,7 @@ public class PlayingNotificationNougat extends PlayingNotification {
     public synchronized void update() {
         stopped = false;
 
-        final Song song = service.getCurrentSong();
+        final Song song = service.queueManager.getCurrentSong();
         final boolean isPlaying = service.isPlaying();
 
         final int playButtonResId = isPlaying
