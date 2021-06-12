@@ -1,6 +1,5 @@
 package com.dkanada.gramophone.fragments.main;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,11 +21,8 @@ import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.util.ShortcutUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.afollestad.materialcab.MaterialCab;
-import com.kabouzeid.appthemehelper.common.ATHToolbarActivity;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
-import com.kabouzeid.appthemehelper.util.TabLayoutUtil;
-import com.kabouzeid.appthemehelper.util.ToolbarContentTintHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.MusicLibraryPagerAdapter;
 import com.dkanada.gramophone.dialogs.CreatePlaylistDialog;
@@ -110,7 +106,6 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         int primaryColor = PreferenceUtil.getInstance(requireActivity()).getPrimaryColor();
         int normalColor = MaterialValueHelper.getSecondaryTextColor(requireActivity(), ColorUtil.isColorLight(primaryColor));
         int selectedColor = MaterialValueHelper.getPrimaryTextColor(requireActivity(), ColorUtil.isColorLight(primaryColor));
-        TabLayoutUtil.setTabIconColors(binding.tabs, normalColor, selectedColor);
         binding.tabs.setTabTextColors(normalColor, selectedColor);
         binding.tabs.setSelectedTabIndicatorColor(PreferenceUtil.getInstance(requireActivity()).getAccentColor());
 
@@ -187,18 +182,6 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
             menu.removeItem(R.id.action_sort_method);
             menu.removeItem(R.id.action_sort_order);
         }
-
-        Activity activity = getActivity();
-        if (activity == null) return;
-        ToolbarContentTintHelper.handleOnCreateOptionsMenu(getActivity(), binding.toolbar, menu, ATHToolbarActivity.getToolbarBackgroundColor(binding.toolbar));
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        Activity activity = getActivity();
-        if (activity == null) return;
-        ToolbarContentTintHelper.handleOnPrepareOptionsMenu(activity, binding.toolbar);
     }
 
     @Override

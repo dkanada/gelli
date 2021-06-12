@@ -1,5 +1,6 @@
 package com.dkanada.gramophone.util;
 
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 
 import androidx.annotation.ColorInt;
@@ -17,6 +18,20 @@ public class ThemeUtil {
         if (bitmap == null) return null;
 
         return Palette.from(bitmap).generate();
+    }
+
+    public static ColorStateList getColorStateList(int normal, int active) {
+        int[][] states = new int[][]{
+            new int[]{-android.R.attr.state_checked},
+            new int[]{android.R.attr.state_checked}
+        };
+
+        int[] colors = new int[]{
+            normal,
+            active
+        };
+
+        return new ColorStateList(states, colors);
     }
 
     @ColorInt

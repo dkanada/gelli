@@ -1,14 +1,14 @@
 package com.dkanada.gramophone.activities.base;
 
+import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kabouzeid.appthemehelper.ATH;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.appthemehelper.util.MaterialDialogsUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
@@ -22,7 +22,6 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
 
         setTheme(PreferenceUtil.getInstance(this).getTheme().style);
         setColor(PreferenceUtil.getInstance(this).getPrimaryColor());
-        MaterialDialogsUtil.updateMaterialDialogsThemeSingleton(this);
     }
 
     @Override
@@ -53,7 +52,7 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
         setNavigationBarColor(color);
     }
 
-    protected void setDrawUnderStatusBar() {
+    private void setDrawUnderStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Util.setAllowDrawUnderStatusBar(getWindow());
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -77,18 +76,38 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
     }
 
     public void setTaskDescriptionColor(int color) {
-        ATH.setTaskDescriptionColor(this, color);
+        int solid = ColorUtil.stripAlpha(color);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setTaskDescription(new ActivityManager.TaskDescription(getTitle().toString(), null, solid));
+        }
     }
 
     public void setNavigationBarColor(int color) {
-        ATH.setNavigationbarColor(this, color);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(color);
+        }
     }
 
+    @SuppressLint("InlinedApi")
     public void setLightStatusBar(boolean enabled) {
-        ATH.setLightStatusbar(this, enabled);
+        View view = getWindow().getDecorView();
+
+        int flags = enabled
+            ? view.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            : view.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+
+        view.setSystemUiVisibility(flags);
     }
 
+    @SuppressLint("InlinedApi")
     public void setLightNavigationBar(boolean enabled) {
-        ATH.setLightNavigationbar(this, enabled);
+        View view = getWindow().getDecorView();
+
+        int flags = enabled
+            ? view.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+            : view.getSystemUiVisibility() & ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+
+        view.setSystemUiVisibility(flags);
     }
 }

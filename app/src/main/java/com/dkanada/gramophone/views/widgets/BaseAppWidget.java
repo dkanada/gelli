@@ -37,7 +37,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(final Context context, final AppWidgetManager appWidgetManager, final int[] appWidgetIds) {
-        Log.d(NAME, String.format("onUpdate: %s", Arrays.toString(appWidgetIds)));
+        Log.i(NAME, String.format("onUpdate: %s", Arrays.toString(appWidgetIds)));
         reset(context, appWidgetIds);
 
         final Intent updateIntent = new Intent(MusicService.INTENT_EXTRA_WIDGET_UPDATE);

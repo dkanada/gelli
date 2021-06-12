@@ -17,9 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
-import com.kabouzeid.appthemehelper.util.ATHUtil;
-import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
 import com.dkanada.gramophone.databinding.ActivityMainContentBinding;
 import com.dkanada.gramophone.databinding.ActivityMainDrawerLayoutBinding;
 import com.dkanada.gramophone.databinding.NavigationDrawerHeaderBinding;
@@ -133,9 +132,11 @@ public class MainActivity extends AbsMusicContentActivity {
     }
 
     private void setUpNavigationView() {
-        int accentColor = PreferenceUtil.getInstance(this).getAccentColor();
-        NavigationViewUtil.setItemIconColors(binding.navigationView, ATHUtil.resolveColor(this, R.attr.iconColor, ThemeStore.textColorSecondary(this)), accentColor);
-        NavigationViewUtil.setItemTextColors(binding.navigationView, ThemeStore.textColorPrimary(this), accentColor);
+        int normalColor = ThemeStore.textColorPrimary(this);
+        int activeColor = PreferenceUtil.getInstance(this).getAccentColor();
+
+        binding.navigationView.setItemIconTintList(ThemeUtil.getColorStateList(normalColor, activeColor));
+        binding.navigationView.setItemTextColor(ThemeUtil.getColorStateList(normalColor, activeColor));
 
         binding.navigationView.setNavigationItemSelectedListener(menuItem -> {
             binding.drawerLayout.closeDrawers();
@@ -157,6 +158,7 @@ public class MainActivity extends AbsMusicContentActivity {
 
             // only run the following code when a new library has been selected
             if (menuItem.getItemId() == QueryUtil.currentLibrary.getId().hashCode()) return true;
+
             for (BaseItemDto itemDto : libraries) {
                 if (menuItem.getItemId() == itemDto.getId().hashCode()) {
                     QueryUtil.currentLibrary = itemDto;
@@ -168,12 +170,13 @@ public class MainActivity extends AbsMusicContentActivity {
             // setCheckable must be applied to the items on creation
             // it also applies a tacky background color for the checked item
             // this is a hack to check the current item without that
-            if (menuItem.getItemId() == R.id.nav_settings
-                || menuItem.getItemId() == R.id.nav_about
-                || menuItem.getItemId() == R.id.nav_logout) return true;
+            if (menuItem.getGroupId() != R.id.navigation_drawer_menu_category_sections) return true;
 
             for (int i = 0; i < binding.navigationView.getMenu().size(); i++) {
-                binding.navigationView.getMenu().getItem(i).setChecked(binding.navigationView.getMenu().getItem(i) == menuItem);
+                MenuItem item = binding.navigationView.getMenu().getItem(i);
+
+                // ignore items that open new activities since the navigation view is hidden
+                item.setChecked(item == menuItem);
             }
 
             return true;

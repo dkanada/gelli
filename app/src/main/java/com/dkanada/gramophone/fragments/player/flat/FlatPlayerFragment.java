@@ -2,7 +2,6 @@ package com.dkanada.gramophone.fragments.player.flat;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -16,6 +15,7 @@ import android.widget.ImageView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +27,6 @@ import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.appthemehelper.util.ToolbarContentTintHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.base.MediaEntryViewHolder;
 import com.dkanada.gramophone.adapter.song.PlayingQueueAdapter;
@@ -225,7 +224,7 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     private void updateIsFavorite() {
         boolean favorite = MusicPlayerRemote.getCurrentSong().favorite;
         int res = favorite ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_favorite_border_white_24dp;
-        int color = ToolbarContentTintHelper.toolbarContentColor(requireActivity(), Color.TRANSPARENT);
+        int color = ContextCompat.getColor(requireContext(), android.R.color.white);
         Drawable drawable = ImageUtil.getTintedVectorDrawable(requireActivity(), res, color);
 
         binding.playerToolbar.getMenu().findItem(R.id.action_toggle_favorite)
