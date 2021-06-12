@@ -55,12 +55,6 @@ public class PlaylistDetailActivity extends AbsMusicContentActivity implements C
 
         super.onCreate(savedInstanceState);
 
-        setDrawUnderStatusBar();
-        setStatusBarColorAuto();
-
-        setNavigationBarColorAuto();
-        setTaskDescriptionColorAuto();
-
         setUpRecyclerView();
         setUpToolbar();
     }

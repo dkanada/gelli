@@ -6,9 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.dkanada.gramophone.util.NavigationUtil;
 import com.kabouzeid.appthemehelper.ATH;
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.MaterialDialogsUtil;
 import com.dkanada.gramophone.R;
@@ -23,6 +21,7 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setTheme(PreferenceUtil.getInstance(this).getTheme().style);
+        setColor(PreferenceUtil.getInstance(this).getPrimaryColor());
         MaterialDialogsUtil.updateMaterialDialogsThemeSingleton(this);
     }
 
@@ -30,11 +29,8 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // for some reason the recreate method has issues here
         if (PreferenceUtil.getInstance(this).getTheme().style != currentTheme) {
-            NavigationUtil.startMain(this);
-            overridePendingTransition(0, android.R.anim.fade_out);
-            finish();
+            recreate();
         }
     }
 
@@ -43,6 +39,18 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
         super.setTheme(resId);
 
         currentTheme = resId;
+    }
+
+    public void setColor(int color) {
+        boolean light = ColorUtil.isColorLight(color);
+
+        setLightStatusBar(light);
+        setLightNavigationBar(light);
+        setDrawUnderStatusBar();
+
+        setStatusBarColor(color);
+        setTaskDescriptionColor(color);
+        setNavigationBarColor(color);
     }
 
     protected void setDrawUnderStatusBar() {
@@ -68,32 +76,19 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
         }
     }
 
-    public void setStatusBarColorAuto() {
-        // ignore status bar color because we are darkening the color on our own to support KitKat
-        setStatusBarColor(ThemeStore.primaryColor(this));
-    }
-
     public void setTaskDescriptionColor(int color) {
         ATH.setTaskDescriptionColor(this, color);
-    }
-
-    public void setTaskDescriptionColorAuto() {
-        setTaskDescriptionColor(ThemeStore.primaryColor(this));
     }
 
     public void setNavigationBarColor(int color) {
         ATH.setNavigationbarColor(this, color);
     }
 
-    public void setNavigationBarColorAuto() {
-        setNavigationBarColor(ThemeStore.navigationBarColor(this));
-    }
-
     public void setLightStatusBar(boolean enabled) {
         ATH.setLightStatusbar(this, enabled);
     }
 
-    public void setLightStatusBarAuto(int bgColor) {
-        setLightStatusBar(ColorUtil.isColorLight(bgColor));
+    public void setLightNavigationBar(boolean enabled) {
+        ATH.setLightNavigationbar(this, enabled);
     }
 }

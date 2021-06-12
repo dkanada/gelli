@@ -29,12 +29,6 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setDrawUnderStatusBar();
-        setStatusBarColorAuto();
-
-        setNavigationBarColorAuto();
-        setTaskDescriptionColorAuto();
-
         setUpViews();
     }
 

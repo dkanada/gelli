@@ -31,6 +31,7 @@ public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
     public void onBindViewHolder(@NonNull final SongAdapter.ViewHolder holder, int position) {
         if (holder.getItemViewType() == OFFSET_ITEM) {
             int accentColor = PreferenceUtil.getInstance(activity).getAccentColor();
+
             if (holder.title != null) {
                 holder.title.setText(activity.getResources().getString(R.string.action_shuffle_all).toUpperCase());
                 holder.title.setTextColor(accentColor);

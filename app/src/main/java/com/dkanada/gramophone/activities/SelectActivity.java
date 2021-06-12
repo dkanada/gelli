@@ -35,12 +35,6 @@ public class SelectActivity extends AbsBaseActivity {
             startActivity(new Intent(context, LoginActivity.class));
         });
 
-        setDrawUnderStatusBar();
-        setStatusBarColorAuto();
-
-        setNavigationBarColorAuto();
-        setTaskDescriptionColorAuto();
-
         int primaryColor = PreferenceUtil.getInstance(this).getPrimaryColor();
 
         binding.add.setBackgroundColor(primaryColor);

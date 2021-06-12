@@ -47,11 +47,6 @@ public class SearchActivity extends AbsMusicContentActivity implements SearchVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setDrawUnderStatusBar();
-        setStatusBarColorAuto();
-
-        setNavigationBarColorAuto();
-        setTaskDescriptionColorAuto();
         setUpToolBar();
 
         handler = new Handler();

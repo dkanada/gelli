@@ -61,7 +61,6 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
         // must be loaded before album adapter
         usePalette = PreferenceUtil.getInstance(this).getAlbumArtistColoredFooters();
 
-        setDrawUnderStatusBar();
         setUpObservableListViewParams();
         setUpToolbar();
         setUpViews();
@@ -169,13 +168,11 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
         toolbarColor = color;
         binding.appBarLayout.setBackgroundColor(color);
 
-        setNavigationBarColor(color);
-        setTaskDescriptionColor(color);
+        setColor(color);
 
         binding.toolbar.setBackgroundColor(color);
         // needed to auto readjust the toolbar content color
         setSupportActionBar(binding.toolbar);
-        setStatusBarColor(color);
 
         int secondaryTextColor = MaterialValueHelper.getSecondaryTextColor(this, ColorUtil.isColorLight(color));
         binding.durationIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
@@ -254,6 +251,8 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
     @Override
     public void setStatusBarColor(int color) {
         super.setStatusBarColor(color);
+
+        // the toolbar is always light at the moment
         setLightStatusBar(false);
     }
 

@@ -55,7 +55,6 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
 
         super.onCreate(savedInstanceState);
 
-        setDrawUnderStatusBar();
         setUpObservableListViewParams();
         setUpToolbar();
         setUpViews();
@@ -119,13 +118,11 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
         toolbarColor = color;
         binding.appBarLayout.setBackgroundColor(color);
 
-        setNavigationBarColor(color);
-        setTaskDescriptionColor(color);
+        setColor(color);
 
         binding.toolbar.setBackgroundColor(color);
         // needed to auto readjust the toolbar content color
         setSupportActionBar(binding.toolbar);
-        setStatusBarColor(color);
 
         int secondaryTextColor = MaterialValueHelper.getSecondaryTextColor(this, ColorUtil.isColorLight(color));
         binding.artistIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
@@ -226,6 +223,8 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
     @Override
     public void setStatusBarColor(int color) {
         super.setStatusBarColor(color);
+
+        // the toolbar is always light at the moment
         setLightStatusBar(false);
     }
 

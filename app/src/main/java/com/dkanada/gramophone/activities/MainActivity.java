@@ -55,9 +55,10 @@ public class MainActivity extends AbsMusicContentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setDrawUnderStatusBar();
 
         state = savedInstanceState;
+
+        setColor(PreferenceUtil.getInstance(this).getPrimaryColor());
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             binding.navigationView.setFitsSystemWindows(false);
         }

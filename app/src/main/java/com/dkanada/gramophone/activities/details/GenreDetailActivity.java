@@ -43,12 +43,6 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
 
         super.onCreate(savedInstanceState);
 
-        setDrawUnderStatusBar();
-        setStatusBarColorAuto();
-
-        setNavigationBarColorAuto();
-        setTaskDescriptionColorAuto();
-
         setUpRecyclerView();
         setUpToolBar();
     }

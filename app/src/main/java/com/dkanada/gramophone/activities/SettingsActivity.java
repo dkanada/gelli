@@ -30,12 +30,6 @@ public class SettingsActivity extends AbsBaseActivity {
         binding = ActivitySettingsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setDrawUnderStatusBar();
-        setStatusBarColorAuto();
-
-        setNavigationBarColorAuto();
-        setTaskDescriptionColorAuto();
-
         binding.toolbar.setBackgroundColor(PreferenceUtil.getInstance(this).getPrimaryColor());
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

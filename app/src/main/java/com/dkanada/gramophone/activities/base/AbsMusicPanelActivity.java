@@ -181,7 +181,7 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
 
 
     public SlidingUpPanelLayout.PanelState getPanelState() {
-        return binding.slidingLayout.getPanelState();
+        return binding == null ? null : binding.slidingLayout.getPanelState();
     }
 
     public void collapsePanel() {
