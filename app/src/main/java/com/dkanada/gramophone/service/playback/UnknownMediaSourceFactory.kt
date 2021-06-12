@@ -14,6 +14,7 @@ import kotlinx.coroutines.*
 import java.net.HttpURLConnection
 import java.net.URL
 
+@Suppress("JoinDeclarationAndAssignment")
 class UnknownMediaSourceFactory(dataSourceFactory: DataSource.Factory) : MediaSourceFactory {
     private val hlsMediaSource : HlsMediaSource.Factory
     private val progressiveMediaSource : ProgressiveMediaSource.Factory
