@@ -3,8 +3,9 @@
 
     <com.dkanada.gramophone.views.settings.JellyPreferenceCategory android:title="@string/pref_header_colors">
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
+        <ListPreference
             app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
             android:defaultValue="dark"
             android:entries="@array/pref_theme_titles"
             android:entryValues="@array/pref_theme_values"

@@ -45,9 +45,9 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
 
     @Override
     public void setTheme(int resId) {
-        currentTheme = resId;
-
         super.setTheme(resId);
+
+        currentTheme = resId;
     }
 
     protected void setDrawUnderStatusBar() {

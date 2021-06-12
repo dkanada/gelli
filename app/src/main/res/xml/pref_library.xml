@@ -9,8 +9,9 @@
             android:summary="@string/pref_summary_categories"
             android:title="@string/pref_title_categories" />
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
+        <ListPreference
             app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
             android:defaultValue="100"
             android:entries="@array/pref_page_size_titles"
             android:entryValues="@array/pref_page_size_values"

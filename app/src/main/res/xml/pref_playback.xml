@@ -4,8 +4,9 @@
 
     <com.dkanada.gramophone.views.settings.JellyPreferenceCategory android:title="@string/pref_header_audio">
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
+        <ListPreference
             app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
             android:defaultValue="aac"
             android:entries="@array/pref_transcode_codec_titles"
             android:entryValues="@array/pref_transcode_codec_values"
@@ -19,8 +20,9 @@
             android:summary="@string/pref_summary_direct_play_codecs"
             android:title="@string/pref_title_direct_play_codecs" />
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
+        <ListPreference
             app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
             android:defaultValue="10000000"
             android:entries="@array/pref_maximum_bitrate_titles"
             android:entryValues="@array/pref_maximum_bitrate_values"

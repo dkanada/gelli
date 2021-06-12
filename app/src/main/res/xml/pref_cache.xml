@@ -9,8 +9,9 @@
             android:key="location_download"
             android:title="@string/pref_title_download_location" />
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
+        <ListPreference
             app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
             android:defaultValue="400"
             android:entries="@array/pref_cache_size_titles"
             android:entryValues="@array/pref_cache_size_values"
@@ -19,8 +20,9 @@
             android:positiveButtonText="@null"
             android:title="@string/pref_title_image_cache_size" />
 
-        <com.kabouzeid.appthemehelper.common.prefs.supportv7.ATEListPreference
+        <ListPreference
             app:iconSpaceReserved="false"
+            app:useSimpleSummaryProvider="true"
             android:defaultValue="400"
             android:entries="@array/pref_cache_size_titles"
             android:entryValues="@array/pref_cache_size_values"
