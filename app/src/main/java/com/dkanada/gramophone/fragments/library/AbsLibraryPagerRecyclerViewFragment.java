@@ -16,7 +16,6 @@ import com.dkanada.gramophone.databinding.FragmentMainActivityRecyclerViewBindin
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener;
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.ViewUtil;
 
@@ -71,7 +70,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
     }
 
     private void initRecyclerView() {
-        ViewUtil.setUpFastScrollRecyclerViewColor(getActivity(), binding.recyclerView, ThemeStore.accentColor(requireActivity()));
+        ViewUtil.setUpFastScrollRecyclerViewColor(getActivity(), binding.recyclerView, PreferenceUtil.getInstance(requireActivity()).getAccentColor());
 
         binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setAdapter(adapter);

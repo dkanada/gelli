@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dkanada.gramophone.util.NavigationUtil;
@@ -25,10 +24,6 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
 
         setTheme(PreferenceUtil.getInstance(this).getTheme().style);
         MaterialDialogsUtil.updateMaterialDialogsThemeSingleton(this);
-
-        if (!ThemeStore.coloredNavigationBar(this)) {
-            ThemeStore.editTheme(this).coloredNavigationBar(true).commit();
-        }
     }
 
     @Override
@@ -59,19 +54,17 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
     }
 
     public void setStatusBarColor(int color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            final View statusBar = getWindow().getDecorView().getRootView().findViewById(R.id.status_bar);
-            if (statusBar != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    statusBar.setBackgroundColor(ColorUtil.darkenColor(color));
-                    setLightStatusBarAuto(color);
-                } else {
-                    statusBar.setBackgroundColor(color);
-                }
-            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                getWindow().setStatusBarColor(ColorUtil.darkenColor(color));
-                setLightStatusBarAuto(color);
-            }
+        View statusBar = getWindow().getDecorView().getRootView().findViewById(R.id.status_bar);
+        int dark = ColorUtil.darkenColor(color);
+
+        // KitKat through Lollipop will do this automatically
+        if (statusBar != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            statusBar.setBackgroundColor(dark);
+            getWindow().setStatusBarColor(getResources().getColor(android.R.color.transparent));
+        } else if (statusBar != null) {
+            statusBar.setBackgroundColor(color);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(dark);
         }
     }
 
@@ -80,7 +73,7 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
         setStatusBarColor(ThemeStore.primaryColor(this));
     }
 
-    public void setTaskDescriptionColor(@ColorInt int color) {
+    public void setTaskDescriptionColor(int color) {
         ATH.setTaskDescriptionColor(this, color);
     }
 

@@ -14,16 +14,14 @@ import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityGenreDetailBinding;
 import com.dkanada.gramophone.util.NavigationUtil;
-import com.kabouzeid.appthemehelper.ThemeStore;
+import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Genre;
-import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.ViewUtil;
-import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 
@@ -74,7 +72,7 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
     }
 
     private void setUpRecyclerView() {
-        ViewUtil.setUpFastScrollRecyclerViewColor(this, binding.recyclerView, ThemeStore.accentColor(this));
+        ViewUtil.setUpFastScrollRecyclerViewColor(this, binding.recyclerView, PreferenceUtil.getInstance(this).getAccentColor());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new SongAdapter(this, new ArrayList<>(), R.layout.item_list, false, this);
@@ -90,7 +88,7 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
     }
 
     private void setUpToolBar() {
-        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        binding.toolbar.setBackgroundColor(PreferenceUtil.getInstance(this).getPrimaryColor());
         setSupportActionBar(binding.toolbar);
         binding.toolbar.setTitle(genre.name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -124,7 +122,7 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
         cab = new MaterialCab(this, R.id.cab_stub)
             .setMenu(menu)
             .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-            .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(this)))
+            .setBackgroundColor(PreferenceUtil.getInstance(this).getPrimaryColor())
             .start(callback);
 
         return cab;

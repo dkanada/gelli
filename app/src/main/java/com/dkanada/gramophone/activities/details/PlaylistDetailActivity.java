@@ -16,11 +16,11 @@ import com.dkanada.gramophone.databinding.ActivityPlaylistDetailBinding;
 import com.dkanada.gramophone.dialogs.DeletePlaylistDialog;
 import com.dkanada.gramophone.dialogs.RenamePlaylistDialog;
 import com.dkanada.gramophone.helper.menu.SongsMenuHelper;
+import com.dkanada.gramophone.util.PreferenceUtil;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.song.OrderablePlaylistSongAdapter;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
@@ -29,7 +29,6 @@ import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.PlaylistSong;
 import com.dkanada.gramophone.model.Song;
-import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.PlaylistUtil;
 import com.dkanada.gramophone.util.ViewUtil;
 
@@ -85,7 +84,7 @@ public class PlaylistDetailActivity extends AbsMusicContentActivity implements C
     }
 
     private void setUpRecyclerView() {
-        ViewUtil.setUpFastScrollRecyclerViewColor(this, binding.recyclerView, ThemeStore.accentColor(this));
+        ViewUtil.setUpFastScrollRecyclerViewColor(this, binding.recyclerView, PreferenceUtil.getInstance(this).getAccentColor());
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerViewDragDropManager = new RecyclerViewDragDropManager();
@@ -115,7 +114,7 @@ public class PlaylistDetailActivity extends AbsMusicContentActivity implements C
 
     private void setUpToolbar() {
         binding.toolbar.setTitle(playlist.name);
-        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        binding.toolbar.setBackgroundColor(PreferenceUtil.getInstance(this).getPrimaryColor());
         setSupportActionBar(binding.toolbar);
         // noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -149,7 +148,7 @@ public class PlaylistDetailActivity extends AbsMusicContentActivity implements C
         cab = new MaterialCab(this, R.id.cab_stub)
             .setMenu(menu)
             .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-            .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(this)))
+            .setBackgroundColor(PreferenceUtil.getInstance(this).getPrimaryColor())
             .start(callback);
 
         return cab;

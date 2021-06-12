@@ -22,8 +22,9 @@ import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.util.ShortcutUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.afollestad.materialcab.MaterialCab;
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.common.ATHToolbarActivity;
+import com.kabouzeid.appthemehelper.util.ColorUtil;
+import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.kabouzeid.appthemehelper.util.TabLayoutUtil;
 import com.kabouzeid.appthemehelper.util.ToolbarContentTintHelper;
 import com.dkanada.gramophone.R;
@@ -38,7 +39,6 @@ import com.dkanada.gramophone.fragments.library.AbsLibraryPagerRecyclerViewCusto
 import com.dkanada.gramophone.fragments.library.AlbumsFragment;
 import com.dkanada.gramophone.fragments.library.PlaylistsFragment;
 import com.dkanada.gramophone.fragments.library.SongsFragment;
-import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
 public class LibraryFragment extends AbsMainActivityFragment implements CabHolder, MainActivity.MainActivityFragmentCallbacks, ViewPager.OnPageChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
@@ -95,7 +95,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
     }
 
     private void setUpToolbar() {
-        int primaryColor = ThemeStore.primaryColor(requireActivity());
+        int primaryColor = PreferenceUtil.getInstance(requireActivity()).getPrimaryColor();
         binding.appbar.setBackgroundColor(primaryColor);
         binding.toolbar.setBackgroundColor(primaryColor);
         binding.toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
@@ -110,12 +110,12 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
 
         binding.tabs.setupWithViewPager(binding.pager);
 
-        int primaryColor = ThemeStore.primaryColor(requireActivity());
-        int normalColor = ToolbarContentTintHelper.toolbarSubtitleColor(requireActivity(), primaryColor);
-        int selectedColor = ToolbarContentTintHelper.toolbarTitleColor(requireActivity(), primaryColor);
+        int primaryColor = PreferenceUtil.getInstance(requireActivity()).getPrimaryColor();
+        int normalColor = MaterialValueHelper.getSecondaryTextColor(requireActivity(), ColorUtil.isColorLight(primaryColor));
+        int selectedColor = MaterialValueHelper.getPrimaryTextColor(requireActivity(), ColorUtil.isColorLight(primaryColor));
         TabLayoutUtil.setTabIconColors(binding.tabs, normalColor, selectedColor);
         binding.tabs.setTabTextColors(normalColor, selectedColor);
-        binding.tabs.setSelectedTabIndicatorColor(ThemeStore.accentColor(requireActivity()));
+        binding.tabs.setSelectedTabIndicatorColor(PreferenceUtil.getInstance(requireActivity()).getAccentColor());
 
         updateTabVisibility();
 
@@ -146,7 +146,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         cab = new MaterialCab(getMainActivity(), R.id.cab_stub)
                 .setMenu(menuRes)
                 .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-                .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(ThemeStore.primaryColor(requireActivity())))
+                .setBackgroundColor(PreferenceUtil.getInstance(requireActivity()).getPrimaryColor())
                 .start(callback);
 
         return cab;

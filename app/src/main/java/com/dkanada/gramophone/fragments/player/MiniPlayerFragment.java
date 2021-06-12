@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 
 import com.dkanada.gramophone.databinding.FragmentMiniPlayerBinding;
 import com.dkanada.gramophone.model.Song;
+import com.dkanada.gramophone.util.PreferenceUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.dkanada.gramophone.R;
@@ -56,9 +57,10 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
 
     private void setUpMiniPlayer() {
         setUpPlayPauseButton();
+        int accentColor = PreferenceUtil.getInstance(requireActivity()).getAccentColor();
 
-        binding.progressBar.setProgressTintList(ColorStateList.valueOf(ThemeStore.accentColor(requireActivity())));
-        binding.progressBar.setIndeterminateTintList(ColorStateList.valueOf(ThemeStore.accentColor(requireActivity())));
+        binding.progressBar.setSupportProgressTintList(ColorStateList.valueOf(accentColor));
+        binding.progressBar.setSupportIndeterminateTintList(ColorStateList.valueOf(accentColor));
     }
 
     private void setUpPlayPauseButton() {

@@ -16,7 +16,6 @@ import com.dkanada.gramophone.views.ColorCircleDrawable;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
-import com.kabouzeid.appthemehelper.ThemeStore;
 
 public class ColorPreference extends Preference implements View.OnClickListener, ColorPickerClickListener {
     private SharedPreferences preferences;
@@ -52,13 +51,6 @@ public class ColorPreference extends Preference implements View.OnClickListener,
     public void onClick(DialogInterface dialog, int color, Integer[] allColors) {
         preferences.edit().putInt(getKey(), color).apply();
         colorView.setColor(color);
-
-        // TODO remove this when the theme helper library is removed
-        if (getKey().equals(PreferenceUtil.PRIMARY_COLOR)) {
-            ThemeStore.editTheme(getContext()).primaryColor(color).commit();
-        } else if (getKey().equals(PreferenceUtil.ACCENT_COLOR)) {
-            ThemeStore.editTheme(getContext()).accentColor(color).commit();
-        }
     }
 
     @Override

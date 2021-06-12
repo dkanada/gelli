@@ -11,7 +11,6 @@ import android.util.TypedValue;
 import androidx.annotation.RequiresApi;
 import androidx.core.graphics.drawable.IconCompat;
 
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.ImageUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
@@ -41,7 +40,7 @@ public final class AppShortcutIconGenerator {
 
         // Return an Icon of iconId with those colors
         return generateThemedIcon(context, iconId,
-                ThemeStore.primaryColor(context),
+                PreferenceUtil.getInstance(context).getPrimaryColor(),
                 typedColorBackground.data
         );
     }

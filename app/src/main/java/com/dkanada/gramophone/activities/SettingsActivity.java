@@ -13,7 +13,6 @@ import androidx.preference.PreferenceManager;
 import androidx.preference.TwoStatePreference;
 
 import com.dkanada.gramophone.databinding.ActivitySettingsBinding;
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.views.shortcuts.DynamicShortcutManager;
 import com.dkanada.gramophone.dialogs.preferences.CategoryPreferenceDialog;
@@ -37,7 +36,7 @@ public class SettingsActivity extends AbsBaseActivity {
         setNavigationBarColorAuto();
         setTaskDescriptionColorAuto();
 
-        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        binding.toolbar.setBackgroundColor(PreferenceUtil.getInstance(this).getPrimaryColor());
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

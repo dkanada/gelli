@@ -32,7 +32,6 @@ import com.dkanada.gramophone.interfaces.PaletteColorHolder;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
-import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 
@@ -237,7 +236,7 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
         cab = new MaterialCab(this, R.id.cab_stub)
                 .setMenu(menuRes)
                 .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-                .setBackgroundColor(ThemeUtil.shiftBackgroundColorForLightText(getPaletteColor()))
+                .setBackgroundColor(getPaletteColor())
                 .start(callback);
         return cab;
     }

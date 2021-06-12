@@ -12,7 +12,7 @@ import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.adapter.SelectAdapter;
 import com.dkanada.gramophone.databinding.ActivitySelectBinding;
 import com.dkanada.gramophone.model.User;
-import com.kabouzeid.appthemehelper.ThemeStore;
+import com.dkanada.gramophone.util.PreferenceUtil;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class SelectActivity extends AbsBaseActivity {
         setNavigationBarColorAuto();
         setTaskDescriptionColorAuto();
 
-        int primaryColor = ThemeStore.primaryColor(this);
+        int primaryColor = PreferenceUtil.getInstance(this).getPrimaryColor();
 
         binding.add.setBackgroundColor(primaryColor);
         binding.toolbar.setBackgroundColor(primaryColor);

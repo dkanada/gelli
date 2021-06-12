@@ -20,8 +20,8 @@ import androidx.core.app.ActivityCompat;
 import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.R;
+import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.material.snackbar.Snackbar;
-import com.kabouzeid.appthemehelper.ThemeStore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +109,7 @@ public abstract class AbsBaseActivity extends AbsThemeActivity {
     private void showWarning() {
         Snackbar.make(getPermissionWindow(), getPermissionMessage(), Snackbar.LENGTH_SHORT)
             .setAction(R.string.ignore, view -> { })
-            .setActionTextColor(ThemeStore.accentColor(this))
+            .setActionTextColor(PreferenceUtil.getInstance(this).getAccentColor())
             .show();
     }
 

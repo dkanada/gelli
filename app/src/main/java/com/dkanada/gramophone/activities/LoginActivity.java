@@ -13,7 +13,6 @@ import com.dkanada.gramophone.databinding.ActivityLoginBinding;
 import com.dkanada.gramophone.activities.base.AbsBaseActivity;
 import com.dkanada.gramophone.model.User;
 import com.dkanada.gramophone.util.PreferenceUtil;
-import com.kabouzeid.appthemehelper.ThemeStore;
 
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.system.SystemInfo;
@@ -46,7 +45,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
     }
 
     private void setUpViews() {
-        primaryColor = ThemeStore.primaryColor(this);
+        primaryColor = PreferenceUtil.getInstance(this).getPrimaryColor();
 
         setUpToolbar();
         setUpOnClickListeners();

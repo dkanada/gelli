@@ -249,7 +249,7 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
 
     @Override
     public void setNavigationBarColor(int color) {
-        this.navigationbarColor = color;
+        navigationbarColor = color;
 
         if (navigationBarColorAnimator != null) {
             navigationBarColorAnimator.cancel();
@@ -286,7 +286,7 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
 
     @Override
     public void setTaskDescriptionColor(@ColorInt int color) {
-        this.taskColor = color;
+        taskColor = color;
 
         if (getPanelState() == null || getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
             super.setTaskDescriptionColor(color);

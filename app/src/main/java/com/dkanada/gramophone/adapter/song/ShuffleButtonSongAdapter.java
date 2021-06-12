@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.ShortcutUtil;
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.interfaces.CabHolder;
@@ -30,7 +30,7 @@ public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
     @Override
     public void onBindViewHolder(@NonNull final SongAdapter.ViewHolder holder, int position) {
         if (holder.getItemViewType() == OFFSET_ITEM) {
-            int accentColor = ThemeStore.accentColor(activity);
+            int accentColor = PreferenceUtil.getInstance(activity).getAccentColor();
             if (holder.title != null) {
                 holder.title.setText(activity.getResources().getString(R.string.action_shuffle_all).toUpperCase());
                 holder.title.setTextColor(accentColor);

@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.util.NavigationUtil;
+import com.dkanada.gramophone.util.PreferenceUtil;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.kabouzeid.appthemehelper.util.NavigationViewUtil;
@@ -131,7 +132,7 @@ public class MainActivity extends AbsMusicContentActivity {
     }
 
     private void setUpNavigationView() {
-        int accentColor = ThemeStore.accentColor(this);
+        int accentColor = PreferenceUtil.getInstance(this).getAccentColor();
         NavigationViewUtil.setItemIconColors(binding.navigationView, ATHUtil.resolveColor(this, R.attr.iconColor, ThemeStore.textColorSecondary(this)), accentColor);
         NavigationViewUtil.setItemTextColors(binding.navigationView, ThemeStore.textColorPrimary(this), accentColor);
 

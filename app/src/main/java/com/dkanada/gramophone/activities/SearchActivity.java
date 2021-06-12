@@ -20,9 +20,9 @@ import com.dkanada.gramophone.interfaces.MediaCallback;
 import com.dkanada.gramophone.model.Album;
 import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
+import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.Util;
-import com.kabouzeid.appthemehelper.ThemeStore;
 
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 
@@ -99,7 +99,7 @@ public class SearchActivity extends AbsMusicContentActivity implements SearchVie
     }
 
     private void setUpToolBar() {
-        binding.toolbar.setBackgroundColor(ThemeStore.primaryColor(this));
+        binding.toolbar.setBackgroundColor(PreferenceUtil.getInstance(this).getPrimaryColor());
         setSupportActionBar(binding.toolbar);
         // noinspection ConstantConditions
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
