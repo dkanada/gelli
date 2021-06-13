@@ -111,19 +111,19 @@ public class MusicPlayerRemote {
 
     public static void playNextSong() {
         if (musicService != null) {
-            musicService.playNextSong(true);
+            musicService.playNextSong();
         }
     }
 
     public static void playPreviousSong() {
         if (musicService != null) {
-            musicService.playPreviousSong(true);
+            musicService.playPreviousSong();
         }
     }
 
     public static void back() {
         if (musicService != null) {
-            musicService.back(true);
+            musicService.back();
         }
     }
 

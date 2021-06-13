@@ -17,6 +17,7 @@ import com.google.android.exoplayer2.Player.EventListener;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.database.ExoDatabaseProvider;
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
 import com.google.android.exoplayer2.source.MediaSourceFactory;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
@@ -25,8 +26,13 @@ import com.google.android.exoplayer2.upstream.cache.CacheDataSink;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
+import com.google.android.exoplayer2.util.EventLogger;
 
 import java.io.File;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 public class LocalPlayer implements Playback {
     public static final String TAG = LocalPlayer.class.getSimpleName();
@@ -36,6 +42,35 @@ public class LocalPlayer implements Playback {
     private final SimpleCache simpleCache;
 
     private PlaybackCallbacks callbacks;
+
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+    private interface MediaItemsCallbacks {
+        void onMediaItemsCreated(List<MediaItem> mediaItems, int position, int progress, boolean resetCurrentSong);
+    }
+
+    private final MediaItemsCallbacks mediaItemsCallbacks = new MediaItemsCallbacks() {
+        @Override
+        public void onMediaItemsCreated(List<MediaItem> mediaItems, int position, int progress, boolean resetCurrentSong) {
+            // FixMe: Call this on main thread
+            if (resetCurrentSong) {
+                exoPlayer.setMediaItems(mediaItems, position, progress);
+                return;
+            }
+
+            int currentPosition = exoPlayer.getCurrentWindowIndex();
+            exoPlayer.removeMediaItems(0, currentPosition);
+
+            if (exoPlayer.getMediaItemCount() > 1) {
+                exoPlayer.removeMediaItems(1, exoPlayer.getMediaItemCount());
+            }
+
+            if (position + 1 < mediaItems.size()) {
+                exoPlayer.addMediaItems(1, mediaItems.subList(position + 1, mediaItems.size()));
+            }
+            exoPlayer.addMediaItems(0, mediaItems.subList(0, position));
+        }
+    };
 
     @SuppressWarnings("FieldCanBeLocal")
     private final EventListener eventListener = new EventListener() {
@@ -60,14 +95,7 @@ public class LocalPlayer implements Playback {
         @Override
         public void onMediaItemTransition(MediaItem mediaItem, int reason) {
             Log.i(TAG, String.format("onMediaItemTransition: %s %d", mediaItem, reason));
-
-            if (exoPlayer.getMediaItemCount() > 1) {
-                exoPlayer.removeMediaItem(0);
-            }
-
-            if (callbacks != null) {
-                callbacks.onTrackChanged(reason);
-            }
+            if (callbacks != null) callbacks.onTrackChanged(reason);
         }
 
         @Override
@@ -101,6 +129,8 @@ public class LocalPlayer implements Playback {
             .build();
 
         exoPlayer.addListener(eventListener);
+        // FixMe: Remove after debugging
+        exoPlayer.addAnalyticsListener(new EventLogger(null));
         exoPlayer.prepare();
 
         long cacheSize = PreferenceUtil.getInstance(context).getMediaCacheSize();
@@ -112,39 +142,30 @@ public class LocalPlayer implements Playback {
     }
 
     @Override
-    public void setDataSource(Song song) {
-        MediaItem mediaItem = exoPlayer.getCurrentMediaItem();
+    public void setQueue(List<Song> queue, int position, int progress, boolean resetCurrentSong) {
+        executorService.submit(() -> mediaItemsCallbacks
+                .onMediaItemsCreated(createMediaItems(queue), position, progress, resetCurrentSong));
+    }
 
-        if (mediaItem != null && mediaItem.mediaId.equals(song.id)) {
-            return;
-        }
+    private List<MediaItem> createMediaItems(List<Song> queue) {
+        return queue.stream().map(song -> {
+            File audio = new File(MusicUtil.getFileUri(song));
+            Uri uri = Uri.fromFile(audio);
 
-        exoPlayer.clearMediaItems();
-        appendDataSource(song);
-        exoPlayer.seekTo(0, 0);
+            if (!audio.exists()) {
+                uri = Uri.parse(MusicUtil.getTranscodeUri(song));
+            }
+
+            MediaItem mediaItem = MediaItem.fromUri(uri);
+            return mediaItem.buildUpon().setMediaId(song.id).build();
+        }).collect(Collectors.toList());
     }
 
     @Override
-    public void queueDataSource(Song song) {
-        while (exoPlayer.getMediaItemCount() > 1) {
-            exoPlayer.removeMediaItem(1);
+    public void playSongAt(int position) {
+        if (exoPlayer.getMediaItemCount() > 0) {
+            exoPlayer.seekTo(Math.max(0, position) % exoPlayer.getMediaItemCount(), 0);
         }
-
-        appendDataSource(song);
-    }
-
-    private void appendDataSource(Song song) {
-        File audio = new File(MusicUtil.getFileUri(song));
-        Uri uri = Uri.fromFile(audio);
-
-        if (!audio.exists()) {
-            uri = Uri.parse(MusicUtil.getTranscodeUri(song));
-        }
-
-        MediaItem mediaItem = MediaItem.fromUri(uri);
-        mediaItem = mediaItem.buildUpon().setMediaId(song.id).build();
-
-        exoPlayer.addMediaItem(mediaItem);
     }
 
     private DataSource.Factory buildDataSourceFactory() {
@@ -198,6 +219,21 @@ public class LocalPlayer implements Playback {
     public void stop() {
         simpleCache.release();
         exoPlayer.release();
+    }
+
+    @Override
+    public void previous() {
+        exoPlayer.previous();
+    }
+
+    @Override
+    public void next() {
+        exoPlayer.next();
+    }
+
+    @Override
+    public void setRepeatMode(@Player.RepeatMode int repeatMode) {
+        exoPlayer.setRepeatMode(repeatMode);
     }
 
     @Override
