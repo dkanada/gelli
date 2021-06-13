@@ -89,7 +89,7 @@ public class LocalPlayer implements Playback {
     public LocalPlayer(Context context) {
         this.context = context;
 
-        MediaSourceFactory mediaSourceFactory = new UnknownMediaSourceFactory(buildDataSourceFactory());
+        MediaSourceFactory mediaSourceFactory = new DefaultMediaSourceFactory(buildDataSourceFactory());
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
             .setUsage(C.USAGE_MEDIA)
             .setContentType(C.CONTENT_TYPE_MUSIC)
