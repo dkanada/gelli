@@ -13,8 +13,8 @@ import androidx.core.util.Pair;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.afollestad.materialcab.MaterialCab;
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.base.AbsMultiSelectAdapter;
 import com.dkanada.gramophone.adapter.base.MediaEntryViewHolder;
@@ -120,11 +120,11 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
         if (holder.paletteColorContainer != null) {
             holder.paletteColorContainer.setBackgroundColor(color);
             if (holder.title != null) {
-                holder.title.setTextColor(MaterialValueHelper.getPrimaryTextColor(activity, ColorUtil.isColorLight(color)));
+                holder.title.setTextColor(ThemeUtil.getPrimaryTextColor(activity, ColorUtil.isColorLight(color)));
             }
 
             if (holder.text != null) {
-                holder.text.setTextColor(MaterialValueHelper.getSecondaryTextColor(activity, ColorUtil.isColorLight(color)));
+                holder.text.setTextColor(ThemeUtil.getSecondaryTextColor(activity, ColorUtil.isColorLight(color)));
             }
         }
     }

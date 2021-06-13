@@ -18,9 +18,9 @@ import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
 import com.dkanada.gramophone.databinding.ActivityArtistDetailBinding;
 import com.dkanada.gramophone.util.NavigationUtil;
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.album.HorizontalAlbumAdapter;
 import com.dkanada.gramophone.dialogs.AddToPlaylistDialog;
@@ -174,7 +174,7 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
         // needed to auto readjust the toolbar content color
         setSupportActionBar(binding.toolbar);
 
-        int secondaryTextColor = MaterialValueHelper.getSecondaryTextColor(this, ColorUtil.isColorLight(color));
+        int secondaryTextColor = ThemeUtil.getSecondaryTextColor(this, ColorUtil.isColorLight(color));
         binding.durationIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
         binding.songCountIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
         binding.albumCountIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);

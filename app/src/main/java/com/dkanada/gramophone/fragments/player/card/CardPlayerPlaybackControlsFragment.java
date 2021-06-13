@@ -12,8 +12,8 @@ import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.kabouzeid.appthemehelper.util.TintHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
@@ -98,11 +98,11 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
 
     public void setDark(boolean dark) {
         if (dark) {
-            lastPlaybackControlsColor = MaterialValueHelper.getSecondaryTextColor(requireActivity(), true);
-            lastDisabledPlaybackControlsColor = MaterialValueHelper.getSecondaryDisabledTextColor(requireActivity(), true);
+            lastPlaybackControlsColor = ThemeUtil.getSecondaryTextColor(requireActivity(), true);
+            lastDisabledPlaybackControlsColor = ThemeUtil.getDisabledTextColor(ThemeUtil.getSecondaryTextColor(requireActivity(), true));
         } else {
-            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(requireActivity(), false);
-            lastDisabledPlaybackControlsColor = MaterialValueHelper.getPrimaryDisabledTextColor(requireActivity(), false);
+            lastPlaybackControlsColor = ThemeUtil.getPrimaryTextColor(requireActivity(), false);
+            lastDisabledPlaybackControlsColor = ThemeUtil.getDisabledTextColor(ThemeUtil.getPrimaryTextColor(requireActivity(), false));
         }
 
         updateRepeatState();
@@ -118,7 +118,7 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
         playerFabPlayPauseDrawable = new PlayPauseDrawable(requireActivity());
 
         binding.playerPlayPauseFab.setImageDrawable(playerFabPlayPauseDrawable); // Note: set the drawable AFTER TintHelper.setTintAuto() was called
-        binding.playerPlayPauseFab.setColorFilter(MaterialValueHelper.getPrimaryTextColor(requireContext(), ColorUtil.isColorLight(fabColor)), PorterDuff.Mode.SRC_IN);
+        binding.playerPlayPauseFab.setColorFilter(ThemeUtil.getPrimaryTextColor(requireContext(), ColorUtil.isColorLight(fabColor)), PorterDuff.Mode.SRC_IN);
         binding.playerPlayPauseFab.setOnClickListener(new PlayPauseButtonOnClickHandler());
         binding.playerPlayPauseFab.post(() -> {
             binding.playerPlayPauseFab.setPivotX(binding.playerPlayPauseFab.getWidth() / 2f);
@@ -154,7 +154,7 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     private void updateProgressTextColor() {
-        int color = MaterialValueHelper.getPrimaryTextColor(requireContext(), false);
+        int color = ThemeUtil.getPrimaryTextColor(requireContext(), false);
         binding.playerSongTotalTime.setTextColor(color);
         binding.playerSongCurrentProgress.setTextColor(color);
     }
@@ -217,7 +217,7 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     private void setUpProgressSlider() {
-        int color = MaterialValueHelper.getPrimaryTextColor(requireContext(), false);
+        int color = ThemeUtil.getPrimaryTextColor(requireContext(), false);
         binding.playerProgressSlider.getThumb().mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
         binding.playerProgressSlider.getProgressDrawable().mutate().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
 

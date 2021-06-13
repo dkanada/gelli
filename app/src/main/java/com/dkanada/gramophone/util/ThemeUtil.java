@@ -1,25 +1,20 @@
 package com.dkanada.gramophone.util;
 
 import android.content.res.ColorStateList;
-import android.graphics.Bitmap;
+import android.content.Context;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.palette.graphics.Palette;
 
-import com.kabouzeid.appthemehelper.util.ColorUtil;
+import com.dkanada.gramophone.R;
+import com.google.android.material.color.MaterialColors;
 
 import java.util.Collections;
 import java.util.Comparator;
 
 public class ThemeUtil {
-    @Nullable
-    public static Palette generatePalette(Bitmap bitmap) {
-        if (bitmap == null) return null;
-
-        return Palette.from(bitmap).generate();
-    }
-
     public static ColorStateList getColorStateList(int normal, int active) {
         int[][] states = new int[][]{
             new int[]{-android.R.attr.state_checked},
@@ -57,6 +52,25 @@ public class ThemeUtil {
         return fallback;
     }
 
+    @ColorInt
+    public static int getPrimaryTextColor(Context context, boolean light) {
+        return light
+            ? ContextCompat.getColor(context, R.color.color_text_primary_light)
+            : ContextCompat.getColor(context, R.color.color_text_primary_dark);
+    }
+
+    @ColorInt
+    public static int getSecondaryTextColor(Context context, boolean light) {
+        return light
+            ? ContextCompat.getColor(context, R.color.color_text_secondary_light)
+            : ContextCompat.getColor(context, R.color.color_text_secondary_dark);
+    }
+
+    @ColorInt
+    public static int getDisabledTextColor(int color) {
+        return MaterialColors.compositeARGBWithAlpha(color, 140);
+    }
+
     private static class SwatchComparator implements Comparator<Palette.Swatch> {
         private static SwatchComparator sInstance;
 
@@ -72,23 +86,5 @@ public class ThemeUtil {
         public int compare(Palette.Swatch lhs, Palette.Swatch rhs) {
             return lhs.getPopulation() - rhs.getPopulation();
         }
-    }
-
-    @ColorInt
-    public static int shiftBackgroundColorForLightText(@ColorInt int backgroundColor) {
-        while (ColorUtil.isColorLight(backgroundColor)) {
-            backgroundColor = ColorUtil.darkenColor(backgroundColor);
-        }
-
-        return backgroundColor;
-    }
-
-    @ColorInt
-    public static int shiftBackgroundColorForDarkText(@ColorInt int backgroundColor) {
-        while (!ColorUtil.isColorLight(backgroundColor)) {
-            backgroundColor = ColorUtil.lightenColor(backgroundColor);
-        }
-
-        return backgroundColor;
     }
 }

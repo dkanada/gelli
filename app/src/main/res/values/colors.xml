@@ -11,6 +11,11 @@
     <color name="color_shortcut_foreground">#607D8B</color>
     <color name="color_shortcut_background">#F5F5F5</color>
 
+    <color name="color_text_primary_light">#DE000000</color>
+    <color name="color_text_secondary_light">#8A000000</color>
+    <color name="color_text_primary_dark">#FFFFFFFF</color>
+    <color name="color_text_secondary_dark">#B3FFFFFF</color>
+
     <color name="overlay_text">#FFFFFFFF</color>
     <color name="overlay_dark">#80000000</color>
     <color name="overlay_light">#40000000</color>

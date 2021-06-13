@@ -15,9 +15,9 @@ import com.afollestad.materialdialogs.util.DialogUtils;
 import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityAlbumDetailBinding;
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.song.AlbumSongAdapter;
 import com.dkanada.gramophone.dialogs.AddToPlaylistDialog;
@@ -124,13 +124,13 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
         // needed to auto readjust the toolbar content color
         setSupportActionBar(binding.toolbar);
 
-        int secondaryTextColor = MaterialValueHelper.getSecondaryTextColor(this, ColorUtil.isColorLight(color));
+        int secondaryTextColor = ThemeUtil.getSecondaryTextColor(this, ColorUtil.isColorLight(color));
         binding.artistIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
         binding.durationIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
         binding.songCountIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
         binding.albumYearIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
 
-        binding.artistText.setTextColor(MaterialValueHelper.getPrimaryTextColor(this, ColorUtil.isColorLight(color)));
+        binding.artistText.setTextColor(ThemeUtil.getPrimaryTextColor(this, ColorUtil.isColorLight(color)));
         binding.durationText.setTextColor(secondaryTextColor);
         binding.songCountText.setTextColor(secondaryTextColor);
         binding.albumYearText.setTextColor(secondaryTextColor);

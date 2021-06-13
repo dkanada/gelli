@@ -17,7 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import com.dkanada.gramophone.databinding.FragmentFlatPlayerPlaybackControlsBinding;
-import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.helper.MusicProgressViewUpdateHelper;
@@ -106,11 +106,11 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
 
     public void setDark(boolean dark) {
         if (dark) {
-            lastPlaybackControlsColor = MaterialValueHelper.getSecondaryTextColor(requireActivity(), true);
-            lastDisabledPlaybackControlsColor = MaterialValueHelper.getSecondaryDisabledTextColor(requireActivity(), true);
+            lastPlaybackControlsColor = ThemeUtil.getSecondaryTextColor(requireActivity(), true);
+            lastDisabledPlaybackControlsColor = ThemeUtil.getDisabledTextColor(ThemeUtil.getSecondaryTextColor(requireActivity(), true));
         } else {
-            lastPlaybackControlsColor = MaterialValueHelper.getPrimaryTextColor(requireActivity(), false);
-            lastDisabledPlaybackControlsColor = MaterialValueHelper.getPrimaryDisabledTextColor(requireActivity(), false);
+            lastPlaybackControlsColor = ThemeUtil.getPrimaryTextColor(requireActivity(), false);
+            lastDisabledPlaybackControlsColor = ThemeUtil.getDisabledTextColor(ThemeUtil.getPrimaryTextColor(requireActivity(), false));
         }
 
         updateRepeatState();
@@ -159,7 +159,7 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     private void updateProgressTextColor() {
-        int color = MaterialValueHelper.getPrimaryTextColor(requireContext(), false);
+        int color = ThemeUtil.getPrimaryTextColor(requireContext(), false);
         binding.playerSongTotalTime.setTextColor(color);
         binding.playerSongCurrentProgress.setTextColor(color);
     }
@@ -272,7 +272,7 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     private void setUpProgressSlider() {
-        int color = MaterialValueHelper.getPrimaryTextColor(requireContext(), false);
+        int color = ThemeUtil.getPrimaryTextColor(requireContext(), false);
         binding.playerProgressSlider.getThumb().mutate().setColorFilter(color, PorterDuff.Mode.SRC_IN);
         binding.playerProgressSlider.getProgressDrawable().mutate().setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN);
 

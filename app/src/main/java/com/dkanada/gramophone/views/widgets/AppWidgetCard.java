@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
-import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
@@ -53,9 +53,9 @@ public class AppWidgetCard extends BaseAppWidget {
 
         appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);
         appWidgetView.setImageViewBitmap(R.id.image, createRoundedBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.default_album_art), imageSize, imageSize, cardRadius, 0, cardRadius, 0));
-        appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_next_white_24dp, MaterialValueHelper.getSecondaryTextColor(context, true))));
-        appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_previous_white_24dp, MaterialValueHelper.getSecondaryTextColor(context, true))));
-        appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_play_arrow_white_24dp, MaterialValueHelper.getSecondaryTextColor(context, true))));
+        appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_next_white_24dp, ThemeUtil.getSecondaryTextColor(context, true))));
+        appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_skip_previous_white_24dp, ThemeUtil.getSecondaryTextColor(context, true))));
+        appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(context, R.drawable.ic_play_arrow_white_24dp, ThemeUtil.getSecondaryTextColor(context, true))));
 
         linkButtons(context, appWidgetView, R.id.image, R.id.media_titles);
         pushUpdate(context, appWidgetIds, appWidgetView);
@@ -77,10 +77,10 @@ public class AppWidgetCard extends BaseAppWidget {
         }
 
         int playPauseRes = isPlaying ? R.drawable.ic_pause_white_24dp : R.drawable.ic_play_arrow_white_24dp;
-        appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, playPauseRes, MaterialValueHelper.getSecondaryTextColor(service, true))));
+        appWidgetView.setImageViewBitmap(R.id.button_toggle_play_pause, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, playPauseRes, ThemeUtil.getSecondaryTextColor(service, true))));
 
-        appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_next_white_24dp, MaterialValueHelper.getSecondaryTextColor(service, true))));
-        appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_previous_white_24dp, MaterialValueHelper.getSecondaryTextColor(service, true))));
+        appWidgetView.setImageViewBitmap(R.id.button_next, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_next_white_24dp, ThemeUtil.getSecondaryTextColor(service, true))));
+        appWidgetView.setImageViewBitmap(R.id.button_prev, ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_previous_white_24dp, ThemeUtil.getSecondaryTextColor(service, true))));
 
         linkButtons(service, appWidgetView, R.id.image, R.id.media_titles);
 
@@ -101,19 +101,19 @@ public class AppWidgetCard extends BaseAppWidget {
                             @Override
                             public void onResourceReady(@NonNull BitmapPaletteWrapper resource, Transition<? super BitmapPaletteWrapper> glideAnimation) {
                                 Palette palette = resource.getPalette();
-                                update(resource.getBitmap(), palette.getVibrantColor(palette.getMutedColor(MaterialValueHelper.getSecondaryTextColor(service, true))));
+                                update(resource.getBitmap(), palette.getVibrantColor(palette.getMutedColor(ThemeUtil.getSecondaryTextColor(service, true))));
                             }
 
                             @Override
                             public void onLoadFailed(Drawable drawable) {
                                 super.onLoadFailed(drawable);
-                                update(null, MaterialValueHelper.getSecondaryTextColor(service, true));
+                                update(null, ThemeUtil.getSecondaryTextColor(service, true));
                             }
 
                             @Override
                             public void onLoadCleared(Drawable drawable) {
                                 super.onLoadFailed(drawable);
-                                update(null, MaterialValueHelper.getSecondaryTextColor(service, true));
+                                update(null, ThemeUtil.getSecondaryTextColor(service, true));
                             }
 
                             private void update(@Nullable Bitmap bitmap, int color) {

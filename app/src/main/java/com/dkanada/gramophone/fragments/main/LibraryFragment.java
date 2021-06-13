@@ -19,10 +19,10 @@ import androidx.annotation.Nullable;
 import com.dkanada.gramophone.databinding.FragmentLibraryBinding;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.util.ShortcutUtil;
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.afollestad.materialcab.MaterialCab;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.MusicLibraryPagerAdapter;
 import com.dkanada.gramophone.dialogs.CreatePlaylistDialog;
@@ -104,8 +104,8 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         binding.tabs.setupWithViewPager(binding.pager);
 
         int primaryColor = PreferenceUtil.getInstance(requireActivity()).getPrimaryColor();
-        int normalColor = MaterialValueHelper.getSecondaryTextColor(requireActivity(), ColorUtil.isColorLight(primaryColor));
-        int selectedColor = MaterialValueHelper.getPrimaryTextColor(requireActivity(), ColorUtil.isColorLight(primaryColor));
+        int normalColor = ThemeUtil.getSecondaryTextColor(requireActivity(), ColorUtil.isColorLight(primaryColor));
+        int selectedColor = ThemeUtil.getPrimaryTextColor(requireActivity(), ColorUtil.isColorLight(primaryColor));
         binding.tabs.setTabTextColors(normalColor, selectedColor);
         binding.tabs.setSelectedTabIndicatorColor(PreferenceUtil.getInstance(requireActivity()).getAccentColor());
 

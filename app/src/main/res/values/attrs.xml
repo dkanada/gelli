@@ -5,6 +5,7 @@
     <attr name="rectSelector" format="reference" />
     <attr name="rectSelectorStrong" format="reference" />
 
+    <attr name="cardBackgroundColor" format="color" />
     <attr name="defaultFooterColor" format="color" />
 
     <attr name="toolbarPopupTheme" format="reference" />

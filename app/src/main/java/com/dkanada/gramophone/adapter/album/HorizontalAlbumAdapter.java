@@ -9,8 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.CustomPaletteTarget;
 import com.dkanada.gramophone.helper.HorizontalAdapterHelper;
@@ -39,11 +39,11 @@ public class HorizontalAlbumAdapter extends AlbumAdapter {
         card.setCardBackgroundColor(color);
 
         if (holder.title != null) {
-            holder.title.setTextColor(MaterialValueHelper.getPrimaryTextColor(activity, ColorUtil.isColorLight(color)));
+            holder.title.setTextColor(ThemeUtil.getPrimaryTextColor(activity, ColorUtil.isColorLight(color)));
         }
 
         if (holder.text != null) {
-            holder.text.setTextColor(MaterialValueHelper.getSecondaryTextColor(activity, ColorUtil.isColorLight(color)));
+            holder.text.setTextColor(ThemeUtil.getSecondaryTextColor(activity, ColorUtil.isColorLight(color)));
         }
     }
 

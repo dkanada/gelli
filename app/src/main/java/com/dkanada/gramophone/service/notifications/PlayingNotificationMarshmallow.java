@@ -21,7 +21,6 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
 import com.kabouzeid.appthemehelper.util.ColorUtil;
-import com.kabouzeid.appthemehelper.util.MaterialValueHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
@@ -139,8 +138,8 @@ public class PlayingNotificationMarshmallow extends PlayingNotification {
                             }
 
                             private void setNotificationContent(boolean dark) {
-                                int primary = MaterialValueHelper.getPrimaryTextColor(service, dark);
-                                int secondary = MaterialValueHelper.getSecondaryTextColor(service, dark);
+                                int primary = ThemeUtil.getPrimaryTextColor(service, dark);
+                                int secondary = ThemeUtil.getSecondaryTextColor(service, dark);
 
                                 Bitmap prev = ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_previous_white_24dp, primary), 1.5f);
                                 Bitmap next = ImageUtil.createBitmap(ImageUtil.getTintedVectorDrawable(service, R.drawable.ic_skip_next_white_24dp, primary), 1.5f);
