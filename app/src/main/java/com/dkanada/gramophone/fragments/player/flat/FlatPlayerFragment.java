@@ -303,17 +303,13 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     public void onPanelStateChanged(View panel, SlidingUpPanelLayout.PanelState previousState, SlidingUpPanelLayout.PanelState newState) {
         switch (newState) {
             case COLLAPSED:
-                onPanelCollapsed(panel);
+                resetToCurrentPosition();
                 break;
             case ANCHORED:
                 // this fixes a bug where the panel would get stuck for some reason
                 binding.playerSlidingLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 break;
         }
-    }
-
-    public void onPanelCollapsed(View panel) {
-        resetToCurrentPosition();
     }
 
     private void resetToCurrentPosition() {
