@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -85,8 +86,11 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
     }
 
     public void setNavigationBarColor(int color) {
+        Window window = getWindow();
+        int dark = ThemeUtil.getColorDark(color);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(color);
+            window.setNavigationBarColor(dark);
         }
     }
 
