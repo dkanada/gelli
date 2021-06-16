@@ -13,7 +13,6 @@ import android.widget.SeekBar;
 import androidx.annotation.NonNull;
 
 import com.dkanada.gramophone.util.ThemeUtil;
-import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.kabouzeid.appthemehelper.util.TintHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
@@ -99,10 +98,10 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     public void setDark(boolean dark) {
         if (dark) {
             lastPlaybackControlsColor = ThemeUtil.getSecondaryTextColor(requireActivity(), true);
-            lastDisabledPlaybackControlsColor = ThemeUtil.getDisabledTextColor(ThemeUtil.getSecondaryTextColor(requireActivity(), true));
+            lastDisabledPlaybackControlsColor = ThemeUtil.getColorAlpha(requireActivity(), R.color.color_text_secondary_light, 180);
         } else {
             lastPlaybackControlsColor = ThemeUtil.getPrimaryTextColor(requireActivity(), false);
-            lastDisabledPlaybackControlsColor = ThemeUtil.getDisabledTextColor(ThemeUtil.getPrimaryTextColor(requireActivity(), false));
+            lastDisabledPlaybackControlsColor = ThemeUtil.getColorAlpha(requireActivity(), R.color.color_text_primary_dark, 180);
         }
 
         updateRepeatState();
@@ -117,8 +116,8 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
 
         playerFabPlayPauseDrawable = new PlayPauseDrawable(requireActivity());
 
-        binding.playerPlayPauseFab.setImageDrawable(playerFabPlayPauseDrawable); // Note: set the drawable AFTER TintHelper.setTintAuto() was called
-        binding.playerPlayPauseFab.setColorFilter(ThemeUtil.getPrimaryTextColor(requireContext(), ColorUtil.isColorLight(fabColor)), PorterDuff.Mode.SRC_IN);
+        binding.playerPlayPauseFab.setImageDrawable(playerFabPlayPauseDrawable);
+        binding.playerPlayPauseFab.setColorFilter(ThemeUtil.getPrimaryTextColor(requireContext(), fabColor), PorterDuff.Mode.SRC_IN);
         binding.playerPlayPauseFab.setOnClickListener(new PlayPauseButtonOnClickHandler());
         binding.playerPlayPauseFab.post(() -> {
             binding.playerPlayPauseFab.setPivotX(binding.playerPlayPauseFab.getWidth() / 2f);

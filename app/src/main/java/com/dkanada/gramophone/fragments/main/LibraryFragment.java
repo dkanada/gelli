@@ -22,7 +22,6 @@ import com.dkanada.gramophone.util.ShortcutUtil;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.google.android.material.appbar.AppBarLayout;
 import com.afollestad.materialcab.MaterialCab;
-import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.MusicLibraryPagerAdapter;
 import com.dkanada.gramophone.dialogs.CreatePlaylistDialog;
@@ -104,8 +103,8 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         binding.tabs.setupWithViewPager(binding.pager);
 
         int primaryColor = PreferenceUtil.getInstance(requireActivity()).getPrimaryColor();
-        int normalColor = ThemeUtil.getSecondaryTextColor(requireActivity(), ColorUtil.isColorLight(primaryColor));
-        int selectedColor = ThemeUtil.getPrimaryTextColor(requireActivity(), ColorUtil.isColorLight(primaryColor));
+        int normalColor = ThemeUtil.getSecondaryTextColor(requireActivity(), primaryColor);
+        int selectedColor = ThemeUtil.getPrimaryTextColor(requireActivity(), primaryColor);
         binding.tabs.setTabTextColors(normalColor, selectedColor);
         binding.tabs.setSelectedTabIndicatorColor(PreferenceUtil.getInstance(requireActivity()).getAccentColor());
 

@@ -17,18 +17,17 @@ import android.widget.ImageView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dkanada.gramophone.databinding.FragmentCardPlayerBinding;
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.RefactoredDefaultItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.draggable.RecyclerViewDragDropManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 import com.kabouzeid.appthemehelper.ThemeStore;
 import com.kabouzeid.appthemehelper.util.ATHUtil;
-import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.base.MediaEntryViewHolder;
 import com.dkanada.gramophone.adapter.song.PlayingQueueAdapter;
@@ -44,6 +43,7 @@ import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.Util;
 import com.dkanada.gramophone.util.ViewUtil;
 import com.dkanada.gramophone.views.WidthFitSquareLayout;
+import com.google.android.material.color.MaterialColors;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbumCoverFragment.Callbacks, SlidingUpPanelLayout.PanelSlideListener {
@@ -224,7 +224,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     private void updateIsFavorite() {
         boolean favorite = MusicPlayerRemote.getCurrentSong().favorite;
         int res = favorite ? R.drawable.ic_favorite_white_24dp : R.drawable.ic_favorite_border_white_24dp;
-        int color = ContextCompat.getColor(requireContext(), android.R.color.white);
+        int color = ThemeUtil.getColorResource(requireContext(), android.R.color.white, 255);
         Drawable drawable = ImageUtil.getTintedVectorDrawable(getActivity(), res, color);
 
         binding.playerToolbar.getMenu().findItem(R.id.action_toggle_favorite)
@@ -277,7 +277,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
     @Override
     public void onColorChanged(int color) {
         animateColorChange(color);
-        playbackControlsFragment.setDark(ColorUtil.isColorLight(color));
+        playbackControlsFragment.setDark(MaterialColors.isColorLight(color));
         playbackControlsFragment.updateBufferingIndicatorColor(color);
         getCallbacks().onPaletteColorChanged();
     }
@@ -359,22 +359,8 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
             animatorSet.play(backgroundAnimator);
 
-            if (!ATHUtil.isWindowBackgroundDark(fragment.getActivity())) {
-                int adjustedLastColor = ColorUtil.isColorLight(fragment.lastColor) ? ColorUtil.darkenColor(fragment.lastColor) : fragment.lastColor;
-                int adjustedNewColor = ColorUtil.isColorLight(newColor) ? ColorUtil.darkenColor(newColor) : newColor;
-                Animator subHeaderAnimator = ViewUtil.createTextColorTransition(binding.playerQueueSubHeader, adjustedLastColor, adjustedNewColor);
-                animatorSet.play(subHeaderAnimator);
-            }
-
             animatorSet.setDuration(ViewUtil.PHONOGRAPH_ANIM_TIME);
             return animatorSet;
-        }
-
-        @Override
-        public void animateColorChange(int newColor) {
-            if (ATHUtil.isWindowBackgroundDark(fragment.getActivity())) {
-                binding.playerQueueSubHeader.setTextColor(ThemeStore.textColorSecondary(fragment.getActivity()));
-            }
         }
     }
 
@@ -454,8 +440,6 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
         @Override
         public void animateColorChange(int newColor) {
-            super.animateColorChange(newColor);
-
             binding.playerSlidingLayout.setBackgroundColor(fragment.lastColor);
             createDefaultColorChangeAnimatorSet(newColor).start();
         }
@@ -487,13 +471,11 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
         @Override
         public void animateColorChange(int newColor) {
-            super.animateColorChange(newColor);
-
             binding.playerSlidingLayout.setBackgroundColor(fragment.lastColor);
 
             AnimatorSet animatorSet = createDefaultColorChangeAnimatorSet(newColor);
             animatorSet.play(ViewUtil.createBackgroundColorTransition(binding.playerToolbar, fragment.lastColor, newColor))
-                    .with(ViewUtil.createBackgroundColorTransition(fragment.getView().findViewById(R.id.status_bar), ColorUtil.darkenColor(fragment.lastColor), ColorUtil.darkenColor(newColor)));
+                    .with(ViewUtil.createBackgroundColorTransition(fragment.getView().findViewById(R.id.status_bar), ThemeUtil.getColorDark(fragment.lastColor), ThemeUtil.getColorDark(newColor)));
 
             animatorSet.start();
         }

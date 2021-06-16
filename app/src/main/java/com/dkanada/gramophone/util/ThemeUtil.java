@@ -2,6 +2,8 @@ package com.dkanada.gramophone.util;
 
 import android.content.res.ColorStateList;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
@@ -67,8 +69,37 @@ public class ThemeUtil {
     }
 
     @ColorInt
-    public static int getDisabledTextColor(int color) {
-        return MaterialColors.compositeARGBWithAlpha(color, 140);
+    public static int getPrimaryTextColor(Context context, int color) {
+        return getPrimaryTextColor(context, MaterialColors.isColorLight(color));
+    }
+
+    @ColorInt
+    public static int getSecondaryTextColor(Context context, int color) {
+        return getSecondaryTextColor(context, MaterialColors.isColorLight(color));
+    }
+
+    @ColorInt
+    public static int getColorResource(Context context, int resource, int alpha) {
+        TypedArray array = context.obtainStyledAttributes(new int[]{resource});
+        int color = array.getColor(0, ContextCompat.getColor(context, android.R.color.white));
+
+        array.recycle();
+
+        return MaterialColors.compositeARGBWithAlpha(color, alpha);
+    }
+
+    @ColorInt
+    public static int getColorAlpha(Context context, int color, int alpha) {
+        return MaterialColors.compositeARGBWithAlpha(ContextCompat.getColor(context, color), alpha);
+    }
+
+    @ColorInt
+    public static int getColorDark(int color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(color, hsv);
+        hsv[2] *= 0.8f;
+
+        return Color.HSVToColor(hsv);
     }
 
     private static class SwatchComparator implements Comparator<Palette.Swatch> {

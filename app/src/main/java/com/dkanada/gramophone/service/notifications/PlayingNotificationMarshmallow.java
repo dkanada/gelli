@@ -20,7 +20,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
-import com.kabouzeid.appthemehelper.util.ColorUtil;
+import com.google.android.material.color.MaterialColors;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
@@ -124,7 +124,7 @@ public class PlayingNotificationMarshmallow extends PlayingNotification {
                                 }
 
                                 setBackgroundColor(bgColor);
-                                setNotificationContent(ColorUtil.isColorLight(bgColor));
+                                setNotificationContent(MaterialColors.isColorLight(bgColor));
 
                                 // notification has been stopped before loading was finished
                                 if (stopped) return;

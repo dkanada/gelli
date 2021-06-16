@@ -107,10 +107,10 @@ public class FlatPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     public void setDark(boolean dark) {
         if (dark) {
             lastPlaybackControlsColor = ThemeUtil.getSecondaryTextColor(requireActivity(), true);
-            lastDisabledPlaybackControlsColor = ThemeUtil.getDisabledTextColor(ThemeUtil.getSecondaryTextColor(requireActivity(), true));
+            lastDisabledPlaybackControlsColor = ThemeUtil.getColorAlpha(requireActivity(), R.color.color_text_secondary_light, 180);
         } else {
             lastPlaybackControlsColor = ThemeUtil.getPrimaryTextColor(requireActivity(), false);
-            lastDisabledPlaybackControlsColor = ThemeUtil.getDisabledTextColor(ThemeUtil.getPrimaryTextColor(requireActivity(), false));
+            lastDisabledPlaybackControlsColor = ThemeUtil.getColorAlpha(requireActivity(), R.color.color_text_primary_dark, 180);
         }
 
         updateRepeatState();

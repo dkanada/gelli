@@ -19,7 +19,7 @@ public class ColorCircleDrawable extends View {
 
         TypedArray attributes = getContext().obtainStyledAttributes(new int[]{android.R.attr.divider});
         int colorCircle = getContext().getResources().getColor(android.R.color.white);
-        int colorBorder = getContext().getResources().getColor(android.R.color.black);
+        int colorBorder = getContext().getResources().getColor(android.R.color.darker_gray);
 
         circle.setAntiAlias(true);
         circle.setColor(colorCircle);

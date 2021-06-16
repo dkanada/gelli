@@ -8,10 +8,11 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kabouzeid.appthemehelper.util.ColorUtil;
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
+import com.google.android.material.color.MaterialColors;
 
 public abstract class AbsThemeActivity extends AppCompatActivity {
     private int currentTheme;
@@ -41,7 +42,7 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
     }
 
     public void setColor(int color) {
-        boolean light = ColorUtil.isColorLight(color);
+        boolean light = MaterialColors.isColorLight(color);
 
         setLightStatusBar(light);
         setLightNavigationBar(light);
@@ -62,7 +63,7 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
 
     public void setStatusBarColor(int color) {
         View statusBar = getWindow().getDecorView().getRootView().findViewById(R.id.status_bar);
-        int dark = ColorUtil.darkenColor(color);
+        int dark = ThemeUtil.getColorDark(color);
 
         // KitKat through Lollipop will do this automatically
         if (statusBar != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -76,7 +77,7 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
     }
 
     public void setTaskDescriptionColor(int color) {
-        int solid = ColorUtil.stripAlpha(color);
+        int solid = MaterialColors.compositeARGBWithAlpha(color, 255);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setTaskDescription(new ActivityManager.TaskDescription(getTitle().toString(), null, solid));

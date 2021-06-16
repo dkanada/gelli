@@ -19,8 +19,6 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 
-import com.kabouzeid.appthemehelper.util.ATHUtil;
-import com.kabouzeid.appthemehelper.util.ColorUtil;
 import com.dkanada.gramophone.R;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
@@ -78,9 +76,9 @@ public class ViewUtil {
 
     public static void setUpFastScrollRecyclerViewColor(Context context, FastScrollRecyclerView recyclerView, int accentColor) {
         recyclerView.setPopupBgColor(accentColor);
-        recyclerView.setPopupTextColor(ThemeUtil.getPrimaryTextColor(context, ColorUtil.isColorLight(accentColor)));
+        recyclerView.setPopupTextColor(ThemeUtil.getPrimaryTextColor(context, accentColor));
         recyclerView.setThumbColor(accentColor);
-        recyclerView.setTrackColor(ColorUtil.withAlpha(ATHUtil.resolveColor(context, R.attr.colorControlNormal), 0.12f));
+        recyclerView.setTrackColor(ThemeUtil.getColorResource(context, R.attr.colorControlNormal, 40));
     }
 
     public static float convertDpToPixel(float dp, Resources resources) {
