@@ -15,8 +15,8 @@ public class HorizontalAdapterHelper {
     public static void applyMarginToLayoutParams(Context context, ViewGroup.MarginLayoutParams layoutParams, int viewType) {
         int listMargin = context.getResources().getDimensionPixelSize(R.dimen.default_item_margin);
 
-        layoutParams.leftMargin = listMargin / 3;
-        layoutParams.rightMargin = listMargin / 3;
+        layoutParams.leftMargin = listMargin / 4;
+        layoutParams.rightMargin = listMargin / 4;
 
         if (viewType == TYPE_FIRST) {
             layoutParams.leftMargin = listMargin;

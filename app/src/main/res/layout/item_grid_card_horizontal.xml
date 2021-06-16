@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="16dp"
     android:foreground="?attr/rectSelectorStrong"
+    app:cardCornerRadius="0dp"
     app:cardBackgroundColor="?cardBackgroundColor">
 
     <LinearLayout
