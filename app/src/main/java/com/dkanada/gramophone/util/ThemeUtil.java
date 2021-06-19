@@ -79,6 +79,11 @@ public class ThemeUtil {
     }
 
     @ColorInt
+    public static int getColorResource(Context context, int resource) {
+        return getColorResource(context, resource, 255);
+    }
+
+    @ColorInt
     public static int getColorResource(Context context, int resource, int alpha) {
         TypedArray array = context.obtainStyledAttributes(new int[]{resource});
         int color = array.getColor(0, ContextCompat.getColor(context, android.R.color.white));

@@ -9,6 +9,7 @@ import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.util.PreferenceUtil;
@@ -17,6 +18,8 @@ import com.google.android.material.color.MaterialColors;
 
 public abstract class AbsThemeActivity extends AppCompatActivity {
     private int currentTheme;
+    private int primaryColor;
+    private int accentColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +27,19 @@ public abstract class AbsThemeActivity extends AppCompatActivity {
 
         setTheme(PreferenceUtil.getInstance(this).getTheme().style);
         setColor(PreferenceUtil.getInstance(this).getPrimaryColor());
+
+        primaryColor = PreferenceUtil.getInstance(this).getPrimaryColor();
+        accentColor = PreferenceUtil.getInstance(this).getAccentColor();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        if (PreferenceUtil.getInstance(this).getTheme().style != currentTheme) {
-            recreate();
+        if (PreferenceUtil.getInstance(this).getTheme().style != currentTheme
+                || PreferenceUtil.getInstance(this).getPrimaryColor() != primaryColor
+                || PreferenceUtil.getInstance(this).getAccentColor() != accentColor) {
+            NavigationUtil.recreateMain(this);
         }
     }
 

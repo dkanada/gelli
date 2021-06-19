@@ -18,7 +18,6 @@ import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.ThemeUtil;
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.databinding.ActivityMainContentBinding;
 import com.dkanada.gramophone.databinding.ActivityMainDrawerLayoutBinding;
 import com.dkanada.gramophone.databinding.NavigationDrawerHeaderBinding;
@@ -132,7 +131,7 @@ public class MainActivity extends AbsMusicContentActivity {
     }
 
     private void setUpNavigationView() {
-        int normalColor = ThemeStore.textColorPrimary(this);
+        int normalColor = ThemeUtil.getColorResource(this, android.R.attr.textColorPrimary);
         int activeColor = PreferenceUtil.getInstance(this).getAccentColor();
 
         binding.navigationView.setItemIconTintList(ThemeUtil.getColorStateList(normalColor, activeColor));

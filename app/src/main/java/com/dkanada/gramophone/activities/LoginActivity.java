@@ -80,7 +80,7 @@ public class LoginActivity extends AbsBaseActivity implements View.OnClickListen
         }
 
         binding.login.setEnabled(false);
-        binding.login.setBackgroundColor(getResources().getColor(R.color.md_grey_800));
+        binding.login.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
 
         App.getApiClient().ChangeServerLocation(server);
         App.getApiClient().AuthenticateUserAsync(username, password, new Response<AuthenticationResult>() {

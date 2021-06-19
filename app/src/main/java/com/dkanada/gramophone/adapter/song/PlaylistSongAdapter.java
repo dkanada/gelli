@@ -9,11 +9,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dkanada.gramophone.dialogs.RemoveFromPlaylistDialog;
-import com.kabouzeid.appthemehelper.ThemeStore;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
+import com.dkanada.gramophone.util.ThemeUtil;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class PlaylistSongAdapter extends AbsOffsetSongAdapter {
     @Override
     public void onBindViewHolder(@NonNull final SongAdapter.ViewHolder holder, int position) {
         if (holder.getItemViewType() == OFFSET_ITEM) {
-            int textColor = ThemeStore.textColorSecondary(activity);
+            int textColor = ThemeUtil.getColorResource(activity, android.R.attr.textColorSecondary);
             if (holder.title != null) {
                 holder.title.setText(MusicUtil.getPlaylistInfoString(activity, dataSet));
                 holder.title.setTextColor(textColor);

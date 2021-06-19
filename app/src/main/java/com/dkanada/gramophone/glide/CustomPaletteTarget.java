@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.request.transition.Transition;
-import com.kabouzeid.appthemehelper.util.ATHUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteTarget;
 import com.dkanada.gramophone.glide.palette.BitmapPaletteWrapper;
@@ -30,11 +29,11 @@ public abstract class CustomPaletteTarget extends BitmapPaletteTarget {
     }
 
     protected int getDefaultFooterColor() {
-        return ATHUtil.resolveColor(getView().getContext(), R.attr.defaultFooterColor);
+        return ThemeUtil.getColorResource(getView().getContext(), R.attr.defaultFooterColor);
     }
 
     protected int getAlbumArtistFooterColor() {
-        return ATHUtil.resolveColor(getView().getContext(), R.attr.cardBackgroundColor);
+        return ThemeUtil.getColorResource(getView().getContext(), R.attr.cardBackgroundColor);
     }
 
     public abstract void onColorReady(int color);

@@ -21,6 +21,7 @@ import com.dkanada.gramophone.fragments.player.MiniPlayerFragment;
 import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 import com.dkanada.gramophone.fragments.player.card.CardPlayerFragment;
 import com.dkanada.gramophone.fragments.player.flat.FlatPlayerFragment;
+import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.ViewUtil;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -98,7 +99,7 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
         super.onResume();
 
         if (currentNowPlayingScreen != PreferenceUtil.getInstance(this).getNowPlayingScreen()) {
-            recreate();
+            NavigationUtil.recreateMain(this);
         }
     }
 

@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 
 import androidx.annotation.AttrRes;
@@ -13,9 +14,8 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.content.res.ResourcesCompat;
-
-import com.kabouzeid.appthemehelper.util.TintHelper;
 
 import java.io.InputStream;
 
@@ -90,12 +90,13 @@ public class ImageUtil {
         return ResourcesCompat.getDrawable(res, resId, theme);
     }
 
-    public static Drawable getTintedVectorDrawable(@NonNull Resources res, @DrawableRes int resId, @Nullable Resources.Theme theme, @ColorInt int color) {
-        return TintHelper.createTintedDrawable(getVectorDrawable(res, resId, theme), color);
-    }
-
     public static Drawable getTintedVectorDrawable(@NonNull Context context, @DrawableRes int resId, @ColorInt int color) {
-        return TintHelper.createTintedDrawable(getVectorDrawable(context.getResources(), resId, context.getTheme()), color);
+        Drawable drawable = getVectorDrawable(context.getResources(), resId, context.getTheme());
+
+        DrawableCompat.setTintMode(drawable, PorterDuff.Mode.SRC_IN);
+        DrawableCompat.setTint(drawable, color);
+
+        return drawable;
     }
 
     public static Drawable getVectorDrawable(@NonNull Context context, @DrawableRes int resId) {

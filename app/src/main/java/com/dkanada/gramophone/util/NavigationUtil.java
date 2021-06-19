@@ -45,6 +45,15 @@ public class NavigationUtil {
         context.startActivity(intent);
     }
 
+    // TODO investigate why the normal recreate method wont work
+    // initial recreate is fine but subsequent runs will incorrectly apply the light theme on main
+    public static void recreateMain(Activity activity) {
+        NavigationUtil.startMain(activity);
+
+        activity.overridePendingTransition(0, android.R.anim.fade_out);
+        activity.finish();
+    }
+
     public static void startLogin(Context context) {
         final Intent intent = new Intent(context, LoginActivity.class);
 

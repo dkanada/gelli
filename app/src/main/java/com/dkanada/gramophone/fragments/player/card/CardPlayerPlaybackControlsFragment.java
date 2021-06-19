@@ -13,7 +13,6 @@ import android.widget.SeekBar;
 import androidx.annotation.NonNull;
 
 import com.dkanada.gramophone.util.ThemeUtil;
-import com.kabouzeid.appthemehelper.util.TintHelper;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.databinding.FragmentCardPlayerPlaybackControlsBinding;
@@ -111,13 +110,10 @@ public class CardPlayerPlaybackControlsFragment extends AbsMusicServiceFragment 
     }
 
     private void setUpPlayPauseFab() {
-        final int fabColor = Color.WHITE;
-        TintHelper.setTintAuto(binding.playerPlayPauseFab, fabColor, true);
-
         playerFabPlayPauseDrawable = new PlayPauseDrawable(requireActivity());
 
         binding.playerPlayPauseFab.setImageDrawable(playerFabPlayPauseDrawable);
-        binding.playerPlayPauseFab.setColorFilter(ThemeUtil.getPrimaryTextColor(requireContext(), fabColor), PorterDuff.Mode.SRC_IN);
+        binding.playerPlayPauseFab.setColorFilter(ThemeUtil.getPrimaryTextColor(requireContext(), Color.WHITE), PorterDuff.Mode.SRC_IN);
         binding.playerPlayPauseFab.setOnClickListener(new PlayPauseButtonOnClickHandler());
         binding.playerPlayPauseFab.post(() -> {
             binding.playerPlayPauseFab.setPivotX(binding.playerPlayPauseFab.getWidth() / 2f);

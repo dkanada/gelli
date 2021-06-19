@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
-import com.kabouzeid.appthemehelper.util.ATHUtil;
+import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.R;
 
 public class IconImageView extends AppCompatImageView {
@@ -27,6 +27,6 @@ public class IconImageView extends AppCompatImageView {
 
     private void init(Context context) {
         if (context == null) return;
-        setColorFilter(ATHUtil.resolveColor(context, R.attr.iconColor), PorterDuff.Mode.SRC_IN);
+        setColorFilter(ThemeUtil.getColorResource(context, R.attr.iconColor), PorterDuff.Mode.SRC_IN);
     }
 }
