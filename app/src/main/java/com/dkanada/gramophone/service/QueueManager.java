@@ -70,6 +70,7 @@ public class QueueManager {
     }
 
     public void setNextPosition() {
+
         // manual switch to next song
         switch (getRepeatMode()) {
             case REPEAT_MODE_NONE:
@@ -83,6 +84,7 @@ public class QueueManager {
     }
 
     public void setPreviousPosition() {
+
         // manual switch to previous song
         switch (getRepeatMode()) {
             case REPEAT_MODE_NONE:
