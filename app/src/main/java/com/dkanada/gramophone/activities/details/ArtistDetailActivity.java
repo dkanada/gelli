@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
-import com.afollestad.materialdialogs.util.DialogUtils;
 import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.adapter.song.SongAdapter;
@@ -109,7 +108,7 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
     private void setUpViews() {
         setUpSongListView();
         setUpAlbumRecyclerView();
-        setColors(DialogUtils.resolveColor(this, R.attr.defaultFooterColor));
+        setColors(ThemeUtil.getColorResource(this, R.attr.defaultFooterColor));
     }
 
     private void setUpSongListView() {

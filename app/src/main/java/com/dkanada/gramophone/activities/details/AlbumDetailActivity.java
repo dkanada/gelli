@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.materialcab.MaterialCab;
-import com.afollestad.materialdialogs.util.DialogUtils;
 import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityAlbumDetailBinding;
@@ -98,7 +97,7 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
             NavigationUtil.startArtist(AlbumDetailActivity.this, new Artist(album), null);
         });
 
-        setColors(DialogUtils.resolveColor(this, R.attr.defaultFooterColor));
+        setColors(ThemeUtil.getColorResource(this, R.attr.defaultFooterColor));
     }
 
     private void loadAlbumCover(Album album) {
