@@ -92,12 +92,12 @@ public class SettingsActivity extends AbsBaseActivity {
             }
 
             categoryPreference.setOnPreferenceClickListener(preference -> {
-                CategoryPreferenceDialog.newInstance().show(getParentFragmentManager(), CategoryPreferenceDialog.TAG);
+                CategoryPreferenceDialog.create().show(getParentFragmentManager(), CategoryPreferenceDialog.TAG);
                 return false;
             });
 
             nowPlayingPreference.setOnPreferenceClickListener(preference -> {
-                NowPlayingPreferenceDialog.newInstance().show(getParentFragmentManager(), NowPlayingPreferenceDialog.TAG);
+                NowPlayingPreferenceDialog.create().show(getParentFragmentManager(), NowPlayingPreferenceDialog.TAG);
                 return false;
             });
 

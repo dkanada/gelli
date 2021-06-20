@@ -22,21 +22,18 @@ import java.util.stream.Collectors;
 public class CategoryPreferenceDialog extends DialogFragment {
     public static final String TAG = CategoryPreferenceDialog.class.getSimpleName();
 
-    public static CategoryPreferenceDialog newInstance() {
+    public static CategoryPreferenceDialog create() {
         return new CategoryPreferenceDialog();
     }
-
-    private CategoryAdapter adapter;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = requireActivity().getLayoutInflater().inflate(R.layout.preference_dialog_category, null);
         List<Category> categories = PreferenceUtil.getInstance(getContext()).getCategories();
-
-        adapter = new CategoryAdapter(categories);
-
+        CategoryAdapter adapter = new CategoryAdapter(categories);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
         adapter.attachToRecyclerView(recyclerView);

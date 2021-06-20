@@ -25,7 +25,7 @@ public class NowPlayingPreferenceDialog extends DialogFragment implements ViewPa
 
     private int viewPagerPosition;
 
-    public static NowPlayingPreferenceDialog newInstance() {
+    public static NowPlayingPreferenceDialog create() {
         return new NowPlayingPreferenceDialog();
     }
 
@@ -34,11 +34,12 @@ public class NowPlayingPreferenceDialog extends DialogFragment implements ViewPa
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.preference_dialog_now_playing, null);
         ViewPager viewPager = view.findViewById(R.id.now_playing_screen_view_pager);
+        InkPageIndicator pageIndicator = view.findViewById(R.id.page_indicator);
+
         viewPager.setAdapter(new NowPlayingScreenAdapter(getContext()));
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(PreferenceUtil.getInstance(getContext()).getNowPlayingScreen().ordinal());
 
-        InkPageIndicator pageIndicator = view.findViewById(R.id.page_indicator);
         pageIndicator.setViewPager(viewPager);
         pageIndicator.onPageSelected(viewPager.getCurrentItem());
 
@@ -78,10 +79,11 @@ public class NowPlayingPreferenceDialog extends DialogFragment implements ViewPa
 
             LayoutInflater inflater = LayoutInflater.from(context);
             ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.preference_dialog_now_playing_item, collection, false);
-            collection.addView(layout);
 
             ImageView image = layout.findViewById(R.id.image);
             TextView title = layout.findViewById(R.id.title);
+
+            collection.addView(layout);
             image.setImageResource(nowPlayingScreen.drawableRes);
             title.setText(nowPlayingScreen.titleRes);
 
