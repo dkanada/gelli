@@ -3,11 +3,11 @@ package com.dkanada.gramophone.service;
 import android.content.Context;
 
 import com.dkanada.gramophone.App;
-import com.dkanada.gramophone.helper.ShuffleHelper;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class QueueManager {
@@ -159,7 +159,18 @@ public class QueueManager {
     private void shuffleQueue() {
         if (shuffleMode == SHUFFLE_MODE_SHUFFLE) {
             this.shuffledQueue = new ArrayList<>(playingQueue);
-            ShuffleHelper.makeShuffleList(this.shuffledQueue, getPosition());
+
+            if (!shuffledQueue.isEmpty()) {
+                if (getPosition() >= 0) {
+                    Song song = shuffledQueue.remove(getPosition());
+
+                    Collections.shuffle(shuffledQueue);
+                    shuffledQueue.add(0, song);
+                } else {
+                    Collections.shuffle(shuffledQueue);
+                }
+            }
+
             position = 0;
         }
     }
@@ -283,6 +294,7 @@ public class QueueManager {
 
     public void saveQueue() {
         PreferenceUtil.getInstance(context).setPosition(position);
+
         // copy queues by value to avoid concurrent modification exceptions from database
         App.getDatabase().songDao().deleteSongs();
         App.getDatabase().songDao().insertSongs(new ArrayList<>(playingQueue));
