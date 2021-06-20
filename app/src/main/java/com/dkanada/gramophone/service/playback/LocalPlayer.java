@@ -45,33 +45,6 @@ public class LocalPlayer implements Playback {
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-    private interface MediaItemsCallbacks {
-        void onMediaItemsCreated(List<MediaItem> mediaItems, int position, int progress, boolean resetCurrentSong);
-    }
-
-    private final MediaItemsCallbacks mediaItemsCallbacks = new MediaItemsCallbacks() {
-        @Override
-        public void onMediaItemsCreated(List<MediaItem> mediaItems, int position, int progress, boolean resetCurrentSong) {
-            // FixMe: Call this on main thread
-            if (resetCurrentSong) {
-                exoPlayer.setMediaItems(mediaItems, position, progress);
-                return;
-            }
-
-            int currentPosition = exoPlayer.getCurrentWindowIndex();
-            exoPlayer.removeMediaItems(0, currentPosition);
-
-            if (exoPlayer.getMediaItemCount() > 1) {
-                exoPlayer.removeMediaItems(1, exoPlayer.getMediaItemCount());
-            }
-
-            if (position + 1 < mediaItems.size()) {
-                exoPlayer.addMediaItems(1, mediaItems.subList(position + 1, mediaItems.size()));
-            }
-            exoPlayer.addMediaItems(0, mediaItems.subList(0, position));
-        }
-    };
-
     @SuppressWarnings("FieldCanBeLocal")
     private final EventListener eventListener = new EventListener() {
         @Override
@@ -143,8 +116,28 @@ public class LocalPlayer implements Playback {
 
     @Override
     public void setQueue(List<Song> queue, int position, int progress, boolean resetCurrentSong) {
-        executorService.submit(() -> mediaItemsCallbacks
-                .onMediaItemsCreated(createMediaItems(queue), position, progress, resetCurrentSong));
+        executorService.submit(() -> {
+            List<MediaItem> mediaItems = createMediaItems(queue);
+
+            // FixMe: Call this on main thread
+            if (resetCurrentSong) {
+                exoPlayer.setMediaItems(mediaItems, position, progress);
+                return;
+            }
+
+            int currentPosition = exoPlayer.getCurrentWindowIndex();
+            exoPlayer.removeMediaItems(0, currentPosition);
+
+            if (exoPlayer.getMediaItemCount() > 1) {
+                exoPlayer.removeMediaItems(1, exoPlayer.getMediaItemCount());
+            }
+
+            if (position + 1 < mediaItems.size()) {
+                exoPlayer.addMediaItems(1, mediaItems.subList(position + 1, mediaItems.size()));
+            }
+
+            exoPlayer.addMediaItems(0, mediaItems.subList(0, position));
+        });
     }
 
     private List<MediaItem> createMediaItems(List<Song> queue) {
