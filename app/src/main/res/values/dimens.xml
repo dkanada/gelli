@@ -61,6 +61,12 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="app_widget_card_buttons_width">128dp</dimen>
     <dimen name="app_widget_card_radius">4dp</dimen>
 
+    <dimen name="item_height">48dp</dimen>
+    <dimen name="item_margin">8dp</dimen>
+    <dimen name="item_text">16sp</dimen>
+
+    <dimen name="dialog_margin">24dp</dimen>
+
     <dimen name="card_on_app_bar_side_padding">8dp</dimen>
 
 </resources>

@@ -45,7 +45,7 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
-            android:minHeight="@dimen/md_listitem_height"
+            android:minHeight="@dimen/item_height"
             android:orientation="horizontal"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
@@ -90,7 +90,7 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
-            android:minHeight="@dimen/md_listitem_height"
+            android:minHeight="@dimen/item_height"
             android:orientation="horizontal"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
