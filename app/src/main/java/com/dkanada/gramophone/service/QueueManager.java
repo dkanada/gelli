@@ -9,6 +9,7 @@ import com.dkanada.gramophone.util.PreferenceUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class QueueManager {
     public static final int REPEAT_MODE_NONE = 0;
@@ -70,8 +71,6 @@ public class QueueManager {
     }
 
     public void setNextPosition() {
-
-        // manual switch to next song
         switch (getRepeatMode()) {
             case REPEAT_MODE_NONE:
             case REPEAT_MODE_THIS:
@@ -84,8 +83,6 @@ public class QueueManager {
     }
 
     public void setPreviousPosition() {
-
-        // manual switch to previous song
         switch (getRepeatMode()) {
             case REPEAT_MODE_NONE:
             case REPEAT_MODE_THIS:
@@ -138,12 +135,12 @@ public class QueueManager {
                 String currentSongId = getCurrentSong().id;
                 int newPosition = 0;
 
-                // FixMe: what if same song more than once?
-                for(Song song: playingQueue) {
-                    if (song.id.equals(currentSongId)) {
-                        newPosition = playingQueue.indexOf(song);
-                        break;
-                    }
+                Optional<Song> currentSong = playingQueue.stream()
+                        .filter(song -> song.id.equals(currentSongId))
+                        .findFirst();
+
+                if (currentSong.isPresent()) {
+                    newPosition = playingQueue.indexOf(currentSong.get());
                 }
 
                 shuffledQueue = new ArrayList<>(playingQueue);

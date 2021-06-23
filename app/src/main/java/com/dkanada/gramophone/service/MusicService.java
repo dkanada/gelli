@@ -130,12 +130,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private HandlerThread progressHandlerThread;
     private HandlerThread queueHandlerThread;
 
-    // FixMe: Sometimes media session metadata is not updated
+    // FixMe: Sometimes notification metadata is not updated
     public final QueueManager.QueueCallbacks queueCallbacks = new QueueManager.QueueCallbacks() {
         @Override
         public void onQueueChanged() {
             playback.setQueue(queueManager.getPlayingQueue(), queueManager.getPosition(), queueManager.getRestoredProgress(), queueManager.isResetCurrentSong());
-            // ToDo: move saveState?
             saveState();
             sendChangeInternal(QUEUE_CHANGED);
         }
@@ -171,7 +170,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         @Override
         public void onTrackChanged(int reason) {
-            // ToDo: look at progressHandler when repeated!
             acquireWakeLock(30000);
 
             if (reason == MEDIA_ITEM_TRANSITION_REASON_AUTO) {

@@ -102,8 +102,6 @@ public class LocalPlayer implements Playback {
             .build();
 
         exoPlayer.addListener(eventListener);
-        // FixMe: Remove after debugging
-        exoPlayer.addAnalyticsListener(new EventLogger(null));
         exoPlayer.prepare();
 
         long cacheSize = PreferenceUtil.getInstance(context).getMediaCacheSize();
@@ -119,7 +117,7 @@ public class LocalPlayer implements Playback {
         executorService.submit(() -> {
             List<MediaItem> mediaItems = createMediaItems(queue);
 
-            // FixMe: Call this on main thread
+            // TODO: Call this on main thread
             if (resetCurrentSong) {
                 exoPlayer.setMediaItems(mediaItems, position, progress);
                 return;
