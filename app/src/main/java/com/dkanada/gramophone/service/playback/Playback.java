@@ -1,11 +1,14 @@
 package com.dkanada.gramophone.service.playback;
 
 import com.dkanada.gramophone.model.Song;
+import com.google.android.exoplayer2.Player;
+
+import java.util.List;
 
 public interface Playback {
-    void setDataSource(Song song);
+    void setQueue(List<Song> queue, int position, int progress, boolean resetCurrentSong);
 
-    void queueDataSource(Song song);
+    void playSongAt(int position);
 
     void setCallbacks(PlaybackCallbacks callbacks);
 
@@ -20,6 +23,12 @@ public interface Playback {
     void pause();
 
     void stop();
+
+    void previous();
+
+    void next();
+
+    void setRepeatMode(@Player.RepeatMode int repeatMode);
 
     int getProgress();
 

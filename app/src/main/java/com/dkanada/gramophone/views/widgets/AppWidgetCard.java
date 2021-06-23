@@ -66,7 +66,7 @@ public class AppWidgetCard extends BaseAppWidget {
         final RemoteViews appWidgetView = new RemoteViews(service.getPackageName(), R.layout.app_widget_card);
 
         final boolean isPlaying = service.isPlaying();
-        final Song song = service.getCurrentSong();
+        final Song song = service.queueManager.getCurrentSong();
 
         if (TextUtils.isEmpty(song.title) && TextUtils.isEmpty(song.artistName)) {
             appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);

@@ -170,7 +170,7 @@ public final class PreferenceUtil {
     }
 
     public int getPosition() {
-        return mPreferences.getInt(POSITION, -1);
+        return mPreferences.getInt(POSITION, 0);
     }
 
     public void setPosition(int position) {
@@ -178,7 +178,7 @@ public final class PreferenceUtil {
     }
 
     public int getProgress() {
-        return mPreferences.getInt(PROGRESS, -1);
+        return mPreferences.getInt(PROGRESS, 0);
     }
 
     public void setProgress(int progress) {

@@ -25,6 +25,7 @@ import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.MusicService;
+import com.dkanada.gramophone.service.QueueManager;
 import com.dkanada.gramophone.util.MusicUtil;
 
 import java.util.Arrays;
@@ -62,7 +63,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
             appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
         }
 
-        Song song = service.getCurrentSong();
+        Song song = service.queueManager.getCurrentSong();
         if (song != null && (what.equals(MusicService.STATE_CHANGED) || what.equals(MusicService.META_CHANGED))) {
             updateMeta(service, appWidgetIds);
         }
