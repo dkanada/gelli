@@ -27,7 +27,7 @@ jobs:
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
       with:
         arguments: assemble
-        gradle-version: 6.7.1
+        gradle-version: 7.0.2
     - name: Move
       run: mv app/build/outputs/apk/release/*.apk gelli-release-${version}.apk
       env:
