@@ -1,9 +1,9 @@
 -dontwarn
 -ignorewarnings
 
--keep class com.dkanada.gramophone.**.* { *; } # Keep all Gelli classes and attributes
--keepnames class **.* { *; } # Keep class and attribute names
--keepattributes SourceFile,LineNumberTable # Keep file names/line numbers
+-keep class com.dkanada.gramophone.**.* { *; }
+-keepnames class **.* { *; }
+-keepattributes SourceFile,LineNumberTable
 
 # Jellyfin API
 -keepclasseswithmembers class org.jellyfin.apiclient.model.**.* { *; }
