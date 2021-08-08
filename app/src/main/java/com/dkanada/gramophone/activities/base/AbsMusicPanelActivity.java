@@ -184,7 +184,6 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
         miniPlayerFragment.getView().setVisibility(alpha == 0 ? View.GONE : View.VISIBLE);
     }
 
-
     public SlidingUpPanelLayout.PanelState getPanelState() {
         return binding == null ? null : binding.slidingLayout.getPanelState();
     }

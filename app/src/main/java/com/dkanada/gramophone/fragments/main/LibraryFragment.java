@@ -130,7 +130,6 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         return getCurrentFragment() instanceof PlaylistsFragment;
     }
 
-    @NonNull
     @Override
     public MaterialCab openCab(final int menuRes, final MaterialCab.Callback callback) {
         if (cab != null && cab.isActive()) cab.finish();

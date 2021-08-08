@@ -135,7 +135,6 @@ public class PlaylistDetailActivity extends AbsMusicContentActivity implements C
             || super.onOptionsItemSelected(item);
     }
 
-    @NonNull
     @Override
     public MaterialCab openCab(final int menu, final MaterialCab.Callback callback) {
         if (cab != null && cab.isActive()) cab.finish();

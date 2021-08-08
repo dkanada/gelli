@@ -3,7 +3,8 @@
 
 -keep class com.dkanada.gramophone.**.* { *; }
 -keepnames class **.* { *; }
--keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile
+-keepattributes LineNumberTable
 
 # Jellyfin API
 -keepclasseswithmembers class org.jellyfin.apiclient.model.**.* { *; }

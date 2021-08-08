@@ -17,7 +17,6 @@ import com.dkanada.gramophone.model.Song;
 import java.util.List;
 
 public abstract class AbsOffsetSongAdapter extends SongAdapter {
-
     protected static final int OFFSET_ITEM = 0;
     protected static final int SONG = 1;
 

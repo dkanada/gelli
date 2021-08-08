@@ -109,7 +109,6 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
         return super.onOptionsItemSelected(item);
     }
 
-    @NonNull
     @Override
     public MaterialCab openCab(final int menu, final MaterialCab.Callback callback) {
         if (cab != null && cab.isActive()) cab.finish();
@@ -124,8 +123,9 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
 
     @Override
     public void onBackPressed() {
-        if (cab != null && cab.isActive()) cab.finish();
-        else {
+        if (cab != null && cab.isActive()) {
+            cab.finish();
+        } else {
             binding.recyclerView.stopScroll();
             super.onBackPressed();
         }

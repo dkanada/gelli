@@ -224,7 +224,6 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
         return super.onOptionsItemSelected(item);
     }
 
-    @NonNull
     @Override
     public MaterialCab openCab(int menuRes, @NonNull final MaterialCab.Callback callback) {
         if (cab != null && cab.isActive()) cab.finish();
