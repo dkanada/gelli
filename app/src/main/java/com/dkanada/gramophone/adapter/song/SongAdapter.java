@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.afollestad.materialcab.MaterialCab;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.base.AbsMultiSelectAdapter;
@@ -32,7 +31,7 @@ import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
 import java.util.List;
 
-public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, Song> implements MaterialCab.Callback, FastScrollRecyclerView.SectionedAdapter {
+public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, Song> implements FastScrollRecyclerView.SectionedAdapter {
     protected final AppCompatActivity activity;
     protected List<Song> dataSet;
 
@@ -46,7 +45,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
     }
 
     public SongAdapter(AppCompatActivity activity, List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder, boolean showSectionName) {
-        super(activity, cabHolder, R.menu.menu_select_media);
+        super(activity, R.id.cab_stub, R.menu.menu_select_media);
 
         this.activity = activity;
         this.dataSet = dataSet;
@@ -262,7 +261,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
 
         @Override
         public void onClick(View v) {
-            if (isInQuickSelectMode()) {
+            if (isActive()) {
                 toggleChecked(getBindingAdapterPosition());
             } else {
                 MusicPlayerRemote.openQueue(dataSet, getBindingAdapterPosition(), true);

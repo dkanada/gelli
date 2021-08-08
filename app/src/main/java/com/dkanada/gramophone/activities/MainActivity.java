@@ -14,7 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.afollestad.materialcab.attached.AttachedCab;
+import com.afollestad.materialcab.attached.AttachedCabKt;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
+import com.dkanada.gramophone.interfaces.CabHolder;
 import com.dkanada.gramophone.util.NavigationUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.ThemeUtil;
@@ -35,14 +38,14 @@ import org.jellyfin.apiclient.model.dto.BaseItemDto;
 
 import java.util.List;
 
-public class MainActivity extends AbsMusicContentActivity {
+public class MainActivity extends AbsMusicContentActivity implements CabHolder {
     private ActivityMainDrawerLayoutBinding binding;
     private ActivityMainContentBinding contentBinding;
     private NavigationDrawerHeaderBinding navigationBinding;
     private boolean onLogout;
 
     @Nullable
-    private MainActivityFragmentCallbacks currentFragment;
+    private AttachedCab cab;
 
     @Nullable
     private List<BaseItemDto> libraries;
@@ -93,8 +96,6 @@ public class MainActivity extends AbsMusicContentActivity {
             menu.getItem(0).setChecked(true);
             if (state == null) {
                 setCurrentFragment(LibraryFragment.newInstance());
-            } else {
-                restoreCurrentFragment();
             }
         });
     }
@@ -112,11 +113,6 @@ public class MainActivity extends AbsMusicContentActivity {
 
     private void setCurrentFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment, null).commit();
-        currentFragment = (MainActivityFragmentCallbacks) fragment;
-    }
-
-    private void restoreCurrentFragment() {
-        currentFragment = (MainActivityFragmentCallbacks) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
     }
 
     @Override
@@ -226,6 +222,22 @@ public class MainActivity extends AbsMusicContentActivity {
     }
 
     @Override
+    public void onCreateCab(AttachedCab cab) {
+        this.cab = cab;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(binding.navigationView)) {
+            binding.drawerLayout.closeDrawers();
+        } else if (cab != null && AttachedCabKt.isActive(cab)) {
+            AttachedCabKt.destroy(cab);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             if (binding.drawerLayout.isDrawerOpen(binding.navigationView)) {
@@ -241,16 +253,6 @@ public class MainActivity extends AbsMusicContentActivity {
     }
 
     @Override
-    public boolean handleBackPress() {
-        if (binding.drawerLayout.isDrawerOpen(binding.navigationView)) {
-            binding.drawerLayout.closeDrawers();
-            return true;
-        }
-
-        return super.handleBackPress() || (currentFragment != null && currentFragment.handleBackPress());
-    }
-
-    @Override
     public void onPanelExpanded(View view) {
         super.onPanelExpanded(view);
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
@@ -260,9 +262,5 @@ public class MainActivity extends AbsMusicContentActivity {
     public void onPanelCollapsed(View view) {
         super.onPanelCollapsed(view);
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-    }
-
-    public interface MainActivityFragmentCallbacks {
-        boolean handleBackPress();
     }
 }

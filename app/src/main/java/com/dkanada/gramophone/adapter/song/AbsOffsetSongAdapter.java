@@ -95,7 +95,7 @@ public abstract class AbsOffsetSongAdapter extends SongAdapter {
 
         @Override
         public void onClick(View v) {
-            if (isInQuickSelectMode() && getItemViewType() != OFFSET_ITEM) {
+            if (isActive() && getItemViewType() != OFFSET_ITEM) {
                 toggleChecked(getBindingAdapterPosition());
             } else {
                 MusicPlayerRemote.openQueue(dataSet, getBindingAdapterPosition() - 1, true);

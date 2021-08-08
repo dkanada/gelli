@@ -10,7 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.afollestad.materialcab.MaterialCab;
+import com.afollestad.materialcab.attached.AttachedCab;
+import com.afollestad.materialcab.attached.AttachedCabKt;
 import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityAlbumDetailBinding;
@@ -40,7 +41,7 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
 
     private ActivityAlbumDetailBinding binding;
 
-    private MaterialCab cab;
+    private AttachedCab cab;
     private int headerViewHeight;
     private int toolbarColor;
 
@@ -197,20 +198,16 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
     }
 
     @Override
-    public MaterialCab openCab(int menuRes, @NonNull final MaterialCab.Callback callback) {
-        if (cab != null && cab.isActive()) cab.finish();
-        cab = new MaterialCab(this, R.id.cab_stub)
-                .setMenu(menuRes)
-                .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-                .setBackgroundColor(getPaletteColor())
-                .start(callback);
-        return cab;
+    public void onCreateCab(AttachedCab cab) {
+        cab.backgroundColor(null, getPaletteColor());
+
+        this.cab = cab;
     }
 
     @Override
     public void onBackPressed() {
-        if (cab != null && cab.isActive()) {
-            cab.finish();
+        if (cab != null && AttachedCabKt.isActive(cab)) {
+            AttachedCabKt.destroy(cab);
         } else {
             binding.list.stopScroll();
             super.onBackPressed();

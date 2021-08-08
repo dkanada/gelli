@@ -35,7 +35,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
     protected int itemLayoutRes;
 
     public PlaylistAdapter(AppCompatActivity activity, List<Playlist> dataSet, @LayoutRes int itemLayoutRes, @Nullable CabHolder cabHolder) {
-        super(activity, cabHolder, R.menu.menu_select_playlist);
+        super(activity, R.id.cab_stub, R.menu.menu_select_playlist);
 
         this.activity = activity;
         this.dataSet = dataSet;
@@ -178,7 +178,7 @@ public class PlaylistAdapter extends AbsMultiSelectAdapter<PlaylistAdapter.ViewH
 
         @Override
         public void onClick(View view) {
-            if (isInQuickSelectMode()) {
+            if (isActive()) {
                 toggleChecked(getBindingAdapterPosition());
             } else {
                 Playlist playlist = dataSet.get(getBindingAdapterPosition());

@@ -1,9 +1,13 @@
 package com.dkanada.gramophone.interfaces;
 
-import androidx.annotation.NonNull;
+import android.view.MenuItem;
 
-import com.afollestad.materialcab.MaterialCab;
+import com.afollestad.materialcab.attached.AttachedCab;
 
 public interface CabHolder {
-    MaterialCab openCab(final int menuRes, final MaterialCab.Callback callback);
+    default void onCreateCab(AttachedCab cab) {}
+
+    default void onSelectionCab(MenuItem item) {}
+
+    default void onDestroyCab(AttachedCab cab) {}
 }

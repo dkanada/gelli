@@ -40,7 +40,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
     protected boolean usePalette;
 
     public AlbumAdapter(@NonNull AppCompatActivity activity, List<Album> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
-        super(activity, cabHolder, R.menu.menu_select_media);
+        super(activity, R.id.cab_stub, R.menu.menu_select_media);
 
         this.activity = activity;
         this.dataSet = dataSet;
@@ -214,7 +214,7 @@ public class AlbumAdapter extends AbsMultiSelectAdapter<AlbumAdapter.ViewHolder,
 
         @Override
         public void onClick(View v) {
-            if (isInQuickSelectMode()) {
+            if (isActive()) {
                 toggleChecked(getBindingAdapterPosition());
             } else {
                 Pair transition = Pair.create(image, activity.getResources().getString(R.string.transition_album_image));

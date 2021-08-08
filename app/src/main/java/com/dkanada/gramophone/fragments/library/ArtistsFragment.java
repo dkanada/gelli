@@ -36,7 +36,7 @@ public class ArtistsFragment extends AbsLibraryPagerRecyclerViewCustomGridSizeFr
         notifyLayoutResChanged(itemLayoutRes);
 
         List<Artist> dataSet = getAdapter() == null ? new ArrayList<>() : getAdapter().getDataSet();
-        return new ArtistAdapter(getLibraryFragment().getMainActivity(), dataSet, itemLayoutRes, loadUsePalette(), getLibraryFragment());
+        return new ArtistAdapter(getLibraryFragment().getMainActivity(), dataSet, itemLayoutRes, loadUsePalette(), getLibraryFragment().getMainActivity());
     }
 
     @NonNull

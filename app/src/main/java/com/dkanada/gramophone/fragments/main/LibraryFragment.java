@@ -21,14 +21,11 @@ import com.dkanada.gramophone.helper.MusicPlayerRemote;
 import com.dkanada.gramophone.util.ShortcutUtil;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.google.android.material.appbar.AppBarLayout;
-import com.afollestad.materialcab.MaterialCab;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.MusicLibraryPagerAdapter;
 import com.dkanada.gramophone.dialogs.CreatePlaylistDialog;
 import com.dkanada.gramophone.model.SortMethod;
 import com.dkanada.gramophone.model.SortOrder;
-import com.dkanada.gramophone.interfaces.CabHolder;
-import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.activities.SearchActivity;
 import com.dkanada.gramophone.fragments.library.AbsLibraryPagerRecyclerViewCustomGridSizeFragment;
 import com.dkanada.gramophone.fragments.library.AlbumsFragment;
@@ -36,11 +33,10 @@ import com.dkanada.gramophone.fragments.library.PlaylistsFragment;
 import com.dkanada.gramophone.fragments.library.SongsFragment;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
-public class LibraryFragment extends AbsMainActivityFragment implements CabHolder, MainActivity.MainActivityFragmentCallbacks, ViewPager.OnPageChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class LibraryFragment extends AbsMainActivityFragment implements ViewPager.OnPageChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
     private FragmentLibraryBinding binding;
 
     private MusicLibraryPagerAdapter pagerAdapter;
-    private MaterialCab cab;
 
     public static LibraryFragment newInstance() {
         return new LibraryFragment();
@@ -128,18 +124,6 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
 
     private boolean isPlaylistPage() {
         return getCurrentFragment() instanceof PlaylistsFragment;
-    }
-
-    @Override
-    public MaterialCab openCab(final int menuRes, final MaterialCab.Callback callback) {
-        if (cab != null && cab.isActive()) cab.finish();
-        cab = new MaterialCab(getMainActivity(), R.id.cab_stub)
-                .setMenu(menuRes)
-                .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-                .setBackgroundColor(PreferenceUtil.getInstance(requireActivity()).getPrimaryColor())
-                .start(callback);
-
-        return cab;
     }
 
     public void addOnAppBarOffsetChangedListener(AppBarLayout.OnOffsetChangedListener onOffsetChangedListener) {
@@ -397,16 +381,6 @@ public class LibraryFragment extends AbsMainActivityFragment implements CabHolde
         if (sortOrder != null) {
             item.setChecked(true);
             fragment.setAndSaveSortOrder(sortOrder);
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean handleBackPress() {
-        if (cab != null && cab.isActive()) {
-            cab.finish();
             return true;
         }
 

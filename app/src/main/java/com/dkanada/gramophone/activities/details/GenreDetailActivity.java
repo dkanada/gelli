@@ -9,7 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.afollestad.materialcab.MaterialCab;
+import com.afollestad.materialcab.attached.AttachedCab;
+import com.afollestad.materialcab.attached.AttachedCabKt;
 import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.activities.base.AbsMusicContentActivity;
 import com.dkanada.gramophone.databinding.ActivityGenreDetailBinding;
@@ -34,7 +35,7 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
 
     private Genre genre;
 
-    private MaterialCab cab;
+    private AttachedCab cab;
     private SongAdapter adapter;
 
     @Override
@@ -110,21 +111,14 @@ public class GenreDetailActivity extends AbsMusicContentActivity implements CabH
     }
 
     @Override
-    public MaterialCab openCab(final int menu, final MaterialCab.Callback callback) {
-        if (cab != null && cab.isActive()) cab.finish();
-        cab = new MaterialCab(this, R.id.cab_stub)
-            .setMenu(menu)
-            .setCloseDrawableRes(R.drawable.ic_close_white_24dp)
-            .setBackgroundColor(PreferenceUtil.getInstance(this).getPrimaryColor())
-            .start(callback);
-
-        return cab;
+    public void onCreateCab(AttachedCab cab) {
+        this.cab = cab;
     }
 
     @Override
     public void onBackPressed() {
-        if (cab != null && cab.isActive()) {
-            cab.finish();
+        if (cab != null && AttachedCabKt.isActive(cab)) {
+            AttachedCabKt.destroy(cab);
         } else {
             binding.recyclerView.stopScroll();
             super.onBackPressed();

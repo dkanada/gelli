@@ -215,22 +215,6 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
     }
 
     @Override
-    public void onBackPressed() {
-        if (!handleBackPress()) super.onBackPressed();
-    }
-
-    public boolean handleBackPress() {
-        if (binding.slidingLayout.getPanelHeight() != 0 && playerFragment.onBackPressed())
-            return true;
-        if (getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
-            collapsePanel();
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
     public void onPaletteColorChanged() {
         if (getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
             int playerFragmentColor = playerFragment.getPaletteColor();
@@ -285,6 +269,17 @@ public abstract class AbsMusicPanelActivity extends AbsMusicServiceActivity impl
 
         if (navigationBarColorAnimator != null) {
             navigationBarColorAnimator.cancel();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        boolean queuePanelCollapsed = playerFragment.onBackPressed();
+
+        if (!queuePanelCollapsed && getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED) {
+            collapsePanel();
+        } else if (!queuePanelCollapsed) {
+            super.onBackPressed();
         }
     }
 
