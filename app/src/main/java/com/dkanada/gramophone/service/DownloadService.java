@@ -20,15 +20,17 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class DownloadService extends Service {
     public static final String PACKAGE_NAME = BuildConfig.APPLICATION_ID;
+    public static final String ACTION_START = PACKAGE_NAME + ".action.start";
+    public static final String ACTION_CANCEL = PACKAGE_NAME + ".action.cancel";
     public static final String EXTRA_SONGS = PACKAGE_NAME + ".extra.songs";
 
-    private Executor executor;
+    private ExecutorService executor;
     private DownloadNotification notification;
 
     @Override
@@ -41,14 +43,22 @@ public class DownloadService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent == null) {
+        if (intent == null || intent.getAction() == null) {
             return super.onStartCommand(null, flags, startId);
         }
 
-        List<Song> songs = intent.getParcelableArrayListExtra(EXTRA_SONGS);
-        for (Song song : songs) {
-            download(song);
-            notification.start(song);
+        switch (intent.getAction()) {
+            case DownloadService.ACTION_CANCEL:
+                executor.shutdownNow();
+                notification.stop(null);
+                stopSelf();
+                break;
+            case DownloadService.ACTION_START:
+                List<Song> songs = intent.getParcelableArrayListExtra(EXTRA_SONGS);
+                for (Song song : songs) {
+                    download(song);
+                    notification.start(song);
+                }
         }
 
         return super.onStartCommand(intent, flags, startId);

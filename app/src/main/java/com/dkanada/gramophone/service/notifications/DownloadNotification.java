@@ -13,6 +13,7 @@ import androidx.core.app.NotificationCompat;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.activities.MainActivity;
 import com.dkanada.gramophone.model.Song;
+import com.dkanada.gramophone.service.DownloadService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,9 @@ public class DownloadNotification {
         Intent action = new Intent(context, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent clickIntent = PendingIntent.getActivity(context, 0, action, 0);
 
+        Intent cancel = new Intent(context, DownloadService.class).setAction(DownloadService.ACTION_CANCEL);
+        PendingIntent pendingCancel = PendingIntent.getService(context, 0, cancel, 0);
+
         NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
         for (Song item : songs.stream().limit(5).collect(Collectors.toList())) {
             style.addLine(item.title);
@@ -65,6 +69,7 @@ public class DownloadNotification {
             .setContentTitle(String.format(context.getString(R.string.downloading_x_songs), songs.size()))
             .setProgress(this.maximum, this.current, false)
             .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+            .addAction(R.drawable.ic_close_white_24dp, context.getString(R.string.action_cancel), pendingCancel)
             .setStyle(style)
             .setShowWhen(false);
 
@@ -74,6 +79,8 @@ public class DownloadNotification {
     public synchronized void stop(Song song) {
         if (song != null) {
             songs.remove(song);
+        } else {
+            songs.clear();
         }
 
         if (songs.size() != 0) {

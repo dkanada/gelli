@@ -30,7 +30,7 @@ import com.dkanada.gramophone.util.MusicUtil;
 import java.util.Arrays;
 
 public abstract class BaseAppWidget extends AppWidgetProvider {
-    public static final String NAME = "app_widget";
+    public static final String NAME = "widget.base";
 
     public int imageSize = 0;
     public float cardRadius = 0f;

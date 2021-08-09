@@ -115,6 +115,8 @@ public class NavigationUtil {
         Intent intent = new Intent(activity, DownloadService.class);
 
         intent.putExtra(DownloadService.EXTRA_SONGS, new ArrayList<>(songs));
+        intent.setAction(DownloadService.ACTION_START);
+
         activity.startService(intent);
     }
 }
