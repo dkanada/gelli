@@ -292,7 +292,8 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
     @Override
     public void onPanelSlide(View view, float slide) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+                && !(Float.isInfinite(slide) || Float.isNaN(slide))) {
             float density = getResources().getDisplayMetrics().density;
             binding.playingQueueCard.setCardElevation((6 * slide + 2) * density);
             playbackControlsFragment.binding.playerPlayPauseFab.setElevation((2 * Math.max(0, (1 - (slide * 16))) + 2) * density);
