@@ -292,7 +292,7 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
     @Override
     public void onPanelSlide(View view, float slide) {
-        // the isInfinite and isNan check fixes a bug where the app crashes dues to an invalid slide value
+        // the isInfinite and isNan check fixes a bug where the app crashes due to an invalid slide value
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && !Float.isInfinite(slide) && !Float.isNaN(slide)) {
             float density = getResources().getDisplayMetrics().density;
             binding.playingQueueCard.setCardElevation((6 * slide + 2) * density);
