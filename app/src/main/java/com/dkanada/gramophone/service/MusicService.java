@@ -253,7 +253,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         queueHandlerThread.start();
         queueHandler = new QueueHandler(this, queueHandlerThread.getLooper());
 
-        throttledSeekHandler = new ThrottledSeekHandler(playerHandler);
+        throttledSeekHandler = new ThrottledSeekHandler(new Handler());
         uiThreadHandler = new Handler();
 
         registerReceiver(widgetIntentReceiver, new IntentFilter(INTENT_EXTRA_WIDGET_UPDATE));
