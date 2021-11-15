@@ -497,24 +497,20 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         playSongAt(queueManager.getNextPosition(force));
     }
 
-    private void openTrackAndPrepareNextAt(int position) {
-        synchronized (this) {
-            queueManager.position = position;
+    private synchronized void openTrackAndPrepareNextAt(int position) {
+        queueManager.position = position;
 
-            openCurrent();
-            playback.start();
+        openCurrent();
+        playback.start();
 
-            notifyChange(META_CHANGED);
-            notHandledMetaChangedForCurrentTrack = false;
-        }
+        notifyChange(META_CHANGED);
+        notHandledMetaChangedForCurrentTrack = false;
     }
 
-    private void openCurrent() {
-        synchronized (this) {
-            if (queueManager.getCurrentSong() == null) return;
+    private synchronized void openCurrent() {
+        if (queueManager.getCurrentSong() == null) return;
 
-            playback.setDataSource(queueManager.getCurrentSong());
-        }
+        playback.setDataSource(queueManager.getCurrentSong());
     }
 
     private void prepareNext() {
@@ -522,13 +518,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         playerHandler.obtainMessage(PREPARE_NEXT).sendToTarget();
     }
 
-    private void prepareNextImpl() {
-        synchronized (this) {
-            if (queueManager.getCurrentSong() == null) return;
+    private synchronized void prepareNextImpl() {
+        if (queueManager.getCurrentSong() == null) return;
 
-            queueManager.nextPosition = queueManager.getNextPosition(false);
-            playback.queueDataSource(queueManager.getSongAt(queueManager.nextPosition));
-        }
+        queueManager.nextPosition = queueManager.getNextPosition(false);
+        playback.queueDataSource(queueManager.getSongAt(queueManager.nextPosition));
     }
 
     public void initNotification() {
@@ -656,20 +650,18 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     }
 
-    public void play() {
-        synchronized (this) {
-            if (!playback.isPlaying()) {
-                if (!playback.isReady()) {
-                    playSongAt(queueManager.position);
-                } else {
-                    playback.start();
-                    if (notHandledMetaChangedForCurrentTrack) {
-                        handleChangeInternal(META_CHANGED);
-                        notHandledMetaChangedForCurrentTrack = false;
-                    }
-
-                    notifyChange(STATE_CHANGED);
+    public synchronized void play() {
+        if (!playback.isPlaying()) {
+            if (!playback.isReady()) {
+                playSongAt(queueManager.position);
+            } else {
+                playback.start();
+                if (notHandledMetaChangedForCurrentTrack) {
+                    handleChangeInternal(META_CHANGED);
+                    notHandledMetaChangedForCurrentTrack = false;
                 }
+
+                notifyChange(STATE_CHANGED);
             }
         }
     }
@@ -694,12 +686,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         return playback.getDuration();
     }
 
-    public int seek(int millis) {
-        synchronized (this) {
-            playback.setProgress(millis);
-            throttledSeekHandler.notifySeek();
-            return millis;
-        }
+    public synchronized int seek(int millis) {
+        playback.setProgress(millis);
+        throttledSeekHandler.notifySeek();
+        return millis;
     }
 
     private void notifyChange(@NonNull final String what) {
