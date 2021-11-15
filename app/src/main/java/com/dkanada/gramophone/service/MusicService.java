@@ -103,7 +103,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final int TRACK_CHANGED = 1;
     public static final int TRACK_ENDED = 2;
 
-    public static final int RELEASE_WAKELOCK = 0;
     public static final int PLAY_SONG = 3;
     public static final int PREPARE_NEXT = 4;
 
@@ -797,6 +796,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     break;
 
                 case TRACK_ENDED:
+                    // FIXME This isn't used anywhere. This means releaseWakeLock() is never called
+
                     // if there is a timer finished, don't continue
                     if (service.pendingQuit || service.queueManager.getRepeatMode() == QueueManager.REPEAT_MODE_NONE && service.queueManager.isLastTrack()) {
                         service.notifyChange(STATE_CHANGED);
@@ -810,10 +811,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         service.playNextSong(false);
                     }
 
-                    sendEmptyMessage(RELEASE_WAKELOCK);
-                    break;
-
-                case RELEASE_WAKELOCK:
                     service.releaseWakeLock();
                     break;
 
