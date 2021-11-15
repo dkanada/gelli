@@ -208,7 +208,7 @@ public class QueueManager {
         callbacks.onQueueChanged();
     }
 
-    // FixMe: Remove static MusicPlayerRemote call, idk how...
+    // FIXME This will be refactored and removed in a subsequent PR
     private void reposition(int deletedPosition) {
         int currentPosition = getPosition();
         if (deletedPosition < currentPosition) {

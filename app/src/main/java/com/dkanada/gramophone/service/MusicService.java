@@ -149,7 +149,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         @Override
         public void onRepeatModeChanged() {
             notifyChange(REPEAT_MODE_CHANGED);
-            // FixMe: Not sure about this:
+            // FIXME This call will be removed in a subsequent PR
             prepareNext();
         }
 
@@ -405,7 +405,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         queueHandler.sendEmptyMessage(LOAD_QUEUE);
     }
 
-    // FixMe: Move to QueueManager or not?
+    // FIXME This will be refactored and partly moved to QueueManager in a subsequent PR
     private synchronized void restoreQueuesAndPositionIfNecessary() {
         if (!queuesRestored && queueManager.getPlayingQueue().isEmpty()) {
             List<Song> restoredQueue = App.getDatabase().queueSongDao().getQueue(0);
@@ -593,7 +593,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         uiThreadHandler.post(runnable);
     }
 
-    // FixMe: Move to QueueManager or not?
+    // FIXME This will be refactored and partly moved to QueueManager in a subsequent PR
     public void openQueue(@Nullable final List<Song> playingQueue, final int startPosition, final boolean startPlaying) {
         if (playingQueue != null && !playingQueue.isEmpty() && startPosition >= 0 && startPosition < playingQueue.size()) {
             // it is important to copy the playing queue here first as we might add or remove songs later
