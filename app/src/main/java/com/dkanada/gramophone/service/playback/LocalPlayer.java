@@ -17,7 +17,7 @@ import com.google.android.exoplayer2.Player.EventListener;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.database.ExoDatabaseProvider;
-import com.google.android.exoplayer2.source.MediaSourceFactory;
+import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.upstream.FileDataSource;
@@ -25,8 +25,12 @@ import com.google.android.exoplayer2.upstream.cache.CacheDataSink;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
 import com.google.android.exoplayer2.upstream.cache.LeastRecentlyUsedCacheEvictor;
 import com.google.android.exoplayer2.upstream.cache.SimpleCache;
+import com.google.android.exoplayer2.util.MimeTypes;
 
 import java.io.File;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class LocalPlayer implements Playback {
     public static final String TAG = LocalPlayer.class.getSimpleName();
@@ -89,14 +93,13 @@ public class LocalPlayer implements Playback {
     public LocalPlayer(Context context) {
         this.context = context;
 
-        MediaSourceFactory mediaSourceFactory = new UnknownMediaSourceFactory(buildDataSourceFactory());
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
             .setUsage(C.USAGE_MEDIA)
             .setContentType(C.CONTENT_TYPE_MUSIC)
             .build();
 
         exoPlayer = new SimpleExoPlayer.Builder(context)
-            .setMediaSourceFactory(mediaSourceFactory)
+            .setMediaSourceFactory(new DefaultMediaSourceFactory(buildDataSourceFactory()))
             .setAudioAttributes(audioAttributes, true)
             .build();
 
@@ -141,8 +144,28 @@ public class LocalPlayer implements Playback {
             uri = Uri.parse(MusicUtil.getTranscodeUri(song));
         }
 
-        MediaItem mediaItem = MediaItem.fromUri(uri);
-        mediaItem = mediaItem.buildUpon().setMediaId(song.id).build();
+        List<String> containers = PreferenceUtil.getInstance(context).getDirectPlayCodecs().stream()
+                .map(codec -> codec.container.toLowerCase(Locale.ROOT))
+                .collect(Collectors.toList());
+        List<String> codecs = PreferenceUtil.getInstance(context).getDirectPlayCodecs().stream()
+                .map(codec -> codec.codec.toLowerCase(Locale.ROOT))
+                .collect(Collectors.toList());
+        String maxBitrate = PreferenceUtil.getInstance(context).getMaximumBitrate();
+
+        MediaItem mediaItem;
+
+        if (uri.toString().contains("file://") || (containers.contains(song.container.toLowerCase(Locale.ROOT)) && codecs.contains(song.codec.toLowerCase(Locale.ROOT)) && song.bitRate <= Integer.parseInt(maxBitrate))) {
+            mediaItem = new MediaItem.Builder()
+                    .setUri(uri)
+                    .setMediaId(song.id)
+                    .build();
+        } else {
+            mediaItem = new MediaItem.Builder()
+                    .setUri(uri)
+                    .setMediaId(song.id)
+                    .setMimeType(MimeTypes.APPLICATION_M3U8)
+                    .build();
+        }
 
         exoPlayer.addMediaItem(mediaItem);
     }
