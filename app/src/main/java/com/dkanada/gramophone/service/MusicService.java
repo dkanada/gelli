@@ -121,7 +121,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     public QueueManager queueManager;
 
-    private boolean notHandledMetaChangedForCurrentTrack;
     private boolean queuesRestored;
 
     private PlayingNotification playingNotification;
@@ -186,6 +185,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 progressHandler.sendEmptyMessage(TRACK_CHANGED);
                 prepareNext();
             }
+
+            notifyChange(STATE_CHANGED);
+            notifyChange(META_CHANGED);
         }
     };
 
@@ -453,7 +455,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
                 if (restoredProgress > 0) seek(restoredProgress);
 
-                notHandledMetaChangedForCurrentTrack = true;
                 handleChangeInternal(META_CHANGED);
                 handleChangeInternal(QUEUE_CHANGED);
             }
@@ -501,9 +502,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         openCurrent();
         playback.start();
-
-        notifyChange(META_CHANGED);
-        notHandledMetaChangedForCurrentTrack = false;
     }
 
     private synchronized void openCurrent() {
@@ -645,7 +643,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public void pause() {
         if (playback.isPlaying()) {
             playback.pause();
-            notifyChange(STATE_CHANGED);
         }
     }
 
@@ -655,12 +652,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 playSongAt(queueManager.position);
             } else {
                 playback.start();
-                if (notHandledMetaChangedForCurrentTrack) {
-                    handleChangeInternal(META_CHANGED);
-                    notHandledMetaChangedForCurrentTrack = false;
-                }
-
-                notifyChange(STATE_CHANGED);
             }
         }
     }
@@ -786,11 +777,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     if (service.queueManager.getRepeatMode() == QueueManager.REPEAT_MODE_NONE && service.queueManager.isLastTrack()) {
                         service.pause();
                         service.seek(0);
-                        service.notifyChange(STATE_CHANGED);
                     } else {
                         service.queueManager.position = service.queueManager.nextPosition;
                         service.prepareNextImpl();
-                        service.notifyChange(META_CHANGED);
                         service.notifyChange(QUEUE_CHANGED);
                     }
                     break;
@@ -816,7 +805,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
                 case PLAY_SONG:
                     service.openTrackAndPrepareNextAt(msg.arg1);
-                    service.notifyChange(STATE_CHANGED);
                     break;
 
                 case PREPARE_NEXT:
