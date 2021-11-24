@@ -86,7 +86,7 @@ public class MusicUtil {
 
     @NonNull
     public static String ascii(String string) {
-        return string == null ? "Unknown" : string.replaceAll("[\\x00-\\x1F\\x2F\\x7F]", "");
+        return string == null ? "Unknown" : string.replaceAll("[\\x00-\\x1F\\x22\\x2A\\x2F\\x3A\\x3C\\x3E\\x3F\\x5C\\x7C\\x7F]", "");
     }
 
     @NonNull
