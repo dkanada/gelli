@@ -65,12 +65,12 @@ public class Song implements Parcelable {
         this.albumId = itemDto.getAlbumId();
         this.albumName = itemDto.getAlbum();
 
-        if (itemDto.getAlbumArtists().size() != 0) {
-            this.artistId = itemDto.getAlbumArtists().get(0).getId();
-            this.artistName = itemDto.getAlbumArtists().get(0).getName();
-        } else if (itemDto.getArtistItems().size() != 0) {
+        if (itemDto.getArtistItems().size() != 0) {
             this.artistId = itemDto.getArtistItems().get(0).getId();
             this.artistName = itemDto.getArtistItems().get(0).getName();
+        } else if (itemDto.getAlbumArtists().size() != 0) {
+            this.artistId = itemDto.getAlbumArtists().get(0).getId();
+            this.artistName = itemDto.getAlbumArtists().get(0).getName();
         }
 
         this.primary = itemDto.getAlbumPrimaryImageTag() != null ? albumId : null;
