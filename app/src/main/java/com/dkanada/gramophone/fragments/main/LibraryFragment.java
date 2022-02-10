@@ -47,6 +47,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements ViewPage
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         binding = FragmentLibraryBinding.inflate(inflater);
 
         return binding.getRoot();

@@ -31,6 +31,7 @@ public abstract class AbsLibraryPagerRecyclerViewFragment<A extends RecyclerView
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         binding = FragmentMainActivityRecyclerViewBinding.inflate(getLayoutInflater(), container, false);
 
         return binding.getRoot();
