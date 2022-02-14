@@ -46,11 +46,13 @@ public class Artist implements Parcelable {
     public Artist(Album album) {
         this.id = album.artistId;
         this.name = album.artistName;
+        this.primary = this.id;
     }
 
     public Artist(Song song) {
         this.id = song.artistId;
         this.name = song.artistName;
+        this.primary = this.id;
     }
 
     public Artist() {
