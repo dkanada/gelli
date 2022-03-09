@@ -88,8 +88,8 @@
     <string name="delete_playlists_title">删除多个歌单</string>
     <string name="select_all_title">全选</string>
 
-    <string name="action_sort_order">排序方式</string>
-    <string name="action_sort_method">正序/倒序</string>
+    <string name="action_sort_order">正序/倒序</string>
+    <string name="action_sort_method">排序方式</string>
     <string name="colored_footers">多彩标签</string>
 
     <string name="light_theme_name">浅色</string>
