@@ -30,6 +30,8 @@ import com.google.android.exoplayer2.util.MimeTypes;
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class LocalPlayer implements Playback {
@@ -40,6 +42,8 @@ public class LocalPlayer implements Playback {
     private final SimpleCache simpleCache;
 
     private PlaybackCallbacks callbacks;
+
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @SuppressWarnings("FieldCanBeLocal")
     private final EventListener eventListener = new EventListener() {
@@ -64,14 +68,7 @@ public class LocalPlayer implements Playback {
         @Override
         public void onMediaItemTransition(MediaItem mediaItem, int reason) {
             Log.i(TAG, String.format("onMediaItemTransition: %s %d", mediaItem, reason));
-
-            if (exoPlayer.getMediaItemCount() > 1) {
-                exoPlayer.removeMediaItem(0);
-            }
-
-            if (callbacks != null) {
-                callbacks.onTrackChanged(reason);
-            }
+            if (callbacks != null) callbacks.onTrackChanged(reason);
         }
 
         @Override
@@ -115,66 +112,72 @@ public class LocalPlayer implements Playback {
     }
 
     @Override
-    public void setDataSource(Song song) {
-        MediaItem mediaItem = exoPlayer.getCurrentMediaItem();
+    public void setQueue(List<Song> queue, int position, int progress, boolean resetCurrentSong) {
+        executorService.submit(() -> {
+            List<MediaItem> mediaItems = createMediaItems(queue);
 
-        if (mediaItem != null && mediaItem.mediaId.equals(song.id)) {
-            return;
-        }
+            // TODO: Call this on main thread
+            if (resetCurrentSong) {
+                exoPlayer.setMediaItems(mediaItems, position, progress);
+                return;
+            }
 
-        exoPlayer.clearMediaItems();
-        appendDataSource(song);
-        exoPlayer.seekTo(0, 0);
+            int currentPosition = exoPlayer.getCurrentWindowIndex();
+            exoPlayer.removeMediaItems(0, currentPosition);
+
+            if (exoPlayer.getMediaItemCount() > 1) {
+                exoPlayer.removeMediaItems(1, exoPlayer.getMediaItemCount());
+            }
+
+            if (position + 1 < mediaItems.size()) {
+                exoPlayer.addMediaItems(1, mediaItems.subList(position + 1, mediaItems.size()));
+            }
+
+            exoPlayer.addMediaItems(0, mediaItems.subList(0, position));
+        });
+    }
+
+    private List<MediaItem> createMediaItems(List<Song> queue) {
+        return queue.stream().map(song -> {
+            File audio = new File(MusicUtil.getFileUri(song));
+            Uri uri = Uri.fromFile(audio);
+
+            if (!audio.exists()) {
+                uri = Uri.parse(MusicUtil.getTranscodeUri(song));
+            }
+
+            List<String> containers = PreferenceUtil.getInstance(context).getDirectPlayCodecs().stream()
+                    .map(codec -> codec.container.toLowerCase(Locale.ROOT))
+                    .collect(Collectors.toList());
+            List<String> codecs = PreferenceUtil.getInstance(context).getDirectPlayCodecs().stream()
+                    .map(codec -> codec.codec.toLowerCase(Locale.ROOT))
+                    .collect(Collectors.toList());
+            String maxBitrate = PreferenceUtil.getInstance(context).getMaximumBitrate();
+
+            MediaItem mediaItem;
+
+            if (uri.toString().contains("file://") || (containers.contains(song.container.toLowerCase(Locale.ROOT)) && codecs.contains(song.codec.toLowerCase(Locale.ROOT)) && song.bitRate <= Integer.parseInt(maxBitrate))) {
+                mediaItem = new MediaItem.Builder()
+                        .setUri(uri)
+                        .setMediaId(song.id)
+                        .build();
+            } else {
+                mediaItem = new MediaItem.Builder()
+                        .setUri(uri)
+                        .setMediaId(song.id)
+                        .setMimeType(MimeTypes.APPLICATION_M3U8)
+                        .build();
+            }
+
+            return mediaItem;
+        }).collect(Collectors.toList());
     }
 
     @Override
-    public void queueDataSource(Song song) {
-        while (exoPlayer.getMediaItemCount() > 1) {
-            exoPlayer.removeMediaItem(1);
+    public void playSongAt(int position) {
+        if (exoPlayer.getMediaItemCount() > 0) {
+            exoPlayer.seekTo(Math.max(0, position) % exoPlayer.getMediaItemCount(), 0);
         }
-
-        appendDataSource(song);
-    }
-
-    private void appendDataSource(Song song) {
-        File audio = new File(MusicUtil.getFileUri(song));
-        Uri uri = Uri.fromFile(audio);
-
-        if (!audio.exists()) {
-            uri = Uri.parse(MusicUtil.getTranscodeUri(song));
-        }
-
-        List<String> containers = PreferenceUtil.getInstance(context).getDirectPlayCodecs().stream()
-                .map(codec -> codec.container.toLowerCase(Locale.ROOT))
-                .collect(Collectors.toList());
-
-        List<String> codecs = PreferenceUtil.getInstance(context).getDirectPlayCodecs().stream()
-                .map(codec -> codec.codec.toLowerCase(Locale.ROOT))
-                .collect(Collectors.toList());
-
-        String maxBitrate = PreferenceUtil.getInstance(context).getMaximumBitrate();
-
-        MediaItem mediaItem;
-
-        boolean shouldDirectPlay =
-                containers.contains(song.container.toLowerCase(Locale.ROOT)) &&
-                codecs.contains(song.codec.toLowerCase(Locale.ROOT)) &&
-                song.bitRate <= Integer.parseInt(maxBitrate);
-
-        if (uri.toString().contains("file://") || shouldDirectPlay || !song.supportsTranscoding) {
-            mediaItem = new MediaItem.Builder()
-                    .setUri(uri)
-                    .setMediaId(song.id)
-                    .build();
-        } else {
-            mediaItem = new MediaItem.Builder()
-                    .setUri(uri)
-                    .setMediaId(song.id)
-                    .setMimeType(MimeTypes.APPLICATION_M3U8)
-                    .build();
-        }
-
-        exoPlayer.addMediaItem(mediaItem);
     }
 
     private DataSource.Factory buildDataSourceFactory() {
@@ -228,6 +231,21 @@ public class LocalPlayer implements Playback {
     public void stop() {
         simpleCache.release();
         exoPlayer.release();
+    }
+
+    @Override
+    public void previous() {
+        exoPlayer.previous();
+    }
+
+    @Override
+    public void next() {
+        exoPlayer.next();
+    }
+
+    @Override
+    public void setRepeatMode(@Player.RepeatMode int repeatMode) {
+        exoPlayer.setRepeatMode(repeatMode);
     }
 
     @Override
