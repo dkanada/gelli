@@ -5,6 +5,7 @@ import android.content.Context;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.PreferenceUtil;
+import com.google.android.exoplayer2.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +31,7 @@ public class QueueManager {
     private boolean resetCurrentSong = true;
 
     private int shuffleMode;
-    private int repeatMode;
+    private @Player.RepeatMode int repeatMode;
 
     public QueueManager(Context context, QueueCallbacks callbacks) {
         this.context = context;

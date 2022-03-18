@@ -52,6 +52,7 @@ import com.dkanada.gramophone.util.Util;
 import com.dkanada.gramophone.views.widgets.AppWidgetAlbum;
 import com.dkanada.gramophone.views.widgets.AppWidgetCard;
 import com.dkanada.gramophone.views.widgets.AppWidgetClassic;
+import com.google.android.exoplayer2.Player;
 
 import org.jellyfin.apiclient.interaction.EmptyResponse;
 import org.jellyfin.apiclient.interaction.Response;
@@ -123,13 +124,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private MediaSessionCompat mediaSession;
     private PowerManager.WakeLock wakeLock;
 
-    private PlaybackHandler playerHandler;
     private Handler uiThreadHandler;
     private ThrottledSeekHandler throttledSeekHandler;
     private QueueHandler queueHandler;
     private ProgressHandler progressHandler;
 
-    private HandlerThread playerHandlerThread;
     private HandlerThread progressHandlerThread;
     private HandlerThread queueHandlerThread;
 
@@ -157,6 +156,11 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         @Override
         public void onStateChanged(int state) {
             notifyChange(STATE_CHANGED);
+
+            if (state == Player.STATE_ENDED) {
+                playingNotification.stop();
+                releaseWakeLock();
+            }
         }
 
         @Override
@@ -235,10 +239,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         playback.setCallbacks(playbackCallbacks);
 
         queueManager = new QueueManager(this, queueCallbacks);
-
-        playerHandlerThread = new HandlerThread(PlaybackHandler.class.getName());
-        playerHandlerThread.start();
-        playerHandler = new PlaybackHandler(this, playerHandlerThread.getLooper());
 
         progressHandlerThread = new HandlerThread(ProgressHandler.class.getName());
         progressHandlerThread.start();
@@ -421,9 +421,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private void restoreState() {
-        notifyChange(SHUFFLE_MODE_CHANGED);
-        notifyChange(REPEAT_MODE_CHANGED);
-
         queueHandler.removeMessages(LOAD_QUEUE);
         queueHandler.sendEmptyMessage(LOAD_QUEUE);
     }
@@ -444,9 +441,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     private void releaseResources() {
-        playerHandler.removeCallbacksAndMessages(null);
-        playerHandlerThread.quitSafely();
-
         progressHandler.removeCallbacksAndMessages(null);
         progressHandlerThread.quitSafely();
 
@@ -646,11 +640,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 PreferenceUtil.getInstance(this).setProgress(getSongProgressMillis());
                 break;
             case QUEUE_CHANGED:
-                // because playing queue size might have changed
                 updateMediaSessionMetadata();
-                if (queueManager.getPlayingQueue().size() <= 0) {
-                    playingNotification.stop();
-                }
                 break;
         }
     }
@@ -683,41 +673,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 initNotification();
                 updateNotification();
                 break;
-        }
-    }
-
-    private static final class PlaybackHandler extends Handler {
-        private final WeakReference<MusicService> mService;
-
-        public PlaybackHandler(final MusicService service, @NonNull final Looper looper) {
-            super(looper);
-            mService = new WeakReference<>(service);
-        }
-
-        @Override
-        public void handleMessage(@NonNull final Message msg) {
-            final MusicService service = mService.get();
-            if (service == null) {
-                return;
-            }
-
-            switch (msg.what) {
-                /*case TRACK_ENDED:
-                    // FIXME This isn't used anywhere. This means releaseWakeLock() is never called
-
-                    // if there is a timer finished, don't continue
-                    if (service.pendingQuit || service.queueManager.getRepeatMode() == QueueManager.REPEAT_MODE_NONE && service.queueManager.isLastTrack()) {
-                        if (service.pendingQuit) {
-                            service.pendingQuit = false;
-                            service.quit();
-                            break;
-                        }
-                    }
-
-                    service.releaseWakeLock();
-                    break;
-                 */
-            }
         }
     }
 
