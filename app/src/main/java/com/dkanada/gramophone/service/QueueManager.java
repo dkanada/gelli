@@ -3,12 +3,13 @@ package com.dkanada.gramophone.service;
 import android.content.Context;
 
 import com.dkanada.gramophone.App;
-import com.dkanada.gramophone.helper.ShuffleHelper;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.PreferenceUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class QueueManager {
     public static final int REPEAT_MODE_NONE = 0;
@@ -21,8 +22,8 @@ public class QueueManager {
     private final Context context;
     private final QueueCallbacks callbacks;
 
-    List<Song> playingQueue = new ArrayList<>();
-    List<Song> originalPlayingQueue = new ArrayList<>();
+    private List<Song> playingQueue = new ArrayList<>();
+    private List<Song> shuffledQueue = new ArrayList<>();
 
     private int position = 0;
     private int restoredProgress = 0;
@@ -36,12 +37,17 @@ public class QueueManager {
         this.callbacks = callbacks;
     }
 
-    public void setPlayingQueueAndPosition(List<Song> queue, List<Song> originalPlayingQueue, int position) {
+    public void setPlayingQueueAndPosition(List<Song> queue, int position) {
         this.position = position;
         this.playingQueue = new ArrayList<>(queue);
-        this.originalPlayingQueue = new ArrayList<>(originalPlayingQueue);
+        this.shuffledQueue = new ArrayList<>(queue);
+        shuffleQueue();
 
         callbacks.onQueueChanged();
+    }
+
+    public List<Song> getPlayingQueue() {
+        return shuffleMode == SHUFFLE_MODE_SHUFFLE ? shuffledQueue : playingQueue;
     }
 
     public int getPosition() {
@@ -88,14 +94,6 @@ public class QueueManager {
         }
     }
 
-    public boolean isLastTrack() {
-        return getPosition() == getPlayingQueue().size() - 1;
-    }
-
-    public List<Song> getPlayingQueue() {
-        return playingQueue;
-    }
-
     public int getRepeatMode() {
         return repeatMode;
     }
@@ -130,21 +128,25 @@ public class QueueManager {
         switch (shuffleMode) {
             case SHUFFLE_MODE_SHUFFLE:
                 this.shuffleMode = shuffleMode;
-                ShuffleHelper.makeShuffleList(this.getPlayingQueue(), getPosition());
-                position = 0;
+                shuffleQueue();
+
                 break;
             case SHUFFLE_MODE_NONE:
-                this.shuffleMode = shuffleMode;
                 String currentSongId = getCurrentSong().id;
-                playingQueue = new ArrayList<>(originalPlayingQueue);
                 int newPosition = 0;
-                for (Song song : getPlayingQueue()) {
-                    if (song.id == currentSongId) {
-                        newPosition = getPlayingQueue().indexOf(song);
-                    }
+
+                Optional<Song> currentSong = playingQueue.stream()
+                        .filter(song -> song.id.equals(currentSongId))
+                        .findFirst();
+
+                if (currentSong.isPresent()) {
+                    newPosition = playingQueue.indexOf(currentSong.get());
                 }
 
+                shuffledQueue = new ArrayList<>(playingQueue);
+
                 position = newPosition;
+                this.shuffleMode = shuffleMode;
                 break;
         }
 
@@ -153,9 +155,28 @@ public class QueueManager {
         callbacks.onQueueChanged();
     }
 
+    private void shuffleQueue() {
+        if (shuffleMode == SHUFFLE_MODE_SHUFFLE) {
+            this.shuffledQueue = new ArrayList<>(playingQueue);
+
+            if (!shuffledQueue.isEmpty()) {
+                if (getPosition() >= 0) {
+                    Song song = shuffledQueue.remove(getPosition());
+
+                    Collections.shuffle(shuffledQueue);
+                    shuffledQueue.add(0, song);
+                } else {
+                    Collections.shuffle(shuffledQueue);
+                }
+            }
+
+            position = 0;
+        }
+    }
+
     public void addSong(int position, Song song) {
         playingQueue.add(position, song);
-        originalPlayingQueue.add(position, song);
+        shuffledQueue.add(position, song);
 
         resetCurrentSong = false;
         callbacks.onQueueChanged();
@@ -163,7 +184,7 @@ public class QueueManager {
 
     public void addSong(Song song) {
         playingQueue.add(song);
-        originalPlayingQueue.add(song);
+        shuffledQueue.add(song);
 
         resetCurrentSong = false;
         callbacks.onQueueChanged();
@@ -171,7 +192,7 @@ public class QueueManager {
 
     public void addSongs(int position, List<Song> songs) {
         playingQueue.addAll(position, songs);
-        originalPlayingQueue.addAll(position, songs);
+        shuffledQueue.addAll(position, songs);
 
         resetCurrentSong = false;
         callbacks.onQueueChanged();
@@ -179,7 +200,7 @@ public class QueueManager {
 
     public void addSongs(List<Song> songs) {
         playingQueue.addAll(songs);
-        originalPlayingQueue.addAll(songs);
+        shuffledQueue.addAll(songs);
 
         resetCurrentSong = false;
         callbacks.onQueueChanged();
@@ -188,9 +209,9 @@ public class QueueManager {
     public void removeSong(int position) {
         if (getShuffleMode() == SHUFFLE_MODE_NONE) {
             playingQueue.remove(position);
-            originalPlayingQueue.remove(position);
+            shuffledQueue.remove(position);
         } else {
-            originalPlayingQueue.remove(playingQueue.remove(position));
+            playingQueue.remove(shuffledQueue.remove(position));
         }
 
         int currentPosition = getPosition();
@@ -209,12 +230,8 @@ public class QueueManager {
         if (from == to) return;
 
         final int currentPosition = getPosition();
-        Song songToMove = playingQueue.remove(from);
-        playingQueue.add(to, songToMove);
-        if (getShuffleMode() == SHUFFLE_MODE_NONE) {
-            Song tmpSong = originalPlayingQueue.remove(from);
-            originalPlayingQueue.add(to, tmpSong);
-        }
+        Song songToMove = getPlayingQueue().remove(from);
+        getPlayingQueue().add(to, songToMove);
 
         if (from > currentPosition && to <= currentPosition) {
             position = currentPosition + 1;
@@ -230,7 +247,7 @@ public class QueueManager {
 
     public void clearQueue() {
         playingQueue.clear();
-        originalPlayingQueue.clear();
+        shuffledQueue.clear();
 
         position = 0;
         callbacks.onQueueChanged();
@@ -264,7 +281,7 @@ public class QueueManager {
         restoredProgress = PreferenceUtil.getInstance(context).getProgress();
 
         playingQueue = new ArrayList<>(App.getDatabase().queueSongDao().getQueue(0));
-        originalPlayingQueue = new ArrayList<>(App.getDatabase().queueSongDao().getQueue(1));
+        shuffledQueue = new ArrayList<>(App.getDatabase().queueSongDao().getQueue(1));
 
         shuffleMode = PreferenceUtil.getInstance(context).getShuffle();
         repeatMode = PreferenceUtil.getInstance(context).getRepeat();
@@ -283,7 +300,7 @@ public class QueueManager {
 
         App.getDatabase().queueSongDao().deleteQueueSongs();
         App.getDatabase().queueSongDao().setQueue(new ArrayList<>(playingQueue), 0);
-        App.getDatabase().queueSongDao().setQueue(new ArrayList<>(originalPlayingQueue), 1);
+        App.getDatabase().queueSongDao().setQueue(new ArrayList<>(shuffledQueue), 1);
     }
 
     public int getRestoredProgress() {

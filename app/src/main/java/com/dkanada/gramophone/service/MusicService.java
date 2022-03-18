@@ -39,7 +39,6 @@ import com.dkanada.gramophone.BuildConfig;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.glide.BlurTransformation;
 import com.dkanada.gramophone.glide.CustomGlideRequest;
-import com.dkanada.gramophone.helper.ShuffleHelper;
 import com.dkanada.gramophone.model.Playlist;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.service.notifications.PlayingNotification;
@@ -569,19 +568,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         uiThreadHandler.post(runnable);
     }
 
-    // FIXME This will be refactored and partly moved to QueueManager in a subsequent PR
     public void openQueue(@Nullable final List<Song> playingQueue, final int startPosition, final boolean startPlaying) {
         if (playingQueue != null && !playingQueue.isEmpty() && startPosition >= 0 && startPosition < playingQueue.size()) {
-            queueManager.originalPlayingQueue = new ArrayList<>(playingQueue);
-            queueManager.playingQueue = new ArrayList<>(queueManager.originalPlayingQueue);
-
-            int position = startPosition;
-            if (queueManager.getShuffleMode() == QueueManager.SHUFFLE_MODE_SHUFFLE) {
-                ShuffleHelper.makeShuffleList(queueManager.playingQueue, startPosition);
-                position = 0;
-            }
-
-            queueManager.setPlayingQueueAndPosition(queueManager.playingQueue, queueManager.originalPlayingQueue, startPosition);
+            queueManager.setPlayingQueueAndPosition(playingQueue, startPosition);
             if (startPlaying) play();
         }
     }
@@ -713,7 +702,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             }
 
             switch (msg.what) {
-                case TRACK_ENDED:
+                /*case TRACK_ENDED:
                     // FIXME This isn't used anywhere. This means releaseWakeLock() is never called
 
                     // if there is a timer finished, don't continue
@@ -727,6 +716,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
                     service.releaseWakeLock();
                     break;
+                 */
             }
         }
     }
