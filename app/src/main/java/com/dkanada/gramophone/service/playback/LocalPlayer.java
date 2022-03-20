@@ -147,14 +147,21 @@ public class LocalPlayer implements Playback {
         List<String> containers = PreferenceUtil.getInstance(context).getDirectPlayCodecs().stream()
                 .map(codec -> codec.container.toLowerCase(Locale.ROOT))
                 .collect(Collectors.toList());
+
         List<String> codecs = PreferenceUtil.getInstance(context).getDirectPlayCodecs().stream()
                 .map(codec -> codec.codec.toLowerCase(Locale.ROOT))
                 .collect(Collectors.toList());
+
         String maxBitrate = PreferenceUtil.getInstance(context).getMaximumBitrate();
 
         MediaItem mediaItem;
 
-        if (uri.toString().contains("file://") || (containers.contains(song.container.toLowerCase(Locale.ROOT)) && codecs.contains(song.codec.toLowerCase(Locale.ROOT)) && song.bitRate <= Integer.parseInt(maxBitrate))) {
+        boolean shouldDirectPlay =
+                containers.contains(song.container.toLowerCase(Locale.ROOT)) &&
+                codecs.contains(song.codec.toLowerCase(Locale.ROOT)) &&
+                song.bitRate <= Integer.parseInt(maxBitrate);
+
+        if (uri.toString().contains("file://") || shouldDirectPlay || !song.supportsTranscoding) {
             mediaItem = new MediaItem.Builder()
                     .setUri(uri)
                     .setMediaId(song.id)

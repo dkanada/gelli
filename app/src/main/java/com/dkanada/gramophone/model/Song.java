@@ -42,6 +42,8 @@ public class Song implements Parcelable {
     public String container;
     public String codec;
 
+    public boolean supportsTranscoding;
+
     public int sampleRate;
     public int bitRate;
     public int bitDepth;
@@ -88,6 +90,8 @@ public class Song implements Parcelable {
 
             this.container = source.getContainer();
             this.bitRate = source.getBitrate() != null ? source.getBitrate() : 0;
+
+            this.supportsTranscoding = source.getSupportsTranscoding();
 
             if (source.getMediaStreams() != null && source.getMediaStreams().size() != 0) {
                 MediaStream stream = source.getMediaStreams().get(0);
