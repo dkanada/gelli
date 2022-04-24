@@ -108,13 +108,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     public static final int PREPARE_NEXT = 4;
     public static final int SET_POSITION = 5;
 
-    public static final int SHUFFLE_MODE_NONE = 0;
-    public static final int SHUFFLE_MODE_SHUFFLE = 1;
-
-    public static final int REPEAT_MODE_NONE = 0;
-    public static final int REPEAT_MODE_ALL = 1;
-    public static final int REPEAT_MODE_THIS = 2;
-
     public static final int SAVE_QUEUE = 0;
     public static final int LOAD_QUEUE = 9;
 
@@ -128,14 +121,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private Playback playback;
 
-    private List<Song> playingQueue = new ArrayList<>();
-    private List<Song> originalPlayingQueue = new ArrayList<>();
-
-    private int position = -1;
-    private int nextPosition = -1;
-
-    private int shuffleMode;
-    private int repeatMode;
+    public QueueManager queueManager;
 
     private boolean notHandledMetaChangedForCurrentTrack;
     private boolean queuesRestored;
@@ -153,6 +139,25 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     private HandlerThread playerHandlerThread;
     private HandlerThread progressHandlerThread;
     private HandlerThread queueHandlerThread;
+
+    public final QueueManager.QueueCallbacks queueCallbacks = new QueueManager.QueueCallbacks() {
+        @Override
+        public void onQueueChanged() {
+            notifyChange(QUEUE_CHANGED);
+        }
+
+        @Override
+        public void onRepeatModeChanged() {
+            notifyChange(REPEAT_MODE_CHANGED);
+            // FIXME This call will be removed in a subsequent PR
+            prepareNext();
+        }
+
+        @Override
+        public void onShuffleModeChanged() {
+            notifyChange(SHUFFLE_MODE_CHANGED);
+        }
+    };
 
     private final BroadcastReceiver becomingNoisyReceiver = new BroadcastReceiver() {
         @Override
@@ -201,6 +206,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         playback = new LocalPlayer(this);
         playback.setCallbacks(this);
+
+        queueManager = new QueueManager(this, queueCallbacks);
 
         playerHandlerThread = new HandlerThread(PlaybackHandler.class.getName());
         playerHandlerThread.start();
@@ -299,14 +306,14 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                         break;
                     case ACTION_PLAY_PLAYLIST:
                         Playlist playlist = intent.getParcelableExtra(INTENT_EXTRA_PLAYLIST);
-                        int shuffleMode = intent.getIntExtra(INTENT_EXTRA_SHUFFLE, getShuffleMode());
+                        int shuffleMode = intent.getIntExtra(INTENT_EXTRA_SHUFFLE, queueManager.getShuffleMode());
                         if (playlist != null) {
                             List<Song> playlistSongs = new ArrayList<>();
                             if (!playlistSongs.isEmpty()) {
-                                if (shuffleMode == SHUFFLE_MODE_SHUFFLE) {
+                                if (shuffleMode == QueueManager.SHUFFLE_MODE_SHUFFLE) {
                                     int startPosition = new Random().nextInt(playlistSongs.size());
                                     openQueue(playlistSongs, startPosition, true);
-                                    setShuffleMode(shuffleMode);
+                                    queueManager.setShuffleMode(shuffleMode);
                                 } else {
                                     openQueue(playlistSongs, 0, true);
                                 }
@@ -373,33 +380,23 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                     service.restoreQueuesAndPositionIfNecessary();
                     break;
                 case SAVE_QUEUE:
-                    service.saveQueue();
+                    service.queueManager.saveQueue();
                     break;
             }
         }
-    }
-
-    private void saveQueue() {
-        // copy queues by value to avoid concurrent modification exceptions from database
-        App.getDatabase().songDao().deleteSongs();
-        App.getDatabase().songDao().insertSongs(new ArrayList<>(playingQueue));
-
-        App.getDatabase().queueSongDao().deleteQueueSongs();
-        App.getDatabase().queueSongDao().setQueue(new ArrayList<>(playingQueue), 0);
-        App.getDatabase().queueSongDao().setQueue(new ArrayList<>(originalPlayingQueue), 1);
     }
 
     public void saveState() {
         queueHandler.removeMessages(SAVE_QUEUE);
         queueHandler.sendEmptyMessage(SAVE_QUEUE);
 
-        PreferenceUtil.getInstance(this).setPosition(getPosition());
+        PreferenceUtil.getInstance(this).setPosition(queueManager.position);
         PreferenceUtil.getInstance(this).setProgress(getSongProgressMillis());
     }
 
     private void restoreState() {
-        shuffleMode = PreferenceUtil.getInstance(this).getShuffle();
-        repeatMode = PreferenceUtil.getInstance(this).getRepeat();
+        queueManager.shuffleMode = PreferenceUtil.getInstance(this).getShuffle();
+        queueManager.repeatMode = PreferenceUtil.getInstance(this).getRepeat();
 
         notifyChange(SHUFFLE_MODE_CHANGED);
         notifyChange(REPEAT_MODE_CHANGED);
@@ -408,8 +405,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         queueHandler.sendEmptyMessage(LOAD_QUEUE);
     }
 
+    // FIXME This will be refactored and partly moved to QueueManager in a subsequent PR
     private synchronized void restoreQueuesAndPositionIfNecessary() {
-        if (!queuesRestored && playingQueue.isEmpty()) {
+        if (!queuesRestored && queueManager.getPlayingQueue().isEmpty()) {
             List<Song> restoredQueue = App.getDatabase().queueSongDao().getQueue(0);
             List<Song> restoredOriginalQueue = App.getDatabase().queueSongDao().getQueue(1);
 
@@ -417,10 +415,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             int restoredProgress = PreferenceUtil.getInstance(this).getProgress();
 
             if (restoredQueue.size() > 0 && restoredQueue.size() == restoredOriginalQueue.size() && restoredPosition != -1) {
-                this.originalPlayingQueue = restoredOriginalQueue;
-                this.playingQueue = restoredQueue;
+                queueManager.originalPlayingQueue = restoredOriginalQueue;
+                queueManager.playingQueue = restoredQueue;
 
-                position = restoredPosition;
+                queueManager.position = restoredPosition;
                 openCurrent();
 
                 if (restoredProgress > 0) seek(restoredProgress);
@@ -463,17 +461,14 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         return playback != null && playback.isLoading();
     }
 
-    public int getPosition() {
-        return position;
-    }
 
     public void playNextSong(boolean force) {
-        playSongAt(getNextPosition(force));
+        playSongAt(queueManager.getNextPosition(force));
     }
 
     private void openTrackAndPrepareNextAt(int position) {
         synchronized (this) {
-            this.position = position;
+            queueManager.position = position;
 
             openCurrent();
             playback.start();
@@ -485,9 +480,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void openCurrent() {
         synchronized (this) {
-            if (getCurrentSong() == null) return;
+            if (queueManager.getCurrentSong() == null) return;
 
-            playback.setDataSource(getCurrentSong());
+            playback.setDataSource(queueManager.getCurrentSong());
         }
     }
 
@@ -498,10 +493,10 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     private void prepareNextImpl() {
         synchronized (this) {
-            if (getCurrentSong() == null) return;
+            if (queueManager.getCurrentSong() == null) return;
 
-            nextPosition = getNextPosition(false);
-            playback.queueDataSource(getSongAt(nextPosition));
+            queueManager.nextPosition = queueManager.getNextPosition(false);
+            playback.queueDataSource(queueManager.getSongAt(queueManager.nextPosition));
         }
     }
 
@@ -516,7 +511,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void updateNotification() {
-        if (playingNotification != null && getCurrentSong() != null) {
+        if (playingNotification != null && queueManager.getCurrentSong() != null) {
             playingNotification.update();
         }
     }
@@ -531,7 +526,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
     @SuppressLint("CheckResult")
     private void updateMediaSessionMetadata() {
-        final Song song = getCurrentSong();
+        final Song song = queueManager.getCurrentSong();
 
         if (song == null) {
             mediaSession.setMetadata(null);
@@ -544,12 +539,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, song.albumName)
             .putString(MediaMetadataCompat.METADATA_KEY_TITLE, song.title)
             .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, song.duration)
-            .putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, getPosition() + 1)
+            .putLong(MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER, queueManager.position + 1)
             .putLong(MediaMetadataCompat.METADATA_KEY_YEAR, song.year)
             .putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, null);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            metaData.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, getPlayingQueue().size());
+            metaData.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, queueManager.getPlayingQueue().size());
         }
 
         if (PreferenceUtil.getInstance(this).getShowAlbumCover()) {
@@ -598,80 +593,16 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         uiThreadHandler.post(runnable);
     }
 
-    public Song getCurrentSong() {
-        return getSongAt(getPosition());
-    }
-
-    public Song getSongAt(int position) {
-        if (position >= 0 && position < getPlayingQueue().size()) {
-            return getPlayingQueue().get(position);
-        }
-
-        return null;
-    }
-
-    public int getNextPosition(boolean force) {
-        int position = getPosition() + 1;
-        switch (getRepeatMode()) {
-            case REPEAT_MODE_ALL:
-                if (isLastTrack()) {
-                    position = 0;
-                }
-                break;
-            case REPEAT_MODE_THIS:
-                if (force) {
-                    if (isLastTrack()) {
-                        position = 0;
-                    }
-                } else {
-                    position -= 1;
-                }
-                break;
-            default:
-            case REPEAT_MODE_NONE:
-                if (isLastTrack()) {
-                    position -= 1;
-                }
-                break;
-        }
-
-        return position;
-    }
-
-    private boolean isLastTrack() {
-        return getPosition() == getPlayingQueue().size() - 1;
-    }
-
-    public List<Song> getPlayingQueue() {
-        return playingQueue;
-    }
-
-    public int getRepeatMode() {
-        return repeatMode;
-    }
-
-    public void setRepeatMode(final int repeatMode) {
-        switch (repeatMode) {
-            case REPEAT_MODE_NONE:
-            case REPEAT_MODE_ALL:
-            case REPEAT_MODE_THIS:
-                this.repeatMode = repeatMode;
-                PreferenceUtil.getInstance(this).setRepeat(repeatMode);
-                prepareNext();
-                notifyChange(REPEAT_MODE_CHANGED);
-                break;
-        }
-    }
-
+    // FIXME This will be refactored and partly moved to QueueManager in a subsequent PR
     public void openQueue(@Nullable final List<Song> playingQueue, final int startPosition, final boolean startPlaying) {
         if (playingQueue != null && !playingQueue.isEmpty() && startPosition >= 0 && startPosition < playingQueue.size()) {
             // it is important to copy the playing queue here first as we might add or remove songs later
-            originalPlayingQueue = new ArrayList<>(playingQueue);
-            this.playingQueue = new ArrayList<>(originalPlayingQueue);
+            queueManager.originalPlayingQueue = new ArrayList<>(playingQueue);
+            queueManager.playingQueue = new ArrayList<>(queueManager.originalPlayingQueue);
 
             int position = startPosition;
-            if (shuffleMode == SHUFFLE_MODE_SHUFFLE) {
-                ShuffleHelper.makeShuffleList(this.playingQueue, startPosition);
+            if (queueManager.shuffleMode == QueueManager.SHUFFLE_MODE_SHUFFLE) {
+                ShuffleHelper.makeShuffleList(queueManager.playingQueue, startPosition);
                 position = 0;
             }
 
@@ -683,84 +614,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
             notifyChange(QUEUE_CHANGED);
         }
-    }
-
-    public void addSong(int position, Song song) {
-        playingQueue.add(position, song);
-        originalPlayingQueue.add(position, song);
-        notifyChange(QUEUE_CHANGED);
-    }
-
-    public void addSong(Song song) {
-        playingQueue.add(song);
-        originalPlayingQueue.add(song);
-        notifyChange(QUEUE_CHANGED);
-    }
-
-    public void addSongs(int position, List<Song> songs) {
-        playingQueue.addAll(position, songs);
-        originalPlayingQueue.addAll(position, songs);
-        notifyChange(QUEUE_CHANGED);
-    }
-
-    public void addSongs(List<Song> songs) {
-        playingQueue.addAll(songs);
-        originalPlayingQueue.addAll(songs);
-        notifyChange(QUEUE_CHANGED);
-    }
-
-    public void removeSong(int position) {
-        if (getShuffleMode() == SHUFFLE_MODE_NONE) {
-            playingQueue.remove(position);
-            originalPlayingQueue.remove(position);
-        } else {
-            originalPlayingQueue.remove(playingQueue.remove(position));
-        }
-
-        reposition(position);
-        notifyChange(QUEUE_CHANGED);
-    }
-
-    private void reposition(int deletedPosition) {
-        int currentPosition = getPosition();
-        if (deletedPosition < currentPosition) {
-            position = currentPosition - 1;
-        } else if (deletedPosition == currentPosition) {
-            if (playingQueue.size() > deletedPosition) {
-                setPosition(position);
-            } else {
-                setPosition(position - 1);
-            }
-        }
-    }
-
-    public void moveSong(int from, int to) {
-        if (from == to) return;
-        final int currentPosition = getPosition();
-        Song songToMove = playingQueue.remove(from);
-        playingQueue.add(to, songToMove);
-        if (getShuffleMode() == SHUFFLE_MODE_NONE) {
-            Song tmpSong = originalPlayingQueue.remove(from);
-            originalPlayingQueue.add(to, tmpSong);
-        }
-
-        if (from > currentPosition && to <= currentPosition) {
-            position = currentPosition + 1;
-        } else if (from < currentPosition && to >= currentPosition) {
-            position = currentPosition - 1;
-        } else if (from == currentPosition) {
-            position = to;
-        }
-
-        notifyChange(QUEUE_CHANGED);
-    }
-
-    public void clearQueue() {
-        playingQueue.clear();
-        originalPlayingQueue.clear();
-
-        setPosition(-1);
-        notifyChange(QUEUE_CHANGED);
     }
 
     public void playSongAt(final int position) {
@@ -790,7 +643,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         synchronized (this) {
             if (!playback.isPlaying()) {
                 if (!playback.isReady()) {
-                    playSongAt(getPosition());
+                    playSongAt(queueManager.position);
                 } else {
                     playback.start();
                     if (notHandledMetaChangedForCurrentTrack) {
@@ -805,7 +658,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
     }
 
     public void playPreviousSong(boolean force) {
-        playSongAt(getPreviousPosition(force));
+        playSongAt(queueManager.getPreviousPosition(force));
     }
 
     public void back(boolean force) {
@@ -816,34 +669,6 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     }
 
-    public int getPreviousPosition(boolean force) {
-        int newPosition = getPosition() - 1;
-        switch (repeatMode) {
-            case REPEAT_MODE_ALL:
-                if (newPosition < 0) {
-                    newPosition = getPlayingQueue().size() - 1;
-                }
-                break;
-            case REPEAT_MODE_THIS:
-                if (force) {
-                    if (newPosition < 0) {
-                        newPosition = getPlayingQueue().size() - 1;
-                    }
-                } else {
-                    newPosition = getPosition();
-                }
-                break;
-            default:
-            case REPEAT_MODE_NONE:
-                if (newPosition < 0) {
-                    newPosition = 0;
-                }
-                break;
-        }
-
-        return newPosition;
-    }
-
     public int getSongProgressMillis() {
         return playback.getProgress();
     }
@@ -852,75 +677,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         return playback.getDuration();
     }
 
-    public long getQueueDurationMillis(int position) {
-        long duration = 0;
-        for (int i = position + 1; i < playingQueue.size(); i++) {
-            duration += playingQueue.get(i).duration;
-        }
-
-        return duration;
-    }
-
     public int seek(int millis) {
         synchronized (this) {
             playback.setProgress(millis);
             throttledSeekHandler.notifySeek();
             return millis;
         }
-    }
-
-    public void cycleRepeatMode() {
-        switch (getRepeatMode()) {
-            case REPEAT_MODE_NONE:
-                setRepeatMode(REPEAT_MODE_ALL);
-                break;
-            case REPEAT_MODE_ALL:
-                setRepeatMode(REPEAT_MODE_THIS);
-                break;
-            default:
-                setRepeatMode(REPEAT_MODE_NONE);
-                break;
-        }
-    }
-
-    public void toggleShuffle() {
-        if (getShuffleMode() == SHUFFLE_MODE_NONE) {
-            setShuffleMode(SHUFFLE_MODE_SHUFFLE);
-        } else {
-            setShuffleMode(SHUFFLE_MODE_NONE);
-        }
-    }
-
-    public int getShuffleMode() {
-        return shuffleMode;
-    }
-
-    public void setShuffleMode(final int shuffleMode) {
-        PreferenceUtil.getInstance(this).setShuffle(shuffleMode);
-
-        switch (shuffleMode) {
-            case SHUFFLE_MODE_SHUFFLE:
-                this.shuffleMode = shuffleMode;
-                ShuffleHelper.makeShuffleList(this.getPlayingQueue(), getPosition());
-                position = 0;
-                break;
-            case SHUFFLE_MODE_NONE:
-                this.shuffleMode = shuffleMode;
-                String currentSongId = getCurrentSong().id;
-                playingQueue = new ArrayList<>(originalPlayingQueue);
-                int newPosition = 0;
-                for (Song song : getPlayingQueue()) {
-                    if (song.id == currentSongId) {
-                        newPosition = getPlayingQueue().indexOf(song);
-                    }
-                }
-
-                position = newPosition;
-                break;
-        }
-
-        notifyChange(SHUFFLE_MODE_CHANGED);
-        notifyChange(QUEUE_CHANGED);
     }
 
     private void notifyChange(@NonNull final String what) {
@@ -950,14 +712,14 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
                 updateNotification();
                 updateMediaSessionMetadata();
                 updateMediaSessionState();
-                PreferenceUtil.getInstance(this).setPosition(getPosition());
+                PreferenceUtil.getInstance(this).setPosition(queueManager.position);
                 PreferenceUtil.getInstance(this).setProgress(getSongProgressMillis());
                 break;
             case QUEUE_CHANGED:
                 // because playing queue size might have changed
                 updateMediaSessionMetadata();
                 saveState();
-                if (playingQueue.size() > 0) {
+                if (queueManager.getPlayingQueue().size() > 0) {
                     prepareNext();
                 } else {
                     playback.pause();
@@ -1045,12 +807,12 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
             switch (msg.what) {
                 case TRACK_CHANGED:
-                    if (service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
+                    if (service.queueManager.getRepeatMode() == QueueManager.REPEAT_MODE_NONE && service.queueManager.isLastTrack()) {
                         service.pause();
                         service.seek(0);
                         service.notifyChange(STATE_CHANGED);
                     } else {
-                        service.position = service.nextPosition;
+                        service.queueManager.position = service.queueManager.nextPosition;
                         service.prepareNextImpl();
                         service.notifyChange(META_CHANGED);
                         service.notifyChange(QUEUE_CHANGED);
@@ -1059,7 +821,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
                 case TRACK_ENDED:
                     // if there is a timer finished, don't continue
-                    if (service.pendingQuit || service.getRepeatMode() == REPEAT_MODE_NONE && service.isLastTrack()) {
+                    if (service.pendingQuit || service.queueManager.getRepeatMode() == QueueManager.REPEAT_MODE_NONE && service.queueManager.isLastTrack()) {
                         service.notifyChange(STATE_CHANGED);
                         service.seek(0);
                         if (service.pendingQuit) {
@@ -1136,7 +898,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         @Override
         public void handleMessage(@NonNull final Message msg) {
-            Song song = mService.get().getCurrentSong();
+            Song song = mService.get().queueManager.getCurrentSong();
             if (song == null) return;
 
             switch (msg.what) {
@@ -1160,7 +922,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         public void onNext() {
             PlaybackStartInfo startInfo = new PlaybackStartInfo();
 
-            startInfo.setItemId(mService.get().getCurrentSong().id);
+            startInfo.setItemId(mService.get().queueManager.getCurrentSong().id);
             startInfo.setVolumeLevel(mService.get().playback.getVolume());
             startInfo.setCanSeek(true);
             startInfo.setIsPaused(false);
@@ -1171,7 +933,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         public void onProgress() {
             PlaybackProgressInfo progressInfo = new PlaybackProgressInfo();
-            Song current = mService.get().getCurrentSong();
+            Song current = mService.get().queueManager.getCurrentSong();
             String user = App.getApiClient().getCurrentUserId();
             Date time = new Date(System.currentTimeMillis());
 
@@ -1199,7 +961,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             PlaybackStopInfo info = new PlaybackStopInfo();
             long progress = mService.get().getSongProgressMillis();
 
-            info.setItemId(mService.get().getCurrentSong().id);
+            info.setItemId(mService.get().queueManager.getCurrentSong().id);
             info.setPositionTicks(progress * 10000);
 
             if (task != null) task.cancel(true);
