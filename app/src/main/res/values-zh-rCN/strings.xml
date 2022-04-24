@@ -1,138 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="what_do_you_want_to_share">您想分享哪些内容？</string>
+    <string name="confirm_logout">您确定要注销吗?</string>
     <string name="currently_listening_to_x_by_x">当前正在播放 %2$s 的 %1$s 。</string>
     <string name="the_audio_file">音频文件</string>
+    <string name="unplayable_file">无法播放这首歌。</string>
+    <string name="error_share_file">あれれ，出现分享文件错误。</string>
+    <string name="error_version">请升级你的Jellyfin到最新版本。</string>
+
     <string name="action_share">分享</string>
     <string name="action_settings">"设置"</string>
     <string name="action_grant">授予</string>
     <string name="action_about">关于</string>
+    <string name="action_login">登录</string>
     <string name="action_add_to_favorites">添加到收藏</string>
     <string name="action_remove_from_favorites">从收藏中移除</string>
     <string name="action_search">搜索</string>
+    <string name="action_download">下载</string>
     <string name="action_play_next">作为下一首播放</string>
     <string name="action_play">播放</string>
     <string name="action_play_pause">播放/暂停</string>
     <string name="action_previous">上一首</string>
     <string name="action_next">下一首</string>
+    <string name="action_add_to_queue">添加到播放队列</string>
+    <string name="action_remove_from_queue">从播放队列删除</string>
+    <string name="action_add_to_playlist">添加到歌单</string>
     <string name="action_details">详情</string>
     <string name="action_rename">重命名</string>
     <string name="action_delete">删除</string>
+    <string name="action_go_to_artist">查看歌手</string>
+    <string name="action_go_to_album">查看专辑</string>
+    <string name="action_remove_from_playlist">从歌单删除</string>
+    <string name="action_grid_size">网格尺寸</string>
+    <string name="action_shuffle_all">随机播放所有歌曲</string>
+    <string name="action_shuffle">随机播放</string>
+    <string name="action_shuffle_album">随机播放此专辑</string>
+    <string name="action_shuffle_artist">随机播放此艺术家</string>
+    <string name="action_shuffle_playlist">随机播放此播放列表</string>
+    <string name="action_clear_queue">清除播放队列</string>
+    <string name="action_save_queue">保存播放队列</string>
+    <string name="action_sleep_timer">睡眠定时器</string>
+    <string name="action_set">设置</string>
+    <string name="action_new_playlist">新建歌单</string>
+
     <string name="albums">专辑</string>
-    <string name="artists">艺术家</string>
+    <string name="artists">歌手</string>
     <string name="genres">流派</string>
     <string name="songs">歌曲</string>
-    <string name="playlists">播放列表</string>
-    <string name="unplayable_file">\u65e0\u6cd5\u64ad\u653e\u8be5\u6b4c\u66f2\u3002</string>
+    <string name="playlists">歌单</string>
+    <string name="favorites">我喜欢</string>
+    <string name="no_playlists">无歌单</string>
+    <string name="no_albums">无专辑</string>
+    <string name="no_songs">无歌曲</string>
+    <string name="no_artists">无歌手</string>
+    <string name="no_genres">无流派</string>
+    <string name="no_results">未找到结果</string>
+    <string name="empty">空</string>
+    <string name="name">名字</string>
+    <string name="song">歌曲</string>
     <string name="album">专辑</string>
+
     <string name="label_details">详情</string>
     <string name="label_file_name">文件名</string>
     <string name="label_file_path">文件路径</string>
     <string name="label_file_size">文件大小</string>
     <string name="label_file_format">格式</string>
     <string name="label_track_length">长度</string>
-    <string name="label_bit_rate">比特率</string>
     <string name="label_sample_rate">采样率</string>
-    <string name="action_go_to_artist">查看艺术家</string>
-    <string name="action_go_to_album">查看专辑</string>
-    <string name="no_results">没有找到结果</string>
-    <string name="action_remove_from_playlist">从播放列表中移除</string>
-    <string name="action_grid_size">网格尺寸</string>
-    <string name="delete_playlist_x"><![CDATA[是否删除播放列表 <b>%1$s</b>？]]></string>
-    <string name="delete_x_playlists"><![CDATA[是否删除 <b>%1$d</b> 个播放列表？]]></string>
-    <string name="remove_song_x_from_playlist"><![CDATA[是否从播放列表中移除 <b>%1$s</b>？]]></string>
-    <string name="remove_x_songs_from_playlist"><![CDATA[是否从播放列表中移除 <b>%1$d</b> 首歌曲？]]></string>
-    <string name="remove_song_from_playlist_title">从播放列表中移除歌曲</string>
-    <string name="remove_songs_from_playlist_title">从播放列表中移除多首歌曲</string>
-    <string name="rename_playlist_title">重命名播放列表</string>
-    <string name="delete_playlist_title">删除播放列表</string>
-    <string name="delete_playlists_title">删除多个播放列表</string>
+    <string name="label_bit_rate">比特率</string>
+    <string name="label_bit_depth">比特位深</string>
+    <string name="label_channels">声道</string>
+
+    <string name="battery_optimizations_title">电池优化</string>
+    <string name="battery_optimizations_message">为了在关闭屏幕时继续播放，请关闭电池优化。</string>
+    <string name="added_title_to_queue">"添加了1首歌到播放队列"</string>
+    <string name="added_x_titles_to_queue">添加了 %1$d 首歌到播放队列</string>
+    <string name="downloading_x_songs">正在下载 %1$d 首歌.</string>
+    <string name="delete_playlist_x"><![CDATA[是否删除歌单 <b>%1$s</b>？]]></string>
+    <string name="delete_x_playlists"><![CDATA[是否删除 <b>%1$d</b> 个歌单？]]></string>
+    <string name="remove_song_x_from_playlist"><![CDATA[是否从歌单中移除 <b>%1$s</b>？]]></string>
+    <string name="remove_x_songs_from_playlist"><![CDATA[是否从歌单中移除 <b>%1$d</b> 首歌曲？]]></string>
+    <string name="remove_song_from_playlist_title">从歌单中移除歌曲</string>
+    <string name="remove_songs_from_playlist_title">从歌单中移除多首歌曲</string>
+    <string name="rename_playlist_title">重命名歌单</string>
+    <string name="delete_playlist_title">删除歌单</string>
+    <string name="delete_playlists_title">删除多个歌单</string>
     <string name="select_all_title">全选</string>
-    <string name="action_shuffle_all">随机播放所有歌曲</string>
-    <string name="action_shuffle_album">随机播放此专辑</string>
-    <string name="action_shuffle_artist">随机播放此艺术家</string>
-    <string name="action_shuffle_playlist">随机播放此播放列表</string>
+
+    <string name="action_sort_order">正序/倒序</string>
+    <string name="action_sort_method">排序方式</string>
+    <string name="colored_footers">多彩标签</string>
+
     <string name="light_theme_name">浅色</string>
-    <string name="dark_theme_name">暗色</string>
+    <string name="dark_theme_name">深色</string>
+    <string name="black_theme_name">黑色</string>
+
+    <string name="card">卡片</string>
+    <string name="flat">扁平</string>
+
     <string name="pref_header_colors">颜色</string>
-    <string name="pref_header_now_playing_screen">正在播放界面</string>
-    <string name="pref_title_theme">全局主题</string>
+    <string name="pref_header_now_playing_screen">正在播放</string>
     <string name="pref_header_audio">声音</string>
+    <string name="pref_header_cache">缓存</string>
     <string name="pref_header_library">媒体库</string>
     <string name="pref_header_lock_screen">锁屏</string>
     <string name="pref_header_notification">通知</string>
-    <string name="pref_title_colored_shortcuts">着色应用快捷方式</string>
-    <string name="pref_title_show_album_art">显示专辑封面</string>
-    <string name="pref_title_blur_album_art">专辑封面模糊化</string>
-    <string name="pref_title_colored_notification">启用通知背景着色</string>
-    <string name="pref_title_classic_notification">经典通知样式</string>
-    <string name="pref_title_remember_tab">记住最后打开页面</string>
-    <string name="delete_action">删除</string>
-    <string name="remove_action">移除</string>
-    <string name="rename_action">重命名</string>
-    <string name="create_action">创建</string>
-    <string name="reset_action">重置</string>
-    <string name="x_selected">已选择 %1$d</string>
+
+    <string name="pref_title_direct_play_codecs">可直接播放编码</string>
+    <string name="pref_title_categories">媒体库类别</string>
     <string name="pref_title_primary_color">主色调</string>
     <string name="pref_title_accent_color">强调色</string>
+    <string name="pref_title_theme">主题</string>
+    <string name="pref_title_now_playing_appearance">外观</string>
+    <string name="pref_title_colored_shortcuts">多彩应用快捷方式</string>
+    <string name="pref_title_show_album_art">显示专辑封面</string>
+    <string name="pref_title_blur_album_art">专辑封面模糊化</string>
+    <string name="pref_title_transcode_codec">转码设置</string>
+    <string name="pref_title_maximum_bitrate">最大比特率</string>
+    <string name="pref_title_classic_notification">经典通知样式</string>
+    <string name="pref_title_colored_notification">启用通知背景着色</string>
+    <string name="pref_title_remember_tab">记住最后打开页面</string>
+    <string name="pref_title_remember_shuffle">保持随机</string>
+    <string name="pref_title_remember_queue">存储播放队列</string>
+    <string name="pref_title_page_size">页面大小</string>
+    <string name="pref_title_download_location">下载位置</string>
+    <string name="pref_title_image_cache_size">图片缓存大小</string>
+    <string name="pref_title_media_cache_size">媒体缓存大小</string>
+
     <string name="pref_summary_primary_color">主题主色调，默认为靛蓝色。</string>
     <string name="pref_summary_accent_color">主题强调色，默认为粉色。</string>
-    <string name="no_playlists">没有播放列表</string>
-    <string name="no_albums">没有专辑</string>
-    <string name="no_songs">没有歌曲</string>
-    <string name="no_artists">没有艺术家</string>
-    <string name="no_genres">没有流派</string>
-    <string name="empty">空</string>
-    <string name="song">歌曲</string>
     <string name="pref_summary_show_album_art">使用当前播放曲目的专辑封面作为锁屏壁纸。</string>
     <string name="pref_summary_blur_album_art">模糊化显示锁屏界面内的专辑封面。此功能或与第三方应用及桌面插件产生冲突。</string>
     <string name="pref_summary_classic_notification">使用经典通知样式。</string>
     <string name="pref_summary_colored_notification">"\u4f7f\u7528\u4e0e\u4e13\u8f91\u5c01\u9762\u76f8\u5339\u914d\u7684\u989c\u8272\u7740\u8272\u901a\u77e5\u80cc\u666f\u8272\u3002"</string>
+    <string name="pref_summary_remember_shuffle">为播放队列选择新的歌曲列表时，随机播放模式将保持打开状态。</string>
+    <string name="pref_summary_remember_queue">关闭应用程序时保存队列，以便可以在再次打开时继续播放。</string>  
     <string name="pref_summary_colored_shortcuts">用主色调着色应用快捷方式。</string>
     <string name="pref_summary_remember_tab">启动时跳转到最后打开页面</string>
+    <string name="pref_summary_categories">配置媒体库类别可见性和顺序。</string>
+    <string name="pref_summary_direct_play_codecs">关闭直接播放的编码将强制转码。</string>
+
+    <string name="delete_action">删除</string>
+    <string name="remove_action">移除</string>
+    <string name="rename_action">重命名</string>
+    <string name="create_action">新建</string>
+    <string name="reset_action">重置</string>
+
     <string name="last_added">最近添加</string>
     <string name="my_top_tracks">最喜爱的歌曲</string>
-    <string name="action_sleep_timer">睡眠定时器</string>
-    <string name="action_set">设置</string>
-    <string name="cancel_current_timer">取消当前定时器</string>
-    <string name="sleep_timer_canceled">定时器已取消。</string>
-    <string name="sleep_timer_set">音乐将在 %d 分钟后停止播放。</string>
-    <string name="colored_footers">着色页脚</string>
-    <string name="special_thanks_to">特别鸣谢</string>
-    <string name="permissions_denied">未能获取权限。</string>
-    <string name="permission_external_storage_denied">访问外部存储权限被拒绝。</string>
+
+    <string name="grid_size_1" translatable="false">1</string>
+    <string name="grid_size_2" translatable="false">2</string>
+    <string name="grid_size_3" translatable="false">3</string>
+    <string name="grid_size_4" translatable="false">4</string>
+    <string name="grid_size_5" translatable="false">5</string>
+    <string name="grid_size_6" translatable="false">6</string>
+    <string name="grid_size_7" translatable="false">7</string>
+    <string name="grid_size_8" translatable="false">8</string>
+
     <string name="support_development">支持开发者</string>
     <string name="version">版本</string>
+    <string name="source">源码</string>
     <string name="author">作者</string>
+    <string name="website">网站</string>
     <string name="follow_on_twitter">在 Twitter 上关注</string>
     <string name="visit_website">访问网站</string>
+    <string name="report_bugs">反馈bug</string>
+    <string name="report_bugs_summary">Open a new issue for bugs or features.</string>
     <string name="translate">翻译</string>
-    <string name="translate_summary">帮助翻译 Phonograph 。</string>
+    <string name="translate_summary">帮助翻译Gelli。</string>
     <string name="rate_on_google_play">评分</string>
-    <string name="rate_on_google_play_summary">如果喜欢 Phonograph 请在 Play Store 中留下您的好评。</string>
+    <string name="rate_on_google_play_summary">如果喜欢 Gelli 请在 Play Store 中留下您的好评。</string>
     <string name="donate">捐赠</string>
     <string name="donate_summary">如果您喜欢我的作品，也可以在这里来选择捐赠我。</string>
+    <string name="special_thanks_to">特别鸣谢</string>
+
     <string name="aidan_follestad_summary">主题引擎以及其他一些优秀功能。</string>
     <string name="maarten_corpel_summary">Play Store 标题图以及空专辑封面的设计方案。</string>
     <string name="aleksandar_tesic_summary">在设计风格上的帮助。</string>
-    <string name="website">网站</string>
-    <string name="up_next">即将播放</string>
-    <string name="pref_title_now_playing_appearance">外观</string>
+    <string name="eugene_cheung_summary">因他对源代码的贡献。</string>
+    <string name="adrian_summary">以新增专辑封面设计。</string>
+
+    <string name="widget_big">专辑</string>
+    <string name="widget_classic">经典</string>
+    <string name="widget_card">卡片</string>
+
+    <string name="select">选择</string>
+    <string name="add">添加</string>
     <string name="login">登录</string>
+    <string name="disable">禁用</string>
+    <string name="ignore">忽略</string>
+    <string name="sponsor">赞助</string>
+    <string name="logout">登出</string>
     <string name="username">用户名</string>
     <string name="password">密码</string>
+    <string name="server">服务器</string>
+    <string name="unlimited">无限</string>
+    <string name="up_next">即将播放</string>
+    <string name="x_selected">已选择 %1$d</string>
+
     <string name="playlist_is_empty">播放列表为空</string>
     <string name="playing_notification_description">正在播放通知提供了播放/暂停等便捷操作。</string>
     <string name="playing_notification_name">正在播放通知</string>
-    <string name="eugene_cheung_summary">因他对源代码的贡献。</string>
-    <string name="adrian_summary">以新增专辑封面设计。</string>
-    <string name="pref_title_categories">媒体库类别</string>
-    <string name="pref_summary_categories">配置媒体库类别可见性和顺序。</string>
     <string name="you_have_to_select_at_least_one_category">您必需选择至少一个类别。</string>
-    <string name="action_sort_order">排序方式</string>
+    <string name="permissions_denied">未能获取权限。</string>
+    <string name="permission_external_storage_denied">没有访问外部存储权限。</string>
+
     <string name="sort_order_ascending">按首字符（正序）</string>
     <string name="sort_order_descending">按首字符（倒序）</string>
+
+    <string name="sort_method_name">歌名</string>
     <string name="sort_method_artist">艺术家</string>
     <string name="sort_method_album">专辑</string>
     <string name="sort_method_year">年份</string>
+    <string name="sort_method_added">添加日期</string>
+    <string name="sort_method_random">随机</string>
+
+    <string name="finish_current_music_sleep_timer">播放完最后一曲</string>
+    <string name="cancel_current_timer">取消当前定时器</string>
+    <string name="sleep_timer_canceled">定时器已取消。</string>
+    <string name="sleep_timer_set">音乐将在 %d 分钟后停止播放。</string>
+    <string name="error_unreachable_server">无法访问服务器</string>
+    <string name="error_login_credentials">登录认证失败。</string>
+    <string name="error_empty_server">请填入服务器地址。</string>
+    <string name="error_unexpected">一个意料之外的问题发生了。</string>
+    <string name="error_empty_username">请填入用户名</string>
+
 </resources>
