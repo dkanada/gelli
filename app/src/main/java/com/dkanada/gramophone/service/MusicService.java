@@ -547,13 +547,13 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             metaData.putLong(MediaMetadataCompat.METADATA_KEY_NUM_TRACKS, queueManager.getPlayingQueue().size());
         }
 
-        if (PreferenceUtil.getInstance(this).getShowAlbumCover()) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q && PreferenceUtil.getInstance(this).getShowAlbumCover()) {
             final Point screenSize = Util.getScreenSize(MusicService.this);
             final RequestBuilder<Bitmap> request = CustomGlideRequest.Builder
                 .from(MusicService.this, song.primary, song.blurHash)
                 .bitmap().build();
 
-            if (PreferenceUtil.getInstance(this).getBlurAlbumCover()) {
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P && PreferenceUtil.getInstance(this).getBlurAlbumCover()) {
                 request.transform(new BlurTransformation.Builder(MusicService.this).build());
             }
 
