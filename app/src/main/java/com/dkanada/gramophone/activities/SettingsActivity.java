@@ -77,6 +77,8 @@ public class SettingsActivity extends AbsBaseActivity {
             final Preference categoryPreference = findPreference(PreferenceUtil.CATEGORIES);
             final Preference nowPlayingPreference = findPreference(PreferenceUtil.NOW_PLAYING_SCREEN);
             final Preference downloadLocationPreference = findPreference(PreferenceUtil.LOCATION_DOWNLOAD);
+            final Preference showAlbumCoverPreference = findPreference(PreferenceUtil.SHOW_ALBUM_COVER);
+            final Preference blurAlbumCoverPreference = findPreference(PreferenceUtil.BLUR_ALBUM_COVER);
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 classicNotification.setEnabled(false);
@@ -87,8 +89,13 @@ public class SettingsActivity extends AbsBaseActivity {
                 colorAppShortcuts.setEnabled(false);
             }
 
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                blurAlbumCoverPreference.setEnabled(false);
+            }
+
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q) {
                 downloadLocationPreference.setEnabled(false);
+                showAlbumCoverPreference.setEnabled(false);
             }
 
             categoryPreference.setOnPreferenceClickListener(preference -> {
