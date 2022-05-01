@@ -103,12 +103,6 @@ public class MusicPlayerRemote {
         }
     }
 
-    public static void setPosition(final int position) {
-        if (musicService != null) {
-            musicService.setPosition(position);
-        }
-    }
-
     public static void pauseSong() {
         if (musicService != null) {
             musicService.pause();
@@ -148,7 +142,7 @@ public class MusicPlayerRemote {
     }
 
     public static void openQueue(final List<Song> queue, final int startPosition, final boolean startPlaying) {
-        if (!tryToHandleOpenPlayingQueue(queue, startPosition, startPlaying) && musicService != null) {
+        if (!tryToHandleOpenPlayingQueue(queue, startPosition) && musicService != null) {
             musicService.openQueue(queue, startPosition, startPlaying);
             if (!PreferenceUtil.getInstance(musicService).getRememberShuffle()){
                 setShuffleMode(QueueManager.SHUFFLE_MODE_NONE);
@@ -162,19 +156,15 @@ public class MusicPlayerRemote {
             startPosition = new Random().nextInt(queue.size());
         }
 
-        if (!tryToHandleOpenPlayingQueue(queue, startPosition, startPlaying) && musicService != null) {
+        if (!tryToHandleOpenPlayingQueue(queue, startPosition) && musicService != null) {
             openQueue(queue, startPosition, startPlaying);
             setShuffleMode(QueueManager.SHUFFLE_MODE_SHUFFLE);
         }
     }
 
-    private static boolean tryToHandleOpenPlayingQueue(final List<Song> queue, final int startPosition, final boolean startPlaying) {
+    private static boolean tryToHandleOpenPlayingQueue(final List<Song> queue, final int startPosition) {
         if (getPlayingQueue() == queue) {
-            if (startPlaying) {
-                playSongAt(startPosition);
-            } else {
-                setPosition(startPosition);
-            }
+            playSongAt(startPosition);
 
             return true;
         }

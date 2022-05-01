@@ -215,9 +215,9 @@ public class QueueManager {
             position = currentPosition - 1;
         } else if (deletedPosition == currentPosition) {
             if (playingQueue.size() > deletedPosition) {
-                MusicPlayerRemote.setPosition(position);
+                MusicPlayerRemote.playSongAt(position);
             } else {
-                MusicPlayerRemote.setPosition(position - 1);
+                MusicPlayerRemote.playSongAt(position - 1);
             }
         }
     }
