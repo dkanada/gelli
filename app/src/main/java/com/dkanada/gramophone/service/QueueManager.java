@@ -294,14 +294,7 @@ public class QueueManager {
 
     public void saveQueue() {
         PreferenceUtil.getInstance(context).setPosition(position);
-
-        // copy queues by value to avoid concurrent modification exceptions from database
-        App.getDatabase().songDao().deleteSongs();
-        App.getDatabase().songDao().insertSongs(new ArrayList<>(playingQueue));
-
-        App.getDatabase().queueSongDao().deleteQueueSongs();
-        App.getDatabase().queueSongDao().setQueue(new ArrayList<>(playingQueue), 0);
-        App.getDatabase().queueSongDao().setQueue(new ArrayList<>(shuffledQueue), 1);
+        App.getDatabase().queueSongDao().updateQueues(playingQueue, shuffledQueue);
     }
 
     public int getRestoredProgress() {
