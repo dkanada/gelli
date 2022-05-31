@@ -39,6 +39,7 @@ public class MusicUtil {
         builder.append(song.id);
         builder.append("/universal");
         builder.append("?UserId=").append(apiClient.getCurrentUserId());
+        builder.append("&PlaySessionId=").append(song.id.hashCode());
         builder.append("&DeviceId=").append(apiClient.getDeviceId());
 
         // web client maximum is 12444445 and 320kbps is 320000

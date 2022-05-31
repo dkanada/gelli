@@ -909,6 +909,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             progressInfo.setPositionTicks(progress * 10000);
             progressInfo.setVolumeLevel(mService.get().playback.getVolume());
             progressInfo.setIsPaused(!mService.get().playback.isPlaying());
+            progressInfo.setPlaySessionId(Integer.toString(current.id.hashCode()));
             progressInfo.setCanSeek(true);
 
             App.getApiClient().ReportPlaybackProgressAsync(progressInfo, new EmptyResponse());
