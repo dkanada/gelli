@@ -1,0 +1,11 @@
+- improve audio focus support from notifications
+- remove deprecated theme helper library
+- theme improvements for cab menu
+- migrate some dependencies to kotlin
+- fix playback screen crash with certain phones
+- resolve download issues from illegal characters
+- use artist for song information
+- fix missing artist image on certain pages
+- improve chinese translations
+- resolve album art issues within notifications
+- many improvements to music playback service
