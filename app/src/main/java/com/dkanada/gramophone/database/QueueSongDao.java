@@ -45,4 +45,15 @@ public abstract class QueueSongDao {
 
         insertQueueSongs(queueSongs);
     }
+
+    @Transaction
+    public void updateQueues(List<Song> playingQueue, List<Song> shuffledQueue) {
+        // copy queues by value to avoid concurrent modification exceptions from database
+        App.getDatabase().songDao().deleteSongs();
+        App.getDatabase().songDao().insertSongs(new ArrayList<>(playingQueue));
+
+        deleteQueueSongs();
+        setQueue(new ArrayList<>(playingQueue), 0);
+        setQueue(new ArrayList<>(shuffledQueue), 1);
+    }
 }

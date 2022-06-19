@@ -111,19 +111,19 @@ public class MusicPlayerRemote {
 
     public static void playNextSong() {
         if (musicService != null) {
-            musicService.playNextSong(true);
+            musicService.playNextSong();
         }
     }
 
     public static void playPreviousSong() {
         if (musicService != null) {
-            musicService.playPreviousSong(true);
+            musicService.playPreviousSong();
         }
     }
 
     public static void back() {
         if (musicService != null) {
-            musicService.back(true);
+            musicService.back();
         }
     }
 
@@ -143,10 +143,10 @@ public class MusicPlayerRemote {
 
     public static void openQueue(final List<Song> queue, final int startPosition, final boolean startPlaying) {
         if (!tryToHandleOpenPlayingQueue(queue, startPosition) && musicService != null) {
-            musicService.openQueue(queue, startPosition, startPlaying);
-            if (!PreferenceUtil.getInstance(musicService).getRememberShuffle()){
+            if (!PreferenceUtil.getInstance(musicService).getRememberShuffle()) {
                 setShuffleMode(QueueManager.SHUFFLE_MODE_NONE);
             }
+            musicService.openQueue(queue, startPosition, startPlaying);
         }
     }
 
@@ -157,8 +157,8 @@ public class MusicPlayerRemote {
         }
 
         if (!tryToHandleOpenPlayingQueue(queue, startPosition) && musicService != null) {
-            openQueue(queue, startPosition, startPlaying);
             setShuffleMode(QueueManager.SHUFFLE_MODE_SHUFFLE);
+            openQueue(queue, startPosition, startPlaying);
         }
     }
 
