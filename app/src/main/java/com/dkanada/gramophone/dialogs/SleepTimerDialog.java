@@ -17,7 +17,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.afollestad.materialdialogs.internal.ThemeSingleton;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.databinding.DialogSleepTimerBinding;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
@@ -94,8 +93,8 @@ public class SleepTimerDialog extends DialogFragment {
         boolean finishMusic = PreferenceUtil.getInstance(getActivity()).getSleepTimerFinishMusic();
         binding.shouldFinishLastSong.setChecked(finishMusic);
 
-        binding.seekArc.setProgressColor(ThemeSingleton.get().positiveColor.getDefaultColor());
-        binding.seekArc.setThumbColor(ThemeSingleton.get().positiveColor.getDefaultColor());
+        binding.seekArc.setProgressColor(PreferenceUtil.getInstance(getActivity()).getAccentColor());
+        binding.seekArc.setThumbColor(PreferenceUtil.getInstance(getActivity()).getAccentColor());
 
         binding.seekArc.post(() -> {
             int width = binding.seekArc.getWidth();
