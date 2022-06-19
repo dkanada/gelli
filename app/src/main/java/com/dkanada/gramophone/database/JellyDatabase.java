@@ -15,7 +15,7 @@ import com.dkanada.gramophone.model.User;
                 QueueSong.class,
                 User.class
         },
-        version = 6,
+        version = 7,
         exportSchema = false
 )
 public abstract class JellyDatabase extends RoomDatabase {
@@ -74,6 +74,16 @@ public abstract class JellyDatabase extends RoomDatabase {
                 + "queue INTEGER NOT NULL, songId TEXT,"
                 + "PRIMARY KEY ('index', queue),"
                 + "FOREIGN KEY (songId) REFERENCES songs(id) ON DELETE CASCADE)");
+        }
+    };
+
+    public static final Migration Migration7 = new Migration(6, 7) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL("DELETE FROM queueSongs");
+            database.execSQL("DELETE FROM songs");
+
+            database.execSQL("ALTER TABLE songs ADD COLUMN supportsTranscoding INTEGER NOT NULL");
         }
     };
 }
