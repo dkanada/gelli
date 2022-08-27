@@ -81,9 +81,31 @@ public abstract class JellyDatabase extends RoomDatabase {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("DELETE FROM queueSongs");
-            database.execSQL("DELETE FROM songs");
+            database.execSQL("DROP TABLE songs");
 
-            database.execSQL("ALTER TABLE songs ADD COLUMN supportsTranscoding INTEGER NOT NULL");
+            database.execSQL("CREATE TABLE songs (id TEXT NOT NULL PRIMARY KEY,"
+                    + "title TEXT,"
+                    + "trackNumber INTEGER NOT NULL,"
+                    + "discNumber INTEGER NOT NULL,"
+                    + "year INTEGER NOT NULL,"
+                    + "duration INTEGER NOT NULL,"
+                    + "albumId TEXT,"
+                    + "albumName TEXT,"
+                    + "artistId TEXT,"
+                    + "artistName TEXT,"
+                    + "'primary' TEXT,"
+                    + "blurHash TEXT,"
+                    + "favorite INTEGER NOT NULL,"
+                    + "path TEXT,"
+                    + "size INTEGER NOT NULL,"
+                    + "container TEXT,"
+                    + "codec TEXT,"
+                    + "supportsTranscoding INTEGER NOT NULL,"
+                    + "sampleRate INTEGER NOT NULL,"
+                    + "bitRate INTEGER NOT NULL,"
+                    + "bitDepth INTEGER NOT NULL,"
+                    + "channels INTEGER NOT NULL,"
+                    + "cache INTEGER NOT NULL DEFAULT 1)");
         }
     };
 }
