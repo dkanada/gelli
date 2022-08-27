@@ -66,7 +66,7 @@ public class PlayingNotificationMarshmallow extends PlayingNotification {
 
         Intent action = new Intent(service, MainActivity.class);
         action.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        final PendingIntent clickIntent = PendingIntent.getActivity(service, 0, action, 0);
+        final PendingIntent clickIntent = PendingIntent.getActivity(service, 0, action, PendingIntent.FLAG_IMMUTABLE);
         final PendingIntent deleteIntent = buildPendingIntent(service, MusicService.ACTION_QUIT, null);
 
         final Notification notification = new NotificationCompat.Builder(service, NOTIFICATION_CHANNEL_ID)
@@ -185,6 +185,6 @@ public class PlayingNotificationMarshmallow extends PlayingNotification {
         Intent intent = new Intent(action);
         intent.setComponent(serviceName);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        return PendingIntent.getService(context, 0, intent, 0);
+        return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
     }
 }

@@ -227,11 +227,11 @@ public final class PreferenceUtil {
     }
 
     public final boolean getColoredNotification() {
-        return mPreferences.getBoolean(COLORED_NOTIFICATION, true);
+        return mPreferences.getBoolean(COLORED_NOTIFICATION, false);
     }
 
     public final boolean getClassicNotification() {
-        return mPreferences.getBoolean(CLASSIC_NOTIFICATION, Build.VERSION.SDK_INT <= Build.VERSION_CODES.O);
+        return mPreferences.getBoolean(CLASSIC_NOTIFICATION, false);
     }
 
     public final boolean getColoredShortcuts() {
@@ -255,11 +255,11 @@ public final class PreferenceUtil {
     }
 
     public final boolean getShowAlbumCover() {
-        return mPreferences.getBoolean(SHOW_ALBUM_COVER, true);
+        return mPreferences.getBoolean(SHOW_ALBUM_COVER, false);
     }
 
     public final boolean getBlurAlbumCover() {
-        return mPreferences.getBoolean(BLUR_ALBUM_COVER, true);
+        return mPreferences.getBoolean(BLUR_ALBUM_COVER, false);
     }
 
     public final SortOrder getAlbumSortOrder() {

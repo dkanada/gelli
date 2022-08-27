@@ -5,14 +5,14 @@
 
         <SwitchPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="show_album_cover"
             android:summary="@string/pref_summary_show_album_art"
             android:title="@string/pref_title_show_album_art" />
 
         <SwitchPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:dependency="show_album_cover"
             android:key="blur_album_cover"
             android:summary="@string/pref_summary_blur_album_art"

@@ -83,7 +83,7 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
         ComponentName serviceName = new ComponentName(context, MusicService.class);
 
         Intent action = new Intent(context, MainActivity.class);
-        PendingIntent open = PendingIntent.getActivity(context, 0, action, 0);
+        PendingIntent open = PendingIntent.getActivity(context, 0, action, PendingIntent.FLAG_IMMUTABLE);
 
         for (int id : clickableViews) {
             views.setOnClickPendingIntent(id, open);
@@ -104,9 +104,9 @@ public abstract class BaseAppWidget extends AppWidgetProvider {
 
         intent.setComponent(serviceName);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return PendingIntent.getForegroundService(context, 0, intent, 0);
+            return PendingIntent.getForegroundService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         } else {
-            return PendingIntent.getService(context, 0, intent, 0);
+            return PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         }
     }
 

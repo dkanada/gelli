@@ -53,10 +53,10 @@ public class DownloadNotification {
         this.maximum += maximum;
 
         Intent action = new Intent(context, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent clickIntent = PendingIntent.getActivity(context, 0, action, 0);
+        PendingIntent clickIntent = PendingIntent.getActivity(context, 0, action, PendingIntent.FLAG_IMMUTABLE);
 
         Intent cancel = new Intent(context, DownloadService.class).setAction(DownloadService.ACTION_CANCEL);
-        PendingIntent pendingCancel = PendingIntent.getService(context, 0, cancel, 0);
+        PendingIntent pendingCancel = PendingIntent.getService(context, 0, cancel, PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.InboxStyle style = new NotificationCompat.InboxStyle();
         for (Song item : songs.stream().limit(5).collect(Collectors.toList())) {

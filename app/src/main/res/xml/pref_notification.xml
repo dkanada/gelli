@@ -5,14 +5,14 @@
 
         <SwitchPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="classic_notification"
             android:summary="@string/pref_summary_classic_notification"
             android:title="@string/pref_title_classic_notification" />
 
         <SwitchPreference
             app:iconSpaceReserved="false"
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="colored_notification"
             android:summary="@string/pref_summary_colored_notification"
             android:title="@string/pref_title_colored_notification" />

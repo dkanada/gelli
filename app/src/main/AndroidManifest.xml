@@ -30,7 +30,7 @@
         <activity android:name=".activities.details.GenreDetailActivity" />
         <activity android:name=".activities.details.PlaylistDetailActivity" />
         <activity android:name=".activities.SearchActivity" />
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name=".activities.SplashActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.MUSIC_PLAYER" />
@@ -70,7 +70,7 @@
         <service android:name=".service.LoginService" />
         <service android:name=".service.MusicService" />
 
-        <receiver android:name=".service.receivers.MediaButtonIntentReceiver">
+        <receiver android:name=".service.receivers.MediaButtonIntentReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -83,7 +83,7 @@
             android:name="com.lge.support.SPLIT_WINDOW"
             android:value="true" />
 
-        <receiver android:name=".views.widgets.BootReceiver">
+        <receiver android:name=".views.widgets.BootReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />

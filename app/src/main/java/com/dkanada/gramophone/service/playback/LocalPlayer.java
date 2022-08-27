@@ -101,6 +101,7 @@ public class LocalPlayer implements Playback {
             .build();
 
         exoPlayer.addListener(eventListener);
+        exoPlayer.setThrowsWhenUsingWrongThread(false);
         exoPlayer.prepare();
 
         long cacheSize = PreferenceUtil.getInstance(context).getMediaCacheSize();
