@@ -10,7 +10,7 @@ public interface Playback {
 
     void playSongAt(int position);
 
-    void setCallbacks(PlaybackCallbacks callbacks);
+    void setListener(PlaybackListener listener);
 
     boolean isReady();
 
@@ -39,12 +39,4 @@ public interface Playback {
     void setVolume(int volume);
 
     int getVolume();
-
-    interface PlaybackCallbacks {
-        void onStateChanged(int state);
-
-        void onReadyChanged(boolean ready, int reason);
-
-        void onTrackChanged(int reason);
-    }
 }

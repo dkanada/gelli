@@ -42,7 +42,7 @@ public class LocalPlayer implements Playback {
     private final SimpleExoPlayer exoPlayer;
     private final SimpleCache simpleCache;
 
-    private PlaybackCallbacks callbacks;
+    private PlaybackListener listener;
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
@@ -51,25 +51,25 @@ public class LocalPlayer implements Playback {
         @Override
         public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
             Log.i(TAG, String.format("onPlayWhenReadyChanged: %b %d", playWhenReady, reason));
-            if (callbacks != null) callbacks.onReadyChanged(playWhenReady, reason);
+            if (listener != null) listener.onReadyChanged(playWhenReady, reason);
         }
 
         @Override
         public void onPlaybackStateChanged(int state) {
             Log.i(TAG, String.format("onPlaybackStateChanged: %d", state));
-            if (callbacks != null) callbacks.onStateChanged(state);
+            if (listener != null) listener.onStateChanged(state);
         }
 
         @Override
         public void onPlaybackSuppressionReasonChanged(@Player.PlaybackSuppressionReason int playbackSuppressionReason) {
             Log.i(TAG, String.format("onPlaybackSuppressionReasonChanged: %d", playbackSuppressionReason));
-            if (callbacks != null) callbacks.onStateChanged(Player.STATE_READY);
+            if (listener != null) listener.onStateChanged(Player.STATE_READY);
         }
 
         @Override
         public void onMediaItemTransition(MediaItem mediaItem, int reason) {
             Log.i(TAG, String.format("onMediaItemTransition: %s %d", mediaItem, reason));
-            if (callbacks != null) callbacks.onTrackChanged(reason);
+            if (listener != null) listener.onTrackChanged(reason);
         }
 
         @Override
@@ -194,8 +194,8 @@ public class LocalPlayer implements Playback {
     }
 
     @Override
-    public void setCallbacks(Playback.PlaybackCallbacks callbacks) {
-        this.callbacks = callbacks;
+    public void setListener(PlaybackListener listener) {
+        this.listener = listener;
     }
 
     @Override

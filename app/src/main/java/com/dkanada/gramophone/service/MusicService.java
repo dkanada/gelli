@@ -46,6 +46,7 @@ import com.dkanada.gramophone.service.notifications.PlayingNotificationMarshmall
 import com.dkanada.gramophone.service.notifications.PlayingNotificationNougat;
 import com.dkanada.gramophone.service.playback.LocalPlayer;
 import com.dkanada.gramophone.service.playback.Playback;
+import com.dkanada.gramophone.service.playback.PlaybackListener;
 import com.dkanada.gramophone.service.receivers.MediaButtonIntentReceiver;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.Util;
@@ -152,7 +153,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
     };
 
-    private final Playback.PlaybackCallbacks playbackCallbacks = new Playback.PlaybackCallbacks() {
+    private final PlaybackListener playbackCallbacks = new PlaybackListener() {
         @Override
         public void onStateChanged(int state) {
             notifyChange(STATE_CHANGED);
@@ -236,7 +237,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         wakeLock.setReferenceCounted(false);
 
         playback = new LocalPlayer(this);
-        playback.setCallbacks(playbackCallbacks);
+        playback.setListener(playbackCallbacks);
 
         queueManager = new QueueManager(this, queueCallbacks);
 
