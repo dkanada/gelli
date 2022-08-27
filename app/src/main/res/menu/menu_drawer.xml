@@ -20,11 +20,6 @@
             android:title="@string/action_about" />
 
         <item
-            android:id="@+id/nav_sponsor"
-            android:icon="@drawable/ic_favorite_white_24dp"
-            android:title="@string/sponsor" />
-
-        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_exit_to_app_white_48dp"
             android:title="@string/logout" />
