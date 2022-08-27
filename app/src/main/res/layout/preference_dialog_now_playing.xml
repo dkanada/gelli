@@ -16,17 +16,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.pixelcan.inkpageindicator.InkPageIndicator
+    <me.relex.circleindicator.CircleIndicator
         android:id="@+id/page_indicator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="32dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:ipi_dotDiameter="8dp"
-        app:ipi_dotGap="8dp"
-        app:ipi_currentPageIndicatorColor="?android:textColorPrimary"
-        app:ipi_pageIndicatorColor="?android:textColorHint" />
+        app:ci_height="8dp"
+        app:ci_width="8dp"
+        app:ci_orientation="horizontal"
+        app:ci_gravity="center" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

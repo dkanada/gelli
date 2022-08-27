@@ -5,21 +5,22 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.audio.AudioAttributes;
-import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.Player.EventListener;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.database.ExoDatabaseProvider;
+import com.google.android.exoplayer2.database.StandaloneDatabaseProvider;
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
 import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.upstream.DefaultDataSource;
 import com.google.android.exoplayer2.upstream.FileDataSource;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSink;
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
@@ -46,7 +47,7 @@ public class LocalPlayer implements Playback {
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @SuppressWarnings("FieldCanBeLocal")
-    private final EventListener eventListener = new EventListener() {
+    private final Player.Listener eventListener = new Player.Listener() {
         @Override
         public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
             Log.i(TAG, String.format("onPlayWhenReadyChanged: %b %d", playWhenReady, reason));
@@ -72,12 +73,12 @@ public class LocalPlayer implements Playback {
         }
 
         @Override
-        public void onPositionDiscontinuity(int reason) {
+        public void onPositionDiscontinuity(@NonNull Player.PositionInfo oldPosition, @NonNull Player.PositionInfo newPosition, int reason) {
             Log.i(TAG, String.format("onPositionDiscontinuity: %d", reason));
         }
 
         @Override
-        public void onPlayerError(ExoPlaybackException error) {
+        public void onPlayerError(PlaybackException error) {
             Log.i(TAG, String.format("onPlayerError: %s", error.getMessage()));
 
             exoPlayer.clearMediaItems();
@@ -106,7 +107,7 @@ public class LocalPlayer implements Playback {
 
         long cacheSize = PreferenceUtil.getInstance(context).getMediaCacheSize();
         LeastRecentlyUsedCacheEvictor recentlyUsedCache = new LeastRecentlyUsedCacheEvictor(cacheSize);
-        ExoDatabaseProvider databaseProvider = new ExoDatabaseProvider(context);
+        StandaloneDatabaseProvider databaseProvider = new StandaloneDatabaseProvider(context);
 
         File cacheDirectory = new File(PreferenceUtil.getInstance(context).getLocationCache(), "exoplayer");
         simpleCache = new SimpleCache(cacheDirectory, recentlyUsedCache, databaseProvider);
@@ -184,7 +185,7 @@ public class LocalPlayer implements Playback {
     private DataSource.Factory buildDataSourceFactory() {
         return () -> new CacheDataSource(
                 simpleCache,
-                new DefaultDataSourceFactory(context, context.getPackageName(), null).createDataSource(),
+                new DefaultDataSource.Factory(context).createDataSource(),
                 new FileDataSource(),
                 new CacheDataSink(simpleCache, 10 * 1024 * 1024),
                 CacheDataSource.FLAG_BLOCK_ON_CACHE,
@@ -211,7 +212,7 @@ public class LocalPlayer implements Playback {
     @SuppressWarnings("ConstantConditions")
     public boolean isLoading() {
         MediaItem current = exoPlayer.getCurrentMediaItem();
-        if (current != null && current.playbackProperties.uri.toString().contains("file://")) {
+        if (current != null && current.localConfiguration.uri.toString().contains("file://")) {
             return false;
         }
 
@@ -236,12 +237,12 @@ public class LocalPlayer implements Playback {
 
     @Override
     public void previous() {
-        exoPlayer.previous();
+        exoPlayer.seekToPreviousMediaItem();
     }
 
     @Override
     public void next() {
-        exoPlayer.next();
+        exoPlayer.seekToNextMediaItem();
     }
 
     @Override

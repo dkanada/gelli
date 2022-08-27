@@ -18,7 +18,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.fragments.player.NowPlayingScreen;
 import com.dkanada.gramophone.util.PreferenceUtil;
-import com.pixelcan.inkpageindicator.InkPageIndicator;
+import me.relex.circleindicator.CircleIndicator;
 
 public class NowPlayingPreferenceDialog extends DialogFragment implements ViewPager.OnPageChangeListener {
     public static final String TAG = NowPlayingPreferenceDialog.class.getSimpleName();
@@ -34,14 +34,12 @@ public class NowPlayingPreferenceDialog extends DialogFragment implements ViewPa
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.preference_dialog_now_playing, null);
         ViewPager viewPager = view.findViewById(R.id.now_playing_screen_view_pager);
-        InkPageIndicator pageIndicator = view.findViewById(R.id.page_indicator);
+        CircleIndicator pageIndicator = view.findViewById(R.id.page_indicator);
 
         viewPager.setAdapter(new NowPlayingScreenAdapter(getContext()));
         viewPager.addOnPageChangeListener(this);
         viewPager.setCurrentItem(PreferenceUtil.getInstance(getContext()).getNowPlayingScreen().ordinal());
-
         pageIndicator.setViewPager(viewPager);
-        pageIndicator.onPageSelected(viewPager.getCurrentItem());
 
         return new MaterialDialog.Builder(requireActivity())
                 .customView(view, false)
