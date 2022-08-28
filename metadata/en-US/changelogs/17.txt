@@ -1,0 +1,4 @@
+- refactor playback and shuffle code
+- fix sleep timer null pointer crash
+- update all dependencies
+- remove broken link from navigation menu
