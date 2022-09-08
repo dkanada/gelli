@@ -20,6 +20,7 @@
     <string name="action_delete">Löschen</string>
     <string name="albums">Alben</string>
     <string name="artists">Interpreten</string>
+    <string name="albumartists">Album-Interpreten</string>
     <string name="genres">Genres</string>
     <string name="songs">Titel</string>
     <string name="playlists">Wiedergabelisten</string>

@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.artist.ArtistAdapter;
+import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.SortMethod;
 import com.dkanada.gramophone.model.SortOrder;
-import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.util.QueryUtil;
 
@@ -22,14 +22,14 @@ import org.jellyfin.apiclient.model.querying.ItemsResult;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtistsFragment extends AbsArtistsFragment {
+public class AlbumArtistsFragment extends AbsArtistsFragment {
 
     @Override
     protected void loadItems(int index) {
         ArtistsQuery query = getQuery();
         query.setStartIndex(index);
 
-        App.getApiClient().GetArtistsAsync(query, new Response<ItemsResult>() {
+        App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
                 if (index == 0) getAdapter().getDataSet().clear();
@@ -48,5 +48,4 @@ public class ArtistsFragment extends AbsArtistsFragment {
             }
         });
     }
-
 }
