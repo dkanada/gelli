@@ -70,7 +70,7 @@ public class AppWidgetAlbum extends BaseAppWidget {
         final boolean isPlaying = service.isPlaying();
         final Song song = service.queueManager.getCurrentSong();
 
-        if (TextUtils.isEmpty(song.title) && TextUtils.isEmpty(song.artistName)) {
+        if (TextUtils.isEmpty(song.title) && song.getArtistNames().isEmpty()) {
             appWidgetView.setViewVisibility(R.id.media_titles, View.INVISIBLE);
         } else {
             appWidgetView.setViewVisibility(R.id.media_titles, View.VISIBLE);

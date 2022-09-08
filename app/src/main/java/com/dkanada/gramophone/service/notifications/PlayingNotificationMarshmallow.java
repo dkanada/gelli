@@ -45,20 +45,20 @@ public class PlayingNotificationMarshmallow extends PlayingNotification {
         final RemoteViews notificationLayout = new RemoteViews(service.getPackageName(), R.layout.notification);
         final RemoteViews notificationLayoutBig = new RemoteViews(service.getPackageName(), R.layout.notification_big);
 
-        if (TextUtils.isEmpty(song.title) && TextUtils.isEmpty(song.artistName)) {
+        if (TextUtils.isEmpty(song.title) && song.getArtistNames().isEmpty()) {
             notificationLayout.setViewVisibility(R.id.media_titles, View.INVISIBLE);
         } else {
             notificationLayout.setViewVisibility(R.id.media_titles, View.VISIBLE);
             notificationLayout.setTextViewText(R.id.title, song.title);
-            notificationLayout.setTextViewText(R.id.text, song.artistName);
+            notificationLayout.setTextViewText(R.id.text, song.getArtistNames());
         }
 
-        if (TextUtils.isEmpty(song.title) && TextUtils.isEmpty(song.artistName) && TextUtils.isEmpty(song.albumName)) {
+        if (TextUtils.isEmpty(song.title) && song.getArtistNames().isEmpty() && TextUtils.isEmpty(song.albumName)) {
             notificationLayoutBig.setViewVisibility(R.id.media_titles, View.INVISIBLE);
         } else {
             notificationLayoutBig.setViewVisibility(R.id.media_titles, View.VISIBLE);
             notificationLayoutBig.setTextViewText(R.id.title, song.title);
-            notificationLayoutBig.setTextViewText(R.id.text, song.artistName);
+            notificationLayoutBig.setTextViewText(R.id.text, song.getArtistNames());
             notificationLayoutBig.setTextViewText(R.id.text2, song.albumName);
         }
 

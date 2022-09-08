@@ -50,8 +50,8 @@ public class Artist implements Parcelable {
     }
 
     public Artist(Song song) {
-        this.id = song.artistId;
-        this.name = song.artistName;
+        this.id = song.albumArtistId != null ? song.albumArtistId : song.artistId.size() != 0 ? song.artistId.get(0) : null ;
+        this.name = song.albumArtistName != null ? song.albumArtistName : song.artistName.size() != 0 ? song.artistName.get(0) : null ;
         this.primary = this.id;
     }
 
