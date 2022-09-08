@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.entities.ImageType;
+import org.jellyfin.apiclient.model.search.SearchHint;
 
 import java.util.ArrayList;
 import java.util.List;

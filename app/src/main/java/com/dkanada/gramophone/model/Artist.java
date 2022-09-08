@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.GenreDto;
 import org.jellyfin.apiclient.model.entities.ImageType;
+import org.jellyfin.apiclient.model.search.SearchHint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +42,15 @@ public class Artist implements Parcelable {
                 genres.add(new Genre(genre));
             }
         }
+    }
+
+    public Artist(SearchHint searchHint) {
+        this.id = searchHint.getItemId();
+        this.name = searchHint.getName();
+        this.primary = searchHint.getPrimaryImageTag() == null || searchHint.getPrimaryImageTag().isEmpty() ? null : this.id;
+        this.genres = new ArrayList<>();
+        this.albums = new ArrayList<>();
+        this.songs = new ArrayList<>();
     }
 
     public Artist(Album album) {

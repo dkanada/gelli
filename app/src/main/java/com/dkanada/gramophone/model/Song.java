@@ -16,6 +16,7 @@ import org.jellyfin.apiclient.model.dto.MediaSourceInfo;
 import org.jellyfin.apiclient.model.dto.NameIdPair;
 import org.jellyfin.apiclient.model.entities.ImageType;
 import org.jellyfin.apiclient.model.entities.MediaStream;
+import org.jellyfin.apiclient.model.search.SearchHint;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -126,6 +127,7 @@ public class Song implements Parcelable {
             }
         }
     }
+
 
     @Override
     public boolean equals(Object o) {

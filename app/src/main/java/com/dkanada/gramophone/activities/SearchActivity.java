@@ -25,6 +25,7 @@ import com.dkanada.gramophone.util.QueryUtil;
 import com.dkanada.gramophone.util.Util;
 
 import org.jellyfin.apiclient.model.querying.ItemQuery;
+import org.jellyfin.apiclient.model.search.SearchQuery;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,6 +43,8 @@ public class SearchActivity extends AbsMusicContentActivity implements SearchVie
 
     private SearchAdapter adapter;
     private String query;
+
+    private List<Object> sortedResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,9 +134,16 @@ public class SearchActivity extends AbsMusicContentActivity implements SearchVie
 
     private void search(@NonNull String query) {
         this.query = query;
+        if (this.query.isEmpty()) {
+            return;
+        }
+        sortedResults = new ArrayList<>();
 
         ItemQuery itemQuery = new ItemQuery();
         itemQuery.setSearchTerm(query);
+
+        SearchQuery searchQuery = new SearchQuery();
+        searchQuery.setSearchTerm(query);
 
         MediaCallback<Object> callback = media -> {
             List<Artist> artists = new ArrayList<>();
@@ -154,15 +164,15 @@ public class SearchActivity extends AbsMusicContentActivity implements SearchVie
             Collections.sort(albums, (one, two) -> one.title.compareTo(two.title));
             Collections.sort(songs, (one, two) -> one.title.compareTo(two.title));
 
-            List<Object> sortedData = new ArrayList<>();
-            sortedData.addAll(artists);
-            sortedData.addAll(albums);
-            sortedData.addAll(songs);
+            sortedResults.addAll(artists);
+            sortedResults.addAll(albums);
+            sortedResults.addAll(songs);
 
-            adapter.swapDataSet(sortedData);
+            adapter.swapDataSet(sortedResults);
         };
 
         QueryUtil.getItems(itemQuery, callback);
+        QueryUtil.getSearchHints(searchQuery, callback);
     }
 
     @Override

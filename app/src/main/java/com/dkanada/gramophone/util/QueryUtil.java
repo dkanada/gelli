@@ -16,6 +16,9 @@ import org.jellyfin.apiclient.model.querying.ItemFields;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 import org.jellyfin.apiclient.model.querying.ItemsByNameQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
+import org.jellyfin.apiclient.model.search.SearchHint;
+import org.jellyfin.apiclient.model.search.SearchHintResult;
+import org.jellyfin.apiclient.model.search.SearchQuery;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,7 +90,7 @@ public class QueryUtil {
     }
 
     public static void getItems(ItemQuery query, MediaCallback<Object> callback) {
-        query.setIncludeItemTypes(new String[]{"MusicArtist", "MusicAlbum", "Audio"});
+        query.setIncludeItemTypes(new String[]{"MusicAlbum", "Audio"});
         query.setFields(new ItemFields[]{ItemFields.MediaSources});
         query.setUserId(App.getApiClient().getCurrentUserId());
         query.setLimit(40);
@@ -97,9 +100,7 @@ public class QueryUtil {
             public void onResponse(ItemsResult result) {
                 List<Object> items = new ArrayList<>();
                 for (BaseItemDto itemDto : result.getItems()) {
-                    if (itemDto.getBaseItemType() == BaseItemType.MusicArtist) {
-                        items.add(new Artist(itemDto));
-                    } else if (itemDto.getBaseItemType() == BaseItemType.MusicAlbum) {
+                    if (itemDto.getBaseItemType() == BaseItemType.MusicAlbum) {
                         items.add(new Album(itemDto));
                     } else {
                         items.add(new Song(itemDto));
@@ -112,6 +113,27 @@ public class QueryUtil {
             @Override
             public void onError(Exception exception) {
                 exception.printStackTrace();
+            }
+        });
+    }
+
+    public static void getSearchHints(SearchQuery query, MediaCallback<Object> callback) {
+        query.setIncludeItemTypes(new String[]{"MusicArtist"});
+        query.setUserId(App.getApiClient().getCurrentUserId());
+        query.setLimit(40);
+        query.setIncludeMedia(true);
+        query.setIncludeArtists(true);
+        App.getApiClient().GetSearchHintsAsync(query, new Response<SearchHintResult>() {
+            @Override
+            public void onResponse(SearchHintResult response) {
+                List<Object> items = new ArrayList<>();
+                for (SearchHint searchHint : response.getSearchHints()) {
+                    if (searchHint.getType().equals("MusicArtist") ) {
+                        items.add(new Artist(searchHint));
+                    }
+                }
+
+                callback.onLoadMedia(items);
             }
         });
     }
