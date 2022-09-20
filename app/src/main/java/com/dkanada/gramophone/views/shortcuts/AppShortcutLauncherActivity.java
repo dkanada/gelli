@@ -27,7 +27,7 @@ public class AppShortcutLauncherActivity extends Activity {
 
         switch (getIntent().getIntExtra(EXTRA_SHORTCUT, SHORTCUT_TYPE_DEFAULT)) {
             case SHORTCUT_TYPE_SHUFFLE:
-                ShortcutUtil.getShuffle((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true));
+                ShortcutUtil.getShuffle((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true), false);
                 DynamicShortcutManager.reportShortcutUsed(this, ShuffleShortcutType.getId());
                 break;
             case SHORTCUT_TYPE_FREQUENT:
