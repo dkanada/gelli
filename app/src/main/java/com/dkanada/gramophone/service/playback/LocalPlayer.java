@@ -12,11 +12,11 @@ import com.dkanada.gramophone.model.Song;
 import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.audio.AudioAttributes;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.MediaItem;
-import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.database.StandaloneDatabaseProvider;
 import com.google.android.exoplayer2.source.DefaultMediaSourceFactory;
 import com.google.android.exoplayer2.upstream.DataSource;
@@ -39,7 +39,7 @@ public class LocalPlayer implements Playback {
     public static final String TAG = LocalPlayer.class.getSimpleName();
 
     private final Context context;
-    private final SimpleExoPlayer exoPlayer;
+    private final ExoPlayer exoPlayer;
     private final SimpleCache simpleCache;
 
     private PlaybackListener listener;
@@ -96,7 +96,7 @@ public class LocalPlayer implements Playback {
             .setContentType(C.CONTENT_TYPE_MUSIC)
             .build();
 
-        exoPlayer = new SimpleExoPlayer.Builder(context)
+        exoPlayer = new ExoPlayer.Builder(context)
             .setMediaSourceFactory(new DefaultMediaSourceFactory(buildDataSourceFactory()))
             .setAudioAttributes(audioAttributes, true)
             .build();
@@ -124,7 +124,7 @@ public class LocalPlayer implements Playback {
                 return;
             }
 
-            int currentPosition = exoPlayer.getCurrentWindowIndex();
+            int currentPosition = exoPlayer.getCurrentMediaItemIndex();
             exoPlayer.removeMediaItems(0, currentPosition);
 
             if (exoPlayer.getMediaItemCount() > 1) {
