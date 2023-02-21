@@ -128,6 +128,7 @@
     <string name="pref_title_download_location">Download Location</string>
     <string name="pref_title_image_cache_size">Images</string>
     <string name="pref_title_media_cache_size">Media</string>
+    <string name="pref_title_gain_adjustment">Gain Adjustment</string>
 
     <string name="pref_summary_primary_color">The primary theme color for control elements.</string>
     <string name="pref_summary_accent_color">An alternate color used to accent elements.</string>
@@ -141,6 +142,7 @@
     <string name="pref_summary_remember_tab">Go to the last opened tab on launch.</string>
     <string name="pref_summary_categories">Configure visibility and order of display categories.</string>
     <string name="pref_summary_direct_play_codecs">Disable direct play codecs to force transcoding.</string>
+    <string name="pref_summary_gain_adjustment">Adjust the gain of the music player\'s output</string>
 
     <string name="delete_action">Delete</string>
     <string name="remove_action">Remove</string>

@@ -81,6 +81,7 @@ public final class PreferenceUtil {
     public static final String MAXIMUM_BITRATE = "maximum_bitrate";
     public static final String REMEMBER_SHUFFLE = "remember_shuffle";
     public static final String REMEMBER_QUEUE = "remember_queue";
+    public static final String GAIN_OFFSET = "gain_offset";
 
     public static final String LOCATION_DOWNLOAD = "location_download";
     public static final String LOCATION_CACHE = "location_cache";
@@ -252,6 +253,10 @@ public final class PreferenceUtil {
 
     public final boolean getRememberQueue() {
         return mPreferences.getBoolean(REMEMBER_QUEUE, true);
+    }
+
+    public final int getGainOffset() {
+        return mPreferences.getInt(GAIN_OFFSET, 100);
     }
 
     public final boolean getShowAlbumCover() {
