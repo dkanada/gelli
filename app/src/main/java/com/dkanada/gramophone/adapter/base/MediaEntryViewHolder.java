@@ -28,6 +28,9 @@ public class MediaEntryViewHolder extends RecyclerView.ViewHolder implements Vie
     public View menu;
 
     @Nullable
+    public View cached;
+
+    @Nullable
     public View separator;
 
     @Nullable
@@ -47,6 +50,7 @@ public class MediaEntryViewHolder extends RecyclerView.ViewHolder implements Vie
         title = itemView.findViewById(R.id.title);
         text = itemView.findViewById(R.id.text);
         menu = itemView.findViewById(R.id.menu);
+        cached = itemView.findViewById(R.id.cached);
         separator = itemView.findViewById(R.id.separator);
         shortSeparator = itemView.findViewById(R.id.short_separator);
         dragView = itemView.findViewById(R.id.drag_view);

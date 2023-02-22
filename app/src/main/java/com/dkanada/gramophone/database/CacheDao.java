@@ -16,4 +16,7 @@ public interface CacheDao {
 
     @Query("SELECT * FROM songs LEFT JOIN cache USING(id) WHERE songs.id IN (:ids)")
     List<Song> getSongs(List<String> ids);
+
+    @Query("SELECT cache FROM cache WHERE id = :id")
+    boolean isCached(String id);
 }

@@ -82,6 +82,16 @@
         </LinearLayout>
 
         <com.dkanada.gramophone.views.IconImageView
+            android:id="@+id/cached"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_download_24dp"
+            tools:ignore="ContentDescription"
+            android:visibility="gone"/>
+
+        <com.dkanada.gramophone.views.IconImageView
             android:id="@+id/menu"
             style="@style/OverFlowButton"
             android:layout_gravity="center_vertical"

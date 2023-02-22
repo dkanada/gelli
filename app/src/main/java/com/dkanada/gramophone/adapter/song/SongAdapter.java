@@ -1,6 +1,7 @@
 package com.dkanada.gramophone.adapter.song;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dkanada.gramophone.App;
 import com.dkanada.gramophone.util.ThemeUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.adapter.base.AbsMultiSelectAdapter;
@@ -109,6 +111,14 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
 
         if (holder.text != null) {
             holder.text.setText(getSongText(song));
+        }
+
+        if (holder.cached != null) {
+            if (App.getDatabase().cacheDao().isCached(song.id)) {
+                holder.cached.setVisibility(View.VISIBLE);
+            } else {
+                holder.cached.setVisibility(View.GONE);
+            }
         }
 
         loadAlbumCover(song, holder);
