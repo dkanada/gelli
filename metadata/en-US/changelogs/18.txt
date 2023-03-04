@@ -1,0 +1,4 @@
+- add custom volume for granular control
+- show download indicator on cached songs
+- fix favorite song shuffle
+- internal exoplayer improvements
