@@ -45,6 +45,13 @@
             android:summary="@string/pref_summary_remember_queue"
             android:title="@string/pref_title_remember_queue" />
 
+        <SeekBarPreference
+            app:iconSpaceReserved="false"
+            android:defaultValue="100"
+            android:key="gain_offset"
+            android:summary="@string/pref_summary_gain_adjustment"
+            android:title="@string/pref_title_gain_adjustment"/>
+
     </com.dkanada.gramophone.views.settings.JellyPreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

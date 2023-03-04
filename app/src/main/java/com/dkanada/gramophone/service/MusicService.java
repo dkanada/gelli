@@ -238,6 +238,7 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
 
         playback = new LocalPlayer(this);
         playback.setListener(playbackCallbacks);
+        playback.setVolume(PreferenceUtil.getInstance(this).getGainOffset());
 
         queueManager = new QueueManager(this, queueCallbacks);
 
@@ -673,6 +674,9 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
             case PreferenceUtil.CLASSIC_NOTIFICATION:
                 initNotification();
                 updateNotification();
+                break;
+            case PreferenceUtil.GAIN_OFFSET:
+                playback.setVolume(PreferenceUtil.getInstance(this).getGainOffset());
                 break;
         }
     }
