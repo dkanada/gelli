@@ -194,7 +194,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements ViewPage
         int id = item.getItemId();
         switch (id) {
             case R.id.action_shuffle_all:
-                ShortcutUtil.getShuffle((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true));
+                ShortcutUtil.getShuffle((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true), false);
                 return true;
             case R.id.action_new_playlist:
                 CreatePlaylistDialog.create().show(getChildFragmentManager(), "CREATE_PLAYLIST");

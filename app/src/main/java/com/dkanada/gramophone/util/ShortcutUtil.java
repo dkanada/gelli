@@ -9,6 +9,7 @@ import com.dkanada.gramophone.model.Song;
 import org.jellyfin.apiclient.interaction.Response;
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.querying.ItemFields;
+import org.jellyfin.apiclient.model.querying.ItemFilter;
 import org.jellyfin.apiclient.model.querying.ItemQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
 
@@ -34,11 +35,15 @@ public class ShortcutUtil {
         getSongs(query, callback);
     }
 
-    public static void getShuffle(MediaCallback<Song> callback) {
+    public static void getShuffle(MediaCallback<Song> callback, boolean onlyFavorites) {
         ItemQuery query = new ItemQuery();
 
         query.setSortBy(new String[]{SortMethod.RANDOM.getApi()});
         query.setSortOrder(SortOrder.DESCENDING.getApi());
+
+        if (onlyFavorites) {
+            query.setFilters(new ItemFilter[]{ItemFilter.IsFavorite});
+        }
 
         getSongs(query, callback);
     }

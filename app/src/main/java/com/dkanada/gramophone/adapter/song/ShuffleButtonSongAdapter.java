@@ -18,6 +18,8 @@ import com.dkanada.gramophone.model.Song;
 import java.util.List;
 
 public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
+    private boolean isFavorite = false;
+
     public ShuffleButtonSongAdapter(AppCompatActivity activity, List<Song> dataSet, @LayoutRes int itemLayoutRes, boolean usePalette, @Nullable CabHolder cabHolder) {
         super(activity, dataSet, itemLayoutRes, usePalette, cabHolder);
     }
@@ -65,6 +67,10 @@ public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
         }
     }
 
+    public void setFavorite(boolean isFavorite) {
+        this.isFavorite = isFavorite;
+    }
+
     public class ViewHolder extends AbsOffsetSongAdapter.ViewHolder {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,7 +79,7 @@ public class ShuffleButtonSongAdapter extends AbsOffsetSongAdapter {
         @Override
         public void onClick(View v) {
             if (getItemViewType() == OFFSET_ITEM) {
-                ShortcutUtil.getShuffle((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true));
+                ShortcutUtil.getShuffle((media) -> MusicPlayerRemote.openAndShuffleQueue(media, true), isFavorite);
             }
 
             super.onClick(v);
