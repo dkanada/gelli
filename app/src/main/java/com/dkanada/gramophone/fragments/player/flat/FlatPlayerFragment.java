@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -423,7 +424,10 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
         @Override
         public void animateColorChange(int newColor) {
-            createDefaultColorChangeAnimatorSet(newColor).start();
+            if (!fragment.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) return;
+            if (currentAnimatorSet!=null) currentAnimatorSet.cancel();
+            currentAnimatorSet = createDefaultColorChangeAnimatorSet(newColor);
+            currentAnimatorSet.start();
         }
     }
 
@@ -450,9 +454,11 @@ public class FlatPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
         @Override
         public void animateColorChange(int newColor) {
-            AnimatorSet animatorSet = createDefaultColorChangeAnimatorSet(newColor);
-            animatorSet.play(ViewUtil.createBackgroundColorTransition(binding.playerToolbar, fragment.lastColor, newColor));
-            animatorSet.start();
+            if (!fragment.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) return;
+            if (currentAnimatorSet!=null) currentAnimatorSet.cancel();
+            currentAnimatorSet = createDefaultColorChangeAnimatorSet(newColor);
+            currentAnimatorSet.play(ViewUtil.createBackgroundColorTransition(binding.playerToolbar, fragment.lastColor, newColor));
+            currentAnimatorSet.start();
         }
     }
 }
