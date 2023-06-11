@@ -505,8 +505,8 @@ public class MusicService extends Service implements SharedPreferences.OnSharedP
         }
 
         final MediaMetadataCompat.Builder metaData = new MediaMetadataCompat.Builder()
-            .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, song.artistName)
-            .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ARTIST, song.artistName)
+            .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, song.getArtistNames())
+            .putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ARTIST, song.albumArtistName)
             .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, song.albumName)
             .putString(MediaMetadataCompat.METADATA_KEY_TITLE, song.title)
             .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, song.duration)

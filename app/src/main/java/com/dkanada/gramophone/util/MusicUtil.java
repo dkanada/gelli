@@ -80,7 +80,7 @@ public class MusicUtil {
     public static String getFileUri(Song song) {
         File root = new File(PreferenceUtil.getInstance(App.getInstance()).getLocationDownload(), "music");
 
-        String path = "/" + ascii(song.artistName) + "/" + ascii(song.albumName);
+        String path = "/" + ascii(song.albumArtistName) + "/" + ascii(song.albumName);
         String name = "/" + song.discNumber + "." + song.trackNumber + " - " + ascii(song.title) + "." + song.container;
 
         return root + path + name;

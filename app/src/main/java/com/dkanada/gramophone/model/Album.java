@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.entities.ImageType;
+import org.jellyfin.apiclient.model.search.SearchHint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +51,8 @@ public class Album implements Parcelable {
         this.title = song.albumName;
         this.year = song.year;
 
-        this.artistId = song.artistId;
-        this.artistName = song.artistName;
+        this.artistId = song.albumArtistId;
+        this.artistName = song.albumArtistName;
 
         this.primary = song.primary;
         this.blurHash = song.blurHash;

@@ -205,7 +205,7 @@ public class SongAdapter extends AbsMultiSelectAdapter<SongAdapter.ViewHolder, S
                 sectionName = dataSet.get(position).albumName;
                 break;
             case ARTIST:
-                sectionName = dataSet.get(position).artistName;
+                sectionName = dataSet.get(position).getArtistNames();
                 break;
             case YEAR:
                 return MusicUtil.getYearString(dataSet.get(position).year);

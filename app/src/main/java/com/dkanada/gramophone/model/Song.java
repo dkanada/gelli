@@ -7,14 +7,22 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.dkanada.gramophone.database.Converters;
 
 import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.dto.MediaSourceInfo;
+import org.jellyfin.apiclient.model.dto.NameIdPair;
 import org.jellyfin.apiclient.model.entities.ImageType;
 import org.jellyfin.apiclient.model.entities.MediaStream;
+import org.jellyfin.apiclient.model.search.SearchHint;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
-
+@TypeConverters({Converters.class})
 @Entity(tableName = "songs")
 public class Song implements Parcelable {
     @NonNull
@@ -29,8 +37,11 @@ public class Song implements Parcelable {
     public String albumId;
     public String albumName;
 
-    public String artistId;
-    public String artistName;
+    public ArrayList<String> artistId;
+    public ArrayList<String> artistName;
+
+    public String albumArtistId;
+    public String albumArtistName;
 
     public String primary;
     public String blurHash;
@@ -52,6 +63,10 @@ public class Song implements Parcelable {
     @ColumnInfo(defaultValue = "1")
     public boolean cache;
 
+    public String getArtistNames(){
+        return this.artistName.toString().substring(1,this.artistName.toString().length()-1);
+    }
+
     public Song() {
         this.id = UUID.randomUUID().toString();
     }
@@ -67,12 +82,21 @@ public class Song implements Parcelable {
         this.albumId = itemDto.getAlbumId();
         this.albumName = itemDto.getAlbum();
 
+        this.artistId = new ArrayList<>();
+        this.artistName = new ArrayList<>();
         if (itemDto.getArtistItems().size() != 0) {
-            this.artistId = itemDto.getArtistItems().get(0).getId();
-            this.artistName = itemDto.getArtistItems().get(0).getName();
+            for (NameIdPair artistItem:itemDto.getArtistItems()) {
+                this.artistId.add(artistItem.getId());
+                this.artistName.add(artistItem.getName());
+            }
         } else if (itemDto.getAlbumArtists().size() != 0) {
-            this.artistId = itemDto.getAlbumArtists().get(0).getId();
-            this.artistName = itemDto.getAlbumArtists().get(0).getName();
+            this.artistId.add(itemDto.getAlbumArtists().get(0).getId());
+            this.artistName.add(itemDto.getAlbumArtists().get(0).getName());
+        }
+
+        if (itemDto.getAlbumArtists().size() != 0) {
+            this.albumArtistId = itemDto.getAlbumArtists().get(0).getId();
+            this.albumArtistName = itemDto.getAlbumArtists().get(0).getName();
         }
 
         this.primary = itemDto.getAlbumPrimaryImageTag() != null ? albumId : null;
@@ -103,6 +127,7 @@ public class Song implements Parcelable {
             }
         }
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -141,8 +166,11 @@ public class Song implements Parcelable {
         dest.writeString(this.albumId);
         dest.writeString(this.albumName);
 
-        dest.writeString(this.artistId);
-        dest.writeString(this.artistName);
+        dest.writeList (this.artistId);
+        dest.writeList (this.artistName);
+
+        dest.writeString(this.albumArtistId);
+        dest.writeString(this.albumArtistName);
 
         dest.writeString(this.primary);
         dest.writeString(Boolean.toString(favorite));
@@ -171,8 +199,13 @@ public class Song implements Parcelable {
         this.albumId = in.readString();
         this.albumName = in.readString();
 
-        this.artistId = in.readString();
-        this.artistName = in.readString();
+        this.artistId = new ArrayList<>();
+        in.readList(this.artistId, List.class.getClassLoader());
+        this.artistName = new ArrayList<>();
+        in.readList(this.artistName, List.class.getClassLoader());
+
+        this.albumArtistId = in.readString();
+        this.albumArtistName = in.readString();
 
         this.primary = in.readString();
         this.favorite = Boolean.parseBoolean(in.readString());

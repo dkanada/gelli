@@ -8,14 +8,14 @@ import org.jellyfin.apiclient.model.dto.BaseItemDto;
 import org.jellyfin.apiclient.model.querying.ArtistsQuery;
 import org.jellyfin.apiclient.model.querying.ItemsResult;
 
-public class ArtistsFragment extends AbsArtistsFragment {
+public class AlbumArtistsFragment extends AbsArtistsFragment {
 
     @Override
     protected void loadItems(int index) {
         ArtistsQuery query = getQuery();
         query.setStartIndex(index);
 
-        App.getApiClient().GetArtistsAsync(query, new Response<ItemsResult>() {
+        App.getApiClient().GetAlbumArtistsAsync(query, new Response<ItemsResult>() {
             @Override
             public void onResponse(ItemsResult result) {
                 if (index == 0) getAdapter().getDataSet().clear();
@@ -34,5 +34,4 @@ public class ArtistsFragment extends AbsArtistsFragment {
             }
         });
     }
-
 }
