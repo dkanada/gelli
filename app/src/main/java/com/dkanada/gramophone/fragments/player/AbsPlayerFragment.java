@@ -1,5 +1,6 @@
 package com.dkanada.gramophone.fragments.player;
 
+import android.animation.AnimatorSet;
 import android.content.Context;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +26,8 @@ import com.dkanada.gramophone.util.NavigationUtil;
 
 public abstract class AbsPlayerFragment extends AbsMusicServiceFragment implements Toolbar.OnMenuItemClickListener, PaletteColorHolder {
     private static boolean isToolbarShown = true;
+
+    protected static AnimatorSet currentAnimatorSet = null;
 
     private Callbacks callbacks;
 

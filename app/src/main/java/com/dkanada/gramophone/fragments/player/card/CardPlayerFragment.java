@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -436,8 +437,11 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
         @Override
         public void animateColorChange(int newColor) {
+            if (!fragment.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) return;
+            if (currentAnimatorSet!=null) currentAnimatorSet.cancel();
             binding.playerSlidingLayout.setBackgroundColor(fragment.lastColor);
-            createDefaultColorChangeAnimatorSet(newColor).start();
+            currentAnimatorSet = createDefaultColorChangeAnimatorSet(newColor);
+            currentAnimatorSet.start();
         }
     }
 
@@ -467,13 +471,13 @@ public class CardPlayerFragment extends AbsPlayerFragment implements PlayerAlbum
 
         @Override
         public void animateColorChange(int newColor) {
+            if (!fragment.getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) return;
+            if (currentAnimatorSet!=null) currentAnimatorSet.cancel();
             binding.playerSlidingLayout.setBackgroundColor(fragment.lastColor);
-
-            AnimatorSet animatorSet = createDefaultColorChangeAnimatorSet(newColor);
-            animatorSet.play(ViewUtil.createBackgroundColorTransition(binding.playerToolbar, fragment.lastColor, newColor))
+            currentAnimatorSet = createDefaultColorChangeAnimatorSet(newColor);
+            currentAnimatorSet.play(ViewUtil.createBackgroundColorTransition(binding.playerToolbar, fragment.lastColor, newColor))
                     .with(ViewUtil.createBackgroundColorTransition(fragment.getView().findViewById(R.id.status_bar), ThemeUtil.getColorDark(fragment.lastColor), ThemeUtil.getColorDark(newColor)));
-
-            animatorSet.start();
+            currentAnimatorSet.start();
         }
     }
 }
